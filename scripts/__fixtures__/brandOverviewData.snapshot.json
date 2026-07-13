@@ -1,0 +1,84 @@
+{
+  "row": {
+    "_id": "fixture-id-jio-mobile",
+    "name": "Jio Mobile",
+    "slug": "jio-mobile",
+    "status": "active",
+    "primaryHue": 268,
+    "primaryChroma": 0.18,
+    "secondaryHue": 35,
+    "secondaryChroma": 0.16
+  },
+  "overview": {
+    "appearance": {
+      "config": {
+        "accents": [
+          { "role": "primary" },
+          { "role": "secondary" },
+          { "role": "neutral" },
+          { "role": "sparkle" },
+          { "role": "positive" },
+          { "role": "negative" },
+          { "role": "warning" },
+          { "role": "informative" }
+        ]
+      }
+    },
+    "typography": {
+      "config": {
+        "fontFamily": "JioType",
+        "codeFont": "JetBrains Mono",
+        "fontSelection": {
+          "primaryFontId": "JioType",
+          "secondaryFontId": "Inter"
+        }
+      }
+    },
+    "recipes": {
+      "Button": {
+        "cornerRadius": "pill",
+        "textTransform": "none",
+        "horizontalDensity": "default"
+      },
+      "Surface": {
+        "elevation": "soft"
+      }
+    }
+  },
+  "scales": [
+    {
+      "name": "Primary",
+      "baseStep": 1300,
+      "anchorBoldToBaseStep": true,
+      "steps": [
+        { "step": 100,  "hex": "#f3f1ff", "oklch": { "L": 0.97, "C": 0.02, "h": 268 } },
+        { "step": 1300, "hex": "#3a36e0", "oklch": { "L": 0.46, "C": 0.18, "h": 268 } },
+        { "step": 2500, "hex": "#070620", "oklch": { "L": 0.10, "C": 0.04, "h": 268 } }
+      ]
+    },
+    {
+      "name": "Neutral",
+      "baseStep": 1300,
+      "steps": [
+        { "step": 100,  "hex": "#fafafa", "oklch": { "L": 0.98, "C": 0.00, "h": 0 } },
+        { "step": 1300, "hex": "#7a7a7a", "oklch": { "L": 0.55, "C": 0.00, "h": 0 } },
+        { "step": 2500, "hex": "#0a0a0a", "oklch": { "L": 0.08, "C": 0.00, "h": 0 } }
+      ]
+    }
+  ],
+  "expected": {
+    "brandId": "jio-mobile",
+    "displayName": "Jio Mobile",
+    "status": "active",
+    "primary": { "L": 0.5, "C": 0.18, "h": 268 },
+    "secondary": { "L": 0.5, "C": 0.16, "h": 35 },
+    "activeRoles": ["primary", "secondary", "neutral", "sparkle", "positive", "negative", "warning", "informative"],
+    "fontsPrimaryFamily": "JioType",
+    "fontsSecondaryFamily": "Inter",
+    "fontsCodeFamily": "JetBrains Mono",
+    "scaleNames": ["Primary", "Neutral"],
+    "recipesButtonCornerRadius": "pill",
+    "brandSetVersion": "3.0.0-test",
+    "snapshottedAt": "2026-05-13T00:00:00.000Z"
+  }
+}
