@@ -1,0 +1,98 @@
+# Build + package the three publishable React Native packages and publish their
+# npm tarballs as a build artifact:
+#
+#   @oneui/ui-native
+#   @oneui/icons-jio-native
+#   @oneui/create-native-app
+#
+# Flow:
+#   1. Build gate — `turbo run build` for all three (Turbo builds their
+#      workspace deps @oneui/shared / @oneui/tokens first). If ANY build fails,
+#      every step below is skipped (Azure steps default to condition:
+#      succeeded()), so NO artifacts are produced.
+#   2. Pack — each package's `build:pack` does the authoritative full build +
+#      pack, emitting a versioned .tgz at dist/packages/<name>/.
+#   3. Publish — the three tarballs are collected and published as the
+#      `react-native-packages` build artifact.
+#
+# MANUAL, MAIN-ONLY. No automatic trigger (trigger: none / pr: none) — start it
+# from the Azure Pipelines UI / API. The first step guards the source branch and
+# fails the run if it is not `main`, so it only ever builds from main.
+
+trigger: none
+pr: none
+
+pool:
+  name: 'OneUI'
+
+variables:
+  NODE_OPTIONS: '--max-old-space-size=8192'
+
+steps:
+  - checkout: self
+
+  # Guard: this pipeline may only build from `main`. It is manually triggered,
+  # so a user could pick any branch in "Run pipeline" — fail fast if not main.
+  - bash: |
+      set -euo pipefail
+      if [ "$(Build.SourceBranch)" != "refs/heads/main" ]; then
+        echo "##[error]This pipeline may only run on 'main' (got: $(Build.SourceBranch))."
+        exit 1
+      fi
+      echo "Source branch OK: $(Build.SourceBranch)"
+    displayName: 'Guard: main branch only'
+
+  - task: NodeTool@0
+    displayName: 'Use Node.js 20.x'
+    inputs:
+      versionSpec: '20.x'
+
+  - bash: |
+      set -euo pipefail
+      corepack enable
+      corepack prepare pnpm@9.15.9 --activate
+      node --version
+      pnpm --version
+    displayName: 'Enable pnpm'
+
+  - bash: |
+      set -euo pipefail
+      pnpm install --frozen-lockfile
+    displayName: 'Install dependencies'
+
+  # ── Build gate ────────────────────────────────────────────────────────────
+  # Builds all three RN packages. If this step exits non-zero the job stops here
+  # and none of the pack/publish steps run — no artifacts on a broken build.
+  - bash: |
+      set -euo pipefail
+      pnpm exec turbo run build --filter=@oneui/ui-native --filter=@oneui/icons-jio-native --filter=@oneui/create-native-app
+    displayName: 'Build RN packages (gate)'
+
+  # ── Pack ────────────────────────────────────────────────────────────────────
+  # build:pack runs the full build + pack per package, producing a versioned
+  # tarball at dist/packages/<name>/*.tgz. Only runs if the gate above succeeded.
+  - bash: |
+      set -euo pipefail
+      pnpm --filter @oneui/ui-native run build:pack
+      pnpm --filter @oneui/icons-jio-native run build:pack
+      pnpm --filter @oneui/create-native-app run build:pack
+    displayName: 'Pack RN package tarballs'
+
+  # ── Collect + publish ─────────────────────────────────────────────────────
+  - bash: |
+      set -euo pipefail
+      DEST="$(Build.ArtifactStagingDirectory)/react-native-packages"
+      mkdir -p "$DEST"
+      cp dist/packages/ui-native/*.tgz              "$DEST"/
+      cp dist/packages/icons-jio-native/*.tgz       "$DEST"/
+      cp dist/packages/create-oneui-native-app/*.tgz "$DEST"/
+      echo "Collected tarballs:"
+      ls -la "$DEST"
+    displayName: 'Collect tarballs'
+
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish: react-native-packages'
+    inputs:
+      PathtoPublish: '$(Build.ArtifactStagingDirectory)/react-native-packages'
+      ArtifactName: 'react-native-packages'
+      publishLocation: 'Container'

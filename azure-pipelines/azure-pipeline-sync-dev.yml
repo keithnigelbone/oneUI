@@ -1,0 +1,77 @@
+# Mirror OneUiStudio_Base_v4 (GitHub dev) → jds-oneui (Azure DevOps dev)
+#
+# This MIRRORS GitHub's commit history onto Azure DevOps: it force-pushes so the
+# Azure `dev` branch ends up with the SAME commits/SHAs as GitHub `dev`. It does NOT
+# create new "sync" commits.
+#
+# ⚠️  Force-push OVERWRITES Azure `dev` history on every run. Any commits made
+#     directly on Azure `dev` that are not on GitHub `dev` are discarded. Make sure
+#     GitHub is the single source of truth for `dev`, and that no branch policy
+#     blocks force-push (rewrite history) on `dev`.
+#
+# ⚠️  Because this overwrites `dev`, do NOT keep this pipeline's YAML only on `dev`
+#     of the Azure repo — after the first mirror, Azure's copy of this file becomes
+#     whatever GitHub `dev` contains. Either ensure this file is committed on GitHub
+#     `dev`, or point the pipeline at a dedicated branch that this job never touches.
+#
+# The GitHub source repo is PRIVATE → a PAT is required. Add a SECRET pipeline var:
+#   GITHUB_PAT = a GitHub token with read access to OneUiStudio_Base_v4
+# The push to Azure uses the pipeline's own OAuth token ($(System.AccessToken)).
+
+trigger: none
+
+schedules:
+  - cron: '0 */6 * * *'
+    displayName: Sync from GitHub dev (every 6 hours)
+    branches:
+      include:
+        - dev
+    always: true
+
+pool:
+  name: 'OneUI'
+
+variables:
+  GITHUB_REPO: Nuno-Marcelino_jplgit/OneUiStudio_Base_v4
+  GITHUB_BRANCH: dev
+  TARGET_BRANCH: dev
+  AZURE_REPO_URL: https://dev.azure.com/JioSOI/DS/_git/jds-oneui-studio
+
+steps:
+  # No self checkout: all git work happens in the GitHub clone created below.
+  - checkout: none
+
+  - bash: |
+      set -euo pipefail
+
+      test -n "${GITHUB_PAT:-}"        || { echo "##[error]GITHUB_PAT is not set (add it as a secret pipeline variable)."; exit 1; }
+      test -n "${SYSTEM_ACCESSTOKEN:-}" || { echo "##[error]System.AccessToken not available (map it in env: below)."; exit 1; }
+
+      # Private GitHub repo → clone over HTTPS with the PAT (x-access-token form).
+      CLONE_URL="https://x-access-token:${GITHUB_PAT}@github.com/${GITHUB_REPO}.git"
+      WORK_DIR="$(Agent.TempDirectory)/base-v4"
+
+      echo "Cloning GitHub source (${GITHUB_REPO}@${GITHUB_BRANCH}) with full history..."
+      rm -rf "$WORK_DIR"
+      # fetchDepth is NOT set anywhere, so this clone carries the branch's COMPLETE
+      # commit history — that history is what gets mirrored to Azure.
+      git clone --branch "${GITHUB_BRANCH}" "$CLONE_URL" "$WORK_DIR"
+
+      SOURCE_SHA="$(git -C "$WORK_DIR" rev-parse HEAD)"
+      echo "Source commit: ${SOURCE_SHA}"
+
+      echo "Force-pushing GitHub history onto Azure ${TARGET_BRANCH}..."
+      # Push straight from the GitHub clone to the Azure repo URL. Auth uses the
+      # pipeline OAuth token via an HTTP bearer header (never written into the remote
+      # URL or .git/config). --force replaces Azure's branch so the SHAs match GitHub.
+      git -C "$WORK_DIR" \
+        -c http.extraheader="AUTHORIZATION: bearer ${SYSTEM_ACCESSTOKEN}" \
+        push --force "${AZURE_REPO_URL}" "HEAD:refs/heads/${TARGET_BRANCH}"
+
+      echo "✓ Azure ${TARGET_BRANCH} now matches GitHub ${GITHUB_BRANCH} @ ${SOURCE_SHA}"
+    displayName: Mirror GitHub dev history onto Azure DevOps dev
+    env:
+      # Non-secret pipeline variables are exposed to bash automatically; the secret
+      # PAT and the OAuth token must be mapped in explicitly.
+      GITHUB_PAT: $(GITHUB_PAT)
+      SYSTEM_ACCESSTOKEN: $(System.AccessToken)
