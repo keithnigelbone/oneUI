@@ -1,0 +1,21 @@
+{
+  "name": "@jds4/oneui-init",
+  "version": "0.1.0-alpha.10",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "bin": {
+    "oneui-init": "./dist/bin.mjs"
+  },
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts"
+}
