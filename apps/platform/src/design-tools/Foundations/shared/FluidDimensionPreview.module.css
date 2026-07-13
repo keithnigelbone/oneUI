@@ -1,0 +1,123 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  /* 60px between the text block, the settings section, and the table (Figma). */
+  gap: var(--Spacing-12);
+  margin-top: var(--Spacing-12);
+}
+
+/* ── Section header ───────────────────────────────────────────── */
+.sectionHead {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-3);
+}
+
+.sectionTitle {
+  margin: 0;
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Title-M-FontSize);
+  line-height: var(--Title-M-LineHeight);
+  font-weight: var(--Title-M-FontWeight);
+  color: var(--Text-High);
+}
+
+.sectionDesc {
+  margin: 0;
+  max-width: var(--FluidDimensionPreview-descMaxWidth, 46rem);
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Body-M-FontSize);
+  line-height: var(--Body-M-LineHeight);
+  font-weight: var(--Body-FontWeight-Low);
+  color: var(--Text-Low);
+}
+
+/* ── Table section (title + scale table) ──────────────────────── */
+.tableSection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-4);
+}
+
+/* ── Table header ─────────────────────────────────────────────── */
+.tableHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--Spacing-4);
+  flex-wrap: wrap;
+}
+
+.tableTitle {
+  margin: 0;
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Headline-M-FontSize);
+  line-height: var(--Headline-M-LineHeight);
+  font-weight: var(--Headline-M-FontWeight);
+  color: var(--Text-High);
+}
+
+/* ── Table ────────────────────────────────────────────────────── */
+.tableScroller {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  /* Fixed columns so cells don't reflow as the slider changes the numbers. */
+  table-layout: fixed;
+}
+
+.table thead th {
+  text-align: left;
+  padding: var(--Spacing-2) var(--Spacing-3);
+  border-bottom: var(--Stroke-M, 1px) solid var(--Border-Subtle);
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+  color: var(--Text-Low);
+  white-space: nowrap;
+}
+
+.table tbody td {
+  padding: var(--Spacing-2-5) var(--Spacing-4);
+  border-bottom: var(--Stroke-S, 1px) solid var(--Border-Subtle);
+  font-family: var(--Typography-Font-Code, monospace);
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  color: var(--Text-High);
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.table tbody tr:hover td {
+  background: var(--Surface-Subtle);
+}
+
+.colStep { width: 5rem; }
+.colMult { width: 7rem; }
+.colValue { width: 7rem; }
+.colToken { width: 16rem; white-space: nowrap; }
+.colRamp { width: auto; }
+
+.stepCell { color: var(--Text-High); }
+.multCell { color: var(--Text-Low); }
+.valueCell { color: var(--Text-High); }
+
+.tokenCell code {
+  color: var(--Text-Medium);
+  font-family: var(--Typography-Font-Code, monospace);
+  white-space: nowrap;
+}
+
+.ramp {
+  display: inline-block;
+  vertical-align: middle;
+  height: var(--Spacing-2);
+  max-width: 100%;
+  background: var(--Primary-Bold);
+  border-radius: var(--Shape-2);
+  transition: width var(--Motion-Duration-Expressive-S, 200ms) var(--Motion-Easing-Transition, ease-out);
+}

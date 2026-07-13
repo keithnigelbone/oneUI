@@ -1,0 +1,22 @@
+/**
+ * Separator.module.css
+ * Token-only styling for Separator component
+ * Verified by: pnpm check:literals
+ */
+
+.separator {
+  border: none;
+  background-color: var(--Border-Subtle);
+  margin: 0;
+}
+
+.separator[data-orientation='horizontal'] {
+  width: 100%;
+  height: var(--Stroke-M);
+}
+
+.separator[data-orientation='vertical'] {
+  width: var(--Stroke-M);
+  height: 100%;
+  align-self: stretch;
+}

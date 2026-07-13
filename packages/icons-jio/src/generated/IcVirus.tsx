@@ -1,0 +1,30 @@
+import React, { forwardRef } from 'react';
+import type { IconComponentProps } from '../iconProps';
+
+export const IcVirus = forwardRef<SVGSVGElement, IconComponentProps>(function IcVirus(
+  { size = 24, width, height, color = 'currentColor', className, style, ...props },
+  ref,
+) {
+  const dim = width ?? height ?? size;
+  return (
+    <svg
+      ref={ref}
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      width={width ?? dim}
+      height={height ?? dim}
+      color={color}
+      className={className}
+      style={style}
+      {...props}
+    >
+      <path
+            fill="currentColor"
+            d="M21 10a1 1 0 0 0-1 1h-1.08a7 7 0 0 0-1.32-3.19l.76-.76a1 1 0 1 0 1.42-1.41l-1.42-1.42a1 1 0 1 0-1.41 1.42l-.76.76A7 7 0 0 0 13 5.08V4a1 1 0 1 0 0-2h-2a1 1 0 1 0 0 2v1.08A7 7 0 0 0 7.81 6.4l-.76-.76a1 1 0 1 0-1.41-1.42L4.22 5.64a1 1 0 1 0 1.42 1.41l.76.76A7 7 0 0 0 5.08 11H4a1 1 0 1 0-2 0v2a1 1 0 1 0 2 0h1.08a7 7 0 0 0 1.32 3.19l-.76.81a1 1 0 1 0-1.42 1.41l1.42 1.42a1 1 0 1 0 1.41-1.42l.76-.76A7 7 0 0 0 11 18.92V20a1 1 0 0 0 0 2h2a1 1 0 0 0 0-2v-1.08a7 7 0 0 0 3.19-1.32l.76.76a1.002 1.002 0 0 0 .705 1.71 1 1 0 0 0 .705-.29l1.42-1.42a1 1 0 1 0-1.42-1.41l-.76-.76A7 7 0 0 0 18.92 13H20a1 1 0 0 0 2 0v-2a1 1 0 0 0-1-1"
+          />
+    </svg>
+  );
+});
+
+IcVirus.displayName = 'IcVirus';

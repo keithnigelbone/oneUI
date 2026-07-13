@@ -1,0 +1,3589 @@
+{
+  "slug": "single-text-button",
+  "runs": [
+    {
+      "savedAt": "2026-06-23T09:40:24.295Z",
+      "report": {
+        "ok": false,
+        "slug": "single-text-button",
+        "message": "single-text-button QA Playwright run had failures — 2026-06-23T08:28:29.025Z",
+        "suites": {
+          "accessibility": {
+            "suite": "accessibility",
+            "passed": 24,
+            "failed": 1,
+            "skipped": 0,
+            "logs": [
+              "25 test(s) in Playwright report for accessibility.",
+              "Axe: 1 violation rule(s) reported."
+            ],
+            "errors": [
+              "BUG-SINGLETEXT-001: A button has no accessible name — screen readers only hear “button” with no label. Add visible text, aria-label, or aria-labelledby. Element: ._storySandboxOverflow_1xef1_858._storySandbox_1xef1_837 > ._surface_rgilb_1[data-surface=\"minimal\"][data-surface-step=\"2400\"] > span > button[data-loading=\"\"][data-disabled=\"\"][data-variant=\"bold\"]. (Rule: button-name, critical impact)."
+            ],
+            "cases": [
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — zero serious/critical + HTML report",
+                "status": "passed",
+                "durationMs": 7343
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Default band",
+                "status": "passed",
+                "durationMs": 7152,
+                "componentBand": "single-text-button-qa-default"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Size (S · M · L) band",
+                "status": "passed",
+                "durationMs": 7213,
+                "componentBand": "single-text-button-qa-size"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Attention band",
+                "status": "passed",
+                "durationMs": 7124,
+                "componentBand": "single-text-button-qa-attention"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Condensed band",
+                "status": "passed",
+                "durationMs": 7217,
+                "componentBand": "single-text-button-qa-condensed"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Disabled and loading band",
+                "status": "passed",
+                "durationMs": 3481,
+                "componentBand": "single-text-button-qa-states"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Interaction band",
+                "status": "passed",
+                "durationMs": 3517,
+                "componentBand": "single-text-button-qa-interaction"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Edge (long label) band",
+                "status": "passed",
+                "durationMs": 3649,
+                "componentBand": "single-text-button-qa-edge"
+              },
+              {
+                "name": "[a11y] data-testid=\"single-text-button-default\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 3728
+              },
+              {
+                "name": "[a11y] data-testid=\"single-text-button-size-m\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 3943
+              },
+              {
+                "name": "[a11y] data-testid=\"single-text-button-attention-high\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 3504
+              },
+              {
+                "name": "[a11y] data-testid=\"single-text-button-condensed-m\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 3558
+              },
+              {
+                "name": "[a11y] data-testid=\"single-text-button-disabled\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 3921
+              },
+              {
+                "name": "[a11y] data-testid=\"single-text-button-loading\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 3966
+              },
+              {
+                "name": "[a11y] data-testid=\"single-text-button-interactive\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 3725
+              },
+              {
+                "name": "[a11y] data-testid=\"single-text-button-edge-long\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 3089
+              },
+              {
+                "name": "[a11y] axe button-name rule — Test Scenarios page (exclude bug repro band)",
+                "status": "passed",
+                "durationMs": 3428
+              },
+              {
+                "name": "[a11y] Accessible name readout — loading button with aria-label",
+                "status": "passed",
+                "durationMs": 3263
+              },
+              {
+                "name": "[a11y] Keyboard Space — interactive text button",
+                "status": "passed",
+                "durationMs": 3211
+              },
+              {
+                "name": "[a11y] ARIA validity — showcase bands, zero serious/critical",
+                "status": "passed",
+                "durationMs": 3732
+              },
+              {
+                "name": "[a11y] page lang on <html>",
+                "status": "passed",
+                "durationMs": 2891
+              },
+              {
+                "name": "[a11y] focused default shows focus indicator",
+                "status": "passed",
+                "durationMs": 3089
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — bug repro (loading, no aria-label on button) band",
+                "status": "failed",
+                "durationMs": 3852,
+                "error": "A button has no accessible name — screen readers only hear “button” with no label. Add visible text, aria-label, or aria-labelledby. Element: ._storySandboxOverflow_1xef1_858._storySandbox_1xef1_837 > ._surface_rgilb_1[data-surface=\"minimal\"][data-surface-step=\"2400\"] > span > button[data-loading=\"\"][data-disabled=\"\"][data-variant=\"bold\"]. (Rule: button-name, critical impact).",
+                "bugId": "BUG-SINGLETEXT-001",
+                "componentBand": "single-text-button-qa-bug-repro"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Figma size×attention and condensed grids",
+                "status": "passed",
+                "durationMs": 5943
+              },
+              {
+                "name": "[a11y] playground route responds",
+                "status": "passed",
+                "durationMs": 3190
+              }
+            ],
+            "axe": {
+              "violations": [
+                {
+                  "id": "button-name",
+                  "impact": "critical",
+                  "description": "Ensure buttons have discernible text",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/button-name?application=playwright",
+                  "nodes": 1
+                }
+              ]
+            }
+          },
+          "functional": {
+            "suite": "functional",
+            "passed": 51,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "51 test(s) in Playwright report for functional."
+            ],
+            "errors": [],
+            "cases": [
+              {
+                "name": "[fn] 1.1 — no console errors on playground load",
+                "status": "passed",
+                "durationMs": 4329
+              },
+              {
+                "name": "[fn] 1.2 — every playground data-testid is visible",
+                "status": "passed",
+                "durationMs": 3576
+              },
+              {
+                "name": "[fn] 1.3 — every data-section is visible",
+                "status": "passed",
+                "durationMs": 2930
+              },
+              {
+                "name": "[fn] 2.2 — size bounding boxes grow S → L (circular)",
+                "status": "passed",
+                "durationMs": 3586
+              },
+              {
+                "name": "[fn] 2.3 — Appearance colour (N/A)",
+                "status": "passed",
+                "durationMs": 2780
+              },
+              {
+                "name": "[fn] 3.1 — click fires onClick and updates press counter",
+                "status": "passed",
+                "durationMs": 2934
+              },
+              {
+                "name": "[fn] 3.2 — disabled button does not increment counter on forced click",
+                "status": "passed",
+                "durationMs": 2932
+              },
+              {
+                "name": "[fn] 3.3 — Readonly (N/A)",
+                "status": "passed",
+                "durationMs": 2784
+              },
+              {
+                "name": "[fn] 3.4 — click outside removes focus",
+                "status": "passed",
+                "durationMs": 3804
+              },
+              {
+                "name": "[fn] 4.1 — Tab reaches interactive button",
+                "status": "passed",
+                "durationMs": 3229
+              },
+              {
+                "name": "[fn] 4.1 — disabled button is not focused via Tab from prior focusable",
+                "status": "passed",
+                "durationMs": 2825
+              },
+              {
+                "name": "[fn] 4.2 — Enter activates interactive button",
+                "status": "passed",
+                "durationMs": 3275
+              },
+              {
+                "name": "[fn] 4.3 — Space activates interactive button",
+                "status": "passed",
+                "durationMs": 2221
+              },
+              {
+                "name": "[fn] 4.4 — Arrow keys (N/A)",
+                "status": "passed",
+                "durationMs": 2888
+              },
+              {
+                "name": "[fn] 4.5 — Home and End keys (N/A)",
+                "status": "passed",
+                "durationMs": 3455
+              },
+              {
+                "name": "[fn] 4.6 — Escape (N/A)",
+                "status": "passed",
+                "durationMs": 2600
+              },
+              {
+                "name": "[fn] 4.7 — Tab through page without keyboard trap",
+                "status": "passed",
+                "durationMs": 3458
+              },
+              {
+                "name": "[fn] 5.1 — click focuses button",
+                "status": "passed",
+                "durationMs": 2978
+              },
+              {
+                "name": "[fn] 5.2 — focus ring visible",
+                "status": "passed",
+                "durationMs": 2982
+              },
+              {
+                "name": "[fn] 5.5 — autoFocus (N/A)",
+                "status": "passed",
+                "durationMs": 3599
+              },
+              {
+                "name": "[fn] 6.1 — default state renders with high attention bold variant",
+                "status": "passed",
+                "durationMs": 3191
+              },
+              {
+                "name": "[fn] 6.2 — Selected/checked (N/A)",
+                "status": "passed",
+                "durationMs": 2817
+              },
+              {
+                "name": "[fn] 6.3 — disabled is not enabled and skips Tab order",
+                "status": "passed",
+                "durationMs": 2870
+              },
+              {
+                "name": "[fn] 6.4 — Readonly (N/A)",
+                "status": "passed",
+                "durationMs": 3194
+              },
+              {
+                "name": "[fn] 6.5 — Error state (N/A)",
+                "status": "passed",
+                "durationMs": 3521
+              },
+              {
+                "name": "[fn] 6.6 — loading disables and shows progressbar",
+                "status": "passed",
+                "durationMs": 3089
+              },
+              {
+                "name": "[fn] 7.1 — Start/end slots (N/A)",
+                "status": "passed",
+                "durationMs": 3087
+              },
+              {
+                "name": "[fn] 8.1 — Toggle (N/A)",
+                "status": "passed",
+                "durationMs": 2858
+              },
+              {
+                "name": "[fn] 8.2 — Single-select group (N/A)",
+                "status": "passed",
+                "durationMs": 3330
+              },
+              {
+                "name": "[fn] 8.3 — Indeterminate (N/A)",
+                "status": "passed",
+                "durationMs": 4007
+              },
+              {
+                "name": "[fn] 9.1 — Typing (N/A)",
+                "status": "passed",
+                "durationMs": 3329
+              },
+              {
+                "name": "[fn] 10.3 — loading=true forces disabled and shows spinner",
+                "status": "passed",
+                "durationMs": 2229
+              },
+              {
+                "name": "[fn] 11.1 — default label text “Ag” is visible",
+                "status": "passed",
+                "durationMs": 2391
+              },
+              {
+                "name": "[fn] 11.1 — edge long label cell renders button",
+                "status": "passed",
+                "durationMs": 1021
+              },
+              {
+                "name": "[fn] 12.1 — fullWidth (N/A)",
+                "status": "passed",
+                "durationMs": 2467
+              },
+              {
+                "name": "[fn] 12.2 — visible at 320px viewport",
+                "status": "passed",
+                "durationMs": 5538
+              },
+              {
+                "name": "[fn] 12.2 — visible at 1440px viewport",
+                "status": "passed",
+                "durationMs": 5218
+              },
+              {
+                "name": "[fn] 12.3 — size strip is roughly horizontal",
+                "status": "passed",
+                "durationMs": 3154
+              },
+              {
+                "name": "[fn] Smoke — Page heading reads “Single Text Button”",
+                "status": "passed",
+                "durationMs": 2936
+              },
+              {
+                "name": "[fn] Smoke — Default control is visible",
+                "status": "passed",
+                "durationMs": 3881
+              },
+              {
+                "name": "[fn] Smoke — Interactive control is visible",
+                "status": "passed",
+                "durationMs": 3290
+              },
+              {
+                "name": "[fn] Component page shows title and QA tabs",
+                "status": "passed",
+                "durationMs": 2810
+              },
+              {
+                "name": "[fn] Default button shows label “Ag”, size M, high attention, bold variant",
+                "status": "passed",
+                "durationMs": 1782
+              },
+              {
+                "name": "[fn] Size variants S, M, and L render",
+                "status": "passed",
+                "durationMs": 3164
+              },
+              {
+                "name": "[fn] High / medium / low attention map to bold / subtle / ghost variants",
+                "status": "passed",
+                "durationMs": 3520
+              },
+              {
+                "name": "[fn] Condensed buttons set data-condensed and correct data-size",
+                "status": "passed",
+                "durationMs": 3107
+              },
+              {
+                "name": "[fn] Click increments the press counter",
+                "status": "passed",
+                "durationMs": 3060
+              },
+              {
+                "name": "[fn] Disabled cannot be clicked; loading shows busy state and name “Loading”",
+                "status": "passed",
+                "durationMs": 3016
+              },
+              {
+                "name": "[fn] Long label edge-case cell renders",
+                "status": "passed",
+                "durationMs": 3333
+              },
+              {
+                "name": "[fn] All Test Scenarios story bands are mounted on the page",
+                "status": "passed",
+                "durationMs": 4171
+              },
+              {
+                "name": "[fn] Figma Validation tab shows API table and validation grids",
+                "status": "passed",
+                "durationMs": 3363
+              }
+            ]
+          },
+          "performance": {
+            "suite": "performance",
+            "passed": 0,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "Performance suite is not executed in apps/qa-playground single-text-button Playwright bundle."
+            ],
+            "errors": []
+          }
+        }
+      }
+    },
+    {
+      "savedAt": "2026-06-23T08:28:29.027Z",
+      "report": {
+        "ok": false,
+        "slug": "single-text-button",
+        "message": "single-text-button QA Playwright run had failures — 2026-06-23T08:09:22.157Z",
+        "suites": {
+          "accessibility": {
+            "suite": "accessibility",
+            "passed": 24,
+            "failed": 1,
+            "skipped": 0,
+            "logs": [
+              "25 test(s) in Playwright report for accessibility.",
+              "Axe: 1 violation rule(s) reported."
+            ],
+            "errors": [
+              "BUG-SINGLETEXT-001: A button has no accessible name — screen readers only hear “button” with no label. Add visible text, aria-label, or aria-labelledby. Element: ._storySandboxOverflow_1xef1_858._storySandbox_1xef1_837 > ._surface_rgilb_1[data-surface=\"minimal\"][data-surface-step=\"2400\"] > span > button[data-loading=\"\"][data-disabled=\"\"][data-variant=\"bold\"]. (Rule: button-name, critical impact)."
+            ],
+            "cases": [
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — zero serious/critical + HTML report",
+                "status": "passed",
+                "durationMs": 5716
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Default band",
+                "status": "passed",
+                "durationMs": 5698,
+                "componentBand": "single-text-button-qa-default"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Size (S · M · L) band",
+                "status": "passed",
+                "durationMs": 5672,
+                "componentBand": "single-text-button-qa-size"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Attention band",
+                "status": "passed",
+                "durationMs": 6151,
+                "componentBand": "single-text-button-qa-attention"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Condensed band",
+                "status": "passed",
+                "durationMs": 6227,
+                "componentBand": "single-text-button-qa-condensed"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Disabled and loading band",
+                "status": "passed",
+                "durationMs": 3605,
+                "componentBand": "single-text-button-qa-states"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Interaction band",
+                "status": "passed",
+                "durationMs": 3866,
+                "componentBand": "single-text-button-qa-interaction"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Edge (long label) band",
+                "status": "passed",
+                "durationMs": 3577,
+                "componentBand": "single-text-button-qa-edge"
+              },
+              {
+                "name": "[a11y] data-testid=\"single-text-button-default\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 3935
+              },
+              {
+                "name": "[a11y] data-testid=\"single-text-button-size-m\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 4008
+              },
+              {
+                "name": "[a11y] data-testid=\"single-text-button-attention-high\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 3421
+              },
+              {
+                "name": "[a11y] data-testid=\"single-text-button-condensed-m\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 3347
+              },
+              {
+                "name": "[a11y] data-testid=\"single-text-button-disabled\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 3577
+              },
+              {
+                "name": "[a11y] data-testid=\"single-text-button-loading\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 3441
+              },
+              {
+                "name": "[a11y] data-testid=\"single-text-button-interactive\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 3303
+              },
+              {
+                "name": "[a11y] data-testid=\"single-text-button-edge-long\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 3136
+              },
+              {
+                "name": "[a11y] axe button-name rule — Test Scenarios page (exclude bug repro band)",
+                "status": "passed",
+                "durationMs": 3825
+              },
+              {
+                "name": "[a11y] Accessible name readout — loading button with aria-label",
+                "status": "passed",
+                "durationMs": 3401
+              },
+              {
+                "name": "[a11y] Keyboard Space — interactive text button",
+                "status": "passed",
+                "durationMs": 3410
+              },
+              {
+                "name": "[a11y] ARIA validity — showcase bands, zero serious/critical",
+                "status": "passed",
+                "durationMs": 3717
+              },
+              {
+                "name": "[a11y] page lang on <html>",
+                "status": "passed",
+                "durationMs": 2499
+              },
+              {
+                "name": "[a11y] focused default shows focus indicator",
+                "status": "passed",
+                "durationMs": 2731
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — bug repro (loading, no aria-label on button) band",
+                "status": "failed",
+                "durationMs": 4460,
+                "error": "A button has no accessible name — screen readers only hear “button” with no label. Add visible text, aria-label, or aria-labelledby. Element: ._storySandboxOverflow_1xef1_858._storySandbox_1xef1_837 > ._surface_rgilb_1[data-surface=\"minimal\"][data-surface-step=\"2400\"] > span > button[data-loading=\"\"][data-disabled=\"\"][data-variant=\"bold\"]. (Rule: button-name, critical impact).",
+                "bugId": "BUG-SINGLETEXT-001",
+                "componentBand": "single-text-button-qa-bug-repro"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Figma size×attention and condensed grids",
+                "status": "passed",
+                "durationMs": 5623
+              },
+              {
+                "name": "[a11y] playground route responds",
+                "status": "passed",
+                "durationMs": 3002
+              }
+            ],
+            "axe": {
+              "violations": [
+                {
+                  "id": "button-name",
+                  "impact": "critical",
+                  "description": "Ensure buttons have discernible text",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/button-name?application=playwright",
+                  "nodes": 1
+                }
+              ]
+            }
+          },
+          "functional": {
+            "suite": "functional",
+            "passed": 51,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "51 test(s) in Playwright report for functional."
+            ],
+            "errors": [],
+            "cases": [
+              {
+                "name": "[fn] 1.1 — no console errors on playground load",
+                "status": "passed",
+                "durationMs": 5538
+              },
+              {
+                "name": "[fn] 1.2 — every playground data-testid is visible",
+                "status": "passed",
+                "durationMs": 3109
+              },
+              {
+                "name": "[fn] 1.3 — every data-section is visible",
+                "status": "passed",
+                "durationMs": 2581
+              },
+              {
+                "name": "[fn] 2.2 — size bounding boxes grow S → L (circular)",
+                "status": "passed",
+                "durationMs": 3031
+              },
+              {
+                "name": "[fn] 2.3 — Appearance colour (N/A)",
+                "status": "passed",
+                "durationMs": 1788
+              },
+              {
+                "name": "[fn] 3.1 — click fires onClick and updates press counter",
+                "status": "passed",
+                "durationMs": 2154
+              },
+              {
+                "name": "[fn] 3.2 — disabled button does not increment counter on forced click",
+                "status": "passed",
+                "durationMs": 1484
+              },
+              {
+                "name": "[fn] 3.3 — Readonly (N/A)",
+                "status": "passed",
+                "durationMs": 2040
+              },
+              {
+                "name": "[fn] 3.4 — click outside removes focus",
+                "status": "passed",
+                "durationMs": 2681
+              },
+              {
+                "name": "[fn] 4.1 — Tab reaches interactive button",
+                "status": "passed",
+                "durationMs": 4744
+              },
+              {
+                "name": "[fn] 4.1 — disabled button is not focused via Tab from prior focusable",
+                "status": "passed",
+                "durationMs": 2778
+              },
+              {
+                "name": "[fn] 4.2 — Enter activates interactive button",
+                "status": "passed",
+                "durationMs": 3284
+              },
+              {
+                "name": "[fn] 4.3 — Space activates interactive button",
+                "status": "passed",
+                "durationMs": 15113
+              },
+              {
+                "name": "[fn] 4.4 — Arrow keys (N/A)",
+                "status": "passed",
+                "durationMs": 2003
+              },
+              {
+                "name": "[fn] 4.5 — Home and End keys (N/A)",
+                "status": "passed",
+                "durationMs": 3696
+              },
+              {
+                "name": "[fn] 4.6 — Escape (N/A)",
+                "status": "passed",
+                "durationMs": 2406
+              },
+              {
+                "name": "[fn] 4.7 — Tab through page without keyboard trap",
+                "status": "passed",
+                "durationMs": 3368
+              },
+              {
+                "name": "[fn] 5.1 — click focuses button",
+                "status": "passed",
+                "durationMs": 3247
+              },
+              {
+                "name": "[fn] 5.2 — focus ring visible",
+                "status": "passed",
+                "durationMs": 1806
+              },
+              {
+                "name": "[fn] 5.5 — autoFocus (N/A)",
+                "status": "passed",
+                "durationMs": 1255
+              },
+              {
+                "name": "[fn] 6.1 — default state renders with high attention bold variant",
+                "status": "passed",
+                "durationMs": 1610
+              },
+              {
+                "name": "[fn] 6.2 — Selected/checked (N/A)",
+                "status": "passed",
+                "durationMs": 1420
+              },
+              {
+                "name": "[fn] 6.3 — disabled is not enabled and skips Tab order",
+                "status": "passed",
+                "durationMs": 1350
+              },
+              {
+                "name": "[fn] 6.4 — Readonly (N/A)",
+                "status": "passed",
+                "durationMs": 2646
+              },
+              {
+                "name": "[fn] 6.5 — Error state (N/A)",
+                "status": "passed",
+                "durationMs": 2890
+              },
+              {
+                "name": "[fn] 6.6 — loading disables and shows progressbar",
+                "status": "passed",
+                "durationMs": 1832
+              },
+              {
+                "name": "[fn] 7.1 — Start/end slots (N/A)",
+                "status": "passed",
+                "durationMs": 3686
+              },
+              {
+                "name": "[fn] 8.1 — Toggle (N/A)",
+                "status": "passed",
+                "durationMs": 2133
+              },
+              {
+                "name": "[fn] 8.2 — Single-select group (N/A)",
+                "status": "passed",
+                "durationMs": 2497
+              },
+              {
+                "name": "[fn] 8.3 — Indeterminate (N/A)",
+                "status": "passed",
+                "durationMs": 4290
+              },
+              {
+                "name": "[fn] 9.1 — Typing (N/A)",
+                "status": "passed",
+                "durationMs": 1999
+              },
+              {
+                "name": "[fn] 10.3 — loading=true forces disabled and shows spinner",
+                "status": "passed",
+                "durationMs": 3263
+              },
+              {
+                "name": "[fn] 11.1 — default label text “Ag” is visible",
+                "status": "passed",
+                "durationMs": 2377
+              },
+              {
+                "name": "[fn] 11.1 — edge long label cell renders button",
+                "status": "passed",
+                "durationMs": 1772
+              },
+              {
+                "name": "[fn] 12.1 — fullWidth (N/A)",
+                "status": "passed",
+                "durationMs": 4322
+              },
+              {
+                "name": "[fn] 12.2 — visible at 320px viewport",
+                "status": "passed",
+                "durationMs": 2531
+              },
+              {
+                "name": "[fn] 12.2 — visible at 1440px viewport",
+                "status": "passed",
+                "durationMs": 2537
+              },
+              {
+                "name": "[fn] 12.3 — size strip is roughly horizontal",
+                "status": "passed",
+                "durationMs": 1500
+              },
+              {
+                "name": "[fn] Smoke — Page heading reads “Single Text Button”",
+                "status": "passed",
+                "durationMs": 1270
+              },
+              {
+                "name": "[fn] Smoke — Default control is visible",
+                "status": "passed",
+                "durationMs": 1016
+              },
+              {
+                "name": "[fn] Smoke — Interactive control is visible",
+                "status": "passed",
+                "durationMs": 1136
+              },
+              {
+                "name": "[fn] Component page shows title and QA tabs",
+                "status": "passed",
+                "durationMs": 2498
+              },
+              {
+                "name": "[fn] Default button shows label “Ag”, size M, high attention, bold variant",
+                "status": "passed",
+                "durationMs": 2118
+              },
+              {
+                "name": "[fn] Size variants S, M, and L render",
+                "status": "passed",
+                "durationMs": 3285
+              },
+              {
+                "name": "[fn] High / medium / low attention map to bold / subtle / ghost variants",
+                "status": "passed",
+                "durationMs": 2462
+              },
+              {
+                "name": "[fn] Condensed buttons set data-condensed and correct data-size",
+                "status": "passed",
+                "durationMs": 1765
+              },
+              {
+                "name": "[fn] Click increments the press counter",
+                "status": "passed",
+                "durationMs": 2117
+              },
+              {
+                "name": "[fn] Disabled cannot be clicked; loading shows busy state and name “Loading”",
+                "status": "passed",
+                "durationMs": 1369
+              },
+              {
+                "name": "[fn] Long label edge-case cell renders",
+                "status": "passed",
+                "durationMs": 1997
+              },
+              {
+                "name": "[fn] All Test Scenarios story bands are mounted on the page",
+                "status": "passed",
+                "durationMs": 2626
+              },
+              {
+                "name": "[fn] Figma Validation tab shows API table and validation grids",
+                "status": "passed",
+                "durationMs": 4574
+              }
+            ]
+          },
+          "performance": {
+            "suite": "performance",
+            "passed": 0,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "Performance suite is not executed in apps/qa-playground single-text-button Playwright bundle."
+            ],
+            "errors": []
+          }
+        }
+      }
+    },
+    {
+      "savedAt": "2026-06-23T08:09:22.159Z",
+      "report": {
+        "ok": false,
+        "slug": "single-text-button",
+        "message": "single-text-button QA Playwright run had failures — 2026-06-17T08:16:03.319Z",
+        "suites": {
+          "accessibility": {
+            "suite": "accessibility",
+            "passed": 24,
+            "failed": 1,
+            "skipped": 0,
+            "logs": [
+              "25 test(s) in Playwright report for accessibility.",
+              "Axe: 1 violation rule(s) reported."
+            ],
+            "errors": [
+              "BUG-SINGLETEXT-001: A button has no accessible name — screen readers only hear “button” with no label. Add visible text, aria-label, or aria-labelledby. Element: ._storySandboxOverflow_1xef1_858._storySandbox_1xef1_837 > ._surface_rgilb_1[data-surface=\"minimal\"][data-surface-step=\"2400\"] > span > button[data-loading=\"\"][data-disabled=\"\"][data-variant=\"bold\"]. (Rule: button-name, critical impact)."
+            ],
+            "cases": [
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — zero serious/critical + HTML report",
+                "status": "passed",
+                "durationMs": 5027
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Default band",
+                "status": "passed",
+                "durationMs": 5383,
+                "componentBand": "single-text-button-qa-default"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Size (S · M · L) band",
+                "status": "passed",
+                "durationMs": 5389,
+                "componentBand": "single-text-button-qa-size"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Attention band",
+                "status": "passed",
+                "durationMs": 4940,
+                "componentBand": "single-text-button-qa-attention"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Condensed band",
+                "status": "passed",
+                "durationMs": 4919,
+                "componentBand": "single-text-button-qa-condensed"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Disabled and loading band",
+                "status": "passed",
+                "durationMs": 4102,
+                "componentBand": "single-text-button-qa-states"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Interaction band",
+                "status": "passed",
+                "durationMs": 3999,
+                "componentBand": "single-text-button-qa-interaction"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Edge (long label) band",
+                "status": "passed",
+                "durationMs": 4319,
+                "componentBand": "single-text-button-qa-edge"
+              },
+              {
+                "name": "[a11y] data-testid=\"single-text-button-default\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 4322
+              },
+              {
+                "name": "[a11y] data-testid=\"single-text-button-size-m\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 4291
+              },
+              {
+                "name": "[a11y] data-testid=\"single-text-button-attention-high\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 4153
+              },
+              {
+                "name": "[a11y] data-testid=\"single-text-button-condensed-m\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 4141
+              },
+              {
+                "name": "[a11y] data-testid=\"single-text-button-disabled\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 4078
+              },
+              {
+                "name": "[a11y] data-testid=\"single-text-button-loading\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 4118
+              },
+              {
+                "name": "[a11y] data-testid=\"single-text-button-interactive\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 4253
+              },
+              {
+                "name": "[a11y] data-testid=\"single-text-button-edge-long\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 3423
+              },
+              {
+                "name": "[a11y] axe button-name rule — Test Scenarios page (exclude bug repro band)",
+                "status": "passed",
+                "durationMs": 3428
+              },
+              {
+                "name": "[a11y] Accessible name readout — loading button with aria-label",
+                "status": "passed",
+                "durationMs": 3166
+              },
+              {
+                "name": "[a11y] Keyboard Space — interactive text button",
+                "status": "passed",
+                "durationMs": 3240
+              },
+              {
+                "name": "[a11y] ARIA validity — showcase bands, zero serious/critical",
+                "status": "passed",
+                "durationMs": 3671
+              },
+              {
+                "name": "[a11y] page lang on <html>",
+                "status": "passed",
+                "durationMs": 2845
+              },
+              {
+                "name": "[a11y] focused default shows focus indicator",
+                "status": "passed",
+                "durationMs": 3077
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — bug repro (loading, no aria-label on button) band",
+                "status": "failed",
+                "durationMs": 3770,
+                "error": "A button has no accessible name — screen readers only hear “button” with no label. Add visible text, aria-label, or aria-labelledby. Element: ._storySandboxOverflow_1xef1_858._storySandbox_1xef1_837 > ._surface_rgilb_1[data-surface=\"minimal\"][data-surface-step=\"2400\"] > span > button[data-loading=\"\"][data-disabled=\"\"][data-variant=\"bold\"]. (Rule: button-name, critical impact).",
+                "bugId": "BUG-SINGLETEXT-001",
+                "componentBand": "single-text-button-qa-bug-repro"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Figma size×attention and condensed grids",
+                "status": "passed",
+                "durationMs": 8036
+              },
+              {
+                "name": "[a11y] playground route responds",
+                "status": "passed",
+                "durationMs": 3032
+              }
+            ],
+            "axe": {
+              "violations": [
+                {
+                  "id": "button-name",
+                  "impact": "critical",
+                  "description": "Ensure buttons have discernible text",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/button-name?application=playwright",
+                  "nodes": 1
+                }
+              ]
+            }
+          },
+          "functional": {
+            "suite": "functional",
+            "passed": 51,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "51 test(s) in Playwright report for functional."
+            ],
+            "errors": [],
+            "cases": [
+              {
+                "name": "[fn] 1.1 — no console errors on playground load",
+                "status": "passed",
+                "durationMs": 5354
+              },
+              {
+                "name": "[fn] 1.2 — every playground data-testid is visible",
+                "status": "passed",
+                "durationMs": 5403
+              },
+              {
+                "name": "[fn] 1.3 — every data-section is visible",
+                "status": "passed",
+                "durationMs": 4012
+              },
+              {
+                "name": "[fn] 2.2 — size bounding boxes grow S → L (circular)",
+                "status": "passed",
+                "durationMs": 2506
+              },
+              {
+                "name": "[fn] 2.3 — Appearance colour (N/A)",
+                "status": "passed",
+                "durationMs": 1418
+              },
+              {
+                "name": "[fn] 3.1 — click fires onClick and updates press counter",
+                "status": "passed",
+                "durationMs": 2555
+              },
+              {
+                "name": "[fn] 3.2 — disabled button does not increment counter on forced click",
+                "status": "passed",
+                "durationMs": 3088
+              },
+              {
+                "name": "[fn] 3.3 — Readonly (N/A)",
+                "status": "passed",
+                "durationMs": 3479
+              },
+              {
+                "name": "[fn] 3.4 — click outside removes focus",
+                "status": "passed",
+                "durationMs": 3841
+              },
+              {
+                "name": "[fn] 4.1 — Tab reaches interactive button",
+                "status": "passed",
+                "durationMs": 3509
+              },
+              {
+                "name": "[fn] 4.1 — disabled button is not focused via Tab from prior focusable",
+                "status": "passed",
+                "durationMs": 2966
+              },
+              {
+                "name": "[fn] 4.2 — Enter activates interactive button",
+                "status": "passed",
+                "durationMs": 4239
+              },
+              {
+                "name": "[fn] 4.3 — Space activates interactive button",
+                "status": "passed",
+                "durationMs": 4119
+              },
+              {
+                "name": "[fn] 4.4 — Arrow keys (N/A)",
+                "status": "passed",
+                "durationMs": 2981
+              },
+              {
+                "name": "[fn] 4.5 — Home and End keys (N/A)",
+                "status": "passed",
+                "durationMs": 5738
+              },
+              {
+                "name": "[fn] 4.6 — Escape (N/A)",
+                "status": "passed",
+                "durationMs": 2802
+              },
+              {
+                "name": "[fn] 4.7 — Tab through page without keyboard trap",
+                "status": "passed",
+                "durationMs": 3484
+              },
+              {
+                "name": "[fn] 5.1 — click focuses button",
+                "status": "passed",
+                "durationMs": 3398
+              },
+              {
+                "name": "[fn] 5.2 — focus ring visible",
+                "status": "passed",
+                "durationMs": 3405
+              },
+              {
+                "name": "[fn] 5.5 — autoFocus (N/A)",
+                "status": "passed",
+                "durationMs": 3100
+              },
+              {
+                "name": "[fn] 6.1 — default state renders with high attention bold variant",
+                "status": "passed",
+                "durationMs": 3086
+              },
+              {
+                "name": "[fn] 6.2 — Selected/checked (N/A)",
+                "status": "passed",
+                "durationMs": 4024
+              },
+              {
+                "name": "[fn] 6.3 — disabled is not enabled and skips Tab order",
+                "status": "passed",
+                "durationMs": 3079
+              },
+              {
+                "name": "[fn] 6.4 — Readonly (N/A)",
+                "status": "passed",
+                "durationMs": 4062
+              },
+              {
+                "name": "[fn] 6.5 — Error state (N/A)",
+                "status": "passed",
+                "durationMs": 1659
+              },
+              {
+                "name": "[fn] 6.6 — loading disables and shows progressbar",
+                "status": "passed",
+                "durationMs": 1661
+              },
+              {
+                "name": "[fn] 7.1 — Start/end slots (N/A)",
+                "status": "passed",
+                "durationMs": 2943
+              },
+              {
+                "name": "[fn] 8.1 — Toggle (N/A)",
+                "status": "passed",
+                "durationMs": 3050
+              },
+              {
+                "name": "[fn] 8.2 — Single-select group (N/A)",
+                "status": "passed",
+                "durationMs": 3277
+              },
+              {
+                "name": "[fn] 8.3 — Indeterminate (N/A)",
+                "status": "passed",
+                "durationMs": 3236
+              },
+              {
+                "name": "[fn] 9.1 — Typing (N/A)",
+                "status": "passed",
+                "durationMs": 3030
+              },
+              {
+                "name": "[fn] 10.3 — loading=true forces disabled and shows spinner",
+                "status": "passed",
+                "durationMs": 2886
+              },
+              {
+                "name": "[fn] 11.1 — default label text “Ag” is visible",
+                "status": "passed",
+                "durationMs": 3650
+              },
+              {
+                "name": "[fn] 11.1 — edge long label cell renders button",
+                "status": "passed",
+                "durationMs": 3095
+              },
+              {
+                "name": "[fn] 12.1 — fullWidth (N/A)",
+                "status": "passed",
+                "durationMs": 9513
+              },
+              {
+                "name": "[fn] 12.2 — visible at 320px viewport",
+                "status": "passed",
+                "durationMs": 5827
+              },
+              {
+                "name": "[fn] 12.2 — visible at 1440px viewport",
+                "status": "passed",
+                "durationMs": 6328
+              },
+              {
+                "name": "[fn] 12.3 — size strip is roughly horizontal",
+                "status": "passed",
+                "durationMs": 3238
+              },
+              {
+                "name": "[fn] Smoke — Page heading reads “Single Text Button”",
+                "status": "passed",
+                "durationMs": 3389
+              },
+              {
+                "name": "[fn] Smoke — Default control is visible",
+                "status": "passed",
+                "durationMs": 4460
+              },
+              {
+                "name": "[fn] Smoke — Interactive control is visible",
+                "status": "passed",
+                "durationMs": 2683
+              },
+              {
+                "name": "[fn] Component page shows title and QA tabs",
+                "status": "passed",
+                "durationMs": 3637
+              },
+              {
+                "name": "[fn] Default button shows label “Ag”, size M, high attention, bold variant",
+                "status": "passed",
+                "durationMs": 2759
+              },
+              {
+                "name": "[fn] Size variants S, M, and L render",
+                "status": "passed",
+                "durationMs": 7197
+              },
+              {
+                "name": "[fn] High / medium / low attention map to bold / subtle / ghost variants",
+                "status": "passed",
+                "durationMs": 2309
+              },
+              {
+                "name": "[fn] Condensed buttons set data-condensed and correct data-size",
+                "status": "passed",
+                "durationMs": 3212
+              },
+              {
+                "name": "[fn] Click increments the press counter",
+                "status": "passed",
+                "durationMs": 3583
+              },
+              {
+                "name": "[fn] Disabled cannot be clicked; loading shows busy state and name “Loading”",
+                "status": "passed",
+                "durationMs": 3654
+              },
+              {
+                "name": "[fn] Long label edge-case cell renders",
+                "status": "passed",
+                "durationMs": 2702
+              },
+              {
+                "name": "[fn] All Test Scenarios story bands are mounted on the page",
+                "status": "passed",
+                "durationMs": 2718
+              },
+              {
+                "name": "[fn] Figma Validation tab shows API table and validation grids",
+                "status": "passed",
+                "durationMs": 3709
+              }
+            ]
+          },
+          "performance": {
+            "suite": "performance",
+            "passed": 0,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "Performance suite is not executed in apps/qa-playground single-text-button Playwright bundle."
+            ],
+            "errors": []
+          }
+        }
+      }
+    },
+    {
+      "savedAt": "2026-06-17T08:16:03.322Z",
+      "report": {
+        "ok": false,
+        "slug": "single-text-button",
+        "message": "single-text-button QA Playwright run had failures — 2026-06-04T10:10:43.812Z",
+        "suites": {
+          "accessibility": {
+            "suite": "accessibility",
+            "passed": 24,
+            "failed": 1,
+            "skipped": 0,
+            "logs": [
+              "25 test(s) in Playwright report for accessibility.",
+              "Axe: 1 violation rule(s) reported."
+            ],
+            "errors": [
+              "BUG-SINGLETEXT-001: A button has no accessible name — screen readers only hear “button” with no label. Add visible text, aria-label, or aria-labelledby. Element: ._storySandboxOverflow_1p7b1_740._storySandbox_1p7b1_719 > ._surface_rgilb_1[data-surface=\"minimal\"][data-surface-step=\"2400\"] > span > button[data-loading=\"\"][data-disabled=\"\"][data-attention=\"high\"]. (Rule: button-name, critical impact)."
+            ],
+            "cases": [
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — zero serious/critical + HTML report",
+                "status": "passed",
+                "durationMs": 4116
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Default band",
+                "status": "passed",
+                "durationMs": 3603,
+                "componentBand": "single-text-button-qa-default"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Size (S · M · L) band",
+                "status": "passed",
+                "durationMs": 3743,
+                "componentBand": "single-text-button-qa-size"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Attention band",
+                "status": "passed",
+                "durationMs": 3759,
+                "componentBand": "single-text-button-qa-attention"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Condensed band",
+                "status": "passed",
+                "durationMs": 4352,
+                "componentBand": "single-text-button-qa-condensed"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Disabled and loading band",
+                "status": "passed",
+                "durationMs": 3243,
+                "componentBand": "single-text-button-qa-states"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Interaction band",
+                "status": "passed",
+                "durationMs": 3355,
+                "componentBand": "single-text-button-qa-interaction"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Edge (long label) band",
+                "status": "passed",
+                "durationMs": 3336,
+                "componentBand": "single-text-button-qa-edge"
+              },
+              {
+                "name": "[a11y] data-testid=\"single-text-button-default\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 3446
+              },
+              {
+                "name": "[a11y] data-testid=\"single-text-button-size-m\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 3471
+              },
+              {
+                "name": "[a11y] data-testid=\"single-text-button-attention-high\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 2890
+              },
+              {
+                "name": "[a11y] data-testid=\"single-text-button-condensed-m\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 3346
+              },
+              {
+                "name": "[a11y] data-testid=\"single-text-button-disabled\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 3299
+              },
+              {
+                "name": "[a11y] data-testid=\"single-text-button-loading\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 3328
+              },
+              {
+                "name": "[a11y] data-testid=\"single-text-button-interactive\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 3191
+              },
+              {
+                "name": "[a11y] data-testid=\"single-text-button-edge-long\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 2248
+              },
+              {
+                "name": "[a11y] axe button-name rule — Test Scenarios page (exclude bug repro band)",
+                "status": "passed",
+                "durationMs": 2944
+              },
+              {
+                "name": "[a11y] Accessible name readout — loading button with aria-label",
+                "status": "passed",
+                "durationMs": 2457
+              },
+              {
+                "name": "[a11y] Keyboard Space — interactive text button",
+                "status": "passed",
+                "durationMs": 2659
+              },
+              {
+                "name": "[a11y] ARIA validity — showcase bands, zero serious/critical",
+                "status": "passed",
+                "durationMs": 2992
+              },
+              {
+                "name": "[a11y] page lang on <html>",
+                "status": "passed",
+                "durationMs": 2664
+              },
+              {
+                "name": "[a11y] focused default shows focus indicator",
+                "status": "passed",
+                "durationMs": 2904
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — bug repro (loading, no aria-label on button) band",
+                "status": "failed",
+                "durationMs": 3766,
+                "error": "A button has no accessible name — screen readers only hear “button” with no label. Add visible text, aria-label, or aria-labelledby. Element: ._storySandboxOverflow_1p7b1_740._storySandbox_1p7b1_719 > ._surface_rgilb_1[data-surface=\"minimal\"][data-surface-step=\"2400\"] > span > button[data-loading=\"\"][data-disabled=\"\"][data-attention=\"high\"]. (Rule: button-name, critical impact).",
+                "bugId": "BUG-SINGLETEXT-001",
+                "componentBand": "single-text-button-qa-bug-repro"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Figma size×attention and condensed grids",
+                "status": "passed",
+                "durationMs": 5042
+              },
+              {
+                "name": "[a11y] playground route responds",
+                "status": "passed",
+                "durationMs": 3084
+              }
+            ],
+            "axe": {
+              "violations": [
+                {
+                  "id": "button-name",
+                  "impact": "critical",
+                  "description": "Ensure buttons have discernible text",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/button-name?application=playwright",
+                  "nodes": 1
+                }
+              ]
+            }
+          },
+          "functional": {
+            "suite": "functional",
+            "passed": 51,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "51 test(s) in Playwright report for functional."
+            ],
+            "errors": [],
+            "cases": [
+              {
+                "name": "[fn] 1.1 — no console errors on playground load",
+                "status": "passed",
+                "durationMs": 5849
+              },
+              {
+                "name": "[fn] 1.2 — every playground data-testid is visible",
+                "status": "passed",
+                "durationMs": 3026
+              },
+              {
+                "name": "[fn] 1.3 — every data-section is visible",
+                "status": "passed",
+                "durationMs": 2366
+              },
+              {
+                "name": "[fn] 2.2 — size bounding boxes grow S → L (circular)",
+                "status": "passed",
+                "durationMs": 2541
+              },
+              {
+                "name": "[fn] 2.3 — Appearance colour (N/A)",
+                "status": "passed",
+                "durationMs": 2559
+              },
+              {
+                "name": "[fn] 3.1 — click fires onClick and updates press counter",
+                "status": "passed",
+                "durationMs": 2684
+              },
+              {
+                "name": "[fn] 3.2 — disabled button does not increment counter on forced click",
+                "status": "passed",
+                "durationMs": 2861
+              },
+              {
+                "name": "[fn] 3.3 — Readonly (N/A)",
+                "status": "passed",
+                "durationMs": 3260
+              },
+              {
+                "name": "[fn] 3.4 — click outside removes focus",
+                "status": "passed",
+                "durationMs": 3565
+              },
+              {
+                "name": "[fn] 4.1 — Tab reaches interactive button",
+                "status": "passed",
+                "durationMs": 3211
+              },
+              {
+                "name": "[fn] 4.1 — disabled button is not focused via Tab from prior focusable",
+                "status": "passed",
+                "durationMs": 3381
+              },
+              {
+                "name": "[fn] 4.2 — Enter activates interactive button",
+                "status": "passed",
+                "durationMs": 3797
+              },
+              {
+                "name": "[fn] 4.3 — Space activates interactive button",
+                "status": "passed",
+                "durationMs": 2165
+              },
+              {
+                "name": "[fn] 4.4 — Arrow keys (N/A)",
+                "status": "passed",
+                "durationMs": 2561
+              },
+              {
+                "name": "[fn] 4.5 — Home and End keys (N/A)",
+                "status": "passed",
+                "durationMs": 2612
+              },
+              {
+                "name": "[fn] 4.6 — Escape (N/A)",
+                "status": "passed",
+                "durationMs": 2606
+              },
+              {
+                "name": "[fn] 4.7 — Tab through page without keyboard trap",
+                "status": "passed",
+                "durationMs": 2642
+              },
+              {
+                "name": "[fn] 5.1 — click focuses button",
+                "status": "passed",
+                "durationMs": 3194
+              },
+              {
+                "name": "[fn] 5.2 — focus ring visible",
+                "status": "passed",
+                "durationMs": 3521
+              },
+              {
+                "name": "[fn] 5.5 — autoFocus (N/A)",
+                "status": "passed",
+                "durationMs": 3566
+              },
+              {
+                "name": "[fn] 6.1 — default state renders with high attention bold variant",
+                "status": "passed",
+                "durationMs": 3063
+              },
+              {
+                "name": "[fn] 6.2 — Selected/checked (N/A)",
+                "status": "passed",
+                "durationMs": 2906
+              },
+              {
+                "name": "[fn] 6.3 — disabled is not enabled and skips Tab order",
+                "status": "passed",
+                "durationMs": 4114
+              },
+              {
+                "name": "[fn] 6.4 — Readonly (N/A)",
+                "status": "passed",
+                "durationMs": 2744
+              },
+              {
+                "name": "[fn] 6.5 — Error state (N/A)",
+                "status": "passed",
+                "durationMs": 2502
+              },
+              {
+                "name": "[fn] 6.6 — loading disables and shows progressbar",
+                "status": "passed",
+                "durationMs": 2851
+              },
+              {
+                "name": "[fn] 7.1 — Start/end slots (N/A)",
+                "status": "passed",
+                "durationMs": 2543
+              },
+              {
+                "name": "[fn] 8.1 — Toggle (N/A)",
+                "status": "passed",
+                "durationMs": 3409
+              },
+              {
+                "name": "[fn] 8.2 — Single-select group (N/A)",
+                "status": "passed",
+                "durationMs": 3588
+              },
+              {
+                "name": "[fn] 8.3 — Indeterminate (N/A)",
+                "status": "passed",
+                "durationMs": 3415
+              },
+              {
+                "name": "[fn] 9.1 — Typing (N/A)",
+                "status": "passed",
+                "durationMs": 3571
+              },
+              {
+                "name": "[fn] 10.3 — loading=true forces disabled and shows spinner",
+                "status": "passed",
+                "durationMs": 3244
+              },
+              {
+                "name": "[fn] 11.1 — default label text “Ag” is visible",
+                "status": "passed",
+                "durationMs": 2744
+              },
+              {
+                "name": "[fn] 11.1 — edge long label cell renders button",
+                "status": "passed",
+                "durationMs": 1130
+              },
+              {
+                "name": "[fn] 12.1 — fullWidth (N/A)",
+                "status": "passed",
+                "durationMs": 1937
+              },
+              {
+                "name": "[fn] 12.2 — visible at 320px viewport",
+                "status": "passed",
+                "durationMs": 4596
+              },
+              {
+                "name": "[fn] 12.2 — visible at 1440px viewport",
+                "status": "passed",
+                "durationMs": 4709
+              },
+              {
+                "name": "[fn] 12.3 — size strip is roughly horizontal",
+                "status": "passed",
+                "durationMs": 3549
+              },
+              {
+                "name": "[fn] Smoke — Page heading reads “Single Text Button”",
+                "status": "passed",
+                "durationMs": 3591
+              },
+              {
+                "name": "[fn] Smoke — Default control is visible",
+                "status": "passed",
+                "durationMs": 3611
+              },
+              {
+                "name": "[fn] Smoke — Interactive control is visible",
+                "status": "passed",
+                "durationMs": 3301
+              },
+              {
+                "name": "[fn] Component page shows title and QA tabs",
+                "status": "passed",
+                "durationMs": 2483
+              },
+              {
+                "name": "[fn] Default button shows label “Ag”, size M, high attention, bold variant",
+                "status": "passed",
+                "durationMs": 2001
+              },
+              {
+                "name": "[fn] Size variants S, M, and L render",
+                "status": "passed",
+                "durationMs": 2651
+              },
+              {
+                "name": "[fn] High / medium / low attention map to bold / subtle / ghost variants",
+                "status": "passed",
+                "durationMs": 2722
+              },
+              {
+                "name": "[fn] Condensed buttons set data-condensed and correct data-size",
+                "status": "passed",
+                "durationMs": 2725
+              },
+              {
+                "name": "[fn] Click increments the press counter",
+                "status": "passed",
+                "durationMs": 2629
+              },
+              {
+                "name": "[fn] Disabled cannot be clicked; loading shows busy state and name “Loading”",
+                "status": "passed",
+                "durationMs": 3418
+              },
+              {
+                "name": "[fn] Long label edge-case cell renders",
+                "status": "passed",
+                "durationMs": 3660
+              },
+              {
+                "name": "[fn] All Test Scenarios story bands are mounted on the page",
+                "status": "passed",
+                "durationMs": 3724
+              },
+              {
+                "name": "[fn] Figma Validation tab shows API table and validation grids",
+                "status": "passed",
+                "durationMs": 3570
+              }
+            ]
+          },
+          "performance": {
+            "suite": "performance",
+            "passed": 0,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "Performance suite is not executed in apps/qa-playground single-text-button Playwright bundle."
+            ],
+            "errors": []
+          }
+        }
+      }
+    },
+    {
+      "savedAt": "2026-06-04T10:10:43.815Z",
+      "report": {
+        "ok": false,
+        "slug": "single-text-button",
+        "message": "single-text-button QA Playwright run had failures — 2026-06-04T08:58:39.801Z",
+        "suites": {
+          "accessibility": {
+            "suite": "accessibility",
+            "passed": 24,
+            "failed": 1,
+            "skipped": 0,
+            "logs": [
+              "25 test(s) in Playwright report for accessibility.",
+              "Axe: 1 violation rule(s) reported."
+            ],
+            "errors": [
+              "BUG-SINGLETEXT-001: A button has no accessible name — screen readers only hear “button” with no label. Add visible text, aria-label, or aria-labelledby. Element: ._storySandboxOverflow_1p7b1_740._storySandbox_1p7b1_719 > ._surface_rgilb_1[data-surface=\"minimal\"][data-surface-step=\"2400\"] > span > button[data-loading=\"\"][data-disabled=\"\"][data-attention=\"high\"]. (Rule: button-name, critical impact)."
+            ],
+            "cases": [
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — zero serious/critical + HTML report",
+                "status": "passed",
+                "durationMs": 4355
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Default band",
+                "status": "passed",
+                "durationMs": 4294,
+                "componentBand": "single-text-button-qa-default"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Size (S · M · L) band",
+                "status": "passed",
+                "durationMs": 4563,
+                "componentBand": "single-text-button-qa-size"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Attention band",
+                "status": "passed",
+                "durationMs": 4718,
+                "componentBand": "single-text-button-qa-attention"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Condensed band",
+                "status": "passed",
+                "durationMs": 4842,
+                "componentBand": "single-text-button-qa-condensed"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Disabled and loading band",
+                "status": "passed",
+                "durationMs": 4326,
+                "componentBand": "single-text-button-qa-states"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Interaction band",
+                "status": "passed",
+                "durationMs": 4419,
+                "componentBand": "single-text-button-qa-interaction"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Edge (long label) band",
+                "status": "passed",
+                "durationMs": 4423,
+                "componentBand": "single-text-button-qa-edge"
+              },
+              {
+                "name": "[a11y] data-testid=\"single-text-button-default\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 4481
+              },
+              {
+                "name": "[a11y] data-testid=\"single-text-button-size-m\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 4651
+              },
+              {
+                "name": "[a11y] data-testid=\"single-text-button-attention-high\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 3610
+              },
+              {
+                "name": "[a11y] data-testid=\"single-text-button-condensed-m\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 3980
+              },
+              {
+                "name": "[a11y] data-testid=\"single-text-button-disabled\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 4944
+              },
+              {
+                "name": "[a11y] data-testid=\"single-text-button-loading\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 3907
+              },
+              {
+                "name": "[a11y] data-testid=\"single-text-button-interactive\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 3919
+              },
+              {
+                "name": "[a11y] data-testid=\"single-text-button-edge-long\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 2793
+              },
+              {
+                "name": "[a11y] axe button-name rule — Test Scenarios page (exclude bug repro band)",
+                "status": "passed",
+                "durationMs": 3442
+              },
+              {
+                "name": "[a11y] Accessible name readout — loading button with aria-label",
+                "status": "passed",
+                "durationMs": 3217
+              },
+              {
+                "name": "[a11y] Keyboard Space — interactive text button",
+                "status": "passed",
+                "durationMs": 3560
+              },
+              {
+                "name": "[a11y] ARIA validity — showcase bands, zero serious/critical",
+                "status": "passed",
+                "durationMs": 3824
+              },
+              {
+                "name": "[a11y] page lang on <html>",
+                "status": "passed",
+                "durationMs": 2947
+              },
+              {
+                "name": "[a11y] focused default shows focus indicator",
+                "status": "passed",
+                "durationMs": 2831
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — bug repro (loading, no aria-label on button) band",
+                "status": "failed",
+                "durationMs": 3502,
+                "error": "A button has no accessible name — screen readers only hear “button” with no label. Add visible text, aria-label, or aria-labelledby. Element: ._storySandboxOverflow_1p7b1_740._storySandbox_1p7b1_719 > ._surface_rgilb_1[data-surface=\"minimal\"][data-surface-step=\"2400\"] > span > button[data-loading=\"\"][data-disabled=\"\"][data-attention=\"high\"]. (Rule: button-name, critical impact).",
+                "bugId": "BUG-SINGLETEXT-001",
+                "componentBand": "single-text-button-qa-bug-repro"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Figma size×attention and condensed grids",
+                "status": "passed",
+                "durationMs": 5204
+              },
+              {
+                "name": "[a11y] playground route responds",
+                "status": "passed",
+                "durationMs": 3116
+              }
+            ],
+            "axe": {
+              "violations": [
+                {
+                  "id": "button-name",
+                  "impact": "critical",
+                  "description": "Ensure buttons have discernible text",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/button-name?application=playwright",
+                  "nodes": 1
+                }
+              ]
+            }
+          },
+          "functional": {
+            "suite": "functional",
+            "passed": 51,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "51 test(s) in Playwright report for functional."
+            ],
+            "errors": [],
+            "cases": [
+              {
+                "name": "[fn] 1.1 — no console errors on playground load",
+                "status": "passed",
+                "durationMs": 4849
+              },
+              {
+                "name": "[fn] 1.2 — every playground data-testid is visible",
+                "status": "passed",
+                "durationMs": 2884
+              },
+              {
+                "name": "[fn] 1.3 — every data-section is visible",
+                "status": "passed",
+                "durationMs": 2606
+              },
+              {
+                "name": "[fn] 2.2 — size bounding boxes grow S → L (circular)",
+                "status": "passed",
+                "durationMs": 2394
+              },
+              {
+                "name": "[fn] 2.3 — Appearance colour (N/A)",
+                "status": "passed",
+                "durationMs": 1961
+              },
+              {
+                "name": "[fn] 3.1 — click fires onClick and updates press counter",
+                "status": "passed",
+                "durationMs": 2918
+              },
+              {
+                "name": "[fn] 3.2 — disabled button does not increment counter on forced click",
+                "status": "passed",
+                "durationMs": 3159
+              },
+              {
+                "name": "[fn] 3.3 — Readonly (N/A)",
+                "status": "passed",
+                "durationMs": 2755
+              },
+              {
+                "name": "[fn] 3.4 — click outside removes focus",
+                "status": "passed",
+                "durationMs": 3578
+              },
+              {
+                "name": "[fn] 4.1 — Tab reaches interactive button",
+                "status": "passed",
+                "durationMs": 2910
+              },
+              {
+                "name": "[fn] 4.1 — disabled button is not focused via Tab from prior focusable",
+                "status": "passed",
+                "durationMs": 2805
+              },
+              {
+                "name": "[fn] 4.2 — Enter activates interactive button",
+                "status": "passed",
+                "durationMs": 3030
+              },
+              {
+                "name": "[fn] 4.3 — Space activates interactive button",
+                "status": "passed",
+                "durationMs": 1929
+              },
+              {
+                "name": "[fn] 4.4 — Arrow keys (N/A)",
+                "status": "passed",
+                "durationMs": 2615
+              },
+              {
+                "name": "[fn] 4.5 — Home and End keys (N/A)",
+                "status": "passed",
+                "durationMs": 2695
+              },
+              {
+                "name": "[fn] 4.6 — Escape (N/A)",
+                "status": "passed",
+                "durationMs": 2204
+              },
+              {
+                "name": "[fn] 4.7 — Tab through page without keyboard trap",
+                "status": "passed",
+                "durationMs": 3012
+              },
+              {
+                "name": "[fn] 5.1 — click focuses button",
+                "status": "passed",
+                "durationMs": 2600
+              },
+              {
+                "name": "[fn] 5.2 — focus ring visible",
+                "status": "passed",
+                "durationMs": 3024
+              },
+              {
+                "name": "[fn] 5.5 — autoFocus (N/A)",
+                "status": "passed",
+                "durationMs": 3623
+              },
+              {
+                "name": "[fn] 6.1 — default state renders with high attention bold variant",
+                "status": "passed",
+                "durationMs": 2808
+              },
+              {
+                "name": "[fn] 6.2 — Selected/checked (N/A)",
+                "status": "passed",
+                "durationMs": 2590
+              },
+              {
+                "name": "[fn] 6.3 — disabled is not enabled and skips Tab order",
+                "status": "passed",
+                "durationMs": 2693
+              },
+              {
+                "name": "[fn] 6.4 — Readonly (N/A)",
+                "status": "passed",
+                "durationMs": 2390
+              },
+              {
+                "name": "[fn] 6.5 — Error state (N/A)",
+                "status": "passed",
+                "durationMs": 2616
+              },
+              {
+                "name": "[fn] 6.6 — loading disables and shows progressbar",
+                "status": "passed",
+                "durationMs": 1949
+              },
+              {
+                "name": "[fn] 7.1 — Start/end slots (N/A)",
+                "status": "passed",
+                "durationMs": 2846
+              },
+              {
+                "name": "[fn] 8.1 — Toggle (N/A)",
+                "status": "passed",
+                "durationMs": 2628
+              },
+              {
+                "name": "[fn] 8.2 — Single-select group (N/A)",
+                "status": "passed",
+                "durationMs": 2868
+              },
+              {
+                "name": "[fn] 8.3 — Indeterminate (N/A)",
+                "status": "passed",
+                "durationMs": 3355
+              },
+              {
+                "name": "[fn] 9.1 — Typing (N/A)",
+                "status": "passed",
+                "durationMs": 3257
+              },
+              {
+                "name": "[fn] 10.3 — loading=true forces disabled and shows spinner",
+                "status": "passed",
+                "durationMs": 2816
+              },
+              {
+                "name": "[fn] 11.1 — default label text “Ag” is visible",
+                "status": "passed",
+                "durationMs": 2792
+              },
+              {
+                "name": "[fn] 11.1 — edge long label cell renders button",
+                "status": "passed",
+                "durationMs": 1653
+              },
+              {
+                "name": "[fn] 12.1 — fullWidth (N/A)",
+                "status": "passed",
+                "durationMs": 2850
+              },
+              {
+                "name": "[fn] 12.2 — visible at 320px viewport",
+                "status": "passed",
+                "durationMs": 4913
+              },
+              {
+                "name": "[fn] 12.2 — visible at 1440px viewport",
+                "status": "passed",
+                "durationMs": 6165
+              },
+              {
+                "name": "[fn] 12.3 — size strip is roughly horizontal",
+                "status": "passed",
+                "durationMs": 2720
+              },
+              {
+                "name": "[fn] Smoke — Page heading reads “Single Text Button”",
+                "status": "passed",
+                "durationMs": 2894
+              },
+              {
+                "name": "[fn] Smoke — Default control is visible",
+                "status": "passed",
+                "durationMs": 2179
+              },
+              {
+                "name": "[fn] Smoke — Interactive control is visible",
+                "status": "passed",
+                "durationMs": 993
+              },
+              {
+                "name": "[fn] Component page shows title and QA tabs",
+                "status": "passed",
+                "durationMs": 2999
+              },
+              {
+                "name": "[fn] Default button shows label “Ag”, size M, high attention, bold variant",
+                "status": "passed",
+                "durationMs": 1856
+              },
+              {
+                "name": "[fn] Size variants S, M, and L render",
+                "status": "passed",
+                "durationMs": 2571
+              },
+              {
+                "name": "[fn] High / medium / low attention map to bold / subtle / ghost variants",
+                "status": "passed",
+                "durationMs": 2246
+              },
+              {
+                "name": "[fn] Condensed buttons set data-condensed and correct data-size",
+                "status": "passed",
+                "durationMs": 2000
+              },
+              {
+                "name": "[fn] Click increments the press counter",
+                "status": "passed",
+                "durationMs": 3063
+              },
+              {
+                "name": "[fn] Disabled cannot be clicked; loading shows busy state and name “Loading”",
+                "status": "passed",
+                "durationMs": 2737
+              },
+              {
+                "name": "[fn] Long label edge-case cell renders",
+                "status": "passed",
+                "durationMs": 2789
+              },
+              {
+                "name": "[fn] All Test Scenarios story bands are mounted on the page",
+                "status": "passed",
+                "durationMs": 3559
+              },
+              {
+                "name": "[fn] Figma Validation tab shows API table and validation grids",
+                "status": "passed",
+                "durationMs": 3145
+              }
+            ]
+          },
+          "performance": {
+            "suite": "performance",
+            "passed": 0,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "Performance suite is not executed in apps/qa-playground single-text-button Playwright bundle."
+            ],
+            "errors": []
+          }
+        }
+      }
+    },
+    {
+      "savedAt": "2026-06-04T08:58:39.802Z",
+      "report": {
+        "ok": false,
+        "slug": "single-text-button",
+        "message": "single-text-button QA Playwright run had failures — 2026-06-04T06:36:17.904Z",
+        "suites": {
+          "accessibility": {
+            "suite": "accessibility",
+            "passed": 24,
+            "failed": 1,
+            "skipped": 0,
+            "logs": [
+              "25 test(s) in Playwright report for accessibility.",
+              "Axe: 1 violation rule(s) reported."
+            ],
+            "errors": [
+              "BUG-SINGLETEXT-001: A button has no accessible name — screen readers only hear “button” with no label. Add visible text, aria-label, or aria-labelledby. Element: ._storySandboxOverflow_1p7b1_740._storySandbox_1p7b1_719 > ._surface_rgilb_1[data-surface=\"minimal\"][data-surface-step=\"2400\"] > span > button[data-loading=\"\"][data-disabled=\"\"][data-attention=\"high\"]. (Rule: button-name, critical impact)."
+            ],
+            "cases": [
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — zero serious/critical + HTML report",
+                "status": "passed",
+                "durationMs": 3741
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Default band",
+                "status": "passed",
+                "durationMs": 3681,
+                "componentBand": "single-text-button-qa-default"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Size (S · M · L) band",
+                "status": "passed",
+                "durationMs": 3669,
+                "componentBand": "single-text-button-qa-size"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Attention band",
+                "status": "passed",
+                "durationMs": 3674,
+                "componentBand": "single-text-button-qa-attention"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Condensed band",
+                "status": "passed",
+                "durationMs": 3699,
+                "componentBand": "single-text-button-qa-condensed"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Disabled and loading band",
+                "status": "passed",
+                "durationMs": 3332,
+                "componentBand": "single-text-button-qa-states"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Interaction band",
+                "status": "passed",
+                "durationMs": 3269,
+                "componentBand": "single-text-button-qa-interaction"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Edge (long label) band",
+                "status": "passed",
+                "durationMs": 3087,
+                "componentBand": "single-text-button-qa-edge"
+              },
+              {
+                "name": "[a11y] data-testid=\"single-text-button-default\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 3088
+              },
+              {
+                "name": "[a11y] data-testid=\"single-text-button-size-m\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 3211
+              },
+              {
+                "name": "[a11y] data-testid=\"single-text-button-attention-high\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 2735
+              },
+              {
+                "name": "[a11y] data-testid=\"single-text-button-condensed-m\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 2746
+              },
+              {
+                "name": "[a11y] data-testid=\"single-text-button-disabled\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 2934
+              },
+              {
+                "name": "[a11y] data-testid=\"single-text-button-loading\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 3191
+              },
+              {
+                "name": "[a11y] data-testid=\"single-text-button-interactive\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 3141
+              },
+              {
+                "name": "[a11y] data-testid=\"single-text-button-edge-long\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 3843
+              },
+              {
+                "name": "[a11y] axe button-name rule — Test Scenarios page (exclude bug repro band)",
+                "status": "passed",
+                "durationMs": 3766
+              },
+              {
+                "name": "[a11y] Accessible name readout — loading button with aria-label",
+                "status": "passed",
+                "durationMs": 3873
+              },
+              {
+                "name": "[a11y] Keyboard Space — interactive text button",
+                "status": "passed",
+                "durationMs": 3374
+              },
+              {
+                "name": "[a11y] ARIA validity — showcase bands, zero serious/critical",
+                "status": "passed",
+                "durationMs": 3904
+              },
+              {
+                "name": "[a11y] page lang on <html>",
+                "status": "passed",
+                "durationMs": 2427
+              },
+              {
+                "name": "[a11y] focused default shows focus indicator",
+                "status": "passed",
+                "durationMs": 2582
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — bug repro (loading, no aria-label on button) band",
+                "status": "failed",
+                "durationMs": 3339,
+                "error": "A button has no accessible name — screen readers only hear “button” with no label. Add visible text, aria-label, or aria-labelledby. Element: ._storySandboxOverflow_1p7b1_740._storySandbox_1p7b1_719 > ._surface_rgilb_1[data-surface=\"minimal\"][data-surface-step=\"2400\"] > span > button[data-loading=\"\"][data-disabled=\"\"][data-attention=\"high\"]. (Rule: button-name, critical impact).",
+                "bugId": "BUG-SINGLETEXT-001",
+                "componentBand": "single-text-button-qa-bug-repro"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Figma size×attention and condensed grids",
+                "status": "passed",
+                "durationMs": 5192
+              },
+              {
+                "name": "[a11y] playground route responds",
+                "status": "passed",
+                "durationMs": 2657
+              }
+            ],
+            "axe": {
+              "violations": [
+                {
+                  "id": "button-name",
+                  "impact": "critical",
+                  "description": "Ensure buttons have discernible text",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/button-name?application=playwright",
+                  "nodes": 1
+                }
+              ]
+            }
+          },
+          "functional": {
+            "suite": "functional",
+            "passed": 51,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "51 test(s) in Playwright report for functional."
+            ],
+            "errors": [],
+            "cases": [
+              {
+                "name": "[fn] 1.1 — no console errors on playground load",
+                "status": "passed",
+                "durationMs": 3724
+              },
+              {
+                "name": "[fn] 1.2 — every playground data-testid is visible",
+                "status": "passed",
+                "durationMs": 3106
+              },
+              {
+                "name": "[fn] 1.3 — every data-section is visible",
+                "status": "passed",
+                "durationMs": 2385
+              },
+              {
+                "name": "[fn] 2.2 — size bounding boxes grow S → L (circular)",
+                "status": "passed",
+                "durationMs": 2620
+              },
+              {
+                "name": "[fn] 2.3 — Appearance colour (N/A)",
+                "status": "passed",
+                "durationMs": 2333
+              },
+              {
+                "name": "[fn] 3.1 — click fires onClick and updates press counter",
+                "status": "passed",
+                "durationMs": 2575
+              },
+              {
+                "name": "[fn] 3.2 — disabled button does not increment counter on forced click",
+                "status": "passed",
+                "durationMs": 2563
+              },
+              {
+                "name": "[fn] 3.3 — Readonly (N/A)",
+                "status": "passed",
+                "durationMs": 2293
+              },
+              {
+                "name": "[fn] 3.4 — click outside removes focus",
+                "status": "passed",
+                "durationMs": 2587
+              },
+              {
+                "name": "[fn] 4.1 — Tab reaches interactive button",
+                "status": "passed",
+                "durationMs": 2322
+              },
+              {
+                "name": "[fn] 4.1 — disabled button is not focused via Tab from prior focusable",
+                "status": "passed",
+                "durationMs": 2453
+              },
+              {
+                "name": "[fn] 4.2 — Enter activates interactive button",
+                "status": "passed",
+                "durationMs": 1824
+              },
+              {
+                "name": "[fn] 4.3 — Space activates interactive button",
+                "status": "passed",
+                "durationMs": 2053
+              },
+              {
+                "name": "[fn] 4.4 — Arrow keys (N/A)",
+                "status": "passed",
+                "durationMs": 1875
+              },
+              {
+                "name": "[fn] 4.5 — Home and End keys (N/A)",
+                "status": "passed",
+                "durationMs": 2641
+              },
+              {
+                "name": "[fn] 4.6 — Escape (N/A)",
+                "status": "passed",
+                "durationMs": 2509
+              },
+              {
+                "name": "[fn] 4.7 — Tab through page without keyboard trap",
+                "status": "passed",
+                "durationMs": 2695
+              },
+              {
+                "name": "[fn] 5.1 — click focuses button",
+                "status": "passed",
+                "durationMs": 2686
+              },
+              {
+                "name": "[fn] 5.2 — focus ring visible",
+                "status": "passed",
+                "durationMs": 2616
+              },
+              {
+                "name": "[fn] 5.5 — autoFocus (N/A)",
+                "status": "passed",
+                "durationMs": 2418
+              },
+              {
+                "name": "[fn] 6.1 — default state renders with high attention bold variant",
+                "status": "passed",
+                "durationMs": 2257
+              },
+              {
+                "name": "[fn] 6.2 — Selected/checked (N/A)",
+                "status": "passed",
+                "durationMs": 2447
+              },
+              {
+                "name": "[fn] 6.3 — disabled is not enabled and skips Tab order",
+                "status": "passed",
+                "durationMs": 1974
+              },
+              {
+                "name": "[fn] 6.4 — Readonly (N/A)",
+                "status": "passed",
+                "durationMs": 2834
+              },
+              {
+                "name": "[fn] 6.5 — Error state (N/A)",
+                "status": "passed",
+                "durationMs": 2380
+              },
+              {
+                "name": "[fn] 6.6 — loading disables and shows progressbar",
+                "status": "passed",
+                "durationMs": 2542
+              },
+              {
+                "name": "[fn] 7.1 — Start/end slots (N/A)",
+                "status": "passed",
+                "durationMs": 2444
+              },
+              {
+                "name": "[fn] 8.1 — Toggle (N/A)",
+                "status": "passed",
+                "durationMs": 2463
+              },
+              {
+                "name": "[fn] 8.2 — Single-select group (N/A)",
+                "status": "passed",
+                "durationMs": 2529
+              },
+              {
+                "name": "[fn] 8.3 — Indeterminate (N/A)",
+                "status": "passed",
+                "durationMs": 2354
+              },
+              {
+                "name": "[fn] 9.1 — Typing (N/A)",
+                "status": "passed",
+                "durationMs": 2299
+              },
+              {
+                "name": "[fn] 10.3 — loading=true forces disabled and shows spinner",
+                "status": "passed",
+                "durationMs": 2065
+              },
+              {
+                "name": "[fn] 11.1 — default label text “Ag” is visible",
+                "status": "passed",
+                "durationMs": 1141
+              },
+              {
+                "name": "[fn] 11.1 — edge long label cell renders button",
+                "status": "passed",
+                "durationMs": 814
+              },
+              {
+                "name": "[fn] 12.1 — fullWidth (N/A)",
+                "status": "passed",
+                "durationMs": 2243
+              },
+              {
+                "name": "[fn] 12.2 — visible at 320px viewport",
+                "status": "passed",
+                "durationMs": 4864
+              },
+              {
+                "name": "[fn] 12.2 — visible at 1440px viewport",
+                "status": "passed",
+                "durationMs": 4563
+              },
+              {
+                "name": "[fn] 12.3 — size strip is roughly horizontal",
+                "status": "passed",
+                "durationMs": 2609
+              },
+              {
+                "name": "[fn] Smoke — Page heading reads “Single Text Button”",
+                "status": "passed",
+                "durationMs": 2401
+              },
+              {
+                "name": "[fn] Smoke — Default control is visible",
+                "status": "passed",
+                "durationMs": 2329
+              },
+              {
+                "name": "[fn] Smoke — Interactive control is visible",
+                "status": "passed",
+                "durationMs": 2315
+              },
+              {
+                "name": "[fn] Component page shows title and QA tabs",
+                "status": "passed",
+                "durationMs": 2107
+              },
+              {
+                "name": "[fn] Default button shows label “Ag”, size M, high attention, bold variant",
+                "status": "passed",
+                "durationMs": 1595
+              },
+              {
+                "name": "[fn] Size variants S, M, and L render",
+                "status": "passed",
+                "durationMs": 2498
+              },
+              {
+                "name": "[fn] High / medium / low attention map to bold / subtle / ghost variants",
+                "status": "passed",
+                "durationMs": 2622
+              },
+              {
+                "name": "[fn] Condensed buttons set data-condensed and correct data-size",
+                "status": "passed",
+                "durationMs": 2244
+              },
+              {
+                "name": "[fn] Click increments the press counter",
+                "status": "passed",
+                "durationMs": 2470
+              },
+              {
+                "name": "[fn] Disabled cannot be clicked; loading shows busy state and name “Loading”",
+                "status": "passed",
+                "durationMs": 2489
+              },
+              {
+                "name": "[fn] Long label edge-case cell renders",
+                "status": "passed",
+                "durationMs": 2223
+              },
+              {
+                "name": "[fn] All Test Scenarios story bands are mounted on the page",
+                "status": "passed",
+                "durationMs": 2401
+              },
+              {
+                "name": "[fn] Figma Validation tab shows API table and validation grids",
+                "status": "passed",
+                "durationMs": 2705
+              }
+            ]
+          },
+          "performance": {
+            "suite": "performance",
+            "passed": 0,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "Performance suite is not executed in apps/qa-playground single-text-button Playwright bundle."
+            ],
+            "errors": []
+          }
+        }
+      }
+    },
+    {
+      "savedAt": "2026-06-04T06:36:17.905Z",
+      "report": {
+        "ok": false,
+        "slug": "single-text-button",
+        "message": "single-text-button QA Playwright run had failures — 2026-06-03T10:45:16.826Z",
+        "suites": {
+          "accessibility": {
+            "suite": "accessibility",
+            "passed": 24,
+            "failed": 1,
+            "skipped": 0,
+            "logs": [
+              "25 test(s) in Playwright report for accessibility.",
+              "Axe: 1 violation rule(s) reported."
+            ],
+            "errors": [
+              "BUG-SINGLETEXT-001: A button has no accessible name — screen readers only hear “button” with no label. Add visible text, aria-label, or aria-labelledby. Element: ._storySandboxOverflow_1nryy_740._storySandbox_1nryy_719 > ._surface_rgilb_1[data-surface=\"minimal\"][data-surface-step=\"2400\"] > span > button[data-loading=\"\"][data-disabled=\"\"][data-attention=\"high\"]. (Rule: button-name, critical impact)."
+            ],
+            "cases": [
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — zero serious/critical + HTML report",
+                "status": "passed",
+                "durationMs": 6830
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Default band",
+                "status": "passed",
+                "durationMs": 6762,
+                "componentBand": "single-text-button-qa-default"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Size (S · M · L) band",
+                "status": "passed",
+                "durationMs": 6737,
+                "componentBand": "single-text-button-qa-size"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Attention band",
+                "status": "passed",
+                "durationMs": 6661,
+                "componentBand": "single-text-button-qa-attention"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Condensed band",
+                "status": "passed",
+                "durationMs": 6749,
+                "componentBand": "single-text-button-qa-condensed"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Disabled and loading band",
+                "status": "passed",
+                "durationMs": 6650,
+                "componentBand": "single-text-button-qa-states"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Interaction band",
+                "status": "passed",
+                "durationMs": 6988,
+                "componentBand": "single-text-button-qa-interaction"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Edge (long label) band",
+                "status": "passed",
+                "durationMs": 6783,
+                "componentBand": "single-text-button-qa-edge"
+              },
+              {
+                "name": "[a11y] data-testid=\"single-text-button-default\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 6618
+              },
+              {
+                "name": "[a11y] data-testid=\"single-text-button-size-m\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 7227
+              },
+              {
+                "name": "[a11y] data-testid=\"single-text-button-attention-high\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 6408
+              },
+              {
+                "name": "[a11y] data-testid=\"single-text-button-condensed-m\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 6438
+              },
+              {
+                "name": "[a11y] data-testid=\"single-text-button-disabled\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 6830
+              },
+              {
+                "name": "[a11y] data-testid=\"single-text-button-loading\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 6655
+              },
+              {
+                "name": "[a11y] data-testid=\"single-text-button-interactive\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 6450
+              },
+              {
+                "name": "[a11y] data-testid=\"single-text-button-edge-long\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 7024
+              },
+              {
+                "name": "[a11y] axe button-name rule — Test Scenarios page (exclude bug repro band)",
+                "status": "passed",
+                "durationMs": 6974
+              },
+              {
+                "name": "[a11y] Accessible name readout — loading button with aria-label",
+                "status": "passed",
+                "durationMs": 6373
+              },
+              {
+                "name": "[a11y] Keyboard Space — interactive text button",
+                "status": "passed",
+                "durationMs": 6702
+              },
+              {
+                "name": "[a11y] ARIA validity — showcase bands, zero serious/critical",
+                "status": "passed",
+                "durationMs": 7709
+              },
+              {
+                "name": "[a11y] page lang on <html>",
+                "status": "passed",
+                "durationMs": 4828
+              },
+              {
+                "name": "[a11y] focused default shows focus indicator",
+                "status": "passed",
+                "durationMs": 5487
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — bug repro (loading, no aria-label on button) band",
+                "status": "failed",
+                "durationMs": 6949,
+                "error": "A button has no accessible name — screen readers only hear “button” with no label. Add visible text, aria-label, or aria-labelledby. Element: ._storySandboxOverflow_1nryy_740._storySandbox_1nryy_719 > ._surface_rgilb_1[data-surface=\"minimal\"][data-surface-step=\"2400\"] > span > button[data-loading=\"\"][data-disabled=\"\"][data-attention=\"high\"]. (Rule: button-name, critical impact).",
+                "bugId": "BUG-SINGLETEXT-001",
+                "componentBand": "single-text-button-qa-bug-repro"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Figma size×attention and condensed grids",
+                "status": "passed",
+                "durationMs": 10156
+              },
+              {
+                "name": "[a11y] playground route responds",
+                "status": "passed",
+                "durationMs": 4912
+              }
+            ],
+            "axe": {
+              "violations": [
+                {
+                  "id": "button-name",
+                  "impact": "critical",
+                  "description": "Ensure buttons have discernible text",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/button-name?application=playwright",
+                  "nodes": 1
+                }
+              ]
+            }
+          },
+          "functional": {
+            "suite": "functional",
+            "passed": 51,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "51 test(s) in Playwright report for functional."
+            ],
+            "errors": [],
+            "cases": [
+              {
+                "name": "[fn] 1.1 — no console errors on playground load",
+                "status": "passed",
+                "durationMs": 7293
+              },
+              {
+                "name": "[fn] 1.2 — every playground data-testid is visible",
+                "status": "passed",
+                "durationMs": 5016
+              },
+              {
+                "name": "[fn] 1.3 — every data-section is visible",
+                "status": "passed",
+                "durationMs": 4925
+              },
+              {
+                "name": "[fn] 2.2 — size bounding boxes grow S → L (circular)",
+                "status": "passed",
+                "durationMs": 4960
+              },
+              {
+                "name": "[fn] 2.3 — Appearance colour (N/A)",
+                "status": "passed",
+                "durationMs": 3629
+              },
+              {
+                "name": "[fn] 3.1 — click fires onClick and updates press counter",
+                "status": "passed",
+                "durationMs": 4985
+              },
+              {
+                "name": "[fn] 3.2 — disabled button does not increment counter on forced click",
+                "status": "passed",
+                "durationMs": 4947
+              },
+              {
+                "name": "[fn] 3.3 — Readonly (N/A)",
+                "status": "passed",
+                "durationMs": 5257
+              },
+              {
+                "name": "[fn] 3.4 — click outside removes focus",
+                "status": "passed",
+                "durationMs": 4847
+              },
+              {
+                "name": "[fn] 4.1 — Tab reaches interactive button",
+                "status": "passed",
+                "durationMs": 6849
+              },
+              {
+                "name": "[fn] 4.1 — disabled button is not focused via Tab from prior focusable",
+                "status": "passed",
+                "durationMs": 4059
+              },
+              {
+                "name": "[fn] 4.2 — Enter activates interactive button",
+                "status": "passed",
+                "durationMs": 5458
+              },
+              {
+                "name": "[fn] 4.3 — Space activates interactive button",
+                "status": "passed",
+                "durationMs": 4305
+              },
+              {
+                "name": "[fn] 4.4 — Arrow keys (N/A)",
+                "status": "passed",
+                "durationMs": 4757
+              },
+              {
+                "name": "[fn] 4.5 — Home and End keys (N/A)",
+                "status": "passed",
+                "durationMs": 4730
+              },
+              {
+                "name": "[fn] 4.6 — Escape (N/A)",
+                "status": "passed",
+                "durationMs": 3455
+              },
+              {
+                "name": "[fn] 4.7 — Tab through page without keyboard trap",
+                "status": "passed",
+                "durationMs": 5534
+              },
+              {
+                "name": "[fn] 5.1 — click focuses button",
+                "status": "passed",
+                "durationMs": 5288
+              },
+              {
+                "name": "[fn] 5.2 — focus ring visible",
+                "status": "passed",
+                "durationMs": 5266
+              },
+              {
+                "name": "[fn] 5.5 — autoFocus (N/A)",
+                "status": "passed",
+                "durationMs": 4744
+              },
+              {
+                "name": "[fn] 6.1 — default state renders with high attention bold variant",
+                "status": "passed",
+                "durationMs": 6839
+              },
+              {
+                "name": "[fn] 6.2 — Selected/checked (N/A)",
+                "status": "passed",
+                "durationMs": 3909
+              },
+              {
+                "name": "[fn] 6.3 — disabled is not enabled and skips Tab order",
+                "status": "passed",
+                "durationMs": 5332
+              },
+              {
+                "name": "[fn] 6.4 — Readonly (N/A)",
+                "status": "passed",
+                "durationMs": 4801
+              },
+              {
+                "name": "[fn] 6.5 — Error state (N/A)",
+                "status": "passed",
+                "durationMs": 4845
+              },
+              {
+                "name": "[fn] 6.6 — loading disables and shows progressbar",
+                "status": "passed",
+                "durationMs": 4539
+              },
+              {
+                "name": "[fn] 7.1 — Start/end slots (N/A)",
+                "status": "passed",
+                "durationMs": 3714
+              },
+              {
+                "name": "[fn] 8.1 — Toggle (N/A)",
+                "status": "passed",
+                "durationMs": 5750
+              },
+              {
+                "name": "[fn] 8.2 — Single-select group (N/A)",
+                "status": "passed",
+                "durationMs": 4564
+              },
+              {
+                "name": "[fn] 8.3 — Indeterminate (N/A)",
+                "status": "passed",
+                "durationMs": 4984
+              },
+              {
+                "name": "[fn] 9.1 — Typing (N/A)",
+                "status": "passed",
+                "durationMs": 6927
+              },
+              {
+                "name": "[fn] 10.3 — loading=true forces disabled and shows spinner",
+                "status": "passed",
+                "durationMs": 3792
+              },
+              {
+                "name": "[fn] 11.1 — default label text “Ag” is visible",
+                "status": "passed",
+                "durationMs": 4474
+              },
+              {
+                "name": "[fn] 11.1 — edge long label cell renders button",
+                "status": "passed",
+                "durationMs": 1488
+              },
+              {
+                "name": "[fn] 12.1 — fullWidth (N/A)",
+                "status": "passed",
+                "durationMs": 4454
+              },
+              {
+                "name": "[fn] 12.2 — visible at 320px viewport",
+                "status": "passed",
+                "durationMs": 7945
+              },
+              {
+                "name": "[fn] 12.2 — visible at 1440px viewport",
+                "status": "passed",
+                "durationMs": 7456
+              },
+              {
+                "name": "[fn] 12.3 — size strip is roughly horizontal",
+                "status": "passed",
+                "durationMs": 5888
+              },
+              {
+                "name": "[fn] Smoke — Page heading reads “Single Text Button”",
+                "status": "passed",
+                "durationMs": 4692
+              },
+              {
+                "name": "[fn] Smoke — Default control is visible",
+                "status": "passed",
+                "durationMs": 5488
+              },
+              {
+                "name": "[fn] Smoke — Interactive control is visible",
+                "status": "passed",
+                "durationMs": 7021
+              },
+              {
+                "name": "[fn] Component page shows title and QA tabs",
+                "status": "passed",
+                "durationMs": 4990
+              },
+              {
+                "name": "[fn] Default button shows label “Ag”, size M, high attention, bold variant",
+                "status": "passed",
+                "durationMs": 3703
+              },
+              {
+                "name": "[fn] Size variants S, M, and L render",
+                "status": "passed",
+                "durationMs": 4393
+              },
+              {
+                "name": "[fn] High / medium / low attention map to bold / subtle / ghost variants",
+                "status": "passed",
+                "durationMs": 4510
+              },
+              {
+                "name": "[fn] Condensed buttons set data-condensed and correct data-size",
+                "status": "passed",
+                "durationMs": 5256
+              },
+              {
+                "name": "[fn] Click increments the press counter",
+                "status": "passed",
+                "durationMs": 3792
+              },
+              {
+                "name": "[fn] Disabled cannot be clicked; loading shows busy state and name “Loading”",
+                "status": "passed",
+                "durationMs": 5829
+              },
+              {
+                "name": "[fn] Long label edge-case cell renders",
+                "status": "passed",
+                "durationMs": 4317
+              },
+              {
+                "name": "[fn] All Test Scenarios story bands are mounted on the page",
+                "status": "passed",
+                "durationMs": 5990
+              },
+              {
+                "name": "[fn] Figma Validation tab shows API table and validation grids",
+                "status": "passed",
+                "durationMs": 6071
+              }
+            ]
+          },
+          "performance": {
+            "suite": "performance",
+            "passed": 0,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "Performance suite is not executed in apps/qa-playground single-text-button Playwright bundle."
+            ],
+            "errors": []
+          }
+        }
+      }
+    },
+    {
+      "savedAt": "2026-06-03T10:45:16.829Z",
+      "report": {
+        "ok": false,
+        "slug": "single-text-button",
+        "message": "single-text-button QA Playwright run had failures — 2026-05-29T13:01:27.157Z",
+        "suites": {
+          "accessibility": {
+            "suite": "accessibility",
+            "passed": 24,
+            "failed": 1,
+            "skipped": 0,
+            "logs": [
+              "25 test(s) in Playwright report for accessibility.",
+              "Axe: 1 violation rule(s) reported."
+            ],
+            "errors": [
+              "BUG-SINGLETEXT-001: A button has no accessible name — screen readers only hear “button” with no label. Add visible text, aria-label, or aria-labelledby. Element: ._storySandboxOverflow_1oebo_732._storySandbox_1oebo_711 > ._surface_1i742_1[data-surface=\"minimal\"][data-surface-step=\"2400\"] > span > button[data-loading=\"\"][data-disabled=\"\"][data-attention=\"high\"]. (Rule: button-name, critical impact)."
+            ],
+            "cases": [
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — zero serious/critical + HTML report",
+                "status": "passed",
+                "durationMs": 4582
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Default band",
+                "status": "passed",
+                "durationMs": 4604,
+                "componentBand": "single-text-button-qa-default"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Size (S · M · L) band",
+                "status": "passed",
+                "durationMs": 4548,
+                "componentBand": "single-text-button-qa-size"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Attention band",
+                "status": "passed",
+                "durationMs": 4690,
+                "componentBand": "single-text-button-qa-attention"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Condensed band",
+                "status": "passed",
+                "durationMs": 4811,
+                "componentBand": "single-text-button-qa-condensed"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Disabled and loading band",
+                "status": "passed",
+                "durationMs": 3368,
+                "componentBand": "single-text-button-qa-states"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Interaction band",
+                "status": "passed",
+                "durationMs": 3418,
+                "componentBand": "single-text-button-qa-interaction"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Edge (long label) band",
+                "status": "passed",
+                "durationMs": 3478,
+                "componentBand": "single-text-button-qa-edge"
+              },
+              {
+                "name": "[a11y] data-testid=\"single-text-button-default\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 3498
+              },
+              {
+                "name": "[a11y] data-testid=\"single-text-button-size-m\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 3612
+              },
+              {
+                "name": "[a11y] data-testid=\"single-text-button-attention-high\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 2578
+              },
+              {
+                "name": "[a11y] data-testid=\"single-text-button-condensed-m\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 2843
+              },
+              {
+                "name": "[a11y] data-testid=\"single-text-button-disabled\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 2841
+              },
+              {
+                "name": "[a11y] data-testid=\"single-text-button-loading\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 2986
+              },
+              {
+                "name": "[a11y] data-testid=\"single-text-button-interactive\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 2921
+              },
+              {
+                "name": "[a11y] data-testid=\"single-text-button-edge-long\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 1904
+              },
+              {
+                "name": "[a11y] axe button-name rule — Test Scenarios page (exclude bug repro band)",
+                "status": "passed",
+                "durationMs": 2956
+              },
+              {
+                "name": "[a11y] Accessible name readout — loading button with aria-label",
+                "status": "passed",
+                "durationMs": 2595
+              },
+              {
+                "name": "[a11y] Keyboard Space — interactive text button",
+                "status": "passed",
+                "durationMs": 2984
+              },
+              {
+                "name": "[a11y] ARIA validity — showcase bands, zero serious/critical",
+                "status": "passed",
+                "durationMs": 3472
+              },
+              {
+                "name": "[a11y] page lang on <html>",
+                "status": "passed",
+                "durationMs": 2858
+              },
+              {
+                "name": "[a11y] focused default shows focus indicator",
+                "status": "passed",
+                "durationMs": 2650
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — bug repro (loading, no aria-label on button) band",
+                "status": "failed",
+                "durationMs": 3256,
+                "error": "A button has no accessible name — screen readers only hear “button” with no label. Add visible text, aria-label, or aria-labelledby. Element: ._storySandboxOverflow_1oebo_732._storySandbox_1oebo_711 > ._surface_1i742_1[data-surface=\"minimal\"][data-surface-step=\"2400\"] > span > button[data-loading=\"\"][data-disabled=\"\"][data-attention=\"high\"]. (Rule: button-name, critical impact).",
+                "bugId": "BUG-SINGLETEXT-001",
+                "componentBand": "single-text-button-qa-bug-repro"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Figma size×attention and condensed grids",
+                "status": "passed",
+                "durationMs": 4154
+              },
+              {
+                "name": "[a11y] playground route responds",
+                "status": "passed",
+                "durationMs": 2243
+              }
+            ],
+            "axe": {
+              "violations": [
+                {
+                  "id": "button-name",
+                  "impact": "critical",
+                  "description": "Ensure buttons have discernible text",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/button-name?application=playwright",
+                  "nodes": 1
+                }
+              ]
+            }
+          },
+          "functional": {
+            "suite": "functional",
+            "passed": 51,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "51 test(s) in Playwright report for functional."
+            ],
+            "errors": [],
+            "cases": [
+              {
+                "name": "[fn] 1.1 — no console errors on playground load",
+                "status": "passed",
+                "durationMs": 3632
+              },
+              {
+                "name": "[fn] 1.2 — every playground data-testid is visible",
+                "status": "passed",
+                "durationMs": 2246
+              },
+              {
+                "name": "[fn] 1.3 — every data-section is visible",
+                "status": "passed",
+                "durationMs": 1715
+              },
+              {
+                "name": "[fn] 2.2 — size bounding boxes grow S → L (circular)",
+                "status": "passed",
+                "durationMs": 2412
+              },
+              {
+                "name": "[fn] 2.3 — Appearance colour (N/A)",
+                "status": "passed",
+                "durationMs": 2185
+              },
+              {
+                "name": "[fn] 3.1 — click fires onClick and updates press counter",
+                "status": "passed",
+                "durationMs": 2308
+              },
+              {
+                "name": "[fn] 3.2 — disabled button does not increment counter on forced click",
+                "status": "passed",
+                "durationMs": 2158
+              },
+              {
+                "name": "[fn] 3.3 — Readonly (N/A)",
+                "status": "passed",
+                "durationMs": 2025
+              },
+              {
+                "name": "[fn] 3.4 — click outside removes focus",
+                "status": "passed",
+                "durationMs": 2308
+              },
+              {
+                "name": "[fn] 4.1 — Tab reaches interactive button",
+                "status": "passed",
+                "durationMs": 2437
+              },
+              {
+                "name": "[fn] 4.1 — disabled button is not focused via Tab from prior focusable",
+                "status": "passed",
+                "durationMs": 3156
+              },
+              {
+                "name": "[fn] 4.2 — Enter activates interactive button",
+                "status": "passed",
+                "durationMs": 2702
+              },
+              {
+                "name": "[fn] 4.3 — Space activates interactive button",
+                "status": "passed",
+                "durationMs": 1672
+              },
+              {
+                "name": "[fn] 4.4 — Arrow keys (N/A)",
+                "status": "passed",
+                "durationMs": 2096
+              },
+              {
+                "name": "[fn] 4.5 — Home and End keys (N/A)",
+                "status": "passed",
+                "durationMs": 2219
+              },
+              {
+                "name": "[fn] 4.6 — Escape (N/A)",
+                "status": "passed",
+                "durationMs": 2212
+              },
+              {
+                "name": "[fn] 4.7 — Tab through page without keyboard trap",
+                "status": "passed",
+                "durationMs": 2270
+              },
+              {
+                "name": "[fn] 5.1 — click focuses button",
+                "status": "passed",
+                "durationMs": 2508
+              },
+              {
+                "name": "[fn] 5.2 — focus ring visible",
+                "status": "passed",
+                "durationMs": 2260
+              },
+              {
+                "name": "[fn] 5.5 — autoFocus (N/A)",
+                "status": "passed",
+                "durationMs": 2516
+              },
+              {
+                "name": "[fn] 6.1 — default state renders with high attention bold variant",
+                "status": "passed",
+                "durationMs": 2279
+              },
+              {
+                "name": "[fn] 6.2 — Selected/checked (N/A)",
+                "status": "passed",
+                "durationMs": 2109
+              },
+              {
+                "name": "[fn] 6.3 — disabled is not enabled and skips Tab order",
+                "status": "passed",
+                "durationMs": 2703
+              },
+              {
+                "name": "[fn] 6.4 — Readonly (N/A)",
+                "status": "passed",
+                "durationMs": 2311
+              },
+              {
+                "name": "[fn] 6.5 — Error state (N/A)",
+                "status": "passed",
+                "durationMs": 2042
+              },
+              {
+                "name": "[fn] 6.6 — loading disables and shows progressbar",
+                "status": "passed",
+                "durationMs": 2378
+              },
+              {
+                "name": "[fn] 7.1 — Start/end slots (N/A)",
+                "status": "passed",
+                "durationMs": 1812
+              },
+              {
+                "name": "[fn] 8.1 — Toggle (N/A)",
+                "status": "passed",
+                "durationMs": 2341
+              },
+              {
+                "name": "[fn] 8.2 — Single-select group (N/A)",
+                "status": "passed",
+                "durationMs": 2425
+              },
+              {
+                "name": "[fn] 8.3 — Indeterminate (N/A)",
+                "status": "passed",
+                "durationMs": 2674
+              },
+              {
+                "name": "[fn] 9.1 — Typing (N/A)",
+                "status": "passed",
+                "durationMs": 3009
+              },
+              {
+                "name": "[fn] 10.3 — loading=true forces disabled and shows spinner",
+                "status": "passed",
+                "durationMs": 2749
+              },
+              {
+                "name": "[fn] 11.1 — default label text “Ag” is visible",
+                "status": "passed",
+                "durationMs": 1265
+              },
+              {
+                "name": "[fn] 11.1 — edge long label cell renders button",
+                "status": "passed",
+                "durationMs": 827
+              },
+              {
+                "name": "[fn] 12.1 — fullWidth (N/A)",
+                "status": "passed",
+                "durationMs": 1429
+              },
+              {
+                "name": "[fn] 12.2 — visible at 320px viewport",
+                "status": "passed",
+                "durationMs": 4002
+              },
+              {
+                "name": "[fn] 12.2 — visible at 1440px viewport",
+                "status": "passed",
+                "durationMs": 3845
+              },
+              {
+                "name": "[fn] 12.3 — size strip is roughly horizontal",
+                "status": "passed",
+                "durationMs": 2574
+              },
+              {
+                "name": "[fn] Smoke — Page heading reads “Single Text Button”",
+                "status": "passed",
+                "durationMs": 2259
+              },
+              {
+                "name": "[fn] Smoke — Default control is visible",
+                "status": "passed",
+                "durationMs": 2743
+              },
+              {
+                "name": "[fn] Smoke — Interactive control is visible",
+                "status": "passed",
+                "durationMs": 2913
+              },
+              {
+                "name": "[fn] Component page shows title and QA tabs",
+                "status": "passed",
+                "durationMs": 1979
+              },
+              {
+                "name": "[fn] Default button shows label “Ag”, size M, high attention, bold variant",
+                "status": "passed",
+                "durationMs": 1502
+              },
+              {
+                "name": "[fn] Size variants S, M, and L render",
+                "status": "passed",
+                "durationMs": 2167
+              },
+              {
+                "name": "[fn] High / medium / low attention map to bold / subtle / ghost variants",
+                "status": "passed",
+                "durationMs": 2346
+              },
+              {
+                "name": "[fn] Condensed buttons set data-condensed and correct data-size",
+                "status": "passed",
+                "durationMs": 2269
+              },
+              {
+                "name": "[fn] Click increments the press counter",
+                "status": "passed",
+                "durationMs": 2228
+              },
+              {
+                "name": "[fn] Disabled cannot be clicked; loading shows busy state and name “Loading”",
+                "status": "passed",
+                "durationMs": 2575
+              },
+              {
+                "name": "[fn] Long label edge-case cell renders",
+                "status": "passed",
+                "durationMs": 2480
+              },
+              {
+                "name": "[fn] All Test Scenarios story bands are mounted on the page",
+                "status": "passed",
+                "durationMs": 2755
+              },
+              {
+                "name": "[fn] Figma Validation tab shows API table and validation grids",
+                "status": "passed",
+                "durationMs": 3158
+              }
+            ]
+          },
+          "performance": {
+            "suite": "performance",
+            "passed": 0,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "Performance suite is not executed in apps/qa-playground single-text-button Playwright bundle."
+            ],
+            "errors": []
+          }
+        }
+      }
+    }
+  ]
+}

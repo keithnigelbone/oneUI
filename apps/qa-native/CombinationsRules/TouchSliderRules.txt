@@ -1,0 +1,19 @@
+section1: orientation × trackStyle (code: progressStyle)
+- Mount TouchSlider with all combinations of orientation (horizontal, vertical) × trackStyle (rounded, sharp)
+- Note: Figma also exposes "trackEdge" (rounded/sharp) as a separate property — not yet a code prop
+
+section2: value × orientation
+- Mount TouchSlider with value=0, 50, 100 for each orientation (horizontal, vertical)
+
+section3: start slot × orientation
+- Mount TouchSlider with no start slot and with an icon in the start slot
+- For each orientation (horizontal, vertical)
+
+section4: appearance × orientation
+- Mount TouchSlider with all appearances (auto, neutral, primary, secondary, negative, positive, informative, warning)
+- For each orientation (horizontal, vertical)
+
+section5: disabled × readOnly × orientation
+- Mount TouchSlider with disabled=true for each orientation (horizontal, vertical)
+- Mount TouchSlider with readOnly=true for each orientation (horizontal, vertical)
+- Include start slot icon variation with disabled (horizontal only)

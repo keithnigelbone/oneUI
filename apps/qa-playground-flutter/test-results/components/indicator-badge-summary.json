@@ -1,0 +1,1518 @@
+{
+  "ok": true,
+  "slug": "indicator-badge",
+  "message": "Flutter QA run completed",
+  "generatedAt": "2026-07-02T09:06:06.282Z",
+  "suites": {
+    "functional": {
+      "suite": "functional",
+      "passed": 57,
+      "failed": 0,
+      "skipped": 0,
+      "logs": [
+        "57 test(s) in Flutter QA report for functional."
+      ],
+      "errors": [],
+      "cases": [
+        {
+          "name": "[regression][fn] IndicatorBadge [fn] [IB-FN-001] IndicatorBadge without OneUiScope falls back silently (not orange debug card)",
+          "status": "passed",
+          "durationMs": 410,
+          "component": "indicator_badge",
+          "platform": "android",
+          "tier": "fn"
+        },
+        {
+          "name": "[regression][fn] IndicatorBadge [fn] [IB-FN-001] IndicatorBadge without OneUiScope falls back silently (not orange debug card)",
+          "status": "passed",
+          "durationMs": 34,
+          "component": "indicator_badge",
+          "platform": "ios",
+          "tier": "fn"
+        },
+        {
+          "name": "[regression][fn] IndicatorBadge [fn] [IB-FN-001] IndicatorBadge without OneUiScope falls back silently (not orange debug card)",
+          "status": "passed",
+          "durationMs": 30,
+          "component": "indicator_badge",
+          "platform": "linux",
+          "tier": "fn"
+        },
+        {
+          "name": "[regression][fn] IndicatorBadge [fn] [IB-FN-002] --IndicatorBadge-backgroundColor override wins for non-primary appearance",
+          "status": "passed",
+          "durationMs": 58,
+          "component": "indicator_badge",
+          "platform": "android",
+          "tier": "fn"
+        },
+        {
+          "name": "[regression][fn] IndicatorBadge [fn] [IB-FN-002] --IndicatorBadge-backgroundColor override wins for non-primary appearance",
+          "status": "passed",
+          "durationMs": 24,
+          "component": "indicator_badge",
+          "platform": "ios",
+          "tier": "fn"
+        },
+        {
+          "name": "[regression][fn] IndicatorBadge [fn] [IB-FN-002] --IndicatorBadge-backgroundColor override wins for non-primary appearance",
+          "status": "passed",
+          "durationMs": 23,
+          "component": "indicator_badge",
+          "platform": "linux",
+          "tier": "fn"
+        },
+        {
+          "name": "[regression][fn] IndicatorBadge [fn] [IB-FN-003] Unconfigured role falls back to neutral, not Material primary",
+          "status": "passed",
+          "durationMs": 31,
+          "component": "indicator_badge",
+          "platform": "android",
+          "tier": "fn"
+        },
+        {
+          "name": "[regression][fn] IndicatorBadge [fn] [IB-FN-003] Unconfigured role falls back to neutral, not Material primary",
+          "status": "passed",
+          "durationMs": 21,
+          "component": "indicator_badge",
+          "platform": "ios",
+          "tier": "fn"
+        },
+        {
+          "name": "[regression][fn] IndicatorBadge [fn] [IB-FN-003] Unconfigured role falls back to neutral, not Material primary",
+          "status": "passed",
+          "durationMs": 22,
+          "component": "indicator_badge",
+          "platform": "linux",
+          "tier": "fn"
+        },
+        {
+          "name": "[regression][fn] IndicatorBadge [fn] [IB-FN-004] Invalid appearance string normalises to neutral",
+          "status": "passed",
+          "durationMs": 20,
+          "component": "indicator_badge",
+          "platform": "android",
+          "tier": "fn"
+        },
+        {
+          "name": "[regression][fn] IndicatorBadge [fn] [IB-FN-004] Invalid appearance string normalises to neutral",
+          "status": "passed",
+          "durationMs": 22,
+          "component": "indicator_badge",
+          "platform": "ios",
+          "tier": "fn"
+        },
+        {
+          "name": "[regression][fn] IndicatorBadge [fn] [IB-FN-004] Invalid appearance string normalises to neutral",
+          "status": "passed",
+          "durationMs": 22,
+          "component": "indicator_badge",
+          "platform": "linux",
+          "tier": "fn"
+        },
+        {
+          "name": "[regression][fn] IndicatorBadge [fn] [IB-FN-005] Empty semanticsLabel is not accessible (dev warning + no AT name)",
+          "status": "passed",
+          "durationMs": 23,
+          "component": "indicator_badge",
+          "platform": "android",
+          "tier": "fn"
+        },
+        {
+          "name": "[regression][fn] IndicatorBadge [fn] [IB-FN-005] Empty semanticsLabel is not accessible (dev warning + no AT name)",
+          "status": "passed",
+          "durationMs": 20,
+          "component": "indicator_badge",
+          "platform": "ios",
+          "tier": "fn"
+        },
+        {
+          "name": "[regression][fn] IndicatorBadge [fn] [IB-FN-005] Empty semanticsLabel is not accessible (dev warning + no AT name)",
+          "status": "passed",
+          "durationMs": 22,
+          "component": "indicator_badge",
+          "platform": "linux",
+          "tier": "fn"
+        },
+        {
+          "name": "[regression][fn] IndicatorBadge [fn] [IB-FN-006] appearance=auto inherits from root-level Surface (no surfaceDepth gate)",
+          "status": "passed",
+          "durationMs": 21,
+          "component": "indicator_badge",
+          "platform": "android",
+          "tier": "fn"
+        },
+        {
+          "name": "[regression][fn] IndicatorBadge [fn] [IB-FN-006] appearance=auto inherits from root-level Surface (no surfaceDepth gate)",
+          "status": "passed",
+          "durationMs": 30,
+          "component": "indicator_badge",
+          "platform": "ios",
+          "tier": "fn"
+        },
+        {
+          "name": "[regression][fn] IndicatorBadge [fn] [IB-FN-006] appearance=auto inherits from root-level Surface (no surfaceDepth gate)",
+          "status": "passed",
+          "durationMs": 21,
+          "component": "indicator_badge",
+          "platform": "linux",
+          "tier": "fn"
+        },
+        {
+          "name": "[regression][fn] IndicatorBadge [fn] [IB-FN-007] bottomEnd overlay applies surface ring by default (opt-out, not opt-in)",
+          "status": "passed",
+          "durationMs": 27,
+          "component": "indicator_badge",
+          "platform": "android",
+          "tier": "fn"
+        },
+        {
+          "name": "[regression][fn] IndicatorBadge [fn] [IB-FN-007] bottomEnd overlay applies surface ring by default (opt-out, not opt-in)",
+          "status": "passed",
+          "durationMs": 22,
+          "component": "indicator_badge",
+          "platform": "ios",
+          "tier": "fn"
+        },
+        {
+          "name": "[regression][fn] IndicatorBadge [fn] [IB-FN-007] bottomEnd overlay applies surface ring by default (opt-out, not opt-in)",
+          "status": "passed",
+          "durationMs": 35,
+          "component": "indicator_badge",
+          "platform": "linux",
+          "tier": "fn"
+        },
+        {
+          "name": "[regression][fn] IndicatorBadge [fn] [IB-FN-008] Cross-platform parity: testId is exposed via Semantics.identifier",
+          "status": "passed",
+          "durationMs": 22,
+          "component": "indicator_badge",
+          "platform": "android",
+          "tier": "fn"
+        },
+        {
+          "name": "[regression][fn] IndicatorBadge [fn] [IB-FN-008] Cross-platform parity: testId is exposed via Semantics.identifier",
+          "status": "passed",
+          "durationMs": 23,
+          "component": "indicator_badge",
+          "platform": "ios",
+          "tier": "fn"
+        },
+        {
+          "name": "[regression][fn] IndicatorBadge [fn] [IB-FN-008] Cross-platform parity: testId is exposed via Semantics.identifier",
+          "status": "passed",
+          "durationMs": 27,
+          "component": "indicator_badge",
+          "platform": "linux",
+          "tier": "fn"
+        },
+        {
+          "name": "[functional] IndicatorBadge — size honors token (not just smoke) [fn] size=\"xl\" renders strictly larger than size=\"xs\"",
+          "status": "passed",
+          "durationMs": 44,
+          "component": "indicator_badge",
+          "platform": "android",
+          "tier": "fn"
+        },
+        {
+          "name": "[functional] IndicatorBadge — size honors token (not just smoke) [fn] size=\"xl\" renders strictly larger than size=\"xs\"",
+          "status": "passed",
+          "durationMs": 27,
+          "component": "indicator_badge",
+          "platform": "ios",
+          "tier": "fn"
+        },
+        {
+          "name": "[functional] IndicatorBadge — size honors token (not just smoke) [fn] size=\"xl\" renders strictly larger than size=\"xs\"",
+          "status": "passed",
+          "durationMs": 26,
+          "component": "indicator_badge",
+          "platform": "linux",
+          "tier": "fn"
+        },
+        {
+          "name": "[functional] IndicatorBadge — size honors token (not just smoke) [fn] size is monotonic xs ≤ s ≤ m ≤ l ≤ xl",
+          "status": "passed",
+          "durationMs": 41,
+          "component": "indicator_badge",
+          "platform": "android",
+          "tier": "fn"
+        },
+        {
+          "name": "[functional] IndicatorBadge — size honors token (not just smoke) [fn] size is monotonic xs ≤ s ≤ m ≤ l ≤ xl",
+          "status": "passed",
+          "durationMs": 42,
+          "component": "indicator_badge",
+          "platform": "ios",
+          "tier": "fn"
+        },
+        {
+          "name": "[functional] IndicatorBadge — size honors token (not just smoke) [fn] size is monotonic xs ≤ s ≤ m ≤ l ≤ xl",
+          "status": "passed",
+          "durationMs": 39,
+          "component": "indicator_badge",
+          "platform": "linux",
+          "tier": "fn"
+        },
+        {
+          "name": "[functional] IndicatorBadge — size honors token (not just smoke) [fn] dot is square (width == height)",
+          "status": "passed",
+          "durationMs": 40,
+          "component": "indicator_badge",
+          "platform": "android",
+          "tier": "fn"
+        },
+        {
+          "name": "[functional] IndicatorBadge — size honors token (not just smoke) [fn] dot is square (width == height)",
+          "status": "passed",
+          "durationMs": 38,
+          "component": "indicator_badge",
+          "platform": "ios",
+          "tier": "fn"
+        },
+        {
+          "name": "[functional] IndicatorBadge — size honors token (not just smoke) [fn] dot is square (width == height)",
+          "status": "passed",
+          "durationMs": 37,
+          "component": "indicator_badge",
+          "platform": "linux",
+          "tier": "fn"
+        },
+        {
+          "name": "[functional] IndicatorBadge — size honors token (not just smoke) [fn] unknown size falls back to \"m\"",
+          "status": "passed",
+          "durationMs": 23,
+          "component": "indicator_badge",
+          "platform": "android",
+          "tier": "fn"
+        },
+        {
+          "name": "[functional] IndicatorBadge — size honors token (not just smoke) [fn] unknown size falls back to \"m\"",
+          "status": "passed",
+          "durationMs": 20,
+          "component": "indicator_badge",
+          "platform": "ios",
+          "tier": "fn"
+        },
+        {
+          "name": "[functional] IndicatorBadge — size honors token (not just smoke) [fn] unknown size falls back to \"m\"",
+          "status": "passed",
+          "durationMs": 19,
+          "component": "indicator_badge",
+          "platform": "linux",
+          "tier": "fn"
+        },
+        {
+          "name": "[functional] IndicatorBadge — data-attribute key [fn] data-attribute key encodes size+appearance",
+          "status": "passed",
+          "durationMs": 13,
+          "component": "indicator_badge",
+          "platform": "android",
+          "tier": "fn"
+        },
+        {
+          "name": "[functional] IndicatorBadge — data-attribute key [fn] data-attribute key encodes size+appearance",
+          "status": "passed",
+          "durationMs": 12,
+          "component": "indicator_badge",
+          "platform": "ios",
+          "tier": "fn"
+        },
+        {
+          "name": "[functional] IndicatorBadge — data-attribute key [fn] data-attribute key encodes size+appearance",
+          "status": "passed",
+          "durationMs": 12,
+          "component": "indicator_badge",
+          "platform": "linux",
+          "tier": "fn"
+        },
+        {
+          "name": "[functional] IndicatorBadge — data-attribute key [fn] appearance=auto outside Surface defaults to primary",
+          "status": "passed",
+          "durationMs": 14,
+          "component": "indicator_badge",
+          "platform": "android",
+          "tier": "fn"
+        },
+        {
+          "name": "[functional] IndicatorBadge — data-attribute key [fn] appearance=auto outside Surface defaults to primary",
+          "status": "passed",
+          "durationMs": 15,
+          "component": "indicator_badge",
+          "platform": "ios",
+          "tier": "fn"
+        },
+        {
+          "name": "[functional] IndicatorBadge — data-attribute key [fn] appearance=auto outside Surface defaults to primary",
+          "status": "passed",
+          "durationMs": 21,
+          "component": "indicator_badge",
+          "platform": "linux",
+          "tier": "fn"
+        },
+        {
+          "name": "[functional] IndicatorBadge — data-attribute key [fn] explicit appearance wins over auto+Surface",
+          "status": "passed",
+          "durationMs": 18,
+          "component": "indicator_badge",
+          "platform": "android",
+          "tier": "fn"
+        },
+        {
+          "name": "[functional] IndicatorBadge — data-attribute key [fn] explicit appearance wins over auto+Surface",
+          "status": "passed",
+          "durationMs": 17,
+          "component": "indicator_badge",
+          "platform": "ios",
+          "tier": "fn"
+        },
+        {
+          "name": "[functional] IndicatorBadge — data-attribute key [fn] explicit appearance wins over auto+Surface",
+          "status": "passed",
+          "durationMs": 15,
+          "component": "indicator_badge",
+          "platform": "linux",
+          "tier": "fn"
+        },
+        {
+          "name": "[functional] IndicatorBadge — testId / KeyedSubtree [fn] testId attaches a ValueKey to the root",
+          "status": "passed",
+          "durationMs": 16,
+          "component": "indicator_badge",
+          "platform": "android",
+          "tier": "fn"
+        },
+        {
+          "name": "[functional] IndicatorBadge — testId / KeyedSubtree [fn] testId attaches a ValueKey to the root",
+          "status": "passed",
+          "durationMs": 16,
+          "component": "indicator_badge",
+          "platform": "ios",
+          "tier": "fn"
+        },
+        {
+          "name": "[functional] IndicatorBadge — testId / KeyedSubtree [fn] testId attaches a ValueKey to the root",
+          "status": "passed",
+          "durationMs": 14,
+          "component": "indicator_badge",
+          "platform": "linux",
+          "tier": "fn"
+        },
+        {
+          "name": "[functional] IndicatorBadge — overlay anchors [fn] topEnd anchor renders the indicator on top-right",
+          "status": "passed",
+          "durationMs": 14,
+          "component": "indicator_badge",
+          "platform": "android",
+          "tier": "fn"
+        },
+        {
+          "name": "[functional] IndicatorBadge — overlay anchors [fn] topEnd anchor renders the indicator on top-right",
+          "status": "passed",
+          "durationMs": 15,
+          "component": "indicator_badge",
+          "platform": "ios",
+          "tier": "fn"
+        },
+        {
+          "name": "[functional] IndicatorBadge — overlay anchors [fn] topEnd anchor renders the indicator on top-right",
+          "status": "passed",
+          "durationMs": 16,
+          "component": "indicator_badge",
+          "platform": "linux",
+          "tier": "fn"
+        },
+        {
+          "name": "[functional] IndicatorBadge — overlay anchors [fn] bottomEnd anchor with surface ring renders",
+          "status": "passed",
+          "durationMs": 16,
+          "component": "indicator_badge",
+          "platform": "android",
+          "tier": "fn"
+        },
+        {
+          "name": "[functional] IndicatorBadge — overlay anchors [fn] bottomEnd anchor with surface ring renders",
+          "status": "passed",
+          "durationMs": 16,
+          "component": "indicator_badge",
+          "platform": "ios",
+          "tier": "fn"
+        },
+        {
+          "name": "[functional] IndicatorBadge — overlay anchors [fn] bottomEnd anchor with surface ring renders",
+          "status": "passed",
+          "durationMs": 15,
+          "component": "indicator_badge",
+          "platform": "linux",
+          "tier": "fn"
+        },
+        {
+          "name": "[functional] IndicatorBadge — overlay anchors [fn] overlay sized to hostSide",
+          "status": "passed",
+          "durationMs": 16,
+          "component": "indicator_badge",
+          "platform": "android",
+          "tier": "fn"
+        },
+        {
+          "name": "[functional] IndicatorBadge — overlay anchors [fn] overlay sized to hostSide",
+          "status": "passed",
+          "durationMs": 16,
+          "component": "indicator_badge",
+          "platform": "ios",
+          "tier": "fn"
+        },
+        {
+          "name": "[functional] IndicatorBadge — overlay anchors [fn] overlay sized to hostSide",
+          "status": "passed",
+          "durationMs": 15,
+          "component": "indicator_badge",
+          "platform": "linux",
+          "tier": "fn"
+        }
+      ]
+    },
+    "accessibility": {
+      "suite": "accessibility",
+      "passed": 31,
+      "failed": 0,
+      "skipped": 0,
+      "logs": [
+        "31 test(s) in Flutter QA report for accessibility."
+      ],
+      "errors": [],
+      "cases": [
+        {
+          "name": "[a11y] resolveOneUiIndicatorBadgeSemantics [a11y] non-empty label is accessible",
+          "status": "passed",
+          "durationMs": 12,
+          "component": "indicator_badge",
+          "platform": null,
+          "tier": "a11y"
+        },
+        {
+          "name": "[a11y] resolveOneUiIndicatorBadgeSemantics [a11y] empty label is not accessible",
+          "status": "passed",
+          "durationMs": 4,
+          "component": "indicator_badge",
+          "platform": null,
+          "tier": "a11y"
+        },
+        {
+          "name": "[a11y] resolveOneUiIndicatorBadgeSemantics [a11y] whitespace-only label is not accessible",
+          "status": "passed",
+          "durationMs": 2,
+          "component": "indicator_badge",
+          "platform": null,
+          "tier": "a11y"
+        },
+        {
+          "name": "[a11y] resolveOneUiIndicatorBadgeSemantics [a11y] label is trimmed of surrounding whitespace",
+          "status": "passed",
+          "durationMs": 2,
+          "component": "indicator_badge",
+          "platform": null,
+          "tier": "a11y"
+        },
+        {
+          "name": "[a11y] IndicatorBadge widget — semantics contract [a11y] exposes semanticsLabel as accessible name",
+          "status": "passed",
+          "durationMs": 438,
+          "component": "indicator_badge",
+          "platform": "android",
+          "tier": "a11y"
+        },
+        {
+          "name": "[a11y] IndicatorBadge widget — semantics contract [a11y] exposes semanticsLabel as accessible name",
+          "status": "passed",
+          "durationMs": 40,
+          "component": "indicator_badge",
+          "platform": "ios",
+          "tier": "a11y"
+        },
+        {
+          "name": "[a11y] IndicatorBadge widget — semantics contract [a11y] exposes semanticsLabel as accessible name",
+          "status": "passed",
+          "durationMs": 32,
+          "component": "indicator_badge",
+          "platform": "linux",
+          "tier": "a11y"
+        },
+        {
+          "name": "[a11y] IndicatorBadge widget — semantics contract [a11y] live region is off for static dots (RN parity)",
+          "status": "passed",
+          "durationMs": 28,
+          "component": "indicator_badge",
+          "platform": "android",
+          "tier": "a11y"
+        },
+        {
+          "name": "[a11y] IndicatorBadge widget — semantics contract [a11y] live region is off for static dots (RN parity)",
+          "status": "passed",
+          "durationMs": 22,
+          "component": "indicator_badge",
+          "platform": "ios",
+          "tier": "a11y"
+        },
+        {
+          "name": "[a11y] IndicatorBadge widget — semantics contract [a11y] live region is off for static dots (RN parity)",
+          "status": "passed",
+          "durationMs": 24,
+          "component": "indicator_badge",
+          "platform": "linux",
+          "tier": "a11y"
+        },
+        {
+          "name": "[a11y] IndicatorBadge widget — semantics contract [a11y] does NOT expose isButton flag",
+          "status": "passed",
+          "durationMs": 26,
+          "component": "indicator_badge",
+          "platform": "android",
+          "tier": "a11y"
+        },
+        {
+          "name": "[a11y] IndicatorBadge widget — semantics contract [a11y] does NOT expose isButton flag",
+          "status": "passed",
+          "durationMs": 20,
+          "component": "indicator_badge",
+          "platform": "ios",
+          "tier": "a11y"
+        },
+        {
+          "name": "[a11y] IndicatorBadge widget — semantics contract [a11y] does NOT expose isButton flag",
+          "status": "passed",
+          "durationMs": 19,
+          "component": "indicator_badge",
+          "platform": "linux",
+          "tier": "a11y"
+        },
+        {
+          "name": "[a11y] IndicatorBadge widget — semantics contract [a11y] live region stays off across appearance/size matrix",
+          "status": "passed",
+          "durationMs": 145,
+          "component": "indicator_badge",
+          "platform": "android",
+          "tier": "a11y"
+        },
+        {
+          "name": "[a11y] IndicatorBadge widget — semantics contract [a11y] live region stays off across appearance/size matrix",
+          "status": "passed",
+          "durationMs": 123,
+          "component": "indicator_badge",
+          "platform": "ios",
+          "tier": "a11y"
+        },
+        {
+          "name": "[a11y] IndicatorBadge widget — semantics contract [a11y] live region stays off across appearance/size matrix",
+          "status": "passed",
+          "durationMs": 113,
+          "component": "indicator_badge",
+          "platform": "linux",
+          "tier": "a11y"
+        },
+        {
+          "name": "[regression][a11y] IndicatorBadge [a11y] [IB-A11Y-001] liveRegion is opt-out for static dots (announceChanges:false)",
+          "status": "passed",
+          "durationMs": 46,
+          "component": "indicator_badge",
+          "platform": "android",
+          "tier": "a11y"
+        },
+        {
+          "name": "[regression][a11y] IndicatorBadge [a11y] [IB-A11Y-001] liveRegion is opt-out for static dots (announceChanges:false)",
+          "status": "passed",
+          "durationMs": 27,
+          "component": "indicator_badge",
+          "platform": "ios",
+          "tier": "a11y"
+        },
+        {
+          "name": "[regression][a11y] IndicatorBadge [a11y] [IB-A11Y-001] liveRegion is opt-out for static dots (announceChanges:false)",
+          "status": "passed",
+          "durationMs": 35,
+          "component": "indicator_badge",
+          "platform": "linux",
+          "tier": "a11y"
+        },
+        {
+          "name": "[regression][a11y] IndicatorBadge [a11y] [IB-A11Y-002] Flutter Web Semantics(container) must not be a focus stop",
+          "status": "passed",
+          "durationMs": 21,
+          "component": "indicator_badge",
+          "platform": "android",
+          "tier": "a11y"
+        },
+        {
+          "name": "[regression][a11y] IndicatorBadge [a11y] [IB-A11Y-002] Flutter Web Semantics(container) must not be a focus stop",
+          "status": "passed",
+          "durationMs": 19,
+          "component": "indicator_badge",
+          "platform": "ios",
+          "tier": "a11y"
+        },
+        {
+          "name": "[regression][a11y] IndicatorBadge [a11y] [IB-A11Y-002] Flutter Web Semantics(container) must not be a focus stop",
+          "status": "passed",
+          "durationMs": 18,
+          "component": "indicator_badge",
+          "platform": "linux",
+          "tier": "a11y"
+        },
+        {
+          "name": "[regression][a11y] IndicatorBadge [a11y] [IB-A11Y-003] Bold-on-tinted contrast guard (warning dot on warning-subtle surface)",
+          "status": "passed",
+          "durationMs": 24,
+          "component": "indicator_badge",
+          "platform": "android",
+          "tier": "a11y"
+        },
+        {
+          "name": "[regression][a11y] IndicatorBadge [a11y] [IB-A11Y-003] Bold-on-tinted contrast guard (warning dot on warning-subtle surface)",
+          "status": "passed",
+          "durationMs": 22,
+          "component": "indicator_badge",
+          "platform": "ios",
+          "tier": "a11y"
+        },
+        {
+          "name": "[regression][a11y] IndicatorBadge [a11y] [IB-A11Y-003] Bold-on-tinted contrast guard (warning dot on warning-subtle surface)",
+          "status": "passed",
+          "durationMs": 22,
+          "component": "indicator_badge",
+          "platform": "linux",
+          "tier": "a11y"
+        },
+        {
+          "name": "[regression][a11y] IndicatorBadge [a11y] [IB-A11Y-004] xs standalone use emits debug warning (sub-pixel invisible)",
+          "status": "passed",
+          "durationMs": 16,
+          "component": "indicator_badge",
+          "platform": "android",
+          "tier": "a11y"
+        },
+        {
+          "name": "[regression][a11y] IndicatorBadge [a11y] [IB-A11Y-004] xs standalone use emits debug warning (sub-pixel invisible)",
+          "status": "passed",
+          "durationMs": 22,
+          "component": "indicator_badge",
+          "platform": "ios",
+          "tier": "a11y"
+        },
+        {
+          "name": "[regression][a11y] IndicatorBadge [a11y] [IB-A11Y-004] xs standalone use emits debug warning (sub-pixel invisible)",
+          "status": "passed",
+          "durationMs": 16,
+          "component": "indicator_badge",
+          "platform": "linux",
+          "tier": "a11y"
+        },
+        {
+          "name": "[regression][a11y] IndicatorBadge [a11y] [IB-A11Y-005] High-contrast mode boosts dot contrast (MediaQuery.highContrast)",
+          "status": "passed",
+          "durationMs": 18,
+          "component": "indicator_badge",
+          "platform": "android",
+          "tier": "a11y"
+        },
+        {
+          "name": "[regression][a11y] IndicatorBadge [a11y] [IB-A11Y-005] High-contrast mode boosts dot contrast (MediaQuery.highContrast)",
+          "status": "passed",
+          "durationMs": 18,
+          "component": "indicator_badge",
+          "platform": "ios",
+          "tier": "a11y"
+        },
+        {
+          "name": "[regression][a11y] IndicatorBadge [a11y] [IB-A11Y-005] High-contrast mode boosts dot contrast (MediaQuery.highContrast)",
+          "status": "passed",
+          "durationMs": 16,
+          "component": "indicator_badge",
+          "platform": "linux",
+          "tier": "a11y"
+        }
+      ]
+    },
+    "catalog": {
+      "suite": "catalog",
+      "passed": 0,
+      "failed": 0,
+      "skipped": 0,
+      "logs": [
+        "0 test(s) in Flutter QA report for catalog."
+      ],
+      "errors": [],
+      "cases": []
+    },
+    "smoke": {
+      "suite": "smoke",
+      "passed": 45,
+      "failed": 0,
+      "skipped": 0,
+      "logs": [
+        "45 test(s) in Flutter QA report for smoke."
+      ],
+      "errors": [],
+      "cases": [
+        {
+          "name": "[smoke] IndicatorBadge — renders without crashing [smoke] default indicator renders",
+          "status": "passed",
+          "durationMs": 455,
+          "component": "indicator_badge",
+          "platform": "android",
+          "tier": "smoke"
+        },
+        {
+          "name": "[smoke] IndicatorBadge — renders without crashing [smoke] default indicator renders",
+          "status": "passed",
+          "durationMs": 39,
+          "component": "indicator_badge",
+          "platform": "ios",
+          "tier": "smoke"
+        },
+        {
+          "name": "[smoke] IndicatorBadge — renders without crashing [smoke] default indicator renders",
+          "status": "passed",
+          "durationMs": 36,
+          "component": "indicator_badge",
+          "platform": "linux",
+          "tier": "smoke"
+        },
+        {
+          "name": "[smoke] IndicatorBadge — renders without crashing [smoke] size=\"xs\" renders",
+          "status": "passed",
+          "durationMs": 28,
+          "component": "indicator_badge",
+          "platform": "android",
+          "tier": "smoke"
+        },
+        {
+          "name": "[smoke] IndicatorBadge — renders without crashing [smoke] size=\"xs\" renders",
+          "status": "passed",
+          "durationMs": 41,
+          "component": "indicator_badge",
+          "platform": "ios",
+          "tier": "smoke"
+        },
+        {
+          "name": "[smoke] IndicatorBadge — renders without crashing [smoke] size=\"xs\" renders",
+          "status": "passed",
+          "durationMs": 26,
+          "component": "indicator_badge",
+          "platform": "linux",
+          "tier": "smoke"
+        },
+        {
+          "name": "[smoke] IndicatorBadge — renders without crashing [smoke] size=\"s\" renders",
+          "status": "passed",
+          "durationMs": 21,
+          "component": "indicator_badge",
+          "platform": "android",
+          "tier": "smoke"
+        },
+        {
+          "name": "[smoke] IndicatorBadge — renders without crashing [smoke] size=\"s\" renders",
+          "status": "passed",
+          "durationMs": 25,
+          "component": "indicator_badge",
+          "platform": "ios",
+          "tier": "smoke"
+        },
+        {
+          "name": "[smoke] IndicatorBadge — renders without crashing [smoke] size=\"s\" renders",
+          "status": "passed",
+          "durationMs": 24,
+          "component": "indicator_badge",
+          "platform": "linux",
+          "tier": "smoke"
+        },
+        {
+          "name": "[smoke] IndicatorBadge — renders without crashing [smoke] size=\"m\" renders",
+          "status": "passed",
+          "durationMs": 21,
+          "component": "indicator_badge",
+          "platform": "android",
+          "tier": "smoke"
+        },
+        {
+          "name": "[smoke] IndicatorBadge — renders without crashing [smoke] size=\"m\" renders",
+          "status": "passed",
+          "durationMs": 22,
+          "component": "indicator_badge",
+          "platform": "ios",
+          "tier": "smoke"
+        },
+        {
+          "name": "[smoke] IndicatorBadge — renders without crashing [smoke] size=\"m\" renders",
+          "status": "passed",
+          "durationMs": 25,
+          "component": "indicator_badge",
+          "platform": "linux",
+          "tier": "smoke"
+        },
+        {
+          "name": "[smoke] IndicatorBadge — renders without crashing [smoke] size=\"l\" renders",
+          "status": "passed",
+          "durationMs": 29,
+          "component": "indicator_badge",
+          "platform": "android",
+          "tier": "smoke"
+        },
+        {
+          "name": "[smoke] IndicatorBadge — renders without crashing [smoke] size=\"l\" renders",
+          "status": "passed",
+          "durationMs": 23,
+          "component": "indicator_badge",
+          "platform": "ios",
+          "tier": "smoke"
+        },
+        {
+          "name": "[smoke] IndicatorBadge — renders without crashing [smoke] size=\"l\" renders",
+          "status": "passed",
+          "durationMs": 19,
+          "component": "indicator_badge",
+          "platform": "linux",
+          "tier": "smoke"
+        },
+        {
+          "name": "[smoke] IndicatorBadge — renders without crashing [smoke] size=\"xl\" renders",
+          "status": "passed",
+          "durationMs": 25,
+          "component": "indicator_badge",
+          "platform": "android",
+          "tier": "smoke"
+        },
+        {
+          "name": "[smoke] IndicatorBadge — renders without crashing [smoke] size=\"xl\" renders",
+          "status": "passed",
+          "durationMs": 20,
+          "component": "indicator_badge",
+          "platform": "ios",
+          "tier": "smoke"
+        },
+        {
+          "name": "[smoke] IndicatorBadge — renders without crashing [smoke] size=\"xl\" renders",
+          "status": "passed",
+          "durationMs": 19,
+          "component": "indicator_badge",
+          "platform": "linux",
+          "tier": "smoke"
+        },
+        {
+          "name": "[smoke] IndicatorBadge — Figma matrix: appearance [smoke] appearance=\"auto\" renders",
+          "status": "passed",
+          "durationMs": 18,
+          "component": "indicator_badge",
+          "platform": "android",
+          "tier": "smoke"
+        },
+        {
+          "name": "[smoke] IndicatorBadge — Figma matrix: appearance [smoke] appearance=\"auto\" renders",
+          "status": "passed",
+          "durationMs": 20,
+          "component": "indicator_badge",
+          "platform": "ios",
+          "tier": "smoke"
+        },
+        {
+          "name": "[smoke] IndicatorBadge — Figma matrix: appearance [smoke] appearance=\"auto\" renders",
+          "status": "passed",
+          "durationMs": 19,
+          "component": "indicator_badge",
+          "platform": "linux",
+          "tier": "smoke"
+        },
+        {
+          "name": "[smoke] IndicatorBadge — Figma matrix: appearance [smoke] appearance=\"neutral\" renders",
+          "status": "passed",
+          "durationMs": 16,
+          "component": "indicator_badge",
+          "platform": "android",
+          "tier": "smoke"
+        },
+        {
+          "name": "[smoke] IndicatorBadge — Figma matrix: appearance [smoke] appearance=\"neutral\" renders",
+          "status": "passed",
+          "durationMs": 20,
+          "component": "indicator_badge",
+          "platform": "ios",
+          "tier": "smoke"
+        },
+        {
+          "name": "[smoke] IndicatorBadge — Figma matrix: appearance [smoke] appearance=\"neutral\" renders",
+          "status": "passed",
+          "durationMs": 16,
+          "component": "indicator_badge",
+          "platform": "linux",
+          "tier": "smoke"
+        },
+        {
+          "name": "[smoke] IndicatorBadge — Figma matrix: appearance [smoke] appearance=\"primary\" renders",
+          "status": "passed",
+          "durationMs": 15,
+          "component": "indicator_badge",
+          "platform": "android",
+          "tier": "smoke"
+        },
+        {
+          "name": "[smoke] IndicatorBadge — Figma matrix: appearance [smoke] appearance=\"primary\" renders",
+          "status": "passed",
+          "durationMs": 14,
+          "component": "indicator_badge",
+          "platform": "ios",
+          "tier": "smoke"
+        },
+        {
+          "name": "[smoke] IndicatorBadge — Figma matrix: appearance [smoke] appearance=\"primary\" renders",
+          "status": "passed",
+          "durationMs": 13,
+          "component": "indicator_badge",
+          "platform": "linux",
+          "tier": "smoke"
+        },
+        {
+          "name": "[smoke] IndicatorBadge — Figma matrix: appearance [smoke] appearance=\"secondary\" renders",
+          "status": "passed",
+          "durationMs": 16,
+          "component": "indicator_badge",
+          "platform": "android",
+          "tier": "smoke"
+        },
+        {
+          "name": "[smoke] IndicatorBadge — Figma matrix: appearance [smoke] appearance=\"secondary\" renders",
+          "status": "passed",
+          "durationMs": 15,
+          "component": "indicator_badge",
+          "platform": "ios",
+          "tier": "smoke"
+        },
+        {
+          "name": "[smoke] IndicatorBadge — Figma matrix: appearance [smoke] appearance=\"secondary\" renders",
+          "status": "passed",
+          "durationMs": 15,
+          "component": "indicator_badge",
+          "platform": "linux",
+          "tier": "smoke"
+        },
+        {
+          "name": "[smoke] IndicatorBadge — Figma matrix: appearance [smoke] appearance=\"sparkle\" renders",
+          "status": "passed",
+          "durationMs": 15,
+          "component": "indicator_badge",
+          "platform": "android",
+          "tier": "smoke"
+        },
+        {
+          "name": "[smoke] IndicatorBadge — Figma matrix: appearance [smoke] appearance=\"sparkle\" renders",
+          "status": "passed",
+          "durationMs": 13,
+          "component": "indicator_badge",
+          "platform": "ios",
+          "tier": "smoke"
+        },
+        {
+          "name": "[smoke] IndicatorBadge — Figma matrix: appearance [smoke] appearance=\"sparkle\" renders",
+          "status": "passed",
+          "durationMs": 21,
+          "component": "indicator_badge",
+          "platform": "linux",
+          "tier": "smoke"
+        },
+        {
+          "name": "[smoke] IndicatorBadge — Figma matrix: appearance [smoke] appearance=\"positive\" renders",
+          "status": "passed",
+          "durationMs": 14,
+          "component": "indicator_badge",
+          "platform": "android",
+          "tier": "smoke"
+        },
+        {
+          "name": "[smoke] IndicatorBadge — Figma matrix: appearance [smoke] appearance=\"positive\" renders",
+          "status": "passed",
+          "durationMs": 13,
+          "component": "indicator_badge",
+          "platform": "ios",
+          "tier": "smoke"
+        },
+        {
+          "name": "[smoke] IndicatorBadge — Figma matrix: appearance [smoke] appearance=\"positive\" renders",
+          "status": "passed",
+          "durationMs": 12,
+          "component": "indicator_badge",
+          "platform": "linux",
+          "tier": "smoke"
+        },
+        {
+          "name": "[smoke] IndicatorBadge — Figma matrix: appearance [smoke] appearance=\"negative\" renders",
+          "status": "passed",
+          "durationMs": 13,
+          "component": "indicator_badge",
+          "platform": "android",
+          "tier": "smoke"
+        },
+        {
+          "name": "[smoke] IndicatorBadge — Figma matrix: appearance [smoke] appearance=\"negative\" renders",
+          "status": "passed",
+          "durationMs": 12,
+          "component": "indicator_badge",
+          "platform": "ios",
+          "tier": "smoke"
+        },
+        {
+          "name": "[smoke] IndicatorBadge — Figma matrix: appearance [smoke] appearance=\"negative\" renders",
+          "status": "passed",
+          "durationMs": 16,
+          "component": "indicator_badge",
+          "platform": "linux",
+          "tier": "smoke"
+        },
+        {
+          "name": "[smoke] IndicatorBadge — Figma matrix: appearance [smoke] appearance=\"informative\" renders",
+          "status": "passed",
+          "durationMs": 28,
+          "component": "indicator_badge",
+          "platform": "android",
+          "tier": "smoke"
+        },
+        {
+          "name": "[smoke] IndicatorBadge — Figma matrix: appearance [smoke] appearance=\"informative\" renders",
+          "status": "passed",
+          "durationMs": 18,
+          "component": "indicator_badge",
+          "platform": "ios",
+          "tier": "smoke"
+        },
+        {
+          "name": "[smoke] IndicatorBadge — Figma matrix: appearance [smoke] appearance=\"informative\" renders",
+          "status": "passed",
+          "durationMs": 13,
+          "component": "indicator_badge",
+          "platform": "linux",
+          "tier": "smoke"
+        },
+        {
+          "name": "[smoke] IndicatorBadge — Figma matrix: appearance [smoke] appearance=\"warning\" renders",
+          "status": "passed",
+          "durationMs": 13,
+          "component": "indicator_badge",
+          "platform": "android",
+          "tier": "smoke"
+        },
+        {
+          "name": "[smoke] IndicatorBadge — Figma matrix: appearance [smoke] appearance=\"warning\" renders",
+          "status": "passed",
+          "durationMs": 15,
+          "component": "indicator_badge",
+          "platform": "ios",
+          "tier": "smoke"
+        },
+        {
+          "name": "[smoke] IndicatorBadge — Figma matrix: appearance [smoke] appearance=\"warning\" renders",
+          "status": "passed",
+          "durationMs": 13,
+          "component": "indicator_badge",
+          "platform": "linux",
+          "tier": "smoke"
+        }
+      ]
+    },
+    "e2e": {
+      "suite": "e2e",
+      "passed": 0,
+      "failed": 0,
+      "skipped": 0,
+      "logs": [
+        "0 test(s) in Flutter QA report for e2e."
+      ],
+      "errors": [],
+      "cases": []
+    },
+    "visual": {
+      "suite": "visual",
+      "passed": 45,
+      "failed": 0,
+      "skipped": 0,
+      "logs": [
+        "45 test(s) in Flutter QA report for visual."
+      ],
+      "errors": [],
+      "cases": [
+        {
+          "name": "[golden] IndicatorBadge — core dots (size m) appearance=primary / size=m",
+          "status": "passed",
+          "durationMs": 547,
+          "component": "indicator_badge",
+          "platform": null,
+          "tier": "visual"
+        },
+        {
+          "name": "[golden] IndicatorBadge — core dots (size m) appearance=secondary / size=m",
+          "status": "passed",
+          "durationMs": 44,
+          "component": "indicator_badge",
+          "platform": null,
+          "tier": "visual"
+        },
+        {
+          "name": "[golden] IndicatorBadge — core dots (size m) appearance=neutral / size=m",
+          "status": "passed",
+          "durationMs": 39,
+          "component": "indicator_badge",
+          "platform": null,
+          "tier": "visual"
+        },
+        {
+          "name": "[golden] IndicatorBadge — core dots (size m) appearance=sparkle / size=m",
+          "status": "passed",
+          "durationMs": 39,
+          "component": "indicator_badge",
+          "platform": null,
+          "tier": "visual"
+        },
+        {
+          "name": "[golden] IndicatorBadge — core dots (size m) appearance=positive / size=m",
+          "status": "passed",
+          "durationMs": 40,
+          "component": "indicator_badge",
+          "platform": null,
+          "tier": "visual"
+        },
+        {
+          "name": "[golden] IndicatorBadge — core dots (size m) appearance=negative / size=m",
+          "status": "passed",
+          "durationMs": 38,
+          "component": "indicator_badge",
+          "platform": null,
+          "tier": "visual"
+        },
+        {
+          "name": "[golden] IndicatorBadge — core dots (size m) appearance=warning / size=m",
+          "status": "passed",
+          "durationMs": 36,
+          "component": "indicator_badge",
+          "platform": null,
+          "tier": "visual"
+        },
+        {
+          "name": "[golden] IndicatorBadge — core dots (size m) appearance=informative / size=m",
+          "status": "passed",
+          "durationMs": 36,
+          "component": "indicator_badge",
+          "platform": null,
+          "tier": "visual"
+        },
+        {
+          "name": "[golden] IndicatorBadge — size × appearance matrix size=xs appearance=primary",
+          "status": "passed",
+          "durationMs": 39,
+          "component": "indicator_badge",
+          "platform": null,
+          "tier": "visual"
+        },
+        {
+          "name": "[golden] IndicatorBadge — size × appearance matrix size=xs appearance=negative",
+          "status": "passed",
+          "durationMs": 47,
+          "component": "indicator_badge",
+          "platform": null,
+          "tier": "visual"
+        },
+        {
+          "name": "[golden] IndicatorBadge — size × appearance matrix size=xs appearance=positive",
+          "status": "passed",
+          "durationMs": 37,
+          "component": "indicator_badge",
+          "platform": null,
+          "tier": "visual"
+        },
+        {
+          "name": "[golden] IndicatorBadge — size × appearance matrix size=xs appearance=warning",
+          "status": "passed",
+          "durationMs": 38,
+          "component": "indicator_badge",
+          "platform": null,
+          "tier": "visual"
+        },
+        {
+          "name": "[golden] IndicatorBadge — size × appearance matrix size=s appearance=primary",
+          "status": "passed",
+          "durationMs": 40,
+          "component": "indicator_badge",
+          "platform": null,
+          "tier": "visual"
+        },
+        {
+          "name": "[golden] IndicatorBadge — size × appearance matrix size=s appearance=negative",
+          "status": "passed",
+          "durationMs": 36,
+          "component": "indicator_badge",
+          "platform": null,
+          "tier": "visual"
+        },
+        {
+          "name": "[golden] IndicatorBadge — size × appearance matrix size=s appearance=positive",
+          "status": "passed",
+          "durationMs": 35,
+          "component": "indicator_badge",
+          "platform": null,
+          "tier": "visual"
+        },
+        {
+          "name": "[golden] IndicatorBadge — size × appearance matrix size=s appearance=warning",
+          "status": "passed",
+          "durationMs": 38,
+          "component": "indicator_badge",
+          "platform": null,
+          "tier": "visual"
+        },
+        {
+          "name": "[golden] IndicatorBadge — size × appearance matrix size=m appearance=primary",
+          "status": "passed",
+          "durationMs": 38,
+          "component": "indicator_badge",
+          "platform": null,
+          "tier": "visual"
+        },
+        {
+          "name": "[golden] IndicatorBadge — size × appearance matrix size=m appearance=negative",
+          "status": "passed",
+          "durationMs": 45,
+          "component": "indicator_badge",
+          "platform": null,
+          "tier": "visual"
+        },
+        {
+          "name": "[golden] IndicatorBadge — size × appearance matrix size=m appearance=positive",
+          "status": "passed",
+          "durationMs": 39,
+          "component": "indicator_badge",
+          "platform": null,
+          "tier": "visual"
+        },
+        {
+          "name": "[golden] IndicatorBadge — size × appearance matrix size=m appearance=warning",
+          "status": "passed",
+          "durationMs": 38,
+          "component": "indicator_badge",
+          "platform": null,
+          "tier": "visual"
+        },
+        {
+          "name": "[golden] IndicatorBadge — size × appearance matrix size=l appearance=primary",
+          "status": "passed",
+          "durationMs": 40,
+          "component": "indicator_badge",
+          "platform": null,
+          "tier": "visual"
+        },
+        {
+          "name": "[golden] IndicatorBadge — size × appearance matrix size=l appearance=negative",
+          "status": "passed",
+          "durationMs": 45,
+          "component": "indicator_badge",
+          "platform": null,
+          "tier": "visual"
+        },
+        {
+          "name": "[golden] IndicatorBadge — size × appearance matrix size=l appearance=positive",
+          "status": "passed",
+          "durationMs": 38,
+          "component": "indicator_badge",
+          "platform": null,
+          "tier": "visual"
+        },
+        {
+          "name": "[golden] IndicatorBadge — size × appearance matrix size=l appearance=warning",
+          "status": "passed",
+          "durationMs": 37,
+          "component": "indicator_badge",
+          "platform": null,
+          "tier": "visual"
+        },
+        {
+          "name": "[golden] IndicatorBadge — size × appearance matrix size=xl appearance=primary",
+          "status": "passed",
+          "durationMs": 39,
+          "component": "indicator_badge",
+          "platform": null,
+          "tier": "visual"
+        },
+        {
+          "name": "[golden] IndicatorBadge — size × appearance matrix size=xl appearance=negative",
+          "status": "passed",
+          "durationMs": 37,
+          "component": "indicator_badge",
+          "platform": null,
+          "tier": "visual"
+        },
+        {
+          "name": "[golden] IndicatorBadge — size × appearance matrix size=xl appearance=positive",
+          "status": "passed",
+          "durationMs": 34,
+          "component": "indicator_badge",
+          "platform": null,
+          "tier": "visual"
+        },
+        {
+          "name": "[golden] IndicatorBadge — size × appearance matrix size=xl appearance=warning",
+          "status": "passed",
+          "durationMs": 36,
+          "component": "indicator_badge",
+          "platform": null,
+          "tier": "visual"
+        },
+        {
+          "name": "[golden] IndicatorBadge — overlay anchors topEnd anchor on icon tile (no ring)",
+          "status": "passed",
+          "durationMs": 39,
+          "component": "indicator_badge",
+          "platform": null,
+          "tier": "visual"
+        },
+        {
+          "name": "[golden] IndicatorBadge — overlay anchors bottomEnd anchor on avatar tile (with surface ring)",
+          "status": "passed",
+          "durationMs": 35,
+          "component": "indicator_badge",
+          "platform": null,
+          "tier": "visual"
+        },
+        {
+          "name": "[regression][visual] IndicatorBadge [visual] [IB-VIS-001] Overlay ring renders OUTSIDE the dot (web box-shadow parity)",
+          "status": "passed",
+          "durationMs": 22,
+          "component": "indicator_badge",
+          "platform": "android",
+          "tier": "visual"
+        },
+        {
+          "name": "[regression][visual] IndicatorBadge [visual] [IB-VIS-001] Overlay ring renders OUTSIDE the dot (web box-shadow parity)",
+          "status": "passed",
+          "durationMs": 23,
+          "component": "indicator_badge",
+          "platform": "ios",
+          "tier": "visual"
+        },
+        {
+          "name": "[regression][visual] IndicatorBadge [visual] [IB-VIS-001] Overlay ring renders OUTSIDE the dot (web box-shadow parity)",
+          "status": "passed",
+          "durationMs": 21,
+          "component": "indicator_badge",
+          "platform": "linux",
+          "tier": "visual"
+        },
+        {
+          "name": "[regression][visual] IndicatorBadge [visual] [IB-VIS-002] Overlay supports topStart / bottomStart anchors",
+          "status": "passed",
+          "durationMs": 4,
+          "component": "indicator_badge",
+          "platform": "android",
+          "tier": "visual"
+        },
+        {
+          "name": "[regression][visual] IndicatorBadge [visual] [IB-VIS-002] Overlay supports topStart / bottomStart anchors",
+          "status": "passed",
+          "durationMs": 6,
+          "component": "indicator_badge",
+          "platform": "ios",
+          "tier": "visual"
+        },
+        {
+          "name": "[regression][visual] IndicatorBadge [visual] [IB-VIS-002] Overlay supports topStart / bottomStart anchors",
+          "status": "passed",
+          "durationMs": 5,
+          "component": "indicator_badge",
+          "platform": "linux",
+          "tier": "visual"
+        },
+        {
+          "name": "[regression][visual] IndicatorBadge [visual] [IB-VIS-003] BoxShape.rectangle is used consistently (no circle/rect switch)",
+          "status": "passed",
+          "durationMs": 21,
+          "component": "indicator_badge",
+          "platform": "android",
+          "tier": "visual"
+        },
+        {
+          "name": "[regression][visual] IndicatorBadge [visual] [IB-VIS-003] BoxShape.rectangle is used consistently (no circle/rect switch)",
+          "status": "passed",
+          "durationMs": 16,
+          "component": "indicator_badge",
+          "platform": "ios",
+          "tier": "visual"
+        },
+        {
+          "name": "[regression][visual] IndicatorBadge [visual] [IB-VIS-003] BoxShape.rectangle is used consistently (no circle/rect switch)",
+          "status": "passed",
+          "durationMs": 16,
+          "component": "indicator_badge",
+          "platform": "linux",
+          "tier": "visual"
+        },
+        {
+          "name": "[regression][visual] IndicatorBadge [visual] [IB-VIS-004] Overlay layout extent includes ring (no sibling overlap)",
+          "status": "passed",
+          "durationMs": 28,
+          "component": "indicator_badge",
+          "platform": "android",
+          "tier": "visual"
+        },
+        {
+          "name": "[regression][visual] IndicatorBadge [visual] [IB-VIS-004] Overlay layout extent includes ring (no sibling overlap)",
+          "status": "passed",
+          "durationMs": 17,
+          "component": "indicator_badge",
+          "platform": "ios",
+          "tier": "visual"
+        },
+        {
+          "name": "[regression][visual] IndicatorBadge [visual] [IB-VIS-004] Overlay layout extent includes ring (no sibling overlap)",
+          "status": "passed",
+          "durationMs": 19,
+          "component": "indicator_badge",
+          "platform": "linux",
+          "tier": "visual"
+        },
+        {
+          "name": "[regression][visual] IndicatorBadge [visual] [IB-VIS-005] surfaceRingColor reads from Surface scope (not a frozen literal)",
+          "status": "passed",
+          "durationMs": 23,
+          "component": "indicator_badge",
+          "platform": "android",
+          "tier": "visual"
+        },
+        {
+          "name": "[regression][visual] IndicatorBadge [visual] [IB-VIS-005] surfaceRingColor reads from Surface scope (not a frozen literal)",
+          "status": "passed",
+          "durationMs": 19,
+          "component": "indicator_badge",
+          "platform": "ios",
+          "tier": "visual"
+        },
+        {
+          "name": "[regression][visual] IndicatorBadge [visual] [IB-VIS-005] surfaceRingColor reads from Surface scope (not a frozen literal)",
+          "status": "passed",
+          "durationMs": 16,
+          "component": "indicator_badge",
+          "platform": "linux",
+          "tier": "visual"
+        }
+      ]
+    },
+    "performance": {
+      "suite": "performance",
+      "passed": 0,
+      "failed": 0,
+      "skipped": 0,
+      "logs": [
+        "Performance suite not part of Flutter widget QA."
+      ],
+      "errors": []
+    }
+  },
+  "totals": {
+    "passed": 178,
+    "failed": 0,
+    "skipped": 0,
+    "total": 178
+  }
+}

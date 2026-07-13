@@ -1,0 +1,102 @@
+/**
+ * TopBar.module.css
+ *
+ * Clean, minimal global control bar styling
+ * Uses token-only values for consistent theming
+ */
+
+.topBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--Spacing-4-5);
+  background-color: var(--Surface-Main);
+  height: var(--Component-Height-TopBar);
+  position: relative;
+  z-index: 1100;
+}
+
+/* Left Controls - Brand Selector */
+
+.leftControls {
+  display: flex;
+  align-items: center;
+}
+
+/* Center Controls - Page-level toggle (Docs/Edit) */
+
+.centerControls {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+}
+
+/* Trailing Controls - Platform */
+
+.trailingControls {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-3-5);
+  /* `justify-content: space-between` on the parent only right-aligns when
+   * there are multiple flex children; the brand selector moved to LeftNav
+   * so the right slot is the only flex item. `margin-left: auto` pushes
+   * it to the trailing edge where page-level controls belong. */
+  margin-left: auto;
+}
+
+/* Selector Components */
+
+.selector {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-3);
+  padding: var(--Spacing-2) var(--Spacing-3-5);
+  border-radius: var(--Button-borderRadius, var(--Shape-4));
+  background-color: transparent;
+  border: none;
+  color: var(--Text-High);
+  cursor: pointer;
+  transition: background-color var(--Motion-Duration-Discreet-Short) var(--Motion-Easing-Standard);
+  font-family: var(--Label-FontFamily, var(--Typography-Font-Text));
+}
+
+.selector:hover {
+  background-color: var(--Surface-Ghost);
+}
+
+.selector:focus {
+  outline: none;
+}
+
+.selector:focus-visible {
+  outline: var(--Focus-Outline-Width) solid var(--Focus-Outline);
+  outline-offset: var(--Focus-Outline-Offset, var(--Stroke-XL));
+}
+
+.brandDot {
+  width: var(--Spacing-3);
+  height: var(--Spacing-3);
+  border-radius: var(--Shape-Pill);
+  background-color: var(--Primary-Bold, var(--Surface-Bold));
+}
+
+.selectorLabel {
+  font-size: var(--Body-M-FontSize);
+  font-weight: var(--Body-FontWeight-Medium);
+  white-space: nowrap;
+}
+
+.selectorIcon {
+  color: var(--Text-Medium);
+  flex-shrink: 0;
+}
+
+/* Trailing slot for page-specific controls */
+.trailingSlot {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-3-5);
+}
+

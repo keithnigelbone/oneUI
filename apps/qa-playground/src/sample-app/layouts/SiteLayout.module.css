@@ -1,0 +1,52 @@
+.shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--Surface-Fill-Default, var(--Surface-Main));
+}
+
+.demoBackBar {
+  border-bottom: var(--Stroke-M) solid var(--Border-Subtle);
+  background: var(--Surface-Fill-Default, var(--Surface-Main));
+}
+
+.demoBackLink {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--Spacing-2);
+  width: min(100%, 86rem);
+  margin: 0 auto;
+  padding: var(--Spacing-3) var(--Spacing-Margin);
+  color: inherit;
+  text-decoration: none;
+  font-family: var(--Typography-Font-Primary);
+}
+
+.demoBackLink:hover {
+  color: var(--Primary-High);
+}
+
+.demoBackLink:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 var(--Stroke-XL) var(--Surface-Halo-Gap, var(--Surface-Main)),
+    0 0 0 var(--Focus-Outline-Width) var(--Focus-Outline);
+  border-radius: var(--Shape-3XS);
+}
+
+.main {
+  flex: 1;
+  outline: none;
+}
+
+.content {
+  width: min(100%, 86rem);
+  margin: 0 auto;
+  padding: var(--Spacing-8) var(--Spacing-Margin) var(--Spacing-16);
+}
+
+@media (max-width: 56rem) {
+  .content {
+    padding: var(--Spacing-5) var(--Spacing-Margin) var(--Spacing-10);
+  }
+}

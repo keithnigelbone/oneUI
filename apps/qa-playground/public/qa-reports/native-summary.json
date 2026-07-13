@@ -1,0 +1,52 @@
+{
+  "ok": true,
+  "slug": "native",
+  "message": "Native component tests OK — 2026-05-27T06:06:41.143Z",
+  "suites": {
+    "smoke": {
+      "suite": "smoke",
+      "passed": 0,
+      "failed": 0,
+      "skipped": 0,
+      "logs": [
+        "0 test(s) in vitest report for smoke."
+      ],
+      "errors": [],
+      "cases": []
+    },
+    "functional": {
+      "suite": "functional",
+      "passed": 0,
+      "failed": 0,
+      "skipped": 0,
+      "logs": [
+        "0 test(s) in vitest report for functional."
+      ],
+      "errors": [],
+      "cases": []
+    },
+    "accessibility": {
+      "suite": "accessibility",
+      "passed": 2,
+      "failed": 0,
+      "skipped": 0,
+      "logs": [
+        "2 test(s) in vitest report for accessibility.",
+        "238 untagged test(s) (interface-level a11y) are not shown in suites."
+      ],
+      "errors": [],
+      "cases": [
+        {
+          "name": "IndicatorBadge — a11y rendering [a11y] with aria-label rendered as accessible image",
+          "status": "passed",
+          "durationMs": 20.899665999999797
+        },
+        {
+          "name": "IndicatorBadge — a11y rendering [a11y] without aria-label element is hidden from a11y",
+          "status": "passed",
+          "durationMs": 6.878083000000061
+        }
+      ]
+    }
+  }
+}

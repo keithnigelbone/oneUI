@@ -1,0 +1,78 @@
+/**
+ * CheckboxField.module.css
+ *
+ * Layout for CheckboxField only (not InputField).
+ * Verified by: pnpm check:literals
+ */
+
+/* Single-option beside layout — control column + label / feedback / dynamic (Figma). */
+.singleGrid {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  row-gap: var(--CheckboxField-singleRowGap, var(--Spacing-1));
+  width: 100%;
+  min-width: 0;
+}
+
+.singleGrid[data-size='s'] {
+  column-gap: var(--CheckboxField-singleColumnGap, var(--Spacing-1-5));
+}
+
+.singleGrid[data-size='m'] {
+  column-gap: var(--CheckboxField-singleColumnGap, var(--Spacing-2));
+}
+
+.singleGrid[data-size='l'] {
+  column-gap: var(--CheckboxField-singleColumnGap, var(--Spacing-2-5));
+}
+
+.singleGridControl {
+  grid-column: 1;
+  grid-row: 1;
+  align-self: center;
+  min-width: 0;
+}
+
+.singleGridLabel {
+  grid-column: 2;
+  grid-row: 1;
+  min-width: 0;
+  align-self: center;
+}
+
+.singleGridCol2 {
+  grid-column: 2;
+  min-width: 0;
+}
+
+/* Stacked options under a field header (multi-option mode). */
+.multiOptions {
+  --CheckboxGroup-verticalGap: var(--Spacing-1-5);
+  align-items: flex-start;
+  width: 100%;
+  min-width: 0;
+}
+
+/* Multi-option field header — fieldset + legend (WCAG group naming). */
+.fieldset {
+  border: none;
+  margin: 0;
+  padding: 0;
+  min-inline-size: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--InputLabel-stackGap, var(--Spacing-1));
+  width: 100%;
+}
+
+.legend {
+  margin: 0;
+  padding: 0;
+  max-width: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--InputLabel-labelIconGap, var(--Spacing-1));
+}

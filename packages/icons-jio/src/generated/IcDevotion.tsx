@@ -1,0 +1,30 @@
+import React, { forwardRef } from 'react';
+import type { IconComponentProps } from '../iconProps';
+
+export const IcDevotion = forwardRef<SVGSVGElement, IconComponentProps>(function IcDevotion(
+  { size = 24, width, height, color = 'currentColor', className, style, ...props },
+  ref,
+) {
+  const dim = width ?? height ?? size;
+  return (
+    <svg
+      ref={ref}
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      width={width ?? dim}
+      height={height ?? dim}
+      color={color}
+      className={className}
+      style={style}
+      {...props}
+    >
+      <path
+            fill="currentColor"
+            d="M12 5a1.5 1.5 0 0 0 1.39-.93 1.5 1.5 0 0 0 .08-.86A1.49 1.49 0 0 0 12.29 2a1.5 1.5 0 0 0-.86.08 1.55 1.55 0 0 0-.68.56A1.5 1.5 0 0 0 12 5m7.71 14.29A1 1 0 0 0 19 19h-8l5.6-4.2a1 1 0 0 0 .37-.54 1 1 0 0 0 0-.65l-3-7a1.2 1.2 0 0 0-.24-.35 1 1 0 0 0-.37-.21 1 1 0 0 0-.42 0 .94.94 0 0 0-.4.13L8 8.82 5.55 7.17A1 1 0 0 0 5.18 7a1.1 1.1 0 0 0-.41 0 1 1 0 0 0-.68.44.84.84 0 0 0-.15.38.94.94 0 0 0 0 .41q.058.2.18.37.136.163.32.27l3 2a1 1 0 0 0 1.06 0l4-2.41 2.24 5.22L7.4 19.2a1 1 0 0 0-.35.5.94.94 0 0 0 0 .62A1 1 0 0 0 8 21h11a1 1 0 0 0 .71-1.71"
+          />
+    </svg>
+  );
+});
+
+IcDevotion.displayName = 'IcDevotion';

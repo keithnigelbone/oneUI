@@ -1,0 +1,643 @@
+/**
+ * Select.module.css
+ * Token-only styling for Select component
+ * Verified by: pnpm check:literals
+ */
+
+/* Trigger button */
+.trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: var(--Select-justifyContent, space-between);
+  gap: var(--Select-triggerGap, var(--Spacing-2));
+  padding: var(--Spacing-2-5) var(--Spacing-3-5);
+  padding-right: var(--Spacing-2-5);
+  width: 100%;
+  border: var(--Select-borderWidth, var(--Stroke-M)) solid var(--Select-borderColor, var(--Border-Subtle));
+  border-radius: var(--Select-borderRadius, var(--Input-borderRadius, var(--Shape-4)));
+  background-color: var(--Select-backgroundColor, var(--Surface-Ghost));
+  color: var(--Select-textColor, var(--Text-High));
+  font-size: var(--Select-fontSize, var(--Body-S-FontSize));
+  font-family: var(--Select-fontFamily, var(--Label-FontFamily, var(--Typography-Font-Primary, inherit)));
+  cursor: pointer;
+  transition: background-color var(--Motion-Duration-Discreet-Short) var(--Motion-Easing-Standard),
+              box-shadow var(--Motion-Duration-Discreet-Short) var(--Motion-Easing-Standard);
+  box-sizing: border-box;
+  contain: layout;
+  min-height: var(--Touch-Target-Min);
+  min-width: 0;
+}
+
+.trigger:hover:not(:disabled) {
+  background-color: var(--Select-hoverBackgroundColor, var(--Surface-Subtle));
+  color: var(--Select-hoverTextColor, var(--Select-textColor, var(--Text-High)));
+}
+
+.trigger:focus {
+  outline: none;
+}
+
+.trigger:focus-visible {
+  box-shadow:
+    0 0 0 var(--Stroke-XL) var(--Surface-Halo-Gap, var(--Surface-Main)),
+    0 0 0 calc(var(--Stroke-XL) + var(--Focus-Outline-Width)) var(--Focus-Outline);
+}
+
+.trigger:disabled {
+  opacity: var(--Disabled-Opacity);
+  cursor: not-allowed;
+}
+
+.trigger[data-popup-open] {
+  box-shadow:
+    0 0 0 var(--Stroke-XL) var(--Surface-Halo-Gap, var(--Surface-Main)),
+    0 0 0 calc(var(--Stroke-XL) + var(--Focus-Outline-Width)) var(--Focus-Outline);
+}
+
+/* Size variants */
+.size-sm {
+  padding: var(--Spacing-1-5) var(--Spacing-3-5);
+  padding-right: var(--Spacing-1-5);
+  font-size: var(--Select-fontSize-sm, var(--Body-XS-FontSize));
+  border-radius: var(--Select-borderRadius, var(--Input-borderRadius, var(--Shape-2)));
+  min-height: auto;
+}
+
+.size-md {
+  padding: var(--Spacing-3-5) var(--Spacing-4);
+  padding-right: var(--Spacing-3-5);
+  font-size: var(--Select-fontSize-md, var(--Body-S-FontSize));
+}
+
+.size-lg {
+  padding: var(--Spacing-4) var(--Spacing-4-5);
+  padding-right: var(--Spacing-4);
+  font-size: var(--Select-fontSize-lg, var(--Body-M-FontSize));
+}
+
+/* Value wrapper for swatch + text */
+.valueWrapper {
+  display: flex;
+  align-items: center;
+  gap: var(--Select-valueGap, var(--Spacing-2-5));
+  flex: var(--Select-valueFlex, 1);
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Color swatch with checkerboard + outline for visibility on light/transparent colors */
+.colorSwatch {
+  width: var(--Spacing-3-5);
+  height: var(--Spacing-3-5);
+  border-radius: var(--Shape-3);
+  flex-shrink: 0;
+  outline: var(--Stroke-M) solid color-mix(in oklch, var(--Border-Default) 10%, transparent);
+  position: relative;
+  overflow: hidden;
+}
+
+.gradientSwatch {
+  width: var(--Spacing-5);
+  height: var(--Spacing-3-5);
+  border-radius: var(--Shape-3);
+  flex-shrink: 0;
+  outline: var(--Stroke-M) solid color-mix(in oklch, var(--Border-Default) 10%, transparent);
+  background: var(--Select-optionSwatchBackground);
+}
+
+/* Checkerboard pattern behind color for transparency/white visibility */
+.colorSwatch::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-conic-gradient(
+      var(--Surface-Minimal) 0% 25%,
+      var(--Surface-Main) 0% 50%
+    );
+  background-size: var(--Spacing-2) var(--Spacing-2);
+}
+
+/* Actual color layer on top of checkerboard */
+.colorSwatch::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: inherit;
+}
+
+/* Icon */
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  color: var(--Text-Medium);
+  transition: transform var(--Motion-Duration-Discreet-Short) var(--Motion-Easing-Standard);
+}
+
+.selectedIcon,
+.optionIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: inherit;
+  flex-shrink: 0;
+}
+
+.valueText,
+.itemText {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.trigger[data-popup-open] .icon {
+  transform: rotate(180deg);
+}
+
+/*
+ * The Select popup must render above EVERYTHING it can be triggered from —
+ * including shell chrome (TopBar z-index 1100) and modals/dialogs
+ * (--Z-Index-Modal = 700). The `--Z-Index-Menu` token (300) sits *below*
+ * modals, so a Select opened inside a Modal/Dialog popped up behind it. Match
+ * the Popover convention (z-index: 1300) so the dropdown always lands on top.
+ */
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1300;
+}
+
+.backdrop:not([data-open]) {
+  display: none;
+  pointer-events: none;
+}
+
+/* Positioner */
+.positioner {
+  position: fixed;
+  z-index: 1300;
+  pointer-events: auto;
+}
+
+/* Base UI keeps the positioner mounted during exit — hide when closed to avoid orphan popup at 0,0. */
+.positioner:not([data-open]) {
+  display: none;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.positioner[hidden] {
+  display: none;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+/* menuSize=fill — stretch positioner to trigger width (Figma menuAlignment=fill). */
+.positionerFill {
+  width: var(--anchor-width);
+  min-width: var(--anchor-width);
+  max-width: var(--available-width);
+  box-sizing: border-box;
+}
+
+/* Figma SelectMenuWrapper (3877:38141) — 8px below SelectInput, 328px fill width. */
+.selectMenuWrapper {
+  display: flex;
+  width: var(--anchor-width);
+  min-width: var(--anchor-width);
+  max-width: var(--anchor-width);
+  padding: var(--Spacing-2) var(--Spacing-0) var(--Spacing-0);
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--Spacing-0);
+  box-sizing: border-box;
+}
+
+/* Popup */
+.popup {
+  box-sizing: border-box;
+  min-width: var(--anchor-width);
+  max-height: var(--available-height);
+  background-color: var(--Select-popupBackgroundColor, var(--Surface-Elevated));
+  border: var(--Select-popupBorderWidth, var(--Stroke-M)) solid var(--Select-popupBorderColor, var(--Border-Subtle));
+  border-radius: var(--Select-popupBorderRadius, var(--Select-borderRadius, var(--Input-borderRadius, var(--Shape-4))));
+  box-shadow: var(--Elevation-3);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  overscroll-behavior: contain;
+}
+
+/* Figma ContextMenu (3877:38141) — 16px radius, full-width fill under SelectInput. */
+.popupInputFill {
+  border-radius: var(--Shape-4);
+  box-shadow: var(--Elevation-3);
+  align-items: stretch;
+  width: 100%;
+}
+
+/* Figma SelectMenu (3877:38141). */
+.selectMenu {
+  display: flex;
+  padding: var(--Spacing-0);
+  justify-content: center;
+  align-items: stretch;
+  gap: var(--Spacing-2-5);
+  align-self: stretch;
+  width: 100%;
+}
+
+/* List */
+.list {
+  padding: var(--Spacing-2-5);
+  overflow-y: auto;
+  flex: 1;
+  min-height: 0;
+  overscroll-behavior: contain;
+}
+
+.popupInputFill .list {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--Spacing-0);
+  padding: var(--Spacing-0);
+  width: 100%;
+  align-self: stretch;
+}
+
+/* Item */
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  gap: var(--Spacing-3);
+  padding: var(--Spacing-2) var(--Spacing-3);
+  border-radius: var(--Select-itemBorderRadius, var(--Shape-3-5));
+  color: var(--Text-High);
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Body-XS-FontSize);
+  line-height: var(--Body-XS-LineHeight);
+  font-weight: var(--Body-FontWeight-Low);
+  cursor: pointer;
+  transition: background-color var(--Motion-Duration-Discreet-Short) var(--Motion-Easing-Standard);
+  outline: none;
+}
+
+/* Figma SelectMenuListItem — label/M/low, 60px row, full-width StateLayer (3877:38141). */
+.itemFigmaList {
+  position: relative;
+  width: 100%;
+  align-self: stretch;
+  gap: var(--Spacing-3);
+  padding: var(--Spacing-3) var(--Spacing-3-5) var(--Spacing-3) var(--Spacing-4);
+  border-radius: var(--Spacing-0);
+  font-size: var(--Label-M-FontSize);
+  line-height: var(--Label-M-LineHeight);
+  font-weight: var(--Label-FontWeight-Low);
+  min-height: calc(var(--Spacing-12) + var(--Spacing-3));
+}
+
+.itemFigmaDivider {
+  border-bottom: var(--Stroke-S) solid var(--Select-itemDividerColor, var(--Neutral-Stroke-Low, var(--Border-Subtle)));
+}
+
+.item:hover,
+.item[data-highlighted] {
+  background-color: var(--Select-itemHoverBackgroundColor, var(--Primary-Hover, var(--Surface-Minimal)));
+}
+
+.item[data-selected] {
+  font-weight: var(--Body-FontWeight-Medium);
+}
+
+/* Figma single-select — checkmark only; hover/highlight uses flat row, no pill. */
+.itemFigmaList[data-selected] {
+  background-color: transparent;
+  font-weight: var(--Label-FontWeight-Low);
+}
+
+.itemFigmaList:hover,
+.itemFigmaList[data-highlighted]:not([data-selected]) {
+  background-color: var(--Select-itemHoverBackgroundColor, var(--Primary-Hover, var(--Surface-Minimal)));
+  border-radius: var(--Spacing-0);
+}
+
+.itemFigmaList[data-selected][data-highlighted] {
+  background-color: transparent;
+}
+
+.item[data-disabled] {
+  opacity: var(--Disabled-Opacity);
+  cursor: not-allowed;
+}
+
+/* Item text */
+.itemText {
+  flex: 1;
+}
+
+/* Item indicator (checkmark) */
+.itemIndicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--Primary-High);
+}
+
+/* Search input container (sticky top of popup) */
+.searchContainer {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  padding: var(--Spacing-2-5);
+  border-bottom: var(--Stroke-M) solid var(--Border-Subtle);
+  background-color: var(--Surface-Elevated);
+}
+
+.searchInput {
+  width: 100%;
+  padding: var(--Spacing-2) var(--Spacing-3);
+  border: var(--Stroke-M) solid transparent;
+  border-radius: var(--Shape-3-5);
+  background-color: var(--Surface-Subtle);
+  color: var(--Text-High);
+  font-size: var(--Body-XS-FontSize);
+  font-family: inherit;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color var(--Motion-Duration-Discreet-Short) var(--Motion-Easing-Standard);
+}
+
+.searchInput::placeholder {
+  color: var(--Text-Low);
+}
+
+.searchInput:focus {
+  border-color: var(--Focus-Outline);
+}
+
+/* Hidden items in searchable selects — CSS-only hiding prevents popup repositioning */
+.itemHidden {
+  display: none;
+}
+
+/* No results message */
+.noResults {
+  padding: var(--Spacing-3-5) var(--Spacing-4);
+  color: var(--Text-Low);
+  font-size: var(--Body-XS-FontSize);
+  text-align: center;
+}
+
+/* Item badge (e.g. "base" indicator) */
+.itemBadge {
+  font-size: var(--Body-2XS-FontSize);
+  color: var(--Text-Low);
+  padding: var(--Spacing-1) var(--Spacing-2);
+  background-color: var(--Surface-Minimal);
+  border-radius: var(--Shape-3);
+  flex-shrink: 0;
+}
+
+/* Input trigger field stack — Figma Select root gap 6px (`--Spacing-1-5`). */
+.inputTriggerRoot {
+  width: 100%;
+}
+
+/* Figma Label + Description (3877:38141). */
+.inputLabelDescription {
+  display: flex;
+  padding: var(--Spacing-0);
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--Spacing-1);
+  align-self: stretch;
+}
+
+/* Figma SelectInputWrapper (3877:38141). */
+.inputSelectWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--Spacing-2);
+  align-self: stretch;
+  position: relative;
+  width: 100%;
+}
+
+/* Figma SelectInput (3877:38141). */
+.selectInput {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--Spacing-2);
+  align-self: stretch;
+  width: 100%;
+}
+
+.inputTriggerAnchor {
+  display: block;
+  align-self: stretch;
+  width: 100%;
+  border: none;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  text-align: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+.fieldLabel {
+  font-size: var(--Label-S-FontSize);
+  line-height: var(--Label-S-LineHeight);
+  font-family: var(--Typography-Font-Primary);
+  font-weight: var(--Label-FontWeight-Medium);
+  color: var(--Text-High);
+}
+
+.fieldRequired {
+  color: var(--Negative-TintedA11y);
+}
+
+.fieldDescription {
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  font-family: var(--Typography-Font-Primary);
+  color: var(--Text-Medium);
+}
+
+.fieldHelper {
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  font-family: var(--Typography-Font-Primary);
+  color: var(--Text-Low);
+}
+
+.fieldFeedback {
+  color: var(--Negative-TintedA11y);
+}
+
+.triggerInput {
+  width: 100%;
+}
+
+.sectionLabel {
+  padding: var(--Spacing-2) var(--Spacing-3);
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-family: var(--Typography-Font-Primary);
+  font-weight: var(--Label-FontWeight-Medium);
+  color: var(--Text-Medium);
+}
+
+.sectionDivider {
+  height: var(--Stroke-M);
+  margin: var(--Spacing-2) var(--Spacing-3);
+  background-color: var(--Border-Subtle);
+}
+
+.itemContent {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-2);
+  flex: 1;
+  min-width: 0;
+}
+
+.itemTextBlock {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-0-5);
+  min-width: 0;
+  flex: 1;
+}
+
+.itemSecondary {
+  font-size: var(--Body-XS-FontSize);
+  line-height: var(--Body-XS-LineHeight);
+  font-family: var(--Typography-Font-Primary);
+  color: var(--Text-Low);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.itemCheckbox {
+  flex-shrink: 0;
+  pointer-events: none;
+}
+
+.menuSize-xs {
+  min-width: var(--Spacing-24);
+}
+
+.menuSize-s {
+  min-width: var(--Spacing-32);
+}
+
+.menuSize-m {
+  min-width: var(--Spacing-40);
+}
+
+.menuSize-l {
+  min-width: var(--Spacing-48);
+}
+
+.menuSize-fill {
+  width: 100%;
+  min-width: var(--anchor-width);
+  max-width: var(--anchor-width);
+}
+
+.positionerFill .popup {
+  width: 100%;
+}
+
+.menuPanelStatic {
+  position: relative;
+  min-width: var(--Spacing-40);
+  max-width: 100%;
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+}
+
+.buttonTrigger,
+.iconButtonTrigger {
+  width: auto;
+}
+
+.inputFieldInTrigger {
+  width: 100%;
+  pointer-events: none;
+}
+
+/* Figma 3877:38142 — 24×24 uncontained chevron end slot (Spacing-6). */
+.inputFieldInTrigger :global([data-size='10']) {
+  --_inp-icon-size: var(--Spacing-6);
+}
+
+/* Figma idle placeholder — body/M/low (3877:38142). */
+.inputFieldPlaceholder :global([data-size='8']) {
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+}
+
+.inputFieldPlaceholder :global([data-size='10']) {
+  font-size: var(--Body-M-FontSize);
+  line-height: var(--Body-M-LineHeight);
+}
+
+.inputFieldPlaceholder :global([data-size='12']) {
+  font-size: var(--Body-L-FontSize);
+  line-height: var(--Body-L-LineHeight);
+}
+
+.inputFieldPlaceholder :global([data-size='8'] .control),
+.inputFieldPlaceholder :global([data-size='10'] .control),
+.inputFieldPlaceholder :global([data-size='12'] .control) {
+  color: var(--Input-placeholderColor, var(--Text-Low));
+}
+
+/* Figma selected value — label/M/low + Text-High (3877:38141). */
+.inputFieldHasValue :global([data-size='8']) {
+  font-size: var(--Label-S-FontSize);
+  line-height: var(--Label-S-LineHeight);
+}
+
+.inputFieldHasValue :global([data-size='10']) {
+  font-size: var(--Label-M-FontSize);
+  line-height: var(--Label-M-LineHeight);
+}
+
+.inputFieldHasValue :global([data-size='12']) {
+  font-size: var(--Label-L-FontSize);
+  line-height: var(--Label-L-LineHeight);
+}
+
+.inputFieldHasValue :global([data-size='8'] .control),
+.inputFieldHasValue :global([data-size='10'] .control),
+.inputFieldHasValue :global([data-size='12'] .control) {
+  color: var(--Input-textColor, var(--Text-High));
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

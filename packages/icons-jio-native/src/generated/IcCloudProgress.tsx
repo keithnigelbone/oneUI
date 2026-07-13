@@ -1,0 +1,15 @@
+import React from 'react';
+import Svg, { Path, type SvgProps } from 'react-native-svg';
+export function IcCloudProgress(props: SvgProps) {
+  const fill = String(props.fill ?? '#000000');
+  return (
+    <Svg viewBox="0 0 24 24" fill="none" {...props}>
+      <Path
+            fill={fill}
+            fillRule="evenodd"
+            d="M20.03 11.02v.53l.01-.03c.75.44 1.34 1.11 1.67 1.91s.38 1.69.16 2.53c-.23.84-.72 1.58-1.41 2.11s-1.53.82-2.4.82H6.22c-1.09-.05-2.13-.5-2.91-1.27a4.407 4.407 0 0 1-.34-5.91c.69-.85 1.67-1.42 2.75-1.59.32-.59.79-1.1 1.36-1.46s1.22-.57 1.9-.61a5.93 5.93 0 0 1 2.86-2.51c1.2-.5 2.54-.59 3.8-.25s2.38 1.09 3.17 2.12a5.98 5.98 0 0 1 1.22 3.61M13 10a1 1 0 1 0-2 0v4a1 1 0 0 0 .553.894l2 1a1 1 0 0 0 .894-1.789L13 13.382z"
+            clipRule="evenodd"
+          />
+    </Svg>
+  );
+}

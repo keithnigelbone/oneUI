@@ -1,0 +1,343 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "SelectableButton",
+  "generatedAt": "2026-01-01T00:00:00.000Z",
+  "machineReadable": true,
+  "intentAndPurpose": {
+    "intent": "Toggle button with text label and optional start/end slots for binary selection within groups.",
+    "taskContexts": [
+      "filter-toggle",
+      "option-selection",
+      "segmented-control",
+      "toolbar-toggle"
+    ],
+    "sentiments": [
+      "neutral",
+      "positive"
+    ]
+  },
+  "compositionRules": {
+    "requires": [
+      "children (text label) or aria-label"
+    ],
+    "allows": [
+      "start/end slots (icon, badge)",
+      "contained/uncontained mode",
+      "condensed mode",
+      "fullWidth"
+    ],
+    "forbids": [
+      "use for navigation (use Button instead)",
+      "nested interactive elements"
+    ]
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "high attention",
+        "useWhen": [
+          "selected state needs bold fill emphasis"
+        ]
+      },
+      {
+        "name": "medium attention",
+        "useWhen": [
+          "selected state with subtle tinted fill"
+        ]
+      },
+      {
+        "name": "low attention",
+        "useWhen": [
+          "selected state with ghost appearance and accent border"
+        ]
+      }
+    ]
+  },
+  "relationshipsAndDependencies": {
+    "related": [
+      "SelectableIconButton",
+      "SelectableSingleTextButton",
+      "Button",
+      "Toggle",
+      "ToggleGroup"
+    ],
+    "groupsWith": [
+      "ToggleGroup"
+    ]
+  },
+  "contextSignals": {
+    "density": [
+      "compact",
+      "default",
+      "open"
+    ],
+    "modality": [
+      "desktop",
+      "mobile"
+    ],
+    "brand": [
+      "theme-scope aware",
+      "recipe-driven"
+    ],
+    "mode": [
+      "light",
+      "dark",
+      "surface-context"
+    ]
+  },
+  "observabilityHooks": {
+    "track": [
+      "select",
+      "deselect"
+    ],
+    "health": [
+      "a11y_violations",
+      "adoption_rate"
+    ]
+  },
+  "props": [
+    {
+      "name": "appearance",
+      "type": "SelectableButtonAppearance",
+      "required": false,
+      "description": "Multi-accent appearance role. 'auto' resolves to 'primary'."
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": false,
+      "description": "Accessible label for screen readers"
+    },
+    {
+      "name": "attention",
+      "type": "SelectableButtonAttention",
+      "required": false,
+      "description": "Attention level — determines the visual prominence of the SELECTED state. high → bold fill; medium → subtle fill; low → ghost with accent border. The UNSELECTED state is always muted ghost regardless of attention. Default: 'high'."
+    },
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Text label content"
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "required": false,
+      "description": "Additional class name"
+    },
+    {
+      "name": "condensed",
+      "type": "boolean",
+      "required": false,
+      "description": "Condensed mode: reduces height and horizontal padding while keeping the same typography. Only applies when contained=true."
+    },
+    {
+      "name": "contained",
+      "type": "boolean",
+      "required": false,
+      "description": "When true (default), renders a pill container with background, border, and padding. When false, renders inline text/icon only — no background, border, or padding. condensed and fullWidth do not apply when contained=false."
+    },
+    {
+      "name": "defaultSelected",
+      "type": "boolean",
+      "required": false,
+      "description": "Default selected state (uncontrolled)."
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "required": false,
+      "description": "Whether the button is disabled."
+    },
+    {
+      "name": "end",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Content to render after the label (icon, etc.)"
+    },
+    {
+      "name": "fullWidth",
+      "type": "boolean",
+      "required": false,
+      "description": "Stretch to fill container width. Only applies when contained=true."
+    },
+    {
+      "name": "loading",
+      "type": "boolean",
+      "required": false,
+      "description": "Loading state — disables interaction and shows reduced opacity."
+    },
+    {
+      "name": "onSelectedChange",
+      "type": "(selected: boolean) => void",
+      "required": false,
+      "description": "Called when selected state changes."
+    },
+    {
+      "name": "selected",
+      "type": "boolean",
+      "required": false,
+      "description": "Selected state (controlled). Maps to Toggle pressed."
+    },
+    {
+      "name": "size",
+      "type": "SelectableButtonSize",
+      "required": false,
+      "description": "Button size. Default: 'm'."
+    },
+    {
+      "name": "start",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Content to render before the label (icon, etc.)"
+    },
+    {
+      "name": "style",
+      "type": "CSSProperties",
+      "required": false,
+      "description": "Inline styles"
+    },
+    {
+      "name": "value",
+      "type": "string",
+      "required": false,
+      "description": "Value for use within ToggleGroup."
+    }
+  ],
+  "slots": [
+    {
+      "name": "start",
+      "types": [
+        "Icon"
+      ],
+      "tokens": []
+    },
+    {
+      "name": "end",
+      "types": [
+        "Icon"
+      ],
+      "tokens": []
+    }
+  ],
+  "propsSchema": {
+    "$id": "jds.docs.selectable-button",
+    "type": "object",
+    "properties": {
+      "appearance": {
+        "enum": [
+          "auto",
+          "primary",
+          "secondary",
+          "neutral",
+          "sparkle",
+          "brand-bg",
+          "positive",
+          "negative",
+          "warning",
+          "informative"
+        ],
+        "description": "Multi-accent appearance role. 'auto' resolves to 'primary'."
+      },
+      "aria-label": {
+        "type": "string",
+        "description": "Accessible label for screen readers"
+      },
+      "attention": {
+        "enum": [
+          "high",
+          "medium",
+          "low"
+        ],
+        "description": "Attention level — determines the visual prominence of the SELECTED state. high → bold fill; medium → subtle fill; low → ghost with accent border. The UNSELECTED state is always muted ghost regardless of attention. Default: 'high'."
+      },
+      "children": {
+        "description": "Text label content"
+      },
+      "className": {
+        "type": "string",
+        "description": "Additional class name"
+      },
+      "condensed": {
+        "type": "boolean",
+        "description": "Condensed mode: reduces height and horizontal padding while keeping the same typography. Only applies when contained=true."
+      },
+      "contained": {
+        "type": "boolean",
+        "description": "When true (default), renders a pill container with background, border, and padding. When false, renders inline text/icon only — no background, border, or padding. condensed and fullWidth do not apply when contained=false."
+      },
+      "defaultSelected": {
+        "type": "boolean",
+        "description": "Default selected state (uncontrolled)."
+      },
+      "disabled": {
+        "type": "boolean",
+        "description": "Whether the button is disabled."
+      },
+      "end": {
+        "description": "Content to render after the label (icon, etc.)"
+      },
+      "fullWidth": {
+        "type": "boolean",
+        "description": "Stretch to fill container width. Only applies when contained=true."
+      },
+      "loading": {
+        "type": "boolean",
+        "description": "Loading state — disables interaction and shows reduced opacity."
+      },
+      "onSelectedChange": {
+        "description": "Called when selected state changes."
+      },
+      "selected": {
+        "type": "boolean",
+        "description": "Selected state (controlled). Maps to Toggle pressed."
+      },
+      "size": {
+        "enum": [
+          "xs",
+          "s",
+          "m",
+          "l"
+        ],
+        "description": "Button size. Default: 'm'."
+      },
+      "start": {
+        "description": "Content to render before the label (icon, etc.)"
+      },
+      "style": {
+        "description": "Inline styles"
+      },
+      "value": {
+        "type": "string",
+        "description": "Value for use within ToggleGroup."
+      }
+    }
+  },
+  "codeSnippets": [
+    {
+      "id": "selectablebutton-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { SelectableButton } from '@oneui/ui';\n\n<SelectableButton>Option A</SelectableButton>"
+    },
+    {
+      "id": "selectablebutton-controlled",
+      "title": "Controlled",
+      "language": "tsx",
+      "code": "<SelectableButton selected={isSelected} onSelectedChange={setIsSelected}>Filter</SelectableButton>"
+    },
+    {
+      "id": "selectable-button-recipe-decisions",
+      "title": "Recipe Decisions",
+      "language": "json",
+      "code": "{\n  \"component\": \"SelectableButton\",\n  \"decisions\": [\n    \"Shape\"\n  ]\n}"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "selectable-button"
+  ],
+  "importPath": "@jds4/oneui-react"
+}

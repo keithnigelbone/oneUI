@@ -1,0 +1,170 @@
+/**
+ * SliderValueTooltip.module.css
+ *
+ * Floating value label rendered inside Slider.Thumb. Anchors directly to the
+ * thumb so it follows the knob pixel-perfectly.
+ *
+ * Horizontal: appears ABOVE the knob (matches Tooltip data-side="top").
+ * Vertical:   appears to the RIGHT of the knob (matches Tooltip data-side="right").
+ *
+ * Motion matches Tooltip.module.css exactly:
+ *   Bubble  — opacity + translateY/X, Duration-M. Exit-Moderate on exit, Entrance-Moderate on entry.
+ *   Arrow   — translate retract/extend. Duration-L Entrance-Moderate on entry,
+ *             Duration-M Exit-Moderate on exit.
+ *
+ * CSS transition spec is taken from the NEW (destination) state, so:
+ *   base/hidden state   → Exit spec  (fires on shown → hidden transition)
+ *   shown states        → Entrance spec (fires on hidden → shown transition)
+ *
+ * Visibility:
+ *   [data-dragging] on the thumb (direct parent)
+ *   :has(:focus-visible) on the thumb
+ *   [data-open] on the bubble (always mode)
+ *   [data-force-state="focus|pressed"] on any ancestor (Storybook)
+ */
+
+/* ============================================================
+   BUBBLE — base / hidden state  →  EXIT spec
+   ============================================================ */
+
+.bubble {
+  position: absolute;
+  left: 50%;
+  top: calc(
+    50%
+    - (var(--Slider-knobSize-outside-grown, var(--Spacing-4-5)) / 2)
+    - var(--Slider-tooltipOffset, var(--Spacing-2))
+  );
+  /* CSS translate handles positioning — keeps transform free for entrance animation */
+  translate: -50% -100%;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--Spacing-1-5) var(--Spacing-3);
+  border-radius: var(--Tooltip-borderRadius, var(--Shape-1-5));
+  box-shadow: var(--Elevation-2);
+
+  background-color: var(--Tooltip-backgroundColor, var(--Neutral-Bold));
+  color: var(--Tooltip-textColor, var(--Neutral-Bold-High));
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Primary, inherit));
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  font-weight: var(--Body-FontWeight-Medium);
+  white-space: nowrap;
+  pointer-events: none;
+
+  /* Hidden: matches Tooltip top-side starting-style (5px below final position) */
+  opacity: 0;
+  transform: translateY(5px);
+  /* EXIT spec — fires on shown → hidden */
+  transition:
+    opacity var(--Motion-Duration-M) var(--Motion-Easing-Exit-Moderate),
+    transform var(--Motion-Duration-M) var(--Motion-Easing-Exit-Moderate);
+}
+
+/* inside knob */
+:global([data-knob-style="inside"]) .bubble {
+  top: calc(
+    50%
+    - (var(--Slider-trackHeight-inside, var(--Spacing-3)) / 2)
+    - var(--Slider-tooltipOffset, var(--Spacing-2))
+  );
+}
+
+/* ============================================================
+   VERTICAL — bubble appears to the RIGHT of the knob
+   ============================================================ */
+
+:global([data-orientation="vertical"]) .bubble {
+  top: 50%;
+  left: calc(
+    50%
+    + (var(--Slider-knobSize-outside-grown, var(--Spacing-4-5)) / 2)
+    + var(--Slider-tooltipOffset, var(--Spacing-2))
+  );
+  translate: 0 -50%;
+  /* Hidden: matches Tooltip right-side starting-style (5px left of final position) */
+  transform: translateX(-5px);
+}
+
+:global([data-orientation="vertical"][data-knob-style="inside"]) .bubble {
+  left: calc(
+    50%
+    + (var(--Slider-trackHeight-inside, var(--Spacing-3)) / 2)
+    + var(--Slider-tooltipOffset, var(--Spacing-2))
+  );
+}
+
+/* ============================================================
+   BUBBLE — shown states  →  ENTRANCE spec
+   ============================================================ */
+
+.bubble[data-open],
+:global([data-dragging]) > .bubble,
+:has(:focus-visible) > .bubble,
+:global([data-force-state="pressed"]) .bubble,
+:global([data-force-state="focus"]) .bubble {
+  opacity: 1;
+  transform: none;
+  /* ENTRANCE spec — fires on hidden → shown */
+  transition:
+    opacity var(--Motion-Duration-M) var(--Motion-Easing-Entrance-Moderate),
+    transform var(--Motion-Duration-M) var(--Motion-Easing-Entrance-Moderate);
+}
+
+/* ============================================================
+   ARROW — base / hidden state  →  EXIT spec
+   ============================================================ */
+
+.arrow {
+  display: flex;
+  position: absolute;
+  /* Horizontal: bottom edge of bubble, centered */
+  bottom: -6px;
+  left: 50%;
+  margin-left: -9px;
+  /* Retracted upward — matches Tooltip top-side tip-translate (0 -6px) */
+  translate: 0 -6px;
+  /* EXIT spec — fires on shown → hidden */
+  transition: translate var(--Motion-Duration-M) var(--Motion-Easing-Exit-Moderate);
+}
+
+/* Vertical: left edge of bubble, centered */
+:global([data-orientation="vertical"]) .arrow {
+  bottom: auto;
+  left: -6px;
+  top: 50%;
+  margin-left: 0;
+  margin-top: -9px;
+  /* Retracted rightward — matches Tooltip right-side tip-translate (6px 0) */
+  translate: 6px 0;
+}
+
+/* ============================================================
+   ARROW — shown states  →  ENTRANCE spec
+   ============================================================ */
+
+.bubble[data-open] .arrow,
+:global([data-dragging]) > .bubble .arrow,
+:has(:focus-visible) > .bubble .arrow,
+:global([data-force-state="pressed"]) .bubble .arrow,
+:global([data-force-state="focus"]) .bubble .arrow {
+  translate: 0 0;
+  /* ENTRANCE spec — Duration-L matches Tooltip arrow entrance */
+  transition: translate var(--Motion-Duration-L) var(--Motion-Easing-Entrance-Moderate);
+}
+
+/* ============================================================
+   SVG orientation visibility
+   ============================================================ */
+
+.arrowH { display: block; }
+.arrowV { display: none; }
+
+:global([data-orientation="vertical"]) .arrowH { display: none; }
+:global([data-orientation="vertical"]) .arrowV { display: block; }
+
+.arrowFill {
+  fill: var(--Tooltip-backgroundColor, var(--Neutral-Bold));
+}

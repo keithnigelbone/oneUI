@@ -1,0 +1,17 @@
+/**
+ * COMPACT DENSITY
+ * Component-level overrides for compact density.
+ *
+ * NOTE: Spacing and typography tokens are NOT shifted here.
+ * scale.css handles all dimension f-step values per platform × density
+ * combination, and spacing/typography tokens in primitives.css alias
+ * directly to dimension f-steps — so they cascade automatically.
+ */
+
+@layer density {
+[data-density='compact'] {
+  /* Component heights - Reduced */
+  --Component-Height-TopBar: 44px;
+  --Touch-Target-Min: 40px;
+}
+} /* @layer density */

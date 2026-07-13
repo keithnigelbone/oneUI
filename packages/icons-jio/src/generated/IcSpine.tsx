@@ -1,0 +1,30 @@
+import React, { forwardRef } from 'react';
+import type { IconComponentProps } from '../iconProps';
+
+export const IcSpine = forwardRef<SVGSVGElement, IconComponentProps>(function IcSpine(
+  { size = 24, width, height, color = 'currentColor', className, style, ...props },
+  ref,
+) {
+  const dim = width ?? height ?? size;
+  return (
+    <svg
+      ref={ref}
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      width={width ?? dim}
+      height={height ?? dim}
+      color={color}
+      className={className}
+      style={style}
+      {...props}
+    >
+      <path
+            fill="currentColor"
+            d="M18 5h-3V4c0-.55-.45-1-1-1h-4c-.55 0-1 .45-1 1v1H6C3.79 5 2 6.79 2 9v1c0 .55.45 1 1 1h3v9c0 .55.45 1 1 1h10c.55 0 1-.45 1-1v-9h3c.55 0 1-.45 1-1V9c0-2.21-1.79-4-4-4m-5.17 12.55c-.19.29-.51.45-.83.45-.19 0-.38-.05-.55-.17a1.01 1.01 0 0 1-.28-1.39c.68-1.01.42-1.79-.1-3.07-.53-1.33-1.2-2.99.1-4.93.31-.46.93-.58 1.39-.28.46.31.58.93.28 1.39-.68 1.01-.42 1.79.1 3.07.53 1.33 1.2 2.99-.1 4.93z"
+          />
+    </svg>
+  );
+});
+
+IcSpine.displayName = 'IcSpine';

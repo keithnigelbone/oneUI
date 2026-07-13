@@ -1,0 +1,78 @@
+/**
+ * ExportCardActions.module.css — token-only chrome for the export card-action
+ * menu + the export card body (D-13). NO literals: every value is a Jio token
+ * (--Spacing-*, --Label-*, --Body-*, --Code role typography, --Border-*,
+ * --Shape-*). Status is conveyed by TEXT + role (WCAG AA), never colour alone.
+ */
+
+.exportCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-2);
+  padding: var(--Spacing-3);
+}
+
+.exportCardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--Spacing-2);
+}
+
+.exportTitle {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Title-M-FontSize);
+  line-height: var(--Title-M-LineHeight);
+  font-weight: var(--Title-M-FontWeight);
+  color: var(--Text-High);
+}
+
+.statusRow {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-2);
+}
+
+.statusText {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  font-weight: var(--Body-FontWeight-Low);
+  color: var(--Text-Medium);
+}
+
+.downloadRow {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-2);
+}
+
+.codePreviewHeader {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Label-S-FontSize);
+  line-height: var(--Label-S-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+  color: var(--Text-Medium);
+}
+
+.codeBlock {
+  margin: 0;
+  padding: var(--Spacing-3);
+  border-radius: var(--Shape-3);
+  overflow: auto;
+  max-height: var(--Dimension-f12);
+  font-family: var(--Typography-Font-Code);
+  font-size: var(--Code-S-FontSize);
+  line-height: var(--Code-S-LineHeight);
+  font-weight: var(--Code-FontWeight-Low);
+  color: var(--Text-High);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.menuItem {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Label-S-FontSize);
+  line-height: var(--Label-S-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+}

@@ -1,0 +1,217 @@
+{
+  "name": "@oneui/ui",
+  "version": "0.1.0-alpha.10",
+  "private": false,
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "sideEffects": [
+    "*.css",
+    "**/*.css"
+  ],
+  "files": [
+    "dist",
+    "cdn-bootstrap"
+  ],
+  "exports": {
+    ".": "./src/index.ts",
+    "./styles": {
+      "types": "./src/styles.d.ts",
+      "default": "./src/styles/global.css"
+    },
+    "./components/*": "./src/components/*/index.ts",
+    "./components/*/shared": "./src/components/*/index.shared.ts",
+    "./icons/*": "./src/icons/*.tsx",
+    "./icons/IconContext": "./src/icons/IconContext.tsx",
+    "./icons/IconRegistry": "./src/icons/IconRegistry.ts",
+    "./icons/iconLoaders": "./src/icons/iconLoaders.ts",
+    "./icons/semanticMappings": "./src/icons/semanticMappings/index.ts",
+    "./icons/semanticMappings/*": "./src/icons/semanticMappings/*.ts",
+    "./engine": "./src/engine/index.ts",
+    "./showcase": "./src/showcase/index.ts",
+    "./utils/*": "./src/utils/*.ts",
+    "./registry/*": "./src/registry/*.ts",
+    "./hooks/*": "./src/hooks/*.ts",
+    "./hooks/useDecorationContext": "./src/hooks/useDecorationContext.tsx",
+    "./contexts/*": "./src/contexts/*.tsx",
+    "./runtime": "./src/runtime/index.ts",
+    "./runtime/*": "./src/runtime/*.tsx",
+    "./playground/template": "./src/playground/template.ts",
+    "./playground/entry": "./src/playground/entry.tsx",
+    "./playground/messageTypes": "./src/playground/messageTypes.ts",
+    "./brand-loader": "./src/brand-loader.ts",
+    "./cdn-bootstrap/jio": "./cdn-bootstrap/jio.ts",
+    "./cdn-bootstrap/jio-loader": "./cdn-bootstrap/jio-loader.ts"
+  },
+  "publishConfig": {
+    "main": "./dist/index.cjs",
+    "module": "./dist/index.mjs",
+    "types": "./dist/index.d.ts",
+    "exports": {
+      ".": {
+        "types": "./dist/index.d.ts",
+        "import": "./dist/index.mjs",
+        "require": "./dist/index.cjs"
+      },
+      "./styles": {
+        "types": "./dist/styles.d.ts",
+        "style": "./dist/ui.css",
+        "default": "./dist/ui.css"
+      },
+      "./components/*": {
+        "types": "./dist/components/*/index.d.ts",
+        "import": "./dist/components/*/index.mjs",
+        "require": "./dist/components/*/index.cjs"
+      },
+      "./hooks/*": {
+        "types": "./dist/hooks/*.d.ts",
+        "import": "./dist/hooks/*.mjs",
+        "require": "./dist/hooks/*.cjs"
+      },
+      "./hooks/useDecorationContext": {
+        "types": "./dist/hooks/useDecorationContext.d.ts",
+        "import": "./dist/hooks/useDecorationContext.mjs",
+        "require": "./dist/hooks/useDecorationContext.cjs"
+      },
+      "./registry/*": {
+        "types": "./dist/registry/*.d.ts",
+        "import": "./dist/registry/*.mjs",
+        "require": "./dist/registry/*.cjs"
+      },
+      "./engine": {
+        "types": "./dist/engine/index.d.ts",
+        "import": "./dist/engine/index.mjs",
+        "require": "./dist/engine/index.cjs"
+      },
+      "./showcase": {
+        "types": "./dist/showcase/index.d.ts",
+        "import": "./dist/showcase/index.mjs",
+        "require": "./dist/showcase/index.cjs"
+      },
+      "./utils/*": {
+        "types": "./dist/utils/*.d.ts",
+        "import": "./dist/utils/*.mjs",
+        "require": "./dist/utils/*.cjs"
+      },
+      "./contexts/*": {
+        "types": "./dist/contexts/*.d.ts",
+        "import": "./dist/contexts/*.mjs",
+        "require": "./dist/contexts/*.cjs"
+      },
+      "./runtime": {
+        "types": "./dist/runtime/index.d.ts",
+        "import": "./dist/runtime/index.mjs",
+        "require": "./dist/runtime/index.cjs"
+      },
+      "./runtime/*": {
+        "types": "./dist/runtime/*.d.ts",
+        "import": "./dist/runtime/*.mjs",
+        "require": "./dist/runtime/*.cjs"
+      },
+      "./icons/IconContext": {
+        "types": "./dist/icons/IconContext.d.ts",
+        "import": "./dist/icons/IconContext.mjs",
+        "require": "./dist/icons/IconContext.cjs"
+      },
+      "./icons/IconRegistry": {
+        "types": "./dist/icons/IconRegistry.d.ts",
+        "import": "./dist/icons/IconRegistry.mjs",
+        "require": "./dist/icons/IconRegistry.cjs"
+      },
+      "./icons/iconLoaders": {
+        "types": "./dist/icons/iconLoaders.d.ts",
+        "import": "./dist/icons/iconLoaders.mjs",
+        "require": "./dist/icons/iconLoaders.cjs"
+      },
+      "./icons/semanticMappings": {
+        "types": "./dist/icons/semanticMappings/index.d.ts",
+        "import": "./dist/icons/semanticMappings/index.mjs",
+        "require": "./dist/icons/semanticMappings/index.cjs"
+      },
+      "./icons/semanticMappings/*": {
+        "types": "./dist/icons/semanticMappings/*.d.ts",
+        "import": "./dist/icons/semanticMappings/*.mjs",
+        "require": "./dist/icons/semanticMappings/*.cjs"
+      },
+      "./icons/*": {
+        "types": "./dist/icons/*.d.ts",
+        "import": "./dist/icons/*.mjs",
+        "require": "./dist/icons/*.cjs"
+      },
+      "./brand-loader": {
+        "types": "./dist/brand-loader.d.ts",
+        "import": "./dist/brand-loader.mjs",
+        "require": "./dist/brand-loader.cjs"
+      },
+      "./cdn-bootstrap/jio": {
+        "types": "./dist/cdn-bootstrap/jio.d.ts",
+        "import": "./dist/cdn-bootstrap/jio.mjs",
+        "require": "./dist/cdn-bootstrap/jio.cjs"
+      },
+      "./cdn-bootstrap/jio-loader": {
+        "types": "./dist/cdn-bootstrap/jio-loader.d.ts",
+        "import": "./dist/cdn-bootstrap/jio-loader.mjs",
+        "require": "./dist/cdn-bootstrap/jio-loader.cjs"
+      }
+    }
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "NODE_OPTIONS='--max-old-space-size=6144' vite build",
+    "build:playground": "NODE_OPTIONS='--max-old-space-size=6144' vite build --config vite.playground.config.ts && mkdir -p ../../apps/platform/public/sandpack && cp dist/playground/oneui-playground.mjs dist/playground/oneui-playground.css ../../apps/platform/public/sandpack/",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:a11y": "vitest run --config vitest.a11y.config.ts",
+    "check:literals": "tsx ../../scripts/check-literals.ts",
+    "bundlesize": "bundlesize"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0",
+    "@oneui/icons-jio": "workspace:*",
+    "lucide-react": ">=0.400.0",
+    "@tabler/icons-react": ">=3.0.0",
+    "hugeicons-react": ">=0.3.0",
+    "@phosphor-icons/react": ">=2.0.0",
+    "@remixicon/react": ">=4.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@oneui/icons-jio": { "optional": true },
+    "lucide-react": { "optional": true },
+    "@tabler/icons-react": { "optional": true },
+    "hugeicons-react": { "optional": true },
+    "@phosphor-icons/react": { "optional": true },
+    "@remixicon/react": { "optional": true }
+  },
+  "dependencies": {
+    "@base-ui/react": "^1.0.0",
+    "@oneui/shared": "workspace:*",
+    "@oneui/tokens": "workspace:*",
+    "clsx": "^2.1.0",
+    "embla-carousel": "^8.5.2",
+    "embla-carousel-autoplay": "^8.5.2",
+    "embla-carousel-react": "^8.5.2"
+  },
+  "devDependencies": {
+    "@storybook/react-vite": "^10.3.5",
+    "@testing-library/jest-dom": "^6.1.5",
+    "@testing-library/react": "^16.0.0",
+    "@testing-library/user-event": "^14.5.0",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.0.0",
+    "@vitejs/plugin-react": "^4.3.0",
+    "jsdom": "^28.1.0",
+    "@oneui/icons-jio": "workspace:*",
+    "lucide-react": "^0.562.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "storybook": "^10.3.5",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
+    "vite": "^6.0.0",
+    "vite-plugin-dts": "^4.0.0",
+    "vitest": "^2.0.0",
+    "vitest-axe": "^0.1.0"
+  }
+}

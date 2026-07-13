@@ -1,0 +1,30 @@
+import React, { forwardRef } from 'react';
+import type { IconComponentProps } from '../iconProps';
+
+export const IcHomeRemedies = forwardRef<SVGSVGElement, IconComponentProps>(function IcHomeRemedies(
+  { size = 24, width, height, color = 'currentColor', className, style, ...props },
+  ref,
+) {
+  const dim = width ?? height ?? size;
+  return (
+    <svg
+      ref={ref}
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      width={width ?? dim}
+      height={height ?? dim}
+      color={color}
+      className={className}
+      style={style}
+      {...props}
+    >
+      <path
+            fill="currentColor"
+            d="M20.94 10.65c-.05-.13-.12-.24-.21-.34a.9.9 0 0 0-.33-.23c-.12-.05-.26-.08-.39-.08H4c-.27 0-.52.11-.71.29A1 1 0 0 0 3 11c0 1.67.47 3.31 1.35 4.74A8.97 8.97 0 0 0 8 19.05V20c0 .27.11.52.29.71.19.19.44.29.71.29h6c.27 0 .52-.11.71-.29s.29-.44.29-.71v-.95a9 9 0 0 0 5-8c0-.14-.01-.27-.06-.4m-.09-3.44a.993.993 0 0 0-.36-1.35l-2.12-1.23a.993.993 0 0 0-1.35.36c0 1.3-.4 2.56-1.14 3.63l-.26.38h3.08c.53-.79 1.28-1.41 2.16-1.79zM7.73 9h2.78c0-.83-.67-1.5-1.5-1.5-.39 0-.74.15-1.01.4C7.95 6.84 7.08 6 6.01 6s-2 .9-2 2c0 .37.11.71.28 1z"
+          />
+    </svg>
+  );
+});
+
+IcHomeRemedies.displayName = 'IcHomeRemedies';

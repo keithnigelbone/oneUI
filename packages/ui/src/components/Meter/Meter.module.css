@@ -1,0 +1,51 @@
+/**
+ * Meter.module.css
+ * Token-only styling for Meter component
+ * Verified by: pnpm check:literals
+ */
+
+/* Track */
+.track {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--Shape-Pill);
+  background-color: var(--Surface-Subtle);
+}
+
+/* Indicator */
+.indicator {
+  border-radius: var(--Shape-Pill);
+  height: 100%;
+  transition: width var(--Motion-Duration-Expressive-Short) var(--Motion-Easing-Emphasized);
+}
+
+/* Status-based coloring */
+.indicator[data-state='low'] {
+  background-color: var(--Status-Error);
+}
+
+.indicator[data-state='medium'] {
+  background-color: var(--Status-Warning);
+}
+
+.indicator[data-state='high'] {
+  background-color: var(--Status-Success);
+}
+
+/* Default (no thresholds) */
+.indicator[data-state='normal'] {
+  background-color: var(--Surface-Bold);
+}
+
+/* Sizes */
+.small .track {
+  height: var(--Spacing-1);
+}
+
+.medium .track {
+  height: var(--Spacing-2);
+}
+
+.large .track {
+  height: var(--Spacing-3);
+}

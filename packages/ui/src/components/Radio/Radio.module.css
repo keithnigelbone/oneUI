@@ -1,0 +1,659 @@
+/**
+ * Radio.module.css
+ *
+ * CRITICAL: This file demonstrates the ZERO LITERALS rule
+ * ALL styling uses design tokens ONLY
+ *
+ * Architecture: Dual intermediate variable system (--_rd-*)
+ * - Default = Primary role (both context AND fill)
+ * - Appearance classes remap ALL 8 vars (context + fill) — so fill follows appearance
+ *
+ * Figma variable mapping:
+ *   Colour/surface          → --{Role}-Bold
+ *   Colour/on-Colour/tinted A11y → --{Role}-Bold-High
+ *   Colour/on-Colour/medium [stroke] → --{Role}-Stroke-Medium
+ *   Colour/on-Colour/high   → --{Role}-High
+ *   InteractionStates/focus ring → --Informative-Bold (always informative)
+ *   InteractionStates/state layer → hover/pressed token
+ *   Strokes/stroke M (1px)  → --Stroke-M
+ *   Disabled opacity         → --Disabled-Opacity
+ *   Dimensions/Shape/pill    → --Shape-Pill (circular default)
+ *
+ * Size system: [data-size="s|m|l"] attribute selectors.
+ *   S: box f0=Spacing-4 (16),  dot f-4=Spacing-2 (8)   — 50% ratio
+ *   M: box f2=Spacing-5 (20), dot f-3=Spacing-2-5 (10)  — 50% ratio
+ *   L: box f3=Spacing-6 (24), dot f-2=Spacing-3 (12)  — 50% ratio
+ *
+ * Verified by: pnpm check:literals
+ */
+
+/* ========================================
+   GROUP — vertical or horizontal layout
+   ======================================== */
+
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--RadioGroup-verticalGap, var(--Spacing-3-5));
+}
+
+.group[data-orientation='horizontal'] {
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: var(--RadioGroup-horizontalGap, var(--Spacing-4));
+}
+
+/* ========================================
+   WRAPPER — label + radio circle + text
+   ======================================== */
+
+.wrapper {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.wrapper[data-size='s'] {
+  gap: var(--Spacing-1-5);
+}
+
+.wrapper[data-size='m'] {
+  gap: var(--Spacing-2);
+}
+
+.wrapper[data-size='l'] {
+  gap: var(--Spacing-2-5);
+}
+
+.wrapper:has(.textColumn) {
+  align-items: center;
+}
+
+.wrapper[data-disabled] {
+  cursor: not-allowed;
+}
+
+.wrapper[data-disabled]:not([data-readonly]) {
+  opacity: var(--Disabled-Opacity);
+}
+
+/* ========================================
+   RADIO BOX — the interactive circle
+   ======================================== */
+
+.radio {
+  /* === APPEARANCE role vars: context (border/hover) === */
+  --_rd-default-medium-stroke: var(
+    --Radio-roleStrokeMedium,
+    var(--Primary-Stroke-Medium, var(--Border-Default))
+  );
+  --_rd-default-hover: var(--Radio-roleHover, var(--Primary-Hover, var(--Surface-Minimal)));
+  --_rd-default-pressed: var(--Radio-rolePressed, var(--Primary-Pressed, var(--Surface-Subtle)));
+  --_rd-default-high: var(--Radio-roleHigh, var(--Primary-High, var(--Text-High)));
+
+  /* === APPEARANCE role vars: fill (checked state) === */
+  --_rd-bold: var(--Radio-roleBold, var(--Primary-Bold, var(--Surface-Bold)));
+  --_rd-bold-high: var(
+    --Radio-roleBoldHigh,
+    var(--Primary-Bold-TintedA11y, var(--Primary-Bold-High, var(--Text-OnBold-High)))
+  );
+  --_rd-bold-hover: var(
+    --Radio-roleBoldHover,
+    var(--Primary-Bold-Hover, var(--Surface-Bold-Hover))
+  );
+  --_rd-bold-pressed: var(
+    --Radio-roleBoldPressed,
+    var(--Primary-Bold-Pressed, var(--Surface-Bold-Pressed))
+  );
+
+  /* === SHAPE — default Pill (circular), overridable per brand === */
+  border-radius: var(--Radio-borderRadius, var(--Shape-Pill));
+
+  /* Unchecked-state stroke — neutral by default; surface-context-driven via
+     [data-unchecked-appearance="<role>"] overrides below. Keeps the unchecked
+     border from tinting with the appearance prop while the checked fill still
+     follows the appearance role. Same pattern as Switch unchecked track. */
+  --_rd-unchecked-stroke: var(--Neutral-Stroke-Medium, var(--Border-Default));
+
+  /* === BASE STYLES === */
+  appearance: none;
+  -webkit-appearance: none;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+  border: var(--Stroke-M) solid var(--_rd-unchecked-stroke);
+  background-color: transparent;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  outline: none;
+  /* Colours: uniform M (hover-in, hover-out, press-in, press-out — all M).
+     Transform: L by default — this is the "release" direction (touch-up). :active overrides it to
+     M below so press-down uses M while the same property's release falls back to L here. */
+  transition:
+    background-color var(--Motion-Duration-M) var(--Motion-Easing-Transition-Moderate),
+    border-color var(--Motion-Duration-M) var(--Motion-Easing-Transition-Moderate),
+    transform var(--Motion-Duration-L) var(--Motion-Easing-Transition-Moderate);
+}
+
+/* Press-down only: bump the transform transition to M. Colours stay at M (no change from base). */
+.radio:active {
+  transition:
+    background-color var(--Motion-Duration-M) var(--Motion-Easing-Transition-Moderate),
+    border-color var(--Motion-Duration-M) var(--Motion-Easing-Transition-Moderate),
+    transform var(--Motion-Duration-M) var(--Motion-Easing-Transition-Moderate);
+}
+
+/* ========================================
+   APPEARANCE — remap ALL 8 vars (context + fill)
+   Adding a new appearance = 1 new class with 8 remappings
+   ======================================== */
+
+.appearancePrimary {
+  --_rd-default-medium-stroke: var(--Primary-Stroke-Medium, var(--Border-Default));
+  --_rd-default-hover: var(--Primary-Hover, var(--Surface-Minimal));
+  --_rd-default-pressed: var(--Primary-Pressed, var(--Surface-Subtle));
+  --_rd-default-high: var(--Primary-High, var(--Text-High));
+  --_rd-bold: var(--Primary-Bold, var(--Surface-Bold));
+  --_rd-bold-high: var(
+    --Primary-Bold-TintedA11y,
+    var(--Primary-Bold-High, var(--Text-OnBold-High))
+  );
+  --_rd-bold-hover: var(--Primary-Bold-Hover, var(--Surface-Bold-Hover));
+  --_rd-bold-pressed: var(--Primary-Bold-Pressed, var(--Surface-Bold-Pressed));
+}
+
+.appearanceNeutral {
+  --_rd-default-medium-stroke: var(--Neutral-Stroke-Medium, var(--Border-Default));
+  --_rd-default-hover: var(--Neutral-Hover, var(--Surface-Minimal));
+  --_rd-default-pressed: var(--Neutral-Pressed, var(--Surface-Subtle));
+  --_rd-default-high: var(--Neutral-High, var(--Text-High));
+  --_rd-bold: var(--Neutral-Bold, var(--Surface-Bold));
+  --_rd-bold-high: var(
+    --Neutral-Bold-TintedA11y,
+    var(--Neutral-Bold-High, var(--Text-OnBold-High))
+  );
+  --_rd-bold-hover: var(--Neutral-Bold-Hover, var(--Surface-Bold-Hover));
+  --_rd-bold-pressed: var(--Neutral-Bold-Pressed, var(--Surface-Bold-Pressed));
+}
+
+.appearanceSecondary {
+  --_rd-default-medium-stroke: var(--Secondary-Stroke-Medium, var(--Border-Default));
+  --_rd-default-hover: var(--Secondary-Hover, var(--Surface-Minimal));
+  --_rd-default-pressed: var(--Secondary-Pressed, var(--Surface-Subtle));
+  --_rd-default-high: var(--Secondary-High, var(--Text-High));
+  --_rd-bold: var(--Secondary-Bold, var(--Surface-Bold));
+  --_rd-bold-high: var(
+    --Secondary-Bold-TintedA11y,
+    var(--Secondary-Bold-High, var(--Text-OnBold-High))
+  );
+  --_rd-bold-hover: var(--Secondary-Bold-Hover, var(--Surface-Bold-Hover));
+  --_rd-bold-pressed: var(--Secondary-Bold-Pressed, var(--Surface-Bold-Pressed));
+}
+
+.appearanceSparkle {
+  --_rd-default-medium-stroke: var(--Sparkle-Stroke-Medium, var(--Border-Default));
+  --_rd-default-hover: var(--Sparkle-Hover, var(--Surface-Minimal));
+  --_rd-default-pressed: var(--Sparkle-Pressed, var(--Surface-Subtle));
+  --_rd-default-high: var(--Sparkle-High, var(--Text-High));
+  --_rd-bold: var(--Sparkle-Bold, var(--Surface-Bold));
+  --_rd-bold-high: var(
+    --Sparkle-Bold-TintedA11y,
+    var(--Sparkle-Bold-High, var(--Text-OnBold-High))
+  );
+  --_rd-bold-hover: var(--Sparkle-Bold-Hover, var(--Surface-Bold-Hover));
+  --_rd-bold-pressed: var(--Sparkle-Bold-Pressed, var(--Surface-Bold-Pressed));
+}
+
+.appearanceBrandBg {
+  --_rd-default-medium-stroke: var(--Brand-Bg-Stroke-Medium, var(--Border-Default));
+  --_rd-default-hover: var(--Brand-Bg-Hover, var(--Surface-Minimal));
+  --_rd-default-pressed: var(--Brand-Bg-Pressed, var(--Surface-Subtle));
+  --_rd-default-high: var(--Brand-Bg-High, var(--Text-High));
+  --_rd-bold: var(--Brand-Bg-Bold, var(--Surface-Bold));
+  --_rd-bold-high: var(
+    --Brand-Bg-Bold-TintedA11y,
+    var(--Brand-Bg-Bold-High, var(--Text-OnBold-High))
+  );
+  --_rd-bold-hover: var(--Brand-Bg-Bold-Hover, var(--Surface-Bold-Hover));
+  --_rd-bold-pressed: var(--Brand-Bg-Bold-Pressed, var(--Surface-Bold-Pressed));
+}
+
+.appearancePositive {
+  --_rd-default-medium-stroke: var(--Positive-Stroke-Medium, var(--Border-Default));
+  --_rd-default-hover: var(--Positive-Hover, var(--Surface-Minimal));
+  --_rd-default-pressed: var(--Positive-Pressed, var(--Surface-Subtle));
+  --_rd-default-high: var(--Positive-High, var(--Text-High));
+  --_rd-bold: var(--Positive-Bold, var(--Surface-Bold));
+  --_rd-bold-high: var(
+    --Positive-Bold-TintedA11y,
+    var(--Positive-Bold-High, var(--Text-OnBold-High))
+  );
+  --_rd-bold-hover: var(--Positive-Bold-Hover, var(--Surface-Bold-Hover));
+  --_rd-bold-pressed: var(--Positive-Bold-Pressed, var(--Surface-Bold-Pressed));
+}
+
+.appearanceNegative {
+  --_rd-default-medium-stroke: var(--Negative-Stroke-Medium, var(--Border-Default));
+  --_rd-default-hover: var(--Negative-Hover, var(--Surface-Minimal));
+  --_rd-default-pressed: var(--Negative-Pressed, var(--Surface-Subtle));
+  --_rd-default-high: var(--Negative-High, var(--Text-High));
+  --_rd-bold: var(--Negative-Bold, var(--Surface-Bold));
+  --_rd-bold-high: var(
+    --Negative-Bold-TintedA11y,
+    var(--Negative-Bold-High, var(--Text-OnBold-High))
+  );
+  --_rd-bold-hover: var(--Negative-Bold-Hover, var(--Surface-Bold-Hover));
+  --_rd-bold-pressed: var(--Negative-Bold-Pressed, var(--Surface-Bold-Pressed));
+}
+
+.appearanceWarning {
+  --_rd-default-medium-stroke: var(--Warning-Stroke-Medium, var(--Border-Default));
+  --_rd-default-hover: var(--Warning-Hover, var(--Surface-Minimal));
+  --_rd-default-pressed: var(--Warning-Pressed, var(--Surface-Subtle));
+  --_rd-default-high: var(--Warning-High, var(--Text-High));
+  --_rd-bold: var(--Warning-Bold, var(--Surface-Bold));
+  --_rd-bold-high: var(
+    --Warning-Bold-TintedA11y,
+    var(--Warning-Bold-High, var(--Text-OnBold-High))
+  );
+  --_rd-bold-hover: var(--Warning-Bold-Hover, var(--Surface-Bold-Hover));
+  --_rd-bold-pressed: var(--Warning-Bold-Pressed, var(--Surface-Bold-Pressed));
+}
+
+.appearanceInformative {
+  --_rd-default-medium-stroke: var(--Informative-Stroke-Medium, var(--Border-Default));
+  --_rd-default-hover: var(--Informative-Hover, var(--Surface-Minimal));
+  --_rd-default-pressed: var(--Informative-Pressed, var(--Surface-Subtle));
+  --_rd-default-high: var(--Informative-High, var(--Text-High));
+  --_rd-bold: var(--Informative-Bold, var(--Surface-Bold));
+  --_rd-bold-high: var(
+    --Informative-Bold-TintedA11y,
+    var(--Informative-Bold-High, var(--Text-OnBold-High))
+  );
+  --_rd-bold-hover: var(--Informative-Bold-Hover, var(--Surface-Bold-Hover));
+  --_rd-bold-pressed: var(--Informative-Bold-Pressed, var(--Surface-Bold-Pressed));
+}
+
+/* ========================================
+   UNCHECKED STROKE — surface-context-aware
+   Defaults to neutral on the bare page. Inside a tinted Surface, follows
+   the surface's resolved appearance (set on the control by Radio.tsx via
+   useSurfaceAppearance — same pattern as Switch unchecked track).
+   ======================================== */
+
+.radio[data-unchecked-appearance='primary'] {
+  --_rd-unchecked-stroke: var(--Primary-Stroke-Medium, var(--Border-Default));
+  --_rd-unchecked-hover: var(--Primary-Hover, var(--Surface-Minimal));
+  --_rd-unchecked-pressed: var(--Primary-Pressed, var(--Surface-Subtle));
+}
+.radio[data-unchecked-appearance='neutral'] {
+  --_rd-unchecked-stroke: var(--Neutral-Stroke-Medium, var(--Border-Default));
+  --_rd-unchecked-hover: var(--Neutral-Hover, var(--Surface-Minimal));
+  --_rd-unchecked-pressed: var(--Neutral-Pressed, var(--Surface-Subtle));
+}
+.radio[data-unchecked-appearance='secondary'] {
+  --_rd-unchecked-stroke: var(--Secondary-Stroke-Medium, var(--Border-Default));
+  --_rd-unchecked-hover: var(--Secondary-Hover, var(--Surface-Minimal));
+  --_rd-unchecked-pressed: var(--Secondary-Pressed, var(--Surface-Subtle));
+}
+.radio[data-unchecked-appearance='sparkle'] {
+  --_rd-unchecked-stroke: var(--Sparkle-Stroke-Medium, var(--Border-Default));
+  --_rd-unchecked-hover: var(--Sparkle-Hover, var(--Surface-Minimal));
+  --_rd-unchecked-pressed: var(--Sparkle-Pressed, var(--Surface-Subtle));
+}
+.radio[data-unchecked-appearance='brand-bg'] {
+  --_rd-unchecked-stroke: var(--Brand-Bg-Stroke-Medium, var(--Border-Default));
+  --_rd-unchecked-hover: var(--Brand-Bg-Hover, var(--Surface-Minimal));
+  --_rd-unchecked-pressed: var(--Brand-Bg-Pressed, var(--Surface-Subtle));
+}
+.radio[data-unchecked-appearance='positive'] {
+  --_rd-unchecked-stroke: var(--Positive-Stroke-Medium, var(--Border-Default));
+  --_rd-unchecked-hover: var(--Positive-Hover, var(--Surface-Minimal));
+  --_rd-unchecked-pressed: var(--Positive-Pressed, var(--Surface-Subtle));
+}
+.radio[data-unchecked-appearance='negative'] {
+  --_rd-unchecked-stroke: var(--Negative-Stroke-Medium, var(--Border-Default));
+  --_rd-unchecked-hover: var(--Negative-Hover, var(--Surface-Minimal));
+  --_rd-unchecked-pressed: var(--Negative-Pressed, var(--Surface-Subtle));
+}
+.radio[data-unchecked-appearance='warning'] {
+  --_rd-unchecked-stroke: var(--Warning-Stroke-Medium, var(--Border-Default));
+  --_rd-unchecked-hover: var(--Warning-Hover, var(--Surface-Minimal));
+  --_rd-unchecked-pressed: var(--Warning-Pressed, var(--Surface-Subtle));
+}
+.radio[data-unchecked-appearance='informative'] {
+  --_rd-unchecked-stroke: var(--Informative-Stroke-Medium, var(--Border-Default));
+  --_rd-unchecked-hover: var(--Informative-Hover, var(--Surface-Minimal));
+  --_rd-unchecked-pressed: var(--Informative-Pressed, var(--Surface-Subtle));
+}
+
+/* ========================================
+   CHECKED — fill uses appearance role tokens
+   ======================================== */
+
+.radio[data-checked] {
+  background-color: var(--_rd-bold);
+  border-color: var(--_rd-bold);
+}
+
+/* ========================================
+   HOVER STATES
+   ======================================== */
+
+/* Unchecked = no role committed → neutral surface tints, regardless of appearance. */
+.radio[data-unchecked]:hover {
+  background-color: var(--_rd-unchecked-hover, var(--Neutral-Hover, var(--Surface-Minimal)));
+}
+
+.radio[data-checked]:hover {
+  background-color: var(--_rd-bold-hover);
+  border-color: var(--_rd-bold-hover);
+}
+
+/* ========================================
+   PRESSED STATES — scale up to 107%, surface tint to pressed colour
+   Transform uses M on press (from .radio:active override) and L on release (from .radio base).
+   Colours use M in both directions.
+   ======================================== */
+
+.radio:active {
+  transform: scale(1.07);
+}
+
+.radio[data-unchecked]:active {
+  background-color: var(--_rd-unchecked-pressed, var(--Neutral-Pressed, var(--Surface-Subtle)));
+}
+
+.radio[data-checked]:active {
+  background-color: var(--_rd-bold-pressed);
+  border-color: var(--_rd-bold-pressed);
+}
+
+/* Reduced motion: no scale press, no scale burst. Opacity fade still plays.
+   Token-remapped durations automatically switch to Subtle values inside this media query. */
+@media (prefers-reduced-motion: reduce) {
+  .radio:active {
+    transform: none;
+  }
+  .indicator,
+  .radio[data-checked] .indicator {
+    transform: scale(1);
+  }
+}
+
+/* ========================================
+   FOCUS RING — always uses Informative token (per Figma spec)
+   Structure: 2px offset (Surface-Main) + 4px ring (Informative-Bold)
+   Matches Figma: InteractionStates/focus-ring-offset (spread 2) +
+                  InteractionStates/focus-ring (spread 4)
+   ======================================== */
+
+.radio:focus {
+  outline: none;
+}
+
+.radio:focus-visible,
+:global([data-force-state='focus']) .radio {
+  box-shadow:
+    0 0 0 var(--Stroke-XL) var(--Surface-Halo-Gap, var(--Surface-Main)),
+    0 0 0 calc(var(--Stroke-XL) + var(--Focus-Outline-Width))
+      var(--Informative-Bold, var(--Focus-Outline));
+}
+
+/* ========================================
+   INDICATOR (inner dot)
+   Dot color: Colour/on-Colour/tinted A11y → --{Role}-Bold-High
+   Radius follows nested geometry when no explicit dot token is set.
+   Scale animation on check/uncheck
+   ======================================== */
+
+/* Unchecked rest = box-filling (scale 2) and invisible (opacity 0).
+   Checked rest    = dot-sized (scale 1) and visible (opacity 1).
+   Transitions handle both directions naturally. They do NOT fire on initial mount (no value
+   change yet), so unchecked radios load silently — no flash.
+   Asymmetric fade timing is achieved by putting different transitions on each state:
+     - Rest state's transition (applies when LEAVING checked, i.e. uncheck): opacity gets an
+       L-offset delay so the dot stays fully visible for 90ms while it scales out, then fades.
+     - Checked state's transition (applies when ENTERING checked, i.e. check): opacity fades
+       in immediately (no delay) so the dot is visible as it scales down from box-size. */
+.indicator {
+  border-radius: var(
+    --Radio-dotBorderRadius,
+    max(
+      var(--Spacing-0),
+      calc(
+        var(--Radio-borderRadius, var(--Shape-Pill)) -
+          (
+            (
+                var(--Radio-boxSize-m, var(--Spacing-5)) -
+                  var(--Radio-dotSize-m, var(--Spacing-2-5))
+              ) /
+              2
+          )
+      )
+    )
+  );
+  background-color: var(--_rd-bold-high);
+  transform: scale(2);
+  opacity: 0;
+  transition:
+    transform var(--Motion-Duration-L) var(--Motion-Easing-Transition-Moderate),
+    opacity var(--Motion-Duration-S) var(--Motion-Easing-Transition-Moderate) var(--Motion-Offset-L);
+}
+
+.radio[data-checked] .indicator {
+  transform: scale(1);
+  opacity: 1;
+  transition:
+    transform var(--Motion-Duration-L) var(--Motion-Easing-Transition-Moderate),
+    opacity var(--Motion-Duration-S) var(--Motion-Easing-Transition-Moderate);
+}
+
+/* ========================================
+   LABEL — text next to the radio
+   ======================================== */
+
+.label {
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Primary, inherit));
+  font-weight: var(--Body-FontWeight-Low);
+  color: var(--Text-High);
+  user-select: none;
+}
+
+.textColumn {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--Spacing-1);
+  min-width: 0;
+}
+
+.description {
+  margin: 0;
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Primary, inherit));
+  font-weight: var(--Body-FontWeight-Low);
+  color: var(--Text-Medium);
+  user-select: none;
+}
+
+.wrapper[data-size='s'] .description {
+  font-size: var(--Radio-descriptionFontSize-s, var(--Body-S-FontSize));
+  line-height: var(--Radio-descriptionLineHeight-s, var(--Body-S-LineHeight));
+}
+
+.wrapper[data-size='m'] .description {
+  font-size: var(--Radio-descriptionFontSize-m, var(--Body-S-FontSize));
+  line-height: var(--Radio-descriptionLineHeight-m, var(--Body-S-LineHeight));
+}
+
+.wrapper[data-size='l'] .description {
+  font-size: var(--Radio-descriptionFontSize-l, var(--Body-M-FontSize));
+  line-height: var(--Radio-descriptionLineHeight-l, var(--Body-M-LineHeight));
+}
+
+/* ========================================
+   SIZES — via [data-size] attribute selectors
+   Mapped from Figma Dimensions/Spacings
+   Default Shape-Pill (circular), overridable per brand via recipe.
+   Per-size shape tokens: borderRadius-s/m/l cascade from borderRadius.
+   ======================================== */
+
+/* S: box = Spacings/4 = Spacing-4 (f0=16), dot = Spacings/2 = Spacing-2 (f-4=8) — 50% */
+.radio[data-size='s'] {
+  width: var(--Radio-boxSize-s, var(--Spacing-4));
+  height: var(--Radio-boxSize-s, var(--Spacing-4));
+  border-radius: var(--Radio-borderRadius-s, var(--Radio-borderRadius, var(--Shape-Pill)));
+}
+
+.radio[data-size='s'] .indicator {
+  width: var(--Radio-dotSize-s, var(--Spacing-2));
+  height: var(--Radio-dotSize-s, var(--Spacing-2));
+  border-radius: var(
+    --Radio-dotBorderRadius-s,
+    var(
+      --Radio-dotBorderRadius,
+      max(
+        var(--Spacing-0),
+        calc(
+          var(--Radio-borderRadius-s, var(--Radio-borderRadius, var(--Shape-Pill))) -
+            (
+              (
+                  var(--Radio-boxSize-s, var(--Spacing-4)) -
+                    var(--Radio-dotSize-s, var(--Spacing-2))
+                ) /
+                2
+            )
+        )
+      )
+    )
+  );
+}
+
+/* M: box = Spacings/5 = Spacing-5 (f2=20), dot = Spacings/2.5 = Spacing-2-5 (f-3=10) — 50% */
+.radio[data-size='m'] {
+  width: var(--Radio-boxSize-m, var(--Spacing-5));
+  height: var(--Radio-boxSize-m, var(--Spacing-5));
+  border-radius: var(--Radio-borderRadius-m, var(--Radio-borderRadius, var(--Shape-Pill)));
+}
+
+.radio[data-size='m'] .indicator {
+  width: var(--Radio-dotSize-m, var(--Spacing-2-5));
+  height: var(--Radio-dotSize-m, var(--Spacing-2-5));
+  border-radius: var(
+    --Radio-dotBorderRadius-m,
+    var(
+      --Radio-dotBorderRadius,
+      max(
+        var(--Spacing-0),
+        calc(
+          var(--Radio-borderRadius-m, var(--Radio-borderRadius, var(--Shape-Pill))) -
+            (
+              (
+                  var(--Radio-boxSize-m, var(--Spacing-5)) -
+                    var(--Radio-dotSize-m, var(--Spacing-2-5))
+                ) /
+                2
+            )
+        )
+      )
+    )
+  );
+}
+
+/* L: box = Spacings/6 = Spacing-6 (f3=24), dot = Spacings/3 = Spacing-3 (f-2=12) — 50% */
+.radio[data-size='l'] {
+  width: var(--Radio-boxSize-l, var(--Spacing-6));
+  height: var(--Radio-boxSize-l, var(--Spacing-6));
+  border-radius: var(--Radio-borderRadius-l, var(--Radio-borderRadius, var(--Shape-Pill)));
+}
+
+.radio[data-size='l'] .indicator {
+  width: var(--Radio-dotSize-l, var(--Spacing-3));
+  height: var(--Radio-dotSize-l, var(--Spacing-3));
+  border-radius: var(
+    --Radio-dotBorderRadius-l,
+    var(
+      --Radio-dotBorderRadius,
+      max(
+        var(--Spacing-0),
+        calc(
+          var(--Radio-borderRadius-l, var(--Radio-borderRadius, var(--Shape-Pill))) -
+            (
+              (
+                  var(--Radio-boxSize-l, var(--Spacing-6)) -
+                    var(--Radio-dotSize-l, var(--Spacing-3))
+                ) /
+                2
+            )
+        )
+      )
+    )
+  );
+}
+
+/* Label typography per size
+   Font size + weight from Body role (readable), line height from Label role (compact).
+   Body line heights (f3=24, f4=28) are too spacious for radio labels.
+   Label line heights (f0=16, f1=18) match the radio box height for clean alignment. */
+.wrapper[data-size='s'] .label {
+  font-size: var(--Radio-labelFontSize-s, var(--Body-S-FontSize));
+  line-height: var(--Radio-labelLineHeight-s, var(--Label-S-LineHeight));
+}
+
+.wrapper[data-size='m'] .label {
+  font-size: var(--Radio-labelFontSize-m, var(--Body-M-FontSize));
+  line-height: var(--Radio-labelLineHeight-m, var(--Label-M-LineHeight));
+}
+
+.wrapper[data-size='l'] .label {
+  font-size: var(--Radio-labelFontSize-l, var(--Body-L-FontSize));
+  line-height: var(--Radio-labelLineHeight-l, var(--Label-L-LineHeight));
+}
+
+/* ========================================
+   READONLY — visually distinct from disabled
+   Colour/on-Colour/high → --{Role}-High
+   Readonly checked: solid dark fill (not brand color)
+   Readonly unchecked: solid dark border (not brand color)
+   No hover/focus/pressed states
+   ======================================== */
+
+.radio[data-readonly] {
+  cursor: default;
+  pointer-events: none;
+}
+
+.radio[data-readonly][data-checked] {
+  background-color: var(--_rd-default-high);
+  border-color: var(--_rd-default-high);
+}
+
+.radio[data-readonly][data-unchecked] {
+  border-color: var(--_rd-default-high);
+}
+
+.wrapper[data-readonly] {
+  cursor: default;
+}
+
+/* ========================================
+   DISABLED (not readonly) — opacity reduction
+   ======================================== */
+
+.radio[data-disabled]:not([data-readonly]) {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/**
+ * ========================================
+ * IMPORTANT: NO LITERALS IN THIS FILE
+ * ========================================
+ *
+ * All values MUST come from --Token-Name variables
+ * defined in @oneui/tokens CSS files
+ */

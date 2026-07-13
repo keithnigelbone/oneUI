@@ -1,0 +1,146 @@
+/**
+ * SecondaryNav.module.css
+ *
+ * Clean, minimal secondary navigation
+ * Uses token-only values for consistent theming
+ */
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-1);
+  padding: 0 var(--Spacing-4);
+  background-color: transparent;
+}
+
+/* ========================================
+   SEARCH — optional search input at top
+   ======================================== */
+
+.searchContainer {
+  margin-bottom: var(--Spacing-3);
+}
+
+.noResults {
+  padding: var(--Spacing-3-5) var(--Spacing-3);
+  font-size: var(--Body-S-FontSize);
+  color: var(--Primary-Low, var(--Text-Low));
+  text-align: center;
+}
+
+/* ========================================
+   TAB BUTTONS
+   ======================================== */
+
+.tab {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--Spacing-2-5) var(--Spacing-3);
+  border: none;
+  background-color: transparent;
+  color: var(--Primary-Low, var(--Text-Low));
+  cursor: pointer;
+  font-size: var(--Label-M-FontSize);
+  font-weight: var(--Label-FontWeight-Low);
+  font-family: var(--Label-FontFamily, var(--Typography-Font-Text));
+  position: relative;
+  text-align: left;
+  width: 100%;
+  border-radius: var(--SelectableButton-borderRadius, var(--Button-borderRadius, var(--Shape-Pill)));
+  transition:
+    color var(--Motion-Duration-Discreet-Short) var(--Motion-Easing-Standard),
+    background-color var(--Motion-Duration-Discreet-Short) var(--Motion-Easing-Standard);
+}
+
+.tab:hover {
+  color: var(--Primary-High, var(--Text-High));
+  background-color: var(--Primary-Hover, var(--Surface-Ghost));
+}
+
+.tab:focus {
+  outline: none;
+}
+
+.tab:focus-visible {
+  outline: var(--Focus-Outline-Width) solid var(--Focus-Outline);
+  outline-offset: 2px;
+}
+
+.tab[data-active="true"] {
+  color: var(--Primary-Subtle-High, var(--Text-High));
+  background-color: var(--Primary-Subtle, var(--Surface-Subtle));
+}
+
+/* Label text inside a tab — truncates with ellipsis for long thread titles
+   or other dynamic labels (history items, etc.) */
+.tabLabel {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+  flex: 1;
+}
+
+.count {
+  margin-left: var(--Spacing-3);
+  font-size: var(--Body-XS-FontSize);
+  font-weight: var(--Body-FontWeight-High);
+  padding: var(--Spacing-2) var(--Spacing-3);
+  border-radius: var(--Shape-3-5);
+  background-color: var(--Primary-Hover, var(--Surface-Ghost));
+  color: var(--Primary-Low, var(--Text-Low));
+}
+
+.tab[data-active="true"] .count {
+  background-color: var(--Primary-Subtle, var(--Surface-Subtle));
+  color: var(--Primary-Subtle-High, var(--Text-High));
+}
+
+/* Indented child tabs in collapsible groups */
+.tab[data-indent] {
+  padding-left: var(--Spacing-4-5);
+}
+
+/* Collapsible parent: text-high when expanded (children visible) */
+.tab[aria-expanded="true"] {
+  color: var(--Primary-High, var(--Text-High));
+}
+
+/* ========================================
+   CHEVRON — expand/collapse indicator
+   ======================================== */
+
+.chevron {
+  flex-shrink: 0;
+  color: var(--Primary-Low, var(--Text-Low));
+  transition: transform var(--Motion-Duration-Discreet-Short) var(--Motion-Easing-Standard);
+  transform: rotate(-90deg);
+}
+
+.chevron[data-expanded="true"] {
+  transform: rotate(0deg);
+}
+
+/* ========================================
+   DIVIDERS — section separators in the tab list
+   ======================================== */
+
+.divider {
+  display: flex;
+  align-items: center;
+  padding: var(--Spacing-3-5) var(--Spacing-3) var(--Spacing-2);
+  margin-top: var(--Spacing-3);
+}
+
+.divider:first-child {
+  margin-top: 0;
+}
+
+.dividerLabel {
+  font-size: var(--Body-2XS-FontSize);
+  font-weight: var(--Body-FontWeight-High);
+  color: var(--Primary-Low, var(--Text-Low));
+  text-transform: uppercase;
+  letter-spacing: var(--Spacing-1);
+}

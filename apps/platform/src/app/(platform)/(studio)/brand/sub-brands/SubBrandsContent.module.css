@@ -1,0 +1,233 @@
+/**
+ * SubBrandsContent.module.css
+ *
+ * Mirrors AccentConfigEditor.module.css exactly — same grid, badge,
+ * swatch, section, and divider patterns. Only additions are the
+ * create form and add-row utilities.
+ */
+
+/* ─── Container ────────────────────────────────────────────────────── */
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ─── Section Title ────────────────────────────────────────────────── */
+
+.sectionTitle {
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-High);
+  color: var(--Text-High);
+  text-transform: lowercase;
+  letter-spacing: 0.02em;
+  margin-bottom: var(--Spacing-4);
+}
+
+/* ─── Section Block ────────────────────────────────────────────────── */
+
+.section {
+  padding: var(--Spacing-4-5) 0;
+}
+
+.section:first-child {
+  padding-top: 0;
+}
+
+.section:last-child {
+  padding-bottom: 0;
+}
+
+/* ─── Full-Width Divider (edge-to-edge) ────────────────────────────── */
+
+.divider {
+  height: var(--Stroke-M);
+  background-color: var(--Border-Subtle);
+  margin-left: calc(-1 * var(--Spacing-4-5));
+  margin-right: calc(-1 * var(--Spacing-4-5));
+}
+
+/* ─── Grid Layout ──────────────────────────────────────────────────── */
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: var(--Spacing-3-5);
+  align-items: stretch;
+}
+
+.gridHeader {
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+  color: var(--Text-High);
+  padding-bottom: var(--Spacing-2-5);
+}
+
+.gridCell {
+  padding: var(--Spacing-2-5) 0;
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+
+/* Row dividers within the grid (full width across all 4 columns) */
+.gridRowDivider {
+  grid-column: 1 / -1;
+  height: var(--Stroke-M);
+  background-color: var(--Border-Subtle);
+  align-self: auto;
+}
+
+/* ─── Role Badge ───────────────────────────────────────────────────── */
+
+.accentRoleBadge {
+  display: inline-block;
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-High);
+  color: var(--Surface-Default);
+  background-color: var(--Text-High);
+  padding: var(--Spacing-2) var(--Spacing-3-5);
+  border-radius: var(--Shape-Pill);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+/* ─── Swatch Preview Strip ─────────────────────────────────────────── */
+
+.swatchRow {
+  display: flex;
+  flex: 1;
+}
+
+.swatchSegment {
+  flex: 1;
+}
+
+.swatchContainer {
+  width: 100%;
+  border-radius: var(--Shape-4);
+  outline: var(--Stroke-M) solid var(--Border-Subtle);
+  overflow: hidden;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.swatchWrapper {
+  width: 100%;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ─── Swatch Labels ────────────────────────────────────────────────── */
+
+.swatchLabels {
+  display: flex;
+  margin-top: var(--Spacing-2);
+}
+
+.swatchLabel {
+  flex: 1;
+  font-size: var(--Label-2XS-FontSize);
+  line-height: var(--Label-2XS-LineHeight);
+  color: var(--Text-Low);
+  text-align: center;
+}
+
+/* ─── Card Actions (delete) ────────────────────────────────────────── */
+
+.cardActions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--Spacing-3);
+  padding-top: var(--Spacing-4);
+}
+
+/* ─── Create form ──────────────────────────────────────────────────── */
+
+.createForm {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-4);
+}
+
+.nameInput {
+  width: 100%;
+  padding: var(--Spacing-3-5) var(--Spacing-4);
+  border: var(--Stroke-XL) solid var(--Border-Subtle);
+  border-radius: var(--Shape-4);
+  background-color: var(--Surface-Ghost);
+  color: var(--Text-High);
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Body-M-FontSize);
+  line-height: var(--Body-M-LineHeight);
+  outline: none;
+  transition: border-color var(--Motion-Duration-Discreet-Short) var(--Motion-Easing-Standard);
+  box-sizing: border-box;
+}
+
+.nameInput:focus {
+  border-color: var(--Primary-Bold, var(--Surface-Bold));
+}
+
+.nameInput::placeholder {
+  color: var(--Text-Low);
+}
+
+.createActions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--Spacing-3);
+}
+
+/* ─── Color Preview Swatches (accordion header) ───────────────────── */
+
+.previewSwatches {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-1-5);
+}
+
+.previewSwatch {
+  display: block;
+  width: var(--Spacing-3-5);
+  height: var(--Spacing-3-5);
+  border-radius: var(--Shape-3);
+  flex-shrink: 0;
+  outline: var(--Stroke-M) solid color-mix(in oklch, var(--Border-Default) 10%, transparent);
+  position: relative;
+  overflow: hidden;
+}
+
+.previewSwatch::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-conic-gradient(
+      var(--Surface-Minimal) 0% 25%,
+      var(--Surface-Main) 0% 50%
+    );
+  background-size: var(--Spacing-2) var(--Spacing-2);
+}
+
+.previewSwatch::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: inherit;
+}
+
+/* ─── Add row ──────────────────────────────────────────────────────── */
+
+.addRow {
+  display: flex;
+  justify-content: flex-start;
+  padding: var(--Spacing-4) 0;
+}

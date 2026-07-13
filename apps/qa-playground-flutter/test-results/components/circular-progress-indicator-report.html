@@ -1,0 +1,3177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flutter QA — circular-progress-indicator</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0f1117; color: #e2e8f0; min-height: 100vh; }
+    .header { background: #1a1d27; border-bottom: 1px solid #2d3147; padding: 20px 32px; display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
+    .header-title { font-size: 18px; font-weight: 600; color: #f0f4ff; }
+    .header-sub { font-size: 12px; color: #64748b; margin-top: 2px; }
+    .stat-card { display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 8px 16px; border-radius: 8px; min-width: 80px; }
+    .stat-value { font-size: 22px; font-weight: 700; line-height: 1; }
+    .stat-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; color: #94a3b8; }
+    .stat-total { background: #1e2235; }
+    .stat-pass { background: #0f2a1a; }
+    .stat-fail { background: #2a0f0f; }
+    .stat-skip { background: #1e2235; }
+    .stat-time { background: #1e2235; }
+    .stat-pass .stat-value { color: #4ade80; }
+    .stat-fail .stat-value { color: #f87171; }
+    .stat-skip .stat-value { color: #94a3b8; }
+    .stat-total .stat-value, .stat-time .stat-value { color: #94a3b8; }
+    .status-banner { margin-left: auto; padding: 6px 16px; border-radius: 20px; font-size: 13px; font-weight: 600; }
+    .status-banner.all-pass { background: #052e16; color: #4ade80; border: 1px solid #16a34a; }
+    .status-banner.has-fail { background: #2a0f0f; color: #f87171; border: 1px solid #dc2626; }
+    .content { padding: 24px 32px; max-width: 1100px; margin: 0 auto; }
+    .toolbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; }
+    .filters { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+    .filter-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; color: #64748b; }
+    .filter-select { appearance: none; background: #1e2235; color: #c7d2fe; border: 1px solid #2d3147; border-radius: 6px; padding: 6px 12px; font-size: 12px; min-width: 140px; }
+    .suite-pills { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+    .suite-pill { font-size: 11px; padding: 4px 10px; border-radius: 999px; border: 1px solid #2d3147; color: #94a3b8; }
+    .suite-pill.fn { border-color: #4c1d95; color: #c4b5fd; }
+    .suite-pill.a11y { border-color: #14532d; color: #6ee7b7; }
+    .suite-pill.smoke { border-color: #0c4a6e; color: #7dd3fc; }
+    .file-block { background: #1a1d27; border: 1px solid #2d3147; border-radius: 10px; margin-bottom: 16px; overflow: hidden; }
+    .file-block.file-fail { border-color: #7f1d1d; }
+    .file-block.file-pass { border-color: #14532d; }
+    .file-summary { display: flex; align-items: center; gap: 10px; padding: 12px 16px; cursor: pointer; list-style: none; background: #20243a; user-select: none; }
+    .file-summary::-webkit-details-marker { display: none; }
+    .file-icon { font-size: 14px; }
+    .file-block.file-pass .file-icon { color: #4ade80; }
+    .file-block.file-fail .file-icon { color: #f87171; }
+    .file-path { font-size: 13px; font-weight: 500; color: #c7d2fe; font-family: 'JetBrains Mono', monospace; flex: 1; }
+    .file-counts { display: flex; gap: 8px; font-size: 12px; }
+    .pass-count { color: #4ade80; }
+    .fail-count { color: #f87171; }
+    .file-dur { font-size: 12px; color: #475569; }
+    .suite-block { padding: 4px 16px 12px; }
+    .test-row { border-radius: 6px; margin: 2px 0; }
+    .test-row.failed { background: #1a0a0a; }
+    .test-header { display: flex; align-items: center; gap: 8px; padding: 7px 10px; border-radius: 6px; }
+    .test-header:hover { background: #252a3f; }
+    .status-icon { font-size: 13px; font-weight: 700; width: 18px; flex-shrink: 0; }
+    .status-icon.pass { color: #4ade80; }
+    .status-icon.fail { color: #f87171; }
+    .status-icon.skip { color: #94a3b8; }
+    .test-name { flex: 1; font-size: 13px; color: #cbd5e1; }
+    .test-dur { font-size: 11px; color: #475569; flex-shrink: 0; }
+    .tag { font-size: 10px; font-weight: 600; padding: 2px 7px; border-radius: 10px; letter-spacing: 0.3px; flex-shrink: 0; }
+    .tag-smoke { background: #1e3a5f; color: #7dd3fc; }
+    .tag-fn { background: #2d1b69; color: #c4b5fd; }
+    .tag-a11y { background: #1a3a2a; color: #6ee7b7; }
+    .tag-catalog { background: #3b2f0a; color: #fcd34d; }
+    .tag-other { background: #2d2d2d; color: #94a3b8; }
+    .platform-badge { font-size: 10px; color: #64748b; border: 1px solid #334155; border-radius: 4px; padding: 1px 5px; }
+    .error-block { margin: 4px 10px 8px 36px; padding: 8px 12px; background: #1f0a0a; border-left: 3px solid #dc2626; border-radius: 0 4px 4px 0; }
+    .error-block pre { font-size: 11px; color: #fca5a5; white-space: pre-wrap; word-break: break-word; font-family: 'JetBrains Mono', monospace; max-height: 240px; overflow: auto; }
+    .footer { text-align: center; padding: 32px; font-size: 12px; color: #334155; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div>
+      <div class="header-title">Flutter QA — circular-progress-indicator</div>
+      <div class="header-sub">flutter_test · headless VM · 7/8/2026, 11:39:33 AM</div>
+    </div>
+    <div class="stat-card stat-total"><div class="stat-value">293</div><div class="stat-label">Total</div></div>
+    <div class="stat-card stat-pass"><div class="stat-value">293</div><div class="stat-label">Passed</div></div>
+    <div class="stat-card stat-fail"><div class="stat-value">0</div><div class="stat-label">Failed</div></div>
+    <div class="stat-card stat-skip"><div class="stat-value">0</div><div class="stat-label">Skipped</div></div>
+    <div class="stat-card stat-time"><div class="stat-value">8.3s</div><div class="stat-label">Duration</div></div>
+    <div class="status-banner all-pass">✓ All tests passed</div>
+  </div>
+  <div class="content">
+    <div class="toolbar">
+      <div class="filters">
+        <span class="filter-label">Component</span>
+        <select class="filter-select" id="comp-filter" onchange="applyFilters()">
+          <option value="">All</option>
+          <option value="circular_progress_indicator">circular_progress_indicator</option>
+        </select>
+        <span class="filter-label">Tier</span>
+        <select class="filter-select" id="tier-filter" onchange="applyFilters()">
+          <option value="">All</option>
+          <option value="smoke">Smoke</option>
+          <option value="fn">Functional</option>
+          <option value="a11y">Accessibility</option>
+          <option value="catalog">Catalog</option>
+        </select>
+      </div>
+    </div>
+    <div class="suite-pills">
+      <span class="suite-pill smoke">Smoke: 6</span>
+      <span class="suite-pill fn">Functional: 63</span>
+      <span class="suite-pill a11y">Accessibility: 44</span>
+      <span class="suite-pill">Catalog: 2</span>
+    </div>
+    <details class="file-block file-pass" data-component="circular_progress_indicator" open>
+      <summary class="file-summary">
+        <span class="file-icon">✓</span>
+        <span class="file-path">test/components/circular_progress_indicator/circular_progress_indicator_a11y_test.dart</span>
+        <span class="file-counts">
+          <span class="pass-count">41 passed</span>
+          
+        </span>
+        <span class="file-dur">1.36s</span>
+      </summary>
+      <div class="suite-block"><div class="test-row passed" data-component="circular_progress_indicator" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          
+          <span class="test-name">[a11y] resolveOneUiCircularProgressIndicatorSemantics [a11y] indeterminate exposes busy state and no value</span>
+          <span class="test-dur">15ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          
+          <span class="test-name">[a11y] resolveOneUiCircularProgressIndicatorSemantics [a11y] determinate exposes valueNow</span>
+          <span class="test-dur">2ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          
+          <span class="test-name">[a11y] resolveOneUiCircularProgressIndicatorSemantics [a11y] ariaHidden requests excluded semantics</span>
+          <span class="test-dur">1ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          
+          <span class="test-name">[a11y] resolveOneUiCircularProgressIndicatorSemantics [a11y] aria-live polite/assertive enable a live region</span>
+          <span class="test-dur">1ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          
+          <span class="test-name">[a11y] resolveOneUiCircularProgressIndicatorSemantics [a11y] semanticsLabelledBy and semanticsDescribedBy are separate</span>
+          <span class="test-dur">1ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[a11y] CircularProgressIndicator widget — real semantics [a11y] semanticsLabel exposes the accessible name</span>
+          <span class="test-dur">461ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[a11y] CircularProgressIndicator widget — real semantics [a11y] semanticsLabel exposes the accessible name</span>
+          <span class="test-dur">63ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[a11y] CircularProgressIndicator widget — real semantics [a11y] semanticsLabel exposes the accessible name</span>
+          <span class="test-dur">35ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[a11y] CircularProgressIndicator widget — real semantics [a11y] determinate announces &quot;N percent&quot;</span>
+          <span class="test-dur">27ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[a11y] CircularProgressIndicator widget — real semantics [a11y] determinate announces &quot;N percent&quot;</span>
+          <span class="test-dur">22ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[a11y] CircularProgressIndicator widget — real semantics [a11y] determinate announces &quot;N percent&quot;</span>
+          <span class="test-dur">22ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[a11y] CircularProgressIndicator widget — real semantics [a11y] custom min/max reflected in the percent string</span>
+          <span class="test-dur">22ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[a11y] CircularProgressIndicator widget — real semantics [a11y] custom min/max reflected in the percent string</span>
+          <span class="test-dur">23ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[a11y] CircularProgressIndicator widget — real semantics [a11y] custom min/max reflected in the percent string</span>
+          <span class="test-dur">23ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[a11y] CircularProgressIndicator widget — real semantics [a11y] indeterminate omits the value (busy)</span>
+          <span class="test-dur">35ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[a11y] CircularProgressIndicator widget — real semantics [a11y] indeterminate omits the value (busy)</span>
+          <span class="test-dur">23ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[a11y] CircularProgressIndicator widget — real semantics [a11y] indeterminate omits the value (busy)</span>
+          <span class="test-dur">22ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[a11y] CircularProgressIndicator widget — real semantics [a11y] semanticsHint surfaces in semantics</span>
+          <span class="test-dur">21ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[a11y] CircularProgressIndicator widget — real semantics [a11y] semanticsHint surfaces in semantics</span>
+          <span class="test-dur">20ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[a11y] CircularProgressIndicator widget — real semantics [a11y] semanticsHint surfaces in semantics</span>
+          <span class="test-dur">18ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[a11y] CircularProgressIndicator widget — real semantics [a11y] ariaHidden collapses the semantics tree</span>
+          <span class="test-dur">20ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[a11y] CircularProgressIndicator widget — real semantics [a11y] ariaHidden collapses the semantics tree</span>
+          <span class="test-dur">20ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[a11y] CircularProgressIndicator widget — real semantics [a11y] ariaHidden collapses the semantics tree</span>
+          <span class="test-dur">21ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[a11y] CircularProgressIndicator widget — real semantics [a11y] aria-live polite enables a live region</span>
+          <span class="test-dur">23ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[a11y] CircularProgressIndicator widget — real semantics [a11y] aria-live polite enables a live region</span>
+          <span class="test-dur">20ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[a11y] CircularProgressIndicator widget — real semantics [a11y] aria-live polite enables a live region</span>
+          <span class="test-dur">19ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[a11y] CircularProgressIndicator widget — real semantics [a11y] semanticsLabelledBy is exposed as identifier</span>
+          <span class="test-dur">20ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[a11y] CircularProgressIndicator widget — real semantics [a11y] semanticsLabelledBy is exposed as identifier</span>
+          <span class="test-dur">21ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[a11y] CircularProgressIndicator widget — real semantics [a11y] semanticsLabelledBy is exposed as identifier</span>
+          <span class="test-dur">19ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[a11y] CircularProgressIndicator widget — real semantics [a11y] semanticsLabelledBy-only falls back to identifier without anchor</span>
+          <span class="test-dur">20ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[a11y] CircularProgressIndicator widget — real semantics [a11y] semanticsLabelledBy-only falls back to identifier without anchor</span>
+          <span class="test-dur">19ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[a11y] CircularProgressIndicator widget — real semantics [a11y] semanticsLabelledBy-only falls back to identifier without anchor</span>
+          <span class="test-dur">19ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[a11y] CircularProgressIndicator widget — real semantics [a11y] semanticsLabelledBy-only resolves label from identifier anchor</span>
+          <span class="test-dur">44ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[a11y] CircularProgressIndicator widget — real semantics [a11y] semanticsLabelledBy-only resolves label from identifier anchor</span>
+          <span class="test-dur">20ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[a11y] CircularProgressIndicator widget — real semantics [a11y] semanticsLabelledBy-only resolves label from identifier anchor</span>
+          <span class="test-dur">20ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[a11y] CircularProgressIndicator widget — real semantics [a11y] semanticsDescribedBy exposes controlsNodes (not identifier)</span>
+          <span class="test-dur">20ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[a11y] CircularProgressIndicator widget — real semantics [a11y] semanticsDescribedBy exposes controlsNodes (not identifier)</span>
+          <span class="test-dur">23ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[a11y] CircularProgressIndicator widget — real semantics [a11y] semanticsDescribedBy exposes controlsNodes (not identifier)</span>
+          <span class="test-dur">20ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[a11y] CircularProgressIndicator widget — real semantics [a11y] centre percentage is not announced twice</span>
+          <span class="test-dur">56ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[a11y] CircularProgressIndicator widget — real semantics [a11y] centre percentage is not announced twice</span>
+          <span class="test-dur">29ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[a11y] CircularProgressIndicator widget — real semantics [a11y] centre percentage is not announced twice</span>
+          <span class="test-dur">27ms</span>
+        </div>
+        
+      </div></div>
+    </details>
+<details class="file-block file-pass" data-component="circular_progress_indicator" open>
+      <summary class="file-summary">
+        <span class="file-icon">✓</span>
+        <span class="file-path">test/components/circular_progress_indicator/circular_progress_indicator_figma_parity_test.dart</span>
+        <span class="file-counts">
+          <span class="pass-count">106 passed</span>
+          
+        </span>
+        <span class="file-dur">2.54s</span>
+      </summary>
+      <div class="suite-block"><div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] CircularProgressIndicator — size [figma] size=2XS → 8.0px diameter</span>
+          <span class="test-dur">480ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] CircularProgressIndicator — size [figma] size=2XS → 8.0px diameter</span>
+          <span class="test-dur">37ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] CircularProgressIndicator — size [figma] size=2XS → 8.0px diameter</span>
+          <span class="test-dur">34ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] CircularProgressIndicator — size [figma] size=XS → 12.0px diameter</span>
+          <span class="test-dur">29ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] CircularProgressIndicator — size [figma] size=XS → 12.0px diameter</span>
+          <span class="test-dur">20ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] CircularProgressIndicator — size [figma] size=XS → 12.0px diameter</span>
+          <span class="test-dur">23ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] CircularProgressIndicator — size [figma] size=S → 16.0px diameter</span>
+          <span class="test-dur">20ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] CircularProgressIndicator — size [figma] size=S → 16.0px diameter</span>
+          <span class="test-dur">19ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] CircularProgressIndicator — size [figma] size=S → 16.0px diameter</span>
+          <span class="test-dur">18ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] CircularProgressIndicator — size [figma] size=M → 20.0px diameter</span>
+          <span class="test-dur">18ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] CircularProgressIndicator — size [figma] size=M → 20.0px diameter</span>
+          <span class="test-dur">26ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] CircularProgressIndicator — size [figma] size=M → 20.0px diameter</span>
+          <span class="test-dur">19ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] CircularProgressIndicator — size [figma] size=L → 24.0px diameter</span>
+          <span class="test-dur">19ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] CircularProgressIndicator — size [figma] size=L → 24.0px diameter</span>
+          <span class="test-dur">18ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] CircularProgressIndicator — size [figma] size=L → 24.0px diameter</span>
+          <span class="test-dur">18ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] CircularProgressIndicator — size [figma] size=XL → 32.0px diameter</span>
+          <span class="test-dur">19ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] CircularProgressIndicator — size [figma] size=XL → 32.0px diameter</span>
+          <span class="test-dur">18ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] CircularProgressIndicator — size [figma] size=XL → 32.0px diameter</span>
+          <span class="test-dur">18ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] CircularProgressIndicator — size [figma] size=2XL → 40.0px diameter</span>
+          <span class="test-dur">40ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] CircularProgressIndicator — size [figma] size=2XL → 40.0px diameter</span>
+          <span class="test-dur">22ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] CircularProgressIndicator — size [figma] size=2XL → 40.0px diameter</span>
+          <span class="test-dur">18ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] CircularProgressIndicator — size [figma] size=3XL → 48.0px diameter</span>
+          <span class="test-dur">19ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] CircularProgressIndicator — size [figma] size=3XL → 48.0px diameter</span>
+          <span class="test-dur">20ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] CircularProgressIndicator — size [figma] size=3XL → 48.0px diameter</span>
+          <span class="test-dur">17ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] CircularProgressIndicator — size [figma] size=4XL → 56.0px diameter</span>
+          <span class="test-dur">19ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] CircularProgressIndicator — size [figma] size=4XL → 56.0px diameter</span>
+          <span class="test-dur">18ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] CircularProgressIndicator — size [figma] size=4XL → 56.0px diameter</span>
+          <span class="test-dur">20ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] CircularProgressIndicator — size [figma] size=5XL → 64.0px diameter</span>
+          <span class="test-dur">18ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] CircularProgressIndicator — size [figma] size=5XL → 64.0px diameter</span>
+          <span class="test-dur">21ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] CircularProgressIndicator — size [figma] size=5XL → 64.0px diameter</span>
+          <span class="test-dur">18ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          
+          <span class="test-name">[figma] CircularProgressIndicator — size [figma] lowercase Figma size aliases resolve to canonical t-shirt sizes</span>
+          <span class="test-dur">3ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] CircularProgressIndicator — size [figma] unset size defaults to M (20px)</span>
+          <span class="test-dur">18ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] CircularProgressIndicator — size [figma] unset size defaults to M (20px)</span>
+          <span class="test-dur">20ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] CircularProgressIndicator — size [figma] unset size defaults to M (20px)</span>
+          <span class="test-dur">18ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] CircularProgressIndicator — variant [figma] determinate paints a finite arc</span>
+          <span class="test-dur">22ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] CircularProgressIndicator — variant [figma] determinate paints a finite arc</span>
+          <span class="test-dur">23ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] CircularProgressIndicator — variant [figma] determinate paints a finite arc</span>
+          <span class="test-dur">18ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] CircularProgressIndicator — variant [figma] indeterminate paints a busy spinner</span>
+          <span class="test-dur">28ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] CircularProgressIndicator — variant [figma] indeterminate paints a busy spinner</span>
+          <span class="test-dur">20ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] CircularProgressIndicator — variant [figma] indeterminate paints a busy spinner</span>
+          <span class="test-dur">28ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          
+          <span class="test-name">[figma] CircularProgressIndicator — variant [figma] resolver: variant + value contract</span>
+          <span class="test-dur">3ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] CircularProgressIndicator — appearance [figma] appearance=neutral renders with a painted indicator</span>
+          <span class="test-dur">19ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] CircularProgressIndicator — appearance [figma] appearance=neutral renders with a painted indicator</span>
+          <span class="test-dur">18ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] CircularProgressIndicator — appearance [figma] appearance=neutral renders with a painted indicator</span>
+          <span class="test-dur">18ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] CircularProgressIndicator — appearance [figma] appearance=primary renders with a painted indicator</span>
+          <span class="test-dur">20ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] CircularProgressIndicator — appearance [figma] appearance=primary renders with a painted indicator</span>
+          <span class="test-dur">18ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] CircularProgressIndicator — appearance [figma] appearance=primary renders with a painted indicator</span>
+          <span class="test-dur">17ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] CircularProgressIndicator — appearance [figma] appearance=secondary renders with a painted indicator</span>
+          <span class="test-dur">18ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] CircularProgressIndicator — appearance [figma] appearance=secondary renders with a painted indicator</span>
+          <span class="test-dur">18ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] CircularProgressIndicator — appearance [figma] appearance=secondary renders with a painted indicator</span>
+          <span class="test-dur">19ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] CircularProgressIndicator — appearance [figma] appearance=sparkle renders with a painted indicator</span>
+          <span class="test-dur">17ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] CircularProgressIndicator — appearance [figma] appearance=sparkle renders with a painted indicator</span>
+          <span class="test-dur">19ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] CircularProgressIndicator — appearance [figma] appearance=sparkle renders with a painted indicator</span>
+          <span class="test-dur">17ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] CircularProgressIndicator — appearance [figma] appearance=negative renders with a painted indicator</span>
+          <span class="test-dur">16ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] CircularProgressIndicator — appearance [figma] appearance=negative renders with a painted indicator</span>
+          <span class="test-dur">18ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] CircularProgressIndicator — appearance [figma] appearance=negative renders with a painted indicator</span>
+          <span class="test-dur">17ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] CircularProgressIndicator — appearance [figma] appearance=positive renders with a painted indicator</span>
+          <span class="test-dur">19ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] CircularProgressIndicator — appearance [figma] appearance=positive renders with a painted indicator</span>
+          <span class="test-dur">18ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] CircularProgressIndicator — appearance [figma] appearance=positive renders with a painted indicator</span>
+          <span class="test-dur">23ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] CircularProgressIndicator — appearance [figma] appearance=informative renders with a painted indicator</span>
+          <span class="test-dur">23ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] CircularProgressIndicator — appearance [figma] appearance=informative renders with a painted indicator</span>
+          <span class="test-dur">40ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] CircularProgressIndicator — appearance [figma] appearance=informative renders with a painted indicator</span>
+          <span class="test-dur">16ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] CircularProgressIndicator — appearance [figma] appearance=warning renders with a painted indicator</span>
+          <span class="test-dur">31ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] CircularProgressIndicator — appearance [figma] appearance=warning renders with a painted indicator</span>
+          <span class="test-dur">16ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] CircularProgressIndicator — appearance [figma] appearance=warning renders with a painted indicator</span>
+          <span class="test-dur">18ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          
+          <span class="test-name">[figma] CircularProgressIndicator — appearance [figma] appearance=auto resolves to primary</span>
+          <span class="test-dur">4ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] CircularProgressIndicator — content [figma] content=text renders % at M and above</span>
+          <span class="test-dur">68ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] CircularProgressIndicator — content [figma] content=text renders % at M and above</span>
+          <span class="test-dur">41ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] CircularProgressIndicator — content [figma] content=text renders % at M and above</span>
+          <span class="test-dur">41ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] CircularProgressIndicator — content [figma] content=text renders % at S and 2XS</span>
+          <span class="test-dur">29ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] CircularProgressIndicator — content [figma] content=text renders % at S and 2XS</span>
+          <span class="test-dur">27ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] CircularProgressIndicator — content [figma] content=text renders % at S and 2XS</span>
+          <span class="test-dur">30ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] CircularProgressIndicator — content [figma] content=icon renders the centre slot</span>
+          <span class="test-dur">16ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] CircularProgressIndicator — content [figma] content=icon renders the centre slot</span>
+          <span class="test-dur">17ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] CircularProgressIndicator — content [figma] content=icon renders the centre slot</span>
+          <span class="test-dur">15ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] CircularProgressIndicator — content [figma] content=none renders neither % nor child</span>
+          <span class="test-dur">14ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] CircularProgressIndicator — content [figma] content=none renders neither % nor child</span>
+          <span class="test-dur">15ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] CircularProgressIndicator — content [figma] content=none renders neither % nor child</span>
+          <span class="test-dur">14ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          
+          <span class="test-name">[figma] CircularProgressIndicator — min/max/value [figma] percentage normalises and clamps</span>
+          <span class="test-dur">3ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] CircularProgressIndicator — min/max/value [figma] sweep fraction tracks the normalised value</span>
+          <span class="test-dur">22ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] CircularProgressIndicator — min/max/value [figma] sweep fraction tracks the normalised value</span>
+          <span class="test-dur">17ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] CircularProgressIndicator — min/max/value [figma] sweep fraction tracks the normalised value</span>
+          <span class="test-dur">14ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] CircularProgressIndicator — size × variant matrix [figma] S / determinate</span>
+          <span class="test-dur">16ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] CircularProgressIndicator — size × variant matrix [figma] S / determinate</span>
+          <span class="test-dur">18ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] CircularProgressIndicator — size × variant matrix [figma] S / determinate</span>
+          <span class="test-dur">20ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] CircularProgressIndicator — size × variant matrix [figma] S / indeterminate</span>
+          <span class="test-dur">34ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] CircularProgressIndicator — size × variant matrix [figma] S / indeterminate</span>
+          <span class="test-dur">14ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] CircularProgressIndicator — size × variant matrix [figma] S / indeterminate</span>
+          <span class="test-dur">13ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] CircularProgressIndicator — size × variant matrix [figma] M / determinate</span>
+          <span class="test-dur">14ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] CircularProgressIndicator — size × variant matrix [figma] M / determinate</span>
+          <span class="test-dur">14ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] CircularProgressIndicator — size × variant matrix [figma] M / determinate</span>
+          <span class="test-dur">13ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] CircularProgressIndicator — size × variant matrix [figma] M / indeterminate</span>
+          <span class="test-dur">16ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] CircularProgressIndicator — size × variant matrix [figma] M / indeterminate</span>
+          <span class="test-dur">16ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] CircularProgressIndicator — size × variant matrix [figma] M / indeterminate</span>
+          <span class="test-dur">14ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] CircularProgressIndicator — size × variant matrix [figma] L / determinate</span>
+          <span class="test-dur">14ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] CircularProgressIndicator — size × variant matrix [figma] L / determinate</span>
+          <span class="test-dur">12ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] CircularProgressIndicator — size × variant matrix [figma] L / determinate</span>
+          <span class="test-dur">13ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] CircularProgressIndicator — size × variant matrix [figma] L / indeterminate</span>
+          <span class="test-dur">15ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] CircularProgressIndicator — size × variant matrix [figma] L / indeterminate</span>
+          <span class="test-dur">15ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] CircularProgressIndicator — size × variant matrix [figma] L / indeterminate</span>
+          <span class="test-dur">25ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] CircularProgressIndicator — size × variant matrix [figma] 3XL / determinate</span>
+          <span class="test-dur">13ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] CircularProgressIndicator — size × variant matrix [figma] 3XL / determinate</span>
+          <span class="test-dur">12ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] CircularProgressIndicator — size × variant matrix [figma] 3XL / determinate</span>
+          <span class="test-dur">14ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] CircularProgressIndicator — size × variant matrix [figma] 3XL / indeterminate</span>
+          <span class="test-dur">14ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] CircularProgressIndicator — size × variant matrix [figma] 3XL / indeterminate</span>
+          <span class="test-dur">16ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] CircularProgressIndicator — size × variant matrix [figma] 3XL / indeterminate</span>
+          <span class="test-dur">13ms</span>
+        </div>
+        
+      </div></div>
+    </details>
+<details class="file-block file-pass" data-component="circular_progress_indicator" open>
+      <summary class="file-summary">
+        <span class="file-icon">✓</span>
+        <span class="file-path">test/components/circular_progress_indicator/circular_progress_indicator_functional_test.dart</span>
+        <span class="file-counts">
+          <span class="pass-count">63 passed</span>
+          
+        </span>
+        <span class="file-dur">2.08s</span>
+      </summary>
+      <div class="suite-block"><div class="test-row passed" data-component="circular_progress_indicator" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[smoke] CircularProgressIndicator [smoke] indeterminate renders a ring</span>
+          <span class="test-dur">501ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[smoke] CircularProgressIndicator [smoke] indeterminate renders a ring</span>
+          <span class="test-dur">41ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[smoke] CircularProgressIndicator [smoke] indeterminate renders a ring</span>
+          <span class="test-dur">37ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[smoke] CircularProgressIndicator [smoke] determinate renders value</span>
+          <span class="test-dur">25ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[smoke] CircularProgressIndicator [smoke] determinate renders value</span>
+          <span class="test-dur">20ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[smoke] CircularProgressIndicator [smoke] determinate renders value</span>
+          <span class="test-dur">20ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[functional] CircularProgressIndicator — variant [fn] determinate paints a finite arc (not busy)</span>
+          <span class="test-dur">21ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[functional] CircularProgressIndicator — variant [fn] determinate paints a finite arc (not busy)</span>
+          <span class="test-dur">21ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[functional] CircularProgressIndicator — variant [fn] determinate paints a finite arc (not busy)</span>
+          <span class="test-dur">20ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[functional] CircularProgressIndicator — variant [fn] indeterminate paints a busy spinner</span>
+          <span class="test-dur">46ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[functional] CircularProgressIndicator — variant [fn] indeterminate paints a busy spinner</span>
+          <span class="test-dur">22ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[functional] CircularProgressIndicator — variant [fn] indeterminate paints a busy spinner</span>
+          <span class="test-dur">22ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[functional] CircularProgressIndicator — variant [fn] determinate WITHOUT a value coerces to indeterminate</span>
+          <span class="test-dur">20ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[functional] CircularProgressIndicator — variant [fn] determinate WITHOUT a value coerces to indeterminate</span>
+          <span class="test-dur">22ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[functional] CircularProgressIndicator — variant [fn] determinate WITHOUT a value coerces to indeterminate</span>
+          <span class="test-dur">21ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[functional] CircularProgressIndicator — value → sweep [fn] value=0 → empty arc, value=100 → full arc</span>
+          <span class="test-dur">64ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[functional] CircularProgressIndicator — value → sweep [fn] value=0 → empty arc, value=100 → full arc</span>
+          <span class="test-dur">38ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[functional] CircularProgressIndicator — value → sweep [fn] value=0 → empty arc, value=100 → full arc</span>
+          <span class="test-dur">37ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[functional] CircularProgressIndicator — value → sweep [fn] value=25 → quarter sweep</span>
+          <span class="test-dur">18ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[functional] CircularProgressIndicator — value → sweep [fn] value=25 → quarter sweep</span>
+          <span class="test-dur">19ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[functional] CircularProgressIndicator — value → sweep [fn] value=25 → quarter sweep</span>
+          <span class="test-dur">20ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[functional] CircularProgressIndicator — value → sweep [fn] value clamps above max and below min</span>
+          <span class="test-dur">33ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[functional] CircularProgressIndicator — value → sweep [fn] value clamps above max and below min</span>
+          <span class="test-dur">36ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[functional] CircularProgressIndicator — value → sweep [fn] value clamps above max and below min</span>
+          <span class="test-dur">35ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[functional] CircularProgressIndicator — value → sweep [fn] custom min/max normalises the sweep</span>
+          <span class="test-dur">18ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[functional] CircularProgressIndicator — value → sweep [fn] custom min/max normalises the sweep</span>
+          <span class="test-dur">19ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[functional] CircularProgressIndicator — value → sweep [fn] custom min/max normalises the sweep</span>
+          <span class="test-dur">19ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[functional] CircularProgressIndicator — size [fn] default size is M (20px diameter)</span>
+          <span class="test-dur">22ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[functional] CircularProgressIndicator — size [fn] default size is M (20px diameter)</span>
+          <span class="test-dur">20ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[functional] CircularProgressIndicator — size [fn] default size is M (20px diameter)</span>
+          <span class="test-dur">21ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[functional] CircularProgressIndicator — size [fn] diameter grows monotonically across the scale</span>
+          <span class="test-dur">79ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[functional] CircularProgressIndicator — size [fn] diameter grows monotonically across the scale</span>
+          <span class="test-dur">67ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[functional] CircularProgressIndicator — size [fn] diameter grows monotonically across the scale</span>
+          <span class="test-dur">70ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[functional] CircularProgressIndicator — content [fn] content=text shows the percentage at size L</span>
+          <span class="test-dur">55ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[functional] CircularProgressIndicator — content [fn] content=text shows the percentage at size L</span>
+          <span class="test-dur">26ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[functional] CircularProgressIndicator — content [fn] content=text shows the percentage at size L</span>
+          <span class="test-dur">26ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[functional] CircularProgressIndicator — content [fn] content=text renders the percentage at size M</span>
+          <span class="test-dur">17ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[functional] CircularProgressIndicator — content [fn] content=text renders the percentage at size M</span>
+          <span class="test-dur">20ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[functional] CircularProgressIndicator — content [fn] content=text renders the percentage at size M</span>
+          <span class="test-dur">20ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[functional] CircularProgressIndicator — content [fn] content=text renders the percentage at size S</span>
+          <span class="test-dur">20ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[functional] CircularProgressIndicator — content [fn] content=text renders the percentage at size S</span>
+          <span class="test-dur">20ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[functional] CircularProgressIndicator — content [fn] content=text renders the percentage at size S</span>
+          <span class="test-dur">27ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[functional] CircularProgressIndicator — content [fn] content=icon renders the child slot</span>
+          <span class="test-dur">22ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[functional] CircularProgressIndicator — content [fn] content=icon renders the child slot</span>
+          <span class="test-dur">27ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[functional] CircularProgressIndicator — content [fn] content=icon renders the child slot</span>
+          <span class="test-dur">17ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[functional] CircularProgressIndicator — content [fn] content=none renders no centre text</span>
+          <span class="test-dur">16ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[functional] CircularProgressIndicator — content [fn] content=none renders no centre text</span>
+          <span class="test-dur">16ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[functional] CircularProgressIndicator — content [fn] content=none renders no centre text</span>
+          <span class="test-dur">17ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[functional] CircularProgressIndicator — colour overrides [fn] indicatorColor override is painted</span>
+          <span class="test-dur">17ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[functional] CircularProgressIndicator — colour overrides [fn] indicatorColor override is painted</span>
+          <span class="test-dur">15ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[functional] CircularProgressIndicator — colour overrides [fn] indicatorColor override is painted</span>
+          <span class="test-dur">15ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[functional] CircularProgressIndicator — colour overrides [fn] trackColor override is painted</span>
+          <span class="test-dur">15ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[functional] CircularProgressIndicator — colour overrides [fn] trackColor override is painted</span>
+          <span class="test-dur">16ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[functional] CircularProgressIndicator — colour overrides [fn] trackColor override is painted</span>
+          <span class="test-dur">16ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[functional] CircularProgressIndicator — colour overrides [fn] indicator and track default to distinct colours</span>
+          <span class="test-dur">15ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[functional] CircularProgressIndicator — colour overrides [fn] indicator and track default to distinct colours</span>
+          <span class="test-dur">14ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[functional] CircularProgressIndicator — colour overrides [fn] indicator and track default to distinct colours</span>
+          <span class="test-dur">17ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[functional] CircularProgressIndicator — show [fn] show=false collapses the ring</span>
+          <span class="test-dur">15ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[functional] CircularProgressIndicator — show [fn] show=false collapses the ring</span>
+          <span class="test-dur">20ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[functional] CircularProgressIndicator — show [fn] show=false collapses the ring</span>
+          <span class="test-dur">15ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[functional] CircularProgressIndicator — show [fn] show=true renders the ring</span>
+          <span class="test-dur">18ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[functional] CircularProgressIndicator — show [fn] show=true renders the ring</span>
+          <span class="test-dur">17ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[functional] CircularProgressIndicator — show [fn] show=true renders the ring</span>
+          <span class="test-dur">15ms</span>
+        </div>
+        
+      </div></div>
+    </details>
+<details class="file-block file-pass" data-component="circular_progress_indicator" open>
+      <summary class="file-summary">
+        <span class="file-icon">✓</span>
+        <span class="file-path">test/components/circular_progress_indicator/circular_progress_indicator_golden_dark_test.dart</span>
+        <span class="file-counts">
+          <span class="pass-count">5 passed</span>
+          
+        </span>
+        <span class="file-dur">0.79s</span>
+      </summary>
+      <div class="suite-block"><div class="test-row passed" data-component="circular_progress_indicator" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] CPI dark — appearance dark / primary</span>
+          <span class="test-dur">473ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] CPI dark — appearance dark / secondary</span>
+          <span class="test-dur">40ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] CPI dark — appearance dark / positive</span>
+          <span class="test-dur">116ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] CPI dark — appearance dark / negative</span>
+          <span class="test-dur">39ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] CPI dark — content text dark / text</span>
+          <span class="test-dur">118ms</span>
+        </div>
+        
+      </div></div>
+    </details>
+<details class="file-block file-pass" data-component="circular_progress_indicator" open>
+      <summary class="file-summary">
+        <span class="file-icon">✓</span>
+        <span class="file-path">test/components/circular_progress_indicator/circular_progress_indicator_golden_surface_test.dart</span>
+        <span class="file-counts">
+          <span class="pass-count">5 passed</span>
+          
+        </span>
+        <span class="file-dur">0.95s</span>
+      </summary>
+      <div class="suite-block"><div class="test-row passed" data-component="circular_progress_indicator" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] CPI — surface context (bold) bold / primary</span>
+          <span class="test-dur">613ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] CPI — surface context (bold) bold / secondary</span>
+          <span class="test-dur">139ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] CPI — surface context (bold) bold / negative</span>
+          <span class="test-dur">74ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] CPI — surface context (subtle) subtle / primary</span>
+          <span class="test-dur">66ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] CPI — surface context (subtle) subtle / secondary</span>
+          <span class="test-dur">62ms</span>
+        </div>
+        
+      </div></div>
+    </details>
+<details class="file-block file-pass" data-component="circular_progress_indicator" open>
+      <summary class="file-summary">
+        <span class="file-icon">✓</span>
+        <span class="file-path">test/components/circular_progress_indicator/circular_progress_indicator_golden_test.dart</span>
+        <span class="file-counts">
+          <span class="pass-count">17 passed</span>
+          
+        </span>
+        <span class="file-dur">1.79s</span>
+      </summary>
+      <div class="suite-block"><div class="test-row passed" data-component="circular_progress_indicator" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] CPI — determinate value steps value 0</span>
+          <span class="test-dur">826ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] CPI — determinate value steps value 25</span>
+          <span class="test-dur">92ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] CPI — determinate value steps value 50</span>
+          <span class="test-dur">46ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] CPI — determinate value steps value 75</span>
+          <span class="test-dur">82ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] CPI — determinate value steps value 100</span>
+          <span class="test-dur">82ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] CPI — sizes size S</span>
+          <span class="test-dur">65ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] CPI — sizes size M</span>
+          <span class="test-dur">78ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] CPI — sizes size L</span>
+          <span class="test-dur">44ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] CPI — sizes size XL</span>
+          <span class="test-dur">41ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] CPI — sizes size 3XL</span>
+          <span class="test-dur">46ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] CPI — appearance appearance primary</span>
+          <span class="test-dur">55ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] CPI — appearance appearance secondary</span>
+          <span class="test-dur">38ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] CPI — appearance appearance positive</span>
+          <span class="test-dur">37ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] CPI — appearance appearance negative</span>
+          <span class="test-dur">38ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] CPI — appearance appearance warning</span>
+          <span class="test-dur">37ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] CPI — content text</span>
+          <span class="test-dur">47ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] CPI — content icon</span>
+          <span class="test-dur">132ms</span>
+        </div>
+        
+      </div></div>
+    </details>
+<details class="file-block file-pass" data-component="circular_progress_indicator" open>
+      <summary class="file-summary">
+        <span class="file-icon">✓</span>
+        <span class="file-path">test/components/circular_progress_indicator/circular_progress_indicator_platform_test.dart</span>
+        <span class="file-counts">
+          <span class="pass-count">16 passed</span>
+          
+        </span>
+        <span class="file-dur">1.45s</span>
+      </summary>
+      <div class="suite-block"><div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[platform][mobile] CircularProgressIndicator [mobile] determinate announces &quot;N percent&quot;</span>
+          <span class="test-dur">814ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[platform][mobile] CircularProgressIndicator [mobile] determinate announces &quot;N percent&quot;</span>
+          <span class="test-dur">102ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[platform][mobile] CircularProgressIndicator [mobile] indeterminate is busy (no value)</span>
+          <span class="test-dur">41ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[platform][mobile] CircularProgressIndicator [mobile] indeterminate is busy (no value)</span>
+          <span class="test-dur">37ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[platform][mobile] CircularProgressIndicator [mobile] ring lays out at its resolved diameter</span>
+          <span class="test-dur">83ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[platform][mobile] CircularProgressIndicator [mobile] ring lays out at its resolved diameter</span>
+          <span class="test-dur">34ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[platform][mobile] CircularProgressIndicator [mobile] indeterminate keeps animating across frames</span>
+          <span class="test-dur">57ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[platform][mobile] CircularProgressIndicator [mobile] indeterminate keeps animating across frames</span>
+          <span class="test-dur">34ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[platform][web] CircularProgressIndicator [web] determinate exposes the value string</span>
+          <span class="test-dur">67ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">macos</span>
+          <span class="test-name">[platform][web] CircularProgressIndicator [web] determinate exposes the value string (macOS)</span>
+          <span class="test-dur">23ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[platform][web] CircularProgressIndicator [web] aria-live polite drives a live region</span>
+          <span class="test-dur">26ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">macos</span>
+          <span class="test-name">[platform][web] CircularProgressIndicator [web] aria-live polite drives a live region (macOS)</span>
+          <span class="test-dur">28ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[platform][web] CircularProgressIndicator [web] status indicator does not steal keyboard focus</span>
+          <span class="test-dur">23ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">macos</span>
+          <span class="test-name">[platform][web] CircularProgressIndicator [web] status indicator does not steal keyboard focus (macOS)</span>
+          <span class="test-dur">25ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[platform][web] CircularProgressIndicator [web] ring lays out at its resolved diameter</span>
+          <span class="test-dur">24ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">macos</span>
+          <span class="test-name">[platform][web] CircularProgressIndicator [web] ring lays out at its resolved diameter (macOS)</span>
+          <span class="test-dur">30ms</span>
+        </div>
+        
+      </div></div>
+    </details>
+<details class="file-block file-pass" data-component="circular_progress_indicator" open>
+      <summary class="file-summary">
+        <span class="file-icon">✓</span>
+        <span class="file-path">test/components/circular_progress_indicator/circular_progress_indicator_regression_test.dart</span>
+        <span class="file-counts">
+          <span class="pass-count">28 passed</span>
+          
+        </span>
+        <span class="file-dur">1.62s</span>
+      </summary>
+      <div class="suite-block"><div class="test-row passed" data-component="circular_progress_indicator" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[regression][confirmed] CircularProgressIndicator [fn] [CPI-FN-001] testId is exposed via Semantics.identifier (cross-platform locators)</span>
+          <span class="test-dur">566ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[regression][confirmed] CircularProgressIndicator [fn] [CPI-FN-001] testId is exposed via Semantics.identifier (cross-platform locators)</span>
+          <span class="test-dur">119ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[regression][confirmed] CircularProgressIndicator [fn] [CPI-FN-001] testId is exposed via Semantics.identifier (cross-platform locators)</span>
+          <span class="test-dur">59ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[regression][debatable] CircularProgressIndicator [fn] [CPI-DEB-001] invalid appearance asserts in debug (web has TS union)</span>
+          <span class="test-dur">54ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[regression][debatable] CircularProgressIndicator [fn] [CPI-DEB-001] invalid appearance asserts in debug (web has TS union)</span>
+          <span class="test-dur">35ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[regression][debatable] CircularProgressIndicator [fn] [CPI-DEB-001] invalid appearance asserts in debug (web has TS union)</span>
+          <span class="test-dur">35ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[regression][debatable] CircularProgressIndicator [a11y] [CPI-DEB-002] an unlabelled progressbar asserts in debug (WCAG 4.1.2)</span>
+          <span class="test-dur">31ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[regression][debatable] CircularProgressIndicator [a11y] [CPI-DEB-002] an unlabelled progressbar asserts in debug (WCAG 4.1.2)</span>
+          <span class="test-dur">32ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[regression][debatable] CircularProgressIndicator [a11y] [CPI-DEB-002] an unlabelled progressbar asserts in debug (WCAG 4.1.2)</span>
+          <span class="test-dur">26ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[parity] CircularProgressIndicator — matches the web contract [parity] [CPI-PAR-001] determinate announces &quot;N percent&quot;</span>
+          <span class="test-dur">34ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[parity] CircularProgressIndicator — matches the web contract [parity] [CPI-PAR-001] determinate announces &quot;N percent&quot;</span>
+          <span class="test-dur">45ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[parity] CircularProgressIndicator — matches the web contract [parity] [CPI-PAR-001] determinate announces &quot;N percent&quot;</span>
+          <span class="test-dur">35ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[parity] CircularProgressIndicator — matches the web contract [parity] [CPI-PAR-002] indeterminate omits the value (busy)</span>
+          <span class="test-dur">102ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[parity] CircularProgressIndicator — matches the web contract [parity] [CPI-PAR-002] indeterminate omits the value (busy)</span>
+          <span class="test-dur">85ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[parity] CircularProgressIndicator — matches the web contract [parity] [CPI-PAR-002] indeterminate omits the value (busy)</span>
+          <span class="test-dur">29ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          
+          <span class="test-name">[parity] CircularProgressIndicator — matches the web contract [parity] [CPI-PAR-003] value clamps to [min, max] and normalises</span>
+          <span class="test-dur">4ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          
+          <span class="test-name">[parity] CircularProgressIndicator — matches the web contract [parity] [CPI-PAR-004] determinate without a value coerces to indeterminate</span>
+          <span class="test-dur">4ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          
+          <span class="test-name">[parity] CircularProgressIndicator — matches the web contract [parity] [CPI-PAR-005] appearance=auto resolves to primary</span>
+          <span class="test-dur">3ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[parity] CircularProgressIndicator — matches the web contract [parity] [CPI-PAR-006] ariaHidden collapses the semantics tree</span>
+          <span class="test-dur">27ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[parity] CircularProgressIndicator — matches the web contract [parity] [CPI-PAR-006] ariaHidden collapses the semantics tree</span>
+          <span class="test-dur">21ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[parity] CircularProgressIndicator — matches the web contract [parity] [CPI-PAR-006] ariaHidden collapses the semantics tree</span>
+          <span class="test-dur">23ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[parity] CircularProgressIndicator — matches the web contract [parity] [CPI-PAR-007] show=false removes the ring + semantics</span>
+          <span class="test-dur">30ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[parity] CircularProgressIndicator — matches the web contract [parity] [CPI-PAR-007] show=false removes the ring + semantics</span>
+          <span class="test-dur">78ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[parity] CircularProgressIndicator — matches the web contract [parity] [CPI-PAR-007] show=false removes the ring + semantics</span>
+          <span class="test-dur">23ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[parity] CircularProgressIndicator — matches the web contract [parity] [CPI-PAR-008] indicatorColor override reaches the painter</span>
+          <span class="test-dur">38ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[parity] CircularProgressIndicator — matches the web contract [parity] [CPI-PAR-008] indicatorColor override reaches the painter</span>
+          <span class="test-dur">44ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[parity] CircularProgressIndicator — matches the web contract [parity] [CPI-PAR-008] indicatorColor override reaches the painter</span>
+          <span class="test-dur">32ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          
+          <span class="test-name">[regression][meta] CircularProgressIndicator [meta] attribution counts</span>
+          <span class="test-dur">4ms</span>
+        </div>
+        
+      </div></div>
+    </details>
+<details class="file-block file-pass" data-component="circular_progress_indicator" open>
+      <summary class="file-summary">
+        <span class="file-icon">✓</span>
+        <span class="file-path">test/components/circular_progress_indicator/circular_progress_indicator_story_catalog_test.dart</span>
+        <span class="file-counts">
+          <span class="pass-count">2 passed</span>
+          
+        </span>
+        <span class="file-dur">0.02s</span>
+      </summary>
+      <div class="suite-block"><div class="test-row passed" data-component="circular_progress_indicator" data-tier="catalog">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-catalog">CATALOG</span>
+          
+          <span class="test-name">[catalog] CircularProgressIndicator Storybook parity [catalog] kCircularProgressIndicatorStoryNavOrder matches web export order</span>
+          <span class="test-dur">15ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="catalog">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-catalog">CATALOG</span>
+          
+          <span class="test-name">[catalog] CircularProgressIndicator Storybook parity [catalog] every catalog entry has a non-empty description</span>
+          <span class="test-dur">2ms</span>
+        </div>
+        
+      </div></div>
+    </details>
+<details class="file-block file-pass" data-component="circular_progress_indicator" open>
+      <summary class="file-summary">
+        <span class="file-icon">✓</span>
+        <span class="file-path">test/components/circular_progress_indicator/circular_progress_indicator_visual_regression_test.dart</span>
+        <span class="file-counts">
+          <span class="pass-count">10 passed</span>
+          
+        </span>
+        <span class="file-dur">1.36s</span>
+      </summary>
+      <div class="suite-block"><div class="test-row passed" data-component="circular_progress_indicator" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[regression][confirmed] CircularProgressIndicator — visual [visual] [CPI-VIS-001] value=0 must not paint a minimum indicator arc</span>
+          <span class="test-dur">16ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[regression][confirmed] CircularProgressIndicator — visual [visual] [CPI-VIS-002a] content=text centre fits inner ring (2XS–M)</span>
+          <span class="test-dur">720ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[regression][confirmed] CircularProgressIndicator — visual [visual] [CPI-VIS-002a] content=text centre fits inner ring (2XS–M)</span>
+          <span class="test-dur">129ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[regression][confirmed] CircularProgressIndicator — visual [visual] [CPI-VIS-002a] content=text centre fits inner ring (2XS–M)</span>
+          <span class="test-dur">95ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[regression][confirmed] CircularProgressIndicator — visual [visual] [CPI-VIS-002b] content=icon slot matches web CSS (2XS–S)</span>
+          <span class="test-dur">166ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[regression][confirmed] CircularProgressIndicator — visual [visual] [CPI-VIS-002b] content=icon slot matches web CSS (2XS–S)</span>
+          <span class="test-dur">110ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[regression][confirmed] CircularProgressIndicator — visual [visual] [CPI-VIS-002b] content=icon slot matches web CSS (2XS–S)</span>
+          <span class="test-dur">43ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[regression][confirmed] CircularProgressIndicator — visual [visual] [CPI-VIS-002c] content=icon centre fits inner ring at M</span>
+          <span class="test-dur">24ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[regression][confirmed] CircularProgressIndicator — visual [visual] [CPI-VIS-002c] content=icon centre fits inner ring at M</span>
+          <span class="test-dur">28ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="circular_progress_indicator" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[regression][confirmed] CircularProgressIndicator — visual [visual] [CPI-VIS-002c] content=icon centre fits inner ring at M</span>
+          <span class="test-dur">33ms</span>
+        </div>
+        
+      </div></div>
+    </details>
+  </div>
+  <div class="footer">Generated by <code>generate-html-report.mts</code> · OneUI QA Playground Flutter</div>
+  <script>
+    function applyFilters() {
+      var comp = document.getElementById('comp-filter').value;
+      var tier = document.getElementById('tier-filter').value;
+      document.querySelectorAll('.file-block').forEach(function(block) {
+        var bc = block.getAttribute('data-component');
+        var showFile = (!comp || bc === comp);
+        if (showFile && tier) {
+          var rows = block.querySelectorAll('.test-row');
+          var any = false;
+          rows.forEach(function(row) {
+            var match = row.getAttribute('data-tier') === tier;
+            row.style.display = match ? '' : 'none';
+            if (match) any = true;
+          });
+          block.style.display = any ? '' : 'none';
+        } else {
+          block.style.display = showFile ? '' : 'none';
+          block.querySelectorAll('.test-row').forEach(function(row) { row.style.display = ''; });
+        }
+      });
+    }
+  </script>
+</body>
+</html>

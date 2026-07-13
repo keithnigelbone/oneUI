@@ -1,0 +1,217 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "HeaderItem",
+  "generatedAt": "2026-07-09T13:07:37.431Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "A single SecondaryNav tab (Figma Header.Item). Renders a text label with optional start/end icon slots; `active` selects the current tab."
+  },
+  "compositionRules": {
+    "requires": [
+      "value",
+      "children"
+    ],
+    "allows": [],
+    "forbids": [],
+    "childKind": "leaf"
+  },
+  "props": [
+    {
+      "name": "value",
+      "type": "string",
+      "required": true,
+      "description": "Stable tab identifier (not visible). Figma has no equivalent — derive from the label."
+    },
+    {
+      "name": "children",
+      "type": "string",
+      "required": true,
+      "description": "Visible tab label text."
+    },
+    {
+      "name": "active",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": "Selected/current tab."
+    },
+    {
+      "name": "attention",
+      "type": "'low' | 'medium' | 'high'",
+      "required": false,
+      "defaultValue": "low",
+      "description": "Label emphasis. Figma commonly sets medium for the active tab, low for the rest."
+    },
+    {
+      "name": "start",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Leading icon slot."
+    },
+    {
+      "name": "startSize",
+      "type": "'none' | 'S' | 'M'",
+      "required": false,
+      "defaultValue": "none",
+      "description": ""
+    },
+    {
+      "name": "end",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Trailing icon slot."
+    },
+    {
+      "name": "endSize",
+      "type": "'none' | 'S' | 'M'",
+      "required": false,
+      "defaultValue": "none",
+      "description": ""
+    },
+    {
+      "name": "visuallyAlignToStart",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": "Left-aligns the label instead of centering it."
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "onPress",
+      "type": "ReactNode",
+      "required": false,
+      "description": "RN press handler."
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": false,
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.kb.rn.HeaderItem",
+    "type": "object",
+    "required": [
+      "value",
+      "children"
+    ],
+    "properties": {
+      "value": {
+        "type": "string",
+        "description": "Stable tab identifier (not visible). Figma has no equivalent — derive from the label."
+      },
+      "children": {
+        "type": "string",
+        "description": "Visible tab label text."
+      },
+      "active": {
+        "type": "boolean",
+        "default": false,
+        "description": "Selected/current tab."
+      },
+      "attention": {
+        "enum": [
+          "low",
+          "medium",
+          "high"
+        ],
+        "default": "low",
+        "description": "Label emphasis. Figma commonly sets medium for the active tab, low for the rest."
+      },
+      "start": {
+        "description": "Leading icon slot."
+      },
+      "startSize": {
+        "enum": [
+          "none",
+          "S",
+          "M"
+        ],
+        "default": "none"
+      },
+      "end": {
+        "description": "Trailing icon slot."
+      },
+      "endSize": {
+        "enum": [
+          "none",
+          "S",
+          "M"
+        ],
+        "default": "none"
+      },
+      "visuallyAlignToStart": {
+        "type": "boolean",
+        "default": false,
+        "description": "Left-aligns the label instead of centering it."
+      },
+      "disabled": {
+        "type": "boolean",
+        "default": false
+      },
+      "onPress": {
+        "description": "RN press handler."
+      },
+      "aria-label": {
+        "type": "string"
+      }
+    }
+  },
+  "tokens": {
+    "color": [
+      "neutral"
+    ],
+    "typography": [
+      "label.S"
+    ]
+  },
+  "a11y": {
+    "accessibilityRole": "tab",
+    "accessibleNameSource": "children",
+    "minTouchTarget": 44,
+    "honorsBoldText": true,
+    "honorsScreenReader": true
+  },
+  "renderHints": {
+    "baseElement": "Pressable",
+    "animatedOn": [
+      "press"
+    ],
+    "honorsReduceMotion": true,
+    "readsFromSurfaceContext": true
+  },
+  "figma": {
+    "componentKey": "jds-header-item-v1",
+    "keyHistory": [],
+    "variantProperties": {
+      "Component": "Header.Item"
+    }
+  },
+  "codeSnippets": [
+    {
+      "id": "import-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { HeaderItem } from '@oneui/ui-native';\n\n<HeaderItem />"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "headeritem",
+    "navigation",
+    "header",
+    "tab",
+    "compound"
+  ],
+  "importPath": "@oneui/ui-native"
+}

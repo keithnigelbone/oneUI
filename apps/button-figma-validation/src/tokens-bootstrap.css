@@ -1,0 +1,46 @@
+/**
+ * Token bootstrap — order mirrors `apps/qa-playground/src/index.css` / Storybook preview
+ * (layers → scale → typography → primitives → semantic → themes → density → materials → shirt aliases).
+ */
+
+@import '../../../packages/tokens/src/css/layers.css';
+
+@import '../../../packages/tokens/src/css/dimensions/scale.css';
+@import '../../../packages/tokens/src/css/dimensions/grid.css';
+
+@import '../../../packages/tokens/src/css/typography/typography.css';
+
+@import '../../../packages/tokens/src/css/primitives.css';
+@import '../../../packages/tokens/src/css/semantic.css';
+
+@import '../../../packages/tokens/src/css/themes/light.css';
+@import '../../../packages/tokens/src/css/themes/dark.css';
+
+@import '../../../packages/tokens/src/css/density/compact.css';
+@import '../../../packages/tokens/src/css/density/open.css';
+
+@import '../../../packages/tokens/src/css/materials.css';
+
+@import './legacy-spacing-shape-aliases.css';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+}
+
+body {
+  font-family: var(--Typography-Font-Primary, system-ui);
+  font-feature-settings: var(--Typography-Features-Primary);
+  letter-spacing: var(--Body-LetterSpacing, 0);
+  font-optical-sizing: var(--Body-FontOpticalSizing, auto);
+  background-color: var(--Surface-Default);
+  color: var(--Text-High);
+}

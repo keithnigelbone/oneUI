@@ -1,0 +1,30 @@
+import React, { forwardRef } from 'react';
+import type { IconComponentProps } from '../iconProps';
+
+export const IcWatermelon = forwardRef<SVGSVGElement, IconComponentProps>(function IcWatermelon(
+  { size = 24, width, height, color = 'currentColor', className, style, ...props },
+  ref,
+) {
+  const dim = width ?? height ?? size;
+  return (
+    <svg
+      ref={ref}
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      width={width ?? dim}
+      height={height ?? dim}
+      color={color}
+      className={className}
+      style={style}
+      {...props}
+    >
+      <path
+            fill="currentColor"
+            d="M20 6.84a9.74 9.74 0 0 0-2.89-3.45A2 2 0 0 0 15.9 3a2 2 0 0 0-1.19.39l1.95 1.95A8 8 0 1 1 5.34 16.65L3.39 14.7A2 2 0 0 0 3 15.89a2 2 0 0 0 .39 1.19A9.78 9.78 0 0 0 21 11.21a9.6 9.6 0 0 0-1-4.37M8.72 16.55A6.2 6.2 0 0 0 11 17a6 6 0 0 0 5.54-3.7 6.06 6.06 0 0 0 .34-3.47 6 6 0 0 0-1.64-3.07l-2-2-8.45 8.5 2 2a6.1 6.1 0 0 0 1.93 1.29m3.57-8.27A1.05 1.05 0 0 1 13 8a1 1 0 0 1 .56.17 1 1 0 0 1 .36.45 1 1 0 0 1 .06.58 1 1 0 0 1-.78.78 1 1 0 0 1-.58-.05A1 1 0 0 1 12 9a1.05 1.05 0 0 1 .29-.72m0 4A1.05 1.05 0 0 1 13 12a1 1 0 0 1 .56.17 1 1 0 0 1 .36.45 1 1 0 0 1 .06.58 1 1 0 0 1-.78.78 1 1 0 0 1-.58-.06 1 1 0 0 1-.45-.36A1 1 0 0 1 12 13a1.05 1.05 0 0 1 .29-.72m-4 0A1.05 1.05 0 0 1 9 12a1 1 0 0 1 .56.17c.162.113.29.269.37.45a1 1 0 0 1 .05.58 1 1 0 0 1-.78.8 1 1 0 0 1-.58-.06 1 1 0 0 1-.45-.36A1 1 0 0 1 8 13a1.05 1.05 0 0 1 .29-.72"
+          />
+    </svg>
+  );
+});
+
+IcWatermelon.displayName = 'IcWatermelon';

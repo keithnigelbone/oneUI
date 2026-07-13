@@ -1,0 +1,69 @@
+/**
+ * Toggle.module.css
+ * Token-only styling for Toggle component
+ * Verified by: pnpm check:literals
+ */
+
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: var(--Stroke-M) solid var(--Border-Default);
+  border-radius: var(--Shape-4);
+  background-color: transparent;
+  color: var(--Text-Medium);
+  cursor: pointer;
+  outline: none;
+  font-family: inherit;
+  min-width: var(--Touch-Target-Min);
+  min-height: var(--Touch-Target-Min);
+  transition: all var(--Motion-Duration-Discreet-Short) var(--Motion-Easing-Standard);
+}
+
+.toggle[data-pressed] {
+  background-color: var(--Primary-Bold, var(--Surface-Bold));
+  color: var(--Primary-Bold-High, var(--Text-OnBold-High));
+  border-color: var(--Primary-Bold, var(--Surface-Bold));
+}
+
+.toggle:hover:not([data-disabled]) {
+  background-color: var(--Surface-Minimal);
+}
+
+.toggle[data-pressed]:hover:not([data-disabled]) {
+  background-color: var(--Primary-Bold, var(--Surface-Bold));
+  opacity: 0.85;
+}
+
+.toggle[data-disabled] {
+  opacity: var(--Disabled-Opacity);
+  cursor: not-allowed;
+}
+
+.toggle:focus {
+  outline: none;
+}
+
+.toggle:focus-visible {
+  outline: var(--Focus-Outline-Width) solid var(--Focus-Outline);
+  outline-offset: var(--Stroke-M);
+}
+
+/* Sizes */
+.small {
+  padding: var(--Spacing-2) var(--Spacing-3-5);
+  font-size: var(--Body-S-FontSize);
+  white-space: nowrap;
+}
+
+.medium {
+  padding: var(--Spacing-2-5) var(--Spacing-4);
+  font-size: var(--Body-M-FontSize);
+  white-space: nowrap;
+}
+
+.large {
+  padding: var(--Spacing-3) var(--Spacing-4-5);
+  font-size: var(--Body-L-FontSize);
+  white-space: nowrap;
+}

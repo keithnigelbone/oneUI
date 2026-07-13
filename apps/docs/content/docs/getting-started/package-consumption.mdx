@@ -1,0 +1,22 @@
+---
+title: Package Consumption
+description: What teams should import, what is supported, and what remains outside the alpha contract.
+---
+
+The Jio web alpha is not a duplication of the monorepo. It is the monorepo design system made consumable as controlled packages:
+
+- `@oneui/ui` for React web components.
+- `@oneui/tokens` for the CSS token cascade.
+- `@oneui/shared` for shared types and metadata contracts.
+
+## Supported Surface
+
+The alpha-supported components are exactly the entries in `JIO_WEB_ALPHA_COMPONENTS`. Components listed as experimental or internal can exist in Storybook, but they are not part of the supported adopter contract.
+
+Use the component pages in this site for supported imports, props, slots, surface-awareness, and multi-accent support.
+
+## Validation Scope
+
+The release is web-only and validated with the Jio brand. React Native parity, platform-app authoring workflows, and experimental Storybook components remain outside this first alpha gate.
+
+Before cutting or updating the alpha package, run the release checks listed in the Jio web alpha release page.

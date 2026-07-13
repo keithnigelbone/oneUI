@@ -1,0 +1,113 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "CarouselSlideContent",
+  "generatedAt": "2026-07-09T13:07:37.429Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "Slide text/CTA overlay block — headline/body copy and an optional CarouselSlideButtonGroup."
+  },
+  "compositionRules": {
+    "requires": [
+      "children"
+    ],
+    "allows": [],
+    "forbids": [],
+    "childKind": "fixed-slots"
+  },
+  "props": [
+    {
+      "name": "alignment",
+      "type": "'startBottom' | 'startMiddle' | 'middleBottom' | 'middleMiddle' | 'middleTop'",
+      "required": false,
+      "defaultValue": "startBottom",
+      "description": ""
+    },
+    {
+      "name": "width",
+      "type": "'fill' | 's' | 'm' | 'l'",
+      "required": false,
+      "defaultValue": "fill",
+      "description": ""
+    },
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "required": true,
+      "description": "Headline/body Text + an optional CarouselSlideButtonGroup."
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.kb.rn.CarouselSlideContent",
+    "type": "object",
+    "required": [
+      "children"
+    ],
+    "properties": {
+      "alignment": {
+        "enum": [
+          "startBottom",
+          "startMiddle",
+          "middleBottom",
+          "middleMiddle",
+          "middleTop"
+        ],
+        "default": "startBottom"
+      },
+      "width": {
+        "enum": [
+          "fill",
+          "s",
+          "m",
+          "l"
+        ],
+        "default": "fill"
+      },
+      "children": {
+        "description": "Headline/body Text + an optional CarouselSlideButtonGroup."
+      }
+    }
+  },
+  "tokens": {
+    "spacing": [],
+    "typography": [
+      "headline.L",
+      "label.S"
+    ]
+  },
+  "a11y": {
+    "accessibilityRole": "none",
+    "accessibleNameSource": "children",
+    "minTouchTarget": 44,
+    "honorsBoldText": true,
+    "honorsScreenReader": true
+  },
+  "renderHints": {
+    "baseElement": "View",
+    "animatedOn": [],
+    "honorsReduceMotion": false,
+    "readsFromSurfaceContext": true
+  },
+  "figma": {
+    "componentKey": "jds-carousel-slide-content-v1",
+    "keyHistory": []
+  },
+  "codeSnippets": [
+    {
+      "id": "import-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { CarouselSlideContent } from '@oneui/ui-native';\n\n<CarouselSlideContent />"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "carouselslidecontent",
+    "carousel",
+    "compound",
+    "surface-aware"
+  ],
+  "importPath": "@oneui/ui-native"
+}

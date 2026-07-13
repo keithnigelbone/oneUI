@@ -1,0 +1,16 @@
+import * as React from 'react';
+import type { SVGProps } from 'react';
+const SvgIcBloodVessels = (props: SVGProps<SVGSVGElement>) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    {...props}
+  >
+    <path
+      fill="currentColor"
+      d="M19 13c.55 0 1-.45 1-1s-.45-1-1-1h-1V9h1c.55 0 1-.45 1-1s-.45-1-1-1h-1l-.13.03C17.43 5.3 15.87 4 14 4V3c0-.55-.45-1-1-1h-2c-.55 0-1 .45-1 1v5c-2.21 0-4 1.79-4 4v3H5c-.55 0-1 .45-1 1s.45 1 1 1h1v1c0 .55-.45 1-1 1s-1 .45-1 1 .45 1 1 1c1.65 0 3-1.35 3-3v-6c0-1.1.9-2 2-2v11c0 .55.45 1 1 1h2c.55 0 1-.45 1-1V6c1.1 0 2 .9 2 2v6c0 1.65 1.35 3 3 3 .55 0 1-.45 1-1s-.45-1-1-1-1-.45-1-1v-1z"
+    />
+  </svg>
+);
+export default SvgIcBloodVessels;

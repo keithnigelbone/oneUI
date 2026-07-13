@@ -1,0 +1,425 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "LinkButton",
+  "generatedAt": "2026-01-01T00:00:00.000Z",
+  "machineReadable": true,
+  "intentAndPurpose": {
+    "intent": {
+      "value": "Inline text-styled button that triggers actions — visually resembles a link but is semantically a button.",
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "taskContexts": {
+      "value": [
+        "inline-action",
+        "contextual-action",
+        "secondary-action"
+      ],
+      "attribution": {
+        "source": "authored"
+      }
+    },
+    "sentiments": {
+      "value": [
+        "neutral",
+        "positive",
+        "negative"
+      ],
+      "attribution": {
+        "source": "authored"
+      }
+    }
+  },
+  "compositionRules": {
+    "requires": {
+      "value": [
+        "label text"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "allows": {
+      "value": [
+        "start/end icon slots",
+        "loading state"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "forbids": {
+      "value": [
+        "use for actual page navigation (use Link instead)",
+        "icon-only content without label"
+      ],
+      "attribution": {
+        "source": "authored"
+      }
+    }
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "bold",
+        "useWhen": {
+          "value": [
+            "prominent inline action, colored text"
+          ],
+          "attribution": {
+            "source": "inferred"
+          }
+        }
+      },
+      {
+        "name": "subtle",
+        "useWhen": {
+          "value": [
+            "medium-emphasis inline action with underline"
+          ],
+          "attribution": {
+            "source": "inferred"
+          }
+        }
+      },
+      {
+        "name": "ghost",
+        "useWhen": {
+          "value": [
+            "low-emphasis inline action, minimal styling"
+          ],
+          "attribution": {
+            "source": "inferred"
+          }
+        }
+      }
+    ]
+  },
+  "relationshipsAndDependencies": {
+    "related": {
+      "value": [
+        "Button",
+        "Link",
+        "IconButton"
+      ],
+      "attribution": {
+        "source": "authored"
+      }
+    },
+    "degradesTo": {
+      "value": [
+        "Link"
+      ],
+      "attribution": {
+        "source": "authored"
+      }
+    }
+  },
+  "contextSignals": {
+    "density": {
+      "value": [
+        "compact",
+        "default",
+        "open"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "modality": {
+      "value": [
+        "desktop",
+        "mobile"
+      ],
+      "attribution": {
+        "source": "authored"
+      }
+    },
+    "brand": {
+      "value": [
+        "theme-scope aware",
+        "recipe-driven"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "mode": {
+      "value": [
+        "light",
+        "dark",
+        "surface-context"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "observabilityHooks": {
+    "track": {
+      "value": [
+        "click"
+      ],
+      "attribution": {
+        "source": "authored"
+      }
+    },
+    "health": {
+      "value": [
+        "a11y_violations",
+        "adoption_rate"
+      ],
+      "attribution": {
+        "source": "authored"
+      }
+    }
+  },
+  "props": [
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "required": true,
+      "description": "Button label text"
+    },
+    {
+      "name": "appearance",
+      "type": "LinkButtonAppearance",
+      "required": false,
+      "description": "Multi-accent appearance role. 'auto' resolves to 'primary'."
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": false,
+      "description": "Accessibility label override"
+    },
+    {
+      "name": "attention",
+      "type": "LinkButtonAttention",
+      "required": false,
+      "description": "Figma attention alias — maps to variant (high→bold, medium→subtle, low→ghost). `variant` takes precedence."
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "required": false,
+      "description": "Additional CSS class name"
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "required": false,
+      "description": "Disabled state"
+    },
+    {
+      "name": "end",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Content to render after the label (icon or spinner)"
+    },
+    {
+      "name": "loading",
+      "type": "boolean",
+      "required": false,
+      "description": "Loading state — shows spinner"
+    },
+    {
+      "name": "onClick",
+      "type": "() => void",
+      "required": false,
+      "description": "Web-only alias for onPress"
+    },
+    {
+      "name": "onPress",
+      "type": "() => void",
+      "required": false,
+      "description": "Press/click handler"
+    },
+    {
+      "name": "showUnderline",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "true",
+      "description": "Whether the underline is visible. Defaults to `true` (LinkButton's classic text-link behaviour). Set to `false` for uses where the component is a text-style CTA without an underline — e.g. when `<Button contained={false}>` delegates here and the Figma spec marks the underline colour as transparent by default."
+    },
+    {
+      "name": "size",
+      "type": "LinkButtonSize",
+      "required": false,
+      "description": "Button size — f-step number or t-shirt alias. Default: 10 (M)."
+    },
+    {
+      "name": "start",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Content to render before the label (icon or spinner)"
+    },
+    {
+      "name": "style",
+      "type": "CSSProperties",
+      "required": false,
+      "description": "Inline styles"
+    },
+    {
+      "name": "type",
+      "type": "'button' | 'submit' | 'reset'",
+      "required": false,
+      "description": "HTML button type attribute"
+    },
+    {
+      "name": "variant",
+      "type": "LinkButtonVariant",
+      "required": false,
+      "description": "Visual variant affecting text color and underline"
+    }
+  ],
+  "slots": [
+    {
+      "name": "start",
+      "types": [
+        "icon",
+        "custom"
+      ],
+      "tokens": [
+        "iconSize",
+        "iconGap"
+      ]
+    },
+    {
+      "name": "end",
+      "types": [
+        "icon",
+        "custom"
+      ],
+      "tokens": [
+        "iconSize",
+        "iconGap"
+      ]
+    },
+    {
+      "name": "loading",
+      "types": [
+        "spinner"
+      ],
+      "tokens": [
+        "disabledOpacity",
+        "transitionDuration"
+      ]
+    }
+  ],
+  "propsSchema": {
+    "$id": "jds.docs.link-button",
+    "type": "object",
+    "properties": {
+      "children": {
+        "description": "Button label text"
+      },
+      "appearance": {
+        "enum": [
+          "auto",
+          "primary",
+          "secondary",
+          "neutral",
+          "sparkle",
+          "brand-bg",
+          "positive",
+          "negative",
+          "warning",
+          "informative"
+        ],
+        "description": "Multi-accent appearance role. 'auto' resolves to 'primary'."
+      },
+      "aria-label": {
+        "type": "string",
+        "description": "Accessibility label override"
+      },
+      "attention": {
+        "enum": [
+          "high",
+          "medium",
+          "low"
+        ],
+        "description": "Figma attention alias — maps to variant (high→bold, medium→subtle, low→ghost). `variant` takes precedence."
+      },
+      "className": {
+        "type": "string",
+        "description": "Additional CSS class name"
+      },
+      "disabled": {
+        "type": "boolean",
+        "description": "Disabled state"
+      },
+      "end": {
+        "description": "Content to render after the label (icon or spinner)"
+      },
+      "loading": {
+        "type": "boolean",
+        "description": "Loading state — shows spinner"
+      },
+      "onClick": {
+        "description": "Web-only alias for onPress"
+      },
+      "onPress": {
+        "description": "Press/click handler"
+      },
+      "showUnderline": {
+        "type": "boolean",
+        "description": "Whether the underline is visible. Defaults to `true` (LinkButton's classic text-link behaviour). Set to `false` for uses where the component is a text-style CTA without an underline — e.g. when `<Button contained={false}>` delegates here and the Figma spec marks the underline colour as transparent by default.",
+        "default": "true"
+      },
+      "size": {
+        "enum": [
+          8,
+          10,
+          12,
+          "s",
+          "m",
+          "l"
+        ],
+        "description": "Button size — f-step number or t-shirt alias. Default: 10 (M)."
+      },
+      "start": {
+        "description": "Content to render before the label (icon or spinner)"
+      },
+      "style": {
+        "description": "Inline styles"
+      },
+      "type": {
+        "description": "HTML button type attribute"
+      },
+      "variant": {
+        "description": "Visual variant affecting text color and underline"
+      }
+    },
+    "required": [
+      "children"
+    ]
+  },
+  "codeSnippets": [
+    {
+      "id": "linkbutton-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { LinkButton } from '@oneui/ui';\n\n<LinkButton onClick={handleAction}>View details</LinkButton>"
+    },
+    {
+      "id": "linkbutton-variants",
+      "title": "Variants",
+      "language": "tsx",
+      "code": "<LinkButton variant=\"bold\">Bold</LinkButton>\n<LinkButton variant=\"subtle\">Subtle</LinkButton>\n<LinkButton variant=\"ghost\">Ghost</LinkButton>"
+    },
+    {
+      "id": "link-button-recipe-decisions",
+      "title": "Recipe Decisions",
+      "language": "json",
+      "code": "{\n  \"component\": \"LinkButton\",\n  \"decisions\": [\n    \"Shape\",\n    \"Text case\"\n  ]\n}"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "link-button"
+  ],
+  "generatedMarkdown": "# LinkButton Machine-Readable Documentation\n\n_Generated from source metadata. Do not edit manually._\n\n## Intent and Purpose\n\n- **Intent**: Inline text-styled button that triggers actions — visually resembles a link but is semantically a button.\n- **Task contexts**: inline-action, contextual-action, secondary-action\n- **Sentiments**: neutral, positive, negative\n\n## Composition Rules\n\n- **Requires**: label text\n- **Allows**: start/end icon slots, loading state\n- **Forbids**: use for actual page navigation (use Link instead), icon-only content without label\n\n## Variant Logic\n\n- **bold**: use when prominent inline action, colored text\n- **subtle**: use when medium-emphasis inline action with underline\n- **ghost**: use when low-emphasis inline action, minimal styling\n\n## Relationships and Dependencies\n\n- **Related**: Button, Link, IconButton\n- **Escalates to**: -\n- **Degrades to**: Link\n- **Groups with**: -\n\n## Context Signals\n\n- **Density**: compact, default, open\n- **Modality**: desktop, mobile\n- **Brand**: theme-scope aware, recipe-driven\n- **Mode**: light, dark, surface-context\n\n## Observability Hooks\n\n- **Track**: click\n- **Health**: a11y_violations, adoption_rate\n\n## Props\n\n| Prop | Type | Required | Default | Description |\n| --- | --- | --- | --- | --- |\n| `children` | `ReactNode` | Yes | - | Button label text |\n| `appearance` | `LinkButtonAppearance` | No | - | Multi-accent appearance role. 'auto' resolves to 'primary'. |\n| `aria-label` | `string` | No | - | Accessibility label override |\n| `attention` | `LinkButtonAttention` | No | - | Figma attention alias — maps to variant (high→bold, medium→subtle, low→ghost). `variant` takes precedence. |\n| `className` | `string` | No | - | Additional CSS class name |\n| `disabled` | `boolean` | No | - | Disabled state |\n| `end` | `ReactNode` | No | - | Content to render after the label (icon or spinner) |\n| `loading` | `boolean` | No | - | Loading state — shows spinner |\n| `onClick` | `() => void` | No | - | Web-only alias for onPress |\n| `onPress` | `() => void` | No | - | Press/click handler |\n| `showUnderline` | `boolean` | No | true | Whether the underline is visible. Defaults to `true` (LinkButton's classic text-link behaviour). Set to `false` for uses where the component is a text-style CTA without an underline — e.g. when `<Button contained={false}>` delegates here and the Figma spec marks the underline colour as transparent by default. |\n| `size` | `LinkButtonSize` | No | - | Button size — f-step number or t-shirt alias. Default: 10 (M). |\n| `start` | `ReactNode` | No | - | Content to render before the label (icon or spinner) |\n| `style` | `CSSProperties` | No | - | Inline styles |\n| `type` | `'button' | 'submit' | 'reset'` | No | - | HTML button type attribute |\n| `variant` | `LinkButtonVariant` | No | - | Visual variant affecting text color and underline |\n\n## Slots\n\n| Slot | Types | Tokens |\n| --- | --- | --- |\n| `start` | icon, custom | `iconSize`, `iconGap` |\n| `end` | icon, custom | `iconSize`, `iconGap` |\n| `loading` | spinner | `disabledOpacity`, `transitionDuration` |\n\n## Code Snippets\n\n### Basic Usage\n\n```tsx\nimport { LinkButton } from '@oneui/ui';\n\n<LinkButton onClick={handleAction}>View details</LinkButton>\n```\n\n### Variants\n\n```tsx\n<LinkButton variant=\"bold\">Bold</LinkButton>\n<LinkButton variant=\"subtle\">Subtle</LinkButton>\n<LinkButton variant=\"ghost\">Ghost</LinkButton>\n```\n\n### Recipe Decisions\n\n```json\n{\n  \"component\": \"LinkButton\",\n  \"decisions\": [\n    \"Shape\",\n    \"Text case\"\n  ]\n}\n```\n"
+}

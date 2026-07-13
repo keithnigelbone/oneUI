@@ -1,0 +1,280 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "ChipGroup",
+  "generatedAt": "2026-07-09T13:07:37.421Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "Selection container + context provider for <Chip> children. Pushes size/variant/appearance/disabled down; owns single (default) or multiple selection with maxSelections + required constraints. Controlled via value/onValueChange. Container is a11y-transparent so child Chips stay focusable."
+  },
+  "compositionRules": {
+    "requires": [
+      "children"
+    ],
+    "allows": [],
+    "forbids": [],
+    "childKind": "variadic"
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "bold"
+      },
+      {
+        "name": "subtle"
+      },
+      {
+        "name": "ghost"
+      }
+    ]
+  },
+  "props": [
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "required": true,
+      "description": "<Chip> children. Selection + inherited props flow through ChipContext."
+    },
+    {
+      "name": "value",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Selected chip values (controlled, string[])."
+    },
+    {
+      "name": "defaultValue",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Selected chip values (uncontrolled, string[])."
+    },
+    {
+      "name": "onValueChange",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Change handler — receives the next list of selected values."
+    },
+    {
+      "name": "multiple",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": "false = single-select, true = multi-select."
+    },
+    {
+      "name": "orientation",
+      "type": "'horizontal' | 'vertical'",
+      "required": false,
+      "defaultValue": "horizontal",
+      "description": ""
+    },
+    {
+      "name": "wrap",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "true",
+      "description": ""
+    },
+    {
+      "name": "size",
+      "type": "'s' | 'm' | 'l'",
+      "required": false,
+      "description": "Pushed to child Chips (per-chip prop wins)."
+    },
+    {
+      "name": "variant",
+      "type": "'bold' | 'subtle' | 'ghost'",
+      "required": false,
+      "description": "Pushed to child Chips (per-chip prop wins)."
+    },
+    {
+      "name": "appearance",
+      "type": "'auto' | 'primary' | 'secondary' | 'neutral' | 'sparkle' | 'brand-bg' | 'positive' | 'negative' | 'warning' | 'informative'",
+      "required": false,
+      "description": "Pushed to child Chips (per-chip prop wins)."
+    },
+    {
+      "name": "maxSelections",
+      "type": "number",
+      "required": false,
+      "description": "Caps the number of selected chips (multiple mode)."
+    },
+    {
+      "name": "required",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": "Blocks deselecting the last selected chip."
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": "Pushed to all child Chips."
+    },
+    {
+      "name": "loopFocus",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": false,
+      "description": "Exposes a screen-reader group name (header)."
+    },
+    {
+      "name": "aria-labelledby",
+      "type": "string",
+      "required": false,
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.kb.rn.ChipGroup",
+    "type": "object",
+    "properties": {
+      "children": {
+        "description": "<Chip> children. Selection + inherited props flow through ChipContext."
+      },
+      "value": {
+        "description": "Selected chip values (controlled, string[])."
+      },
+      "defaultValue": {
+        "description": "Selected chip values (uncontrolled, string[])."
+      },
+      "onValueChange": {
+        "description": "Change handler — receives the next list of selected values."
+      },
+      "multiple": {
+        "type": "boolean",
+        "default": false,
+        "description": "false = single-select, true = multi-select."
+      },
+      "orientation": {
+        "enum": [
+          "horizontal",
+          "vertical"
+        ],
+        "default": "horizontal"
+      },
+      "wrap": {
+        "type": "boolean",
+        "default": true
+      },
+      "size": {
+        "enum": [
+          "s",
+          "m",
+          "l"
+        ],
+        "description": "Pushed to child Chips (per-chip prop wins)."
+      },
+      "variant": {
+        "enum": [
+          "bold",
+          "subtle",
+          "ghost"
+        ],
+        "description": "Pushed to child Chips (per-chip prop wins)."
+      },
+      "appearance": {
+        "enum": [
+          "auto",
+          "primary",
+          "secondary",
+          "neutral",
+          "sparkle",
+          "brand-bg",
+          "positive",
+          "negative",
+          "warning",
+          "informative"
+        ],
+        "description": "Pushed to child Chips (per-chip prop wins)."
+      },
+      "maxSelections": {
+        "type": "number",
+        "description": "Caps the number of selected chips (multiple mode)."
+      },
+      "required": {
+        "type": "boolean",
+        "default": false,
+        "description": "Blocks deselecting the last selected chip."
+      },
+      "disabled": {
+        "type": "boolean",
+        "default": false,
+        "description": "Pushed to all child Chips."
+      },
+      "loopFocus": {
+        "type": "boolean",
+        "default": false
+      },
+      "aria-label": {
+        "type": "string",
+        "description": "Exposes a screen-reader group name (header)."
+      },
+      "aria-labelledby": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "children"
+    ]
+  },
+  "tokens": {
+    "color": [
+      "primary",
+      "secondary",
+      "neutral",
+      "sparkle",
+      "brand-bg",
+      "positive",
+      "negative",
+      "warning",
+      "informative"
+    ]
+  },
+  "a11y": {
+    "accessibilityRole": "none",
+    "accessibleNameSource": "aria-label",
+    "minTouchTarget": 44,
+    "honorsBoldText": false,
+    "honorsScreenReader": true
+  },
+  "renderHints": {
+    "baseElement": "View",
+    "animatedOn": [],
+    "honorsReduceMotion": false,
+    "readsFromSurfaceContext": false
+  },
+  "figma": {
+    "componentKey": "jds-chip-group-v4",
+    "keyHistory": [],
+    "variantProperties": {
+      "Component": "ChipGroup"
+    }
+  },
+  "codeSnippets": [
+    {
+      "id": "import-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { ChipGroup } from '@oneui/ui-native';\n\n<ChipGroup />"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "chipgroup",
+    "selection",
+    "filter",
+    "group",
+    "composition"
+  ],
+  "importPath": "@oneui/ui-native"
+}

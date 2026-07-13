@@ -1,0 +1,62 @@
+name: Deploy Convex
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Convex production deploys happen ONLY here — never from a developer laptop.
+#
+# `convex deploy` is a FULL SYNC: it makes the deployment match the pushed
+# `packages/convex/convex/` folder exactly, DELETING any function not present.
+# Running it from a stale feature branch is how teammates' functions get wiped
+# (and how the `args is not defined` bug reached prod). By deploying solely on
+# merge to the default branch `dev`, prod always reflects reviewed, merged code —
+# the union of everyone's work — and can never be a single laptop's subset.
+#
+# Setup (one-time):
+#   1. Convex dashboard → the PRODUCTION deployment the live site uses
+#      (robust-stoat-734) → Settings → Deploy Keys → generate a Production key.
+#   2. GitHub repo → Settings → Secrets and variables → Actions → add secret
+#      CONVEX_DEPLOY_KEY with that value. The key itself selects which deployment
+#      is targeted, so no slug is hard-coded here.
+# ─────────────────────────────────────────────────────────────────────────────
+
+on:
+  push:
+    branches: [dev] # `dev` is this repo's default + prod-tracking branch
+    paths:
+      - 'packages/convex/**'
+      - 'packages/shared/**' # @oneui/shared is bundled into Convex functions
+      - '.github/workflows/deploy-convex.yml'
+  workflow_dispatch: {} # allow a manual prod deploy from the Actions tab
+
+# Never run two prod deploys at once — a full sync must be serialized.
+concurrency:
+  group: deploy-convex-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Deploy → Convex Production
+    runs-on: [self-hosted, linux]
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9.15.9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      # `convex deploy` regenerates code, runs TypeScript, pushes the schema,
+      # and syncs functions. It fails closed: a type error or schema-validation
+      # failure aborts the deploy, so a broken push can't reach prod.
+      - name: Deploy functions + schema to production
+        working-directory: packages/convex
+        env:
+          CONVEX_DEPLOY_KEY: ${{ secrets.CONVEX_DEPLOY_KEY }}
+        run: npx convex deploy --yes

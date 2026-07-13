@@ -1,0 +1,74 @@
+{
+  "name": "@jds/kb-rn",
+  "version": "5.0.0-wip.0",
+  "private": false,
+  "description": "JDS knowledge-base for React Native: component metas, props schemas, render hints, and a11y contracts. Consumed by AI code-generation tools to emit idiomatic RN code that matches OneUI rules.",
+  "license": "UNLICENSED",
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "import": "./src/index.ts"
+    },
+    "./manifest.json": "./dist/manifest.json",
+    "./components.json": "./dist/components.json",
+    "./design-catalog.json": "./dist/design-catalog.json",
+    "./kb-graph.json": "./dist/kb-graph.json",
+    "./code-connect-rn.json": "./dist/code-connect-rn.json",
+    "./components/*": "./dist/components/*.json",
+    "./schemas/*": "./dist/schemas/*.json"
+  },
+  "publishConfig": {
+    "main": "./dist/index.cjs",
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "registry": "https://jfrog.jio.com/artifactory/api/npm/npm-jds/",
+    "access": "restricted",
+    "exports": {
+      ".": {
+        "types": "./dist/index.d.ts",
+        "import": "./dist/index.js",
+        "require": "./dist/index.cjs"
+      },
+      "./manifest.json": "./dist/manifest.json",
+      "./components.json": "./dist/components.json",
+      "./design-catalog.json": "./dist/design-catalog.json",
+      "./kb-graph.json": "./dist/kb-graph.json",
+      "./code-connect-rn.json": "./dist/code-connect-rn.json",
+      "./components/*": "./dist/components/*.json",
+      "./schemas/*": "./dist/schemas/*.json"
+    }
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "build": "tsup && node scripts/generate-json.mjs && tsx ../kb-core/scripts/build-design-catalog.ts && pnpm run build:code-connect",
+    "generate:json": "node scripts/generate-json.mjs && tsx ../kb-core/scripts/build-design-catalog.ts && pnpm run build:code-connect",
+    "build:code-connect": "tsx scripts/build-code-connect.ts",
+    "generate:signatures": "tsx scripts/generate-visual-signatures.ts",
+    "verify:tokens": "node scripts/verify-token-claims.mjs",
+    "kb:check": "node scripts/check-meta-drift.mjs",
+    "kb:bless": "node scripts/check-meta-drift.mjs --bless",
+    "test": "vitest run",
+    "kb:demo": "node scripts/kb-demo.mjs"
+  },
+  "peerDependencies": {
+    "@jds/kb-core": "5.0.0-wip.0"
+  },
+  "devDependencies": {
+    "@jds/kb-core": "workspace:*",
+    "@types/node": "^22.10.5",
+    "ajv": "^8.17.1",
+    "ajv-formats": "^3.0.1",
+    "sharp": "^0.34.0",
+    "tsup": "^8.0.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
+    "vitest": "^2.0.0"
+  }
+}

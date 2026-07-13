@@ -1,0 +1,30 @@
+import React, { forwardRef } from 'react';
+import type { IconComponentProps } from '../iconProps';
+
+export const IcLte = forwardRef<SVGSVGElement, IconComponentProps>(function IcLte(
+  { size = 24, width, height, color = 'currentColor', className, style, ...props },
+  ref,
+) {
+  const dim = width ?? height ?? size;
+  return (
+    <svg
+      ref={ref}
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      width={width ?? dim}
+      height={height ?? dim}
+      color={color}
+      className={className}
+      style={style}
+      {...props}
+    >
+      <path
+            fill="currentColor"
+            d="M7.59 14.48H5.03c-.08 0-.11-.02-.11-.1V8.62c0-.5-.4-.62-.77-.62s-.77.12-.77.62v6.62c0 .43.26.67.67.67h3.53c.49 0 .66-.35.66-.7s-.18-.72-.66-.72zm11.9 0h-3.13c-.08 0-.11-.02-.11-.1v-1.72c0-.08.02-.1.11-.1h2.56c.49 0 .66-.36.66-.71s-.18-.71-.66-.71h-2.56c-.08 0-.11-.02-.11-.1V9.57c0-.08.02-.1.11-.1h3.01c.49 0 .66-.36.66-.71s-.18-.71-.66-.71h-3.98c-.41 0-.67.24-.67.67v6.53c0 .43.26.67.67.67h4.1c.49 0 .66-.35.66-.7s-.18-.72-.66-.72zm-6.62-6.44H8.16c-.49 0-.66.36-.66.71s.18.71.66.71h1.48c.08 0 .11.02.11.1v5.76c0 .5.41.62.77.62s.77-.12.77-.62V9.56c0-.08.04-.1.11-.1h1.48c.49 0 .66-.35.66-.71s-.18-.71-.66-.71z"
+          />
+    </svg>
+  );
+});
+
+IcLte.displayName = 'IcLte';

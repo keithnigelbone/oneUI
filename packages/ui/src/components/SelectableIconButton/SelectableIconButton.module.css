@@ -1,0 +1,479 @@
+/**
+ * SelectableIconButton.module.css
+ *
+ * CRITICAL: This file demonstrates the ZERO LITERALS rule
+ * ALL styling uses design tokens ONLY
+ *
+ * Architecture: Role-agnostic intermediate variables (--_sib-*)
+ * - Default = Primary role
+ * - Appearance classes remap --_sib-* to other roles
+ * - UNSELECTED state: always muted ghost (transparent bg, medium text, low-stroke border)
+ * - SELECTED state ([data-pressed]): driven by data-attention attribute
+ *   - high   → bold fill (fg-bold bg, on-bold-high icon)
+ *   - medium → subtle fill (bg-subtle bg, accent icon)
+ *   - low    → ghost with accent border (transparent bg, accent icon, fg-bold border)
+ *
+ * Verified by: pnpm check:literals
+ */
+
+.selectableIconButton {
+  /* ========================================
+     INTERMEDIATE VARIABLES — default = Primary role
+     Remapped by appearance classes below
+     ======================================== */
+  --_sib-bold: var(--SelectableIconButton-roleBold, var(--Primary-Bold, var(--Surface-Bold)));
+  --_sib-bold-high: var(--SelectableIconButton-roleBoldHigh, var(--Primary-Bold-TintedA11y, var(--Primary-Bold-High, var(--Text-OnBold-High))));
+  --_sib-bold-hover: var(--SelectableIconButton-roleBoldHover, var(--Primary-Bold-Hover, var(--Surface-Bold-Hover)));
+  /* Metallic material assignment — emitted by the brand engine only when the
+     role has an ACTIVE metal assigned; otherwise guaranteed-invalid and every
+     consumer falls back to the standard bold chain (zero visual change). */
+  --_sib-material-fill: var(--SelectableIconButton-roleMaterialFill, var(--Primary-Material-Fill));
+  --_sib-material-text: var(--SelectableIconButton-roleMaterialText, var(--Primary-Material-Text));
+  --_sib-subtle: var(--SelectableIconButton-roleSubtle, var(--Primary-Subtle, var(--Surface-Subtle)));
+  --_sib-subtle-hover: var(--SelectableIconButton-roleSubtleHover, var(--Primary-Subtle-Hover, var(--Surface-Subtle-Hover)));
+  --_sib-default-accent-a11y: var(--SelectableIconButton-roleTintedA11y, var(--Primary-TintedA11y, var(--Primary-Tinted, var(--Surface-Bold))));
+  --_sib-default-medium-text: var(--SelectableIconButton-roleMediumText, var(--Primary-Medium-Text, var(--Text-Medium)));
+  --_sib-default-low-stroke: var(--SelectableIconButton-roleStrokeLow, var(--Primary-Stroke-Low, var(--Surface-Bold)));
+  --_sib-default-hover: var(--SelectableIconButton-roleHover, var(--Primary-Hover, var(--Surface-Minimal)));
+
+  /* ========================================
+     SHAPE — overridable via --SelectableIconButton-borderRadius
+     ======================================== */
+  border-radius: var(--SelectableIconButton-borderRadius, var(--Shape-Pill));
+
+  /* ========================================
+     BASE STYLES — UNSELECTED (always muted ghost)
+     ======================================== */
+  background-color: transparent;
+  color: var(--SelectableIconButton-iconColor, var(--_sib-default-medium-text));
+  border: var(--Stroke-M) solid var(--SelectableIconButton-borderColor, var(--_sib-default-low-stroke));
+
+  /* ========================================
+     SIZE — default M (size 10)
+     ======================================== */
+  --_sib-size: var(--SelectableIconButton-containerSize, var(--Spacing-10));
+  width: var(--_sib-size);
+  aspect-ratio: 1;
+
+  /* ========================================
+     LAYOUT
+     ======================================== */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  cursor: pointer;
+  position: relative;
+  padding: 0;
+  clip-path: var(--SelectableIconButton-cssDecorationClipPath, none);
+
+  /* ========================================
+     MOTION
+     ======================================== */
+  transition-property: background-color, color, border-color, box-shadow, opacity;
+  transition-duration: var(--SelectableIconButton-transitionDuration, var(--Motion-Duration-M));
+  transition-timing-function: var(--SelectableIconButton-transitionEasing, var(--Motion-Easing-Transition-Moderate));
+}
+
+.selectableIconButton::after {
+  content: '';
+  position: absolute;
+  inset: var(--Spacing-0);
+  box-sizing: border-box;
+  pointer-events: none;
+  border-radius: inherit;
+  clip-path: var(--SelectableIconButton-cssDecorationClipPath, none);
+  border-style: var(--SelectableIconButton-cssDecorationStrokeStyle, solid);
+  border-color: var(--SelectableIconButton-cssDecorationColor, currentColor);
+  border-width:
+    var(--SelectableIconButton-cssDecorationInsetStrokeWidth, var(--Spacing-0))
+    var(--SelectableIconButton-cssDecorationInsetStrokeWidth, var(--Spacing-0))
+    var(--SelectableIconButton-cssDecorationInsetStrokeWidth, var(--SelectableIconButton-cssDecorationUnderlineWidth, var(--Spacing-0)))
+    var(--SelectableIconButton-cssDecorationInsetStrokeWidth, var(--Spacing-0));
+}
+
+/* ========================================
+   APPEARANCE — role-agnostic intermediate variable remapping
+   Adding a new appearance = 1 new class with 9 remappings
+   ======================================== */
+
+.appearancePrimary {
+  --_sib-bold: var(--Primary-Bold, var(--Surface-Bold));
+  --_sib-material-fill: var(--Primary-Material-Fill);
+  --_sib-material-text: var(--Primary-Material-Text);
+  --_sib-bold-high: var(--Primary-Bold-TintedA11y, var(--Primary-Bold-High, var(--Text-OnBold-High)));
+  --_sib-bold-hover: var(--Primary-Bold-Hover, var(--Surface-Bold-Hover));
+  --_sib-subtle: var(--Primary-Subtle, var(--Surface-Subtle));
+  --_sib-subtle-hover: var(--Primary-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_sib-default-accent-a11y: var(--Primary-TintedA11y, var(--Primary-Tinted, var(--Surface-Bold)));
+  --_sib-default-medium-text: var(--Primary-Medium-Text, var(--Text-Medium));
+  --_sib-default-low-stroke: var(--Primary-Stroke-Low, var(--Surface-Bold));
+  --_sib-default-hover: var(--Primary-Hover, var(--Surface-Minimal));
+}
+
+.appearanceNeutral {
+  --_sib-bold: var(--Neutral-Bold, var(--Surface-Bold));
+  --_sib-material-fill: var(--Neutral-Material-Fill);
+  --_sib-material-text: var(--Neutral-Material-Text);
+  --_sib-bold-high: var(--Neutral-Bold-TintedA11y, var(--Neutral-Bold-High, var(--Text-OnBold-High)));
+  --_sib-bold-hover: var(--Neutral-Bold-Hover, var(--Surface-Bold-Hover));
+  --_sib-subtle: var(--Neutral-Subtle, var(--Surface-Subtle));
+  --_sib-subtle-hover: var(--Neutral-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_sib-default-accent-a11y: var(--Neutral-TintedA11y, var(--Neutral-Tinted, var(--Surface-Bold)));
+  --_sib-default-medium-text: var(--Neutral-Medium-Text, var(--Text-Medium));
+  --_sib-default-low-stroke: var(--Neutral-Stroke-Low, var(--Surface-Bold));
+  --_sib-default-hover: var(--Neutral-Hover, var(--Surface-Minimal));
+}
+
+.appearanceSecondary {
+  --_sib-bold: var(--Secondary-Bold, var(--Surface-Bold));
+  --_sib-material-fill: var(--Secondary-Material-Fill);
+  --_sib-material-text: var(--Secondary-Material-Text);
+  --_sib-bold-high: var(--Secondary-Bold-TintedA11y, var(--Secondary-Bold-High, var(--Text-OnBold-High)));
+  --_sib-bold-hover: var(--Secondary-Bold-Hover, var(--Surface-Bold-Hover));
+  --_sib-subtle: var(--Secondary-Subtle, var(--Surface-Subtle));
+  --_sib-subtle-hover: var(--Secondary-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_sib-default-accent-a11y: var(--Secondary-TintedA11y, var(--Secondary-Tinted, var(--Surface-Bold)));
+  --_sib-default-medium-text: var(--Secondary-Medium-Text, var(--Text-Medium));
+  --_sib-default-low-stroke: var(--Secondary-Stroke-Low, var(--Surface-Bold));
+  --_sib-default-hover: var(--Secondary-Hover, var(--Surface-Minimal));
+}
+
+.appearanceSparkle {
+  --_sib-bold: var(--Sparkle-Bold, var(--Surface-Bold));
+  --_sib-material-fill: var(--Sparkle-Material-Fill);
+  --_sib-material-text: var(--Sparkle-Material-Text);
+  --_sib-bold-high: var(--Sparkle-Bold-TintedA11y, var(--Sparkle-Bold-High, var(--Text-OnBold-High)));
+  --_sib-bold-hover: var(--Sparkle-Bold-Hover, var(--Surface-Bold-Hover));
+  --_sib-subtle: var(--Sparkle-Subtle, var(--Surface-Subtle));
+  --_sib-subtle-hover: var(--Sparkle-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_sib-default-accent-a11y: var(--Sparkle-TintedA11y, var(--Sparkle-Tinted, var(--Surface-Bold)));
+  --_sib-default-medium-text: var(--Sparkle-Medium-Text, var(--Text-Medium));
+  --_sib-default-low-stroke: var(--Sparkle-Stroke-Low, var(--Surface-Bold));
+  --_sib-default-hover: var(--Sparkle-Hover, var(--Surface-Minimal));
+}
+
+.appearanceBrandBg {
+  --_sib-bold: var(--Brand-Bg-Bold, var(--Surface-Bold));
+  --_sib-material-fill: var(--Brand-Bg-Material-Fill);
+  --_sib-material-text: var(--Brand-Bg-Material-Text);
+  --_sib-bold-high: var(--Brand-Bg-Bold-TintedA11y, var(--Brand-Bg-Bold-High, var(--Text-OnBold-High)));
+  --_sib-bold-hover: var(--Brand-Bg-Bold-Hover, var(--Surface-Bold-Hover));
+  --_sib-subtle: var(--Brand-Bg-Subtle, var(--Surface-Subtle));
+  --_sib-subtle-hover: var(--Brand-Bg-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_sib-default-accent-a11y: var(--Brand-Bg-TintedA11y, var(--Brand-Bg-Tinted, var(--Surface-Bold)));
+  --_sib-default-medium-text: var(--Brand-Bg-Medium-Text, var(--Text-Medium));
+  --_sib-default-low-stroke: var(--Brand-Bg-Stroke-Low, var(--Surface-Bold));
+  --_sib-default-hover: var(--Brand-Bg-Hover, var(--Surface-Minimal));
+}
+
+.appearancePositive {
+  --_sib-bold: var(--Positive-Bold, var(--Surface-Bold));
+  --_sib-material-fill: var(--Positive-Material-Fill);
+  --_sib-material-text: var(--Positive-Material-Text);
+  --_sib-bold-high: var(--Positive-Bold-TintedA11y, var(--Positive-Bold-High, var(--Text-OnBold-High)));
+  --_sib-bold-hover: var(--Positive-Bold-Hover, var(--Surface-Bold-Hover));
+  --_sib-subtle: var(--Positive-Subtle, var(--Surface-Subtle));
+  --_sib-subtle-hover: var(--Positive-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_sib-default-accent-a11y: var(--Positive-TintedA11y, var(--Positive-Tinted, var(--Surface-Bold)));
+  --_sib-default-medium-text: var(--Positive-Medium-Text, var(--Text-Medium));
+  --_sib-default-low-stroke: var(--Positive-Stroke-Low, var(--Surface-Bold));
+  --_sib-default-hover: var(--Positive-Hover, var(--Surface-Minimal));
+}
+
+.appearanceNegative {
+  --_sib-bold: var(--Negative-Bold, var(--Surface-Bold));
+  --_sib-material-fill: var(--Negative-Material-Fill);
+  --_sib-material-text: var(--Negative-Material-Text);
+  --_sib-bold-high: var(--Negative-Bold-TintedA11y, var(--Negative-Bold-High, var(--Text-OnBold-High)));
+  --_sib-bold-hover: var(--Negative-Bold-Hover, var(--Surface-Bold-Hover));
+  --_sib-subtle: var(--Negative-Subtle, var(--Surface-Subtle));
+  --_sib-subtle-hover: var(--Negative-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_sib-default-accent-a11y: var(--Negative-TintedA11y, var(--Negative-Tinted, var(--Surface-Bold)));
+  --_sib-default-medium-text: var(--Negative-Medium-Text, var(--Text-Medium));
+  --_sib-default-low-stroke: var(--Negative-Stroke-Low, var(--Surface-Bold));
+  --_sib-default-hover: var(--Negative-Hover, var(--Surface-Minimal));
+}
+
+.appearanceWarning {
+  --_sib-bold: var(--Warning-Bold, var(--Surface-Bold));
+  --_sib-material-fill: var(--Warning-Material-Fill);
+  --_sib-material-text: var(--Warning-Material-Text);
+  --_sib-bold-high: var(--Warning-Bold-TintedA11y, var(--Warning-Bold-High, var(--Text-OnBold-High)));
+  --_sib-bold-hover: var(--Warning-Bold-Hover, var(--Surface-Bold-Hover));
+  --_sib-subtle: var(--Warning-Subtle, var(--Surface-Subtle));
+  --_sib-subtle-hover: var(--Warning-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_sib-default-accent-a11y: var(--Warning-TintedA11y, var(--Warning-Tinted, var(--Surface-Bold)));
+  --_sib-default-medium-text: var(--Warning-Medium-Text, var(--Text-Medium));
+  --_sib-default-low-stroke: var(--Warning-Stroke-Low, var(--Surface-Bold));
+  --_sib-default-hover: var(--Warning-Hover, var(--Surface-Minimal));
+}
+
+.appearanceInformative {
+  --_sib-bold: var(--Informative-Bold, var(--Surface-Bold));
+  --_sib-material-fill: var(--Informative-Material-Fill);
+  --_sib-material-text: var(--Informative-Material-Text);
+  --_sib-bold-high: var(--Informative-Bold-TintedA11y, var(--Informative-Bold-High, var(--Text-OnBold-High)));
+  --_sib-bold-hover: var(--Informative-Bold-Hover, var(--Surface-Bold-Hover));
+  --_sib-subtle: var(--Informative-Subtle, var(--Surface-Subtle));
+  --_sib-subtle-hover: var(--Informative-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_sib-default-accent-a11y: var(--Informative-TintedA11y, var(--Informative-Tinted, var(--Surface-Bold)));
+  --_sib-default-medium-text: var(--Informative-Medium-Text, var(--Text-Medium));
+  --_sib-default-low-stroke: var(--Informative-Stroke-Low, var(--Surface-Bold));
+  --_sib-default-hover: var(--Informative-Hover, var(--Surface-Minimal));
+}
+
+/* ========================================
+   SELECTED STATES — driven by data-attention + [data-pressed]
+   Base UI Toggle sets [data-pressed] when selected.
+   ======================================== */
+
+/* HIGH attention selected: bold fill (solid accent bg, on-bold-high icon) */
+.selectableIconButton[data-pressed][data-attention="high"] {
+  /* `background` (not background-color) — the material fill is a gradient image. */
+  background: var(--SelectableIconButton-backgroundColor-selected-high, var(--_sib-material-fill, var(--_sib-bold)));
+  color: var(--SelectableIconButton-iconColor-selected-high, var(--_sib-material-text, var(--_sib-bold-high)));
+  border-color: transparent;
+}
+
+/* MEDIUM attention selected: subtle fill (tinted bg, accent icon) */
+.selectableIconButton[data-pressed][data-attention="medium"] {
+  background-color: var(--SelectableIconButton-backgroundColor-selected-medium, var(--_sib-subtle));
+  color: var(--SelectableIconButton-iconColor-selected-medium, var(--_sib-default-accent-a11y));
+  border-color: transparent;
+}
+
+/* LOW attention selected: ghost with bold accent border */
+.selectableIconButton[data-pressed][data-attention="low"] {
+  background-color: transparent;
+  color: var(--SelectableIconButton-iconColor-selected-low, var(--_sib-default-accent-a11y));
+  border-color: var(--SelectableIconButton-borderColor-selected-low, var(--_sib-bold));
+}
+
+/* ========================================
+   SIZES — 6 sizes via data-size attribute selectors
+   2XS(4), XS(6), S(8), M(10), L(12), XL(14)
+   ======================================== */
+
+.selectableIconButton[data-size="4"] {
+  --_sib-size: var(--SelectableIconButton-containerSize-4, var(--Spacing-5));
+  --_sib-icon-size: var(--SelectableIconButton-iconSize-4, var(--Spacing-2-5));
+}
+
+.selectableIconButton[data-size="6"] {
+  --_sib-size: var(--SelectableIconButton-containerSize-6, var(--Spacing-6));
+  --_sib-icon-size: var(--SelectableIconButton-iconSize-6, var(--Spacing-3));
+}
+
+.selectableIconButton[data-size="8"] {
+  --_sib-size: var(--SelectableIconButton-containerSize-8, var(--Spacing-8));
+  --_sib-icon-size: var(--SelectableIconButton-iconSize-8, var(--Spacing-4));
+}
+
+.selectableIconButton[data-size="10"] {
+  --_sib-size: var(--SelectableIconButton-containerSize-10, var(--Spacing-10));
+  --_sib-icon-size: var(--SelectableIconButton-iconSize-10, var(--Spacing-5));
+}
+
+.selectableIconButton[data-size="12"] {
+  --_sib-size: var(--SelectableIconButton-containerSize-12, var(--Spacing-12));
+  --_sib-icon-size: var(--SelectableIconButton-iconSize-12, var(--Spacing-6));
+}
+
+.selectableIconButton[data-size="14"] {
+  --_sib-size: var(--SelectableIconButton-containerSize-14, var(--Spacing-14));
+  --_sib-icon-size: var(--SelectableIconButton-iconSize-14, var(--Spacing-7));
+}
+
+/* ========================================
+   CONDENSED MODE — reduces container size, same icon size
+   ======================================== */
+
+.selectableIconButton[data-condensed][data-size="4"] {
+  --_sib-size: var(--SelectableIconButton-containerSize-4-condensed, var(--Spacing-4));
+}
+
+.selectableIconButton[data-condensed][data-size="6"] {
+  --_sib-size: var(--SelectableIconButton-containerSize-6-condensed, var(--Spacing-4-5));
+}
+
+.selectableIconButton[data-condensed][data-size="8"] {
+  --_sib-size: var(--SelectableIconButton-containerSize-8-condensed, var(--Spacing-6));
+}
+
+.selectableIconButton[data-condensed][data-size="10"] {
+  --_sib-size: var(--SelectableIconButton-containerSize-10-condensed, var(--Spacing-8));
+}
+
+.selectableIconButton[data-condensed][data-size="12"] {
+  --_sib-size: var(--SelectableIconButton-containerSize-12-condensed, var(--Spacing-10));
+}
+
+.selectableIconButton[data-condensed][data-size="14"] {
+  --_sib-size: var(--SelectableIconButton-containerSize-14-condensed, var(--Spacing-12));
+}
+
+/* ========================================
+   SHAPE — 2:3 proportion (wide rectangle)
+   ======================================== */
+
+.selectableIconButton[data-shape="2:3"] {
+  aspect-ratio: auto;
+  width: calc(var(--_sib-size) * 1.5);
+  height: var(--_sib-size);
+}
+
+/* ========================================
+   CONTAINED=FALSE — icon only, no container
+   ======================================== */
+
+.selectableIconButton[data-contained="false"] {
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+  width: auto;
+  aspect-ratio: auto;
+  padding: 0;
+}
+
+.selectableIconButton[data-contained="false"] .icon svg {
+  width: var(--_sib-icon-size, var(--Spacing-5));
+  height: var(--_sib-icon-size, var(--Spacing-5));
+}
+
+/* Uncontained unselected: muted icon */
+.selectableIconButton[data-contained="false"] {
+  color: var(--SelectableIconButton-iconColor, var(--_sib-default-medium-text));
+}
+
+/* Uncontained selected: accent icon (no background change) */
+.selectableIconButton[data-contained="false"][data-pressed][data-attention="high"] {
+  background-color: transparent;
+  color: var(--SelectableIconButton-iconColor-selected-high, var(--_sib-bold));
+  border-color: transparent;
+}
+
+.selectableIconButton[data-contained="false"][data-pressed][data-attention="medium"] {
+  background-color: transparent;
+  color: var(--SelectableIconButton-iconColor-selected-medium, var(--_sib-default-accent-a11y));
+  border-color: transparent;
+}
+
+.selectableIconButton[data-contained="false"][data-pressed][data-attention="low"] {
+  background-color: transparent;
+  color: var(--SelectableIconButton-iconColor-selected-low, var(--_sib-default-accent-a11y));
+  border-color: transparent;
+}
+
+/* Uncontained hover: no background, just color shift */
+.selectableIconButton[data-contained="false"]:hover:not([data-disabled]) {
+  background-color: transparent;
+}
+
+.selectableIconButton[data-contained="false"][data-pressed]:hover:not([data-disabled]) {
+  background-color: transparent;
+}
+
+/* ========================================
+   FULL WIDTH — stretches to fill container
+   Only applies when contained=true
+   ======================================== */
+
+.fullWidth {
+  width: var(--SelectableIconButton-fullWidth, 100%);
+  aspect-ratio: auto;
+  height: var(--_sib-size);
+}
+
+/* ========================================
+   ICON SIZING — SVGs inside the button
+   ======================================== */
+
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.icon svg {
+  display: block;
+  width: var(--_sib-icon-size, var(--Spacing-5));
+  height: var(--_sib-icon-size, var(--Spacing-5));
+}
+
+/* ========================================
+   HOVER STATES
+   ======================================== */
+
+/* Hover unselected — subtle bg tint */
+.selectableIconButton:hover:not([data-disabled]) {
+  background-color: var(--SelectableIconButton-backgroundColor-hover, var(--_sib-default-hover));
+}
+
+/* Hover selected high — fg-bold-hover */
+.selectableIconButton[data-pressed][data-attention="high"]:hover:not([data-disabled]) {
+  background: var(--SelectableIconButton-backgroundColor-selected-high-hover, var(--_sib-material-fill, var(--_sib-bold-hover)));
+}
+
+/* Hover selected medium — bg-subtle-hover */
+.selectableIconButton[data-pressed][data-attention="medium"]:hover:not([data-disabled]) {
+  background-color: var(--SelectableIconButton-backgroundColor-selected-medium-hover, var(--_sib-subtle-hover));
+}
+
+/* Hover selected low — default hover (transparent to slight tint) */
+.selectableIconButton[data-pressed][data-attention="low"]:hover:not([data-disabled]) {
+  background-color: var(--SelectableIconButton-backgroundColor-selected-low-hover, var(--_sib-default-hover));
+}
+
+/* ========================================
+   DISABLED + LOADING
+   ======================================== */
+
+.selectableIconButton[data-disabled] {
+  opacity: var(--Disabled-Opacity);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.selectableIconButton[data-loading] {
+  opacity: var(--Loading-Opacity, var(--Disabled-Opacity));
+  pointer-events: none;
+}
+
+/* ========================================
+   FOCUS RING — double box-shadow (inner surface + outer brand)
+   ======================================== */
+
+.selectableIconButton:focus {
+  outline: none;
+}
+
+.selectableIconButton:focus-visible,
+:global([data-force-state="focus"]) .selectableIconButton {
+  box-shadow:
+    0 0 0 var(--Stroke-XL) var(--Surface-Halo-Gap, var(--Surface-Main)),
+    0 0 0 calc(var(--Stroke-XL) + var(--Focus-Outline-Width)) var(--Focus-Outline);
+}
+
+/* ========================================
+   LOADING SPINNER
+   ======================================== */
+
+.spinner {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: inherit;
+  --CircularProgressIndicator-indicatorColor: currentColor;
+  --CircularProgressIndicator-trackColor: transparent;
+}
+
+/**
+ * ========================================
+ * IMPORTANT: NO LITERALS IN THIS FILE
+ * ========================================
+ *
+ * All values MUST come from --Token-Name variables
+ * defined in @oneui/tokens CSS files
+ */

@@ -1,0 +1,416 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "ListItem",
+  "generatedAt": "2026-01-01T00:00:00.000Z",
+  "machineReadable": true,
+  "intentAndPurpose": {
+    "intent": {
+      "value": "Single row in a list. Renders a title (Label-M) and optional supportText (Body-S) with start/end slots for icons/avatars/badges/chevrons. Supports 4 start slot sizes (S/M/L/XL), 2 end sizes (S/M), three selected levels (false / medium / high), multi-accent appearance roles, bottom divider (none/full/inset), and an inset rounded-card container.",
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "taskContexts": {
+      "value": [
+        "list",
+        "row",
+        "menu",
+        "navigation",
+        "item"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "sentiments": {
+      "value": [
+        "neutral"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "compositionRules": {
+    "requires": {
+      "value": [],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "allows": {
+      "value": [
+        "start",
+        "end"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "forbids": {
+      "value": [],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "default",
+        "useWhen": {
+          "value": [
+            "Default"
+          ],
+          "attribution": {
+            "source": "inferred"
+          }
+        }
+      },
+      {
+        "name": "medium",
+        "useWhen": {
+          "value": [
+            "Selected (Medium)"
+          ],
+          "attribution": {
+            "source": "inferred"
+          }
+        }
+      },
+      {
+        "name": "high",
+        "useWhen": {
+          "value": [
+            "Selected (High)"
+          ],
+          "attribution": {
+            "source": "inferred"
+          }
+        }
+      }
+    ]
+  },
+  "relationshipsAndDependencies": {
+    "related": {
+      "value": [],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "contextSignals": {
+    "density": {
+      "value": [
+        "compact",
+        "default",
+        "open"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "modality": {
+      "value": [
+        "desktop",
+        "mobile"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "brand": {
+      "value": [
+        "theme-scope aware",
+        "recipe-driven"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "mode": {
+      "value": [
+        "light",
+        "dark",
+        "surface-context"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "observabilityHooks": {
+    "track": {
+      "value": [],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "health": {
+      "value": [
+        "a11y_violations"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "props": [
+    {
+      "name": "title",
+      "type": "ReactNode",
+      "required": true,
+      "description": "Primary line. Rendered as Label-M-High."
+    },
+    {
+      "name": "appearance",
+      "type": "ListItemAppearance",
+      "required": false,
+      "description": "Multi-accent appearance role. Default: 'primary'."
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": false,
+      "description": "Accessible name — required when `title` is non-textual."
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "required": false,
+      "description": "Additional CSS class name on the root."
+    },
+    {
+      "name": "container",
+      "type": "ListItemContainer",
+      "required": false,
+      "description": "Container variant. Default: 'fullWidth'."
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "required": false,
+      "description": "Disable interaction + apply reduced-opacity token."
+    },
+    {
+      "name": "divider",
+      "type": "ListItemDivider",
+      "required": false,
+      "description": "Bottom hairline style. Default: 'none'. Auto-suppresses when the row is the last child."
+    },
+    {
+      "name": "end",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Trailing content (chevron / icon)."
+    },
+    {
+      "name": "endSize",
+      "type": "ListItemEndSize",
+      "required": false,
+      "description": "Trailing slot size. Default: 'M'."
+    },
+    {
+      "name": "href",
+      "type": "string",
+      "required": false,
+      "description": "When set, renders as `<a>`."
+    },
+    {
+      "name": "onClick",
+      "type": "(e: MouseEvent<HTMLElement>) => void",
+      "required": false,
+      "description": "When set (and no href), renders as `<button type=\"button\">`."
+    },
+    {
+      "name": "selected",
+      "type": "ListItemSelected",
+      "required": false,
+      "description": "Selected emphasis. Default: false. `'high'` triggers `[data-surface=\"bold\"]` self-remap."
+    },
+    {
+      "name": "slotAlignment",
+      "type": "ListItemSlotAlign",
+      "required": false,
+      "description": "Slot vertical alignment. Default: 'centre'. When supportText is absent, the row single-lines regardless."
+    },
+    {
+      "name": "start",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Leading content (icon / avatar / badge)."
+    },
+    {
+      "name": "startSize",
+      "type": "ListItemSlotSize",
+      "required": false,
+      "description": "Leading slot size. Default: 'M'."
+    },
+    {
+      "name": "style",
+      "type": "CSSProperties",
+      "required": false,
+      "description": "Inline styles on the root."
+    },
+    {
+      "name": "supportStart",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Small inline decorative slot rendered BEFORE the support text (matches Figma `.ListItem.Slot.Default.Content`). Follows the support text colour."
+    },
+    {
+      "name": "supportText",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Optional secondary line below title. Rendered as Body-S-Low."
+    }
+  ],
+  "slots": [
+    {
+      "name": "start",
+      "types": [
+        "Icon",
+        "Avatar",
+        "Badge",
+        "CounterBadge",
+        "IndicatorBadge"
+      ],
+      "tokens": []
+    },
+    {
+      "name": "end",
+      "types": [
+        "Icon",
+        "IconButton"
+      ],
+      "tokens": []
+    }
+  ],
+  "propsSchema": {
+    "$id": "jds.docs.list-item",
+    "type": "object",
+    "properties": {
+      "title": {
+        "description": "Primary line. Rendered as Label-M-High."
+      },
+      "appearance": {
+        "enum": [
+          "auto",
+          "primary",
+          "secondary",
+          "neutral",
+          "sparkle",
+          "brand-bg",
+          "positive",
+          "negative",
+          "warning",
+          "informative"
+        ],
+        "description": "Multi-accent appearance role. Default: 'primary'."
+      },
+      "aria-label": {
+        "type": "string",
+        "description": "Accessible name — required when `title` is non-textual."
+      },
+      "className": {
+        "type": "string",
+        "description": "Additional CSS class name on the root."
+      },
+      "container": {
+        "enum": [
+          "fullWidth",
+          "inset"
+        ],
+        "description": "Container variant. Default: 'fullWidth'."
+      },
+      "disabled": {
+        "type": "boolean",
+        "description": "Disable interaction + apply reduced-opacity token."
+      },
+      "divider": {
+        "enum": [
+          "none",
+          "full",
+          "inset"
+        ],
+        "description": "Bottom hairline style. Default: 'none'. Auto-suppresses when the row is the last child."
+      },
+      "end": {
+        "description": "Trailing content (chevron / icon)."
+      },
+      "endSize": {
+        "enum": [
+          "S",
+          "M"
+        ],
+        "description": "Trailing slot size. Default: 'M'."
+      },
+      "href": {
+        "type": "string",
+        "description": "When set, renders as `<a>`."
+      },
+      "onClick": {
+        "description": "When set (and no href), renders as `<button type=\"button\">`."
+      },
+      "selected": {
+        "enum": [
+          false,
+          "medium",
+          "high"
+        ],
+        "description": "Selected emphasis. Default: false. `'high'` triggers `[data-surface=\"bold\"]` self-remap."
+      },
+      "slotAlignment": {
+        "enum": [
+          "centre",
+          "top"
+        ],
+        "description": "Slot vertical alignment. Default: 'centre'. When supportText is absent, the row single-lines regardless."
+      },
+      "start": {
+        "description": "Leading content (icon / avatar / badge)."
+      },
+      "startSize": {
+        "enum": [
+          "S",
+          "M",
+          "L",
+          "XL"
+        ],
+        "description": "Leading slot size. Default: 'M'."
+      },
+      "style": {
+        "description": "Inline styles on the root."
+      },
+      "supportStart": {
+        "description": "Small inline decorative slot rendered BEFORE the support text (matches Figma `.ListItem.Slot.Default.Content`). Follows the support text colour."
+      },
+      "supportText": {
+        "description": "Optional secondary line below title. Rendered as Body-S-Low."
+      }
+    },
+    "required": [
+      "title"
+    ]
+  },
+  "codeSnippets": [
+    {
+      "id": "list-item-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { ListItem } from '@oneui/ui';\n\n<ListItem />"
+    },
+    {
+      "id": "list-item-recipe-decisions",
+      "title": "Recipe Decisions",
+      "language": "json",
+      "code": "{\n  \"component\": \"ListItem\",\n  \"decisions\": [\n    \"Row density\",\n    \"Divider\"\n  ]\n}"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "list-item"
+  ],
+  "generatedMarkdown": "# ListItem Machine-Readable Documentation\n\n_Generated from source metadata. Do not edit manually._\n\n## Intent and Purpose\n\n- **Intent**: Single row in a list. Renders a title (Label-M) and optional supportText (Body-S) with start/end slots for icons/avatars/badges/chevrons. Supports 4 start slot sizes (S/M/L/XL), 2 end sizes (S/M), three selected levels (false / medium / high), multi-accent appearance roles, bottom divider (none/full/inset), and an inset rounded-card container.\n- **Task contexts**: list, row, menu, navigation, item\n- **Sentiments**: neutral\n\n## Composition Rules\n\n- **Requires**: \n- **Allows**: start, end\n- **Forbids**: \n\n## Variant Logic\n\n- **default**: use when Default\n- **medium**: use when Selected (Medium)\n- **high**: use when Selected (High)\n\n## Relationships and Dependencies\n\n- **Related**: \n- **Escalates to**: -\n- **Degrades to**: -\n- **Groups with**: -\n\n## Context Signals\n\n- **Density**: compact, default, open\n- **Modality**: desktop, mobile\n- **Brand**: theme-scope aware, recipe-driven\n- **Mode**: light, dark, surface-context\n\n## Observability Hooks\n\n- **Track**: \n- **Health**: a11y_violations\n\n## Props\n\n| Prop | Type | Required | Default | Description |\n| --- | --- | --- | --- | --- |\n| `title` | `ReactNode` | Yes | - | Primary line. Rendered as Label-M-High. |\n| `appearance` | `ListItemAppearance` | No | - | Multi-accent appearance role. Default: 'primary'. |\n| `aria-label` | `string` | No | - | Accessible name — required when `title` is non-textual. |\n| `className` | `string` | No | - | Additional CSS class name on the root. |\n| `container` | `ListItemContainer` | No | - | Container variant. Default: 'fullWidth'. |\n| `disabled` | `boolean` | No | - | Disable interaction + apply reduced-opacity token. |\n| `divider` | `ListItemDivider` | No | - | Bottom hairline style. Default: 'none'. Auto-suppresses when the row is the last child. |\n| `end` | `ReactNode` | No | - | Trailing content (chevron / icon). |\n| `endSize` | `ListItemEndSize` | No | - | Trailing slot size. Default: 'M'. |\n| `href` | `string` | No | - | When set, renders as `<a>`. |\n| `onClick` | `(e: MouseEvent<HTMLElement>) => void` | No | - | When set (and no href), renders as `<button type=\"button\">`. |\n| `selected` | `ListItemSelected` | No | - | Selected emphasis. Default: false. `'high'` triggers `[data-surface=\"bold\"]` self-remap. |\n| `slotAlignment` | `ListItemSlotAlign` | No | - | Slot vertical alignment. Default: 'centre'. When supportText is absent, the row single-lines regardless. |\n| `start` | `ReactNode` | No | - | Leading content (icon / avatar / badge). |\n| `startSize` | `ListItemSlotSize` | No | - | Leading slot size. Default: 'M'. |\n| `style` | `CSSProperties` | No | - | Inline styles on the root. |\n| `supportStart` | `ReactNode` | No | - | Small inline decorative slot rendered BEFORE the support text (matches Figma `.ListItem.Slot.Default.Content`). Follows the support text colour. |\n| `supportText` | `ReactNode` | No | - | Optional secondary line below title. Rendered as Body-S-Low. |\n\n## Slots\n\n| Slot | Types | Tokens |\n| --- | --- | --- |\n| `start` | Icon, Avatar, Badge, CounterBadge, IndicatorBadge |  |\n| `end` | Icon, IconButton |  |\n\n## Code Snippets\n\n### Basic Usage\n\n```tsx\nimport { ListItem } from '@oneui/ui';\n\n<ListItem />\n```\n\n### Recipe Decisions\n\n```json\n{\n  \"component\": \"ListItem\",\n  \"decisions\": [\n    \"Row density\",\n    \"Divider\"\n  ]\n}\n```\n"
+}

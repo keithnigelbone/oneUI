@@ -1,0 +1,138 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-4);
+}
+
+.headerRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--Spacing-3-5);
+  flex-wrap: wrap;
+}
+
+.headerLeft {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-2-5);
+}
+
+.headerRight {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-2-5);
+  flex-wrap: wrap;
+}
+
+.editActions {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-2-5);
+}
+
+.sectionGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--Spacing-4);
+}
+
+/* Status line — plain text with dot separators */
+.statusLine {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--Spacing-2-5);
+}
+
+.statusText {
+  color: var(--Text-Low);
+  font-size: var(--Code-S-FontSize);
+  font-family: var(--Typography-Font-Code, monospace);
+}
+
+.statusTextWarning {
+  color: var(--Warning-Tinted, oklch(0.55 0.12 85));
+  font-size: var(--Code-S-FontSize);
+  font-family: var(--Typography-Font-Code, monospace);
+}
+
+.statusTextCritical {
+  color: var(--Negative-Tinted, oklch(0.55 0.15 25));
+  font-size: var(--Code-S-FontSize);
+  font-family: var(--Typography-Font-Code, monospace);
+}
+
+.statusSeparator {
+  width: var(--Spacing-1-5);
+  height: var(--Spacing-1-5);
+  border-radius: var(--Shape-Pill);
+  background: var(--Text-Low);
+  flex-shrink: 0;
+}
+
+/* Legend for attribution dot colors */
+.legend {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-3-5);
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-2);
+  color: var(--Text-Low);
+  font-size: var(--Code-S-FontSize);
+  font-family: var(--Typography-Font-Code, monospace);
+}
+
+.legendDotInferred {
+  width: var(--Spacing-2);
+  height: var(--Spacing-2);
+  border-radius: var(--Shape-Pill);
+  background: var(--Informative-Tinted, oklch(0.55 0.12 260));
+  flex-shrink: 0;
+}
+
+.legendDotAuthored {
+  width: var(--Spacing-2);
+  height: var(--Spacing-2);
+  border-radius: var(--Shape-Pill);
+  background: var(--Positive-Tinted, oklch(0.50 0.12 155));
+  flex-shrink: 0;
+}
+
+.legendDotOverridden {
+  width: var(--Spacing-2);
+  height: var(--Spacing-2);
+  border-radius: var(--Shape-Pill);
+  background: var(--Warning-Tinted, oklch(0.55 0.12 85));
+  flex-shrink: 0;
+}
+
+.sectionHeading {
+  margin: 0 0 var(--Spacing-3-5);
+  color: var(--Text-High);
+  font-size: var(--Body-M-FontSize);
+  font-weight: var(--Body-FontWeight-Medium);
+}
+
+.sectionHeadingFlush {
+  margin: 0;
+  color: var(--Text-High);
+  font-size: var(--Body-M-FontSize);
+  font-weight: var(--Body-FontWeight-Medium);
+}
+
+.snippetStack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-4);
+}
+
+@media (max-width: 900px) {
+  .sectionGrid {
+    grid-template-columns: 1fr;
+  }
+}

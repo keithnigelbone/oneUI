@@ -1,0 +1,394 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "SelectableSingleTextButton",
+  "generatedAt": "2026-01-01T00:00:00.000Z",
+  "machineReadable": true,
+  "intentAndPurpose": {
+    "intent": {
+      "value": "Text-only toggle button for binary selection — no start/end slots, simpler than SelectableButton.",
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "taskContexts": {
+      "value": [
+        "text-filter-toggle",
+        "segmented-text-control",
+        "simple-option-selection"
+      ],
+      "attribution": {
+        "source": "authored"
+      }
+    },
+    "sentiments": {
+      "value": [
+        "neutral",
+        "positive"
+      ],
+      "attribution": {
+        "source": "authored"
+      }
+    }
+  },
+  "compositionRules": {
+    "requires": {
+      "value": [
+        "children (text label — required)"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "allows": {
+      "value": [
+        "condensed mode",
+        "fullWidth",
+        "loading state"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "forbids": {
+      "value": [
+        "icon slots (use SelectableButton instead)",
+        "missing text content"
+      ],
+      "attribution": {
+        "source": "authored"
+      }
+    }
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "high attention",
+        "useWhen": {
+          "value": [
+            "selected state needs bold fill emphasis"
+          ],
+          "attribution": {
+            "source": "inferred"
+          }
+        }
+      },
+      {
+        "name": "medium attention",
+        "useWhen": {
+          "value": [
+            "selected state with subtle tinted fill"
+          ],
+          "attribution": {
+            "source": "inferred"
+          }
+        }
+      },
+      {
+        "name": "low attention",
+        "useWhen": {
+          "value": [
+            "selected state with ghost appearance and accent border"
+          ],
+          "attribution": {
+            "source": "inferred"
+          }
+        }
+      }
+    ]
+  },
+  "relationshipsAndDependencies": {
+    "related": {
+      "value": [
+        "SelectableButton",
+        "SelectableIconButton",
+        "Toggle",
+        "ToggleGroup"
+      ],
+      "attribution": {
+        "source": "authored"
+      }
+    },
+    "groupsWith": {
+      "value": [
+        "ToggleGroup"
+      ],
+      "attribution": {
+        "source": "authored"
+      }
+    }
+  },
+  "contextSignals": {
+    "density": {
+      "value": [
+        "compact",
+        "default",
+        "open"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "modality": {
+      "value": [
+        "desktop",
+        "mobile"
+      ],
+      "attribution": {
+        "source": "authored"
+      }
+    },
+    "brand": {
+      "value": [
+        "theme-scope aware",
+        "recipe-driven"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "mode": {
+      "value": [
+        "light",
+        "dark",
+        "surface-context"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "observabilityHooks": {
+    "track": {
+      "value": [
+        "select",
+        "deselect"
+      ],
+      "attribution": {
+        "source": "authored"
+      }
+    },
+    "health": {
+      "value": [
+        "a11y_violations",
+        "adoption_rate"
+      ],
+      "attribution": {
+        "source": "authored"
+      }
+    }
+  },
+  "props": [
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "required": true,
+      "description": "Text label content — max 2 characters (e.g. \"Ag\", \"En\", \"A\", \"12\"). This component renders as a circular button; longer text breaks the shape. Text exceeding 2 characters will be truncated in development with a warning."
+    },
+    {
+      "name": "appearance",
+      "type": "SelectableSingleTextButtonAppearance",
+      "required": false,
+      "description": "Multi-accent appearance role. 'auto' resolves to 'primary'."
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": false,
+      "description": "Accessible label for screen readers (optional — children text is visible)"
+    },
+    {
+      "name": "attention",
+      "type": "SelectableSingleTextButtonAttention",
+      "required": false,
+      "description": "Attention level — determines the visual prominence of the SELECTED state. high → bold fill; medium → subtle fill; low → ghost with accent border. The UNSELECTED state is always muted ghost regardless of attention. Default: 'high'."
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "required": false,
+      "description": "Additional class name"
+    },
+    {
+      "name": "condensed",
+      "type": "boolean",
+      "required": false,
+      "description": "Condensed mode: reduces height and horizontal padding while keeping the same typography."
+    },
+    {
+      "name": "data-testid",
+      "type": "string",
+      "required": false,
+      "description": "QA / e2e anchor on the root toggle element"
+    },
+    {
+      "name": "defaultSelected",
+      "type": "boolean",
+      "required": false,
+      "description": "Default selected state (uncontrolled)."
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "required": false,
+      "description": "Whether the button is disabled."
+    },
+    {
+      "name": "fullWidth",
+      "type": "boolean",
+      "required": false,
+      "description": "Stretch to fill container width."
+    },
+    {
+      "name": "loading",
+      "type": "boolean",
+      "required": false,
+      "description": "Loading state — shows circular progress indicator replacing the text label. Disables interaction while loading."
+    },
+    {
+      "name": "onSelectedChange",
+      "type": "(selected: boolean) => void",
+      "required": false,
+      "description": "Called when selected state changes."
+    },
+    {
+      "name": "selected",
+      "type": "boolean",
+      "required": false,
+      "description": "Selected state (controlled). Maps to Toggle pressed."
+    },
+    {
+      "name": "size",
+      "type": "SelectableSingleTextButtonSize",
+      "required": false,
+      "description": "Button size. Default: 'm'. S/M/L only (no XS)."
+    },
+    {
+      "name": "style",
+      "type": "CSSProperties",
+      "required": false,
+      "description": "Inline styles"
+    },
+    {
+      "name": "value",
+      "type": "string",
+      "required": false,
+      "description": "Value for use within ToggleGroup."
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.docs.selectable-single-text-button",
+    "type": "object",
+    "properties": {
+      "children": {
+        "description": "Text label content — max 2 characters (e.g. \"Ag\", \"En\", \"A\", \"12\"). This component renders as a circular button; longer text breaks the shape. Text exceeding 2 characters will be truncated in development with a warning."
+      },
+      "appearance": {
+        "enum": [
+          "auto",
+          "primary",
+          "secondary",
+          "neutral",
+          "sparkle",
+          "brand-bg",
+          "positive",
+          "negative",
+          "warning",
+          "informative"
+        ],
+        "description": "Multi-accent appearance role. 'auto' resolves to 'primary'."
+      },
+      "aria-label": {
+        "type": "string",
+        "description": "Accessible label for screen readers (optional — children text is visible)"
+      },
+      "attention": {
+        "enum": [
+          "high",
+          "medium",
+          "low"
+        ],
+        "description": "Attention level — determines the visual prominence of the SELECTED state. high → bold fill; medium → subtle fill; low → ghost with accent border. The UNSELECTED state is always muted ghost regardless of attention. Default: 'high'."
+      },
+      "className": {
+        "type": "string",
+        "description": "Additional class name"
+      },
+      "condensed": {
+        "type": "boolean",
+        "description": "Condensed mode: reduces height and horizontal padding while keeping the same typography."
+      },
+      "data-testid": {
+        "type": "string",
+        "description": "QA / e2e anchor on the root toggle element"
+      },
+      "defaultSelected": {
+        "type": "boolean",
+        "description": "Default selected state (uncontrolled)."
+      },
+      "disabled": {
+        "type": "boolean",
+        "description": "Whether the button is disabled."
+      },
+      "fullWidth": {
+        "type": "boolean",
+        "description": "Stretch to fill container width."
+      },
+      "loading": {
+        "type": "boolean",
+        "description": "Loading state — shows circular progress indicator replacing the text label. Disables interaction while loading."
+      },
+      "onSelectedChange": {
+        "description": "Called when selected state changes."
+      },
+      "selected": {
+        "type": "boolean",
+        "description": "Selected state (controlled). Maps to Toggle pressed."
+      },
+      "size": {
+        "enum": [
+          "s",
+          "m",
+          "l"
+        ],
+        "description": "Button size. Default: 'm'. S/M/L only (no XS)."
+      },
+      "style": {
+        "description": "Inline styles"
+      },
+      "value": {
+        "type": "string",
+        "description": "Value for use within ToggleGroup."
+      }
+    },
+    "required": [
+      "children"
+    ]
+  },
+  "codeSnippets": [
+    {
+      "id": "selectablesingletextbutton-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { SelectableSingleTextButton } from '@oneui/ui';\n\n<SelectableSingleTextButton>Option</SelectableSingleTextButton>"
+    },
+    {
+      "id": "selectablesingletextbutton-controlled",
+      "title": "Controlled",
+      "language": "tsx",
+      "code": "<SelectableSingleTextButton selected={isActive} onSelectedChange={setIsActive}>Active</SelectableSingleTextButton>"
+    },
+    {
+      "id": "selectable-single-text-button-recipe-decisions",
+      "title": "Recipe Decisions",
+      "language": "json",
+      "code": "{\n  \"component\": \"SelectableSingleTextButton\",\n  \"decisions\": [\n    \"Shape\"\n  ]\n}"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "selectable-single-text-button"
+  ],
+  "generatedMarkdown": "# SelectableSingleTextButton Machine-Readable Documentation\n\n_Generated from source metadata. Do not edit manually._\n\n## Intent and Purpose\n\n- **Intent**: Text-only toggle button for binary selection — no start/end slots, simpler than SelectableButton.\n- **Task contexts**: text-filter-toggle, segmented-text-control, simple-option-selection\n- **Sentiments**: neutral, positive\n\n## Composition Rules\n\n- **Requires**: children (text label — required)\n- **Allows**: condensed mode, fullWidth, loading state\n- **Forbids**: icon slots (use SelectableButton instead), missing text content\n\n## Variant Logic\n\n- **high attention**: use when selected state needs bold fill emphasis\n- **medium attention**: use when selected state with subtle tinted fill\n- **low attention**: use when selected state with ghost appearance and accent border\n\n## Relationships and Dependencies\n\n- **Related**: SelectableButton, SelectableIconButton, Toggle, ToggleGroup\n- **Escalates to**: -\n- **Degrades to**: -\n- **Groups with**: ToggleGroup\n\n## Context Signals\n\n- **Density**: compact, default, open\n- **Modality**: desktop, mobile\n- **Brand**: theme-scope aware, recipe-driven\n- **Mode**: light, dark, surface-context\n\n## Observability Hooks\n\n- **Track**: select, deselect\n- **Health**: a11y_violations, adoption_rate\n\n## Props\n\n| Prop | Type | Required | Default | Description |\n| --- | --- | --- | --- | --- |\n| `children` | `ReactNode` | Yes | - | Text label content — max 2 characters (e.g. \"Ag\", \"En\", \"A\", \"12\"). This component renders as a circular button; longer text breaks the shape. Text exceeding 2 characters will be truncated in development with a warning. |\n| `appearance` | `SelectableSingleTextButtonAppearance` | No | - | Multi-accent appearance role. 'auto' resolves to 'primary'. |\n| `aria-label` | `string` | No | - | Accessible label for screen readers (optional — children text is visible) |\n| `attention` | `SelectableSingleTextButtonAttention` | No | - | Attention level — determines the visual prominence of the SELECTED state. high → bold fill; medium → subtle fill; low → ghost with accent border. The UNSELECTED state is always muted ghost regardless of attention. Default: 'high'. |\n| `className` | `string` | No | - | Additional class name |\n| `condensed` | `boolean` | No | - | Condensed mode: reduces height and horizontal padding while keeping the same typography. |\n| `data-testid` | `string` | No | - | QA / e2e anchor on the root toggle element |\n| `defaultSelected` | `boolean` | No | - | Default selected state (uncontrolled). |\n| `disabled` | `boolean` | No | - | Whether the button is disabled. |\n| `fullWidth` | `boolean` | No | - | Stretch to fill container width. |\n| `loading` | `boolean` | No | - | Loading state — shows circular progress indicator replacing the text label. Disables interaction while loading. |\n| `onSelectedChange` | `(selected: boolean) => void` | No | - | Called when selected state changes. |\n| `selected` | `boolean` | No | - | Selected state (controlled). Maps to Toggle pressed. |\n| `size` | `SelectableSingleTextButtonSize` | No | - | Button size. Default: 'm'. S/M/L only (no XS). |\n| `style` | `CSSProperties` | No | - | Inline styles |\n| `value` | `string` | No | - | Value for use within ToggleGroup. |\n\n## Slots\n\n| Slot | Types | Tokens |\n| --- | --- | --- |\n\n\n## Code Snippets\n\n### Basic Usage\n\n```tsx\nimport { SelectableSingleTextButton } from '@oneui/ui';\n\n<SelectableSingleTextButton>Option</SelectableSingleTextButton>\n```\n\n### Controlled\n\n```tsx\n<SelectableSingleTextButton selected={isActive} onSelectedChange={setIsActive}>Active</SelectableSingleTextButton>\n```\n\n### Recipe Decisions\n\n```json\n{\n  \"component\": \"SelectableSingleTextButton\",\n  \"decisions\": [\n    \"Shape\"\n  ]\n}\n```\n"
+}

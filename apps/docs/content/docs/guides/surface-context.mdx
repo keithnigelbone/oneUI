@@ -1,0 +1,44 @@
+---
+title: Surface Context
+description: The core rule that makes components adapt correctly on branded, colored, and dark backgrounds.
+---
+
+Use `<Surface mode="...">` for any non-default background that contains interactive or text content.
+
+<SurfaceRuleCallout />
+
+## Why Surface Matters
+
+Surface sets both a background fill and a `data-surface` attribute. The runtime brand CSS emits `[data-surface]` blocks that remap role tokens for every child component.
+
+A raw `div` with `backgroundColor` only paints the container. It does not create a surface context, so child components may keep page-surface text colors and fail contrast.
+
+## Common Modes
+
+- `default` is the page surface.
+- `subtle` groups content without taking over the page.
+- `bold` is for hero sections, branded calls to action, or editorial moments.
+- `elevated` is for floating UI like popovers, sheets, and dialogs.
+
+## Adoption Rule
+
+Do this:
+
+```tsx
+<Surface mode="bold">
+  <Button variant="bold">Primary action</Button>
+  <Button variant="ghost" appearance="neutral">
+    Secondary action
+  </Button>
+</Surface>
+```
+
+Do not do this:
+
+```tsx
+<div style={{ backgroundColor: 'var(--Primary-Bold)' }}>
+  <Button variant="ghost">This will not receive surface remapping</Button>
+</div>
+```
+
+Inside a surface, keep styling generic: choose `appearance`, `variant`, `attention`, `start`, and `end` props instead of manual color overrides.

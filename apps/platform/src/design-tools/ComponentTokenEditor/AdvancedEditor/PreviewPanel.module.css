@@ -1,0 +1,44 @@
+/**
+ * PreviewPanel.module.css
+ *
+ * Compact, tool-like styles for preview controls.
+ * Toggle selectors now use ToggleGroup component (consistent with foundation pages).
+ * Token-only styling (zero literals).
+ */
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-3);
+}
+
+/* Control group: label + control */
+.controlGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-2);
+}
+
+/* Inline group: label and control side by side */
+.controlGroupInline {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-3);
+}
+
+.controlGroupInline .controlLabel {
+  flex-shrink: 0;
+  min-width: var(--Spacing-8);
+}
+
+.controlLabel {
+  font-size: var(--Label-XS-FontSize);
+  font-weight: var(--Body-FontWeight-Medium);
+  color: var(--Text-High);
+  text-transform: lowercase;
+}
+
+/* Surface controls wrapper */
+.surfaceControlsWrapper {
+  margin-top: var(--Spacing-1-5);
+}

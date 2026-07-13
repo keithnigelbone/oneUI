@@ -1,0 +1,225 @@
+/**
+ * PageSkeleton.module.css
+ *
+ * Skeleton loading states — token-only values, no hard-coded colors or pixels.
+ */
+
+/* Shimmer animation */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Base skeleton block with shimmer */
+.skeletonBlock {
+  background: linear-gradient(
+    90deg,
+    var(--Surface-Subtle) 25%,
+    var(--Surface-Ghost) 50%,
+    var(--Surface-Subtle) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+  border-radius: var(--Shape-4);
+}
+
+/* ─── PageSkeleton ─────────────────────────────────────── */
+
+.pageSkeleton {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-5);
+  max-width: 1200px;
+}
+
+.headerSkeleton {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-2-5);
+}
+
+.titleBar {
+  composes: skeletonBlock;
+  height: var(--Spacing-6);
+  width: 40%;
+}
+
+.descriptionBar {
+  composes: skeletonBlock;
+  height: var(--Spacing-4);
+  width: 60%;
+}
+
+.contentSkeleton {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-4-5);
+}
+
+.cardSkeleton {
+  background-color: var(--Surface-Main);
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+  border-radius: var(--Shape-4-5);
+  padding: var(--Spacing-4-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-4);
+}
+
+.cardTitleBar {
+  composes: skeletonBlock;
+  height: var(--Spacing-4-5);
+  width: 30%;
+}
+
+.cardBody {
+  composes: skeletonBlock;
+  height: var(--Spacing-9);
+}
+
+/* ─── CardGridSkeleton ─────────────────────────────────── */
+
+.cardGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(var(--Spacing-9), 1fr));
+  gap: var(--Spacing-4);
+}
+
+.gridCard {
+  background-color: var(--Surface-Main);
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+  border-radius: var(--Shape-4-5);
+  padding: var(--Spacing-4-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-3-5);
+}
+
+.gridCardIcon {
+  composes: skeletonBlock;
+  height: var(--Spacing-6);
+  width: var(--Spacing-6);
+  border-radius: var(--Shape-Pill);
+}
+
+.gridCardTitle {
+  composes: skeletonBlock;
+  height: var(--Spacing-4);
+  width: 70%;
+}
+
+.gridCardMeta {
+  composes: skeletonBlock;
+  height: var(--Spacing-3-5);
+  width: 50%;
+}
+
+/* ─── EditorSkeleton ───────────────────────────────────── */
+
+.editorLayout {
+  display: flex;
+  gap: var(--Spacing-4-5);
+  min-height: 70vh;
+}
+
+.editorSidebar {
+  flex: 0 0 280px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-4);
+  background-color: var(--Surface-Main);
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+  border-radius: var(--Shape-4-5);
+  padding: var(--Spacing-4-5);
+}
+
+.sidebarItem {
+  composes: skeletonBlock;
+  height: var(--Spacing-5);
+}
+
+.editorMain {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-4);
+  background-color: var(--Surface-Main);
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+  border-radius: var(--Shape-4-5);
+  padding: var(--Spacing-4-5);
+}
+
+.editorToolbar {
+  composes: skeletonBlock;
+  height: var(--Spacing-6);
+}
+
+.editorCanvas {
+  composes: skeletonBlock;
+  flex: 1;
+  min-height: var(--Spacing-9);
+}
+
+/* ─── OverviewSkeleton ─────────────────────────────────── */
+
+.overviewContainer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-4-5);
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.overviewHeader {
+  display: flex;
+  gap: var(--Spacing-4-5);
+  align-items: center;
+  padding: var(--Spacing-4-5);
+}
+
+.overviewAvatar {
+  composes: skeletonBlock;
+  height: var(--Spacing-8);
+  width: var(--Spacing-8);
+  border-radius: var(--Shape-Pill);
+  flex-shrink: 0;
+}
+
+.overviewHeaderText {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-3);
+  flex: 1;
+}
+
+.overviewNameBar {
+  composes: skeletonBlock;
+  height: var(--Spacing-5);
+  width: 30%;
+}
+
+.overviewDescBar {
+  composes: skeletonBlock;
+  height: var(--Spacing-4);
+  width: 50%;
+}
+
+.overviewStatsBar {
+  display: flex;
+  gap: var(--Spacing-3-5);
+  flex-wrap: wrap;
+  padding: var(--Spacing-4);
+  background-color: var(--Surface-Subtle);
+  border-radius: var(--Shape-4-5);
+}
+
+.overviewStatPill {
+  composes: skeletonBlock;
+  height: var(--Spacing-5);
+  width: var(--Spacing-8);
+  border-radius: var(--Shape-Pill);
+}

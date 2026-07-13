@@ -1,0 +1,29 @@
+import React, { forwardRef } from 'react';
+import type { IconComponentProps } from '../iconProps';
+
+export const WarningCircleFilled = forwardRef<SVGSVGElement, IconComponentProps>(function WarningCircleFilled(
+  { size = 24, width, height, color = 'currentColor', className, style, ...props },
+  ref,
+) {
+  const dim = width ?? height ?? size;
+  return (
+    <svg
+      ref={ref}
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      width={width ?? dim}
+      height={height ?? dim}
+      color={color}
+      className={className}
+      style={style}
+      {...props}
+    >
+      <path d="M12.0001 22.0002C17.523 22.0002 22.0002 17.523 22.0002 12.0001C22.0002 6.47721 17.523 2 12.0001 2C6.47721 2 2 6.47721 2 12.0001C2 17.523 6.47721 22.0002 12.0001 22.0002Z" fill="currentColor"/>
+      <path d="M12.6671 6.90015C12.6671 6.56878 12.3985 6.30015 12.0671 6.30015C11.7358 6.30015 11.4671 6.56878 11.4671 6.90015V13.9001C11.4671 14.2315 11.7358 14.5001 12.0671 14.5001C12.3985 14.5001 12.6671 14.2315 12.6671 13.9001V6.90015Z" fill="white"/>
+      <path d="M12.067 17.1001C12.3984 17.1001 12.667 16.8315 12.667 16.5001C12.667 16.1688 12.3984 15.9001 12.067 15.9001C11.7357 15.9001 11.467 16.1688 11.467 16.5001C11.467 16.8315 11.7357 17.1001 12.067 17.1001Z" fill="white"/>
+    </svg>
+  );
+});
+
+WarningCircleFilled.displayName = 'WarningCircleFilled';

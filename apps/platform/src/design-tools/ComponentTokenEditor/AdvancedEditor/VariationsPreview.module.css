@@ -1,0 +1,159 @@
+/**
+ * VariationsPreview.module.css
+ *
+ * Shows button layout variations (normal, condensed, full-width) side-by-side.
+ * Token-only styling (zero literals).
+ */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: var(--Spacing-3-5);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--Spacing-3-5);
+  align-items: stretch;
+  width: 100%;
+}
+
+.variationCell {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-4);
+  padding: var(--Spacing-4-5);
+  background-color: var(--Surface-Main);
+  border-radius: var(--Shape-4-5);
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+}
+
+.label {
+  font-size: var(--Label-XS-FontSize);
+  font-weight: var(--Body-FontWeight-High);
+  color: var(--Text-Medium);
+}
+
+.preview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--Spacing-16);
+  flex: 1;
+}
+
+.fullWidthPreview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--Spacing-16);
+  width: 100%;
+  flex: 1;
+}
+
+/* ============================================================
+   Matrix mode: variant × size grid
+   ============================================================ */
+
+/* Columns: label + N size columns (driven by --matrix-size-count CSS var) */
+.matrixGrid {
+  display: grid;
+  grid-template-columns: auto repeat(var(--matrix-size-count, 3), 1fr);
+  gap: var(--Spacing-4-5);
+  width: 100%;
+}
+
+.matrixHeaderEmpty {
+  /* top-left corner — intentionally empty */
+}
+
+.matrixSizeHeader {
+  font-size: var(--Label-XS-FontSize);
+  font-weight: var(--Body-FontWeight-High);
+  color: var(--Text-Medium);
+  text-align: center;
+  padding-block: var(--Spacing-2-5);
+}
+
+.matrixVariantLabel {
+  font-size: var(--Label-XS-FontSize);
+  font-weight: var(--Body-FontWeight-High);
+  color: var(--Text-Medium);
+  display: flex;
+  align-items: center;
+  padding-inline-end: var(--Spacing-3-5);
+  white-space: nowrap;
+}
+
+.matrixCell {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Extra horizontal padding accommodates ornament protrusion.
+     overflow: visible lets ornament SVGs extend beyond cell borders. */
+  padding: var(--Spacing-4-5) var(--Spacing-8);
+  background-color: var(--Surface-Main);
+  border-radius: var(--Shape-4-5);
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+  min-height: var(--Spacing-16);
+  overflow: visible;
+}
+
+.matrixCellOverridden {
+  border-color: var(--Primary-Tinted);
+}
+
+.overrideDot {
+  position: absolute;
+  top: var(--Spacing-1);
+  right: var(--Spacing-1);
+  width: var(--Spacing-2);
+  height: var(--Spacing-2);
+  border-radius: var(--Shape-Pill);
+  background-color: var(--Primary-Tinted);
+}
+
+/* Clickable cells & row labels */
+.matrixCell[data-clickable],
+.matrixVariantLabel[data-clickable] {
+  cursor: pointer;
+  transition: border-color var(--Motion-Duration-Discreet-Short) var(--Motion-Easing-Standard),
+              background-color var(--Motion-Duration-Discreet-Short) var(--Motion-Easing-Standard);
+}
+
+.matrixCell[data-clickable]:hover {
+  border-color: var(--Primary-Tinted);
+  background-color: var(--Primary-Hover);
+}
+
+.matrixVariantLabel[data-clickable]:hover {
+  color: var(--Text-High);
+}
+
+/* Selected cell highlight */
+.matrixCell[data-selected] {
+  border-color: var(--Primary-Tinted);
+  box-shadow: 0 0 0 var(--Stroke-M) var(--Primary-Tinted);
+}
+
+/* Responsive */
+/* INTENTIONAL-LITERAL: responsive breakpoints — layout breakpoints, no CSS token system for media queries */
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .matrixGrid {
+    grid-template-columns: auto repeat(var(--matrix-size-count, 3), 1fr);
+    overflow-x: auto;
+  }
+}

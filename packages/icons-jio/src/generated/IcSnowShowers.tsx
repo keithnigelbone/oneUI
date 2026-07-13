@@ -1,0 +1,30 @@
+import React, { forwardRef } from 'react';
+import type { IconComponentProps } from '../iconProps';
+
+export const IcSnowShowers = forwardRef<SVGSVGElement, IconComponentProps>(function IcSnowShowers(
+  { size = 24, width, height, color = 'currentColor', className, style, ...props },
+  ref,
+) {
+  const dim = width ?? height ?? size;
+  return (
+    <svg
+      ref={ref}
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      width={width ?? dim}
+      height={height ?? dim}
+      color={color}
+      className={className}
+      style={style}
+      {...props}
+    >
+      <path
+            fill="currentColor"
+            d="M8.71 16.29a.996.996 0 0 0-1.41 0l-.29.29-.29-.29a.996.996 0 1 0-1.41 1.41l.29.29-.29.29a.996.996 0 0 0 .71 1.7c.26 0 .51-.1.71-.29l.29-.29.29.29c.2.2.45.29.71.29s.51-.1.71-.29a.996.996 0 0 0 0-1.41l-.29-.29.29-.29a.996.996 0 0 0 0-1.41zm9.32.46a1.01 1.01 0 0 0-1.37-.37l-.67.38v-.77c0-.55-.45-1-1-1s-1 .45-1 1v.77l-.67-.38c-.48-.28-1.09-.11-1.37.37s-.11 1.09.37 1.37l.67.38-.67.38c-.48.28-.64.89-.37 1.37s.89.64 1.37.37l.67-.38v.77c0 .55.45 1 1 1s1-.45 1-1v-.77l.67.38c.48.28 1.09.11 1.37-.37s.11-1.09-.37-1.37l-.67-.38.67-.38c.48-.28.64-.89.37-1.37m1.41-8.37c.03-.21.06-.42.06-.63C19.5 5.13 17.37 3 14.75 3c-1.64 0-3.08.83-3.93 2.09A3.7 3.7 0 0 0 10 5a3.98 3.98 0 0 0-3.86 3.01C6.09 8.01 6.05 8 6 8c-1.66 0-3 1.34-3 3s1.34 3 3 3h12c1.66 0 3-1.34 3-3 0-1.13-.64-2.11-1.56-2.62"
+          />
+    </svg>
+  );
+});
+
+IcSnowShowers.displayName = 'IcSnowShowers';

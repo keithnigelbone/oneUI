@@ -1,0 +1,125 @@
+/**
+ * Tooltip Figma validation — 4×3 position × alignment matrix.
+ * Token-only typography and borders; caption uses sparkle emphasis like Switch / Stepper tabs.
+ */
+
+.page {
+  padding: 0;
+  max-width: 100%;
+}
+
+.metaLine {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  font-weight: var(--Body-FontWeight-Low);
+  color: var(--Text-Medium);
+  margin: 0 0 var(--Spacing-4-5);
+  word-break: break-word;
+}
+
+.tableWrap {
+  overflow: auto;
+  max-width: 100%;
+}
+
+.gridTable {
+  border-collapse: collapse;
+  width: max-content;
+  max-width: 100%;
+  font-family: var(--Typography-Font-Primary);
+}
+
+.gridTable th,
+.gridTable td {
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+  padding: var(--Spacing-3-5);
+  vertical-align: middle;
+  text-align: center;
+}
+
+.figmaCaption {
+  caption-side: top;
+  text-align: left;
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Headline-M-FontSize);
+  line-height: var(--Headline-M-LineHeight);
+  font-weight: var(--Headline-M-FontWeight);
+  color: var(--Sparkle-High);
+  padding: 0 0 var(--Spacing-3-5);
+}
+
+.figmaCaptionMark {
+  color: var(--Sparkle-High);
+}
+
+.cell {
+  background: var(--Surface-Default);
+}
+
+.cellInner {
+  display: flex;
+  /* Default: center — overridden per side via data-side in TSX inline styles */
+  align-items: center;
+  justify-content: center;
+  /*
+   * Cells must be large enough that the floating tooltip can render within
+   * (or close to) the cell boundary without overlapping adjacent cells.
+   * Left/right tooltips need ~140 px of width either side of the anchor;
+   * top/bottom tooltips need ~80 px of height either side.
+   */
+  min-width: 220px;
+  min-height: 180px;
+  position: relative;
+  /* Tooltips portal to <body> so overflow:visible is already the default,
+     but make it explicit to ensure no parent clips the floating element. */
+  overflow: visible;
+}
+
+.anchor {
+  display: inline-block;
+  /* Small visible dot so QA can see the exact anchor reference point.
+     Matches the implicit centre mark in the Figma component-set artboard. */
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--Border-Subtle, #ccc);
+  pointer-events: none;
+  flex-shrink: 0;
+}
+
+.rowLabelRight {
+  text-align: left;
+  vertical-align: middle;
+  font-family: var(--Typography-Font-Code);
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Low);
+  color: var(--Text-Medium);
+  white-space: nowrap;
+  padding-inline-start: var(--Spacing-4);
+  min-width: var(--Spacing-28);
+  background: var(--Surface-Default);
+}
+
+.footerRow td,
+.footerRow th {
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+}
+
+.footerAlign {
+  font-family: var(--Typography-Font-Code);
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Low);
+  color: var(--Text-Medium);
+  text-align: center;
+  background: var(--Surface-Default);
+  padding-block: var(--Spacing-2-5);
+}
+
+.footerCorner {
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+  background: var(--Surface-Default);
+  min-width: var(--Spacing-20);
+}

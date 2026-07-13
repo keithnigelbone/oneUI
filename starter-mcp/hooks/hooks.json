@@ -1,0 +1,28 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node $CLAUDE_PLUGIN_ROOT/hooks/scripts/ensure-rules.mjs",
+            "statusMessage": "OneUI workflow rule sync"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node $CLAUDE_PLUGIN_ROOT/hooks/scripts/validate-on-write.mjs",
+            "statusMessage": "OneUI gate check"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "allowJs": true,
+    "declaration": false,
+    "declarationMap": false,
+    "incremental": true,
+    "isolatedModules": true,
+    "baseUrl": ".",
+    "noEmit": true,
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ],
+      "collections/*": [
+        "./.source/*"
+      ],
+      "@oneui/ui": [
+        "../../packages/ui/src"
+      ],
+      "@oneui/ui/*": [
+        "../../packages/ui/src/*"
+      ],
+      "@oneui/tokens": [
+        "../../packages/tokens/src"
+      ],
+      "@oneui/shared": [
+        "../../packages/shared/src"
+      ],
+      "@oneui/shared/*": [
+        "../../packages/shared/src/*"
+      ],
+      "@oneui/convex": [
+        "../../packages/convex/convex/_generated/api.js"
+      ],
+      "@oneui/convex/*": [
+        "../../packages/convex/convex/*"
+      ]
+    },
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "jsx": "preserve"
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    ".source/**/*.ts",
+    "source.config.ts",
+    "next.config.mjs"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

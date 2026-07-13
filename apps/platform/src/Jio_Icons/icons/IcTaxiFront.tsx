@@ -1,0 +1,16 @@
+import * as React from 'react';
+import type { SVGProps } from 'react';
+const SvgIcTaxiFront = (props: SVGProps<SVGSVGElement>) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    {...props}
+  >
+    <path
+      fill="currentColor"
+      d="M20.77 11.16 19.4 7.05a3 3 0 0 0-2.84-2H15V4a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v1H7.41a3 3 0 0 0-2.85 2.07l-1.34 4.09A2 2 0 0 0 2 13v3a2 2 0 0 0 1 1.72V19a1 1 0 1 0 2 0v-1h14v1a1 1 0 0 0 2 0v-1.28A2 2 0 0 0 22 16v-3a2 2 0 0 0-1.23-1.84M6.46 7.69a1 1 0 0 1 1-.69h9.15a1 1 0 0 1 1 .68l1 3.32H5.38zm.25 7a1 1 0 0 1-1.27.12.94.94 0 0 1-.36-.45A1 1 0 0 1 5 13.8a1 1 0 0 1 .8-.8 1 1 0 0 1 .58.06.94.94 0 0 1 .45.36 1 1 0 0 1-.12 1.27m12 0a1 1 0 0 1-1.27.12.94.94 0 0 1-.36-.45 1 1 0 0 1-.08-.56 1 1 0 0 1 .8-.8 1 1 0 0 1 .58.06.94.94 0 0 1 .45.36 1 1 0 0 1-.12 1.27"
+    />
+  </svg>
+);
+export default SvgIcTaxiFront;

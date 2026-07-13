@@ -1,0 +1,67 @@
+{
+  "name": "@oneui/native-cdn",
+  "version": "0.1.0-alpha.4",
+  "private": false,
+  "description": "Runtime CDN brand-data loader for OneUI React Native. Pairs with <OneUIBrandProvider> from @oneui/ui-native.",
+  "keywords": [
+    "react-native",
+    "design-system",
+    "oneui",
+    "jio",
+    "cdn"
+  ],
+  "type": "module",
+  "sideEffects": false,
+  "main": "./src/index.ts",
+  "module": "./src/index.ts",
+  "types": "./src/index.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "bin": {
+    "oneui-native-cdn": "./dist/cli.cjs"
+  },
+  "exports": {
+    ".": {
+      "react-native": "./src/index.ts",
+      "default": "./src/index.ts"
+    },
+    "./prefetch": "./src/prefetch.ts"
+  },
+  "publishConfig": {
+    "main": "./dist/index.cjs",
+    "module": "./dist/index.mjs",
+    "types": "./dist/index.d.ts",
+    "exports": {
+      ".": {
+        "types": "./dist/index.d.ts",
+        "react-native": "./dist/index.mjs",
+        "import": "./dist/index.mjs",
+        "require": "./dist/index.cjs"
+      },
+      "./prefetch": {
+        "types": "./dist/prefetch.d.ts",
+        "import": "./dist/prefetch.mjs",
+        "require": "./dist/prefetch.cjs"
+      }
+    }
+  },
+  "scripts": {
+    "build": "tsup",
+    "typecheck": "tsc --noEmit",
+    "generate:default-brand-data": "node scripts/generate-default-brand-data.mjs",
+    "pack:dist": "node scripts/pack-dist.mjs",
+    "build:pack": "pnpm run build && pnpm run pack:dist"
+  },
+  "peerDependencies": {
+    "react": "^18.3.0 || ^19.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.5",
+    "@types/react": "~19.1.10",
+    "react": "19.1.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.7.2"
+  }
+}

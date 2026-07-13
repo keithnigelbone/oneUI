@@ -1,0 +1,314 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Chip",
+  "generatedAt": "2026-01-01T00:00:00.000Z",
+  "machineReadable": true,
+  "intentAndPurpose": {
+    "intent": "Compact interactive label for filtering, tagging, or selecting values.",
+    "taskContexts": [
+      "filter-selection",
+      "tag-display",
+      "multi-select",
+      "categorisation"
+    ],
+    "sentiments": [
+      "neutral",
+      "positive",
+      "informative"
+    ]
+  },
+  "compositionRules": {
+    "requires": [
+      "label text or aria-label"
+    ],
+    "allows": [
+      "start slot (icon, avatar, badge)",
+      "end slot (icon, counter)"
+    ],
+    "forbids": [
+      "multi-line text content"
+    ]
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "bold",
+        "useWhen": [
+          "selected/active state in filter groups"
+        ]
+      },
+      {
+        "name": "subtle",
+        "useWhen": [
+          "suggested or pre-selected options"
+        ]
+      },
+      {
+        "name": "ghost",
+        "useWhen": [
+          "unselected filter options (default)"
+        ]
+      }
+    ]
+  },
+  "relationshipsAndDependencies": {
+    "related": [
+      "ChipGroup",
+      "Button",
+      "Badge"
+    ],
+    "groupsWith": [
+      "ChipGroup"
+    ]
+  },
+  "contextSignals": {
+    "density": [
+      "compact",
+      "default",
+      "open"
+    ],
+    "modality": [
+      "desktop",
+      "mobile"
+    ],
+    "brand": [
+      "theme-scope aware",
+      "recipe-driven"
+    ],
+    "mode": [
+      "light",
+      "dark",
+      "surface-context"
+    ]
+  },
+  "observabilityHooks": {
+    "track": [
+      "select",
+      "deselect"
+    ],
+    "health": [
+      "adoption_rate",
+      "a11y_violations"
+    ]
+  },
+  "props": [
+    {
+      "name": "appearance",
+      "type": "ChipAppearance",
+      "required": false,
+      "description": "Multi-accent appearance role. 'auto' resolves to 'secondary'."
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": false,
+      "description": "Accessible label for screen readers"
+    },
+    {
+      "name": "attention",
+      "type": "ChipAttention",
+      "required": false,
+      "description": "Emphasis level — high (filled when selected), medium (tinted when selected), low (outlined). Default: 'high'."
+    },
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Text label content"
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "required": false,
+      "description": "Additional class name"
+    },
+    {
+      "name": "data-testid",
+      "type": "string",
+      "required": false,
+      "description": "QA / automation hook on the root toggle button"
+    },
+    {
+      "name": "defaultSelected",
+      "type": "boolean",
+      "required": false,
+      "description": "Default selected state (uncontrolled). Defaults to true."
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "required": false,
+      "description": "Whether the chip is disabled."
+    },
+    {
+      "name": "end",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Content to render after the label (Icon, Avatar, CounterBadge, IndicatorBadge)"
+    },
+    {
+      "name": "onSelectedChange",
+      "type": "(selected: boolean, eventDetails?: unknown) => void",
+      "required": false,
+      "description": "Called when selected state changes."
+    },
+    {
+      "name": "selected",
+      "type": "boolean",
+      "required": false,
+      "description": "Selected state (controlled). Maps to Toggle pressed."
+    },
+    {
+      "name": "size",
+      "type": "ChipSize",
+      "required": false,
+      "description": "Chip size. Default: 'm'."
+    },
+    {
+      "name": "start",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Content to render before the label (Icon, Avatar, CounterBadge, IndicatorBadge)"
+    },
+    {
+      "name": "style",
+      "type": "CSSProperties",
+      "required": false,
+      "description": "Inline styles"
+    },
+    {
+      "name": "value",
+      "type": "string",
+      "required": false,
+      "description": "Value for use within ToggleGroup."
+    }
+  ],
+  "slots": [
+    {
+      "name": "start",
+      "types": [
+        "Icon",
+        "Avatar",
+        "CounterBadge",
+        "IndicatorBadge"
+      ],
+      "tokens": []
+    },
+    {
+      "name": "end",
+      "types": [
+        "Icon",
+        "Avatar",
+        "CounterBadge",
+        "IndicatorBadge"
+      ],
+      "tokens": []
+    }
+  ],
+  "propsSchema": {
+    "$id": "jds.docs.chip",
+    "type": "object",
+    "properties": {
+      "appearance": {
+        "enum": [
+          "auto",
+          "primary",
+          "secondary",
+          "neutral",
+          "sparkle",
+          "brand-bg",
+          "positive",
+          "negative",
+          "warning",
+          "informative"
+        ],
+        "description": "Multi-accent appearance role. 'auto' resolves to 'secondary'."
+      },
+      "aria-label": {
+        "type": "string",
+        "description": "Accessible label for screen readers"
+      },
+      "attention": {
+        "enum": [
+          "high",
+          "medium",
+          "low"
+        ],
+        "description": "Emphasis level — high (filled when selected), medium (tinted when selected), low (outlined). Default: 'high'."
+      },
+      "children": {
+        "description": "Text label content"
+      },
+      "className": {
+        "type": "string",
+        "description": "Additional class name"
+      },
+      "data-testid": {
+        "type": "string",
+        "description": "QA / automation hook on the root toggle button"
+      },
+      "defaultSelected": {
+        "type": "boolean",
+        "description": "Default selected state (uncontrolled). Defaults to true."
+      },
+      "disabled": {
+        "type": "boolean",
+        "description": "Whether the chip is disabled."
+      },
+      "end": {
+        "description": "Content to render after the label (Icon, Avatar, CounterBadge, IndicatorBadge)"
+      },
+      "onSelectedChange": {
+        "description": "Called when selected state changes."
+      },
+      "selected": {
+        "type": "boolean",
+        "description": "Selected state (controlled). Maps to Toggle pressed."
+      },
+      "size": {
+        "enum": [
+          "s",
+          "m",
+          "l"
+        ],
+        "description": "Chip size. Default: 'm'."
+      },
+      "start": {
+        "description": "Content to render before the label (Icon, Avatar, CounterBadge, IndicatorBadge)"
+      },
+      "style": {
+        "description": "Inline styles"
+      },
+      "value": {
+        "type": "string",
+        "description": "Value for use within ToggleGroup."
+      }
+    }
+  },
+  "codeSnippets": [
+    {
+      "id": "chip-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { Chip } from '@oneui/ui';\n\n<Chip>Label</Chip>"
+    },
+    {
+      "id": "chip-selected",
+      "title": "Selectable Chip",
+      "language": "tsx",
+      "code": "<Chip attention=\"high\" selected>Active Filter</Chip>"
+    },
+    {
+      "id": "chip-recipe-decisions",
+      "title": "Recipe Decisions",
+      "language": "json",
+      "code": "{\n  \"component\": \"Chip\",\n  \"decisions\": [\n    \"Shape\"\n  ]\n}"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "chip"
+  ],
+  "importPath": "@jds4/oneui-react"
+}

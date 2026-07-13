@@ -1,0 +1,215 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Banner",
+  "generatedAt": "2026-07-09T13:07:37.406Z",
+  "machineReadable": true,
+  "status": "alpha",
+  "intentAndPurpose": {
+    "intent": "Inline status banner with a tone (informative / positive / warning / negative), title, body, and optional dismiss action."
+  },
+  "compositionRules": {
+    "requires": [
+      "tone"
+    ],
+    "allows": [],
+    "forbids": [],
+    "childKind": "fixed-slots"
+  },
+  "props": [
+    {
+      "name": "tone",
+      "type": "'informative' | 'positive' | 'warning' | 'negative'",
+      "required": true,
+      "defaultValue": "informative",
+      "description": ""
+    },
+    {
+      "name": "title",
+      "type": "string",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "body",
+      "type": "string",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "dismissible",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "true",
+      "description": ""
+    },
+    {
+      "name": "inline",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "onDismiss",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Fires when the user taps the close icon."
+    },
+    {
+      "name": "action",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Optional ReactNode rendered on the trailing edge (typically a Button)."
+    },
+    {
+      "name": "backgroundColor",
+      "type": "string",
+      "required": false,
+      "description": "[error] Don't paint directly. Use `appearance` (role) + `variant`/`mode` and wrap in <Surface mode>; the brand cascade picks the right fill."
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.kb.rn.Banner",
+    "type": "object",
+    "properties": {
+      "tone": {
+        "enum": [
+          "informative",
+          "positive",
+          "warning",
+          "negative"
+        ],
+        "default": "informative"
+      },
+      "title": {
+        "type": "string"
+      },
+      "body": {
+        "type": "string"
+      },
+      "dismissible": {
+        "type": "boolean",
+        "default": true
+      },
+      "inline": {
+        "type": "boolean",
+        "default": false
+      },
+      "onDismiss": {
+        "description": "Fires when the user taps the close icon."
+      },
+      "action": {
+        "description": "Optional ReactNode rendered on the trailing edge (typically a Button)."
+      },
+      "backgroundColor": {
+        "type": "string",
+        "not": {
+          "anyOf": [
+            {
+              "pattern": "^#"
+            },
+            {
+              "pattern": "^rgba?\\("
+            },
+            {
+              "pattern": "^hsla?\\("
+            },
+            {
+              "pattern": "^oklch\\("
+            },
+            {
+              "pattern": "^color-mix\\("
+            },
+            {
+              "enum": [
+                "transparent",
+                "inherit"
+              ]
+            }
+          ]
+        },
+        "x-jds-suggestion": "Don't paint directly. Use `appearance` (role) + `variant`/`mode` and wrap in <Surface mode>; the brand cascade picks the right fill.",
+        "x-jds-severity": "error"
+      }
+    },
+    "required": [
+      "tone"
+    ]
+  },
+  "tokens": {
+    "color": [
+      "informative",
+      "positive",
+      "warning",
+      "negative"
+    ],
+    "surface": [
+      "subtle",
+      "moderate"
+    ],
+    "typography": [
+      "body.M",
+      "body.S",
+      "label.S"
+    ],
+    "spacing": [
+      "2XS",
+      "XS",
+      "S",
+      "M",
+      "L"
+    ],
+    "shape": [
+      "S",
+      "M",
+      "L"
+    ],
+    "motion": [
+      "motion.duration.expressive.medium",
+      "motion.easing.entrance"
+    ]
+  },
+  "a11y": {
+    "accessibilityRole": "text",
+    "accessibilityState": [
+      "busy"
+    ],
+    "accessibleNameSource": "children",
+    "minTouchTarget": 44,
+    "honorsBoldText": true,
+    "honorsScreenReader": true
+  },
+  "renderHints": {
+    "baseElement": "View",
+    "animatedOn": [
+      "mount"
+    ],
+    "honorsReduceMotion": true,
+    "readsFromSurfaceContext": true
+  },
+  "figma": {
+    "componentKey": "jds-banner-v4",
+    "keyHistory": [],
+    "variantProperties": {
+      "Component": "Banner"
+    }
+  },
+  "codeSnippets": [
+    {
+      "id": "import-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { Banner } from '@oneui/ui-native';\n\n<Banner />"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "banner",
+    "feedback",
+    "status",
+    "chassis"
+  ],
+  "importPath": "@oneui/ui-native"
+}

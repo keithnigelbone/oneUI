@@ -1,0 +1,51 @@
+import type { SemanticIconName } from '@oneui/shared';
+
+/** Sidebar icon per catalog slug or overview route key. */
+const SLUG_ICON_MAP: Record<string, SemanticIconName> = {
+  '': 'grid',
+  introduction: 'info',
+  avatar: 'user',
+  badge: 'notification',
+  button: 'components',
+  checkbox: 'checkCircle',
+  chip: 'bookmark',
+  'circular-progress-indicator': 'loading',
+  'linear-progress-indicator': 'loading',
+  'counter-badge': 'notification',
+  divider: 'moreHorizontal',
+  icon: 'sparkles',
+  'icon-button': 'sparkles',
+  'icon-contained': 'sparkles',
+  image: 'image',
+  'indicator-badge': 'notification',
+  switch: 'eye',
+  'segmented-control': 'list',
+  'input-field': 'edit',
+  input: 'edit',
+  'input-dynamic-text': 'edit',
+  'input-feedback': 'warning',
+  'checkbox-field': 'checkCircle',
+  'radio-field': 'checkCircle',
+  radio: 'checkCircle',
+  'chip-group': 'grid',
+  tabs: 'document',
+  stepper: 'add',
+  slider: 'filter',
+  'touch-slider': 'filter',
+  pagination: 'chevronLeft',
+  'pagination-dots': 'moreHorizontal',
+  'selectable-button': 'components',
+  select: 'components',
+  'selectable-icon-button': 'sparkles',
+  'selectable-single-text-button': 'components',
+  'single-text-button': 'components',
+  'bottom-navigation': 'home',
+  modal: 'layers',
+  tooltip: 'info',
+  'agent-pulse': 'sparkles',
+  spinner: 'loading',
+};
+
+export function resolveStorybookNavIcon(slug: string): SemanticIconName {
+  return SLUG_ICON_MAP[slug] ?? 'components';
+}

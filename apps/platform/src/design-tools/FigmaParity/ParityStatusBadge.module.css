@@ -1,0 +1,37 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--Spacing-0-5);
+}
+
+.dot {
+  width: var(--Spacing-2);
+  height: var(--Spacing-2);
+  border-radius: var(--Shape-Pill);
+  flex-shrink: 0;
+}
+
+.dot[data-status='matched'] {
+  background-color: var(--Positive-Tinted);
+}
+
+.dot[data-status='mismatched'] {
+  background-color: var(--Warning-Tinted);
+}
+
+.dot[data-status='missing-in-figma'] {
+  background-color: var(--Negative-Tinted);
+}
+
+.dot[data-status='missing-in-tool'] {
+  background-color: var(--Negative-Tinted);
+}
+
+.dot[data-status='unmapped'] {
+  background-color: var(--Neutral-Medium-Text);
+}
+
+.label {
+  font-size: var(--Label-S-FontSize);
+  color: var(--Text-Medium);
+}

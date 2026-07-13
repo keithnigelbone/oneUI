@@ -1,0 +1,136 @@
+/**
+ * ApplyChangesBar.module.css
+ * Token-only styling for apply changes bar
+ */
+
+.container {
+  position: fixed;
+  bottom: var(--Spacing-6);
+  left: 0;
+  right: 0;
+  z-index: 100;
+  pointer-events: none;
+  padding: var(--Spacing-4);
+}
+
+.bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--Spacing-4) var(--Spacing-4-5);
+  background-color: var(--Surface-Main);
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+  border-radius: var(--Shape-4-5);
+  box-shadow: var(--Shadow-Subtle);
+  /* INTENTIONAL-LITERAL: apply-bar max-width layout constraint — no matching content-width token */
+  max-width: 600px;
+  margin: 0 auto;
+  pointer-events: auto;
+  /* INTENTIONAL-LITERAL: animation slide-in offset — movement distance has no matching spacing token */
+  transform: translateY(100px);
+  opacity: 0;
+  transition: transform var(--Motion-Duration-Expressive-Short) var(--Motion-Easing-Enter),
+              opacity var(--Motion-Duration-Expressive-Short) var(--Motion-Easing-Enter);
+}
+
+.barVisible {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.message {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-3-5);
+}
+
+.dot {
+  width: var(--Spacing-3);
+  height: var(--Spacing-3);
+  background-color: var(--Status-Warning-Text);
+  border-radius: var(--Shape-Pill);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.text {
+  font-size: var(--Body-S-FontSize);
+  font-weight: var(--Body-FontWeight-Medium);
+  color: var(--Text-High);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-3-5);
+}
+
+.resetButton {
+  padding: var(--Spacing-3) var(--Spacing-4);
+  border-radius: var(--Shape-4);
+  border: 1px solid var(--Border-Subtle);
+  background-color: transparent;
+  color: var(--Text-High);
+  font-size: var(--Body-S-FontSize);
+  font-weight: var(--Body-FontWeight-Medium);
+  cursor: pointer;
+  transition-duration: var(--Motion-Duration-Discreet-Short);
+}
+
+.resetButton:hover {
+  background-color: var(--Surface-Subtle);
+}
+
+.resetButton:focus-visible {
+  outline: var(--Focus-Outline-Width) solid var(--Focus-Outline);
+  outline-offset: var(--Focus-Outline-Offset, var(--Stroke-XL));
+}
+
+.applyButton {
+  padding: var(--Spacing-3) var(--Spacing-4);
+  border-radius: var(--Shape-4);
+  border: none;
+  background-color: var(--Surface-Bold);
+  color: var(--Text-OnBold-High);
+  font-size: var(--Body-S-FontSize);
+  font-weight: var(--Body-FontWeight-Medium);
+  cursor: pointer;
+  transition-duration: var(--Motion-Duration-Discreet-Short);
+}
+
+.applyButton:hover {
+  opacity: 0.9;
+}
+
+.applyButton:focus-visible {
+  outline: var(--Focus-Outline-Width) solid var(--Focus-Outline);
+  outline-offset: var(--Focus-Outline-Offset, var(--Stroke-XL));
+}
+
+.applyButton:disabled {
+  opacity: var(--Disabled-Opacity);
+  cursor: not-allowed;
+}
+
+.spinner {
+  width: var(--Spacing-4);
+  height: var(--Spacing-4);
+  border: 2px solid transparent;
+  border-top-color: currentColor;
+  border-radius: var(--Shape-Pill);
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

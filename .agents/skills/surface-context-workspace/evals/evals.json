@@ -1,0 +1,23 @@
+{
+  "skill_name": "surface-context",
+  "evals": [
+    {
+      "id": 0,
+      "prompt": "I'm creating a new Chip component (like a tag/badge) for OneUI. It needs three variants: filled (high emphasis), tinted (medium), and outlined (low). It should support multiple appearance roles (primary, neutral, negative) and look correct when placed on both default and fg-bold surfaces. Write the CSS module with the intermediate variable pattern and explain how surface adaptation will work.",
+      "expected_output": "CSS module using --_chip-* intermediate variables mapped to --Primary-* tokens with legacy fallbacks, appearance role classes that remap intermediates to other roles, three variant styles using the intermediates, and an explanation that surface adaptation happens automatically via [data-surface] CSS cascade.",
+      "files": []
+    },
+    {
+      "id": 1,
+      "prompt": "I have a Button inside a hero section with a purple background using var(--Primary-FG-Bold), but the button text is invisible — it's the same color as the background. I'm not using the Surface component. What's going wrong and how do I fix it?",
+      "expected_output": "Explanation that setting background manually doesn't trigger token remapping, the fix is to use <Surface mode='fg-bold'> instead of a raw div, and an explanation of how bold inversion works to make button fills visible on bold surfaces.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "I need to understand what tokens are available when a component is placed inside <Surface mode='bg-subtle'>. Specifically, what text colors, border colors, and accent colors can I use? And how do they differ from the default surface?",
+      "expected_output": "Lists the 9 on-colour tokens available on bg-subtle (High, Medium-Text, Low-Text, Medium-Stroke, Low-Stroke, Accent, Accent-A11y, Hover, Pressed), explains they use the 'on-subtle' context (blended against the subtle surface), and describes how they differ from default context tokens (e.g., stroke offsets are +10 steps instead of +8).",
+      "files": []
+    }
+  ]
+}

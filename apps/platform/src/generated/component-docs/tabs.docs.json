@@ -1,0 +1,288 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Tabs",
+  "generatedAt": "2026-01-01T00:00:00.000Z",
+  "machineReadable": true,
+  "intentAndPurpose": {
+    "intent": {
+      "value": "Accessible tabbed navigation. Uses Base UI Tabs primitive for keyboard navigation, arrow/Home/End keys, and automatic focus management. Three sizes (S/M/L), two orientations (horizontal/vertical). Matching Figma spec: selected tab gets an animated tinted indicator, tinted-accessible label color, and a surface-aware double-ring focus halo. Supports start + end content slots; icon + badge are legacy aliases.",
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "taskContexts": {
+      "value": [],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "sentiments": {
+      "value": [
+        "neutral"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "compositionRules": {
+    "requires": {
+      "value": [],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "allows": {
+      "value": [
+        "start",
+        "end"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "forbids": {
+      "value": [],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "horizontal",
+        "useWhen": {
+          "value": [
+            "Horizontal"
+          ],
+          "attribution": {
+            "source": "inferred"
+          }
+        }
+      },
+      {
+        "name": "vertical",
+        "useWhen": {
+          "value": [
+            "Vertical"
+          ],
+          "attribution": {
+            "source": "inferred"
+          }
+        }
+      }
+    ]
+  },
+  "relationshipsAndDependencies": {
+    "related": {
+      "value": [],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "contextSignals": {
+    "density": {
+      "value": [
+        "compact",
+        "default",
+        "open"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "modality": {
+      "value": [
+        "desktop",
+        "mobile"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "brand": {
+      "value": [
+        "theme-scope aware",
+        "recipe-driven"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "mode": {
+      "value": [
+        "light",
+        "dark",
+        "surface-context"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "observabilityHooks": {
+    "track": {
+      "value": [],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "health": {
+      "value": [
+        "a11y_violations"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "props": [
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "required": true,
+      "description": "children property"
+    },
+    {
+      "name": "appearance",
+      "type": "ComponentAppearance",
+      "required": false,
+      "description": "Appearance forwarded to all child TabItems."
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "required": false,
+      "description": "className property"
+    },
+    {
+      "name": "defaultValue",
+      "type": "TabsValue",
+      "required": false,
+      "description": "defaultValue property"
+    },
+    {
+      "name": "onValueChange",
+      "type": "(value: TabsValue) => void",
+      "required": false,
+      "description": "onValueChange property"
+    },
+    {
+      "name": "orientation",
+      "type": "TabsOrientation",
+      "required": false,
+      "description": "orientation property"
+    },
+    {
+      "name": "size",
+      "type": "TabsSize",
+      "required": false,
+      "description": "Size forwarded to all child TabItems."
+    },
+    {
+      "name": "value",
+      "type": "TabsValue",
+      "required": false,
+      "description": "value property"
+    }
+  ],
+  "slots": [
+    {
+      "name": "start",
+      "types": [
+        "Icon",
+        "Avatar",
+        "CounterBadge",
+        "IndicatorBadge"
+      ],
+      "tokens": []
+    },
+    {
+      "name": "end",
+      "types": [
+        "Icon",
+        "Avatar",
+        "CounterBadge",
+        "IndicatorBadge"
+      ],
+      "tokens": []
+    }
+  ],
+  "propsSchema": {
+    "$id": "jds.docs.tabs",
+    "type": "object",
+    "properties": {
+      "children": {
+        "description": "children property"
+      },
+      "appearance": {
+        "enum": [
+          "auto",
+          "primary",
+          "secondary",
+          "neutral",
+          "sparkle",
+          "brand-bg",
+          "positive",
+          "negative",
+          "warning",
+          "informative"
+        ],
+        "description": "Appearance forwarded to all child TabItems."
+      },
+      "className": {
+        "type": "string",
+        "description": "className property"
+      },
+      "defaultValue": {
+        "description": "defaultValue property"
+      },
+      "onValueChange": {
+        "description": "onValueChange property"
+      },
+      "orientation": {
+        "enum": [
+          "horizontal",
+          "vertical"
+        ],
+        "description": "orientation property"
+      },
+      "size": {
+        "enum": [
+          "s",
+          "m",
+          "l"
+        ],
+        "description": "Size forwarded to all child TabItems."
+      },
+      "value": {
+        "description": "value property"
+      }
+    },
+    "required": [
+      "children"
+    ]
+  },
+  "codeSnippets": [
+    {
+      "id": "tabs-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { Tabs } from '@oneui/ui';\n\n<Tabs />"
+    },
+    {
+      "id": "tabs-recipe-decisions",
+      "title": "Recipe Decisions",
+      "language": "json",
+      "code": "{\n  \"component\": \"Tabs\",\n  \"decisions\": [\n    \"Shape\"\n  ]\n}"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "tabs"
+  ],
+  "generatedMarkdown": "# Tabs Machine-Readable Documentation\n\n_Generated from source metadata. Do not edit manually._\n\n## Intent and Purpose\n\n- **Intent**: Accessible tabbed navigation. Uses Base UI Tabs primitive for keyboard navigation, arrow/Home/End keys, and automatic focus management. Three sizes (S/M/L), two orientations (horizontal/vertical). Matching Figma spec: selected tab gets an animated tinted indicator, tinted-accessible label color, and a surface-aware double-ring focus halo. Supports start + end content slots; icon + badge are legacy aliases.\n- **Task contexts**: \n- **Sentiments**: neutral\n\n## Composition Rules\n\n- **Requires**: \n- **Allows**: start, end\n- **Forbids**: \n\n## Variant Logic\n\n- **horizontal**: use when Horizontal\n- **vertical**: use when Vertical\n\n## Relationships and Dependencies\n\n- **Related**: \n- **Escalates to**: -\n- **Degrades to**: -\n- **Groups with**: -\n\n## Context Signals\n\n- **Density**: compact, default, open\n- **Modality**: desktop, mobile\n- **Brand**: theme-scope aware, recipe-driven\n- **Mode**: light, dark, surface-context\n\n## Observability Hooks\n\n- **Track**: \n- **Health**: a11y_violations\n\n## Props\n\n| Prop | Type | Required | Default | Description |\n| --- | --- | --- | --- | --- |\n| `children` | `ReactNode` | Yes | - | children property |\n| `appearance` | `ComponentAppearance` | No | - | Appearance forwarded to all child TabItems. |\n| `className` | `string` | No | - | className property |\n| `defaultValue` | `TabsValue` | No | - | defaultValue property |\n| `onValueChange` | `(value: TabsValue) => void` | No | - | onValueChange property |\n| `orientation` | `TabsOrientation` | No | - | orientation property |\n| `size` | `TabsSize` | No | - | Size forwarded to all child TabItems. |\n| `value` | `TabsValue` | No | - | value property |\n\n## Slots\n\n| Slot | Types | Tokens |\n| --- | --- | --- |\n| `start` | Icon, Avatar, CounterBadge, IndicatorBadge |  |\n| `end` | Icon, Avatar, CounterBadge, IndicatorBadge |  |\n\n## Code Snippets\n\n### Basic Usage\n\n```tsx\nimport { Tabs } from '@oneui/ui';\n\n<Tabs />\n```\n\n### Recipe Decisions\n\n```json\n{\n  \"component\": \"Tabs\",\n  \"decisions\": [\n    \"Shape\"\n  ]\n}\n```\n"
+}

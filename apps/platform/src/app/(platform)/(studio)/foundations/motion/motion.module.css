@@ -1,0 +1,301 @@
+.tokenSections {
+  --MotionToken-nameColumn: var(--Dimension-f16);
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-6);
+}
+
+.tokenSection {
+  display: flex;
+  flex-direction: column;
+}
+
+.tokenSectionTitle {
+  padding: var(--Spacing-3) var(--Spacing-0);
+  border-bottom: var(--Stroke-M) solid var(--Border-Subtle);
+  color: var(--Text-High);
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  font-weight: var(--Body-FontWeight-Medium);
+}
+
+.tokenTable {
+  display: flex;
+  flex-direction: column;
+}
+
+.scaleCompare {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(var(--Spacing-0), 1fr));
+  border-bottom: var(--Stroke-M) solid var(--Border-Subtle);
+}
+
+.scaleColumn {
+  min-width: var(--Spacing-0);
+}
+
+.scaleColumnHeader {
+  padding: var(--Spacing-3) var(--Spacing-4);
+  border-bottom: var(--Stroke-M) solid var(--Border-Subtle);
+  color: var(--Text-High);
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Label-S-FontSize);
+  line-height: var(--Label-S-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+}
+
+.scaleColumnBody {
+  padding: var(--Spacing-4);
+}
+
+.tokenRow {
+  display: grid;
+  align-items: center;
+  gap: var(--Spacing-4);
+  padding: var(--Spacing-3) var(--Spacing-0);
+  border-bottom: var(--Stroke-M) solid var(--Border-Subtle);
+}
+
+.tokenTimingRow {
+  grid-template-columns: minmax(var(--MotionToken-nameColumn), var(--MotionToken-nameColumn)) minmax(0, 1fr) minmax(var(--Dimension-f10), max-content);
+}
+
+.tokenEasingRow {
+  grid-template-columns: minmax(var(--MotionToken-nameColumn), var(--MotionToken-nameColumn)) minmax(var(--Dimension-f15), 2fr) minmax(0, 1fr);
+}
+
+.tokenHeader {
+  color: var(--Text-Low);
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+}
+
+.tokenRowHighlight {
+  background-color: var(--Primary-Subtle);
+}
+
+.tokenName,
+.tokenValue {
+  font-family: var(--Typography-Font-Code);
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+}
+
+.tokenName {
+  color: var(--Text-Medium);
+  min-width: var(--Spacing-0);
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tokenValue {
+  color: var(--Text-High);
+  text-align: left;
+  justify-self: start;
+}
+
+.tokenGraphTrack {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: var(--Spacing-4);
+}
+
+.tokenGraphBar {
+  display: block;
+  width: var(--motion-token-ratio);
+  height: var(--Spacing-3);
+  background-color: var(--Primary-Bold);
+  border-radius: var(--Shape-Pill);
+}
+
+.tokenCurve {
+  display: block;
+  width: 100%;
+  max-width: var(--Dimension-f16);
+  height: var(--Dimension-f7);
+  color: var(--Primary-Bold);
+  justify-self: start;
+}
+
+.tokenCurveGrid {
+  fill: none;
+  stroke: var(--Border-Subtle);
+  stroke-width: var(--Stroke-M);
+}
+
+.tokenCurvePath {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: var(--Stroke-L);
+  stroke-linecap: round;
+}
+
+.patternList {
+  display: flex;
+  flex-direction: column;
+}
+
+.patternCardContent {
+  padding-top: var(--Spacing-0);
+}
+
+.patternSection {
+  border: none;
+  border-bottom: var(--Stroke-S) solid var(--Neutral-Stroke-Low);
+  border-radius: var(--Spacing-0);
+  background: transparent;
+}
+
+.patternSummary {
+  display: grid;
+  width: 100%;
+  grid-template-columns: minmax(var(--Spacing-0), 1fr) auto auto;
+  align-items: center;
+  gap: var(--Spacing-4);
+  min-block-size: var(--Dimension-f11);
+  padding: var(--Spacing-4) var(--Spacing-0);
+  text-align: left;
+}
+
+.patternSummary :global(svg:first-child) {
+  order: 10;
+  grid-column: -2 / -1;
+  grid-row: 1;
+  justify-self: end;
+  box-sizing: content-box;
+  width: var(--Spacing-4);
+  height: var(--Spacing-4);
+  padding: var(--Spacing-2);
+  border-radius: var(--Shape-2);
+  background-color: var(--Surface-Minimal);
+  box-shadow: inset 0 0 0 var(--Stroke-S) var(--Border-Subtle);
+  color: var(--Text-Low);
+  transition:
+    background-color var(--Motion-Duration-Discreet-Short),
+    color var(--Motion-Duration-Discreet-Short),
+    box-shadow var(--Motion-Duration-Discreet-Short);
+}
+
+.patternSummary:hover :global(svg:first-child),
+.patternSummary:focus-visible :global(svg:first-child) {
+  background-color: var(--Primary-Subtle);
+  box-shadow: inset 0 0 0 var(--Stroke-M) var(--Primary-Stroke-Low);
+  color: var(--Primary-TintedA11y);
+}
+
+.patternSummary[data-panel-open] {
+  border-bottom: var(--Stroke-M) solid var(--Neutral-Stroke-Low);
+}
+
+.patternSummaryMain {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-1);
+  min-width: var(--Spacing-0);
+}
+
+.patternSummaryTitle {
+  color: var(--Text-High);
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Body-M-FontSize);
+  line-height: var(--Body-M-LineHeight);
+  font-weight: var(--Body-FontWeight-Medium);
+}
+
+.patternSummaryDescription,
+.patternSummaryMeta {
+  color: var(--Text-Low);
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Low);
+}
+
+.patternSummaryMeta {
+  white-space: nowrap;
+}
+
+.patternPanelShell > div {
+  padding: var(--Spacing-0);
+}
+
+.patternPanel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-5);
+  padding: var(--Spacing-5) var(--Spacing-0);
+}
+
+.transitionPatternPanel {
+  display: flex;
+  flex-direction: column;
+  padding: var(--Spacing-5) var(--Spacing-0);
+}
+
+.transitionPatternGrid {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-5);
+}
+
+.transitionPreviewPane {
+  width: calc(var(--Dimension-f16) + var(--Dimension-f12));
+  min-height: calc(var(--Dimension-f16) + var(--Dimension-f13));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--Spacing-3);
+  flex-shrink: 0;
+  align-self: center;
+}
+
+.transitionPreviewHint {
+  color: var(--Text-Low);
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Low);
+}
+
+@media (max-width: 768px) {
+  .scaleCompare {
+    grid-template-columns: minmax(var(--Spacing-0), 1fr);
+  }
+
+  .scaleColumn + .scaleColumn {
+    border-top: var(--Stroke-M) solid var(--Border-Subtle);
+  }
+
+  .tokenRow {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--Spacing-2);
+  }
+
+  .tokenValue {
+    text-align: left;
+  }
+
+  .patternSummary {
+    grid-template-columns: minmax(var(--Spacing-0), 1fr) auto;
+  }
+
+  .patternSummaryMeta {
+    grid-column: 1;
+    white-space: normal;
+  }
+
+  .transitionPatternGrid {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .transitionPreviewPane {
+    width: 100%;
+  }
+}

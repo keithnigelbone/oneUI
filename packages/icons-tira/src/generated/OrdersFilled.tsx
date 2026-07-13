@@ -1,0 +1,28 @@
+import React, { forwardRef } from 'react';
+import type { IconComponentProps } from '../iconProps';
+
+export const OrdersFilled = forwardRef<SVGSVGElement, IconComponentProps>(function OrdersFilled(
+  { size = 24, width, height, color = 'currentColor', className, style, ...props },
+  ref,
+) {
+  const dim = width ?? height ?? size;
+  return (
+    <svg
+      ref={ref}
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      width={width ?? dim}
+      height={height ?? dim}
+      color={color}
+      className={className}
+      style={style}
+      {...props}
+    >
+      <path d="M4.36153 7.98358C4.12622 8.31974 4 8.72015 4 9.13049V17.5001C4 18.6046 4.89543 19.5001 6 19.5001H18C19.1046 19.5001 20 18.6046 20 17.5001V9.13049C20 8.72015 19.8738 8.31974 19.6385 7.98358L17.0972 4.35308C16.7229 3.81843 16.1113 3.5 15.4587 3.5H8.54132C7.88869 3.5 7.2771 3.81843 6.90285 4.35308L4.36153 7.98358Z" fill="currentColor"/>
+      <path d="M12.6115 7.8999H20V9.0999H4V7.8999H11.4115V3.5H12.6115V7.8999Z" fill="white"/>
+    </svg>
+  );
+});
+
+OrdersFilled.displayName = 'OrdersFilled';

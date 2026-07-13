@@ -1,0 +1,436 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Select",
+  "generatedAt": "2026-07-09T13:07:37.423Z",
+  "machineReadable": true,
+  "status": "beta",
+  "intentAndPurpose": {
+    "intent": "Selection control: a trigger (input / button / iconButton) that opens an anchored dropdown menu. Single-select (check on the chosen row), multi-select (checkbox + optional secondary text), or actions. Optional search header and titled sections. Menu opens below / above / aligned with the trigger. Reuses Input/Button/IconButton + Checkbox; adapts on coloured surfaces via the parent <Surface>."
+  },
+  "compositionRules": {
+    "requires": [
+      "options"
+    ],
+    "allows": [],
+    "forbids": [],
+    "childKind": "leaf"
+  },
+  "props": [
+    {
+      "name": "options",
+      "type": "ReactNode",
+      "required": true,
+      "description": "SelectOption[] — { value, label, secondaryText?, disabled?, icon?, badge?, group? }."
+    },
+    {
+      "name": "sections",
+      "type": "ReactNode",
+      "required": false,
+      "description": "SelectSection[] — { id, label? }; options grouped by option.group."
+    },
+    {
+      "name": "value",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Single-select value (controlled)."
+    },
+    {
+      "name": "onChange",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Single-select change handler."
+    },
+    {
+      "name": "values",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Multi-select values (controlled; menu=\"multi\")."
+    },
+    {
+      "name": "onValuesChange",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Multi-select change handler."
+    },
+    {
+      "name": "onAction",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Fired for menu=\"actions\" rows, then the menu closes."
+    },
+    {
+      "name": "menu",
+      "type": "'single' | 'multi' | 'actions'",
+      "required": false,
+      "defaultValue": "single",
+      "description": ""
+    },
+    {
+      "name": "trigger",
+      "type": "'input' | 'button' | 'iconButton'",
+      "required": false,
+      "defaultValue": "input",
+      "description": ""
+    },
+    {
+      "name": "menuDirection",
+      "type": "'below' | 'above' | 'alignWithTrigger'",
+      "required": false,
+      "defaultValue": "below",
+      "description": ""
+    },
+    {
+      "name": "appearance",
+      "type": "'auto' | 'primary' | 'secondary' | 'neutral' | 'sparkle' | 'brand-bg' | 'positive' | 'negative' | 'warning' | 'informative'",
+      "required": false,
+      "defaultValue": "auto",
+      "description": "Multi-accent role resolved against the parent <Surface>."
+    },
+    {
+      "name": "attention",
+      "type": "'high' | 'medium' | 'low'",
+      "required": false,
+      "defaultValue": "medium",
+      "description": "Button / iconButton trigger attention."
+    },
+    {
+      "name": "size",
+      "type": "'s' | 'm' | 'l'",
+      "required": false,
+      "defaultValue": "m",
+      "description": ""
+    },
+    {
+      "name": "searchable",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": "Show a search/filter input in the menu header."
+    },
+    {
+      "name": "placeholder",
+      "type": "string",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "label",
+      "type": "string",
+      "required": false,
+      "description": "Field label above the input trigger."
+    },
+    {
+      "name": "description",
+      "type": "string",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "required",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "helperText",
+      "type": "string",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "feedback",
+      "type": "string",
+      "required": false,
+      "description": "Error/feedback message under the input trigger."
+    },
+    {
+      "name": "errorHighlight",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "triggerIcon",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Icon node for the iconButton trigger."
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "backgroundColor",
+      "type": "string",
+      "required": false,
+      "description": "[error] Don't paint directly. Use `appearance` (role) + `variant`/`mode` and wrap in <Surface mode>; the brand cascade picks the right fill."
+    },
+    {
+      "name": "style",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Layout style only. Colour is driven by appearance + the parent <Surface>. — [warn] Don't paint directly. Use `appearance` + <Surface>; the menu + rows resolve their own tokens."
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.kb.rn.Select",
+    "type": "object",
+    "properties": {
+      "options": {
+        "description": "SelectOption[] — { value, label, secondaryText?, disabled?, icon?, badge?, group? }."
+      },
+      "sections": {
+        "description": "SelectSection[] — { id, label? }; options grouped by option.group."
+      },
+      "value": {
+        "description": "Single-select value (controlled)."
+      },
+      "onChange": {
+        "description": "Single-select change handler."
+      },
+      "values": {
+        "description": "Multi-select values (controlled; menu=\"multi\")."
+      },
+      "onValuesChange": {
+        "description": "Multi-select change handler."
+      },
+      "onAction": {
+        "description": "Fired for menu=\"actions\" rows, then the menu closes."
+      },
+      "menu": {
+        "enum": [
+          "single",
+          "multi",
+          "actions"
+        ],
+        "default": "single"
+      },
+      "trigger": {
+        "enum": [
+          "input",
+          "button",
+          "iconButton"
+        ],
+        "default": "input"
+      },
+      "menuDirection": {
+        "enum": [
+          "below",
+          "above",
+          "alignWithTrigger"
+        ],
+        "default": "below"
+      },
+      "appearance": {
+        "enum": [
+          "auto",
+          "primary",
+          "secondary",
+          "neutral",
+          "sparkle",
+          "brand-bg",
+          "positive",
+          "negative",
+          "warning",
+          "informative"
+        ],
+        "default": "auto",
+        "description": "Multi-accent role resolved against the parent <Surface>."
+      },
+      "attention": {
+        "enum": [
+          "high",
+          "medium",
+          "low"
+        ],
+        "default": "medium",
+        "description": "Button / iconButton trigger attention."
+      },
+      "size": {
+        "enum": [
+          "s",
+          "m",
+          "l"
+        ],
+        "default": "m"
+      },
+      "searchable": {
+        "type": "boolean",
+        "default": false,
+        "description": "Show a search/filter input in the menu header."
+      },
+      "placeholder": {
+        "type": "string"
+      },
+      "disabled": {
+        "type": "boolean",
+        "default": false
+      },
+      "label": {
+        "type": "string",
+        "description": "Field label above the input trigger."
+      },
+      "description": {
+        "type": "string"
+      },
+      "required": {
+        "type": "boolean",
+        "default": false
+      },
+      "helperText": {
+        "type": "string"
+      },
+      "feedback": {
+        "type": "string",
+        "description": "Error/feedback message under the input trigger."
+      },
+      "errorHighlight": {
+        "type": "boolean",
+        "default": false
+      },
+      "triggerIcon": {
+        "description": "Icon node for the iconButton trigger."
+      },
+      "aria-label": {
+        "type": "string"
+      },
+      "backgroundColor": {
+        "type": "string",
+        "not": {
+          "anyOf": [
+            {
+              "pattern": "^#"
+            },
+            {
+              "pattern": "^rgba?\\("
+            },
+            {
+              "pattern": "^hsla?\\("
+            },
+            {
+              "pattern": "^oklch\\("
+            },
+            {
+              "pattern": "^color-mix\\("
+            },
+            {
+              "enum": [
+                "transparent",
+                "inherit"
+              ]
+            }
+          ]
+        },
+        "x-jds-suggestion": "Don't paint directly. Use `appearance` (role) + `variant`/`mode` and wrap in <Surface mode>; the brand cascade picks the right fill.",
+        "x-jds-severity": "error"
+      },
+      "style": {
+        "description": "Layout style only. Colour is driven by appearance + the parent <Surface>.",
+        "x-jds-suggestion": "Don't paint directly. Use `appearance` + <Surface>; the menu + rows resolve their own tokens.",
+        "x-jds-severity": "warn"
+      }
+    },
+    "required": [
+      "options"
+    ]
+  },
+  "tokens": {
+    "color": [
+      "primary",
+      "secondary",
+      "neutral",
+      "sparkle",
+      "brand-bg",
+      "positive",
+      "negative",
+      "warning",
+      "informative"
+    ],
+    "surface": [
+      "default",
+      "subtle",
+      "elevated"
+    ],
+    "typography": [
+      "label.M",
+      "label.S",
+      "body.S"
+    ],
+    "spacing": [
+      "2XS",
+      "XS",
+      "S",
+      "M",
+      "L"
+    ],
+    "shape": [
+      "M",
+      "XL",
+      "pill"
+    ],
+    "elevation": [
+      1
+    ],
+    "motion": [
+      "motion.duration.discreet.short",
+      "motion.easing.transition"
+    ]
+  },
+  "a11y": {
+    "accessibilityRole": "button",
+    "accessibilityState": [
+      "disabled",
+      "expanded"
+    ],
+    "accessibleNameSource": "aria-label",
+    "minTouchTarget": 44,
+    "honorsBoldText": true,
+    "honorsScreenReader": true
+  },
+  "renderHints": {
+    "baseElement": "Pressable",
+    "animatedOn": [
+      "press"
+    ],
+    "honorsReduceMotion": true,
+    "readsFromSurfaceContext": true
+  },
+  "figma": {
+    "componentKey": "jds-select-v4",
+    "keyHistory": [],
+    "variantProperties": {
+      "Component": "Select"
+    }
+  },
+  "codeSnippets": [
+    {
+      "id": "import-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { Select } from '@oneui/ui-native';\n\n<Select />"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "select",
+    "form",
+    "selection",
+    "dropdown",
+    "menu",
+    "interactive"
+  ],
+  "importPath": "@oneui/ui-native"
+}

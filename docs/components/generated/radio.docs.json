@@ -1,0 +1,442 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Radio",
+  "generatedAt": "2026-01-01T00:00:00.000Z",
+  "machineReadable": true,
+  "intentAndPurpose": {
+    "intent": {
+      "value": "Single-selection control within a mutually-exclusive option group.",
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "taskContexts": {
+      "value": [
+        "single-select-form",
+        "preference-setting",
+        "wizard-step"
+      ],
+      "attribution": {
+        "source": "authored"
+      }
+    },
+    "sentiments": {
+      "value": [
+        "neutral"
+      ],
+      "attribution": {
+        "source": "authored"
+      }
+    }
+  },
+  "compositionRules": {
+    "requires": {
+      "value": [
+        "value prop",
+        "RadioGroup parent",
+        "label or aria-label"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "allows": {
+      "value": [
+        "read-only mode",
+        "group-level appearance inheritance"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "forbids": {
+      "value": [
+        "standalone use without RadioGroup",
+        "multiple selection"
+      ],
+      "attribution": {
+        "source": "authored"
+      }
+    }
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "default",
+        "useWhen": {
+          "value": [
+            "standard option in a radio group"
+          ],
+          "attribution": {
+            "source": "inferred"
+          }
+        }
+      },
+      {
+        "name": "readOnly",
+        "useWhen": {
+          "value": [
+            "display-only, value shown but cannot change"
+          ],
+          "attribution": {
+            "source": "inferred"
+          }
+        }
+      }
+    ]
+  },
+  "relationshipsAndDependencies": {
+    "related": {
+      "value": [
+        "Checkbox",
+        "Switch",
+        "RadioGroup"
+      ],
+      "attribution": {
+        "source": "authored"
+      }
+    },
+    "groupsWith": {
+      "value": [
+        "RadioGroup",
+        "FormField"
+      ],
+      "attribution": {
+        "source": "authored"
+      }
+    }
+  },
+  "contextSignals": {
+    "density": {
+      "value": [
+        "compact",
+        "default",
+        "open"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "modality": {
+      "value": [
+        "desktop",
+        "mobile"
+      ],
+      "attribution": {
+        "source": "authored"
+      }
+    },
+    "brand": {
+      "value": [
+        "theme-scope aware",
+        "appearance + accent dual-role"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "mode": {
+      "value": [
+        "light",
+        "dark",
+        "surface-context"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "observabilityHooks": {
+    "track": {
+      "value": [
+        "select"
+      ],
+      "attribution": {
+        "source": "authored"
+      }
+    },
+    "health": {
+      "value": [
+        "a11y_violations"
+      ],
+      "attribution": {
+        "source": "authored"
+      }
+    }
+  },
+  "props": [
+    {
+      "name": "value",
+      "type": "string",
+      "required": true,
+      "description": "Value for this radio item (required)"
+    },
+    {
+      "name": "accent",
+      "type": "RadioAccent",
+      "required": false,
+      "description": "accent property"
+    },
+    {
+      "name": "appearance",
+      "type": "RadioAppearance",
+      "required": false,
+      "description": "Multi-accent appearance role. Controls border, hover, AND fill tokens. `auto` → secondary stack."
+    },
+    {
+      "name": "aria-describedby",
+      "type": "string",
+      "required": false,
+      "description": "aria-describedby property"
+    },
+    {
+      "name": "aria-invalid",
+      "type": "boolean | 'true' | 'false'",
+      "required": false,
+      "description": "aria-invalid property"
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": false,
+      "description": "Accessible label when there is no visible `label` (or when overriding the visible copy). Maps directly to `aria-label` on the underlying radio control."
+    },
+    {
+      "name": "aria-labelledby",
+      "type": "string",
+      "required": false,
+      "description": "When set, names the control via `aria-labelledby` (e.g. `RadioField` single-option layout where the visible label lives on the field, not on this `Radio`)."
+    },
+    {
+      "name": "checked",
+      "type": "boolean",
+      "required": false,
+      "description": "Whether this option is selected. Selection is owned by the parent **`RadioGroup`** via `value` / `defaultValue` matching this `value`. This prop is accepted for tooling (e.g. Storybook) and is **not** forwarded to the underlying primitive."
+    },
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "required": false,
+      "description": "children property"
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "required": false,
+      "description": "Additional class name"
+    },
+    {
+      "name": "data-testid",
+      "type": "string",
+      "required": false,
+      "description": "Test automation id — forwarded to the radio control (`BaseRadio.Root`)."
+    },
+    {
+      "name": "description",
+      "type": "string",
+      "required": false,
+      "description": "Supplementary copy below the label row. Maps to `aria-describedby` on the control."
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "required": false,
+      "description": "Whether this radio is disabled"
+    },
+    {
+      "name": "errorHighlight",
+      "type": "boolean",
+      "required": false,
+      "description": "Error-state chrome on the wrapper (from `RadioField` when invalid). Standalone `Radio` does not use `errorHighlight`; use `RadioField` for validation UX."
+    },
+    {
+      "name": "id",
+      "type": "string",
+      "required": false,
+      "description": "HTML id attribute"
+    },
+    {
+      "name": "label",
+      "type": "string",
+      "required": false,
+      "description": "Visible label beside the control. Maps to `aria-label` when the wrapper is a `div`."
+    },
+    {
+      "name": "labelAssociation",
+      "type": "'native' | 'field'",
+      "required": false,
+      "defaultValue": "native",
+      "description": "Render inside `Field.Root` (RadioField) or standalone."
+    },
+    {
+      "name": "labelWrapper",
+      "type": "'label' | 'div'",
+      "required": false,
+      "defaultValue": "label",
+      "description": "Outer wrapper element. Use `'div'` inside a field composition so the visible label is not nested inside a second `<label>`."
+    },
+    {
+      "name": "readOnly",
+      "type": "boolean",
+      "required": false,
+      "description": "Whether this radio is read-only (focusable but value cannot change)"
+    },
+    {
+      "name": "required",
+      "type": "boolean",
+      "required": false,
+      "description": "HTML required — form validation"
+    },
+    {
+      "name": "size",
+      "type": "RadioSize",
+      "required": false,
+      "description": "Size preset. Default: 'm'"
+    },
+    {
+      "name": "style",
+      "type": "CSSProperties",
+      "required": false,
+      "description": "Inline styles"
+    },
+    {
+      "name": "supplementaryDescribedById",
+      "type": "string",
+      "required": false,
+      "description": "supplementaryDescribedById property"
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.docs.radio",
+    "type": "object",
+    "properties": {
+      "value": {
+        "type": "string",
+        "description": "Value for this radio item (required)"
+      },
+      "accent": {
+        "description": "accent property"
+      },
+      "appearance": {
+        "enum": [
+          "auto",
+          "primary",
+          "secondary",
+          "neutral",
+          "sparkle",
+          "brand-bg",
+          "positive",
+          "negative",
+          "warning",
+          "informative"
+        ],
+        "description": "Multi-accent appearance role. Controls border, hover, AND fill tokens. `auto` → secondary stack."
+      },
+      "aria-describedby": {
+        "type": "string",
+        "description": "aria-describedby property"
+      },
+      "aria-invalid": {
+        "description": "aria-invalid property"
+      },
+      "aria-label": {
+        "type": "string",
+        "description": "Accessible label when there is no visible `label` (or when overriding the visible copy). Maps directly to `aria-label` on the underlying radio control."
+      },
+      "aria-labelledby": {
+        "type": "string",
+        "description": "When set, names the control via `aria-labelledby` (e.g. `RadioField` single-option layout where the visible label lives on the field, not on this `Radio`)."
+      },
+      "checked": {
+        "type": "boolean",
+        "description": "Whether this option is selected. Selection is owned by the parent **`RadioGroup`** via `value` / `defaultValue` matching this `value`. This prop is accepted for tooling (e.g. Storybook) and is **not** forwarded to the underlying primitive."
+      },
+      "children": {
+        "description": "children property"
+      },
+      "className": {
+        "type": "string",
+        "description": "Additional class name"
+      },
+      "data-testid": {
+        "type": "string",
+        "description": "Test automation id — forwarded to the radio control (`BaseRadio.Root`)."
+      },
+      "description": {
+        "type": "string",
+        "description": "Supplementary copy below the label row. Maps to `aria-describedby` on the control."
+      },
+      "disabled": {
+        "type": "boolean",
+        "description": "Whether this radio is disabled"
+      },
+      "errorHighlight": {
+        "type": "boolean",
+        "description": "Error-state chrome on the wrapper (from `RadioField` when invalid). Standalone `Radio` does not use `errorHighlight`; use `RadioField` for validation UX."
+      },
+      "id": {
+        "type": "string",
+        "description": "HTML id attribute"
+      },
+      "label": {
+        "type": "string",
+        "description": "Visible label beside the control. Maps to `aria-label` when the wrapper is a `div`."
+      },
+      "labelAssociation": {
+        "description": "Render inside `Field.Root` (RadioField) or standalone.",
+        "default": "native"
+      },
+      "labelWrapper": {
+        "description": "Outer wrapper element. Use `'div'` inside a field composition so the visible label is not nested inside a second `<label>`.",
+        "default": "label"
+      },
+      "readOnly": {
+        "type": "boolean",
+        "description": "Whether this radio is read-only (focusable but value cannot change)"
+      },
+      "required": {
+        "type": "boolean",
+        "description": "HTML required — form validation"
+      },
+      "size": {
+        "enum": [
+          "s",
+          "m",
+          "l"
+        ],
+        "description": "Size preset. Default: 'm'"
+      },
+      "style": {
+        "description": "Inline styles"
+      },
+      "supplementaryDescribedById": {
+        "type": "string",
+        "description": "supplementaryDescribedById property"
+      }
+    },
+    "required": [
+      "value"
+    ]
+  },
+  "codeSnippets": [
+    {
+      "id": "radio-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { Radio, RadioGroup } from '@oneui/ui';\n\n<RadioGroup value={value} onValueChange={setValue}>\n  <Radio value=\"a\">Option A</Radio>\n  <Radio value=\"b\">Option B</Radio>\n</RadioGroup>"
+    },
+    {
+      "id": "radio-recipe-decisions",
+      "title": "Recipe Decisions",
+      "language": "json",
+      "code": "{\n  \"component\": \"Radio\",\n  \"decisions\": [\n    \"Outer Shape\",\n    \"Dot Shape\"\n  ]\n}"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "radio"
+  ],
+  "generatedMarkdown": "# Radio Machine-Readable Documentation\n\n_Generated from source metadata. Do not edit manually._\n\n## Intent and Purpose\n\n- **Intent**: Single-selection control within a mutually-exclusive option group.\n- **Task contexts**: single-select-form, preference-setting, wizard-step\n- **Sentiments**: neutral\n\n## Composition Rules\n\n- **Requires**: value prop, RadioGroup parent, label or aria-label\n- **Allows**: read-only mode, group-level appearance inheritance\n- **Forbids**: standalone use without RadioGroup, multiple selection\n\n## Variant Logic\n\n- **default**: use when standard option in a radio group\n- **readOnly**: use when display-only, value shown but cannot change\n\n## Relationships and Dependencies\n\n- **Related**: Checkbox, Switch, RadioGroup\n- **Escalates to**: -\n- **Degrades to**: -\n- **Groups with**: RadioGroup, FormField\n\n## Context Signals\n\n- **Density**: compact, default, open\n- **Modality**: desktop, mobile\n- **Brand**: theme-scope aware, appearance + accent dual-role\n- **Mode**: light, dark, surface-context\n\n## Observability Hooks\n\n- **Track**: select\n- **Health**: a11y_violations\n\n## Props\n\n| Prop | Type | Required | Default | Description |\n| --- | --- | --- | --- | --- |\n| `value` | `string` | Yes | - | Value for this radio item (required) |\n| `accent` | `RadioAccent` | No | - | accent property |\n| `appearance` | `RadioAppearance` | No | - | Multi-accent appearance role. Controls border, hover, AND fill tokens. `auto` → secondary stack. |\n| `aria-describedby` | `string` | No | - | aria-describedby property |\n| `aria-invalid` | `boolean | 'true' | 'false'` | No | - | aria-invalid property |\n| `aria-label` | `string` | No | - | Accessible label when there is no visible `label` (or when overriding the visible copy). Maps directly to `aria-label` on the underlying radio control. |\n| `aria-labelledby` | `string` | No | - | When set, names the control via `aria-labelledby` (e.g. `RadioField` single-option layout where the visible label lives on the field, not on this `Radio`). |\n| `checked` | `boolean` | No | - | Whether this option is selected. Selection is owned by the parent **`RadioGroup`** via `value` / `defaultValue` matching this `value`. This prop is accepted for tooling (e.g. Storybook) and is **not** forwarded to the underlying primitive. |\n| `children` | `ReactNode` | No | - | children property |\n| `className` | `string` | No | - | Additional class name |\n| `data-testid` | `string` | No | - | Test automation id — forwarded to the radio control (`BaseRadio.Root`). |\n| `description` | `string` | No | - | Supplementary copy below the label row. Maps to `aria-describedby` on the control. |\n| `disabled` | `boolean` | No | - | Whether this radio is disabled |\n| `errorHighlight` | `boolean` | No | - | Error-state chrome on the wrapper (from `RadioField` when invalid). Standalone `Radio` does not use `errorHighlight`; use `RadioField` for validation UX. |\n| `id` | `string` | No | - | HTML id attribute |\n| `label` | `string` | No | - | Visible label beside the control. Maps to `aria-label` when the wrapper is a `div`. |\n| `labelAssociation` | `'native' | 'field'` | No | native | Render inside `Field.Root` (RadioField) or standalone. |\n| `labelWrapper` | `'label' | 'div'` | No | label | Outer wrapper element. Use `'div'` inside a field composition so the visible label is not nested inside a second `<label>`. |\n| `readOnly` | `boolean` | No | - | Whether this radio is read-only (focusable but value cannot change) |\n| `required` | `boolean` | No | - | HTML required — form validation |\n| `size` | `RadioSize` | No | - | Size preset. Default: 'm' |\n| `style` | `CSSProperties` | No | - | Inline styles |\n| `supplementaryDescribedById` | `string` | No | - | supplementaryDescribedById property |\n\n## Slots\n\n| Slot | Types | Tokens |\n| --- | --- | --- |\n\n\n## Code Snippets\n\n### Basic Usage\n\n```tsx\nimport { Radio, RadioGroup } from '@oneui/ui';\n\n<RadioGroup value={value} onValueChange={setValue}>\n  <Radio value=\"a\">Option A</Radio>\n  <Radio value=\"b\">Option B</Radio>\n</RadioGroup>\n```\n\n### Recipe Decisions\n\n```json\n{\n  \"component\": \"Radio\",\n  \"decisions\": [\n    \"Outer Shape\",\n    \"Dot Shape\"\n  ]\n}\n```\n"
+}

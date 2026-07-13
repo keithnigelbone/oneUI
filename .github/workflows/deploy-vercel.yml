@@ -1,0 +1,136 @@
+name: Deploy to Vercel
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      target:
+        description: "Deploy target"
+        required: true
+        default: preview
+        type: choice
+        options: [production, preview]
+
+# Prevent concurrent deploys on the same ref; cancel stale preview runs.
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+env:
+  VERCEL_ORG_ID: team_iQbMZt1u7Ln98G5yHzGkz6Ux
+  VERCEL_PROJECT_ID: prj_8T7tKdforPPNBQrIPDNc2N92zqkF
+
+jobs:
+  deploy:
+    name: ${{ (github.event_name == 'push' && github.ref == 'refs/heads/main') || (github.event_name == 'workflow_dispatch' && inputs.target == 'production') && 'Deploy → Production' || 'Deploy → Preview' }}
+    runs-on: [self-hosted, linux]
+    permissions:
+      contents: read
+      pull-requests: write
+
+    outputs:
+      url: ${{ steps.deploy.outputs.url }}
+      is_production: ${{ steps.ctx.outputs.is_production }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9.15.9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Install Vercel CLI
+        run: npm install --global vercel@53
+
+      # ── Resolve deploy context ────────────────────────────────────────────
+      - name: Resolve deploy context
+        id: ctx
+        run: |
+          IS_PROD=false
+          if [[ "${{ github.event_name }}" == "push" && "${{ github.ref }}" == "refs/heads/main" ]]; then
+            IS_PROD=true
+          elif [[ "${{ github.event_name }}" == "workflow_dispatch" && "${{ inputs.target }}" == "production" ]]; then
+            IS_PROD=true
+          fi
+          echo "is_production=$IS_PROD" >> $GITHUB_OUTPUT
+          echo "environment=$([ $IS_PROD = true ] && echo production || echo preview)" >> $GITHUB_OUTPUT
+
+      # ── Pull Vercel project settings + env vars ───────────────────────────
+      - name: Pull Vercel environment
+        run: |
+          vercel pull --yes \
+            --environment=${{ steps.ctx.outputs.environment }} \
+            --token=${{ secrets.VERCEL_TOKEN }}
+
+      # ── Build ─────────────────────────────────────────────────────────────
+      - name: Build
+        run: |
+          vercel build \
+            ${{ steps.ctx.outputs.is_production == 'true' && '--prod' || '' }} \
+            --token=${{ secrets.VERCEL_TOKEN }}
+
+      # ── Deploy ────────────────────────────────────────────────────────────
+      - name: Deploy
+        id: deploy
+        run: |
+          URL=$(vercel deploy --prebuilt \
+            ${{ steps.ctx.outputs.is_production == 'true' && '--prod' || '' }} \
+            --token=${{ secrets.VERCEL_TOKEN }})
+          echo "url=$URL" >> $GITHUB_OUTPUT
+          echo "Deployed to: $URL"
+
+      # ── Comment on PR with preview URL ────────────────────────────────────
+      - name: Comment preview URL on PR
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const url = '${{ steps.deploy.outputs.url }}';
+            const sha = '${{ github.sha }}'.slice(0, 7);
+            const branch = '${{ github.head_ref }}';
+            const body = [
+              '## Preview Deployment',
+              '',
+              `**URL:** [${url}](${url})`,
+              '',
+              `| Branch | Commit |`,
+              `|--------|--------|`,
+              `| \`${branch}\` | \`${sha}\` |`,
+              '',
+              '_Updates automatically on new commits._',
+            ].join('\n');
+
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+            });
+            const existing = comments.find(c =>
+              c.user?.type === 'Bot' && c.body?.includes('## Preview Deployment')
+            );
+            if (existing) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: existing.id,
+                body,
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body,
+              });
+            }

@@ -1,0 +1,55 @@
+name: Starter MCP
+
+# `starter-mcp/` is a standalone package — it is NOT part of the pnpm workspace
+# (`packages/*` + `apps/*`), so the Design System "Quality Gates" workflow does
+# not and cannot cover it. This workflow is its dedicated gate: typecheck (tsc
+# build) + an offline protocol smoke test.
+#
+# Path-filtered so it only runs when starter-mcp/ actually changes. The
+# pull_request trigger intentionally has NO `branches:` (base-branch) filter so
+# it fires on a PR into any target branch — the starter-mcp PR currently does
+# not target main or dev. `push` stays scoped to the integration branches to
+# avoid a run on every feature-branch push.
+
+on:
+  pull_request:
+    paths:
+      - 'starter-mcp/**'
+      - '.github/workflows/starter-mcp.yml'
+  push:
+    branches: [main, dev]
+    paths:
+      - 'starter-mcp/**'
+      - '.github/workflows/starter-mcp.yml'
+
+jobs:
+  build-and-smoke:
+    name: Build + protocol smoke test
+    runs-on: [self-hosted, linux]
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: starter-mcp
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      # `prepare` also runs the build, but we invoke it explicitly below so a
+      # build failure is attributed to a clearly-named step.
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Build (tsc — typecheck + emit dist/)
+        run: npm run build
+
+      - name: Unit tests (vitest)
+        run: npm test
+
+      - name: Smoke test (MCP handshake + offline tool calls over stdio, asserting)
+        run: node scripts/smoke.mjs

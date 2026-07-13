@@ -1,0 +1,316 @@
+/**
+ * Modal.module.css
+ *
+ * Token-only styling. Verified by: pnpm check:literals
+ *
+ * Layout matches Figma .Modal (node 7565:6221) exactly:
+ * - Modal root: padding 0, gap 0 — sections own their padding, butt edge-to-edge
+ * - Radius: Shape-4 — token 6651:5194. 16px at the default breakpoint/density;
+ *   Shape-4 aliases --Dimension-f0, so it scales with the dimension cascade
+ *   (14px compact → 20px desktop). This previously read the legacy t-shirt alias
+ *   with a hard 16px fallback; because that alias is undefined outside the two
+ *   legacy-alias apps, the fallback won and pinned the radius flat at 16px
+ *   everywhere. Restoring the scale is the intended Figma behaviour — Modal
+ *   needs a Chromatic re-baseline.
+ * - Header / Footer: padding 16 all sides (Spacing-4), gap 8 (Spacing-3), min-height 48
+ * - Body: padding 16h / 12v (Spacing-4 / Spacing-3-5), scrolls when overflow
+ * - Dividers: full width (no inset), 1px Border-Subtle
+ * - No outer stroke / border (Figma has none)
+ * - Title: Title-M (16/18/800) — NOT Headline-M
+ * - Close button: 24x24 (Spacing-4-5), inner icon 16x16 (Spacing-4)
+ * - Close button: 24x24 (Spacing-4-5), inner icon 16x16 (Spacing-4)
+ * - Center-align header offsets contentWrapper by close-button width + gap (32px)
+ */
+
+/* ════════════════════════════════════════════════════════════
+   BACKDROP
+   ════════════════════════════════════════════════════════════ */
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: var(--Z-Index-Modal);
+  background-color: var(--Scrim);
+}
+
+.backdrop[data-starting-style],
+.backdrop[data-ending-style] {
+  opacity: 0;
+}
+
+.backdrop[data-open] {
+  transition: opacity var(--Motion-Duration-L) var(--Motion-Easing-Entrance-Moderate);
+}
+
+.backdrop[data-ending-style] {
+  transition: opacity var(--Motion-Duration-M) var(--Motion-Easing-Exit-Moderate);
+}
+
+/* ════════════════════════════════════════════════════════════
+   POPUP — the modal container
+   ════════════════════════════════════════════════════════════ */
+
+.popup {
+  /* Intermediate variables — overridable via the --Modal-* token boundary.
+     max-height is set per size on the .sizeS / .sizeM / .sizeL / .sizeFullWidth
+     classes below — there's no run-time prop for it. */
+  --_modal-bg: var(--Surface-Elevated);
+  --_modal-radius: var(--Shape-4, 16px);
+  --_modal-section-pad: var(--Spacing-4, 16px);
+  --_modal-body-pad-y: var(--Spacing-3-5, 12px);
+  --_modal-action-gap: var(--Spacing-3, 8px);
+  --_modal-text-gap: var(--Spacing-1-5, 4px);
+
+  box-sizing: border-box;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: var(--Z-Index-Modal);
+  transform: translate(-50%, -50%);
+
+  display: flex;
+  flex-direction: column;
+
+  border-radius: var(--_modal-radius);
+  background-color: var(--_modal-bg);
+  color: var(--Text-High);
+  box-shadow: var(--Elevation-3);
+
+  overflow: hidden;
+}
+
+.popup[data-starting-style],
+.popup[data-ending-style] {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.9);
+}
+
+.popup[data-open] {
+  transition:
+    opacity var(--Motion-Duration-L) var(--Motion-Easing-Entrance-Moderate),
+    transform var(--Motion-Duration-L) var(--Motion-Easing-Entrance-Moderate);
+}
+
+.popup[data-ending-style] {
+  transition:
+    opacity var(--Motion-Duration-M) var(--Motion-Easing-Exit-Moderate),
+    transform var(--Motion-Duration-M) var(--Motion-Easing-Exit-Moderate);
+}
+
+/* ════════════════════════════════════════════════════════════
+   SIZES — Figma: S / M / L / FullWidth
+   Width fallbacks are based on the 1440px platform specification.
+   max-height per Figma spec: S=50vh, M=70vh, L=85vh, FullWidth=100vh−margin.
+   Mobile viewport (max-width: 767px) collapses S/M/L to a unified 85vh.
+   ════════════════════════════════════════════════════════════ */
+
+.sizeS {
+  width: var(--Modal-width-S, 360px);
+  max-height: var(--Modal-maxHeight-S, 50vh);
+}
+
+.sizeM {
+  width: var(--Modal-width-M, 540px);
+  max-height: var(--Modal-maxHeight-M, 70vh);
+}
+
+.sizeL {
+  width: var(--Modal-width-L, 720px);
+  max-height: var(--Modal-maxHeight-L, 85vh);
+}
+
+.sizeFullWidth {
+  width: calc(100vw - 2 * (var(--Spacing-Margin)));
+  height: calc(100vh - 2 * (var(--Spacing-Margin)));
+}
+
+/* Mobile viewport: S, M, L share an 85vh max-height per Figma spec. */
+@media (max-width: 767px) {
+  .sizeS,
+  .sizeM,
+  .sizeL {
+    max-height: var(--Modal-maxHeight-Mobile, 85vh);
+  }
+}
+
+/* ════════════════════════════════════════════════════════════
+   HEADER
+   Figma: padding 16 all, itemSpacing 8, min-height 48
+   ════════════════════════════════════════════════════════════ */
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--_modal-action-gap);
+  padding: var(--_modal-section-pad);
+  flex-shrink: 0;
+  min-height: calc(var(--Spacing-14, 56px) - 2 * var(--_modal-section-pad));
+}
+
+.headerContent {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--_modal-action-gap);
+  flex: 1;
+  min-width: 0;
+}
+
+/* Center-align: offset contentWrapper by close-button width + gap so the
+   title remains centred against the modal width, not the available space.
+   Both values are intermediate variables defined on .popup — change them
+   there, not here. */
+.header[data-header-align='center'] .headerContent {
+  justify-content: center;
+  text-align: center;
+}
+
+.headerText {
+  display: flex;
+  flex-direction: column;
+  /* Centre the title (18px line-height) within the 24px min-height so its
+     optical centre aligns with the close <IconButton size="s" condensed>'s
+     centre at y=12. Without this, the title sits at y=0–18 (centre y=9) and
+     reads 3px high relative to the icon. */
+  justify-content: center;
+  gap: var(--_modal-text-gap);
+  min-width: 0;
+  min-height: var(--Spacing-6, 24px);
+}
+
+.headerStartSlot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* ════════════════════════════════════════════════════════════
+   TITLE & DESCRIPTION
+   Figma title: 16px / 18px / weight 800 → Title-M role
+   ════════════════════════════════════════════════════════════ */
+
+.title {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Title-M-FontSize);
+  font-weight: var(--Title-M-FontWeight);
+  line-height: var(--Title-M-LineHeight);
+  color: var(--Text-High);
+  margin: 0;
+}
+
+.description {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Body-S-FontSize);
+  font-weight: var(--Body-FontWeight-Low);
+  line-height: var(--Body-S-LineHeight);
+  color: var(--Text-Medium);
+  margin: 0;
+}
+
+/* Close button is rendered as <IconButton size={8} variant="ghost" /> —
+   no local styles needed; appearance + hover + focus halo all come from
+   IconButton's own token-driven CSS. */
+
+/* Dividers between header/body and body/footer are rendered as
+   <Divider orientation="horizontal" size="m" attention="low" roundCaps /> —
+   no local styles needed; the Divider component owns its own token-driven CSS. */
+
+/* ════════════════════════════════════════════════════════════
+   BODY — scrollable content area
+   Figma: padding-h 16 (Spacing-4), padding-v 12 (Spacing-3-5)
+   Figma: padding-h 16 (Spacing-4), padding-v 12 (Spacing-3-5)
+   ════════════════════════════════════════════════════════════ */
+
+.body {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  padding: var(--_modal-body-pad-y) var(--_modal-section-pad);
+  min-height: 0;
+}
+
+.body:focus-visible {
+  outline: var(--Focus-Outline-Width) solid var(--Focus-Outline);
+  outline-offset: calc(var(--Focus-Outline-Width) * -1);
+}
+
+/* ════════════════════════════════════════════════════════════
+   FOOTER
+   Figma: padding 16 all, itemSpacing 8, MAX-aligned (flex-end)
+   Vertical: stack with FILL-width buttons
+   ════════════════════════════════════════════════════════════ */
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--_modal-action-gap);
+  padding: var(--_modal-section-pad);
+  flex-shrink: 0;
+}
+
+.footer[data-footer-orientation='vertical'] {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.footerStart {
+  margin-right: auto;
+}
+
+.footer[data-footer-orientation='vertical'] .footerStart {
+  margin-right: 0;
+  margin-bottom: var(--_modal-action-gap);
+}
+
+.footerActions {
+  display: flex;
+  align-items: center;
+  gap: var(--_modal-action-gap);
+}
+
+.footer[data-footer-orientation='vertical'] .footerActions {
+  flex-direction: column;
+  width: 100%;
+}
+
+.footer[data-footer-orientation='vertical'] .footerActions > * {
+  width: 100%;
+}
+
+/* Per-role styling is handled by the children:
+   - Close button delegates to <IconButton appearance={...} />
+   - Footer buttons accept their own appearance prop from the consumer
+   The modal popup is role-neutral (it surfaces no appearance prop), but it
+   carries data-surface="elevated" (set in Modal.tsx) so its children sit
+   inside the surface-context cascade and remap to the elevated step — without
+   it, children would resolve against the page surface and under-adapt on the
+   elevated background (most visible in dark mode).
+   `data-appearance` is still emitted on the popup for consumer-side hooks. */
+
+/* ════════════════════════════════════════════════════════════
+   REDUCED MOTION — opacity only, no transform; Subtle tokens
+   ════════════════════════════════════════════════════════════ */
+
+@media (prefers-reduced-motion: reduce) {
+  .backdrop[data-open] {
+    transition: opacity var(--Motion-Duration-Subtle-L) var(--Motion-Easing-Entrance-Subtle);
+  }
+
+  .backdrop[data-ending-style] {
+    transition: opacity var(--Motion-Duration-Subtle-M) var(--Motion-Easing-Exit-Subtle);
+  }
+
+  .popup[data-starting-style],
+  .popup[data-ending-style] {
+    transform: translate(-50%, -50%);
+  }
+
+  .popup[data-open] {
+    transition: opacity var(--Motion-Duration-Subtle-L) var(--Motion-Easing-Entrance-Subtle);
+  }
+
+  .popup[data-ending-style] {
+    transition: opacity var(--Motion-Duration-Subtle-M) var(--Motion-Easing-Exit-Subtle);
+  }
+}

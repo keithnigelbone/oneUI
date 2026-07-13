@@ -1,0 +1,2724 @@
+{
+  "slug": "circular-progress-indicator",
+  "runs": [
+    {
+      "savedAt": "2026-06-23T09:11:10.338Z",
+      "report": {
+        "ok": true,
+        "slug": "circular-progress-indicator",
+        "message": "circular-progress-indicator QA Playwright run OK — 2026-06-22T10:55:12.530Z",
+        "suites": {
+          "accessibility": {
+            "suite": "accessibility",
+            "passed": 28,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "28 test(s) in Playwright report for accessibility.",
+              "Axe: scan completed — 0 violation rules reported."
+            ],
+            "errors": [],
+            "cases": [
+              {
+                "name": "[a11y] WCAG 2.1 AA tag scan + JSON artefact + HTML report",
+                "status": "passed",
+                "durationMs": 5885
+              },
+              {
+                "name": "[a11y] data-section=\"circular-progress-indicator-qa-default\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 5214
+              },
+              {
+                "name": "[a11y] data-section=\"circular-progress-indicator-qa-variant\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 5158
+              },
+              {
+                "name": "[a11y] data-section=\"circular-progress-indicator-qa-size\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 5222
+              },
+              {
+                "name": "[a11y] data-section=\"circular-progress-indicator-qa-icon-text-sizes\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 6146
+              },
+              {
+                "name": "[a11y] data-section=\"circular-progress-indicator-qa-appearance\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 3708
+              },
+              {
+                "name": "[a11y] data-section=\"circular-progress-indicator-qa-content\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 3602
+              },
+              {
+                "name": "[a11y] data-section=\"circular-progress-indicator-qa-value-min-max\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 3677
+              },
+              {
+                "name": "[a11y] data-section=\"circular-progress-indicator-qa-code-extras\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 3742
+              },
+              {
+                "name": "[a11y] data-section=\"circular-progress-indicator-qa-aria-labelledby\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 3566
+              },
+              {
+                "name": "[a11y] data-section=\"circular-progress-indicator-qa-combos\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 3545
+              },
+              {
+                "name": "[a11y] Section 508 tag run on story bands — zero serious/critical",
+                "status": "passed",
+                "durationMs": 3430
+              },
+              {
+                "name": "[a11y] non-text-contrast rule — zero serious/critical (if rule exists)",
+                "status": "passed",
+                "durationMs": 3168
+              },
+              {
+                "name": "[a11y] label rule on story bands — zero serious/critical",
+                "status": "passed",
+                "durationMs": 3642
+              },
+              {
+                "name": "[a11y] ARIA validity rules on story bands — zero serious/critical",
+                "status": "passed",
+                "durationMs": 3947
+              },
+              {
+                "name": "[a11y] name rules (buttons / images / links) on story bands — zero serious/critical",
+                "status": "passed",
+                "durationMs": 3289
+              },
+              {
+                "name": "[a11y] SVG icons in showcase: aria-label, aria-hidden, role, or title",
+                "status": "passed",
+                "durationMs": 5623
+              },
+              {
+                "name": "[a11y] page lang on <html>",
+                "status": "passed",
+                "durationMs": 3211
+              },
+              {
+                "name": "[a11y] reflow: showcase regions fit at 320px (no horizontal overflow inside bands)",
+                "status": "passed",
+                "durationMs": 5368
+              },
+              {
+                "name": "[a11y] resize: 200% zoom — showcase indicators remain visible",
+                "status": "passed",
+                "durationMs": 3351
+              },
+              {
+                "name": "[a11y] Tab reaches a focusable control (page chrome)",
+                "status": "passed",
+                "durationMs": 2863
+              },
+              {
+                "name": "[a11y] no keyboard trap (Tab cycle advances)",
+                "status": "passed",
+                "durationMs": 3345
+              },
+              {
+                "name": "[a11y] focused element shows outline or box-shadow",
+                "status": "passed",
+                "durationMs": 2989
+              },
+              {
+                "name": "[a11y] Default indicator: role progressbar + accessible name + value",
+                "status": "passed",
+                "durationMs": 3201
+              },
+              {
+                "name": "[a11y] cpi-variant-indeterminate: progressbar without aria-valuenow",
+                "status": "passed",
+                "durationMs": 3754
+              },
+              {
+                "name": "[a11y] every progressbar in showcase has non-empty accessible name",
+                "status": "passed",
+                "durationMs": 4678
+              },
+              {
+                "name": "[a11y] aria-labelledby demo exposes labelled progressbar",
+                "status": "passed",
+                "durationMs": 4122
+              },
+              {
+                "name": "[a11y] aria-live-region-content rule if available",
+                "status": "passed",
+                "durationMs": 4500
+              }
+            ],
+            "axe": {
+              "violations": []
+            }
+          },
+          "functional": {
+            "suite": "functional",
+            "passed": 97,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "97 test(s) in Playwright report for functional."
+            ],
+            "errors": [],
+            "cases": [
+              {
+                "name": "[fn] variant=determinate — aria-valuenow/min/max on progressbar (value 65)",
+                "status": "passed",
+                "durationMs": 3819
+              },
+              {
+                "name": "[fn] size=2XS — visible and square bounding box",
+                "status": "passed",
+                "durationMs": 4181
+              },
+              {
+                "name": "[fn] size=XS — visible and square bounding box",
+                "status": "passed",
+                "durationMs": 3949
+              },
+              {
+                "name": "[fn] size=S — visible and square bounding box",
+                "status": "passed",
+                "durationMs": 4732
+              },
+              {
+                "name": "[fn] size=M — visible and square bounding box",
+                "status": "passed",
+                "durationMs": 4729
+              },
+              {
+                "name": "[fn] size=L — visible and square bounding box",
+                "status": "passed",
+                "durationMs": 5005
+              },
+              {
+                "name": "[fn] size=XL — visible and square bounding box",
+                "status": "passed",
+                "durationMs": 4790
+              },
+              {
+                "name": "[fn] size=2XL — visible and square bounding box",
+                "status": "passed",
+                "durationMs": 4560
+              },
+              {
+                "name": "[fn] size=3XL — visible and square bounding box",
+                "status": "passed",
+                "durationMs": 4693
+              },
+              {
+                "name": "[fn] size=4XL — visible and square bounding box",
+                "status": "passed",
+                "durationMs": 4505
+              },
+              {
+                "name": "[fn] size=5XL — visible and square bounding box",
+                "status": "passed",
+                "durationMs": 4227
+              },
+              {
+                "name": "[fn] sizes scale monotonically 2XS → 5XL (playground strip order)",
+                "status": "passed",
+                "durationMs": 4968
+              },
+              {
+                "name": "[fn] cpi-sizes-text-2XS — aria-valuenow 25 & centre label (Figma L+)",
+                "status": "passed",
+                "durationMs": 4170
+              },
+              {
+                "name": "[fn] cpi-sizes-text-XS — aria-valuenow 25 & centre label (Figma L+)",
+                "status": "passed",
+                "durationMs": 4098
+              },
+              {
+                "name": "[fn] cpi-sizes-text-S — aria-valuenow 25 & centre label (Figma L+)",
+                "status": "passed",
+                "durationMs": 3986
+              },
+              {
+                "name": "[fn] cpi-sizes-text-M — aria-valuenow 25 & centre label (Figma L+)",
+                "status": "passed",
+                "durationMs": 4025
+              },
+              {
+                "name": "[fn] cpi-sizes-text-L — aria-valuenow 25 & centre label (Figma L+)",
+                "status": "passed",
+                "durationMs": 3349
+              },
+              {
+                "name": "[fn] cpi-sizes-text-XL — aria-valuenow 25 & centre label (Figma L+)",
+                "status": "passed",
+                "durationMs": 3225
+              },
+              {
+                "name": "[fn] cpi-sizes-text-2XL — aria-valuenow 25 & centre label (Figma L+)",
+                "status": "passed",
+                "durationMs": 3473
+              },
+              {
+                "name": "[fn] cpi-sizes-text-3XL — aria-valuenow 25 & centre label (Figma L+)",
+                "status": "passed",
+                "durationMs": 3396
+              },
+              {
+                "name": "[fn] cpi-sizes-text-4XL — aria-valuenow 25 & centre label (Figma L+)",
+                "status": "passed",
+                "durationMs": 3322
+              },
+              {
+                "name": "[fn] cpi-sizes-text-5XL — aria-valuenow 25 & centre label (Figma L+)",
+                "status": "passed",
+                "durationMs": 4040
+              },
+              {
+                "name": "[fn] cpi-sizes-icon-2XS — aria-valuenow 50 & ring + icon svg",
+                "status": "passed",
+                "durationMs": 3916
+              },
+              {
+                "name": "[fn] cpi-sizes-icon-XS — aria-valuenow 50 & ring + icon svg",
+                "status": "passed",
+                "durationMs": 3909
+              },
+              {
+                "name": "[fn] cpi-sizes-icon-S — aria-valuenow 50 & ring + icon svg",
+                "status": "passed",
+                "durationMs": 4115
+              },
+              {
+                "name": "[fn] cpi-sizes-icon-M — aria-valuenow 50 & ring + icon svg",
+                "status": "passed",
+                "durationMs": 4176
+              },
+              {
+                "name": "[fn] cpi-sizes-icon-L — aria-valuenow 50 & ring + icon svg",
+                "status": "passed",
+                "durationMs": 4197
+              },
+              {
+                "name": "[fn] cpi-sizes-icon-XL — aria-valuenow 50 & ring + icon svg",
+                "status": "passed",
+                "durationMs": 4445
+              },
+              {
+                "name": "[fn] cpi-sizes-icon-2XL — aria-valuenow 50 & ring + icon svg",
+                "status": "passed",
+                "durationMs": 4680
+              },
+              {
+                "name": "[fn] cpi-sizes-icon-3XL — aria-valuenow 50 & ring + icon svg",
+                "status": "passed",
+                "durationMs": 4882
+              },
+              {
+                "name": "[fn] cpi-sizes-icon-4XL — aria-valuenow 50 & ring + icon svg",
+                "status": "passed",
+                "durationMs": 5786
+              },
+              {
+                "name": "[fn] cpi-sizes-icon-5XL — aria-valuenow 50 & ring + icon svg",
+                "status": "passed",
+                "durationMs": 5429
+              },
+              {
+                "name": "[fn] appearance=auto — cell visible",
+                "status": "passed",
+                "durationMs": 5565
+              },
+              {
+                "name": "[fn] appearance=primary — cell visible",
+                "status": "passed",
+                "durationMs": 5393
+              },
+              {
+                "name": "[fn] appearance=secondary — cell visible",
+                "status": "passed",
+                "durationMs": 4920
+              },
+              {
+                "name": "[fn] appearance=sparkle — cell visible",
+                "status": "passed",
+                "durationMs": 3497
+              },
+              {
+                "name": "[fn] appearance=neutral — cell visible",
+                "status": "passed",
+                "durationMs": 2969
+              },
+              {
+                "name": "[fn] appearance=positive — cell visible",
+                "status": "passed",
+                "durationMs": 3442
+              },
+              {
+                "name": "[fn] appearance=negative — cell visible",
+                "status": "passed",
+                "durationMs": 3565
+              },
+              {
+                "name": "[fn] appearance=warning — cell visible",
+                "status": "passed",
+                "durationMs": 3698
+              },
+              {
+                "name": "[fn] appearance=informative — cell visible",
+                "status": "passed",
+                "durationMs": 3809
+              },
+              {
+                "name": "[fn] appearance=brand-bg — extra code row visible",
+                "status": "passed",
+                "durationMs": 3200
+              },
+              {
+                "name": "[fn] content=none determinate — no centre label span",
+                "status": "passed",
+                "durationMs": 3241
+              },
+              {
+                "name": "[fn] content=text determinate — centre shows non-empty text",
+                "status": "passed",
+                "durationMs": 3278
+              },
+              {
+                "name": "[fn] content=icon determinate — nested svg present (ring + icon)",
+                "status": "passed",
+                "durationMs": 3703
+              },
+              {
+                "name": "[fn] content=none indeterminate — no centre label span",
+                "status": "passed",
+                "durationMs": 3602
+              },
+              {
+                "name": "[fn] content=text indeterminate — centre label span exists (playground shows 0%)",
+                "status": "passed",
+                "durationMs": 3855
+              },
+              {
+                "name": "[fn] content=icon indeterminate — nested svg present",
+                "status": "passed",
+                "durationMs": 3848
+              },
+              {
+                "name": "[fn] value=0 — aria-valuenow on progressbar",
+                "status": "passed",
+                "durationMs": 3725
+              },
+              {
+                "name": "[fn] value=25 — aria-valuenow on progressbar",
+                "status": "passed",
+                "durationMs": 3314
+              },
+              {
+                "name": "[fn] value=50 — aria-valuenow on progressbar",
+                "status": "passed",
+                "durationMs": 3810
+              },
+              {
+                "name": "[fn] value=75 — aria-valuenow on progressbar",
+                "status": "passed",
+                "durationMs": 3690
+              },
+              {
+                "name": "[fn] value=100 — aria-valuenow on progressbar",
+                "status": "passed",
+                "durationMs": 3622
+              },
+              {
+                "name": "[fn] cpi-range-0-200 — min max value map to aria",
+                "status": "passed",
+                "durationMs": 3447
+              },
+              {
+                "name": "[fn] cpi-range-10-60 — min max value map to aria",
+                "status": "passed",
+                "durationMs": 3424
+              },
+              {
+                "name": "[fn] determinate + content=text — aria-valuenow matches value 72",
+                "status": "passed",
+                "durationMs": 3261
+              },
+              {
+                "name": "[fn] no console errors while on Test Scenarios tab",
+                "status": "passed",
+                "durationMs": 6774
+              },
+              {
+                "name": "[fn] all cpi data-testid roots visible",
+                "status": "passed",
+                "durationMs": 6768
+              },
+              {
+                "name": "[fn] Combination matrix has expected count",
+                "status": "passed",
+                "durationMs": 3483
+              },
+              {
+                "name": "[fn] aria-labelledby demo — progressbar references labelled element",
+                "status": "passed",
+                "durationMs": 3609
+              },
+              {
+                "name": "[fn] Figma Validation tab — matrix table mounts",
+                "status": "passed",
+                "durationMs": 3981
+              },
+              {
+                "name": "1.1 — Page loads without console errors; default indicator mounts",
+                "status": "passed",
+                "durationMs": 6419
+              },
+              {
+                "name": "1.2 — Every Test Scenarios `data-testid` is visible",
+                "status": "passed",
+                "durationMs": 7615
+              },
+              {
+                "name": "1.3 — Every `data-section` band is visible",
+                "status": "passed",
+                "durationMs": 4490
+              },
+              {
+                "name": "2.1 — Default uses size M and auto appearance resolves on progressbar",
+                "status": "passed",
+                "durationMs": 4235
+              },
+              {
+                "name": "2.2 — Size 2XS → 5XL bounding boxes scale progressively and stay circular",
+                "status": "passed",
+                "durationMs": 4818
+              },
+              {
+                "name": "3.x — CircularProgressIndicator is not clickable",
+                "status": "passed",
+                "durationMs": 3757
+              },
+              {
+                "name": "4.x — Progress indicator is not in Tab order",
+                "status": "passed",
+                "durationMs": 3784
+              },
+              {
+                "name": "5.x — CPI does not receive focus on click",
+                "status": "passed",
+                "durationMs": 3590
+              },
+              {
+                "name": "6.1 — Default determinate state exposes value 25",
+                "status": "passed",
+                "durationMs": 3152
+              },
+              {
+                "name": "6.3 — Disabled state is not in showcase",
+                "status": "passed",
+                "durationMs": 2764
+              },
+              {
+                "name": "7.1 — content=none — no centre span",
+                "status": "passed",
+                "durationMs": 2722
+              },
+              {
+                "name": "7.2 — content=icon — ring svg + child icon svg",
+                "status": "passed",
+                "durationMs": 2888
+              },
+              {
+                "name": "7.4 — Icon inside content=icon has aria-hidden",
+                "status": "passed",
+                "durationMs": 2882
+              },
+              {
+                "name": "8.x — Not a toggle component",
+                "status": "passed",
+                "durationMs": 2907
+              },
+              {
+                "name": "9.x — Not a text input",
+                "status": "passed",
+                "durationMs": 2942
+              },
+              {
+                "name": "10.x — No loading/slot dependency matrix in showcase",
+                "status": "passed",
+                "durationMs": 2642
+              },
+              {
+                "name": "11.1 — content=text shows percentage label",
+                "status": "passed",
+                "durationMs": 2884
+              },
+              {
+                "name": "11.3 — aria-valuenow matches value for each sample",
+                "status": "passed",
+                "durationMs": 2941
+              },
+              {
+                "name": "11.3 — combo 0 progressbar has accessible name",
+                "status": "passed",
+                "durationMs": 3122
+              },
+              {
+                "name": "11.3 — combo 1 progressbar has accessible name",
+                "status": "passed",
+                "durationMs": 3310
+              },
+              {
+                "name": "11.3 — combo 2 progressbar has accessible name",
+                "status": "passed",
+                "durationMs": 3587
+              },
+              {
+                "name": "11.3 — combo 3 progressbar has accessible name",
+                "status": "passed",
+                "durationMs": 3770
+              },
+              {
+                "name": "11.3 — combo 4 progressbar has accessible name",
+                "status": "passed",
+                "durationMs": 3867
+              },
+              {
+                "name": "11.3 — combo 5 progressbar has accessible name",
+                "status": "passed",
+                "durationMs": 3651
+              },
+              {
+                "name": "11.3 — combo 6 progressbar has accessible name",
+                "status": "passed",
+                "durationMs": 3506
+              },
+              {
+                "name": "11.3 — combo 7 progressbar has accessible name",
+                "status": "passed",
+                "durationMs": 3162
+              },
+              {
+                "name": "12.2 — At 320px viewport, scenario bands fit without horizontal scroll",
+                "status": "passed",
+                "durationMs": 7505
+              },
+              {
+                "name": "12.2b — Default indicator visible at 1440px viewport",
+                "status": "passed",
+                "durationMs": 6822
+              },
+              {
+                "name": "12.1 — fullWidth is not a CPI prop",
+                "status": "passed",
+                "durationMs": 3547
+              },
+              {
+                "name": "13.1 — After dark theme, all scenario sections remain visible",
+                "status": "passed",
+                "durationMs": 5094
+              },
+              {
+                "name": "Smoke — Page heading reads “Circular Progress Indicator”",
+                "status": "passed",
+                "durationMs": 4618
+              },
+              {
+                "name": "Smoke — Default progressbar visible with aria-valuenow 25",
+                "status": "passed",
+                "durationMs": 3743
+              },
+              {
+                "name": "[fn] shows Circular Progress Indicator page heading",
+                "status": "passed",
+                "durationMs": 4355
+              },
+              {
+                "name": "[fn] theme toggle updates label",
+                "status": "passed",
+                "durationMs": 4889
+              },
+              {
+                "name": "[fn] scenario tabs are present",
+                "status": "passed",
+                "durationMs": 3683
+              },
+              {
+                "name": "[fn] Default — determinate value 25 exposes aria-valuenow on progressbar",
+                "status": "passed",
+                "durationMs": 4117
+              }
+            ]
+          },
+          "performance": {
+            "suite": "performance",
+            "passed": 0,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "Performance suite is not executed in apps/qa-playground circular-progress-indicator Playwright bundle."
+            ],
+            "errors": []
+          }
+        }
+      }
+    },
+    {
+      "savedAt": "2026-06-22T10:55:12.532Z",
+      "report": {
+        "ok": false,
+        "slug": "circular-progress-indicator",
+        "message": "circular-progress-indicator QA Playwright run had failures — 2026-06-22T10:51:34.843Z",
+        "suites": {
+          "accessibility": {
+            "suite": "accessibility",
+            "passed": 28,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "28 test(s) in Playwright report for accessibility.",
+              "Axe: scan completed — 0 violation rules reported."
+            ],
+            "errors": [],
+            "cases": [
+              {
+                "name": "[a11y] WCAG 2.1 AA tag scan + JSON artefact + HTML report",
+                "status": "passed",
+                "durationMs": 7440
+              },
+              {
+                "name": "[a11y] data-section=\"circular-progress-indicator-qa-default\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 6107
+              },
+              {
+                "name": "[a11y] data-section=\"circular-progress-indicator-qa-variant\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 6175
+              },
+              {
+                "name": "[a11y] data-section=\"circular-progress-indicator-qa-size\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 7263
+              },
+              {
+                "name": "[a11y] data-section=\"circular-progress-indicator-qa-icon-text-sizes\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 7067
+              },
+              {
+                "name": "[a11y] data-section=\"circular-progress-indicator-qa-appearance\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 4359
+              },
+              {
+                "name": "[a11y] data-section=\"circular-progress-indicator-qa-content\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 4641
+              },
+              {
+                "name": "[a11y] data-section=\"circular-progress-indicator-qa-value-min-max\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 4335
+              },
+              {
+                "name": "[a11y] data-section=\"circular-progress-indicator-qa-code-extras\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 4029
+              },
+              {
+                "name": "[a11y] data-section=\"circular-progress-indicator-qa-aria-labelledby\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 4347
+              },
+              {
+                "name": "[a11y] data-section=\"circular-progress-indicator-qa-combos\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 3970
+              },
+              {
+                "name": "[a11y] Section 508 tag run on story bands — zero serious/critical",
+                "status": "passed",
+                "durationMs": 3876
+              },
+              {
+                "name": "[a11y] non-text-contrast rule — zero serious/critical (if rule exists)",
+                "status": "passed",
+                "durationMs": 4314
+              },
+              {
+                "name": "[a11y] label rule on story bands — zero serious/critical",
+                "status": "passed",
+                "durationMs": 4969
+              },
+              {
+                "name": "[a11y] ARIA validity rules on story bands — zero serious/critical",
+                "status": "passed",
+                "durationMs": 5634
+              },
+              {
+                "name": "[a11y] name rules (buttons / images / links) on story bands — zero serious/critical",
+                "status": "passed",
+                "durationMs": 5502
+              },
+              {
+                "name": "[a11y] SVG icons in showcase: aria-label, aria-hidden, role, or title",
+                "status": "passed",
+                "durationMs": 7676
+              },
+              {
+                "name": "[a11y] page lang on <html>",
+                "status": "passed",
+                "durationMs": 5299
+              },
+              {
+                "name": "[a11y] reflow: showcase regions fit at 320px (no horizontal overflow inside bands)",
+                "status": "passed",
+                "durationMs": 8285
+              },
+              {
+                "name": "[a11y] resize: 200% zoom — showcase indicators remain visible",
+                "status": "passed",
+                "durationMs": 5134
+              },
+              {
+                "name": "[a11y] Tab reaches a focusable control (page chrome)",
+                "status": "passed",
+                "durationMs": 4373
+              },
+              {
+                "name": "[a11y] no keyboard trap (Tab cycle advances)",
+                "status": "passed",
+                "durationMs": 4710
+              },
+              {
+                "name": "[a11y] focused element shows outline or box-shadow",
+                "status": "passed",
+                "durationMs": 4326
+              },
+              {
+                "name": "[a11y] Default indicator: role progressbar + accessible name + value",
+                "status": "passed",
+                "durationMs": 4318
+              },
+              {
+                "name": "[a11y] cpi-variant-indeterminate: progressbar without aria-valuenow",
+                "status": "passed",
+                "durationMs": 3754
+              },
+              {
+                "name": "[a11y] every progressbar in showcase has non-empty accessible name",
+                "status": "passed",
+                "durationMs": 4183
+              },
+              {
+                "name": "[a11y] aria-labelledby demo exposes labelled progressbar",
+                "status": "passed",
+                "durationMs": 4095
+              },
+              {
+                "name": "[a11y] aria-live-region-content rule if available",
+                "status": "passed",
+                "durationMs": 4581
+              }
+            ],
+            "axe": {
+              "violations": []
+            }
+          },
+          "functional": {
+            "suite": "functional",
+            "passed": 95,
+            "failed": 2,
+            "skipped": 0,
+            "logs": [
+              "97 test(s) in Playwright report for functional."
+            ],
+            "errors": [
+              "[fn] cpi-sizes-icon-2XL — aria-valuenow 50 & ring + icon svg: Test timeout of 30000ms exceeded.",
+              "[fn] content=none indeterminate — no centre label span: Test timeout of 30000ms exceeded."
+            ],
+            "cases": [
+              {
+                "name": "[fn] variant=determinate — aria-valuenow/min/max on progressbar (value 65)",
+                "status": "passed",
+                "durationMs": 4198
+              },
+              {
+                "name": "[fn] size=2XS — visible and square bounding box",
+                "status": "passed",
+                "durationMs": 4457
+              },
+              {
+                "name": "[fn] size=XS — visible and square bounding box",
+                "status": "passed",
+                "durationMs": 4597
+              },
+              {
+                "name": "[fn] size=S — visible and square bounding box",
+                "status": "passed",
+                "durationMs": 5109
+              },
+              {
+                "name": "[fn] size=M — visible and square bounding box",
+                "status": "passed",
+                "durationMs": 5060
+              },
+              {
+                "name": "[fn] size=L — visible and square bounding box",
+                "status": "passed",
+                "durationMs": 4149
+              },
+              {
+                "name": "[fn] size=XL — visible and square bounding box",
+                "status": "passed",
+                "durationMs": 4754
+              },
+              {
+                "name": "[fn] size=2XL — visible and square bounding box",
+                "status": "passed",
+                "durationMs": 4159
+              },
+              {
+                "name": "[fn] size=3XL — visible and square bounding box",
+                "status": "passed",
+                "durationMs": 4041
+              },
+              {
+                "name": "[fn] size=4XL — visible and square bounding box",
+                "status": "passed",
+                "durationMs": 3913
+              },
+              {
+                "name": "[fn] size=5XL — visible and square bounding box",
+                "status": "passed",
+                "durationMs": 4394
+              },
+              {
+                "name": "[fn] sizes scale monotonically 2XS → 5XL (playground strip order)",
+                "status": "passed",
+                "durationMs": 3987
+              },
+              {
+                "name": "[fn] cpi-sizes-text-2XS — aria-valuenow 25 & centre label (Figma L+)",
+                "status": "passed",
+                "durationMs": 3867
+              },
+              {
+                "name": "[fn] cpi-sizes-text-XS — aria-valuenow 25 & centre label (Figma L+)",
+                "status": "passed",
+                "durationMs": 4859
+              },
+              {
+                "name": "[fn] cpi-sizes-text-S — aria-valuenow 25 & centre label (Figma L+)",
+                "status": "passed",
+                "durationMs": 4579
+              },
+              {
+                "name": "[fn] cpi-sizes-text-M — aria-valuenow 25 & centre label (Figma L+)",
+                "status": "passed",
+                "durationMs": 5253
+              },
+              {
+                "name": "[fn] cpi-sizes-text-L — aria-valuenow 25 & centre label (Figma L+)",
+                "status": "passed",
+                "durationMs": 5126
+              },
+              {
+                "name": "[fn] cpi-sizes-text-XL — aria-valuenow 25 & centre label (Figma L+)",
+                "status": "passed",
+                "durationMs": 5004
+              },
+              {
+                "name": "[fn] cpi-sizes-text-2XL — aria-valuenow 25 & centre label (Figma L+)",
+                "status": "passed",
+                "durationMs": 4328
+              },
+              {
+                "name": "[fn] cpi-sizes-text-3XL — aria-valuenow 25 & centre label (Figma L+)",
+                "status": "passed",
+                "durationMs": 4409
+              },
+              {
+                "name": "[fn] cpi-sizes-text-4XL — aria-valuenow 25 & centre label (Figma L+)",
+                "status": "passed",
+                "durationMs": 4000
+              },
+              {
+                "name": "[fn] cpi-sizes-text-5XL — aria-valuenow 25 & centre label (Figma L+)",
+                "status": "passed",
+                "durationMs": 3880
+              },
+              {
+                "name": "[fn] cpi-sizes-icon-2XS — aria-valuenow 50 & ring + icon svg",
+                "status": "passed",
+                "durationMs": 3825
+              },
+              {
+                "name": "[fn] cpi-sizes-icon-XS — aria-valuenow 50 & ring + icon svg",
+                "status": "passed",
+                "durationMs": 3835
+              },
+              {
+                "name": "[fn] cpi-sizes-icon-S — aria-valuenow 50 & ring + icon svg",
+                "status": "passed",
+                "durationMs": 3653
+              },
+              {
+                "name": "[fn] cpi-sizes-icon-M — aria-valuenow 50 & ring + icon svg",
+                "status": "passed",
+                "durationMs": 3530
+              },
+              {
+                "name": "[fn] cpi-sizes-icon-L — aria-valuenow 50 & ring + icon svg",
+                "status": "passed",
+                "durationMs": 3322
+              },
+              {
+                "name": "[fn] cpi-sizes-icon-XL — aria-valuenow 50 & ring + icon svg",
+                "status": "passed",
+                "durationMs": 3273
+              },
+              {
+                "name": "[fn] cpi-sizes-icon-2XL — aria-valuenow 50 & ring + icon svg",
+                "status": "failed",
+                "durationMs": 40160,
+                "error": "Test timeout of 30000ms exceeded."
+              },
+              {
+                "name": "[fn] cpi-sizes-icon-3XL — aria-valuenow 50 & ring + icon svg",
+                "status": "passed",
+                "durationMs": 3394
+              },
+              {
+                "name": "[fn] cpi-sizes-icon-4XL — aria-valuenow 50 & ring + icon svg",
+                "status": "passed",
+                "durationMs": 3692
+              },
+              {
+                "name": "[fn] cpi-sizes-icon-5XL — aria-valuenow 50 & ring + icon svg",
+                "status": "passed",
+                "durationMs": 3986
+              },
+              {
+                "name": "[fn] appearance=auto — cell visible",
+                "status": "passed",
+                "durationMs": 3851
+              },
+              {
+                "name": "[fn] appearance=primary — cell visible",
+                "status": "passed",
+                "durationMs": 3334
+              },
+              {
+                "name": "[fn] appearance=secondary — cell visible",
+                "status": "passed",
+                "durationMs": 2949
+              },
+              {
+                "name": "[fn] appearance=sparkle — cell visible",
+                "status": "passed",
+                "durationMs": 3116
+              },
+              {
+                "name": "[fn] appearance=neutral — cell visible",
+                "status": "passed",
+                "durationMs": 2895
+              },
+              {
+                "name": "[fn] appearance=positive — cell visible",
+                "status": "passed",
+                "durationMs": 2657
+              },
+              {
+                "name": "[fn] appearance=negative — cell visible",
+                "status": "passed",
+                "durationMs": 3061
+              },
+              {
+                "name": "[fn] appearance=warning — cell visible",
+                "status": "passed",
+                "durationMs": 3868
+              },
+              {
+                "name": "[fn] appearance=informative — cell visible",
+                "status": "passed",
+                "durationMs": 4132
+              },
+              {
+                "name": "[fn] appearance=brand-bg — extra code row visible",
+                "status": "passed",
+                "durationMs": 4175
+              },
+              {
+                "name": "[fn] content=none determinate — no centre label span",
+                "status": "passed",
+                "durationMs": 3766
+              },
+              {
+                "name": "[fn] content=text determinate — centre shows non-empty text",
+                "status": "passed",
+                "durationMs": 3306
+              },
+              {
+                "name": "[fn] content=icon determinate — nested svg present (ring + icon)",
+                "status": "passed",
+                "durationMs": 3167
+              },
+              {
+                "name": "[fn] content=none indeterminate — no centre label span",
+                "status": "failed",
+                "durationMs": 40155,
+                "error": "Test timeout of 30000ms exceeded."
+              },
+              {
+                "name": "[fn] content=text indeterminate — centre label span exists (playground shows 0%)",
+                "status": "passed",
+                "durationMs": 2948
+              },
+              {
+                "name": "[fn] content=icon indeterminate — nested svg present",
+                "status": "passed",
+                "durationMs": 3053
+              },
+              {
+                "name": "[fn] value=0 — aria-valuenow on progressbar",
+                "status": "passed",
+                "durationMs": 2938
+              },
+              {
+                "name": "[fn] value=25 — aria-valuenow on progressbar",
+                "status": "passed",
+                "durationMs": 2080
+              },
+              {
+                "name": "[fn] value=50 — aria-valuenow on progressbar",
+                "status": "passed",
+                "durationMs": 1949
+              },
+              {
+                "name": "[fn] value=75 — aria-valuenow on progressbar",
+                "status": "passed",
+                "durationMs": 2496
+              },
+              {
+                "name": "[fn] value=100 — aria-valuenow on progressbar",
+                "status": "passed",
+                "durationMs": 2405
+              },
+              {
+                "name": "[fn] cpi-range-0-200 — min max value map to aria",
+                "status": "passed",
+                "durationMs": 3166
+              },
+              {
+                "name": "[fn] cpi-range-10-60 — min max value map to aria",
+                "status": "passed",
+                "durationMs": 2284
+              },
+              {
+                "name": "[fn] determinate + content=text — aria-valuenow matches value 72",
+                "status": "passed",
+                "durationMs": 2257
+              },
+              {
+                "name": "[fn] no console errors while on Test Scenarios tab",
+                "status": "passed",
+                "durationMs": 4045
+              },
+              {
+                "name": "[fn] all cpi data-testid roots visible",
+                "status": "passed",
+                "durationMs": 4991
+              },
+              {
+                "name": "[fn] Combination matrix has expected count",
+                "status": "passed",
+                "durationMs": 2463
+              },
+              {
+                "name": "[fn] aria-labelledby demo — progressbar references labelled element",
+                "status": "passed",
+                "durationMs": 2146
+              },
+              {
+                "name": "[fn] Figma Validation tab — matrix table mounts",
+                "status": "passed",
+                "durationMs": 2120
+              },
+              {
+                "name": "1.1 — Page loads without console errors; default indicator mounts",
+                "status": "passed",
+                "durationMs": 5601
+              },
+              {
+                "name": "1.2 — Every Test Scenarios `data-testid` is visible",
+                "status": "passed",
+                "durationMs": 6014
+              },
+              {
+                "name": "1.3 — Every `data-section` band is visible",
+                "status": "passed",
+                "durationMs": 3140
+              },
+              {
+                "name": "2.1 — Default uses size M and auto appearance resolves on progressbar",
+                "status": "passed",
+                "durationMs": 1667
+              },
+              {
+                "name": "2.2 — Size 2XS → 5XL bounding boxes scale progressively and stay circular",
+                "status": "passed",
+                "durationMs": 2985
+              },
+              {
+                "name": "3.x — CircularProgressIndicator is not clickable",
+                "status": "passed",
+                "durationMs": 2698
+              },
+              {
+                "name": "4.x — Progress indicator is not in Tab order",
+                "status": "passed",
+                "durationMs": 2524
+              },
+              {
+                "name": "5.x — CPI does not receive focus on click",
+                "status": "passed",
+                "durationMs": 2499
+              },
+              {
+                "name": "6.1 — Default determinate state exposes value 25",
+                "status": "passed",
+                "durationMs": 2758
+              },
+              {
+                "name": "6.3 — Disabled state is not in showcase",
+                "status": "passed",
+                "durationMs": 2632
+              },
+              {
+                "name": "7.1 — content=none — no centre span",
+                "status": "passed",
+                "durationMs": 1913
+              },
+              {
+                "name": "7.2 — content=icon — ring svg + child icon svg",
+                "status": "passed",
+                "durationMs": 2139
+              },
+              {
+                "name": "7.4 — Icon inside content=icon has aria-hidden",
+                "status": "passed",
+                "durationMs": 2163
+              },
+              {
+                "name": "8.x — Not a toggle component",
+                "status": "passed",
+                "durationMs": 1973
+              },
+              {
+                "name": "9.x — Not a text input",
+                "status": "passed",
+                "durationMs": 2333
+              },
+              {
+                "name": "10.x — No loading/slot dependency matrix in showcase",
+                "status": "passed",
+                "durationMs": 2262
+              },
+              {
+                "name": "11.1 — content=text shows percentage label",
+                "status": "passed",
+                "durationMs": 2207
+              },
+              {
+                "name": "11.3 — aria-valuenow matches value for each sample",
+                "status": "passed",
+                "durationMs": 2224
+              },
+              {
+                "name": "11.3 — combo 0 progressbar has accessible name",
+                "status": "passed",
+                "durationMs": 2322
+              },
+              {
+                "name": "11.3 — combo 1 progressbar has accessible name",
+                "status": "passed",
+                "durationMs": 2301
+              },
+              {
+                "name": "11.3 — combo 2 progressbar has accessible name",
+                "status": "passed",
+                "durationMs": 2228
+              },
+              {
+                "name": "11.3 — combo 3 progressbar has accessible name",
+                "status": "passed",
+                "durationMs": 2169
+              },
+              {
+                "name": "11.3 — combo 4 progressbar has accessible name",
+                "status": "passed",
+                "durationMs": 1817
+              },
+              {
+                "name": "11.3 — combo 5 progressbar has accessible name",
+                "status": "passed",
+                "durationMs": 2478
+              },
+              {
+                "name": "11.3 — combo 6 progressbar has accessible name",
+                "status": "passed",
+                "durationMs": 2433
+              },
+              {
+                "name": "11.3 — combo 7 progressbar has accessible name",
+                "status": "passed",
+                "durationMs": 2412
+              },
+              {
+                "name": "12.2 — At 320px viewport, scenario bands fit without horizontal scroll",
+                "status": "passed",
+                "durationMs": 4419
+              },
+              {
+                "name": "12.2b — Default indicator visible at 1440px viewport",
+                "status": "passed",
+                "durationMs": 4058
+              },
+              {
+                "name": "12.1 — fullWidth is not a CPI prop",
+                "status": "passed",
+                "durationMs": 2138
+              },
+              {
+                "name": "13.1 — After dark theme, all scenario sections remain visible",
+                "status": "passed",
+                "durationMs": 3054
+              },
+              {
+                "name": "Smoke — Page heading reads “Circular Progress Indicator”",
+                "status": "passed",
+                "durationMs": 1890
+              },
+              {
+                "name": "Smoke — Default progressbar visible with aria-valuenow 25",
+                "status": "passed",
+                "durationMs": 1842
+              },
+              {
+                "name": "[fn] shows Circular Progress Indicator page heading",
+                "status": "passed",
+                "durationMs": 4266
+              },
+              {
+                "name": "[fn] theme toggle updates label",
+                "status": "passed",
+                "durationMs": 4678
+              },
+              {
+                "name": "[fn] scenario tabs are present",
+                "status": "passed",
+                "durationMs": 4593
+              },
+              {
+                "name": "[fn] Default — determinate value 25 exposes aria-valuenow on progressbar",
+                "status": "passed",
+                "durationMs": 4314
+              }
+            ]
+          },
+          "performance": {
+            "suite": "performance",
+            "passed": 0,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "Performance suite is not executed in apps/qa-playground circular-progress-indicator Playwright bundle."
+            ],
+            "errors": []
+          }
+        }
+      }
+    },
+    {
+      "savedAt": "2026-06-22T10:51:34.845Z",
+      "report": {
+        "ok": false,
+        "slug": "circular-progress-indicator",
+        "message": "circular-progress-indicator QA Playwright run had failures — 2026-06-17T07:31:37.391Z",
+        "suites": {
+          "accessibility": {
+            "suite": "accessibility",
+            "passed": 28,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "28 test(s) in Playwright report for accessibility.",
+              "Axe: scan completed — 0 violation rules reported."
+            ],
+            "errors": [],
+            "cases": [
+              {
+                "name": "[a11y] WCAG 2.1 AA tag scan + JSON artefact + HTML report",
+                "status": "passed",
+                "durationMs": 6601
+              },
+              {
+                "name": "[a11y] data-section=\"circular-progress-indicator-qa-default\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 6270
+              },
+              {
+                "name": "[a11y] data-section=\"circular-progress-indicator-qa-variant\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 6621
+              },
+              {
+                "name": "[a11y] data-section=\"circular-progress-indicator-qa-size\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 7033
+              },
+              {
+                "name": "[a11y] data-section=\"circular-progress-indicator-qa-icon-text-sizes\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 6245
+              },
+              {
+                "name": "[a11y] data-section=\"circular-progress-indicator-qa-appearance\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 3756
+              },
+              {
+                "name": "[a11y] data-section=\"circular-progress-indicator-qa-content\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 3773
+              },
+              {
+                "name": "[a11y] data-section=\"circular-progress-indicator-qa-value-min-max\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 4186
+              },
+              {
+                "name": "[a11y] data-section=\"circular-progress-indicator-qa-code-extras\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 4156
+              },
+              {
+                "name": "[a11y] data-section=\"circular-progress-indicator-qa-aria-labelledby\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 3993
+              },
+              {
+                "name": "[a11y] data-section=\"circular-progress-indicator-qa-combos\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 3231
+              },
+              {
+                "name": "[a11y] Section 508 tag run on story bands — zero serious/critical",
+                "status": "passed",
+                "durationMs": 3053
+              },
+              {
+                "name": "[a11y] non-text-contrast rule — zero serious/critical (if rule exists)",
+                "status": "passed",
+                "durationMs": 3276
+              },
+              {
+                "name": "[a11y] label rule on story bands — zero serious/critical",
+                "status": "passed",
+                "durationMs": 3535
+              },
+              {
+                "name": "[a11y] ARIA validity rules on story bands — zero serious/critical",
+                "status": "passed",
+                "durationMs": 3652
+              },
+              {
+                "name": "[a11y] name rules (buttons / images / links) on story bands — zero serious/critical",
+                "status": "passed",
+                "durationMs": 2817
+              },
+              {
+                "name": "[a11y] SVG icons in showcase: aria-label, aria-hidden, role, or title",
+                "status": "passed",
+                "durationMs": 6427
+              },
+              {
+                "name": "[a11y] page lang on <html>",
+                "status": "passed",
+                "durationMs": 3938
+              },
+              {
+                "name": "[a11y] reflow: showcase regions fit at 320px (no horizontal overflow inside bands)",
+                "status": "passed",
+                "durationMs": 10754
+              },
+              {
+                "name": "[a11y] resize: 200% zoom — showcase indicators remain visible",
+                "status": "passed",
+                "durationMs": 6151
+              },
+              {
+                "name": "[a11y] Tab reaches a focusable control (page chrome)",
+                "status": "passed",
+                "durationMs": 6944
+              },
+              {
+                "name": "[a11y] no keyboard trap (Tab cycle advances)",
+                "status": "passed",
+                "durationMs": 6935
+              },
+              {
+                "name": "[a11y] focused element shows outline or box-shadow",
+                "status": "passed",
+                "durationMs": 6437
+              },
+              {
+                "name": "[a11y] Default indicator: role progressbar + accessible name + value",
+                "status": "passed",
+                "durationMs": 5088
+              },
+              {
+                "name": "[a11y] cpi-variant-indeterminate: progressbar without aria-valuenow",
+                "status": "passed",
+                "durationMs": 4222
+              },
+              {
+                "name": "[a11y] every progressbar in showcase has non-empty accessible name",
+                "status": "passed",
+                "durationMs": 4221
+              },
+              {
+                "name": "[a11y] aria-labelledby demo exposes labelled progressbar",
+                "status": "passed",
+                "durationMs": 3649
+              },
+              {
+                "name": "[a11y] aria-live-region-content rule if available",
+                "status": "passed",
+                "durationMs": 3592
+              }
+            ],
+            "axe": {
+              "violations": []
+            }
+          },
+          "functional": {
+            "suite": "functional",
+            "passed": 91,
+            "failed": 6,
+            "skipped": 0,
+            "logs": [
+              "97 test(s) in Playwright report for functional."
+            ],
+            "errors": [
+              "[fn] cpi-sizes-text-2XS — aria-valuenow 25 & centre label: Error: expect(locator).toBeVisible() failed",
+              "[fn] cpi-sizes-text-XS — aria-valuenow 25 & centre label: Error: expect(locator).toBeVisible() failed",
+              "[fn] cpi-sizes-text-S — aria-valuenow 25 & centre label: Error: expect(locator).toBeVisible() failed",
+              "[fn] cpi-sizes-text-M — aria-valuenow 25 & centre label: Error: expect(locator).toBeVisible() failed",
+              "[fn] appearance=negative — cell visible: Test timeout of 30000ms exceeded while running \"beforeEach\" hook.",
+              "13.1 — After dark theme, all scenario sections remain visible: Error: locator.scrollIntoViewIfNeeded: Element is not attached to the DOM"
+            ],
+            "cases": [
+              {
+                "name": "[fn] variant=determinate — aria-valuenow/min/max on progressbar (value 65)",
+                "status": "passed",
+                "durationMs": 3411
+              },
+              {
+                "name": "[fn] size=2XS — visible and square bounding box",
+                "status": "passed",
+                "durationMs": 12624
+              },
+              {
+                "name": "[fn] size=XS — visible and square bounding box",
+                "status": "passed",
+                "durationMs": 3368
+              },
+              {
+                "name": "[fn] size=S — visible and square bounding box",
+                "status": "passed",
+                "durationMs": 10762
+              },
+              {
+                "name": "[fn] size=M — visible and square bounding box",
+                "status": "passed",
+                "durationMs": 5610
+              },
+              {
+                "name": "[fn] size=L — visible and square bounding box",
+                "status": "passed",
+                "durationMs": 5236
+              },
+              {
+                "name": "[fn] size=XL — visible and square bounding box",
+                "status": "passed",
+                "durationMs": 3966
+              },
+              {
+                "name": "[fn] size=2XL — visible and square bounding box",
+                "status": "passed",
+                "durationMs": 1998
+              },
+              {
+                "name": "[fn] size=3XL — visible and square bounding box",
+                "status": "passed",
+                "durationMs": 2309
+              },
+              {
+                "name": "[fn] size=4XL — visible and square bounding box",
+                "status": "passed",
+                "durationMs": 2243
+              },
+              {
+                "name": "[fn] size=5XL — visible and square bounding box",
+                "status": "passed",
+                "durationMs": 1902
+              },
+              {
+                "name": "[fn] sizes scale monotonically 2XS → 5XL (playground strip order)",
+                "status": "passed",
+                "durationMs": 2006
+              },
+              {
+                "name": "[fn] cpi-sizes-text-2XS — aria-valuenow 25 & centre label",
+                "status": "failed",
+                "durationMs": 6953,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[fn] cpi-sizes-text-XS — aria-valuenow 25 & centre label",
+                "status": "failed",
+                "durationMs": 7312,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[fn] cpi-sizes-text-S — aria-valuenow 25 & centre label",
+                "status": "failed",
+                "durationMs": 8607,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[fn] cpi-sizes-text-M — aria-valuenow 25 & centre label",
+                "status": "failed",
+                "durationMs": 8248,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[fn] cpi-sizes-text-L — aria-valuenow 25 & centre label",
+                "status": "passed",
+                "durationMs": 2188
+              },
+              {
+                "name": "[fn] cpi-sizes-text-XL — aria-valuenow 25 & centre label",
+                "status": "passed",
+                "durationMs": 2120
+              },
+              {
+                "name": "[fn] cpi-sizes-text-2XL — aria-valuenow 25 & centre label",
+                "status": "passed",
+                "durationMs": 1202
+              },
+              {
+                "name": "[fn] cpi-sizes-text-3XL — aria-valuenow 25 & centre label",
+                "status": "passed",
+                "durationMs": 4049
+              },
+              {
+                "name": "[fn] cpi-sizes-text-4XL — aria-valuenow 25 & centre label",
+                "status": "passed",
+                "durationMs": 2523
+              },
+              {
+                "name": "[fn] cpi-sizes-text-5XL — aria-valuenow 25 & centre label",
+                "status": "passed",
+                "durationMs": 3193
+              },
+              {
+                "name": "[fn] cpi-sizes-icon-2XS — aria-valuenow 50 & ring + icon svg",
+                "status": "passed",
+                "durationMs": 2146
+              },
+              {
+                "name": "[fn] cpi-sizes-icon-XS — aria-valuenow 50 & ring + icon svg",
+                "status": "passed",
+                "durationMs": 3687
+              },
+              {
+                "name": "[fn] cpi-sizes-icon-S — aria-valuenow 50 & ring + icon svg",
+                "status": "passed",
+                "durationMs": 3333
+              },
+              {
+                "name": "[fn] cpi-sizes-icon-M — aria-valuenow 50 & ring + icon svg",
+                "status": "passed",
+                "durationMs": 2761
+              },
+              {
+                "name": "[fn] cpi-sizes-icon-L — aria-valuenow 50 & ring + icon svg",
+                "status": "passed",
+                "durationMs": 3144
+              },
+              {
+                "name": "[fn] cpi-sizes-icon-XL — aria-valuenow 50 & ring + icon svg",
+                "status": "passed",
+                "durationMs": 2413
+              },
+              {
+                "name": "[fn] cpi-sizes-icon-2XL — aria-valuenow 50 & ring + icon svg",
+                "status": "passed",
+                "durationMs": 2842
+              },
+              {
+                "name": "[fn] cpi-sizes-icon-3XL — aria-valuenow 50 & ring + icon svg",
+                "status": "passed",
+                "durationMs": 2977
+              },
+              {
+                "name": "[fn] cpi-sizes-icon-4XL — aria-valuenow 50 & ring + icon svg",
+                "status": "passed",
+                "durationMs": 3342
+              },
+              {
+                "name": "[fn] cpi-sizes-icon-5XL — aria-valuenow 50 & ring + icon svg",
+                "status": "passed",
+                "durationMs": 3314
+              },
+              {
+                "name": "[fn] appearance=auto — cell visible",
+                "status": "passed",
+                "durationMs": 3381
+              },
+              {
+                "name": "[fn] appearance=primary — cell visible",
+                "status": "passed",
+                "durationMs": 3311
+              },
+              {
+                "name": "[fn] appearance=secondary — cell visible",
+                "status": "passed",
+                "durationMs": 5146
+              },
+              {
+                "name": "[fn] appearance=sparkle — cell visible",
+                "status": "passed",
+                "durationMs": 4544
+              },
+              {
+                "name": "[fn] appearance=neutral — cell visible",
+                "status": "passed",
+                "durationMs": 5649
+              },
+              {
+                "name": "[fn] appearance=positive — cell visible",
+                "status": "passed",
+                "durationMs": 6156
+              },
+              {
+                "name": "[fn] appearance=negative — cell visible",
+                "status": "failed",
+                "durationMs": 40200,
+                "error": "Test timeout of 30000ms exceeded while running \"beforeEach\" hook."
+              },
+              {
+                "name": "[fn] appearance=warning — cell visible",
+                "status": "passed",
+                "durationMs": 4855
+              },
+              {
+                "name": "[fn] appearance=informative — cell visible",
+                "status": "passed",
+                "durationMs": 5019
+              },
+              {
+                "name": "[fn] appearance=brand-bg — extra code row visible",
+                "status": "passed",
+                "durationMs": 4414
+              },
+              {
+                "name": "[fn] content=none determinate — no centre label span",
+                "status": "passed",
+                "durationMs": 3557
+              },
+              {
+                "name": "[fn] content=text determinate — centre shows non-empty text",
+                "status": "passed",
+                "durationMs": 2780
+              },
+              {
+                "name": "[fn] content=icon determinate — nested svg present (ring + icon)",
+                "status": "passed",
+                "durationMs": 3112
+              },
+              {
+                "name": "[fn] content=none indeterminate — no centre label span",
+                "status": "passed",
+                "durationMs": 2733
+              },
+              {
+                "name": "[fn] content=text indeterminate — centre label span exists (playground shows 0%)",
+                "status": "passed",
+                "durationMs": 2215
+              },
+              {
+                "name": "[fn] content=icon indeterminate — nested svg present",
+                "status": "passed",
+                "durationMs": 2232
+              },
+              {
+                "name": "[fn] value=0 — aria-valuenow on progressbar",
+                "status": "passed",
+                "durationMs": 2451
+              },
+              {
+                "name": "[fn] value=25 — aria-valuenow on progressbar",
+                "status": "passed",
+                "durationMs": 2444
+              },
+              {
+                "name": "[fn] value=50 — aria-valuenow on progressbar",
+                "status": "passed",
+                "durationMs": 2529
+              },
+              {
+                "name": "[fn] value=75 — aria-valuenow on progressbar",
+                "status": "passed",
+                "durationMs": 2409
+              },
+              {
+                "name": "[fn] value=100 — aria-valuenow on progressbar",
+                "status": "passed",
+                "durationMs": 2452
+              },
+              {
+                "name": "[fn] cpi-range-0-200 — min max value map to aria",
+                "status": "passed",
+                "durationMs": 3776
+              },
+              {
+                "name": "[fn] cpi-range-10-60 — min max value map to aria",
+                "status": "passed",
+                "durationMs": 3858
+              },
+              {
+                "name": "[fn] determinate + content=text — aria-valuenow matches value 72",
+                "status": "passed",
+                "durationMs": 4866
+              },
+              {
+                "name": "[fn] no console errors while on Test Scenarios tab",
+                "status": "passed",
+                "durationMs": 9544
+              },
+              {
+                "name": "[fn] all cpi data-testid roots visible",
+                "status": "passed",
+                "durationMs": 9545
+              },
+              {
+                "name": "[fn] Combination matrix has expected count",
+                "status": "passed",
+                "durationMs": 6126
+              },
+              {
+                "name": "[fn] aria-labelledby demo — progressbar references labelled element",
+                "status": "passed",
+                "durationMs": 5427
+              },
+              {
+                "name": "[fn] Figma Validation tab — matrix table mounts",
+                "status": "passed",
+                "durationMs": 2216
+              },
+              {
+                "name": "1.1 — Page loads without console errors; default indicator mounts",
+                "status": "passed",
+                "durationMs": 4215
+              },
+              {
+                "name": "1.2 — Every Test Scenarios `data-testid` is visible",
+                "status": "passed",
+                "durationMs": 5745
+              },
+              {
+                "name": "1.3 — Every `data-section` band is visible",
+                "status": "passed",
+                "durationMs": 2864
+              },
+              {
+                "name": "2.1 — Default uses size M and auto appearance resolves on progressbar",
+                "status": "passed",
+                "durationMs": 2325
+              },
+              {
+                "name": "2.2 — Size 2XS → 5XL bounding boxes scale progressively and stay circular",
+                "status": "passed",
+                "durationMs": 2851
+              },
+              {
+                "name": "3.x — CircularProgressIndicator is not clickable",
+                "status": "passed",
+                "durationMs": 2361
+              },
+              {
+                "name": "4.x — Progress indicator is not in Tab order",
+                "status": "passed",
+                "durationMs": 2472
+              },
+              {
+                "name": "5.x — CPI does not receive focus on click",
+                "status": "passed",
+                "durationMs": 3157
+              },
+              {
+                "name": "6.1 — Default determinate state exposes value 25",
+                "status": "passed",
+                "durationMs": 5432
+              },
+              {
+                "name": "6.3 — Disabled state is not in showcase",
+                "status": "passed",
+                "durationMs": 5587
+              },
+              {
+                "name": "7.1 — content=none — no centre span",
+                "status": "passed",
+                "durationMs": 5593
+              },
+              {
+                "name": "7.2 — content=icon — ring svg + child icon svg",
+                "status": "passed",
+                "durationMs": 3888
+              },
+              {
+                "name": "7.4 — Icon inside content=icon has aria-hidden",
+                "status": "passed",
+                "durationMs": 9549
+              },
+              {
+                "name": "8.x — Not a toggle component",
+                "status": "passed",
+                "durationMs": 2614
+              },
+              {
+                "name": "9.x — Not a text input",
+                "status": "passed",
+                "durationMs": 2859
+              },
+              {
+                "name": "10.x — No loading/slot dependency matrix in showcase",
+                "status": "passed",
+                "durationMs": 2733
+              },
+              {
+                "name": "11.1 — content=text shows percentage label",
+                "status": "passed",
+                "durationMs": 1571
+              },
+              {
+                "name": "11.3 — aria-valuenow matches value for each sample",
+                "status": "passed",
+                "durationMs": 1732
+              },
+              {
+                "name": "11.3 — combo 0 progressbar has accessible name",
+                "status": "passed",
+                "durationMs": 1690
+              },
+              {
+                "name": "11.3 — combo 1 progressbar has accessible name",
+                "status": "passed",
+                "durationMs": 1575
+              },
+              {
+                "name": "11.3 — combo 2 progressbar has accessible name",
+                "status": "passed",
+                "durationMs": 1718
+              },
+              {
+                "name": "11.3 — combo 3 progressbar has accessible name",
+                "status": "passed",
+                "durationMs": 1926
+              },
+              {
+                "name": "11.3 — combo 4 progressbar has accessible name",
+                "status": "passed",
+                "durationMs": 1576
+              },
+              {
+                "name": "11.3 — combo 5 progressbar has accessible name",
+                "status": "passed",
+                "durationMs": 1452
+              },
+              {
+                "name": "11.3 — combo 6 progressbar has accessible name",
+                "status": "passed",
+                "durationMs": 1573
+              },
+              {
+                "name": "11.3 — combo 7 progressbar has accessible name",
+                "status": "passed",
+                "durationMs": 1651
+              },
+              {
+                "name": "12.2 — At 320px viewport, scenario bands fit without horizontal scroll",
+                "status": "passed",
+                "durationMs": 11149
+              },
+              {
+                "name": "12.2b — Default indicator visible at 1440px viewport",
+                "status": "passed",
+                "durationMs": 5770
+              },
+              {
+                "name": "12.1 — fullWidth is not a CPI prop",
+                "status": "passed",
+                "durationMs": 2201
+              },
+              {
+                "name": "13.1 — After dark theme, all scenario sections remain visible",
+                "status": "failed",
+                "durationMs": 4034,
+                "error": "Error: locator.scrollIntoViewIfNeeded: Element is not attached to the DOM"
+              },
+              {
+                "name": "Smoke — Page heading reads “Circular Progress Indicator”",
+                "status": "passed",
+                "durationMs": 9783
+              },
+              {
+                "name": "Smoke — Default progressbar visible with aria-valuenow 25",
+                "status": "passed",
+                "durationMs": 2711
+              },
+              {
+                "name": "[fn] shows Circular Progress Indicator page heading",
+                "status": "passed",
+                "durationMs": 3072
+              },
+              {
+                "name": "[fn] theme toggle updates label",
+                "status": "passed",
+                "durationMs": 3085
+              },
+              {
+                "name": "[fn] scenario tabs are present",
+                "status": "passed",
+                "durationMs": 2505
+              },
+              {
+                "name": "[fn] Default — determinate value 25 exposes aria-valuenow on progressbar",
+                "status": "passed",
+                "durationMs": 3112
+              }
+            ]
+          },
+          "performance": {
+            "suite": "performance",
+            "passed": 0,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "Performance suite is not executed in apps/qa-playground circular-progress-indicator Playwright bundle."
+            ],
+            "errors": []
+          }
+        }
+      }
+    },
+    {
+      "savedAt": "2026-06-17T07:31:37.392Z",
+      "report": {
+        "ok": false,
+        "slug": "circular-progress-indicator",
+        "message": "Circular Progress Indicator QA Playwright run had failures — 2026-06-04T09:48:45.318Z",
+        "suites": {
+          "accessibility": {
+            "suite": "accessibility",
+            "passed": 28,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "28 test(s) in Playwright report for accessibility.",
+              "Axe: scan completed — 0 violation rules reported."
+            ],
+            "errors": [],
+            "cases": [
+              {
+                "name": "[a11y] WCAG 2.1 AA tag scan + JSON artefact + HTML report",
+                "status": "passed",
+                "durationMs": 6018
+              },
+              {
+                "name": "[a11y] data-section=\"circular-progress-indicator-qa-default\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 5474
+              },
+              {
+                "name": "[a11y] data-section=\"circular-progress-indicator-qa-variant\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 5449
+              },
+              {
+                "name": "[a11y] data-section=\"circular-progress-indicator-qa-size\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 5663
+              },
+              {
+                "name": "[a11y] data-section=\"circular-progress-indicator-qa-icon-text-sizes\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 5429
+              },
+              {
+                "name": "[a11y] data-section=\"circular-progress-indicator-qa-appearance\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 4387
+              },
+              {
+                "name": "[a11y] data-section=\"circular-progress-indicator-qa-content\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 4280
+              },
+              {
+                "name": "[a11y] data-section=\"circular-progress-indicator-qa-value-min-max\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 4438
+              },
+              {
+                "name": "[a11y] data-section=\"circular-progress-indicator-qa-code-extras\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 4374
+              },
+              {
+                "name": "[a11y] data-section=\"circular-progress-indicator-qa-aria-labelledby\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 4341
+              },
+              {
+                "name": "[a11y] data-section=\"circular-progress-indicator-qa-combos\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 2833
+              },
+              {
+                "name": "[a11y] Section 508 tag run on story bands — zero serious/critical",
+                "status": "passed",
+                "durationMs": 2883
+              },
+              {
+                "name": "[a11y] non-text-contrast rule — zero serious/critical (if rule exists)",
+                "status": "passed",
+                "durationMs": 2727
+              },
+              {
+                "name": "[a11y] label rule on story bands — zero serious/critical",
+                "status": "passed",
+                "durationMs": 3050
+              },
+              {
+                "name": "[a11y] ARIA validity rules on story bands — zero serious/critical",
+                "status": "passed",
+                "durationMs": 3165
+              },
+              {
+                "name": "[a11y] name rules (buttons / images / links) on story bands — zero serious/critical",
+                "status": "passed",
+                "durationMs": 2568
+              },
+              {
+                "name": "[a11y] SVG icons in showcase: aria-label, aria-hidden, role, or title",
+                "status": "passed",
+                "durationMs": 4133
+              },
+              {
+                "name": "[a11y] page lang on <html>",
+                "status": "passed",
+                "durationMs": 2394
+              },
+              {
+                "name": "[a11y] reflow: showcase regions fit at 320px (no horizontal overflow inside bands)",
+                "status": "passed",
+                "durationMs": 4516
+              },
+              {
+                "name": "[a11y] resize: 200% zoom — showcase indicators remain visible",
+                "status": "passed",
+                "durationMs": 2589
+              },
+              {
+                "name": "[a11y] Tab reaches a focusable control (page chrome)",
+                "status": "passed",
+                "durationMs": 2242
+              },
+              {
+                "name": "[a11y] no keyboard trap (Tab cycle advances)",
+                "status": "passed",
+                "durationMs": 2603
+              },
+              {
+                "name": "[a11y] focused element shows outline or box-shadow",
+                "status": "passed",
+                "durationMs": 2096
+              },
+              {
+                "name": "[a11y] Default indicator: role progressbar + accessible name + value",
+                "status": "passed",
+                "durationMs": 2304
+              },
+              {
+                "name": "[a11y] cpi-variant-indeterminate: progressbar without aria-valuenow",
+                "status": "passed",
+                "durationMs": 2523
+              },
+              {
+                "name": "[a11y] every progressbar in showcase has non-empty accessible name",
+                "status": "passed",
+                "durationMs": 3350
+              },
+              {
+                "name": "[a11y] aria-labelledby demo exposes labelled progressbar",
+                "status": "passed",
+                "durationMs": 3061
+              },
+              {
+                "name": "[a11y] aria-live-region-content rule if available",
+                "status": "passed",
+                "durationMs": 3212
+              }
+            ],
+            "axe": {
+              "violations": []
+            }
+          },
+          "functional": {
+            "suite": "functional",
+            "passed": 93,
+            "failed": 4,
+            "skipped": 0,
+            "logs": [
+              "97 test(s) in Playwright report for functional."
+            ],
+            "errors": [
+              "[fn] cpi-sizes-text-2XS — aria-valuenow 25 & centre label: Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByTestId('cpi-sizes-text-2XS').locator(':scope > span').first()\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('cpi-sizes-text-2XS').locator(':scope > span').first()\u001b[22m\n",
+              "[fn] cpi-sizes-text-XS — aria-valuenow 25 & centre label: Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByTestId('cpi-sizes-text-XS').locator(':scope > span').first()\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('cpi-sizes-text-XS').locator(':scope > span').first()\u001b[22m\n",
+              "[fn] cpi-sizes-text-S — aria-valuenow 25 & centre label: Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByTestId('cpi-sizes-text-S').locator(':scope > span').first()\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('cpi-sizes-text-S').locator(':scope > span').first()\u001b[22m\n",
+              "[fn] cpi-sizes-text-M — aria-valuenow 25 & centre label: Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByTestId('cpi-sizes-text-M').locator(':scope > span').first()\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('cpi-sizes-text-M').locator(':scope > span').first()\u001b[22m\n"
+            ],
+            "cases": [
+              {
+                "name": "[fn] variant=determinate — aria-valuenow/min/max on progressbar (value 65)",
+                "status": "passed",
+                "durationMs": 2621
+              },
+              {
+                "name": "[fn] size=2XS — visible and square bounding box",
+                "status": "passed",
+                "durationMs": 2438
+              },
+              {
+                "name": "[fn] size=XS — visible and square bounding box",
+                "status": "passed",
+                "durationMs": 2608
+              },
+              {
+                "name": "[fn] size=S — visible and square bounding box",
+                "status": "passed",
+                "durationMs": 2711
+              },
+              {
+                "name": "[fn] size=M — visible and square bounding box",
+                "status": "passed",
+                "durationMs": 2676
+              },
+              {
+                "name": "[fn] size=L — visible and square bounding box",
+                "status": "passed",
+                "durationMs": 2679
+              },
+              {
+                "name": "[fn] size=XL — visible and square bounding box",
+                "status": "passed",
+                "durationMs": 2484
+              },
+              {
+                "name": "[fn] size=2XL — visible and square bounding box",
+                "status": "passed",
+                "durationMs": 2548
+              },
+              {
+                "name": "[fn] size=3XL — visible and square bounding box",
+                "status": "passed",
+                "durationMs": 2649
+              },
+              {
+                "name": "[fn] size=4XL — visible and square bounding box",
+                "status": "passed",
+                "durationMs": 2639
+              },
+              {
+                "name": "[fn] size=5XL — visible and square bounding box",
+                "status": "passed",
+                "durationMs": 2728
+              },
+              {
+                "name": "[fn] sizes scale monotonically 2XS → 5XL (playground strip order)",
+                "status": "passed",
+                "durationMs": 2673
+              },
+              {
+                "name": "[fn] cpi-sizes-text-2XS — aria-valuenow 25 & centre label",
+                "status": "failed",
+                "durationMs": 7322,
+                "error": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByTestId('cpi-sizes-text-2XS').locator(':scope > span').first()\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('cpi-sizes-text-2XS').locator(':scope > span').first()\u001b[22m\n"
+              },
+              {
+                "name": "[fn] cpi-sizes-text-XS — aria-valuenow 25 & centre label",
+                "status": "failed",
+                "durationMs": 7590,
+                "error": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByTestId('cpi-sizes-text-XS').locator(':scope > span').first()\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('cpi-sizes-text-XS').locator(':scope > span').first()\u001b[22m\n"
+              },
+              {
+                "name": "[fn] cpi-sizes-text-S — aria-valuenow 25 & centre label",
+                "status": "failed",
+                "durationMs": 7524,
+                "error": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByTestId('cpi-sizes-text-S').locator(':scope > span').first()\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('cpi-sizes-text-S').locator(':scope > span').first()\u001b[22m\n"
+              },
+              {
+                "name": "[fn] cpi-sizes-text-M — aria-valuenow 25 & centre label",
+                "status": "failed",
+                "durationMs": 7393,
+                "error": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByTestId('cpi-sizes-text-M').locator(':scope > span').first()\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('cpi-sizes-text-M').locator(':scope > span').first()\u001b[22m\n"
+              },
+              {
+                "name": "[fn] cpi-sizes-text-L — aria-valuenow 25 & centre label",
+                "status": "passed",
+                "durationMs": 2299
+              },
+              {
+                "name": "[fn] cpi-sizes-text-XL — aria-valuenow 25 & centre label",
+                "status": "passed",
+                "durationMs": 1110
+              },
+              {
+                "name": "[fn] cpi-sizes-text-2XL — aria-valuenow 25 & centre label",
+                "status": "passed",
+                "durationMs": 1118
+              },
+              {
+                "name": "[fn] cpi-sizes-text-3XL — aria-valuenow 25 & centre label",
+                "status": "passed",
+                "durationMs": 1385
+              },
+              {
+                "name": "[fn] cpi-sizes-text-4XL — aria-valuenow 25 & centre label",
+                "status": "passed",
+                "durationMs": 1273
+              },
+              {
+                "name": "[fn] cpi-sizes-text-5XL — aria-valuenow 25 & centre label",
+                "status": "passed",
+                "durationMs": 2034
+              },
+              {
+                "name": "[fn] cpi-sizes-icon-2XS — aria-valuenow 50 & ring + icon svg",
+                "status": "passed",
+                "durationMs": 2368
+              },
+              {
+                "name": "[fn] cpi-sizes-icon-XS — aria-valuenow 50 & ring + icon svg",
+                "status": "passed",
+                "durationMs": 2381
+              },
+              {
+                "name": "[fn] cpi-sizes-icon-S — aria-valuenow 50 & ring + icon svg",
+                "status": "passed",
+                "durationMs": 2049
+              },
+              {
+                "name": "[fn] cpi-sizes-icon-M — aria-valuenow 50 & ring + icon svg",
+                "status": "passed",
+                "durationMs": 2886
+              },
+              {
+                "name": "[fn] cpi-sizes-icon-L — aria-valuenow 50 & ring + icon svg",
+                "status": "passed",
+                "durationMs": 2630
+              },
+              {
+                "name": "[fn] cpi-sizes-icon-XL — aria-valuenow 50 & ring + icon svg",
+                "status": "passed",
+                "durationMs": 2687
+              },
+              {
+                "name": "[fn] cpi-sizes-icon-2XL — aria-valuenow 50 & ring + icon svg",
+                "status": "passed",
+                "durationMs": 2552
+              },
+              {
+                "name": "[fn] cpi-sizes-icon-3XL — aria-valuenow 50 & ring + icon svg",
+                "status": "passed",
+                "durationMs": 2773
+              },
+              {
+                "name": "[fn] cpi-sizes-icon-4XL — aria-valuenow 50 & ring + icon svg",
+                "status": "passed",
+                "durationMs": 2439
+              },
+              {
+                "name": "[fn] cpi-sizes-icon-5XL — aria-valuenow 50 & ring + icon svg",
+                "status": "passed",
+                "durationMs": 2550
+              },
+              {
+                "name": "[fn] appearance=auto — cell visible",
+                "status": "passed",
+                "durationMs": 2665
+              },
+              {
+                "name": "[fn] appearance=primary — cell visible",
+                "status": "passed",
+                "durationMs": 2760
+              },
+              {
+                "name": "[fn] appearance=secondary — cell visible",
+                "status": "passed",
+                "durationMs": 2713
+              },
+              {
+                "name": "[fn] appearance=sparkle — cell visible",
+                "status": "passed",
+                "durationMs": 2596
+              },
+              {
+                "name": "[fn] appearance=neutral — cell visible",
+                "status": "passed",
+                "durationMs": 2745
+              },
+              {
+                "name": "[fn] appearance=positive — cell visible",
+                "status": "passed",
+                "durationMs": 2648
+              },
+              {
+                "name": "[fn] appearance=negative — cell visible",
+                "status": "passed",
+                "durationMs": 2500
+              },
+              {
+                "name": "[fn] appearance=warning — cell visible",
+                "status": "passed",
+                "durationMs": 2660
+              },
+              {
+                "name": "[fn] appearance=informative — cell visible",
+                "status": "passed",
+                "durationMs": 2497
+              },
+              {
+                "name": "[fn] appearance=brand-bg — extra code row visible",
+                "status": "passed",
+                "durationMs": 2480
+              },
+              {
+                "name": "[fn] content=none determinate — no centre label span",
+                "status": "passed",
+                "durationMs": 2515
+              },
+              {
+                "name": "[fn] content=text determinate — centre shows non-empty text",
+                "status": "passed",
+                "durationMs": 2621
+              },
+              {
+                "name": "[fn] content=icon determinate — nested svg present (ring + icon)",
+                "status": "passed",
+                "durationMs": 2527
+              },
+              {
+                "name": "[fn] content=none indeterminate — no centre label span",
+                "status": "passed",
+                "durationMs": 2384
+              },
+              {
+                "name": "[fn] content=text indeterminate — centre label span exists (playground shows 0%)",
+                "status": "passed",
+                "durationMs": 2473
+              },
+              {
+                "name": "[fn] content=icon indeterminate — nested svg present",
+                "status": "passed",
+                "durationMs": 2770
+              },
+              {
+                "name": "[fn] value=0 — aria-valuenow on progressbar",
+                "status": "passed",
+                "durationMs": 2805
+              },
+              {
+                "name": "[fn] value=25 — aria-valuenow on progressbar",
+                "status": "passed",
+                "durationMs": 2731
+              },
+              {
+                "name": "[fn] value=50 — aria-valuenow on progressbar",
+                "status": "passed",
+                "durationMs": 2638
+              },
+              {
+                "name": "[fn] value=75 — aria-valuenow on progressbar",
+                "status": "passed",
+                "durationMs": 2553
+              },
+              {
+                "name": "[fn] value=100 — aria-valuenow on progressbar",
+                "status": "passed",
+                "durationMs": 2601
+              },
+              {
+                "name": "[fn] cpi-range-0-200 — min max value map to aria",
+                "status": "passed",
+                "durationMs": 2700
+              },
+              {
+                "name": "[fn] cpi-range-10-60 — min max value map to aria",
+                "status": "passed",
+                "durationMs": 2725
+              },
+              {
+                "name": "[fn] determinate + content=text — aria-valuenow matches value 72",
+                "status": "passed",
+                "durationMs": 2561
+              },
+              {
+                "name": "[fn] no console errors while on Test Scenarios tab",
+                "status": "passed",
+                "durationMs": 4635
+              },
+              {
+                "name": "[fn] all cpi data-testid roots visible",
+                "status": "passed",
+                "durationMs": 4437
+              },
+              {
+                "name": "[fn] Combination matrix has expected count",
+                "status": "passed",
+                "durationMs": 2424
+              },
+              {
+                "name": "[fn] aria-labelledby demo — progressbar references labelled element",
+                "status": "passed",
+                "durationMs": 2484
+              },
+              {
+                "name": "[fn] Figma Validation tab — matrix table mounts",
+                "status": "passed",
+                "durationMs": 2409
+              },
+              {
+                "name": "1.1 — Page loads without console errors; default indicator mounts",
+                "status": "passed",
+                "durationMs": 3914
+              },
+              {
+                "name": "1.2 — Every Test Scenarios `data-testid` is visible",
+                "status": "passed",
+                "durationMs": 5376
+              },
+              {
+                "name": "1.3 — Every `data-section` band is visible",
+                "status": "passed",
+                "durationMs": 3039
+              },
+              {
+                "name": "2.1 — Default uses size M and auto appearance resolves on progressbar",
+                "status": "passed",
+                "durationMs": 2627
+              },
+              {
+                "name": "2.2 — Size 2XS → 5XL bounding boxes scale progressively and stay circular",
+                "status": "passed",
+                "durationMs": 2986
+              },
+              {
+                "name": "3.x — CircularProgressIndicator is not clickable",
+                "status": "passed",
+                "durationMs": 2293
+              },
+              {
+                "name": "4.x — Progress indicator is not in Tab order",
+                "status": "passed",
+                "durationMs": 2573
+              },
+              {
+                "name": "5.x — CPI does not receive focus on click",
+                "status": "passed",
+                "durationMs": 2391
+              },
+              {
+                "name": "6.1 — Default determinate state exposes value 25",
+                "status": "passed",
+                "durationMs": 2228
+              },
+              {
+                "name": "6.3 — Disabled state is not in showcase",
+                "status": "passed",
+                "durationMs": 2410
+              },
+              {
+                "name": "7.1 — content=none — no centre span",
+                "status": "passed",
+                "durationMs": 2457
+              },
+              {
+                "name": "7.2 — content=icon — ring svg + child icon svg",
+                "status": "passed",
+                "durationMs": 2805
+              },
+              {
+                "name": "7.4 — Icon inside content=icon has aria-hidden",
+                "status": "passed",
+                "durationMs": 2726
+              },
+              {
+                "name": "8.x — Not a toggle component",
+                "status": "passed",
+                "durationMs": 2529
+              },
+              {
+                "name": "9.x — Not a text input",
+                "status": "passed",
+                "durationMs": 3382
+              },
+              {
+                "name": "10.x — No loading/slot dependency matrix in showcase",
+                "status": "passed",
+                "durationMs": 3649
+              },
+              {
+                "name": "11.1 — content=text shows percentage label",
+                "status": "passed",
+                "durationMs": 3230
+              },
+              {
+                "name": "11.3 — aria-valuenow matches value for each sample",
+                "status": "passed",
+                "durationMs": 3305
+              },
+              {
+                "name": "11.3 — combo 0 progressbar has accessible name",
+                "status": "passed",
+                "durationMs": 3101
+              },
+              {
+                "name": "11.3 — combo 1 progressbar has accessible name",
+                "status": "passed",
+                "durationMs": 2431
+              },
+              {
+                "name": "11.3 — combo 2 progressbar has accessible name",
+                "status": "passed",
+                "durationMs": 2526
+              },
+              {
+                "name": "11.3 — combo 3 progressbar has accessible name",
+                "status": "passed",
+                "durationMs": 2745
+              },
+              {
+                "name": "11.3 — combo 4 progressbar has accessible name",
+                "status": "passed",
+                "durationMs": 2639
+              },
+              {
+                "name": "11.3 — combo 5 progressbar has accessible name",
+                "status": "passed",
+                "durationMs": 2755
+              },
+              {
+                "name": "11.3 — combo 6 progressbar has accessible name",
+                "status": "passed",
+                "durationMs": 3057
+              },
+              {
+                "name": "11.3 — combo 7 progressbar has accessible name",
+                "status": "passed",
+                "durationMs": 3197
+              },
+              {
+                "name": "12.2 — At 320px viewport, scenario bands fit without horizontal scroll",
+                "status": "passed",
+                "durationMs": 5858
+              },
+              {
+                "name": "12.2b — Default indicator visible at 1440px viewport",
+                "status": "passed",
+                "durationMs": 5527
+              },
+              {
+                "name": "12.1 — fullWidth is not a CPI prop",
+                "status": "passed",
+                "durationMs": 3104
+              },
+              {
+                "name": "13.1 — After dark theme, all scenario sections remain visible",
+                "status": "passed",
+                "durationMs": 4109
+              },
+              {
+                "name": "Smoke — Page heading reads “Circular Progress Indicator”",
+                "status": "passed",
+                "durationMs": 2987
+              },
+              {
+                "name": "Smoke — Default progressbar visible with aria-valuenow 25",
+                "status": "passed",
+                "durationMs": 3002
+              },
+              {
+                "name": "[fn] shows Circular Progress Indicator page heading",
+                "status": "passed",
+                "durationMs": 2809
+              },
+              {
+                "name": "[fn] theme toggle updates label",
+                "status": "passed",
+                "durationMs": 3073
+              },
+              {
+                "name": "[fn] scenario tabs are present",
+                "status": "passed",
+                "durationMs": 2529
+              },
+              {
+                "name": "[fn] Default — determinate value 25 exposes aria-valuenow on progressbar",
+                "status": "passed",
+                "durationMs": 2692
+              }
+            ]
+          },
+          "performance": {
+            "suite": "performance",
+            "passed": 0,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "Performance suite is not executed in apps/qa-playground Circular Progress Indicator Playwright bundle."
+            ],
+            "errors": []
+          }
+        }
+      }
+    }
+  ]
+}

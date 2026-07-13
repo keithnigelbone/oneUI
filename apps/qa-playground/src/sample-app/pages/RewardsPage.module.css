@@ -1,0 +1,27 @@
+.pointsInfo {
+  flex: 1;
+  min-width: 220px;
+}
+
+.spaced {
+  margin-top: var(--Spacing-4);
+}
+
+.codeRow {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-2);
+  flex-wrap: wrap;
+}
+
+.code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: var(--Spacing-2) var(--Spacing-3);
+  border: 1px dashed var(--Primary-Stroke-Medium, #b9c2e8);
+  border-radius: var(--Shape-3);
+  background: var(--Primary-Subtle, #eef1fc);
+  color: var(--Primary-Bold, #000093);
+}

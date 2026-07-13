@@ -1,0 +1,44 @@
+name: Voice Eval — Generative (L2)
+
+on:
+  workflow_dispatch:
+    inputs:
+      brand:
+        description: Brand slug
+        default: jio
+      category:
+        description: Scenario category (or "all")
+        default: all
+      threshold:
+        description: Minimum passing score (0-100)
+        default: '70'
+
+  schedule:
+    # Weekly Monday 3am UTC
+    - cron: '0 3 * * 1'
+
+jobs:
+  eval:
+    runs-on: [self-hosted, linux]
+    timeout-minutes: 30
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Run voice evaluation
+        run: pnpm eval:voice --brand "$BRAND" --category "$CATEGORY" --threshold "$THRESHOLD"
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          NEXT_PUBLIC_CONVEX_URL: ${{ secrets.NEXT_PUBLIC_CONVEX_URL }}
+          BRAND: ${{ inputs.brand || 'jio' }}
+          CATEGORY: ${{ inputs.category || 'all' }}
+          THRESHOLD: ${{ inputs.threshold || '70' }}

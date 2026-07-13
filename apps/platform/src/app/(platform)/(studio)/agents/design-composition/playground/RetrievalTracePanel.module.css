@@ -1,0 +1,190 @@
+/**
+ * RetrievalTracePanel.module.css
+ *
+ * Visual treatment for the hybrid-RAG trace viewer. Token-only — no
+ * literals. Compact variant is for eval rows where vertical space is
+ * tight; the default variant is for the playground debug drawer.
+ */
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-3-5);
+  padding: var(--Spacing-3-5) var(--Spacing-4);
+  font-family: var(--Typography-Font-Text);
+  color: var(--Text-High);
+  min-width: 0;
+}
+
+.compact {
+  gap: var(--Spacing-3);
+  padding: var(--Spacing-3) var(--Spacing-3-5);
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--Spacing-4);
+  flex-wrap: wrap;
+}
+
+.summary {
+  font-size: var(--Label-S-FontSize);
+  line-height: var(--Label-S-LineHeight);
+  color: var(--Text-Medium);
+  flex: 1;
+  min-width: 0;
+}
+
+.stats {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-3-5);
+  flex-shrink: 0;
+}
+
+.stat {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--Spacing-0-5);
+}
+
+.statLabel {
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  color: var(--Text-Low);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.statValue {
+  font-size: var(--Label-M-FontSize);
+  line-height: var(--Label-M-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+  color: var(--Text-High);
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-3-5);
+}
+
+.compact .body {
+  gap: var(--Spacing-3);
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-2-5);
+}
+
+.groupTitle {
+  margin: 0;
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+  color: var(--Text-Low);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.entries {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-2);
+}
+
+.entry {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--Spacing-3);
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+}
+
+.compact .entry {
+  font-size: var(--Label-S-FontSize);
+  line-height: var(--Label-S-LineHeight);
+}
+
+.entryId {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--Text-High);
+  font-family: var(--Typography-Font-Code, var(--Typography-Font-Text));
+}
+
+.entryReason {
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  color: var(--Text-Low);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 40ch;
+}
+
+.empty {
+  padding: var(--Spacing-3-5);
+  border: var(--Stroke-M) dashed var(--Border-Subtle);
+  border-radius: var(--Shape-3);
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  color: var(--Text-Medium);
+  text-align: center;
+}
+
+.dropped {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-2-5);
+  border-top: var(--Stroke-M) dashed var(--Border-Subtle);
+  padding-top: var(--Spacing-3-5);
+}
+
+.droppedToggle {
+  align-self: flex-start;
+  background: transparent;
+  border: none;
+  padding: 0;
+  font-family: var(--Label-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Label-S-FontSize);
+  line-height: var(--Label-S-LineHeight);
+  color: var(--Text-Medium);
+  cursor: pointer;
+  text-decoration: underline;
+  text-decoration-color: var(--Border-Subtle);
+  text-underline-offset: 2px;
+}
+
+.droppedToggle:hover {
+  color: var(--Text-High);
+}
+
+.droppedList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-1-5);
+}
+
+.droppedEntry {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--Spacing-3);
+  font-size: var(--Label-S-FontSize);
+  line-height: var(--Label-S-LineHeight);
+  color: var(--Text-Low);
+}

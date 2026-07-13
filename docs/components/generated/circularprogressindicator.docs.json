@@ -1,0 +1,358 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "CircularProgressIndicator",
+  "generatedAt": "2026-01-01T00:00:00.000Z",
+  "machineReadable": true,
+  "intentAndPurpose": {
+    "intent": {
+      "value": "Circular progress arc. Determinate variant renders an arc proportional to `value`; indeterminate renders a spinning animation. Optional center content (icon or auto percentage). 10 t-shirt sizes. Multi-accent appearance roles.",
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "taskContexts": {
+      "value": [
+        "progress",
+        "loading",
+        "spinner",
+        "circular",
+        "indicator"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "sentiments": {
+      "value": [
+        "neutral"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "compositionRules": {
+    "requires": {
+      "value": [],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "allows": {
+      "value": [],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "forbids": {
+      "value": [],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "determinate",
+        "useWhen": {
+          "value": [
+            "Determinate"
+          ],
+          "attribution": {
+            "source": "inferred"
+          }
+        }
+      },
+      {
+        "name": "indeterminate",
+        "useWhen": {
+          "value": [
+            "Indeterminate"
+          ],
+          "attribution": {
+            "source": "inferred"
+          }
+        }
+      }
+    ]
+  },
+  "relationshipsAndDependencies": {
+    "related": {
+      "value": [],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "contextSignals": {
+    "density": {
+      "value": [
+        "compact",
+        "default",
+        "open"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "modality": {
+      "value": [
+        "desktop",
+        "mobile"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "brand": {
+      "value": [
+        "theme-scope aware",
+        "recipe-driven"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "mode": {
+      "value": [
+        "light",
+        "dark",
+        "surface-context"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "observabilityHooks": {
+    "track": {
+      "value": [],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "health": {
+      "value": [
+        "a11y_violations"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "props": [
+    {
+      "name": "animate",
+      "type": "boolean",
+      "required": false,
+      "description": "Enable entry + exit animations. Default: false (opt-in). Pair with `show` for controlled visibility."
+    },
+    {
+      "name": "appearance",
+      "type": "CircularProgressIndicatorAppearance",
+      "required": false,
+      "description": "Multi-accent appearance role. 'auto' resolves to 'primary'. Default: 'secondary'."
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": false,
+      "description": "Accessible label for screen readers"
+    },
+    {
+      "name": "aria-labelledby",
+      "type": "string",
+      "required": false,
+      "description": "ID of element that labels this progress indicator"
+    },
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Children rendered as icon when content='icon'"
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "required": false,
+      "description": "Additional class name"
+    },
+    {
+      "name": "content",
+      "type": "CircularProgressIndicatorContent",
+      "required": false,
+      "description": "Center content: 'none'=empty, 'icon'=render children as icon, 'text'=auto percentage label. Default: 'none'."
+    },
+    {
+      "name": "data-testid",
+      "type": "string",
+      "required": false,
+      "description": "Optional test hook — forwarded to the root visual container (the ring wrapper)."
+    },
+    {
+      "name": "material",
+      "type": "CircularProgressIndicatorMaterial",
+      "required": false,
+      "description": "Metallic material for the active arc. `'none'` (default) uses the role colour; any metal swaps the arc stroke for the brand metallic gradient."
+    },
+    {
+      "name": "max",
+      "type": "number",
+      "required": false,
+      "description": "Maximum value. Default: 100."
+    },
+    {
+      "name": "min",
+      "type": "number",
+      "required": false,
+      "description": "Minimum value. Default: 0."
+    },
+    {
+      "name": "show",
+      "type": "boolean",
+      "required": false,
+      "description": "Controlled visibility. When `animate` is true, toggling `show` triggers entry or exit. Default: true."
+    },
+    {
+      "name": "size",
+      "type": "CircularProgressIndicatorSize",
+      "required": false,
+      "description": "Size preset — maps to spacing dimension tokens. Default: 'M'."
+    },
+    {
+      "name": "style",
+      "type": "CSSProperties",
+      "required": false,
+      "description": "Inline styles"
+    },
+    {
+      "name": "value",
+      "type": "number",
+      "required": false,
+      "description": "Current progress value (determinate only)"
+    },
+    {
+      "name": "variant",
+      "type": "CircularProgressIndicatorVariant",
+      "required": false,
+      "description": "Determinate shows arc proportional to value; indeterminate shows spinning animation. Default: 'determinate'."
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.docs.circular-progress-indicator",
+    "type": "object",
+    "properties": {
+      "animate": {
+        "type": "boolean",
+        "description": "Enable entry + exit animations. Default: false (opt-in). Pair with `show` for controlled visibility."
+      },
+      "appearance": {
+        "enum": [
+          "auto",
+          "primary",
+          "secondary",
+          "sparkle",
+          "neutral",
+          "positive",
+          "negative",
+          "warning",
+          "informative"
+        ],
+        "description": "Multi-accent appearance role. 'auto' resolves to 'primary'. Default: 'secondary'."
+      },
+      "aria-label": {
+        "type": "string",
+        "description": "Accessible label for screen readers"
+      },
+      "aria-labelledby": {
+        "type": "string",
+        "description": "ID of element that labels this progress indicator"
+      },
+      "children": {
+        "description": "Children rendered as icon when content='icon'"
+      },
+      "className": {
+        "type": "string",
+        "description": "Additional class name"
+      },
+      "content": {
+        "enum": [
+          "none",
+          "icon",
+          "text"
+        ],
+        "description": "Center content: 'none'=empty, 'icon'=render children as icon, 'text'=auto percentage label. Default: 'none'."
+      },
+      "data-testid": {
+        "type": "string",
+        "description": "Optional test hook — forwarded to the root visual container (the ring wrapper)."
+      },
+      "material": {
+        "description": "Metallic material for the active arc. `'none'` (default) uses the role colour; any metal swaps the arc stroke for the brand metallic gradient."
+      },
+      "max": {
+        "type": "number",
+        "description": "Maximum value. Default: 100."
+      },
+      "min": {
+        "type": "number",
+        "description": "Minimum value. Default: 0."
+      },
+      "show": {
+        "type": "boolean",
+        "description": "Controlled visibility. When `animate` is true, toggling `show` triggers entry or exit. Default: true."
+      },
+      "size": {
+        "enum": [
+          "2XS",
+          "XS",
+          "S",
+          "M",
+          "L",
+          "XL",
+          "2XL",
+          "3XL",
+          "4XL",
+          "5XL"
+        ],
+        "description": "Size preset — maps to spacing dimension tokens. Default: 'M'."
+      },
+      "style": {
+        "description": "Inline styles"
+      },
+      "value": {
+        "type": "number",
+        "description": "Current progress value (determinate only)"
+      },
+      "variant": {
+        "enum": [
+          "determinate",
+          "indeterminate"
+        ],
+        "description": "Determinate shows arc proportional to value; indeterminate shows spinning animation. Default: 'determinate'."
+      }
+    }
+  },
+  "codeSnippets": [
+    {
+      "id": "circular-progress-indicator-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { CircularProgressIndicator } from '@oneui/ui';\n\n<CircularProgressIndicator />"
+    },
+    {
+      "id": "circular-progress-indicator-recipe-decisions",
+      "title": "Recipe Decisions",
+      "language": "json",
+      "code": "{\n  \"component\": \"CircularProgressIndicator\",\n  \"decisions\": [\n    \"Center content\"\n  ]\n}"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "circular-progress-indicator"
+  ],
+  "generatedMarkdown": "# CircularProgressIndicator Machine-Readable Documentation\n\n_Generated from source metadata. Do not edit manually._\n\n## Intent and Purpose\n\n- **Intent**: Circular progress arc. Determinate variant renders an arc proportional to `value`; indeterminate renders a spinning animation. Optional center content (icon or auto percentage). 10 t-shirt sizes. Multi-accent appearance roles.\n- **Task contexts**: progress, loading, spinner, circular, indicator\n- **Sentiments**: neutral\n\n## Composition Rules\n\n- **Requires**: \n- **Allows**: \n- **Forbids**: \n\n## Variant Logic\n\n- **determinate**: use when Determinate\n- **indeterminate**: use when Indeterminate\n\n## Relationships and Dependencies\n\n- **Related**: \n- **Escalates to**: -\n- **Degrades to**: -\n- **Groups with**: -\n\n## Context Signals\n\n- **Density**: compact, default, open\n- **Modality**: desktop, mobile\n- **Brand**: theme-scope aware, recipe-driven\n- **Mode**: light, dark, surface-context\n\n## Observability Hooks\n\n- **Track**: \n- **Health**: a11y_violations\n\n## Props\n\n| Prop | Type | Required | Default | Description |\n| --- | --- | --- | --- | --- |\n| `animate` | `boolean` | No | - | Enable entry + exit animations. Default: false (opt-in). Pair with `show` for controlled visibility. |\n| `appearance` | `CircularProgressIndicatorAppearance` | No | - | Multi-accent appearance role. 'auto' resolves to 'primary'. Default: 'secondary'. |\n| `aria-label` | `string` | No | - | Accessible label for screen readers |\n| `aria-labelledby` | `string` | No | - | ID of element that labels this progress indicator |\n| `children` | `ReactNode` | No | - | Children rendered as icon when content='icon' |\n| `className` | `string` | No | - | Additional class name |\n| `content` | `CircularProgressIndicatorContent` | No | - | Center content: 'none'=empty, 'icon'=render children as icon, 'text'=auto percentage label. Default: 'none'. |\n| `data-testid` | `string` | No | - | Optional test hook — forwarded to the root visual container (the ring wrapper). |\n| `material` | `CircularProgressIndicatorMaterial` | No | - | Metallic material for the active arc. `'none'` (default) uses the role colour; any metal swaps the arc stroke for the brand metallic gradient. |\n| `max` | `number` | No | - | Maximum value. Default: 100. |\n| `min` | `number` | No | - | Minimum value. Default: 0. |\n| `show` | `boolean` | No | - | Controlled visibility. When `animate` is true, toggling `show` triggers entry or exit. Default: true. |\n| `size` | `CircularProgressIndicatorSize` | No | - | Size preset — maps to spacing dimension tokens. Default: 'M'. |\n| `style` | `CSSProperties` | No | - | Inline styles |\n| `value` | `number` | No | - | Current progress value (determinate only) |\n| `variant` | `CircularProgressIndicatorVariant` | No | - | Determinate shows arc proportional to value; indeterminate shows spinning animation. Default: 'determinate'. |\n\n## Slots\n\n| Slot | Types | Tokens |\n| --- | --- | --- |\n\n\n## Code Snippets\n\n### Basic Usage\n\n```tsx\nimport { CircularProgressIndicator } from '@oneui/ui';\n\n<CircularProgressIndicator />\n```\n\n### Recipe Decisions\n\n```json\n{\n  \"component\": \"CircularProgressIndicator\",\n  \"decisions\": [\n    \"Center content\"\n  ]\n}\n```\n"
+}

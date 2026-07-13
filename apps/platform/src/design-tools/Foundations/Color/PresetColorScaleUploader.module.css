@@ -1,0 +1,296 @@
+/**
+ * Preset Color Scale Uploader styles
+ */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-4);
+}
+
+.dropZone {
+  border: 2px dashed var(--Border-Subtle);
+  border-radius: var(--Shape-4);
+  padding: var(--Spacing-6);
+  text-align: center;
+  cursor: pointer;
+  transition: all var(--Motion-Duration-Discreet-Short) var(--Motion-Easing-Standard);
+  background-color: transparent;
+}
+
+.dropZone:hover,
+.dropZone.dragOver {
+  border-color: var(--Surface-Bold);
+  background-color: var(--Surface-Ghost);
+}
+
+.dropZone.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.dropZone.disabled:hover {
+  border-color: var(--Border-Subtle);
+  background-color: transparent;
+}
+
+.dropZoneIcon {
+  font-size: var(--Title-S-FontSize);
+  margin-bottom: var(--Spacing-3-5);
+  opacity: 0.6;
+}
+
+.dropZoneText {
+  font-size: var(--Body-S-FontSize);
+  color: var(--Text-Medium);
+  margin-bottom: var(--Spacing-3);
+}
+
+.dropZoneHint {
+  font-size: var(--Label-XS-FontSize);
+  color: var(--Text-Low);
+}
+
+.hiddenInput {
+  display: none;
+}
+
+.formFields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--Spacing-4);
+}
+
+.formField {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-3);
+}
+
+.formField label {
+  font-size: var(--Label-XS-FontSize);
+  font-weight: var(--Body-FontWeight-Medium);
+  color: var(--Text-Medium);
+}
+
+.formField input {
+  padding: var(--Spacing-3) var(--Spacing-3-5);
+  border-radius: var(--Shape-4);
+  border: 1px solid var(--Border-Subtle);
+  background-color: var(--Surface-Main);
+  font-size: var(--Body-S-FontSize);
+}
+
+.formField input:focus {
+  outline: none;
+  border-color: var(--Surface-Bold);
+}
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-3);
+  font-size: var(--Label-XS-FontSize);
+  color: var(--Text-Medium);
+  cursor: pointer;
+}
+
+.checkbox input {
+  width: var(--Spacing-4);
+  height: var(--Spacing-4);
+  accent-color: var(--Surface-Bold);
+}
+
+.previewSection {
+  background-color: var(--Surface-Subtle);
+  border-radius: var(--Shape-4);
+  padding: var(--Spacing-4);
+}
+
+.previewHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--Spacing-4);
+}
+
+.previewTitle {
+  font-size: var(--Body-S-FontSize);
+  font-weight: var(--Body-FontWeight-Medium);
+}
+
+.previewCount {
+  font-size: var(--Label-XS-FontSize);
+  color: var(--Text-Low);
+  padding: var(--Spacing-2-5) var(--Spacing-3);
+  background-color: var(--Surface-Main);
+  border-radius: var(--Shape-4);
+}
+
+.previewScales {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--Spacing-3-5);
+}
+
+/* INTENTIONAL-LITERAL: responsive breakpoint — layout breakpoints are not design tokens */
+@media (max-width: 900px) {
+  .previewScales {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* INTENTIONAL-LITERAL: responsive breakpoint — layout breakpoints are not design tokens */
+@media (max-width: 600px) {
+  .previewScales {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.previewScale {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-3-5);
+  padding: var(--Spacing-3-5);
+  border-radius: var(--Shape-4);
+  background-color: var(--Surface-Main);
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+}
+
+.previewScaleColor {
+  width: var(--Spacing-6);
+  height: var(--Spacing-6);
+  border-radius: var(--Shape-3-5);
+  flex-shrink: 0;
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+}
+
+.previewScaleInfo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-2);
+  min-width: 0;
+}
+
+.previewScaleName {
+  font-size: var(--Body-S-FontSize);
+  font-weight: var(--Body-FontWeight-Medium);
+  color: var(--Text-High);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.previewScaleBase {
+  font-size: var(--Label-2XS-FontSize);
+  color: var(--Text-Low);
+}
+
+.errorSection {
+  background-color: var(--Status-Error-Light);
+  border: 1px solid var(--Status-Error);
+  border-radius: var(--Shape-4);
+  padding: var(--Spacing-4);
+}
+
+.errorTitle {
+  font-size: var(--Body-S-FontSize);
+  font-weight: var(--Body-FontWeight-Medium);
+  color: var(--Status-Error);
+  margin-bottom: var(--Spacing-3);
+}
+
+.errorList {
+  list-style: disc;
+  padding-left: var(--Spacing-4-5);
+  font-size: var(--Label-XS-FontSize);
+  color: var(--Status-Error);
+}
+
+.errorList li {
+  margin-bottom: var(--Spacing-2-5);
+}
+
+.actions {
+  display: flex;
+  gap: var(--Spacing-3-5);
+  justify-content: flex-end;
+}
+
+.actionButton {
+  padding: var(--Spacing-3) var(--Spacing-4-5);
+  border-radius: var(--Shape-4);
+  border: none;
+  cursor: pointer;
+  font-size: var(--Body-S-FontSize);
+  font-weight: var(--Body-FontWeight-Medium);
+  transition: all var(--Motion-Duration-Discreet-Short) var(--Motion-Easing-Standard);
+}
+
+.actionButton.primary {
+  background-color: var(--Surface-Bold);
+  color: var(--Text-OnBold-High);
+}
+
+.actionButton.primary:hover:not(:disabled) {
+  opacity: 0.9;
+}
+
+.actionButton.primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.actionButton.secondary {
+  background-color: transparent;
+  color: var(--Text-Medium);
+  border: 1px solid var(--Border-Subtle);
+}
+
+.actionButton.secondary:hover {
+  background-color: var(--Surface-Ghost);
+}
+
+.statusMessage {
+  font-size: var(--Label-XS-FontSize);
+  padding: var(--Spacing-3-5) var(--Spacing-4);
+  border-radius: var(--Shape-3-5);
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-3);
+}
+
+.statusMessage.validating {
+  background-color: var(--Status-Informative-Light);
+  color: var(--Status-Informative);
+}
+
+.statusMessage.uploading {
+  background-color: var(--Status-Success-Light);
+  color: var(--Status-Success);
+}
+
+.statusMessage.success {
+  background-color: var(--Status-Success-Light);
+  color: var(--Status-Success);
+}
+
+.statusMessage.error {
+  background-color: var(--Status-Error-Light);
+  color: var(--Status-Error);
+}
+
+.spinner {
+  width: var(--Spacing-4);
+  height: var(--Spacing-4);
+  border: 2px solid currentColor;
+  border-top-color: transparent;
+  border-radius: var(--Shape-Pill);
+  animation: spin var(--Motion-Duration-Discreet-Long) linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

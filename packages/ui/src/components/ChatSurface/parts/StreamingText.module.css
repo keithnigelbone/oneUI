@@ -1,0 +1,22 @@
+.root {
+  display: inline;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.segment {
+  display: inline;
+  animation: streamingSegmentIn var(--Motion-Duration-2XL) var(--Motion-Easing-Entrance-Subtle) both;
+  will-change: opacity;
+}
+
+@keyframes streamingSegmentIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .segment {
+    animation: none;
+  }
+}

@@ -1,0 +1,86 @@
+/**
+ * Menu.module.css
+ * Token-only styling for Menu component
+ * Verified by: pnpm check:literals
+ */
+
+/* Positioner */
+.positioner {
+  z-index: var(--Z-Index-Menu);
+}
+
+/* Popup */
+.popup {
+  box-sizing: border-box;
+  border-radius: var(--Shape-4-5);
+  background-color: var(--Surface-Elevated);
+  padding: var(--Spacing-2) 0;
+  box-shadow: var(--Elevation-3);
+  outline: var(--Stroke-M) solid var(--Border-Subtle);
+  min-width: var(--Menu-Min-Width, var(--Spacing-9));
+  transform-origin: var(--transform-origin);
+  transition: transform var(--Motion-Duration-Expressive-Short) var(--Motion-Easing-Emphasized),
+    opacity var(--Motion-Duration-Expressive-Short) var(--Motion-Easing-Emphasized);
+}
+
+.popup[data-starting-style],
+.popup[data-ending-style] {
+  opacity: 0;
+  transform: scale(0.95);
+}
+
+/* Item */
+.item {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-3-5);
+  padding: var(--Spacing-3) var(--Spacing-4);
+  font-family: inherit;
+  font-size: var(--Body-M-FontSize);
+  line-height: var(--Typography-LineHeight-Normal);
+  color: var(--Text-High);
+  cursor: pointer;
+  outline: none;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  transition: background-color var(--Motion-Duration-Discreet-Short) var(--Motion-Easing-Standard);
+}
+
+.item[data-highlighted] {
+  background-color: var(--Surface-Minimal);
+}
+
+.item[data-disabled] {
+  opacity: var(--Disabled-Opacity);
+  cursor: not-allowed;
+}
+
+.item:focus {
+  outline: none;
+}
+
+.item:focus-visible {
+  background-color: var(--Surface-Minimal);
+  box-shadow:
+    0 0 0 var(--Stroke-XL) var(--Surface-Halo-Gap, var(--Surface-Main)),
+    0 0 0 calc(var(--Stroke-XL) + var(--Focus-Outline-Width)) var(--Focus-Outline);
+}
+
+/* Separator */
+.separator {
+  height: var(--Stroke-M);
+  background-color: var(--Border-Subtle);
+  margin: var(--Spacing-2) 0;
+}
+
+/* Group label */
+.groupLabel {
+  padding: var(--Spacing-3) var(--Spacing-4) var(--Spacing-2);
+  font-size: var(--Body-S-FontSize);
+  font-weight: var(--Body-FontWeight-High);
+  color: var(--Text-Low);
+  letter-spacing: var(--Typography-LetterSpacing-Wide);
+  text-transform: uppercase;
+}

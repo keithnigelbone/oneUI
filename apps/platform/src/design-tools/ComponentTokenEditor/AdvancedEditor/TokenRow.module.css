@@ -1,0 +1,191 @@
+/**
+ * TokenRow.module.css
+ *
+ * Styles for the TokenRow component — a single token editing row.
+ * Token-only styling (zero literals).
+ */
+
+/* Token Row - Compact Figma-like */
+.tokenRow {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-1-5);
+  padding: var(--Spacing-2) 0;
+}
+
+.tokenRow:not(:last-child) {
+  border-bottom: none;
+}
+
+.tokenRow[data-locked='true'] {
+  opacity: 0.5;
+}
+
+.tokenHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-2);
+}
+
+.tokenName {
+  font-size: var(--Label-XS-FontSize);
+  font-weight: var(--Body-FontWeight-Medium);
+  color: var(--Text-Medium);
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-2);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.lockIcon {
+  color: var(--Text-Low);
+  flex-shrink: 0;
+}
+
+/* Override indicator dot */
+.overrideDot {
+  width: var(--Spacing-2);
+  height: var(--Spacing-2);
+  border-radius: var(--Shape-Pill);
+  background-color: var(--Surface-Bold);
+  flex-shrink: 0;
+}
+
+.tokenDescription {
+  font-size: var(--Label-XS-FontSize);
+  color: var(--Text-Low);
+  margin: 0;
+  line-height: 1.3;
+  display: none;
+}
+
+/* Lock reason display */
+.lockReason {
+  font-size: var(--Label-2XS-FontSize);
+  color: var(--Text-Low);
+  font-style: italic;
+  padding: var(--Spacing-2);
+  background-color: var(--Surface-Subtle);
+  border-radius: var(--Shape-3);
+  border-left: var(--Stroke-XL) solid var(--Text-Low);
+}
+
+.tokenControls {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-2);
+  min-width: 0;
+}
+
+.tokenSelect {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.resetButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--Spacing-4);
+  height: var(--Spacing-4);
+  border-radius: var(--Shape-Pill);
+  border: none;
+  background-color: transparent;
+  color: var(--Text-Low);
+  cursor: pointer;
+  transition: all var(--Motion-Duration-Discreet-Short);
+}
+
+.resetButton:hover:not(:disabled) {
+  color: var(--Text-High);
+}
+
+.resetButton:disabled {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Scope-locked state (needs variant/size selection) */
+.tokenRow[data-scope-locked] {
+  opacity: var(--Disabled-Opacity, 0.3);
+}
+
+.tokenRow[data-scope-locked]:hover {
+  opacity: calc(var(--Disabled-Opacity, 0.3) + 0.2);
+}
+
+/* Tooltip trigger wrapper — keeps disabled Select hoverable for Tooltip anchoring */
+.tokenSelectWrapper {
+  display: block;
+  width: 100%;
+  cursor: help;
+}
+
+/* Locked token display */
+.lockedValue {
+  flex: 1;
+  padding: var(--Spacing-2) var(--Spacing-2-5);
+  background-color: var(--Surface-Subtle);
+  border-radius: var(--Shape-3-5);
+  font-size: var(--Label-2XS-FontSize);
+  color: var(--Text-Medium);
+}
+
+/* Provenance badge — which cascade layer determines this token */
+.sourceBadge {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Low);
+  color: var(--Text-Low);
+  padding: var(--Spacing-0) var(--Spacing-1-5);
+  border-radius: var(--Shape-Pill);
+  background-color: var(--Surface-Minimal);
+  white-space: nowrap;
+}
+
+.sourceBadge[data-source='theme'] {
+  color: var(--Informative-TintedA11y);
+  background-color: var(--Informative-Minimal);
+}
+
+.sourceBadge[data-source='recipe'] {
+  color: var(--Sparkle-TintedA11y);
+  background-color: var(--Sparkle-Minimal);
+}
+
+.sourceBadge[data-source='manual'] {
+  color: var(--Primary-TintedA11y);
+  background-color: var(--Primary-Minimal);
+}
+
+/* Per-size cell grid for spacing tokens (all sizes visible at once) */
+.sizeCells {
+  display: flex;
+  gap: var(--Spacing-1-5);
+}
+
+.sizeCell {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-0-5);
+  flex: 1;
+  min-width: var(--Spacing-0);
+}
+
+.sizeCellLabel {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Low);
+  color: var(--Text-Low);
+  text-align: center;
+}
+
+.sizeCell[data-source='manual'] .sizeCellLabel {
+  color: var(--Primary-TintedA11y);
+  font-weight: var(--Label-FontWeight-Medium);
+}

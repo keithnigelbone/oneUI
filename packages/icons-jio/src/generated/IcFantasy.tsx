@@ -1,0 +1,30 @@
+import React, { forwardRef } from 'react';
+import type { IconComponentProps } from '../iconProps';
+
+export const IcFantasy = forwardRef<SVGSVGElement, IconComponentProps>(function IcFantasy(
+  { size = 24, width, height, color = 'currentColor', className, style, ...props },
+  ref,
+) {
+  const dim = width ?? height ?? size;
+  return (
+    <svg
+      ref={ref}
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      width={width ?? dim}
+      height={height ?? dim}
+      color={color}
+      className={className}
+      style={style}
+      {...props}
+    >
+      <path
+            fill="currentColor"
+            d="M3.36 13.29C1.75 14.89 2 19.18 2 20a1 1 0 0 0 .92.92c.24 0 .75.05 1.38.05 1.65 0 4.21-.21 5.37-1.37A4.47 4.47 0 0 0 11 17.07L5.92 12a4.45 4.45 0 0 0-2.56 1.29M6 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2m7-2a1 1 0 1 0 0-2 1 1 0 0 0 0 2m4.5 8a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3M20 3.78a1 1 0 0 0-.779-.779 1 1 0 0 0-1.031.419l-1.86 2.8-3.75 1.87a.9.9 0 0 0-.38.34l-1.28 1.91-.18-.19a.8.8 0 0 0-.33-.22 1 1 0 0 0-.41-.08 1.1 1.1 0 0 0-.39.08.9.9 0 0 0-.32.22l-.51.52-1.21-1.23a1 1 0 0 0-.69-.24 1 1 0 0 0-.66.29 1 1 0 0 0-.3.67 1 1 0 0 0 .24.68l6 6a1 1 0 0 0 1.41 0 1 1 0 0 0 0-1.41l-1.23-1.23.52-.51q.135-.149.22-.33a1.07 1.07 0 0 0 0-.76 1.1 1.1 0 0 0-.22-.33l-.5-.49 1.35-2 3.76-1.88a1 1 0 0 0 .38-.4l2-3a1 1 0 0 0 .15-.72"
+          />
+    </svg>
+  );
+});
+
+IcFantasy.displayName = 'IcFantasy';

@@ -1,0 +1,52 @@
+.bpCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-3);
+  padding: var(--Spacing-4);
+  border: var(--Stroke-M, 1px) solid var(--Border-Subtle);
+  border-radius: var(--Shape-3);
+}
+
+.bpTitle {
+  margin: 0 0 var(--Spacing-1) 0;
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Label-M-FontSize);
+  line-height: var(--Label-M-LineHeight);
+  font-weight: var(--Label-FontWeight-High);
+  color: var(--Text-High);
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--Spacing-3);
+  min-height: var(--Spacing-8);
+}
+
+.rowLabel {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+  color: var(--Text-High);
+}
+
+.readOnlyValue {
+  font-family: var(--Typography-Font-Code, monospace);
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  color: var(--Text-Low);
+}
+
+.sliderRow {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-2);
+}
+
+.sliderHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}

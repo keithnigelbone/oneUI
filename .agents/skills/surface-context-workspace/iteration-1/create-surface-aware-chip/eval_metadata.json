@@ -1,0 +1,37 @@
+{
+  "eval_id": 0,
+  "eval_name": "create-surface-aware-chip",
+  "prompt": "I'm creating a new Chip component (like a tag/badge) for OneUI. It needs three variants: filled (high emphasis), tinted (medium), and outlined (low). It should support multiple appearance roles (primary, neutral, negative) and look correct when placed on both default and fg-bold surfaces. Write the CSS module with the intermediate variable pattern and explain how surface adaptation will work.",
+  "assertions": [
+    {
+      "name": "uses-intermediate-variables",
+      "description": "CSS uses role-agnostic intermediate variables (e.g. --_chip-fg-bold or similar prefix) rather than referencing --Primary-* directly in variant styles",
+      "type": "qualitative"
+    },
+    {
+      "name": "maps-to-role-tokens-with-fallbacks",
+      "description": "Intermediate variables are mapped to --Primary-* tokens with legacy fallbacks (e.g. var(--Primary-FG-Bold, var(--Surface-Bold)))",
+      "type": "qualitative"
+    },
+    {
+      "name": "three-variant-styles",
+      "description": "Output includes three distinct variant styles: filled/high, tinted/medium, and outlined/low with appropriate token usage for each",
+      "type": "qualitative"
+    },
+    {
+      "name": "appearance-role-classes",
+      "description": "Includes CSS classes for at least neutral and negative appearance roles that remap intermediate variables",
+      "type": "qualitative"
+    },
+    {
+      "name": "explains-automatic-adaptation",
+      "description": "Explains that surface adaptation happens automatically via [data-surface] CSS cascade without component code changes",
+      "type": "qualitative"
+    },
+    {
+      "name": "no-hardcoded-colors",
+      "description": "CSS contains zero hardcoded color values — all colors via var() token references",
+      "type": "qualitative"
+    }
+  ]
+}

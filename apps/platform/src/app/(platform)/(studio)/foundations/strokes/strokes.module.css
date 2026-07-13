@@ -1,0 +1,201 @@
+/**
+ * strokes.module.css
+ * Styles for the Strokes Foundation page
+ * Token-only values
+ */
+
+/* ─── Panel stack ─────────────────────────────────────────────────────────── */
+
+/* The shared `.tabPanelStack` carries `margin-top: calc(-1 * Spacing-4-5)` to
+ * collapse the gap after a tabs row. This page has no tabs row and places the
+ * sticky PreviewControls directly under the header — whose `.controls::before`
+ * masking strip (top: -48px, 48px tall, opaque) would otherwise cover the last
+ * lines of the page description. Replace the negative margin with positive
+ * clearance so the mask sits in empty space, not over the copy. */
+.panelStack {
+  margin-top: var(--Spacing-12);
+}
+
+/* ─── Specs section ───────────────────────────────────────────────────────── */
+
+.specsSection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-4);
+}
+
+.specsHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--Spacing-4);
+  flex-wrap: wrap;
+}
+
+.specsTitle {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Title-M-FontSize);
+  line-height: var(--Title-M-LineHeight);
+  font-weight: var(--Title-M-FontWeight);
+  color: var(--Text-High);
+  margin: 0;
+}
+
+/* ─── Scale list ──────────────────────────────────────────────────────────── */
+
+.scaleList {
+  display: flex;
+  flex-direction: column;
+}
+
+.tableHeader,
+.row {
+  display: grid;
+  grid-template-columns: 180px 90px 90px minmax(160px, 1fr);
+  align-items: center;
+  gap: var(--Spacing-4-5);
+}
+
+.tableHeader {
+  padding: var(--Spacing-3) var(--Spacing-0);
+  border-bottom: var(--Stroke-M) solid var(--Border-Subtle);
+  color: var(--Text-Low);
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+}
+
+.sectionRow {
+  padding: var(--Spacing-4) var(--Spacing-0) var(--Spacing-2);
+  border-bottom: var(--Stroke-M) solid var(--Border-Subtle);
+  color: var(--Text-High);
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  font-weight: var(--Body-FontWeight-Medium);
+}
+
+.row {
+  padding: var(--Spacing-3) var(--Spacing-0);
+  border-bottom: var(--Stroke-M) solid var(--Border-Subtle);
+}
+
+/* Token label (size key) */
+.label {
+  font-weight: var(--Body-FontWeight-Medium);
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  color: var(--Text-High);
+  white-space: nowrap;
+}
+
+/* Visual preview cell */
+.previewCell {
+  display: flex;
+  align-items: center;
+  height: 32px;
+}
+
+/* The actual stroke line — primary appearance, tinted emphasis */
+.strokeLine {
+  width: 100%;
+  border-top-style: solid;
+  border-top-color: var(--Primary-Tinted);
+}
+
+/* Placeholder for Stroke-None */
+.nonePreview {
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  color: var(--Text-Low);
+}
+
+/* CSS variable name */
+.tokenName {
+  font-family: var(--Typography-Font-Code);
+  font-size: var(--Code-S-FontSize);
+  line-height: var(--Code-S-LineHeight);
+  color: var(--Text-Medium);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Step column (static / f-step) */
+.stepCell {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  color: var(--Text-Medium);
+  white-space: nowrap;
+}
+
+/* Resolved value */
+.valueBadge {
+  font-family: var(--Typography-Font-Code);
+  font-size: var(--Code-S-FontSize);
+  line-height: var(--Code-S-LineHeight);
+  color: var(--Text-High);
+  text-align: left;
+  white-space: nowrap;
+}
+
+/* Usage hint */
+.hint {
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  color: var(--Text-Low);
+}
+
+/* ─── Usage Guide ─────────────────────────────────────────────────────────── */
+
+.guideContent {
+  display: flex;
+  flex-direction: column;
+}
+
+.guideItem {
+  padding: var(--Spacing-4) 0;
+}
+
+.guideDivider {
+  height: var(--Stroke-S);
+  background-color: var(--Border-Subtle);
+}
+
+.guideTitle {
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  font-weight: var(--Body-FontWeight-Medium);
+  color: var(--Text-High);
+  margin-bottom: var(--Spacing-3);
+}
+
+.guideBody {
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  color: var(--Text-Medium);
+}
+
+.guideBody code {
+  font-family: var(--Typography-Font-Code);
+  font-size: var(--Code-S-FontSize);
+  background-color: var(--Surface-Default);
+  padding: 1px var(--Spacing-0-5);
+  border-radius: var(--Shape-3);
+}
+
+/* ─── Responsive: collapse columns on smaller screens ──────────────────── */
+
+@media (max-width: 768px) {
+  .tableHeader,
+  .row {
+    grid-template-columns: minmax(120px, 1.4fr) 72px minmax(80px, 1fr);
+  }
+
+  /* Drop the Preview column on narrow screens. */
+  .previewCell {
+    display: none;
+  }
+}

@@ -1,0 +1,104 @@
+.surface {
+  /* Reset to ensure clean inheritance for nested contexts */
+  position: relative;
+}
+
+/*
+ * Surface fill backgrounds — RFC-0003 step cascade.
+ *
+ * `--Surface-Self-Color` is set inside every `[data-surface-step="N"]` block
+ * to `palette[N]` (the actual brand colour at the Surface's resolved step).
+ * Reading it from the element's own block is safe — it's an absolute value,
+ * not an offset, so there's no self-reference issue (unlike `--Primary-Bold`
+ * which is defined relative to a parent step).
+ *
+ * Fallback chain explanation:
+ *   1. `--Surface-Self-Color` — set by the step-keyed lookup (depth-N safe).
+ *   2. `--Surface-Fill-<Mode>` — root-only legacy token (correct at depth-1
+ *      but stays root-relative at depth ≥ 2). Kept for non-React consumers
+ *      that mount raw `<div data-surface="...">` without going through the
+ *      JSX bridge that writes `data-surface-step`.
+ *   3. `--Surface-<Mode>` — pre-RFC alias, last-ditch fallback.
+ */
+.surface[data-surface="default"] {
+  background-color: var(--Surface-Self-Color, var(--Surface-Fill-Default, var(--Surface-Default)));
+}
+
+.surface[data-surface="minimal"] {
+  background-color: var(--Surface-Self-Color, var(--Surface-Fill-Minimal, var(--Surface-Minimal)));
+}
+
+.surface[data-surface="subtle"] {
+  background-color: var(--Surface-Self-Color, var(--Surface-Fill-Subtle, var(--Surface-Subtle)));
+}
+
+.surface[data-surface="moderate"] {
+  background-color: var(--Surface-Self-Color, var(--Surface-Fill-Moderate, var(--Surface-Subtle)));
+}
+
+.surface[data-surface="bold"] {
+  background-color: var(--Surface-Self-Color, var(--Surface-Fill-Bold, var(--Surface-Bold)));
+}
+
+.surface[data-surface="elevated"] {
+  background-color: var(--Surface-Self-Color, var(--Surface-Fill-Elevated, var(--Surface-Elevated)));
+}
+
+.surface[data-surface="blend"] {
+  background-color: var(--Surface-Self-Color, var(--Surface-Fill-Blend, var(--Surface-Blend)));
+}
+
+/*
+ * Ghost = same step as parent. Same role and appearance as parent → fill
+ * matches parent (visually transparent). Different appearance via the
+ * `appearance` prop → paints that role's colour at the parent step
+ * (e.g. `<Surface mode="ghost" appearance="positive">` inside a primary
+ * Surface paints positive's colour at the primary surface's step).
+ *
+ * Reads --Surface-Self-Color (set by the step lookup, optionally
+ * overridden by the per-appearance inline style on Surface).
+ */
+.surface[data-surface="ghost"] {
+  background-color: var(--Surface-Self-Color, transparent);
+}
+
+/*
+ * Transparent material — the Surface composites over arbitrary media via
+ * rgba() values that `generateTransparentMaterialCSS` writes into
+ * `--Surface-Fill-*`. The RFC-0003 step cascade introduces
+ * `--Surface-Self-Color` as the FIRST value in the per-mode fallback
+ * chain above, which would otherwise paint a solid colour over the media
+ * — we don't want that for transparent surfaces.
+ *
+ * These rules win on specificity (3 attrs vs 2) and bypass
+ * `--Surface-Self-Color` entirely, reading the rgba'd Fill-* tokens
+ * directly. RFC-0003-pending-work § 4.
+ *
+ * Ghost gets its own --Surface-Fill-Ghost in transparent material (emitted
+ * by generateTransparentMaterialCSS) — must bypass --Surface-Self-Color
+ * which would otherwise paint a solid neutral hex over the media.
+ */
+.surface[data-material="transparent"][data-surface="default"] {
+  background-color: var(--Surface-Fill-Default, transparent);
+}
+.surface[data-material="transparent"][data-surface="ghost"] {
+  background-color: var(--Surface-Fill-Ghost, transparent);
+}
+.surface[data-material="transparent"][data-surface="minimal"] {
+  background-color: var(--Surface-Fill-Minimal, transparent);
+}
+.surface[data-material="transparent"][data-surface="subtle"] {
+  background-color: var(--Surface-Fill-Subtle, transparent);
+}
+.surface[data-material="transparent"][data-surface="moderate"] {
+  background-color: var(--Surface-Fill-Moderate, transparent);
+}
+.surface[data-material="transparent"][data-surface="bold"] {
+  background-color: var(--Surface-Fill-Bold, transparent);
+}
+.surface[data-material="transparent"][data-surface="elevated"] {
+  background-color: var(--Surface-Fill-Elevated, transparent);
+}
+.surface[data-material="transparent"][data-surface="blend"] {
+  background-color: var(--Surface-Fill-Blend, transparent);
+}

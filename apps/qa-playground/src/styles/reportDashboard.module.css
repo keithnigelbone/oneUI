@@ -1,0 +1,652 @@
+/* QA report dashboard — layout-only; surfaces and typography from OneUI components */
+
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-4);
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.rootFill {
+  width: 100%;
+}
+
+.withHistory {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-4);
+  width: 100%;
+  min-width: 0;
+}
+
+.periodShell {
+  width: 100%;
+  padding: var(--Spacing-2) var(--Spacing-3);
+  border-radius: var(--Shape-M);
+  box-sizing: border-box;
+}
+
+.periodTabs {
+  width: 100%;
+  max-width: var(--Dimension-f16);
+}
+
+.previousPicker {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--Spacing-3);
+  width: 100%;
+  padding: var(--Spacing-3-5) var(--Spacing-4);
+  border-radius: var(--Shape-M);
+  box-sizing: border-box;
+}
+
+.previousSelect {
+  flex: 1 1 var(--Dimension-f12);
+  min-width: var(--Dimension-f12);
+  max-width: 100%;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-5);
+  width: 100%;
+  min-width: 0;
+  padding: var(--Spacing-5) var(--Spacing-6);
+  border-radius: var(--Shape-L);
+  box-sizing: border-box;
+}
+
+.cardFill {
+  width: 100%;
+}
+
+.cardHeader {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--Spacing-4);
+  width: 100%;
+  min-width: 0;
+  flex-shrink: 0;
+}
+
+.cardHeaderText {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-2-5);
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.titleRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--Spacing-3);
+}
+
+.commandRow {
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+  min-width: 0;
+  border-radius: var(--Shape-Pill);
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.commandIconWell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  padding: var(--Spacing-3-5) var(--Spacing-4-5);
+}
+
+.commandBody {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-2);
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: var(--Spacing-2) var(--Spacing-3) var(--Spacing-2) 0;
+}
+
+.commandCode {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow-x: auto;
+}
+
+.metricsPanel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-4);
+  width: 100%;
+  padding: var(--Spacing-4-5);
+  border-radius: var(--Shape-L);
+  box-sizing: border-box;
+}
+
+.summaryGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--Spacing-3);
+  width: 100%;
+}
+
+.statCard {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-3-5);
+  width: 100%;
+  min-width: 0;
+  padding: var(--Spacing-4);
+  border-radius: var(--Shape-M);
+  box-sizing: border-box;
+}
+
+.statCardButton {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: none;
+  background: none;
+  text-align: inherit;
+  cursor: pointer;
+}
+
+.statCardInteractive {
+  cursor: pointer;
+}
+
+.statCardInteractive:disabled {
+  cursor: not-allowed;
+  opacity: var(--Disabled-Opacity);
+}
+
+.statCardInteractive:focus-visible {
+  outline: var(--Focus-Outline-Width) solid var(--Focus-Outline);
+  outline-offset: var(--Spacing-1);
+  border-radius: var(--Shape-M);
+}
+
+.statText {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-1);
+  min-width: 0;
+}
+
+.passRateBlock {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-3);
+  width: 100%;
+}
+
+.passRateHeader {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--Spacing-2);
+  width: 100%;
+}
+
+.passBarTrack {
+  width: 100%;
+  height: var(--Spacing-3);
+  border-radius: var(--Shape-Pill);
+  background: var(--Negative-Minimal);
+  overflow: hidden;
+}
+
+.passBarFill {
+  height: 100%;
+  border-radius: var(--Shape-Pill);
+  background: var(--Positive-Bold);
+  transition: width var(--Motion-Duration-Discreet-Medium) var(--Motion-Easing-Transition);
+}
+
+.passRateLegend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--Spacing-2);
+}
+
+.metaBadgeRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--Spacing-2-5);
+  width: 100%;
+}
+
+.dataPanel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-5);
+  width: 100%;
+  min-width: 0;
+  padding: var(--Spacing-4-5);
+  border-radius: var(--Shape-L);
+  box-sizing: border-box;
+}
+
+.tableSection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-3);
+  width: 100%;
+  min-width: 0;
+}
+
+.sectionHeader {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--Spacing-3);
+  width: 100%;
+}
+
+.sectionTitleRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--Spacing-2-5);
+  min-width: 0;
+}
+
+.tableWrap {
+  width: 100%;
+  min-width: 0;
+  overflow-x: auto;
+  border-radius: var(--Shape-M);
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+  background: var(--Surface-Default);
+}
+
+.table {
+  width: 100%;
+  min-width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.table th {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+  text-transform: uppercase;
+  letter-spacing: var(--Label-LetterSpacing);
+  color: var(--Text-Medium);
+  text-align: left;
+  padding: var(--Spacing-3-5) var(--Spacing-4);
+  background: var(--Surface-Minimal);
+  border-bottom: var(--Stroke-M) solid var(--Border-Subtle);
+}
+
+.table td {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  color: var(--Text-High);
+  padding: var(--Spacing-3-5) var(--Spacing-4);
+  border-bottom: var(--Stroke-M) solid var(--Border-Subtle);
+  vertical-align: middle;
+  overflow-wrap: anywhere;
+}
+
+.table tr:last-child td {
+  border-bottom: none;
+}
+
+.numPass {
+  font-weight: var(--Label-FontWeight-Medium);
+  color: var(--Positive-High);
+}
+
+.numFail {
+  font-weight: var(--Label-FontWeight-Medium);
+  color: var(--Negative-High);
+}
+
+.numSkip {
+  font-weight: var(--Label-FontWeight-Medium);
+  color: var(--Warning-High);
+}
+
+.ruleCode {
+  font-family: var(--Typography-Font-Code);
+  font-size: var(--Code-S-FontSize);
+  line-height: var(--Code-S-LineHeight);
+}
+
+.diagnosticsPanel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-4);
+  width: 100%;
+  padding: var(--Spacing-4);
+  border-radius: var(--Shape-L);
+  box-sizing: border-box;
+}
+
+.diagnosticsBlock {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-3);
+  width: 100%;
+}
+
+.logsCollapsible {
+  width: 100%;
+}
+
+.logsHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--Spacing-3);
+  width: 100%;
+}
+
+.logsPre {
+  margin: 0;
+  padding: var(--Spacing-4);
+  border-radius: var(--Shape-S);
+  background: var(--Surface-Minimal);
+  font-family: var(--Typography-Font-Code);
+  font-size: var(--Code-S-FontSize);
+  line-height: var(--Code-S-LineHeight);
+  color: var(--Text-High);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  max-height: var(--Dimension-f14);
+  overflow-y: auto;
+}
+
+.detailBack {
+  align-self: flex-start;
+  flex-shrink: 0;
+}
+
+.detailPanel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-4);
+  width: 100%;
+  min-height: calc(100dvh - var(--Spacing-40));
+  padding: var(--Spacing-4-5);
+  border-radius: var(--Shape-L);
+  box-sizing: border-box;
+}
+
+.detailPanelBody {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-height: 0;
+  width: 100%;
+}
+
+.detailCardHeader {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--Spacing-3);
+  width: 100%;
+  flex-shrink: 0;
+}
+
+.detailTitleBlock {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-1);
+  min-width: 0;
+}
+
+.detailPillRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--Spacing-2);
+}
+
+.detailToolbar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-3-5);
+  width: 100%;
+  flex-shrink: 0;
+}
+
+.caseListScroll {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: var(--Spacing-3);
+  width: 100%;
+  min-height: 0;
+  overflow-y: auto;
+  padding-inline-end: var(--Spacing-1);
+  box-sizing: border-box;
+}
+
+.caseItem {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-2);
+  width: 100%;
+}
+
+.caseRow {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: start;
+  gap: var(--Spacing-3);
+  width: 100%;
+  padding: var(--Spacing-3-5) var(--Spacing-4);
+  border-radius: var(--Shape-M);
+  box-sizing: border-box;
+}
+
+.caseStatusBadge {
+  margin-block-start: var(--Spacing-1);
+}
+
+.caseName {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.caseDurationBadge {
+  flex-shrink: 0;
+  margin-block-start: var(--Spacing-1);
+}
+
+.caseCardCollapsible {
+  width: 100%;
+}
+
+.caseCard {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 0;
+  border-radius: var(--Shape-M);
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.caseCardTrigger {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--Spacing-3);
+  width: 100%;
+  padding: var(--Spacing-3-5) var(--Spacing-4);
+  border: none;
+  background: none;
+  text-align: start;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.caseCardTrigger > svg:first-of-type {
+  order: 10;
+  margin-inline-start: auto;
+  flex-shrink: 0;
+}
+
+.caseCardDuration {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--Spacing-1-5);
+  flex-shrink: 0;
+  padding: var(--Spacing-1) var(--Spacing-2);
+  border-radius: var(--Shape-Pill);
+  background: var(--Surface-Minimal);
+}
+
+.caseFailurePanel > div {
+  padding: 0;
+}
+
+.caseFailureDetails {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-3);
+  width: 100%;
+  margin: 0 var(--Spacing-4) var(--Spacing-3);
+  padding: var(--Spacing-4);
+  border-radius: var(--Shape-M);
+  box-sizing: border-box;
+}
+
+.caseFailureHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-2);
+}
+
+.caseFailureCode {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-2);
+  width: 100%;
+  padding: var(--Spacing-3-5);
+  border-radius: var(--Shape-S);
+  box-sizing: border-box;
+}
+
+.caseFailureCodeHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: var(--Spacing-2);
+  width: 100%;
+}
+
+.caseFailureHeadline {
+  flex: 1 1 auto;
+  min-width: 0;
+  color: var(--Negative-High);
+  overflow-wrap: anywhere;
+}
+
+.caseFailureCopy {
+  margin-inline-start: auto;
+}
+
+.caseFailureLocation {
+  color: var(--Text-Medium);
+  overflow-wrap: anywhere;
+}
+
+.caseCardFooter {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--Spacing-3);
+  width: 100%;
+  padding: var(--Spacing-3) var(--Spacing-4) var(--Spacing-3-5);
+  box-sizing: border-box;
+}
+
+.caseCardMeta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--Spacing-1-5);
+}
+
+.caseCardFooterAction {
+  margin-inline-start: auto;
+}
+
+.caseErrorPre {
+  margin: 0;
+  padding: var(--Spacing-3);
+  border-radius: var(--Shape-S);
+  background: var(--Surface-Minimal);
+  font-family: var(--Typography-Font-Code);
+  font-size: var(--Code-S-FontSize);
+  line-height: var(--Code-S-LineHeight);
+  color: var(--Negative-High);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  max-height: var(--Dimension-f14);
+  overflow-y: auto;
+}
+
+.logsPreError {
+  margin-block-start: var(--Spacing-3);
+  color: var(--Negative-High);
+}
+
+.failureDialogTest {
+  margin-block-end: var(--Spacing-3);
+}
+
+.failureDialogPre {
+  margin: 0;
+  padding: var(--Spacing-4);
+  border-radius: var(--Shape-S);
+  background: var(--Surface-Minimal);
+  font-family: var(--Typography-Font-Code);
+  font-size: var(--Code-S-FontSize);
+  line-height: var(--Code-S-LineHeight);
+  color: var(--Negative-High);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  max-height: var(--Dimension-f14);
+  overflow-y: auto;
+}
+
+.helpLink {
+  color: var(--Primary-TintedA11y);
+  text-decoration: underline;
+  text-underline-offset: var(--Spacing-1);
+}
+
+@media (max-width: 960px) {
+  .summaryGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .card {
+    padding: var(--Spacing-4);
+  }
+
+  .summaryGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

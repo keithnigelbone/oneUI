@@ -1,0 +1,144 @@
+/**
+ * Mirrors Divider Figma validation matrix chrome (`DividerFigmaValidationShowcase.module.css`)
+ * — token-only table shell for Radio readOnly × selected × size parity.
+ */
+.page {
+  box-sizing: border-box;
+  padding: 0;
+  max-width: 100%;
+}
+
+.title {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Headline-L-FontSize);
+  line-height: var(--Headline-L-LineHeight);
+  font-weight: var(--Headline-L-FontWeight);
+  margin: 0 0 var(--Spacing-S);
+}
+
+.metaLine {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  font-weight: var(--Body-FontWeight-Low);
+  color: var(--Text-Medium);
+  margin: 0 0 var(--Spacing-L);
+  overflow-wrap: anywhere;
+}
+
+.matrixSectionTitle {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Title-M-FontSize);
+  line-height: var(--Title-M-LineHeight);
+  font-weight: var(--Title-M-FontWeight);
+  color: var(--Text-High);
+  margin: 0 0 var(--Spacing-M);
+}
+
+.matrixSection {
+  margin-bottom: var(--Spacing-3XL);
+}
+
+.matrixSection:last-child {
+  margin-bottom: 0;
+}
+
+.tableWrap {
+  overflow: auto;
+  max-width: 100%;
+  border-radius: var(--Shape-L);
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+  background: var(--Surface-Minimal);
+  padding: var(--Spacing-2XL);
+  box-sizing: border-box;
+}
+
+.gridTable {
+  border-collapse: collapse;
+  width: max-content;
+  min-width: 100%;
+  font-family: var(--Typography-Font-Primary);
+}
+
+.gridTable th,
+.gridTable td {
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+  padding: var(--Spacing-M) var(--Spacing-L);
+  vertical-align: middle;
+  text-align: center;
+}
+
+.cornerHeader {
+  text-align: left;
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  background: var(--Surface-Default);
+  font-size: var(--Label-S-FontSize);
+  line-height: var(--Label-S-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+  min-width: var(--Spacing-15XL);
+}
+
+.columnHeader {
+  font-size: var(--Label-S-FontSize);
+  line-height: var(--Label-S-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+  background: var(--Surface-Default);
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.columnHeaderGroup {
+  text-align: center;
+  font-size: var(--Label-S-FontSize);
+  line-height: var(--Label-S-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+  background: var(--Surface-Minimal);
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.rowHeader {
+  text-align: left;
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  background: var(--Surface-Default);
+  min-width: var(--Spacing-15XL);
+  max-width: var(--Spacing-15XL);
+}
+
+.rowPrimary {
+  display: block;
+  font-size: var(--Label-S-FontSize);
+  line-height: var(--Label-S-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+  color: var(--Text-High);
+}
+
+.rowSecondary {
+  display: block;
+  margin-top: var(--Spacing-6XS);
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Low);
+  color: var(--Text-Low);
+  overflow-wrap: anywhere;
+}
+
+.cell {
+  min-width: var(--Dimension-f14);
+}
+
+.cellInner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-width: 0;
+  min-height: var(--Spacing-10);
+}

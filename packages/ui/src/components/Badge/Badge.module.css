@@ -1,0 +1,610 @@
+/**
+ * Badge.module.css
+ *
+ * CRITICAL: This file demonstrates the ZERO LITERALS rule
+ * ALL styling uses design tokens ONLY
+ *
+ * Architecture: Role-agnostic intermediate variables (--_bg-*)
+ * - Default = Sparkle role (Figma default when no appearance / auto at page root)
+ * - Appearance classes remap --_bg-* to other roles
+ * - Variant selectors consume --_bg-* without duplication
+ *
+ * Verified by: pnpm check:literals
+ */
+
+.badge {
+  /* ========================================
+     INTERMEDIATE VARIABLES — default = Sparkle role (Figma default)
+     These are remapped by appearance classes.
+
+     --_bg-bold / --_bg-subtle drive the Badge's OWN background. They point
+     at the context-remappable --{Role}-Bold / -Subtle tokens (NOT the
+     root-only --{Role}-Fill-* pair) so the Badge participates in dynamic
+     surface resolution: nested inside a <Surface>, the ancestor's
+     [data-surface-step="N"] block re-steps --{Role}-Bold and its paired
+     on-colours (--{Role}-Bold-High / -Bold-Tinted) together, so a bold Badge
+     on a bold Surface re-steps to stay distinguishable while label/icon
+     on-colours track the same step. The Badge sets no data-surface on itself,
+     so there is no self-remap to desync against. Slot children read the same
+     context via the --{Role}-High remaps in .bold/.subtle/.ghost .start/.end.
+     (CounterBadge/IndicatorBadge are frozen to Fill-* by .surfaceShield.)
+     ======================================== */
+  --_bg-bold: var(--Sparkle-Bold, var(--Surface-Bold));
+  --_bg-bold-high: var(--Sparkle-Bold-High, var(--Text-OnBold-High));
+  --_bg-subtle: var(--Sparkle-Subtle, var(--Surface-Subtle));
+  --_bg-default-accent-a11y: var(--Sparkle-TintedA11y, var(--Sparkle-Tinted, var(--Surface-Bold)));
+  --_bg-default-low-stroke: var(--Sparkle-Stroke-Low, var(--Surface-Bold));
+  --_bg-icon-on-bold: var(--Sparkle-Bold-Tinted, var(--Sparkle-Bold-High, var(--Text-OnBold-High)));
+  --_bg-text-on-subtle: var(--Sparkle-Subtle-High, var(--Sparkle-High, var(--Text-High)));
+  --_bg-icon-on-subtle: var(--Sparkle-Subtle-Tinted, var(--Sparkle-Tinted, var(--Text-High)));
+  --_bg-icon-on-ghost: var(--Sparkle-Tinted, var(--Sparkle-TintedA11y, var(--Text-High)));
+  --_bg-text-on-ghost: var(--Sparkle-High, var(--Sparkle-TintedA11y, var(--Text-High)));
+  /* Metallic material assignment — the brand engine emits --{Role}-Material-Fill /
+     --{Role}-Material-Text only when the role has an ACTIVE metal assigned.
+     When absent these resolve to the guaranteed-invalid value and every consumer
+     falls back to the standard bold chain (zero visual change). */
+  --_bg-material-fill: var(--Badge-roleMaterialFill, var(--Sparkle-Material-Fill));
+  --_bg-material-text: var(--Badge-roleMaterialText, var(--Sparkle-Material-Text));
+
+  /* ========================================
+     BASE STYLES
+     ======================================== */
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--Badge-fontFamily, var(--Label-FontFamily, var(--Typography-Font-Primary, inherit)));
+  font-weight: var(--Badge-fontWeight, var(--Label-FontWeight-Medium));
+  font-optical-sizing: var(--Badge-fontOpticalSizing, var(--Label-FontOpticalSizing, auto));
+  font-variation-settings: var(--Badge-fontVariationSettings, var(--Label-OpszVariation, normal));
+  text-transform: var(--Badge-textTransform, none);
+  letter-spacing: var(--Badge-letterSpacing, normal);
+  white-space: nowrap;
+  box-sizing: border-box;
+  position: relative;
+  clip-path: var(--Badge-cssDecorationClipPath, none);
+}
+
+.badge::after {
+  content: '';
+  position: absolute;
+  inset: var(--Spacing-0);
+  box-sizing: border-box;
+  pointer-events: none;
+  border-radius: inherit;
+  clip-path: var(--Badge-cssDecorationClipPath, none);
+  border-style: var(--Badge-cssDecorationStrokeStyle, solid);
+  border-color: var(--Badge-cssDecorationColor, currentColor);
+  border-width:
+    var(--Badge-cssDecorationInsetStrokeWidth, var(--Spacing-0))
+    var(--Badge-cssDecorationInsetStrokeWidth, var(--Spacing-0))
+    var(--Badge-cssDecorationInsetStrokeWidth, var(--Badge-cssDecorationUnderlineWidth, var(--Spacing-0)))
+    var(--Badge-cssDecorationInsetStrokeWidth, var(--Spacing-0));
+}
+
+/* ========================================
+   APPEARANCE — role-agnostic intermediate variable remapping
+   Adding a new appearance = 1 new class with 5 remappings
+   ======================================== */
+
+.appearancePrimary {
+  --_bg-bold: var(--Primary-Bold, var(--Surface-Bold));
+  --_bg-bold-high: var(--Primary-Bold-High, var(--Text-OnBold-High));
+  --_bg-subtle: var(--Primary-Subtle, var(--Surface-Subtle));
+  --_bg-default-accent-a11y: var(--Primary-TintedA11y, var(--Primary-Tinted, var(--Surface-Bold)));
+  --_bg-default-low-stroke: var(--Primary-Stroke-Low, var(--Surface-Bold));
+  --_bg-icon-on-bold: var(--Primary-Bold-Tinted, var(--Primary-Bold-High, var(--Text-OnBold-High)));
+  --_bg-text-on-subtle: var(--Primary-Subtle-High, var(--Primary-High, var(--Text-High)));
+  --_bg-icon-on-subtle: var(--Primary-Subtle-Tinted, var(--Primary-Tinted, var(--Text-High)));
+  --_bg-icon-on-ghost: var(--Primary-Tinted, var(--Primary-TintedA11y, var(--Text-High)));
+  --_bg-text-on-ghost: var(--Primary-High, var(--Primary-TintedA11y, var(--Text-High)));
+  --_bg-material-fill: var(--Primary-Material-Fill);
+  --_bg-material-text: var(--Primary-Material-Text);
+}
+
+.appearanceNeutral {
+  --_bg-bold: var(--Neutral-Bold, var(--Surface-Bold));
+  --_bg-bold-high: var(--Neutral-Bold-High, var(--Text-OnBold-High));
+  --_bg-subtle: var(--Neutral-Subtle, var(--Surface-Subtle));
+  --_bg-default-accent-a11y: var(--Neutral-TintedA11y, var(--Neutral-Tinted, var(--Surface-Bold)));
+  --_bg-default-low-stroke: var(--Neutral-Stroke-Low, var(--Surface-Bold));
+  --_bg-icon-on-bold: var(--Neutral-Bold-Tinted, var(--Neutral-Bold-High, var(--Text-OnBold-High)));
+  --_bg-text-on-subtle: var(--Neutral-Subtle-High, var(--Neutral-High, var(--Text-High)));
+  --_bg-icon-on-subtle: var(--Neutral-Subtle-Tinted, var(--Neutral-Tinted, var(--Text-High)));
+  --_bg-icon-on-ghost: var(--Neutral-Tinted, var(--Neutral-TintedA11y, var(--Text-High)));
+  --_bg-text-on-ghost: var(--Neutral-High, var(--Neutral-TintedA11y, var(--Text-High)));
+  --_bg-material-fill: var(--Neutral-Material-Fill);
+  --_bg-material-text: var(--Neutral-Material-Text);
+}
+
+.appearanceSecondary {
+  --_bg-bold: var(--Secondary-Bold, var(--Surface-Bold));
+  --_bg-bold-high: var(--Secondary-Bold-High, var(--Text-OnBold-High));
+  --_bg-subtle: var(--Secondary-Subtle, var(--Surface-Subtle));
+  --_bg-default-accent-a11y: var(--Secondary-TintedA11y, var(--Secondary-Tinted, var(--Surface-Bold)));
+  --_bg-default-low-stroke: var(--Secondary-Stroke-Low, var(--Surface-Bold));
+  --_bg-icon-on-bold: var(--Secondary-Bold-Tinted, var(--Secondary-Bold-High, var(--Text-OnBold-High)));
+  --_bg-text-on-subtle: var(--Secondary-Subtle-High, var(--Secondary-High, var(--Text-High)));
+  --_bg-icon-on-subtle: var(--Secondary-Subtle-Tinted, var(--Secondary-Tinted, var(--Text-High)));
+  --_bg-icon-on-ghost: var(--Secondary-Tinted, var(--Secondary-TintedA11y, var(--Text-High)));
+  --_bg-text-on-ghost: var(--Secondary-High, var(--Secondary-TintedA11y, var(--Text-High)));
+  --_bg-material-fill: var(--Secondary-Material-Fill);
+  --_bg-material-text: var(--Secondary-Material-Text);
+}
+
+.appearanceSparkle {
+  --_bg-bold: var(--Sparkle-Bold, var(--Surface-Bold));
+  --_bg-bold-high: var(--Sparkle-Bold-High, var(--Text-OnBold-High));
+  --_bg-subtle: var(--Sparkle-Subtle, var(--Surface-Subtle));
+  --_bg-default-accent-a11y: var(--Sparkle-TintedA11y, var(--Sparkle-Tinted, var(--Surface-Bold)));
+  --_bg-default-low-stroke: var(--Sparkle-Stroke-Low, var(--Surface-Bold));
+  --_bg-icon-on-bold: var(--Sparkle-Bold-Tinted, var(--Sparkle-Bold-High, var(--Text-OnBold-High)));
+  --_bg-text-on-subtle: var(--Sparkle-Subtle-High, var(--Sparkle-High, var(--Text-High)));
+  --_bg-icon-on-subtle: var(--Sparkle-Subtle-Tinted, var(--Sparkle-Tinted, var(--Text-High)));
+  --_bg-icon-on-ghost: var(--Sparkle-Tinted, var(--Sparkle-TintedA11y, var(--Text-High)));
+  --_bg-text-on-ghost: var(--Sparkle-High, var(--Sparkle-TintedA11y, var(--Text-High)));
+  --_bg-material-fill: var(--Sparkle-Material-Fill);
+  --_bg-material-text: var(--Sparkle-Material-Text);
+}
+
+.appearanceBrandBg {
+  --_bg-bold: var(--Brand-Bg-Bold, var(--Surface-Bold));
+  --_bg-bold-high: var(--Brand-Bg-Bold-High, var(--Text-OnBold-High));
+  --_bg-subtle: var(--Brand-Bg-Subtle, var(--Surface-Subtle));
+  --_bg-default-accent-a11y: var(--Brand-Bg-TintedA11y, var(--Brand-Bg-Tinted, var(--Surface-Bold)));
+  --_bg-default-low-stroke: var(--Brand-Bg-Stroke-Low, var(--Surface-Bold));
+  --_bg-icon-on-bold: var(--Brand-Bg-Bold-Tinted, var(--Brand-Bg-Bold-High, var(--Text-OnBold-High)));
+  --_bg-text-on-subtle: var(--Brand-Bg-Subtle-High, var(--Brand-Bg-High, var(--Text-High)));
+  --_bg-icon-on-subtle: var(--Brand-Bg-Subtle-Tinted, var(--Brand-Bg-Tinted, var(--Text-High)));
+  --_bg-icon-on-ghost: var(--Brand-Bg-Tinted, var(--Brand-Bg-TintedA11y, var(--Text-High)));
+  --_bg-text-on-ghost: var(--Brand-Bg-High, var(--Brand-Bg-TintedA11y, var(--Text-High)));
+  --_bg-material-fill: var(--Brand-Bg-Material-Fill);
+  --_bg-material-text: var(--Brand-Bg-Material-Text);
+}
+
+.appearancePositive {
+  --_bg-bold: var(--Positive-Bold, var(--Surface-Bold));
+  --_bg-bold-high: var(--Positive-Bold-High, var(--Text-OnBold-High));
+  --_bg-subtle: var(--Positive-Subtle, var(--Surface-Subtle));
+  --_bg-default-accent-a11y: var(--Positive-TintedA11y, var(--Positive-Tinted, var(--Surface-Bold)));
+  --_bg-default-low-stroke: var(--Positive-Stroke-Low, var(--Surface-Bold));
+  --_bg-icon-on-bold: var(--Positive-Bold-Tinted, var(--Positive-Bold-High, var(--Text-OnBold-High)));
+  --_bg-text-on-subtle: var(--Positive-Subtle-High, var(--Positive-High, var(--Text-High)));
+  --_bg-icon-on-subtle: var(--Positive-Subtle-Tinted, var(--Positive-Tinted, var(--Text-High)));
+  --_bg-icon-on-ghost: var(--Positive-Tinted, var(--Positive-TintedA11y, var(--Text-High)));
+  --_bg-text-on-ghost: var(--Positive-High, var(--Positive-TintedA11y, var(--Text-High)));
+  --_bg-material-fill: var(--Positive-Material-Fill);
+  --_bg-material-text: var(--Positive-Material-Text);
+}
+
+.appearanceNegative {
+  --_bg-bold: var(--Negative-Bold, var(--Surface-Bold));
+  --_bg-bold-high: var(--Negative-Bold-High, var(--Text-OnBold-High));
+  --_bg-subtle: var(--Negative-Subtle, var(--Surface-Subtle));
+  --_bg-default-accent-a11y: var(--Negative-TintedA11y, var(--Negative-Tinted, var(--Surface-Bold)));
+  --_bg-default-low-stroke: var(--Negative-Stroke-Low, var(--Surface-Bold));
+  --_bg-icon-on-bold: var(--Negative-Bold-Tinted, var(--Negative-Bold-High, var(--Text-OnBold-High)));
+  --_bg-text-on-subtle: var(--Negative-Subtle-High, var(--Negative-High, var(--Text-High)));
+  --_bg-icon-on-subtle: var(--Negative-Subtle-Tinted, var(--Negative-Tinted, var(--Text-High)));
+  --_bg-icon-on-ghost: var(--Negative-Tinted, var(--Negative-TintedA11y, var(--Text-High)));
+  --_bg-text-on-ghost: var(--Negative-High, var(--Negative-TintedA11y, var(--Text-High)));
+  --_bg-material-fill: var(--Negative-Material-Fill);
+  --_bg-material-text: var(--Negative-Material-Text);
+}
+
+.appearanceWarning {
+  --_bg-bold: var(--Warning-Bold, var(--Surface-Bold));
+  --_bg-bold-high: var(--Warning-Bold-High, var(--Text-OnBold-High));
+  --_bg-subtle: var(--Warning-Subtle, var(--Surface-Subtle));
+  --_bg-default-accent-a11y: var(--Warning-TintedA11y, var(--Warning-Tinted, var(--Surface-Bold)));
+  --_bg-default-low-stroke: var(--Warning-Stroke-Low, var(--Surface-Bold));
+  --_bg-icon-on-bold: var(--Warning-Bold-Tinted, var(--Warning-Bold-High, var(--Text-OnBold-High)));
+  --_bg-text-on-subtle: var(--Warning-Subtle-High, var(--Warning-High, var(--Text-High)));
+  --_bg-icon-on-subtle: var(--Warning-Subtle-Tinted, var(--Warning-Tinted, var(--Text-High)));
+  --_bg-icon-on-ghost: var(--Warning-Tinted, var(--Warning-TintedA11y, var(--Text-High)));
+  --_bg-text-on-ghost: var(--Warning-High, var(--Warning-TintedA11y, var(--Text-High)));
+  --_bg-material-fill: var(--Warning-Material-Fill);
+  --_bg-material-text: var(--Warning-Material-Text);
+}
+
+.appearanceInformative {
+  --_bg-bold: var(--Informative-Bold, var(--Surface-Bold));
+  --_bg-bold-high: var(--Informative-Bold-High, var(--Text-OnBold-High));
+  --_bg-subtle: var(--Informative-Subtle, var(--Surface-Subtle));
+  --_bg-default-accent-a11y: var(--Informative-TintedA11y, var(--Informative-Tinted, var(--Surface-Bold)));
+  --_bg-default-low-stroke: var(--Informative-Stroke-Low, var(--Surface-Bold));
+  --_bg-icon-on-bold: var(--Informative-Bold-Tinted, var(--Informative-Bold-High, var(--Text-OnBold-High)));
+  --_bg-text-on-subtle: var(--Informative-Subtle-High, var(--Informative-High, var(--Text-High)));
+  --_bg-icon-on-subtle: var(--Informative-Subtle-Tinted, var(--Informative-Tinted, var(--Text-High)));
+  --_bg-icon-on-ghost: var(--Informative-Tinted, var(--Informative-TintedA11y, var(--Text-High)));
+  --_bg-text-on-ghost: var(--Informative-High, var(--Informative-TintedA11y, var(--Text-High)));
+  --_bg-material-fill: var(--Informative-Material-Fill);
+  --_bg-material-text: var(--Informative-Material-Text);
+}
+
+/* ========================================
+   VARIANTS — consume intermediate vars, zero duplication
+   ======================================== */
+
+.bold {
+  /* `background` (not background-color) — the material fill is a gradient image. */
+  background: var(--Badge-backgroundColor-bold, var(--_bg-material-fill, var(--_bg-bold)));
+  color: var(--Badge-textColor-bold, var(--_bg-material-text, var(--_bg-bold-high)));
+  border: 0 solid transparent;
+}
+
+.subtle {
+  background-color: var(--Badge-backgroundColor-subtle, var(--_bg-subtle));
+  /* Subtle label: context-remappable Subtle-High (on-subtle high). Icons: Subtle-Tinted via slot remaps. */
+  color: var(--Badge-textColor-subtle, var(--_bg-text-on-subtle));
+  border: 0 solid transparent;
+}
+
+.ghost {
+  background-color: var(--Badge-backgroundColor-ghost, transparent);
+  color: var(--Badge-textColor-ghost, var(--_bg-default-accent-a11y));
+  border: var(--Badge-borderWidth-ghost, var(--Stroke-M)) solid var(--Badge-borderColor-ghost, var(--Badge-ghost-stroke, var(--_bg-default-low-stroke)));
+}
+
+/* ========================================
+   SIZES — via data-size attribute selectors
+   Figma-verified per `docs/badge-figma-parity.md` (frame 409:10060).
+
+   Each size block also declares:
+   - --_slot-icon-size     — consumed by Icon when no explicit size prop
+   - --_slot-avatar-size   — consumed by Avatar when no explicit size
+   - --_slot-counter-size  — consumed by CounterBadge when no explicit size
+   - --_slot-indicator-size — consumed by IndicatorBadge when no explicit size
+
+   These are scoped to .badge so they only cascade to slot children and don't
+   leak to unrelated icons/avatars elsewhere on the page.
+   ======================================== */
+
+.badge[data-size="xs"] {
+  height: var(--Badge-height-xs, var(--Spacing-3));          /* 12 */
+  padding-left: var(--Badge-paddingHorizontal-xs, var(--Spacing-1));  /* 4 */
+  padding-right: var(--Badge-paddingHorizontal-xs, var(--Spacing-1)); /* 4 */
+  gap: var(--Badge-gap-xs, var(--Spacing-0-5));               /* 2 */
+  border-radius: var(--Badge-borderRadius-xs, var(--Badge-borderRadius, var(--Shape-1))); /* 4 */
+  font-size: var(--Badge-fontSize-xs, var(--Label-3XS-FontSize));
+  line-height: var(--Badge-lineHeight-xs, var(--Label-3XS-LineHeight));
+
+  --_slot-icon-size: var(--Spacing-2);       /* 8 */
+  --_slot-avatar-size: var(--Spacing-2);     /* 8 = Avatar 2xs — filled dot per Figma */
+  --_slot-avatar-icon-size: var(--Spacing-2); /* 8 — fills the 8px container */
+  --_slot-counter-size: var(--Spacing-3);     /* 12 = CounterBadge xs (min-width overflow tolerated) */
+  --_slot-indicator-size: var(--Spacing-1);  /* 4 */
+}
+
+.badge[data-size="s"] {
+  height: var(--Badge-height-s, var(--Spacing-4));            /* 16 */
+  padding-left: var(--Badge-paddingHorizontal-s, var(--Spacing-1));   /* 4 */
+  padding-right: var(--Badge-paddingHorizontal-s, var(--Spacing-1));  /* 4 */
+  gap: var(--Badge-gap-s, var(--Spacing-0-5));                /* 2 */
+  border-radius: var(--Badge-borderRadius-s, var(--Badge-borderRadius, var(--Shape-1))); /* 4 */
+  font-size: var(--Badge-fontSize-s, var(--Label-2XS-FontSize));
+  line-height: var(--Badge-lineHeight-s, var(--Label-2XS-LineHeight));
+
+  --_slot-icon-size: var(--Spacing-3);        /* 12 */
+  --_slot-avatar-size: var(--Spacing-3);      /* 12 = Avatar xs */
+  --_slot-avatar-icon-size: var(--Spacing-2-5); /* 10px in 12px = 1px padding each side */
+  --_slot-counter-size: var(--Spacing-3);     /* 12 */
+  --_slot-indicator-size: var(--Spacing-1-5);  /* 6 — Figma node 417:11337 */
+}
+
+.badge[data-size="m"] {
+  height: var(--Badge-height-m, var(--Spacing-5));           /* 20 */
+  padding-left: var(--Badge-paddingHorizontal-m, var(--Spacing-1-5));   /* 6 */
+  padding-right: var(--Badge-paddingHorizontal-m, var(--Spacing-1-5));  /* 6 */
+  gap: var(--Badge-gap-m, var(--Spacing-1));                /* 4 */
+  border-radius: var(--Badge-borderRadius-m, var(--Badge-borderRadius, var(--Shape-1-5))); /* 6 */
+  font-size: var(--Badge-fontSize-m, var(--Label-XS-FontSize));
+  line-height: var(--Badge-lineHeight-m, var(--Label-XS-LineHeight));
+
+  --_slot-icon-size: var(--Spacing-3);        /* 12 */
+  --_slot-avatar-size: var(--Spacing-3);      /* 12 = Avatar xs */
+  --_slot-avatar-icon-size: var(--Spacing-2-5); /* 10px in 12px = 1px padding each side */
+  --_slot-counter-size: var(--Spacing-3);     /* 12 */
+  --_slot-indicator-size: var(--Spacing-2);  /* 8 — Figma node 417:11334 */
+}
+
+.badge[data-size="l"] {
+  height: var(--Badge-height-l, var(--Spacing-6));          /* 24 */
+  padding-left: var(--Badge-paddingHorizontal-l, var(--Spacing-2));   /* 8 */
+  padding-right: var(--Badge-paddingHorizontal-l, var(--Spacing-2));  /* 8 */
+  gap: var(--Badge-gap-l, var(--Spacing-1));                /* 4 */
+  border-radius: var(--Badge-borderRadius-l, var(--Badge-borderRadius, var(--Shape-2))); /* 8 */
+  font-size: var(--Badge-fontSize-l, var(--Label-S-FontSize));
+  line-height: var(--Badge-lineHeight-l, var(--Label-S-LineHeight));
+
+  --_slot-icon-size: var(--Spacing-4);         /* 16 */
+  --_slot-avatar-size: var(--Spacing-4);       /* 16 = Avatar s */
+  --_slot-avatar-icon-size: var(--Spacing-3); /* 12px in 16px = 2px padding each side */
+  --_slot-counter-size: var(--Spacing-4);      /* 16 = CounterBadge m */
+  --_slot-indicator-size: var(--Spacing-2);  /* 8 — Figma node 417:11331 */
+}
+
+.badge[data-size="xl"] {
+  height: var(--Badge-height-xl, var(--Spacing-8));         /* 32 */
+  padding-left: var(--Badge-paddingHorizontal-xl, var(--Spacing-1-5));  /* 6 */
+  padding-right: var(--Badge-paddingHorizontal-xl, var(--Spacing-1-5)); /* 6 */
+  gap: var(--Badge-gap-xl, var(--Spacing-1-5));               /* 6 */
+  border-radius: var(--Badge-borderRadius-xl, var(--Badge-borderRadius, var(--Shape-2-5))); /* 10 */
+  font-size: var(--Badge-fontSize-xl, var(--Label-M-FontSize));
+  line-height: var(--Badge-lineHeight-xl, var(--Label-M-LineHeight));
+
+  --_slot-icon-size: var(--Spacing-5);        /* 20 */
+  --_slot-avatar-size: var(--Spacing-5);      /* 20 = Avatar m */
+  --_slot-avatar-icon-size: var(--Spacing-4);  /* 16px in 20px = 2px padding each side */
+  --_slot-counter-size: var(--Spacing-5);     /* 20 = CounterBadge l */
+  --_slot-indicator-size: var(--Spacing-3);   /* 12 — Figma node 417:11321 */
+}
+
+/* ========================================
+   SIZE-SPECIFIC TEXT COLOUR OVERRIDES
+   S and M sizes: subtle and ghost variants use Text-High (black) for
+   readability at small font sizes, matching the size-L visual expectation.
+   Bold variant is unaffected — it keeps its on-bold text colour.
+   ======================================== */
+
+.badge[data-size="s"].subtle,
+.badge[data-size="s"].ghost,
+.badge[data-size="m"].subtle,
+.badge[data-size="m"].ghost {
+  color: var(--Badge-textColor-small, var(--Text-High));
+}
+
+/* ========================================
+   SLOT-AWARE PADDING — reduce padding on the side where a slot sits,
+   per Figma (docs/badge-figma-parity.md). Values here override the
+   symmetric padding declared above.
+   ======================================== */
+
+.badge[data-size="xs"]:has(.start) {
+  padding-left: var(--Badge-paddingHorizontal-xs-slot, var(--Spacing-0-5));  /* 2 */
+}
+.badge[data-size="xs"]:has(.end) {
+  padding-right: var(--Badge-paddingHorizontal-xs-slot, var(--Spacing-0-5)); /* 2 */
+}
+
+.badge[data-size="s"]:has(.start) {
+  padding-left: var(--Badge-paddingHorizontal-s-slot, var(--Spacing-0-5));   /* 2 */
+}
+.badge[data-size="s"]:has(.end) {
+  padding-right: var(--Badge-paddingHorizontal-s-slot, var(--Spacing-0-5));  /* 2 */
+}
+
+.badge[data-size="m"]:has(.start) {
+  padding-left: var(--Badge-paddingHorizontal-m-slot, var(--Spacing-1));   /* 4 */
+}
+.badge[data-size="m"]:has(.end) {
+  padding-right: var(--Badge-paddingHorizontal-m-slot, var(--Spacing-1));  /* 4 */
+}
+
+.badge[data-size="l"]:has(.start) {
+  padding-left: var(--Badge-paddingHorizontal-l-slot, var(--Spacing-1));   /* 4 */
+}
+.badge[data-size="l"]:has(.end) {
+  padding-right: var(--Badge-paddingHorizontal-l-slot, var(--Spacing-1));  /* 4 */
+}
+
+/* XL has symmetric padding (6 both sides) even with slots — Figma ref 409:10118 */
+
+/* ========================================
+   SLOT COLOR INHERITANCE
+
+   data-surface="bold"|"subtle" is set on the .start / .end spans in Badge.tsx,
+   so the engine's [data-surface] cascade kicks in for their children:
+     — Avatar reads --{Role}-Bold-Tinted / --{Role}-Bold-TintedA11y, which the
+       context block remaps automatically (light lavender fill + dark icon on
+       a bold primary badge, etc.).
+     — CounterBadge (appearance="negative") likewise remaps via its own role
+       tokens inside the same cascade.
+
+   For a standalone Icon in a slot — Icon reads --{Role}-High / --Neutral-High
+   (not Tinted). Inside a bold slot we remap those aliases to the role's Tinted
+   value so the Icon picks up the branded tinted on-colour (matches the Avatar
+   icon, matches Figma "on-Colour/tinted"). The Tinted token IS remapped by the
+   [data-surface="bold"] block the slot itself carries — so this single
+   declaration resolves to the correct light-tinted value in bold context and
+   the correct dark-tinted value in subtle context.
+
+   Ghost stays transparent (no data-surface on slot): fall back to the Badge's
+   accent-a11y, which is the deep branded tone that matches the label.
+   ======================================== */
+
+/* Slot icon colours track the Badge's APPEARANCE (which appearance class
+   sets --_bg-icon-on-bold / --_bg-text-on-subtle / --_bg-icon-on-subtle /
+   --_bg-icon-on-ghost / --_bg-default-accent-a11y).
+   We remap every role's *-High token so an Icon with ANY data-appearance
+   (primary, neutral, negative, etc.) inside a bold/subtle/ghost slot picks
+   up the Badge's on-colour rather than its own role's. CounterBadge and
+   IndicatorBadge are wrapped in .surfaceShield by Badge.tsx, which reverts
+   these remaps so they keep their own appearance. */
+
+.bold .start,
+.bold .end {
+  --Primary-High: var(--_bg-material-text, var(--_bg-icon-on-bold));
+  --Neutral-High: var(--_bg-material-text, var(--_bg-icon-on-bold));
+  --Secondary-High: var(--_bg-material-text, var(--_bg-icon-on-bold));
+  --Sparkle-High: var(--_bg-material-text, var(--_bg-icon-on-bold));
+  --Brand-Bg-High: var(--_bg-material-text, var(--_bg-icon-on-bold));
+  --Positive-High: var(--_bg-material-text, var(--_bg-icon-on-bold));
+  --Negative-High: var(--_bg-material-text, var(--_bg-icon-on-bold));
+  --Warning-High: var(--_bg-material-text, var(--_bg-icon-on-bold));
+  --Informative-High: var(--_bg-material-text, var(--_bg-icon-on-bold));
+  --Text-High: var(--_bg-material-text, var(--_bg-icon-on-bold));
+  --Text-Medium: var(--_bg-material-text, var(--_bg-icon-on-bold));
+}
+
+.subtle .start,
+.subtle .end {
+  --Primary-High: var(--_bg-icon-on-subtle);
+  --Neutral-High: var(--_bg-icon-on-subtle);
+  --Secondary-High: var(--_bg-icon-on-subtle);
+  --Sparkle-High: var(--_bg-icon-on-subtle);
+  --Brand-Bg-High: var(--_bg-icon-on-subtle);
+  --Positive-High: var(--_bg-icon-on-subtle);
+  --Negative-High: var(--_bg-icon-on-subtle);
+  --Warning-High: var(--_bg-icon-on-subtle);
+  --Informative-High: var(--_bg-icon-on-subtle);
+  --Text-High: var(--_bg-icon-on-subtle);
+}
+
+.ghost .start,
+.ghost .end {
+  --Primary-High: var(--_bg-icon-on-ghost);
+  --Neutral-High: var(--_bg-icon-on-ghost);
+  --Secondary-High: var(--_bg-icon-on-ghost);
+  --Sparkle-High: var(--_bg-icon-on-ghost);
+  --Brand-Bg-High: var(--_bg-icon-on-ghost);
+  --Positive-High: var(--_bg-icon-on-ghost);
+  --Negative-High: var(--_bg-icon-on-ghost);
+  --Warning-High: var(--_bg-icon-on-ghost);
+  --Informative-High: var(--_bg-icon-on-ghost);
+  --Text-High: var(--_bg-icon-on-ghost);
+}
+
+/* ========================================
+   SLOT AUTO-SIZING
+   The Badge's per-size block declares --_slot-icon-size / --_slot-avatar-size /
+   --_slot-counter-size / --_slot-indicator-size. Inside the slot spans, we
+   push those values into each component's per-size component tokens so the
+   children auto-adopt the Figma-correct size for this Badge size.
+
+   We only override each component's DEFAULT size (Icon '5', Avatar 'm',
+   CounterBadge 'm', IndicatorBadge 'm'). If the caller passes an explicit
+   `size` prop the component's matching per-size token is untouched and the
+   explicit prop wins. Standard override hierarchy:
+     explicit prop > component token > --_slot-* (this layer) > component default.
+   ======================================== */
+
+.start,
+.end {
+  /* Mirror badge label colour for slot Icons (any emphasis / appearance). */
+  color: inherit;
+  --Icon-color: currentColor;
+
+  /* Icon: default size is '5' (maps to --Icon-size-5 → Spacing-5) */
+  --Icon-size-5: var(--_slot-icon-size);
+
+  /* Avatar: default size is 'm' (maps to --Avatar-size-m → Spacing-5) */
+  --Avatar-size-m: var(--_slot-avatar-size);
+  --Avatar-iconSize-m: var(--_slot-avatar-icon-size);
+
+  /* CounterBadge: default size is 'm' (drives both height and min-width) */
+  --CounterBadge-height-m: var(--_slot-counter-size);
+
+  /* IndicatorBadge: default size is 'm' */
+  --IndicatorBadge-size-m: var(--_slot-indicator-size);
+}
+
+/* ========================================
+   SLOT SURFACE SHIELD
+
+   CounterBadge and IndicatorBadge carry their own role colours (e.g. negative
+   = red) and must stay visually distinct on bold / subtle Badges. The Badge
+   slot's `data-surface` cascade otherwise remaps every role token to the
+   nested on-bold / on-subtle value, turning a red indicator into the
+   Badge's own tinted on-colour.
+
+   The shield wrapper (rendered around CounterBadge/IndicatorBadge by
+   Badge.tsx) restores the context-remapped `--{Role}-Bold / -Bold-High /
+   -Subtle / -TintedA11y` tokens to their root-only `--{Role}-Fill-*` pair
+   for every appearance role. Fill-* tokens are engine-declared root-only
+   and never touched by `[data-surface]` blocks.
+   ======================================== */
+
+.surfaceShield {
+  --Primary-Bold: var(--Primary-Fill-Bold);
+  --Primary-Bold-High: var(--Primary-Fill-Bold-High);
+  --Primary-Subtle: var(--Primary-Fill-Subtle);
+  --Primary-TintedA11y: var(--Primary-Fill-Subtle-TintedA11y);
+
+  --Neutral-Bold: var(--Neutral-Fill-Bold);
+  --Neutral-Bold-High: var(--Neutral-Fill-Bold-High);
+  --Neutral-Subtle: var(--Neutral-Fill-Subtle);
+  --Neutral-TintedA11y: var(--Neutral-Fill-Subtle-TintedA11y);
+
+  --Secondary-Bold: var(--Secondary-Fill-Bold);
+  --Secondary-Bold-High: var(--Secondary-Fill-Bold-High);
+  --Secondary-Subtle: var(--Secondary-Fill-Subtle);
+  --Secondary-TintedA11y: var(--Secondary-Fill-Subtle-TintedA11y);
+
+  --Sparkle-Bold: var(--Sparkle-Fill-Bold);
+  --Sparkle-Bold-High: var(--Sparkle-Fill-Bold-High);
+  --Sparkle-Subtle: var(--Sparkle-Fill-Subtle);
+  --Sparkle-TintedA11y: var(--Sparkle-Fill-Subtle-TintedA11y);
+
+  --Brand-Bg-Bold: var(--Brand-Bg-Fill-Bold);
+  --Brand-Bg-Bold-High: var(--Brand-Bg-Fill-Bold-High);
+  --Brand-Bg-Subtle: var(--Brand-Bg-Fill-Subtle);
+  --Brand-Bg-TintedA11y: var(--Brand-Bg-Fill-Subtle-TintedA11y);
+
+  --Positive-Bold: var(--Positive-Fill-Bold);
+  --Positive-Bold-High: var(--Positive-Fill-Bold-High);
+  --Positive-Subtle: var(--Positive-Fill-Subtle);
+  --Positive-TintedA11y: var(--Positive-Fill-Subtle-TintedA11y);
+
+  --Negative-Bold: var(--Negative-Fill-Bold);
+  --Negative-Bold-High: var(--Negative-Fill-Bold-High);
+  --Negative-Subtle: var(--Negative-Fill-Subtle);
+  --Negative-TintedA11y: var(--Negative-Fill-Subtle-TintedA11y);
+
+  --Warning-Bold: var(--Warning-Fill-Bold);
+  --Warning-Bold-High: var(--Warning-Fill-Bold-High);
+  --Warning-Subtle: var(--Warning-Fill-Subtle);
+  --Warning-TintedA11y: var(--Warning-Fill-Subtle-TintedA11y);
+
+  --Informative-Bold: var(--Informative-Fill-Bold);
+  --Informative-Bold-High: var(--Informative-Fill-Bold-High);
+  --Informative-Subtle: var(--Informative-Fill-Subtle);
+  --Informative-TintedA11y: var(--Informative-Fill-Subtle-TintedA11y);
+
+  /* Revert all per-role -High remaps the slot applies for standalone Icons
+     (`.bold .start`, `.subtle .start`, `.ghost .start`). CounterBadge and
+     IndicatorBadge keep their own role colours through this revert. */
+  --Primary-High: revert-layer;
+  --Neutral-High: revert-layer;
+  --Secondary-High: revert-layer;
+  --Sparkle-High: revert-layer;
+  --Brand-Bg-High: revert-layer;
+  --Positive-High: revert-layer;
+  --Negative-High: revert-layer;
+  --Warning-High: revert-layer;
+  --Informative-High: revert-layer;
+  --Text-High: revert-layer;
+  --Text-Medium: revert-layer;
+
+  display: inline-flex;
+}
+
+/* ========================================
+   SLOT STYLES — start, end, label
+   ======================================== */
+
+.start {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.end {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.label {
+  display: flex;
+  align-items: center;
+}
+
+/**
+ * ========================================
+ * IMPORTANT: NO LITERALS IN THIS FILE
+ * ========================================
+ *
+ * All values MUST come from --Token-Name variables
+ * defined in @oneui/tokens CSS files
+ */

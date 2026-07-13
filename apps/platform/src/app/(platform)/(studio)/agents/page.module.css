@@ -1,0 +1,145 @@
+/**
+ * agents/page.module.css
+ *
+ * Agents hub — header + responsive card grid. Token-only; zero literals.
+ */
+
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-6);
+  padding: var(--Spacing-7) var(--Spacing-4-5) var(--Spacing-6);
+  max-width: 1120px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* ── Header ─────────────────────────────────────────────────────────────── */
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-3-5);
+  max-width: 720px;
+}
+
+.title {
+  font-family: var(--Display-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Display-S-FontSize);
+  line-height: var(--Display-S-LineHeight);
+  font-weight: var(--Display-S-FontWeight);
+  color: var(--Primary-High);
+  margin: 0;
+}
+
+.subtitle {
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Body-M-FontSize);
+  line-height: var(--Body-M-LineHeight);
+  color: var(--Primary-Medium-Text);
+  margin: 0;
+}
+
+/* ── Section ────────────────────────────────────────────────────────────── */
+
+.sectionLabel {
+  font-family: var(--Title-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Title-M-FontSize);
+  line-height: var(--Title-M-LineHeight);
+  font-weight: var(--Title-M-FontWeight);
+  color: var(--Primary-High);
+  margin: 0 0 var(--Spacing-4);
+}
+
+/* ── Grid ───────────────────────────────────────────────────────────────── */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--Spacing-4);
+}
+
+/* ── Card ───────────────────────────────────────────────────────────────── */
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Card-gap, var(--Spacing-3-5));
+  padding: var(--Card-padding, var(--Spacing-4-5));
+  background: var(--Card-backgroundColor, var(--Surface-Main));
+  border: var(--Card-borderWidth, var(--Stroke-M)) solid
+    var(--Card-borderColor, var(--Neutral-Stroke-Low));
+  border-radius: var(--Card-borderRadius, var(--Shape-0));
+  box-shadow: var(--Card-boxShadow, var(--Elevation-0));
+  text-align: left;
+  font-family: inherit;
+  cursor: pointer;
+  color: inherit;
+  transition:
+    background-color var(--Motion-Duration-Discreet-Short) var(--Motion-Easing-Transition),
+    border-color var(--Motion-Duration-Discreet-Short) var(--Motion-Easing-Transition),
+    transform var(--Motion-Duration-Discreet-Short) var(--Motion-Easing-Transition);
+}
+
+.card:hover:not([data-disabled='true']) {
+  border-color: var(--Neutral-Stroke-Medium);
+  background: var(--Primary-Subtle);
+}
+
+.card:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 var(--Stroke-XL) var(--Surface-Halo-Gap, var(--Surface-Main)),
+    0 0 0 var(--Focus-Outline-Width, var(--Stroke-L)) var(--Focus-Outline, var(--Primary-Bold));
+}
+
+.card[data-disabled='true'] {
+  cursor: not-allowed;
+  opacity: var(--Disabled-Opacity, 0.6);
+}
+
+/* ── Card header row ────────────────────────────────────────────────────── */
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--Spacing-3-5);
+}
+
+/* Icon is rendered via <IconContained attention="high"> — no custom wrapper needed. */
+
+/* Status pills and tag chips use the real <Badge> / <Chip> components. */
+
+/* ── Card body ──────────────────────────────────────────────────────────── */
+
+.name {
+  font-family: var(--Title-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Title-L-FontSize);
+  line-height: var(--Title-L-LineHeight);
+  font-weight: var(--Title-L-FontWeight);
+  color: var(--Primary-High);
+  margin: 0;
+}
+
+.description {
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Body-M-FontSize);
+  line-height: var(--Body-M-LineHeight);
+  color: var(--Primary-Medium-Text);
+  margin: 0;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--Spacing-2-5);
+  padding-top: var(--Spacing-3);
+  padding-left: var(--Spacing-4-5);
+  padding-right: var(--Spacing-4-5);
+  margin-top: auto;
+  /* Bleed the border-top edge-to-edge across the card's padding */
+  margin-left: calc(-1 * var(--Spacing-4-5));
+  margin-right: calc(-1 * var(--Spacing-4-5));
+  border-top: var(--Stroke-M) solid var(--Neutral-Stroke-Low);
+}

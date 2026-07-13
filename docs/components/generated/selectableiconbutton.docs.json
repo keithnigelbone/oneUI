@@ -1,0 +1,430 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "SelectableIconButton",
+  "generatedAt": "2026-01-01T00:00:00.000Z",
+  "machineReadable": true,
+  "intentAndPurpose": {
+    "intent": {
+      "value": "Icon-only toggle button for compact binary selection with configurable shape layout.",
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "taskContexts": {
+      "value": [
+        "toolbar-toggle",
+        "icon-filter",
+        "compact-option-selection",
+        "grid-view-toggle"
+      ],
+      "attribution": {
+        "source": "authored"
+      }
+    },
+    "sentiments": {
+      "value": [
+        "neutral",
+        "positive"
+      ],
+      "attribution": {
+        "source": "authored"
+      }
+    }
+  },
+  "compositionRules": {
+    "requires": {
+      "value": [
+        "icon prop",
+        "aria-label (required — icon-only)"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "allows": {
+      "value": [
+        "condensed mode",
+        "3:2 layout variant",
+        "loading state"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "forbids": {
+      "value": [
+        "text content (use SelectableButton instead)",
+        "missing aria-label"
+      ],
+      "attribution": {
+        "source": "authored"
+      }
+    }
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "high attention",
+        "useWhen": {
+          "value": [
+            "selected state needs bold fill emphasis"
+          ],
+          "attribution": {
+            "source": "inferred"
+          }
+        }
+      },
+      {
+        "name": "medium attention",
+        "useWhen": {
+          "value": [
+            "selected state with subtle tinted fill"
+          ],
+          "attribution": {
+            "source": "inferred"
+          }
+        }
+      },
+      {
+        "name": "low attention",
+        "useWhen": {
+          "value": [
+            "selected state with ghost appearance and accent border"
+          ],
+          "attribution": {
+            "source": "inferred"
+          }
+        }
+      }
+    ]
+  },
+  "relationshipsAndDependencies": {
+    "related": {
+      "value": [
+        "SelectableButton",
+        "SelectableSingleTextButton",
+        "IconButton",
+        "Toggle",
+        "ToggleGroup"
+      ],
+      "attribution": {
+        "source": "authored"
+      }
+    },
+    "groupsWith": {
+      "value": [
+        "ToggleGroup"
+      ],
+      "attribution": {
+        "source": "authored"
+      }
+    }
+  },
+  "contextSignals": {
+    "density": {
+      "value": [
+        "compact",
+        "default",
+        "open"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "modality": {
+      "value": [
+        "desktop",
+        "mobile"
+      ],
+      "attribution": {
+        "source": "authored"
+      }
+    },
+    "brand": {
+      "value": [
+        "theme-scope aware",
+        "recipe-driven"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "mode": {
+      "value": [
+        "light",
+        "dark",
+        "surface-context"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "observabilityHooks": {
+    "track": {
+      "value": [
+        "select",
+        "deselect"
+      ],
+      "attribution": {
+        "source": "authored"
+      }
+    },
+    "health": {
+      "value": [
+        "a11y_violations",
+        "adoption_rate"
+      ],
+      "attribution": {
+        "source": "authored"
+      }
+    }
+  },
+  "props": [
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": true,
+      "description": "Required accessibility label (icon-only buttons must have this)"
+    },
+    {
+      "name": "icon",
+      "type": "ComponentIconInput | ReactElement",
+      "required": true,
+      "description": "icon property"
+    },
+    {
+      "name": "appearance",
+      "type": "SelectableIconButtonAppearance",
+      "required": false,
+      "description": "Multi-accent appearance role. 'auto' resolves to 'primary'."
+    },
+    {
+      "name": "attention",
+      "type": "SelectableIconButtonAttention",
+      "required": false,
+      "description": "Attention level — determines the visual prominence of the SELECTED state. high → bold fill; medium → subtle fill; low → ghost with accent border. The UNSELECTED state is always muted ghost regardless of attention. Default: 'high'."
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "required": false,
+      "description": "Additional CSS class name"
+    },
+    {
+      "name": "condensed",
+      "type": "boolean",
+      "required": false,
+      "description": "Condensed mode: reduces container size while keeping same icon size"
+    },
+    {
+      "name": "contained",
+      "type": "boolean",
+      "required": false,
+      "description": "When true (default), renders a contained icon button with background, border, and sized container. When false, renders just the icon without container — no background, border, or fixed size. condensed and fullWidth do not apply when contained=false."
+    },
+    {
+      "name": "data-testid",
+      "type": "string",
+      "required": false,
+      "description": "Test ID for testing"
+    },
+    {
+      "name": "defaultSelected",
+      "type": "boolean",
+      "required": false,
+      "description": "Default selected state (uncontrolled)."
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "required": false,
+      "description": "Whether the button is disabled."
+    },
+    {
+      "name": "fullWidth",
+      "type": "boolean",
+      "required": false,
+      "description": "Stretch to fill container width. Only applies when contained=true."
+    },
+    {
+      "name": "loading",
+      "type": "boolean",
+      "required": false,
+      "description": "Loading state — shows circular progress indicator"
+    },
+    {
+      "name": "onSelectedChange",
+      "type": "(selected: boolean) => void",
+      "required": false,
+      "description": "Called when selected state changes."
+    },
+    {
+      "name": "selected",
+      "type": "boolean",
+      "required": false,
+      "description": "Selected state (controlled). Maps to Toggle pressed."
+    },
+    {
+      "name": "shape",
+      "type": "SelectableIconButtonShape",
+      "required": false,
+      "description": "Shape proportion: '1:1' (square, default) or '2:3' (wide rectangle)"
+    },
+    {
+      "name": "size",
+      "type": "SelectableIconButtonSize",
+      "required": false,
+      "description": "Button size — f-step number or t-shirt alias. Default: 10 (M)."
+    },
+    {
+      "name": "style",
+      "type": "CSSProperties",
+      "required": false,
+      "description": "Inline styles"
+    },
+    {
+      "name": "value",
+      "type": "string",
+      "required": false,
+      "description": "Value for use within ToggleGroup."
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.docs.selectable-icon-button",
+    "type": "object",
+    "properties": {
+      "aria-label": {
+        "type": "string",
+        "description": "Required accessibility label (icon-only buttons must have this)"
+      },
+      "icon": {
+        "description": "icon property"
+      },
+      "appearance": {
+        "enum": [
+          "auto",
+          "primary",
+          "secondary",
+          "neutral",
+          "sparkle",
+          "brand-bg",
+          "positive",
+          "negative",
+          "warning",
+          "informative"
+        ],
+        "description": "Multi-accent appearance role. 'auto' resolves to 'primary'."
+      },
+      "attention": {
+        "enum": [
+          "high",
+          "medium",
+          "low"
+        ],
+        "description": "Attention level — determines the visual prominence of the SELECTED state. high → bold fill; medium → subtle fill; low → ghost with accent border. The UNSELECTED state is always muted ghost regardless of attention. Default: 'high'."
+      },
+      "className": {
+        "type": "string",
+        "description": "Additional CSS class name"
+      },
+      "condensed": {
+        "type": "boolean",
+        "description": "Condensed mode: reduces container size while keeping same icon size"
+      },
+      "contained": {
+        "type": "boolean",
+        "description": "When true (default), renders a contained icon button with background, border, and sized container. When false, renders just the icon without container — no background, border, or fixed size. condensed and fullWidth do not apply when contained=false."
+      },
+      "data-testid": {
+        "type": "string",
+        "description": "Test ID for testing"
+      },
+      "defaultSelected": {
+        "type": "boolean",
+        "description": "Default selected state (uncontrolled)."
+      },
+      "disabled": {
+        "type": "boolean",
+        "description": "Whether the button is disabled."
+      },
+      "fullWidth": {
+        "type": "boolean",
+        "description": "Stretch to fill container width. Only applies when contained=true."
+      },
+      "loading": {
+        "type": "boolean",
+        "description": "Loading state — shows circular progress indicator"
+      },
+      "onSelectedChange": {
+        "description": "Called when selected state changes."
+      },
+      "selected": {
+        "type": "boolean",
+        "description": "Selected state (controlled). Maps to Toggle pressed."
+      },
+      "shape": {
+        "enum": [
+          "1:1",
+          "2:3"
+        ],
+        "description": "Shape proportion: '1:1' (square, default) or '2:3' (wide rectangle)"
+      },
+      "size": {
+        "enum": [
+          4,
+          6,
+          8,
+          10,
+          12,
+          14,
+          "2xs",
+          "xs",
+          "s",
+          "m",
+          "l",
+          "xl"
+        ],
+        "description": "Button size — f-step number or t-shirt alias. Default: 10 (M)."
+      },
+      "style": {
+        "description": "Inline styles"
+      },
+      "value": {
+        "type": "string",
+        "description": "Value for use within ToggleGroup."
+      }
+    },
+    "required": [
+      "aria-label",
+      "icon"
+    ]
+  },
+  "codeSnippets": [
+    {
+      "id": "selectableiconbutton-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { SelectableIconButton } from '@oneui/ui';\n\n<SelectableIconButton icon=\"star\" aria-label=\"Favourite\" />"
+    },
+    {
+      "id": "selectableiconbutton-controlled",
+      "title": "Controlled",
+      "language": "tsx",
+      "code": "<SelectableIconButton icon=\"bookmark\" selected={isSaved} onSelectedChange={setIsSaved} aria-label=\"Save\" />"
+    },
+    {
+      "id": "selectable-icon-button-recipe-decisions",
+      "title": "Recipe Decisions",
+      "language": "json",
+      "code": "{\n  \"component\": \"SelectableIconButton\",\n  \"decisions\": [\n    \"Shape\"\n  ]\n}"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "selectable-icon-button"
+  ],
+  "generatedMarkdown": "# SelectableIconButton Machine-Readable Documentation\n\n_Generated from source metadata. Do not edit manually._\n\n## Intent and Purpose\n\n- **Intent**: Icon-only toggle button for compact binary selection with configurable shape layout.\n- **Task contexts**: toolbar-toggle, icon-filter, compact-option-selection, grid-view-toggle\n- **Sentiments**: neutral, positive\n\n## Composition Rules\n\n- **Requires**: icon prop, aria-label (required — icon-only)\n- **Allows**: condensed mode, 3:2 layout variant, loading state\n- **Forbids**: text content (use SelectableButton instead), missing aria-label\n\n## Variant Logic\n\n- **high attention**: use when selected state needs bold fill emphasis\n- **medium attention**: use when selected state with subtle tinted fill\n- **low attention**: use when selected state with ghost appearance and accent border\n\n## Relationships and Dependencies\n\n- **Related**: SelectableButton, SelectableSingleTextButton, IconButton, Toggle, ToggleGroup\n- **Escalates to**: -\n- **Degrades to**: -\n- **Groups with**: ToggleGroup\n\n## Context Signals\n\n- **Density**: compact, default, open\n- **Modality**: desktop, mobile\n- **Brand**: theme-scope aware, recipe-driven\n- **Mode**: light, dark, surface-context\n\n## Observability Hooks\n\n- **Track**: select, deselect\n- **Health**: a11y_violations, adoption_rate\n\n## Props\n\n| Prop | Type | Required | Default | Description |\n| --- | --- | --- | --- | --- |\n| `aria-label` | `string` | Yes | - | Required accessibility label (icon-only buttons must have this) |\n| `icon` | `ComponentIconInput | ReactElement` | Yes | - | icon property |\n| `appearance` | `SelectableIconButtonAppearance` | No | - | Multi-accent appearance role. 'auto' resolves to 'primary'. |\n| `attention` | `SelectableIconButtonAttention` | No | - | Attention level — determines the visual prominence of the SELECTED state. high → bold fill; medium → subtle fill; low → ghost with accent border. The UNSELECTED state is always muted ghost regardless of attention. Default: 'high'. |\n| `className` | `string` | No | - | Additional CSS class name |\n| `condensed` | `boolean` | No | - | Condensed mode: reduces container size while keeping same icon size |\n| `contained` | `boolean` | No | - | When true (default), renders a contained icon button with background, border, and sized container. When false, renders just the icon without container — no background, border, or fixed size. condensed and fullWidth do not apply when contained=false. |\n| `data-testid` | `string` | No | - | Test ID for testing |\n| `defaultSelected` | `boolean` | No | - | Default selected state (uncontrolled). |\n| `disabled` | `boolean` | No | - | Whether the button is disabled. |\n| `fullWidth` | `boolean` | No | - | Stretch to fill container width. Only applies when contained=true. |\n| `loading` | `boolean` | No | - | Loading state — shows circular progress indicator |\n| `onSelectedChange` | `(selected: boolean) => void` | No | - | Called when selected state changes. |\n| `selected` | `boolean` | No | - | Selected state (controlled). Maps to Toggle pressed. |\n| `shape` | `SelectableIconButtonShape` | No | - | Shape proportion: '1:1' (square, default) or '2:3' (wide rectangle) |\n| `size` | `SelectableIconButtonSize` | No | - | Button size — f-step number or t-shirt alias. Default: 10 (M). |\n| `style` | `CSSProperties` | No | - | Inline styles |\n| `value` | `string` | No | - | Value for use within ToggleGroup. |\n\n## Slots\n\n| Slot | Types | Tokens |\n| --- | --- | --- |\n\n\n## Code Snippets\n\n### Basic Usage\n\n```tsx\nimport { SelectableIconButton } from '@oneui/ui';\n\n<SelectableIconButton icon=\"star\" aria-label=\"Favourite\" />\n```\n\n### Controlled\n\n```tsx\n<SelectableIconButton icon=\"bookmark\" selected={isSaved} onSelectedChange={setIsSaved} aria-label=\"Save\" />\n```\n\n### Recipe Decisions\n\n```json\n{\n  \"component\": \"SelectableIconButton\",\n  \"decisions\": [\n    \"Shape\"\n  ]\n}\n```\n"
+}

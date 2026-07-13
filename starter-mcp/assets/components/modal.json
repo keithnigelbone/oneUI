@@ -1,0 +1,419 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Modal",
+  "generatedAt": "2026-01-01T00:00:00.000Z",
+  "machineReadable": true,
+  "intentAndPurpose": {
+    "intent": "Focused overlay with structured header/body/footer layout and scroll management. The modal popup is role-neutral; per-role styling is applied to the slot children (footer buttons, headerStart, body content).",
+    "taskContexts": [
+      "overlay",
+      "dialog",
+      "modal",
+      "popup",
+      "sheet",
+      "confirmation"
+    ],
+    "sentiments": [
+      "neutral"
+    ]
+  },
+  "compositionRules": {
+    "requires": [],
+    "allows": [
+      "headerStart",
+      "children",
+      "footerStart",
+      "footerEnd"
+    ],
+    "forbids": []
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "S",
+        "useWhen": [
+          "Small"
+        ]
+      },
+      {
+        "name": "M",
+        "useWhen": [
+          "Medium"
+        ]
+      },
+      {
+        "name": "L",
+        "useWhen": [
+          "Large"
+        ]
+      },
+      {
+        "name": "FullWidth",
+        "useWhen": [
+          "Full Width"
+        ]
+      }
+    ]
+  },
+  "relationshipsAndDependencies": {
+    "related": []
+  },
+  "contextSignals": {
+    "density": [
+      "compact",
+      "default",
+      "open"
+    ],
+    "modality": [
+      "desktop",
+      "mobile"
+    ],
+    "brand": [
+      "theme-scope aware",
+      "recipe-driven"
+    ],
+    "mode": [
+      "light",
+      "dark"
+    ]
+  },
+  "observabilityHooks": {
+    "track": [],
+    "health": [
+      "a11y_violations"
+    ]
+  },
+  "props": [
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "required": true,
+      "description": "Modal body content"
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": false,
+      "description": "Accessible name for the dialog. Required when `header={false}` or `showTitle={false}` — without it, screen readers announce an unnamed dialog (WCAG 2.1 AA 4.1.2 violation). When the title is visible, Base UI auto-wires `aria-labelledby` from <Dialog.Title> and this is optional."
+    },
+    {
+      "name": "aria-labelledby",
+      "type": "string",
+      "required": false,
+      "description": "Optional id of an element labelling the dialog. Mutually exclusive with `aria-label`. Takes precedence over Base UI's auto-wired Title link."
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "required": false,
+      "description": "Additional class name"
+    },
+    {
+      "name": "data-testid",
+      "type": "string",
+      "required": false,
+      "description": "Test id forwarded to the dialog popup"
+    },
+    {
+      "name": "defaultOpen",
+      "type": "boolean",
+      "required": false,
+      "description": "Default open state (uncontrolled)"
+    },
+    {
+      "name": "description",
+      "type": "string",
+      "required": false,
+      "description": "Modal description text"
+    },
+    {
+      "name": "dismissible",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "true",
+      "description": "Whether Escape/outside press can dismiss the modal. Explicit close controls and controlled parent state changes still work."
+    },
+    {
+      "name": "dividerBottomScrollPosition",
+      "type": "DividerScrollPosition",
+      "required": false,
+      "defaultValue": "middle",
+      "description": "Scroll threshold through which the bottom divider remains visible when `dividerBottomVisibility=\"onScroll\"`."
+    },
+    {
+      "name": "dividerBottomVisibility",
+      "type": "DividerVisibility",
+      "required": false,
+      "defaultValue": "none",
+      "description": "Bottom divider visibility behaviour."
+    },
+    {
+      "name": "dividerTopScrollPosition",
+      "type": "DividerScrollPosition",
+      "required": false,
+      "defaultValue": "middle",
+      "description": "Scroll threshold at which the top divider appears when `dividerTopVisibility=\"onScroll\"`."
+    },
+    {
+      "name": "dividerTopVisibility",
+      "type": "DividerVisibility",
+      "required": false,
+      "defaultValue": "none",
+      "description": "Top divider visibility behaviour."
+    },
+    {
+      "name": "footer",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "true",
+      "description": "Whether to show the footer section."
+    },
+    {
+      "name": "footerEnd",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Footer content (typically action buttons)"
+    },
+    {
+      "name": "footerOrientation",
+      "type": "FooterOrientation",
+      "required": false,
+      "defaultValue": "horizontal",
+      "description": "Footer button orientation."
+    },
+    {
+      "name": "footerStart",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Content for the footer start slot"
+    },
+    {
+      "name": "header",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "true",
+      "description": "Whether to show the header section."
+    },
+    {
+      "name": "headerAlign",
+      "type": "HeaderAlign",
+      "required": false,
+      "defaultValue": "left",
+      "description": "Header content alignment."
+    },
+    {
+      "name": "headerStart",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Content for the header start slot. Renders before the title. Per RFC 0001: presence/absence of the ReactNode is the visibility gate — no enum discriminator needed."
+    },
+    {
+      "name": "onOpenChange",
+      "type": "(open: boolean, details: ModalOpenChangeDetails) => void",
+      "required": false,
+      "description": "Called when the modal opens or closes. The `details.reason` arg lets you distinguish dismiss triggers (Escape vs outside-press vs close button) and inspect the underlying Base UI event/trigger details."
+    },
+    {
+      "name": "open",
+      "type": "boolean",
+      "required": false,
+      "description": "Whether the modal is open (controlled)"
+    },
+    {
+      "name": "showDescription",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "true",
+      "description": "Whether to show the description."
+    },
+    {
+      "name": "showTitle",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "true",
+      "description": "Whether to show the title."
+    },
+    {
+      "name": "size",
+      "type": "ModalSize",
+      "required": false,
+      "defaultValue": "M",
+      "description": "Modal size preset."
+    },
+    {
+      "name": "style",
+      "type": "CSSProperties",
+      "required": false,
+      "description": "Inline styles"
+    },
+    {
+      "name": "title",
+      "type": "string",
+      "required": false,
+      "description": "Modal title text"
+    }
+  ],
+  "slots": [
+    {
+      "name": "headerStart",
+      "types": [
+        "Icon",
+        "Badge"
+      ],
+      "tokens": []
+    },
+    {
+      "name": "children",
+      "types": [
+        "any"
+      ],
+      "tokens": []
+    },
+    {
+      "name": "footerStart",
+      "types": [
+        "any"
+      ],
+      "tokens": []
+    },
+    {
+      "name": "footerEnd",
+      "types": [
+        "Button"
+      ],
+      "tokens": []
+    }
+  ],
+  "propsSchema": {
+    "$id": "jds.docs.modal",
+    "type": "object",
+    "properties": {
+      "children": {
+        "description": "Modal body content"
+      },
+      "appearance": {
+        "description": "Multi-accent appearance role. 'auto' resolves to 'primary'.",
+        "default": "auto"
+      },
+      "className": {
+        "type": "string",
+        "description": "Additional class name"
+      },
+      "defaultOpen": {
+        "type": "boolean",
+        "description": "Default open state (uncontrolled)"
+      },
+      "description": {
+        "type": "string",
+        "description": "Modal description text"
+      },
+      "dismissible": {
+        "type": "boolean",
+        "description": "Whether clicking the backdrop closes the modal"
+      },
+      "dividerBottomScrollPosition": {
+        "description": "Bottom divider scroll position indicator.",
+        "default": "start"
+      },
+      "dividerBottomVisibility": {
+        "description": "Bottom divider visibility behaviour.",
+        "default": "none"
+      },
+      "dividerTopScrollPosition": {
+        "description": "Top divider scroll position indicator.",
+        "default": "start"
+      },
+      "dividerTopVisibility": {
+        "description": "Top divider visibility behaviour.",
+        "default": "none"
+      },
+      "footer": {
+        "type": "boolean",
+        "description": "Whether to show the footer section.",
+        "default": "true"
+      },
+      "footerContent": {
+        "description": "Footer content (typically action buttons)"
+      },
+      "footerOrientation": {
+        "description": "Footer button orientation.",
+        "default": "horizontal"
+      },
+      "footerStart": {
+        "description": "Content for the footer start slot"
+      },
+      "header": {
+        "type": "boolean",
+        "description": "Whether to show the header section.",
+        "default": "true"
+      },
+      "headerAlign": {
+        "description": "Header content alignment.",
+        "default": "left"
+      },
+      "headerStart": {
+        "description": "Type of element in the header start slot.",
+        "default": "none"
+      },
+      "headerStartContent": {
+        "description": "Content for the header start slot (icon or badge ReactNode)"
+      },
+      "maxHeight": {
+        "type": "number",
+        "description": "Max height of the modal in vh units. When content exceeds this, the body scrolls while header and footer stay fixed.",
+        "default": "80"
+      },
+      "onOpenChange": {
+        "description": "Called when the modal opens or closes"
+      },
+      "open": {
+        "type": "boolean",
+        "description": "Whether the modal is open (controlled)"
+      },
+      "showDescription": {
+        "type": "boolean",
+        "description": "Whether to show the description.",
+        "default": "false"
+      },
+      "showTitle": {
+        "type": "boolean",
+        "description": "Whether to show the title.",
+        "default": "true"
+      },
+      "size": {
+        "description": "Modal size preset.",
+        "default": "M"
+      },
+      "style": {
+        "description": "Inline styles"
+      },
+      "title": {
+        "type": "string",
+        "description": "Modal title text"
+      }
+    },
+    "required": [
+      "children"
+    ]
+  },
+  "codeSnippets": [
+    {
+      "id": "modal-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { Modal } from '@oneui/ui';\n\n<Modal />"
+    },
+    {
+      "id": "modal-recipe-decisions",
+      "title": "Recipe Decisions",
+      "language": "json",
+      "code": "{\n  \"component\": \"Modal\",\n  \"decisions\": [\n    \"Shape\",\n    \"Internal padding\"\n  ]\n}"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "modal"
+  ],
+  "importPath": "@jds4/oneui-react"
+}

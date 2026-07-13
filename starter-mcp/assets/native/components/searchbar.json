@@ -1,0 +1,238 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "SearchBar",
+  "generatedAt": "2026-07-09T13:07:37.405Z",
+  "machineReadable": true,
+  "status": "alpha",
+  "intentAndPurpose": {
+    "intent": "Composite search input with leading icon, clearable text, optional loading state. Filled-surface affordance, pill shape, single line."
+  },
+  "compositionRules": {
+    "requires": [],
+    "allows": [],
+    "forbids": [],
+    "childKind": "leaf"
+  },
+  "props": [
+    {
+      "name": "value",
+      "type": "string",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "defaultValue",
+      "type": "string",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "placeholder",
+      "type": "string",
+      "required": false,
+      "defaultValue": "Search…",
+      "description": ""
+    },
+    {
+      "name": "appearance",
+      "type": "'neutral' | 'primary'",
+      "required": false,
+      "defaultValue": "neutral",
+      "description": ""
+    },
+    {
+      "name": "size",
+      "type": "8 | 10 | 12",
+      "required": false,
+      "defaultValue": "10",
+      "description": ""
+    },
+    {
+      "name": "clearable",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "true",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "loading",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "onSubmit",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Native onSubmitEditing handler."
+    },
+    {
+      "name": "onChangeText",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Text-change callback."
+    },
+    {
+      "name": "backgroundColor",
+      "type": "string",
+      "required": false,
+      "description": "[error] Don't paint directly. Use `appearance` (role) + `variant`/`mode` and wrap in <Surface mode>; the brand cascade picks the right fill."
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.kb.rn.SearchBar",
+    "type": "object",
+    "properties": {
+      "value": {
+        "type": "string"
+      },
+      "defaultValue": {
+        "type": "string"
+      },
+      "placeholder": {
+        "type": "string",
+        "default": "Search…"
+      },
+      "appearance": {
+        "enum": [
+          "neutral",
+          "primary"
+        ],
+        "default": "neutral"
+      },
+      "size": {
+        "enum": [
+          8,
+          10,
+          12
+        ],
+        "default": 10
+      },
+      "clearable": {
+        "type": "boolean",
+        "default": true
+      },
+      "disabled": {
+        "type": "boolean",
+        "default": false
+      },
+      "loading": {
+        "type": "boolean",
+        "default": false
+      },
+      "onSubmit": {
+        "description": "Native onSubmitEditing handler."
+      },
+      "onChangeText": {
+        "description": "Text-change callback."
+      },
+      "backgroundColor": {
+        "type": "string",
+        "not": {
+          "anyOf": [
+            {
+              "pattern": "^#"
+            },
+            {
+              "pattern": "^rgba?\\("
+            },
+            {
+              "pattern": "^hsla?\\("
+            },
+            {
+              "pattern": "^oklch\\("
+            },
+            {
+              "pattern": "^color-mix\\("
+            },
+            {
+              "enum": [
+                "transparent",
+                "inherit"
+              ]
+            }
+          ]
+        },
+        "x-jds-suggestion": "Don't paint directly. Use `appearance` (role) + `variant`/`mode` and wrap in <Surface mode>; the brand cascade picks the right fill.",
+        "x-jds-severity": "error"
+      }
+    }
+  },
+  "tokens": {
+    "color": [
+      "neutral",
+      "primary"
+    ],
+    "surface": [
+      "subtle",
+      "moderate"
+    ],
+    "typography": [
+      "body.M",
+      "body.L"
+    ],
+    "spacing": [
+      "2XS",
+      "XS",
+      "S",
+      "M",
+      "L"
+    ],
+    "shape": [
+      "M",
+      "L",
+      "pill"
+    ],
+    "motion": [
+      "motion.duration.discreet.short"
+    ]
+  },
+  "a11y": {
+    "accessibilityRole": "none",
+    "accessibleNameSource": "aria-label",
+    "minTouchTarget": 44,
+    "honorsBoldText": true,
+    "honorsScreenReader": true
+  },
+  "renderHints": {
+    "baseElement": "TextInput",
+    "animatedOn": [
+      "focus"
+    ],
+    "honorsReduceMotion": true,
+    "readsFromSurfaceContext": true
+  },
+  "figma": {
+    "componentKey": "jds-searchbar-v4",
+    "keyHistory": [],
+    "variantProperties": {
+      "Component": "SearchBar"
+    }
+  },
+  "codeSnippets": [
+    {
+      "id": "import-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { SearchBar } from '@oneui/ui-native';\n\n<SearchBar />"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "searchbar",
+    "input",
+    "discovery",
+    "chassis"
+  ],
+  "importPath": "@oneui/ui-native"
+}

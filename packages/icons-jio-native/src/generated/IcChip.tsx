@@ -1,0 +1,13 @@
+import React from 'react';
+import Svg, { Path, type SvgProps } from 'react-native-svg';
+export function IcChip(props: SvgProps) {
+  const fill = String(props.fill ?? '#000000');
+  return (
+    <Svg viewBox="0 0 24 24" fill="none" {...props}>
+      <Path
+            fill={fill}
+            d="M15 8H9a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1m6 5a1 1 0 0 0 0-2h-1V9h1a1 1 0 1 0 0-2h-1.14A4 4 0 0 0 17 4.14V3a1 1 0 0 0-2 0v1h-2V3a1 1 0 0 0-2 0v1H9V3a1 1 0 0 0-2 0v1.14A4 4 0 0 0 4.14 7H3a1 1 0 0 0 0 2h1v2H3a1 1 0 0 0 0 2h1v2H3a1 1 0 0 0 0 2h1.14A4 4 0 0 0 7 19.86V21a1 1 0 1 0 2 0v-1h2v1a1 1 0 0 0 2 0v-1h2v1a1 1 0 0 0 2 0v-1.14A4 4 0 0 0 19.86 17H21a1 1 0 0 0 0-2h-1v-2zm-3.29 3A1.7 1.7 0 0 1 16 17.71H8A1.7 1.7 0 0 1 6.29 16V8A1.7 1.7 0 0 1 8 6.29h8A1.7 1.7 0 0 1 17.71 8z"
+          />
+    </Svg>
+  );
+}

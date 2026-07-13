@@ -1,0 +1,257 @@
+/**
+ * EditorCanvas.module.css
+ *
+ * Dot grid canvas background for the Advanced Editor.
+ * Creates a design tool-like workspace feel.
+ * Token-only styling (zero literals).
+ */
+
+.canvas {
+  flex: 1;
+  background-color: var(--Neutral-Minimal, var(--Surface-Minimal));
+  /* Subtle dot grid pattern for editor feel - 15% opacity */
+  background-image: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--Text-Low) 15%, transparent) 1px,
+    transparent 1px
+  );
+  background-size: 20px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  /* Edge-to-edge canvas so the dot grid fills the full viewport and the
+     component feels like it sits "on the artboard" rather than inside a
+     framed sub-panel. The recenter + viewport badges sit on the grid
+     directly via absolute positioning. */
+  padding: 0;
+  overflow: auto;
+  min-width: 0;
+  min-height: 0;
+}
+
+.previewCard {
+  /* Intentionally transparent — the dot-grid canvas IS the backdrop. A white
+     card here competed with the component visually and made users think the
+     card was part of the component. Platform dimension tokens and the density
+     spacing aliases below still cascade through this element so nothing
+     downstream breaks; it just isn't painted anymore. */
+  background-color: transparent;
+  border-radius: 0;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  /* Hug the component content but ensure enough room for full-width demos */
+  width: fit-content;
+  min-width: var(--Spacing-9);
+  /* Allow content to grow naturally, use canvas scrolling for overflow */
+  max-width: 100%;
+  max-height: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: width var(--Motion-Duration-Expressive-Short) var(--Motion-Easing-Standard);
+  user-select: none;
+  /* Visible so button focus halos (box-shadow outside the button) render. */
+  overflow: visible;
+}
+
+.previewCard:hover {
+  box-shadow: none;
+}
+
+.previewCard:active {
+  box-shadow: none;
+}
+
+/* Canvas in special modes: keep edge-to-edge, center vertically. */
+.canvas[data-inspector-mode],
+.canvas[data-surface-mode] {
+  align-items: center;
+  padding: 0;
+}
+
+/* Inspector mode: transparent card, centered, let the component render naturally */
+.previewCard[data-inspector] {
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+  padding: var(--Spacing-6);
+  max-width: 100%;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+}
+
+.previewCard[data-inspector]:hover {
+  box-shadow: none;
+}
+
+.previewCard[data-inspector]:active {
+  box-shadow: none;
+}
+
+/* Surface context mode: edge-to-edge surface background, text tokens cascade via [data-surface] */
+.previewCard[data-surface-context] {
+  border: none;
+  box-shadow: none;
+}
+
+.previewCard[data-surface-context]:hover {
+  box-shadow: none;
+}
+
+.previewCard[data-surface-context]:active {
+  box-shadow: none;
+}
+
+/* Surface preview mode: transparent card so surface rows show their own backgrounds */
+.previewCard[data-surface-preview] {
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  width: 100%;
+  max-width: 100%;
+}
+
+.previewCard[data-surface-preview]:hover {
+  box-shadow: none;
+}
+
+.previewCard[data-surface-preview]:active {
+  box-shadow: none;
+}
+
+/* Reset position button — bottom-left icon pill.
+   Offset uses Spacing-4 (rather than Spacing-3-5) now that the canvas has
+   zero padding: previously the button sat in the canvas's padding gutter,
+   now it floats over the dot grid directly and needs a slightly larger
+   gap from the viewport edge so it doesn't read as clipped. */
+.resetPositionButton {
+  position: absolute;
+  bottom: var(--Spacing-4);
+  left: var(--Spacing-4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--Spacing-5);
+  height: var(--Spacing-5);
+  border-radius: var(--Shape-Pill);
+  border: 1px solid var(--Border-Subtle);
+  background-color: var(--Surface-Main);
+  color: var(--Text-Medium);
+  cursor: pointer;
+  transition: all var(--Motion-Duration-Discreet-Short);
+  box-shadow: var(--Elevation-1);
+  padding: 0;
+}
+
+.resetPositionButton:hover {
+  background-color: var(--Surface-Subtle);
+  color: var(--Text-High);
+  box-shadow: var(--Elevation-2);
+}
+
+.previewTitle {
+  font-size: var(--Label-2XS-FontSize);
+  font-weight: var(--Body-FontWeight-Medium);
+  color: var(--Text-Low);
+  position: absolute;
+  top: var(--Spacing-3-5);
+  left: var(--Spacing-4);
+}
+
+.componentWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--Spacing-4-5);
+}
+
+.variantLabel {
+  font-size: var(--Label-XS-FontSize);
+  color: var(--Text-Low);
+  text-align: center;
+}
+
+/* Mode indicator badge */
+.modeBadge {
+  position: absolute;
+  top: var(--Spacing-3-5);
+  right: var(--Spacing-4);
+  padding: var(--Spacing-2) var(--Spacing-3);
+  border-radius: var(--Shape-Pill);
+  background-color: var(--Surface-Subtle);
+  font-size: var(--Label-2XS-FontSize);
+  color: var(--Text-Medium);
+}
+
+.modeBadge[data-mode='dark'] {
+  background-color: var(--Surface-Bold);
+  color: var(--Text-OnBold-High);
+}
+
+.modeBadge[data-mode='dim'] {
+  background-color: var(--Surface-Ghost);
+  color: var(--Text-High);
+}
+
+/* Zoom controls (future enhancement) */
+.zoomControls {
+  position: absolute;
+  bottom: var(--Spacing-4);
+  right: var(--Spacing-4);
+  display: flex;
+  gap: var(--Spacing-2-5);
+  background-color: var(--Surface-Main);
+  border-radius: var(--Shape-Pill);
+  padding: var(--Spacing-2-5);
+  box-shadow: var(--Elevation-1);
+}
+
+.zoomButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--Spacing-5);
+  height: var(--Spacing-5);
+  border-radius: var(--Shape-Pill);
+  border: none;
+  background-color: transparent;
+  color: var(--Text-Medium);
+  cursor: pointer;
+  transition: all var(--Motion-Duration-Discreet-Short);
+}
+
+.zoomButton:hover {
+  background-color: var(--Surface-Subtle);
+  color: var(--Text-High);
+}
+
+.zoomLevel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: var(--Spacing-6);
+  font-size: var(--Label-XS-FontSize);
+  color: var(--Text-Medium);
+}
+
+/* Viewport constraint indicator */
+.viewportBadge {
+  position: absolute;
+  top: var(--Spacing-3-5);
+  left: 50%;
+  transform: translateX(-50%);
+  padding: var(--Spacing-2) var(--Spacing-3-5);
+  border-radius: var(--Shape-Pill);
+  background-color: var(--Surface-Main);
+  color: var(--Text-Low);
+  font-size: var(--Label-3XS-FontSize);
+  font-weight: var(--Body-FontWeight-Medium);
+  font-variant-numeric: tabular-nums;
+  box-shadow: var(--Elevation-1);
+  pointer-events: none;
+}
+

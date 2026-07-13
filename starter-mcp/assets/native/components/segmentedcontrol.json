@@ -1,0 +1,298 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "SegmentedControl",
+  "generatedAt": "2026-07-09T13:07:37.434Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "Single-select segmented control. Compound API: root manages selection state (controlled via `value` or uncontrolled via `defaultValue`) and track paint; `SegmentedControl.Item` renders each segment with optional icon/CounterBadge slots. `attention` drives selected-segment prominence (bold/subtle), `trackEmphasis` drives the track container prominence, `shape` is pill or rectangular, `type` is text or icon-only."
+  },
+  "compositionRules": {
+    "requires": [
+      "children"
+    ],
+    "allows": [],
+    "forbids": [],
+    "childKind": "fixed-slots"
+  },
+  "props": [
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "required": true,
+      "description": "One or more `SegmentedControl.Item` elements."
+    },
+    {
+      "name": "value",
+      "type": "string",
+      "required": false,
+      "description": "Controlled selected value."
+    },
+    {
+      "name": "defaultValue",
+      "type": "string",
+      "required": false,
+      "description": "Uncontrolled initial selected value."
+    },
+    {
+      "name": "onValueChange",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Fires with the newly selected value."
+    },
+    {
+      "name": "size",
+      "type": "'s' | 'm' | 'l'",
+      "required": false,
+      "defaultValue": "m",
+      "description": ""
+    },
+    {
+      "name": "attention",
+      "type": "'high' | 'medium' | 'low'",
+      "required": false,
+      "defaultValue": "high",
+      "description": "Selected-segment fill prominence: high → bold, medium → subtle (item role), low → subtle (track role)."
+    },
+    {
+      "name": "appearance",
+      "type": "'auto' | 'primary' | 'secondary' | 'neutral' | 'sparkle' | 'brand-bg' | 'positive' | 'negative' | 'warning' | 'informative'",
+      "required": false,
+      "defaultValue": "auto",
+      "description": "Multi-accent role for selected segments when attention is high/medium. auto resolves to parent Surface appearance → primary."
+    },
+    {
+      "name": "shape",
+      "type": "'pill' | 'rectangular'",
+      "required": false,
+      "defaultValue": "pill",
+      "description": ""
+    },
+    {
+      "name": "equalWidth",
+      "type": "boolean",
+      "required": false,
+      "description": "Every segment shares equal width. Defaults to true for `text` type."
+    },
+    {
+      "name": "trackEmphasis",
+      "type": "'high' | 'medium' | 'low'",
+      "required": false,
+      "defaultValue": "high",
+      "description": "Track container prominence: high → minimal fill, medium → ghost + strokeMedium border, low → ghost."
+    },
+    {
+      "name": "type",
+      "type": "'text' | 'icon'",
+      "required": false,
+      "defaultValue": "text",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "style",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Additional native styles applied to the track container."
+    },
+    {
+      "name": "testID",
+      "type": "string",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "accessibilityHint",
+      "type": "string",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "aria-labelledby",
+      "type": "string",
+      "required": false,
+      "description": "Web parity only — no id resolution on native; use aria-label."
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.kb.rn.SegmentedControl",
+    "type": "object",
+    "required": [
+      "children"
+    ],
+    "properties": {
+      "children": {
+        "description": "One or more `SegmentedControl.Item` elements."
+      },
+      "value": {
+        "type": "string",
+        "description": "Controlled selected value."
+      },
+      "defaultValue": {
+        "type": "string",
+        "description": "Uncontrolled initial selected value."
+      },
+      "onValueChange": {
+        "description": "Fires with the newly selected value."
+      },
+      "size": {
+        "enum": [
+          "s",
+          "m",
+          "l"
+        ],
+        "default": "m"
+      },
+      "attention": {
+        "enum": [
+          "high",
+          "medium",
+          "low"
+        ],
+        "default": "high",
+        "description": "Selected-segment fill prominence: high → bold, medium → subtle (item role), low → subtle (track role)."
+      },
+      "appearance": {
+        "enum": [
+          "auto",
+          "primary",
+          "secondary",
+          "neutral",
+          "sparkle",
+          "brand-bg",
+          "positive",
+          "negative",
+          "warning",
+          "informative"
+        ],
+        "default": "auto",
+        "description": "Multi-accent role for selected segments when attention is high/medium. auto resolves to parent Surface appearance → primary."
+      },
+      "shape": {
+        "enum": [
+          "pill",
+          "rectangular"
+        ],
+        "default": "pill"
+      },
+      "equalWidth": {
+        "type": "boolean",
+        "description": "Every segment shares equal width. Defaults to true for `text` type."
+      },
+      "trackEmphasis": {
+        "enum": [
+          "high",
+          "medium",
+          "low"
+        ],
+        "default": "high",
+        "description": "Track container prominence: high → minimal fill, medium → ghost + strokeMedium border, low → ghost."
+      },
+      "type": {
+        "enum": [
+          "text",
+          "icon"
+        ],
+        "default": "text"
+      },
+      "disabled": {
+        "type": "boolean",
+        "default": false
+      },
+      "style": {
+        "description": "Additional native styles applied to the track container."
+      },
+      "testID": {
+        "type": "string"
+      },
+      "accessibilityHint": {
+        "type": "string"
+      },
+      "aria-label": {
+        "type": "string"
+      },
+      "aria-labelledby": {
+        "type": "string",
+        "description": "Web parity only — no id resolution on native; use aria-label."
+      }
+    }
+  },
+  "tokens": {
+    "color": [
+      "primary",
+      "secondary",
+      "neutral",
+      "sparkle",
+      "brand-bg",
+      "positive",
+      "negative",
+      "warning",
+      "informative"
+    ],
+    "surface": [
+      "minimal",
+      "ghost",
+      "bold",
+      "subtle"
+    ],
+    "shape": [
+      "pill",
+      "S"
+    ]
+  },
+  "a11y": {
+    "accessibilityRole": "none",
+    "accessibilityState": [
+      "selected",
+      "disabled"
+    ],
+    "accessibleNameSource": "aria-label",
+    "minTouchTarget": 44,
+    "honorsBoldText": false,
+    "honorsScreenReader": true
+  },
+  "renderHints": {
+    "baseElement": "View",
+    "animatedOn": [],
+    "honorsReduceMotion": false,
+    "readsFromSurfaceContext": true
+  },
+  "figma": {
+    "componentKey": "jds-segmented-control-v4",
+    "keyHistory": [],
+    "variantProperties": {
+      "Component": "SegmentedControl"
+    }
+  },
+  "codeSnippets": [
+    {
+      "id": "import-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { SegmentedControl } from '@oneui/ui-native';\n\n<SegmentedControl />"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "segmentedcontrol",
+    "navigation",
+    "selection",
+    "compound",
+    "surface-aware"
+  ],
+  "importPath": "@oneui/ui-native"
+}

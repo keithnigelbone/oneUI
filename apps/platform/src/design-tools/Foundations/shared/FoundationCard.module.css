@@ -1,0 +1,130 @@
+/**
+ * FoundationCard.module.css
+ * Token-only styling for foundation section card
+ */
+
+.card {
+  /* Geometry follows the brand Cards theme family so the studio itself
+     previews the active brand's card language. Fill stays Surface-Main —
+     tool legibility must not depend on brand surfaceTone choices. */
+  --_card-radius: var(--Card-borderRadius, var(--Shape-4-5));
+  background-color: var(--Surface-Main);
+  /* Foundation sections read as horizontally-ruled groups, not floating cards.
+     Only top/bottom (horizontal) edges are drawn — no inline (vertical) border
+     and no drop shadow, both of which rendered as vertical strokes down the
+     left/right of every table. */
+  border-block: var(--Card-borderWidth, var(--Stroke-M)) solid var(--Border-Subtle);
+  border-inline: none;
+  border-radius: var(--_card-radius);
+  box-shadow: none;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--Spacing-4) var(--Spacing-4-5);
+  border-bottom: var(--Stroke-M) solid var(--Border-Subtle);
+  border-radius: var(--_card-radius) var(--_card-radius) 0 0;
+  background-color: var(--Surface-Main);
+}
+
+.headerCollapsible {
+  cursor: pointer;
+  transition-duration: var(--Motion-Duration-Discreet-Short);
+}
+
+.headerCollapsible:hover {
+  background-color: var(--Surface-Main);
+}
+
+.headerCollapsed {
+  border-bottom: none;
+  border-radius: var(--_card-radius);
+}
+
+.headerLeft {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-3-5);
+}
+
+.icon {
+  width: var(--Spacing-4-5);
+  height: var(--Spacing-4-5);
+  color: var(--Text-Medium);
+}
+
+.titleGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-1-5);
+}
+
+.title {
+  font-size: var(--Body-M-FontSize);
+  font-weight: var(--Body-FontWeight-Medium);
+  color: var(--Text-High);
+  margin: 0;
+}
+
+.description {
+  font-size: var(--Body-S-FontSize);
+  color: var(--Text-Low);
+  margin: 0;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-3-5);
+}
+
+.collapseControl {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.collapseIconButton {
+  --IconButton-iconSize-8: var(--Spacing-5);
+}
+
+.collapseIcon {
+  transition-duration: var(--Motion-Duration-Discreet-Medium);
+}
+
+.collapseIconRotated {
+  transform: rotate(-180deg);
+}
+
+.content {
+  padding: var(--Spacing-6) var(--Spacing-4-5) var(--Spacing-4-5) var(--Spacing-4-5);
+  border-radius: 0 0 var(--_card-radius) var(--_card-radius);
+  background-color: var(--Surface-Main);
+}
+
+.contentCollapsed {
+  display: none;
+}
+
+/* When collapsed, header is the only visible part — no bottom border, full border-radius */
+.headerCollapsed {
+  border-bottom: none;
+  border-radius: var(--_card-radius);
+}
+
+/* Animation for expand/collapse */
+.contentAnimated {
+  animation: slideDown var(--Motion-Duration-Discreet-Medium) ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(calc(-1 * var(--Motion-Distance-Medium)));
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -1,0 +1,63 @@
+/**
+ * Pagination.module.css
+ *
+ * Layout surface for the Pagination row. Numbered page chips use
+ * `PaginationItem` + `PaginationItemPage.module.css`. Nav + ellipsis `IconButton`s
+ * are rendered by `Pagination.tsx` — token styling lives in those layers.
+ *
+ * Verified by: pnpm check:literals
+ */
+
+/* ROOT — navigation landmark row */
+.root {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--Pagination-gap, var(--Spacing-1));
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+.root[data-disabled] {
+  pointer-events: none;
+  opacity: var(--Pagination-disabledOpacity, var(--Opacity-Disabled, 0.5));
+}
+
+/* Inner list resets — gap inherits from .root */
+.list {
+  display: inline-flex;
+  align-items: center;
+  gap: inherit;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+/* NAV ITEM — sync IconButton radius with Pagination recipe (pill by default) */
+.navItem {
+  --IconButton-borderRadius: var(--Pagination-borderRadius, var(--Shape-Pill));
+}
+
+/* Ellipsis — decorative only; entire subtree is aria-hidden */
+.ellipsisDecorative {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+/* Polite live region — visually hidden, token-based (no raw px) */
+.srOnly {
+  position: absolute;
+  inline-size: var(--Stroke-M);
+  block-size: var(--Stroke-M);
+  padding: var(--Spacing-0);
+  margin: calc(-1 * var(--Stroke-M));
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: var(--Stroke-None);
+  border-style: solid;
+  border-color: transparent;
+}

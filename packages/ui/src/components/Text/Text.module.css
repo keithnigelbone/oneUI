@@ -1,0 +1,494 @@
+/**
+ * Text.module.css
+ *
+ * Architecture mirrors Icon: role-agnostic intermediate variables that
+ * appearance classes remap, attention selectors consume.
+ *
+ * Surface-context-aware: every colour reference resolves through brand-
+ * remapped tokens (--{Role}-High etc.) inside `[data-surface]` blocks.
+ *
+ * Token sources (V2 typography):
+ *  - --{Variant}-{Size}-FontSize / -LineHeight  (typography.css)
+ *  - --{Variant}-FontFamily                      (typography.css)
+ *  - --{Variant}-LetterSpacing / -FontOpticalSizing / -OpszVariation
+ *  - --Typography-Features-{Primary|Secondary|Code}
+ *  - --{Body|Label|Code}-FontWeight-{High|Medium|Low}
+ *  - --{Title|Headline|Display}-{Size}-FontWeight (fixed per size)
+ *
+ * Verified by: pnpm check:literals
+ */
+
+.root {
+  /* ========================================
+     INTERMEDIATE COLOUR VARIABLES — default = Neutral role
+     Remapped per appearance below. Attention selectors consume.
+     ======================================== */
+  --_text-high: var(--Neutral-High, var(--Text-High));
+  --_text-medium: var(--Neutral-Medium-Text, var(--Text-Medium));
+  --_text-low: var(--Neutral-Low, var(--Text-Low));
+  --_text-tintedA11y: var(--Neutral-TintedA11y, var(--Text-High));
+
+  /* Default font family (non-code, latin). Variant selectors override. */
+  --_text-font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+
+  /* Default size + line-height. Variant + size selectors override the
+     pair together so font-size and line-height stay in lockstep. */
+  --_text-font-size: var(--Body-M-FontSize);
+  --_text-line-height: var(--Body-M-LineHeight);
+
+  /* Default weight. Emphasis-driven roles (body/label/code) are
+     overridden by .weightHigh / .weightMedium / .weightLow.
+     Fixed-weight roles (title/headline/display) get their weight from
+     the role-specific size selector below. */
+  --_text-font-weight: var(--Body-FontWeight-High);
+
+  /* Per-role letter-spacing / optical sizing / opsz axis / OpenType features —
+     intermediate vars remapped per data-variant (matches generateTypographyCSSV2 +
+     styleToTokenCssV2 in packages/shared/src/utils/typography/v2.ts). */
+  --_text-letter-spacing: var(--Body-LetterSpacing, 0);
+  --_text-font-optical-sizing: var(--Body-FontOpticalSizing, auto);
+  --_text-font-variation-settings: var(--Body-OpszVariation, normal);
+  --_text-font-feature-settings: var(--Typography-Features-Primary, normal);
+
+  /* ========================================
+     BASE STYLES
+     ======================================== */
+  display: inline;
+  margin: 0;
+  font-family: var(--_text-font-family);
+  font-size: var(--_text-font-size);
+  line-height: var(--_text-line-height);
+  font-weight: var(--_text-font-weight);
+  color: var(--_text-high);
+  font-style: normal;
+  text-decoration: none;
+  letter-spacing: var(--_text-letter-spacing);
+  font-optical-sizing: var(--_text-font-optical-sizing);
+  font-variation-settings: var(--_text-font-variation-settings);
+  font-feature-settings: var(--_text-font-feature-settings);
+}
+
+/* When used as a block-level element (`as="p"`, `as="h1"`, etc.) the
+   browser default makes it block; we leave it. When used as the default
+   span, the inline display above already applies. */
+
+/* ========================================
+   APPEARANCE — remap intermediate colour vars
+   `neutral` is default (no class). Auto resolves to neutral in JS.
+   ======================================== */
+
+.appearancePrimary {
+  --_text-high: var(--Primary-High, var(--Text-High));
+  --_text-medium: var(--Primary-Medium-Text, var(--Text-Medium));
+  --_text-low: var(--Primary-Low, var(--Text-Low));
+  --_text-tintedA11y: var(--Primary-TintedA11y, var(--Text-High));
+}
+
+.appearanceSecondary {
+  --_text-high: var(--Secondary-High, var(--Text-High));
+  --_text-medium: var(--Secondary-Medium-Text, var(--Text-Medium));
+  --_text-low: var(--Secondary-Low, var(--Text-Low));
+  --_text-tintedA11y: var(--Secondary-TintedA11y, var(--Text-High));
+}
+
+.appearanceTertiary {
+  --_text-high: var(--Tertiary-High, var(--Text-High));
+  --_text-medium: var(--Tertiary-Medium-Text, var(--Text-Medium));
+  --_text-low: var(--Tertiary-Low, var(--Text-Low));
+  --_text-tintedA11y: var(--Tertiary-TintedA11y, var(--Text-High));
+}
+
+.appearanceQuaternary {
+  --_text-high: var(--Quaternary-High, var(--Text-High));
+  --_text-medium: var(--Quaternary-Medium-Text, var(--Text-Medium));
+  --_text-low: var(--Quaternary-Low, var(--Text-Low));
+  --_text-tintedA11y: var(--Quaternary-TintedA11y, var(--Text-High));
+}
+
+.appearanceBrandBg {
+  --_text-high: var(--Brand-Bg-High, var(--Text-High));
+  --_text-medium: var(--Brand-Bg-Medium-Text, var(--Text-Medium));
+  --_text-low: var(--Brand-Bg-Low, var(--Text-Low));
+  --_text-tintedA11y: var(--Brand-Bg-TintedA11y, var(--Text-High));
+}
+
+.appearanceSparkle {
+  --_text-high: var(--Sparkle-High, var(--Text-High));
+  --_text-medium: var(--Sparkle-Medium-Text, var(--Text-Medium));
+  --_text-low: var(--Sparkle-Low, var(--Text-Low));
+  --_text-tintedA11y: var(--Sparkle-TintedA11y, var(--Text-High));
+}
+
+.appearanceInformative {
+  --_text-high: var(--Informative-High, var(--Text-High));
+  --_text-medium: var(--Informative-Medium-Text, var(--Text-Medium));
+  --_text-low: var(--Informative-Low, var(--Text-Low));
+  --_text-tintedA11y: var(--Informative-TintedA11y, var(--Text-High));
+}
+
+.appearancePositive {
+  --_text-high: var(--Positive-High, var(--Text-High));
+  --_text-medium: var(--Positive-Medium-Text, var(--Text-Medium));
+  --_text-low: var(--Positive-Low, var(--Text-Low));
+  --_text-tintedA11y: var(--Positive-TintedA11y, var(--Text-High));
+}
+
+.appearanceNegative {
+  --_text-high: var(--Negative-High, var(--Text-High));
+  --_text-medium: var(--Negative-Medium-Text, var(--Text-Medium));
+  --_text-low: var(--Negative-Low, var(--Text-Low));
+  --_text-tintedA11y: var(--Negative-TintedA11y, var(--Text-High));
+}
+
+.appearanceWarning {
+  --_text-high: var(--Warning-High, var(--Text-High));
+  --_text-medium: var(--Warning-Medium-Text, var(--Text-Medium));
+  --_text-low: var(--Warning-Low, var(--Text-Low));
+  --_text-tintedA11y: var(--Warning-TintedA11y, var(--Text-High));
+}
+
+/* ========================================
+   ATTENTION — consume intermediate vars
+   `none` and `high` collapse to --_text-high in the state hook.
+   ======================================== */
+
+.root[data-attention='high'] {
+  color: var(--_text-high);
+}
+.root[data-attention='medium'] {
+  color: var(--_text-medium);
+}
+.root[data-attention='low'] {
+  color: var(--_text-low);
+}
+.root[data-attention='tintedA11y'] {
+  color: var(--_text-tintedA11y);
+}
+
+/* ========================================
+   WEIGHT — emphasis-driven roles only
+   Title / Headline / Display use fixed per-size weights (set in the
+   variant×size matrix below) and ignore `weight`.
+   ======================================== */
+
+.root[data-variant='body'][data-weight='high'] {
+  --_text-font-weight: var(--Body-FontWeight-High);
+}
+.root[data-variant='body'][data-weight='medium'] {
+  --_text-font-weight: var(--Body-FontWeight-Medium);
+}
+.root[data-variant='body'][data-weight='low'] {
+  --_text-font-weight: var(--Body-FontWeight-Low);
+}
+
+.root[data-variant='label'][data-weight='high'] {
+  --_text-font-weight: var(--Label-FontWeight-High);
+}
+.root[data-variant='label'][data-weight='medium'] {
+  --_text-font-weight: var(--Label-FontWeight-Medium);
+}
+.root[data-variant='label'][data-weight='low'] {
+  --_text-font-weight: var(--Label-FontWeight-Low);
+}
+
+.root[data-variant='code'][data-weight='high'] {
+  --_text-font-weight: var(--Code-FontWeight-High);
+}
+.root[data-variant='code'][data-weight='medium'] {
+  --_text-font-weight: var(--Code-FontWeight-Medium);
+}
+.root[data-variant='code'][data-weight='low'] {
+  --_text-font-weight: var(--Code-FontWeight-Low);
+}
+
+/* ========================================
+   FONT FAMILY — per role
+   `language="others"` swaps to the script slot so brands can ship
+   Devanagari / multi-script overrides without touching component code.
+   Code role always uses the monospace slot regardless of language.
+   ======================================== */
+
+.root[data-variant='body'] {
+  --_text-font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  --_text-letter-spacing: var(--Body-LetterSpacing, 0);
+  --_text-font-optical-sizing: var(--Body-FontOpticalSizing, auto);
+  --_text-font-variation-settings: var(--Body-OpszVariation, normal);
+  --_text-font-feature-settings: var(--Typography-Features-Primary, normal);
+}
+
+.root[data-variant='label'] {
+  --_text-font-family: var(--Label-FontFamily, var(--Typography-Font-Text));
+  --_text-letter-spacing: var(--Label-LetterSpacing, 0);
+  --_text-font-optical-sizing: var(--Label-FontOpticalSizing, auto);
+  --_text-font-variation-settings: var(--Label-OpszVariation, normal);
+  --_text-font-feature-settings: var(--Typography-Features-Primary, normal);
+}
+
+.root[data-variant='title'] {
+  --_text-font-family: var(--Title-FontFamily, var(--Typography-Font-Text));
+  --_text-letter-spacing: var(--Title-LetterSpacing, 0);
+  --_text-font-optical-sizing: var(--Title-FontOpticalSizing, auto);
+  --_text-font-variation-settings: var(--Title-OpszVariation, normal);
+  --_text-font-feature-settings: var(--Typography-Features-Secondary, normal);
+}
+
+.root[data-variant='headline'] {
+  --_text-font-family: var(--Headline-FontFamily, var(--Typography-Font-Heading));
+  --_text-letter-spacing: var(--Headline-LetterSpacing, 0);
+  --_text-font-optical-sizing: var(--Headline-FontOpticalSizing, auto);
+  --_text-font-variation-settings: var(--Headline-OpszVariation, normal);
+  --_text-font-feature-settings: var(--Typography-Features-Secondary, normal);
+}
+
+.root[data-variant='display'] {
+  --_text-font-family: var(--Display-FontFamily, var(--Typography-Font-Heading));
+  --_text-letter-spacing: var(--Display-LetterSpacing, 0);
+  --_text-font-optical-sizing: var(--Display-FontOpticalSizing, auto);
+  --_text-font-variation-settings: var(--Display-OpszVariation, normal);
+  --_text-font-feature-settings: var(--Typography-Features-Secondary, normal);
+}
+
+.root[data-variant='code'] {
+  --_text-font-family: var(--Typography-Font-Code);
+  --_text-letter-spacing: var(--Code-LetterSpacing, 0);
+  --_text-font-optical-sizing: var(--Code-FontOpticalSizing, auto);
+  --_text-font-variation-settings: var(--Code-OpszVariation, normal);
+  --_text-font-feature-settings: var(--Typography-Features-Code, normal);
+}
+
+.root[data-language='others']:not([data-variant='code']) {
+  --_text-font-family: var(--Typography-Font-Script, var(--Typography-Font-Text));
+}
+
+/* ========================================
+   VARIANT × SIZE — font-size + line-height + (fixed) font-weight
+
+   Only emit rules for combinations the V2 token table actually defines.
+   Invalid combinations cascade through to the variant default below.
+   ======================================== */
+
+/* ---------- DISPLAY — only L / M / S ---------- */
+.root[data-variant='display'] {
+  --_text-font-size: var(--Display-M-FontSize);
+  --_text-line-height: var(--Display-M-LineHeight);
+  --_text-font-weight: var(--Display-M-FontWeight);
+}
+.root[data-variant='display'][data-size='L'] {
+  --_text-font-size: var(--Display-L-FontSize);
+  --_text-line-height: var(--Display-L-LineHeight);
+  --_text-font-weight: var(--Display-L-FontWeight);
+}
+.root[data-variant='display'][data-size='M'] {
+  --_text-font-size: var(--Display-M-FontSize);
+  --_text-line-height: var(--Display-M-LineHeight);
+  --_text-font-weight: var(--Display-M-FontWeight);
+}
+.root[data-variant='display'][data-size='S'] {
+  --_text-font-size: var(--Display-S-FontSize);
+  --_text-line-height: var(--Display-S-LineHeight);
+  --_text-font-weight: var(--Display-S-FontWeight);
+}
+
+/* ---------- HEADLINE — only L / M / S ---------- */
+.root[data-variant='headline'] {
+  --_text-font-size: var(--Headline-M-FontSize);
+  --_text-line-height: var(--Headline-M-LineHeight);
+  --_text-font-weight: var(--Headline-M-FontWeight);
+}
+.root[data-variant='headline'][data-size='L'] {
+  --_text-font-size: var(--Headline-L-FontSize);
+  --_text-line-height: var(--Headline-L-LineHeight);
+  --_text-font-weight: var(--Headline-L-FontWeight);
+}
+.root[data-variant='headline'][data-size='M'] {
+  --_text-font-size: var(--Headline-M-FontSize);
+  --_text-line-height: var(--Headline-M-LineHeight);
+  --_text-font-weight: var(--Headline-M-FontWeight);
+}
+.root[data-variant='headline'][data-size='S'] {
+  --_text-font-size: var(--Headline-S-FontSize);
+  --_text-line-height: var(--Headline-S-LineHeight);
+  --_text-font-weight: var(--Headline-S-FontWeight);
+}
+
+/* ---------- TITLE — only L / M / S ---------- */
+.root[data-variant='title'] {
+  --_text-font-size: var(--Title-M-FontSize);
+  --_text-line-height: var(--Title-M-LineHeight);
+  --_text-font-weight: var(--Title-M-FontWeight);
+}
+.root[data-variant='title'][data-size='L'] {
+  --_text-font-size: var(--Title-L-FontSize);
+  --_text-line-height: var(--Title-L-LineHeight);
+  --_text-font-weight: var(--Title-L-FontWeight);
+}
+.root[data-variant='title'][data-size='M'] {
+  --_text-font-size: var(--Title-M-FontSize);
+  --_text-line-height: var(--Title-M-LineHeight);
+  --_text-font-weight: var(--Title-M-FontWeight);
+}
+.root[data-variant='title'][data-size='S'] {
+  --_text-font-size: var(--Title-S-FontSize);
+  --_text-line-height: var(--Title-S-LineHeight);
+  --_text-font-weight: var(--Title-S-FontWeight);
+}
+
+/* ---------- BODY — exposes 2XS / XS / S / M / L (5 sizes) from the token table ---------- */
+.root[data-variant='body'] {
+  --_text-font-size: var(--Body-M-FontSize);
+  --_text-line-height: var(--Body-M-LineHeight);
+}
+.root[data-variant='body'][data-size='L'] {
+  --_text-font-size: var(--Body-L-FontSize);
+  --_text-line-height: var(--Body-L-LineHeight);
+}
+.root[data-variant='body'][data-size='M'] {
+  --_text-font-size: var(--Body-M-FontSize);
+  --_text-line-height: var(--Body-M-LineHeight);
+}
+.root[data-variant='body'][data-size='S'] {
+  --_text-font-size: var(--Body-S-FontSize);
+  --_text-line-height: var(--Body-S-LineHeight);
+}
+.root[data-variant='body'][data-size='XS'] {
+  --_text-font-size: var(--Body-XS-FontSize);
+  --_text-line-height: var(--Body-XS-LineHeight);
+}
+.root[data-variant='body'][data-size='2XS'] {
+  --_text-font-size: var(--Body-2XS-FontSize);
+  --_text-line-height: var(--Body-2XS-LineHeight);
+}
+
+/* ---------- LABEL — exposes L → 3XS (6 sizes) ---------- */
+.root[data-variant='label'] {
+  --_text-font-size: var(--Label-M-FontSize);
+  --_text-line-height: var(--Label-M-LineHeight);
+}
+.root[data-variant='label'][data-size='L'] {
+  --_text-font-size: var(--Label-L-FontSize);
+  --_text-line-height: var(--Label-L-LineHeight);
+}
+.root[data-variant='label'][data-size='M'] {
+  --_text-font-size: var(--Label-M-FontSize);
+  --_text-line-height: var(--Label-M-LineHeight);
+}
+.root[data-variant='label'][data-size='S'] {
+  --_text-font-size: var(--Label-S-FontSize);
+  --_text-line-height: var(--Label-S-LineHeight);
+}
+.root[data-variant='label'][data-size='XS'] {
+  --_text-font-size: var(--Label-XS-FontSize);
+  --_text-line-height: var(--Label-XS-LineHeight);
+}
+.root[data-variant='label'][data-size='2XS'] {
+  --_text-font-size: var(--Label-2XS-FontSize);
+  --_text-line-height: var(--Label-2XS-LineHeight);
+}
+.root[data-variant='label'][data-size='3XS'] {
+  --_text-font-size: var(--Label-3XS-FontSize);
+  --_text-line-height: var(--Label-3XS-LineHeight);
+}
+
+/* ---------- CODE — M / S / XS / 2XS / 3XS (5 sizes) ---------- */
+.root[data-variant='code'] {
+  --_text-font-size: var(--Code-M-FontSize);
+  --_text-line-height: var(--Code-M-LineHeight);
+}
+.root[data-variant='code'][data-size='M'] {
+  --_text-font-size: var(--Code-M-FontSize);
+  --_text-line-height: var(--Code-M-LineHeight);
+}
+.root[data-variant='code'][data-size='S'] {
+  --_text-font-size: var(--Code-S-FontSize);
+  --_text-line-height: var(--Code-S-LineHeight);
+}
+.root[data-variant='code'][data-size='XS'] {
+  --_text-font-size: var(--Code-XS-FontSize);
+  --_text-line-height: var(--Code-XS-LineHeight);
+}
+.root[data-variant='code'][data-size='2XS'] {
+  --_text-font-size: var(--Code-2XS-FontSize);
+  --_text-line-height: var(--Code-2XS-LineHeight);
+}
+.root[data-variant='code'][data-size='3XS'] {
+  --_text-font-size: var(--Code-3XS-FontSize);
+  --_text-line-height: var(--Code-3XS-LineHeight);
+}
+
+/* ========================================
+   DECORATIONS — italic / underline / strikethrough
+   Combine via separate text-decoration-line declarations so both can
+   coexist without a shorthand override war.
+   ======================================== */
+
+.root[data-italic='true'] {
+  font-style: italic;
+}
+
+.root[data-underline='true'] {
+  text-decoration-line: underline;
+}
+.root[data-strikethrough='true'] {
+  text-decoration-line: line-through;
+}
+.root[data-underline='true'][data-strikethrough='true'] {
+  text-decoration-line: underline line-through;
+}
+
+/* ========================================
+   ALIGNMENT — block-only effect; works when `as` resolves to a block tag
+   ======================================== */
+
+.root[data-align='left'] {
+  text-align: left;
+}
+.root[data-align='center'] {
+  text-align: center;
+}
+.root[data-align='right'] {
+  text-align: right;
+}
+
+/* ========================================
+   MAX LINES — multi-line clamp with ellipsis
+   `--_text-max-lines` is set inline by Text.tsx when `maxLines` is given.
+   The `data-max-lines` attribute controls whether the clamp engages so
+   we don't pay layout cost for the default unbounded case.
+   ======================================== */
+
+.root[data-max-lines] {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: var(--_text-max-lines, 1);
+  line-clamp: var(--_text-max-lines, 1);
+  overflow: hidden;
+  word-break: break-word;
+  /* Fallback: when `as="span"` is rendered inline, the line-clamp box
+     model needs a block-level container. The webkit-box display above
+     handles this; consumers wanting span-inline truncation should pass
+     `as="div"` or `as="p"`. */
+}
+
+/* Single-line clamp: prefer the cheaper `text-overflow: ellipsis` path. */
+.root[data-max-lines='1'] {
+  white-space: nowrap;
+  display: inline-block;
+  max-width: 100%;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 1;
+}
+
+/* ========================================
+   LINK SLOT — JDSText `_linkText-slot`
+   Rendered after the text content. No layout — inherits inline flow.
+   ======================================== */
+
+.linkSlot {
+  display: inline;
+}
+
+/**
+ * ========================================
+ * IMPORTANT: NO LITERALS IN THIS FILE
+ * ========================================
+ */

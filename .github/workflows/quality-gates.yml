@@ -1,0 +1,189 @@
+name: Quality Gates
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs:
+  gates:
+    name: Design System Quality Gates
+    runs-on: [self-hosted, linux]
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.15.9
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      # ──────────────────────────────────────────────────────────────────────
+      # Design-system invariants (cheap, fail-fast).
+      # ──────────────────────────────────────────────────────────────────────
+
+      - name: check:literals — no hard-coded colors / pixels / values
+        run: pnpm check:literals
+
+      - name: check:shape-tokens — no new t-shirt shape tokens (ratchet)
+        # Legacy --Shape-M / tokens.shape.m / NativeShape.XS names are only
+        # emitted as a read-side compat layer; new ones must not appear. The
+        # allowlist in scripts/shape-token-allowlist.json only ratchets down.
+        run: pnpm check:shape-tokens
+
+      - name: check:flutter-hygiene — no tracked .dart_tool/ or lockfile SDK downgrades
+        # Blocks committed .dart_tool/ artifacts and pubspec.lock SDK pins below
+        # Dart 3.10 on canonical Flutter lockfiles. See scripts/check-flutter-hygiene.ts.
+        run: pnpm check:flutter-hygiene
+
+      - name: validate:tokens — every emitted token resolves
+        # Catches missing/dangling token references in @oneui/tokens before
+        # they break component CSS at runtime.
+        run: pnpm validate:tokens
+
+      - name: check:ai-vocab — agent prompt uses unified surface vocabulary
+        # Blocks the AI-facing system prompt (and docs, in --scope=all) from
+        # teaching the deprecated `fg-*`/`bg-*` modes or `--{Role}-FG-*` /
+        # `--{Role}-BG-*` tokens. See scripts/check-ai-vocab.ts.
+        run: pnpm check:ai-vocab
+
+      - name: check:parity — Web ↔ Native token parity (report only)
+        # Reports divergence between web (CSS Module) and native (Tokens
+        # object) implementations. Currently REPORT-ONLY because of two
+        # known gaps that pre-date this gate (Accordion native missing,
+        # Materials web missing). Flip to blocking once those land or are
+        # added to an exempt list. See scripts/check-parity.ts.
+        run: pnpm check:parity
+        continue-on-error: true
+
+      - name: lint:designmd — DesignMD lint hermetic check
+        # Runs the design.md linter over committed fixtures so the format
+        # stays valid even before Convex-resolved exports are checked.
+        run: pnpm lint:designmd
+
+      - name: designmd:export:check — committed DESIGN.md is fresh vs Convex
+        # Diffs docs/exports/*.DESIGN.md against a fresh export from Convex.
+        # Fails if seed/skills/foundations have changed but the snapshots
+        # haven't been regenerated and committed.
+        run: pnpm designmd:export:check
+        env:
+          NEXT_PUBLIC_CONVEX_URL: ${{ secrets.NEXT_PUBLIC_CONVEX_URL }}
+
+      - name: check:metadata — ComponentMeta matches TypeScript props interface
+        # Blocks drift between *.meta.ts and *Props TypeScript interfaces
+        # so docs / editor / AI context stay in sync with the real public API.
+        # Covers compound components by unioning all *Props in the shared file.
+        # RFC 0001 Phase D: the slot-naming rule is now a hard error — any
+        # legacy `*Slot`-suffixed prop or meta entry fails the gate.
+        run: pnpm check:metadata
+
+      - name: test:a11y — adoption-critical accessibility fixtures
+        # Runs the focused *.a11y.test.tsx suite for controls that commonly
+        # fail during external adoption: icon-only actions, tabs, searchable
+        # selects, segmented controls, dialogs, pagination, and tooltip pairs.
+        run: pnpm test:a11y
+
+      - name: check:support-matrix — every story-bearing component ships story + test + meta + tokens + recipe + schema
+        # Blocks the situation where a component has Storybook coverage but is
+        # missing the supporting artifacts that the docs / editor / AI tooling
+        # assumes (test file, token manifest, recipe, registered meta).
+        run: pnpm check:support-matrix
+
+      - name: check:jio-alpha-catalog — Jio web alpha catalog stays aligned
+        # Keeps the first publishable web alpha scope deterministic for docs,
+        # Storybook, package consumers, and AI component generation.
+        run: pnpm check:jio-alpha-catalog
+
+      - name: check:machine-docs-fresh — generated component docs are up to date
+        # Re-runs scripts/generate-machine-docs.ts into a temp directory and
+        # diffs against the committed JSON / MD output under
+        # docs/components/generated and apps/platform/src/generated/component-docs.
+        # Drift means a contributor changed a component meta / props interface
+        # but forgot to run `pnpm docs:machine` and commit the result.
+        run: pnpm check:machine-docs-fresh
+
+      - name: check:layers — CSS @layer order is correct
+        run: pnpm check:layers
+
+      - name: check:oneui-barrel — no imports from the @oneui/ui root barrel
+        # Enforces the Phase 2 path-based-imports rule so Next.js tree-shaking
+        # stays effective and `optimizePackageImports` stays enabled.
+        run: pnpm check:oneui-barrel
+
+      # ──────────────────────────────────────────────────────────────────────
+      # Type + lint gates.
+      # ──────────────────────────────────────────────────────────────────────
+
+      - name: typecheck
+        run: pnpm typecheck
+
+      # Convex is NOT covered by `turbo typecheck` (the @oneui/convex package has
+      # no typecheck script), which is how the `args is not defined` prod bug and
+      # the experienceRuns schema drift reached production unnoticed. This gate
+      # typechecks Convex functions against the committed _generated schema types
+      # WITHOUT needing a deployment.
+      #
+      # REPORT-ONLY for now: there is pre-existing drift in experienceRuns.ts
+      # (references an `experienceRuns` table absent from schema.ts). Once that is
+      # fixed, drop `continue-on-error` so this becomes a hard, deploy-blocking gate.
+      - name: typecheck:convex — Convex functions match schema (report-only)
+        run: pnpm --filter @oneui/convex exec tsc --noEmit
+        continue-on-error: true
+
+      - name: lint
+        run: pnpm lint
+
+      # ──────────────────────────────────────────────────────────────────────
+      # Unit tests — scoped to the design system packages. The platform app
+      # and Convex package are exercised separately (deploy-preview workflow).
+      # ──────────────────────────────────────────────────────────────────────
+
+      - name: test (@oneui/shared + @oneui/ui)
+        run: |
+          pnpm --filter @oneui/shared test -- --run
+          pnpm --filter @oneui/ui test -- --run
+
+      # ──────────────────────────────────────────────────────────────────────
+      # Brand CSS pipeline performance benchmark.
+      #
+      # Baseline (`perf-baseline.json`) is generated locally and committed —
+      # see `pnpm bench:pipeline --bless`. CI runs on `ubuntu-latest`, which
+      # has different hardware characteristics than a developer mac, so the
+      # gate uses a generous tolerance. Re-bless on main when intentional
+      # perf changes land (`pnpm bench:pipeline --bless && commit`).
+      # ──────────────────────────────────────────────────────────────────────
+
+      - name: bench:pipeline — measure brand CSS pipeline p50/p95/p99
+        run: pnpm bench:pipeline --iterations=300
+
+      - name: check:perf — compare against committed baseline (blocking)
+        run: pnpm check:perf --tolerance=25
+
+      - name: Upload perf-current.json
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: perf-current
+          path: perf-current.json
+          retention-days: 30
+
+      # ──────────────────────────────────────────────────────────────────────
+      # Informational: component-file-standard audit (doesn't fail the build
+      # yet — see scripts/audit-component-files.ts for the exemption list).
+      # ──────────────────────────────────────────────────────────────────────
+
+      - name: audit:component-files (report only)
+        run: pnpm audit:component-files
+        continue-on-error: true

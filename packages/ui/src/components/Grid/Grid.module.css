@@ -1,0 +1,34 @@
+/**
+ * Grid — CSS Grid track definition.
+ *
+ * Columns and gap default to --Grid-Columns / --Grid-Gutter (per-platform).
+ * Mobile-first responsive cascade: each breakpoint inherits from the smaller
+ * one unless explicitly overridden via the --grid-columns-* inline vars set
+ * by the Grid component.
+ */
+
+.grid {
+  --_grid-columns-s:  var(--grid-columns-s,  var(--grid-columns, var(--Grid-Columns)));
+  --_grid-columns-m:  var(--grid-columns-m,  var(--_grid-columns-s));
+  --_grid-columns-ml: var(--grid-columns-ml, var(--_grid-columns-m));
+  --_grid-columns-l:  var(--grid-columns-l,  var(--_grid-columns-ml));
+  --_grid-columns-xl: var(--grid-columns-xl, var(--_grid-columns-l));
+
+  display: grid;
+  grid-template-columns: repeat(var(--_grid-columns-s), 1fr);
+  gap: var(--_grid-gap, var(--Grid-Gutter));
+}
+
+/*
+ * Responsive column cascade keyed on the unified data-Breakpoint="S|M|L" attribute.
+ * The internal --_grid-columns-{ml,xl} rungs are retained as fallback links so a
+ * Grid setting columnsMl/columnsXl inline props still chains into the L tier
+ * (every viewport >=991px resolves to L). Mirror in Column.module.css + responsive.ts.
+ */
+[data-Breakpoint="M"] .grid {
+  grid-template-columns: repeat(var(--_grid-columns-m), 1fr);
+}
+
+[data-Breakpoint="L"] .grid {
+  grid-template-columns: repeat(var(--_grid-columns-l), 1fr);
+}

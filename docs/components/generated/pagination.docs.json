@@ -1,0 +1,369 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Pagination",
+  "generatedAt": "2026-01-01T00:00:00.000Z",
+  "machineReadable": true,
+  "intentAndPurpose": {
+    "intent": {
+      "value": "Composite numbered page navigator. Renders prev/next + first/last buttons, a windowed list of page numbers, and ellipses where gaps exist — the standard MUI / shadcn / Ant Design pattern, adapted to OneUI tokens, surface-context-awareness, and the high/medium/low attention vocabulary. Uncontrolled by default (`defaultPage`); pass `page` + `onPageChange` for controlled mode. WAI-ARIA navigation landmark with roving-tabindex keyboard navigation and a polite live region announcing page changes.",
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "taskContexts": {
+      "value": [
+        "pagination",
+        "pages",
+        "navigation",
+        "navigator",
+        "page-numbers",
+        "next",
+        "previous",
+        "list",
+        "table",
+        "carousel"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "sentiments": {
+      "value": [
+        "neutral"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "compositionRules": {
+    "requires": {
+      "value": [],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "allows": {
+      "value": [],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "forbids": {
+      "value": [],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "high",
+        "useWhen": {
+          "value": [
+            "High (bold chip)"
+          ],
+          "attribution": {
+            "source": "inferred"
+          }
+        }
+      },
+      {
+        "name": "medium",
+        "useWhen": {
+          "value": [
+            "Medium (subtle chip)"
+          ],
+          "attribution": {
+            "source": "inferred"
+          }
+        }
+      },
+      {
+        "name": "low",
+        "useWhen": {
+          "value": [
+            "Low (ghost chip)"
+          ],
+          "attribution": {
+            "source": "inferred"
+          }
+        }
+      }
+    ]
+  },
+  "relationshipsAndDependencies": {
+    "related": {
+      "value": [],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "contextSignals": {
+    "density": {
+      "value": [
+        "compact",
+        "default",
+        "open"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "modality": {
+      "value": [
+        "desktop",
+        "mobile"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "brand": {
+      "value": [
+        "theme-scope aware",
+        "recipe-driven"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "mode": {
+      "value": [
+        "light",
+        "dark",
+        "surface-context"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "observabilityHooks": {
+    "track": {
+      "value": [],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "health": {
+      "value": [
+        "a11y_violations"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "props": [
+    {
+      "name": "totalPages",
+      "type": "number",
+      "required": true,
+      "description": "Total number of pages. Required. Values < 1 render nothing."
+    },
+    {
+      "name": "appearance",
+      "type": "PaginationAppearance",
+      "required": false,
+      "description": "Multi-accent appearance role for page chips and nav controls. `'auto'` resolves to `'primary'`."
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": false,
+      "description": "Accessible label for the navigation landmark. Default `\"Pagination\"`."
+    },
+    {
+      "name": "attention",
+      "type": "PaginationAttention",
+      "required": false,
+      "description": "Emphasis level for the **selected** page chip only — `high` (bold fill), `medium` (tinted fill), `low` (ghost). Inactive page chips stay ghost with high-emphasis numeral colour; nav + ellipsis stay ghost + low attention. Default `'medium'`."
+    },
+    {
+      "name": "boundaryCount",
+      "type": "number",
+      "required": false,
+      "description": "Number of always-visible page numbers at the very start AND the very end of the sequence. Default `1` (i.e. always render page 1 and page N). Set to `0` to hide them."
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "required": false,
+      "description": "Additional class name applied to the root."
+    },
+    {
+      "name": "data-testid",
+      "type": "string",
+      "required": false,
+      "description": "Test ID."
+    },
+    {
+      "name": "defaultPage",
+      "type": "number",
+      "required": false,
+      "description": "Default current page (1-based) when uncontrolled. Default `1`."
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "required": false,
+      "description": "Disable the entire control."
+    },
+    {
+      "name": "onPageChange",
+      "type": "(page: number) => void",
+      "required": false,
+      "description": "Fires whenever the active page changes (click, keyboard, controlled update)."
+    },
+    {
+      "name": "page",
+      "type": "number",
+      "required": false,
+      "description": "Controlled current page (1-based)."
+    },
+    {
+      "name": "showFirstLast",
+      "type": "boolean",
+      "required": false,
+      "description": "Show the \"first page\" / \"last page\" jump buttons. Default `false`."
+    },
+    {
+      "name": "showPrevNext",
+      "type": "boolean",
+      "required": false,
+      "description": "Show the \"previous page\" arrow button. Default `true`."
+    },
+    {
+      "name": "siblingCount",
+      "type": "number",
+      "required": false,
+      "description": "Number of always-visible page numbers immediately around the current page. Default `1` (i.e. show one page on each side of `current`)."
+    },
+    {
+      "name": "size",
+      "type": "PaginationSize",
+      "required": false,
+      "description": "T-shirt size for page chips, nav `IconButton`s, and ellipsis. Default `'M'`."
+    },
+    {
+      "name": "style",
+      "type": "CSSProperties",
+      "required": false,
+      "description": "Inline styles."
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.docs.pagination",
+    "type": "object",
+    "properties": {
+      "totalPages": {
+        "type": "number",
+        "description": "Total number of pages. Required. Values < 1 render nothing."
+      },
+      "appearance": {
+        "enum": [
+          "auto",
+          "primary",
+          "secondary",
+          "neutral",
+          "sparkle",
+          "brand-bg",
+          "positive",
+          "negative",
+          "warning",
+          "informative"
+        ],
+        "description": "Multi-accent appearance role for page chips and nav controls. `'auto'` resolves to `'primary'`."
+      },
+      "aria-label": {
+        "type": "string",
+        "description": "Accessible label for the navigation landmark. Default `\"Pagination\"`."
+      },
+      "attention": {
+        "enum": [
+          "high",
+          "medium",
+          "low"
+        ],
+        "description": "Emphasis level for the **selected** page chip only — `high` (bold fill), `medium` (tinted fill), `low` (ghost). Inactive page chips stay ghost with high-emphasis numeral colour; nav + ellipsis stay ghost + low attention. Default `'medium'`."
+      },
+      "boundaryCount": {
+        "type": "number",
+        "description": "Number of always-visible page numbers at the very start AND the very end of the sequence. Default `1` (i.e. always render page 1 and page N). Set to `0` to hide them."
+      },
+      "className": {
+        "type": "string",
+        "description": "Additional class name applied to the root."
+      },
+      "data-testid": {
+        "type": "string",
+        "description": "Test ID."
+      },
+      "defaultPage": {
+        "type": "number",
+        "description": "Default current page (1-based) when uncontrolled. Default `1`."
+      },
+      "disabled": {
+        "type": "boolean",
+        "description": "Disable the entire control."
+      },
+      "onPageChange": {
+        "description": "Fires whenever the active page changes (click, keyboard, controlled update)."
+      },
+      "page": {
+        "type": "number",
+        "description": "Controlled current page (1-based)."
+      },
+      "showFirstLast": {
+        "type": "boolean",
+        "description": "Show the \"first page\" / \"last page\" jump buttons. Default `false`."
+      },
+      "showPrevNext": {
+        "type": "boolean",
+        "description": "Show the \"previous page\" arrow button. Default `true`."
+      },
+      "siblingCount": {
+        "type": "number",
+        "description": "Number of always-visible page numbers immediately around the current page. Default `1` (i.e. show one page on each side of `current`)."
+      },
+      "size": {
+        "enum": [
+          "S",
+          "M",
+          "L"
+        ],
+        "description": "T-shirt size for page chips, nav `IconButton`s, and ellipsis. Default `'M'`."
+      },
+      "style": {
+        "description": "Inline styles."
+      }
+    },
+    "required": [
+      "totalPages"
+    ]
+  },
+  "codeSnippets": [
+    {
+      "id": "pagination-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { Pagination } from '@oneui/ui';\n\n<Pagination />"
+    },
+    {
+      "id": "pagination-recipe-decisions",
+      "title": "Recipe Decisions",
+      "language": "json",
+      "code": "{\n  \"component\": \"Pagination\",\n  \"decisions\": [\n    \"Shape\",\n    \"Default attention (selected page)\"\n  ]\n}"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "pagination"
+  ],
+  "generatedMarkdown": "# Pagination Machine-Readable Documentation\n\n_Generated from source metadata. Do not edit manually._\n\n## Intent and Purpose\n\n- **Intent**: Composite numbered page navigator. Renders prev/next + first/last buttons, a windowed list of page numbers, and ellipses where gaps exist — the standard MUI / shadcn / Ant Design pattern, adapted to OneUI tokens, surface-context-awareness, and the high/medium/low attention vocabulary. Uncontrolled by default (`defaultPage`); pass `page` + `onPageChange` for controlled mode. WAI-ARIA navigation landmark with roving-tabindex keyboard navigation and a polite live region announcing page changes.\n- **Task contexts**: pagination, pages, navigation, navigator, page-numbers, next, previous, list, table, carousel\n- **Sentiments**: neutral\n\n## Composition Rules\n\n- **Requires**: \n- **Allows**: \n- **Forbids**: \n\n## Variant Logic\n\n- **high**: use when High (bold chip)\n- **medium**: use when Medium (subtle chip)\n- **low**: use when Low (ghost chip)\n\n## Relationships and Dependencies\n\n- **Related**: \n- **Escalates to**: -\n- **Degrades to**: -\n- **Groups with**: -\n\n## Context Signals\n\n- **Density**: compact, default, open\n- **Modality**: desktop, mobile\n- **Brand**: theme-scope aware, recipe-driven\n- **Mode**: light, dark, surface-context\n\n## Observability Hooks\n\n- **Track**: \n- **Health**: a11y_violations\n\n## Props\n\n| Prop | Type | Required | Default | Description |\n| --- | --- | --- | --- | --- |\n| `totalPages` | `number` | Yes | - | Total number of pages. Required. Values < 1 render nothing. |\n| `appearance` | `PaginationAppearance` | No | - | Multi-accent appearance role for page chips and nav controls. `'auto'` resolves to `'primary'`. |\n| `aria-label` | `string` | No | - | Accessible label for the navigation landmark. Default `\"Pagination\"`. |\n| `attention` | `PaginationAttention` | No | - | Emphasis level for the **selected** page chip only — `high` (bold fill), `medium` (tinted fill), `low` (ghost). Inactive page chips stay ghost with high-emphasis numeral colour; nav + ellipsis stay ghost + low attention. Default `'medium'`. |\n| `boundaryCount` | `number` | No | - | Number of always-visible page numbers at the very start AND the very end of the sequence. Default `1` (i.e. always render page 1 and page N). Set to `0` to hide them. |\n| `className` | `string` | No | - | Additional class name applied to the root. |\n| `data-testid` | `string` | No | - | Test ID. |\n| `defaultPage` | `number` | No | - | Default current page (1-based) when uncontrolled. Default `1`. |\n| `disabled` | `boolean` | No | - | Disable the entire control. |\n| `onPageChange` | `(page: number) => void` | No | - | Fires whenever the active page changes (click, keyboard, controlled update). |\n| `page` | `number` | No | - | Controlled current page (1-based). |\n| `showFirstLast` | `boolean` | No | - | Show the \"first page\" / \"last page\" jump buttons. Default `false`. |\n| `showPrevNext` | `boolean` | No | - | Show the \"previous page\" arrow button. Default `true`. |\n| `siblingCount` | `number` | No | - | Number of always-visible page numbers immediately around the current page. Default `1` (i.e. show one page on each side of `current`). |\n| `size` | `PaginationSize` | No | - | T-shirt size for page chips, nav `IconButton`s, and ellipsis. Default `'M'`. |\n| `style` | `CSSProperties` | No | - | Inline styles. |\n\n## Slots\n\n| Slot | Types | Tokens |\n| --- | --- | --- |\n\n\n## Code Snippets\n\n### Basic Usage\n\n```tsx\nimport { Pagination } from '@oneui/ui';\n\n<Pagination />\n```\n\n### Recipe Decisions\n\n```json\n{\n  \"component\": \"Pagination\",\n  \"decisions\": [\n    \"Shape\",\n    \"Default attention (selected page)\"\n  ]\n}\n```\n"
+}

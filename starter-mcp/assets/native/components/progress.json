@@ -1,0 +1,146 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Progress",
+  "generatedAt": "2026-07-09T13:07:37.413Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "Linear progress bar. Determinate when `value` is set (exposes accessibilityValue); indeterminate (busy, animated) when `value` is omitted. Three sizes (small / medium / large). Honours reduce-motion. No appearance prop — single-role fill over a subtle rail."
+  },
+  "compositionRules": {
+    "requires": [],
+    "allows": [],
+    "forbids": [],
+    "childKind": "leaf"
+  },
+  "props": [
+    {
+      "name": "value",
+      "type": "number",
+      "required": false,
+      "description": "Current value. Omit for indeterminate (busy) mode."
+    },
+    {
+      "name": "min",
+      "type": "number",
+      "required": false,
+      "defaultValue": "0",
+      "description": ""
+    },
+    {
+      "name": "max",
+      "type": "number",
+      "required": false,
+      "defaultValue": "100",
+      "description": ""
+    },
+    {
+      "name": "size",
+      "type": "'small' | 'medium' | 'large'",
+      "required": false,
+      "defaultValue": "medium",
+      "description": ""
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": false,
+      "description": "Accessible name for the progress bar."
+    },
+    {
+      "name": "aria-labelledby",
+      "type": "string",
+      "required": false,
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.kb.rn.Progress",
+    "type": "object",
+    "properties": {
+      "value": {
+        "type": "number",
+        "description": "Current value. Omit for indeterminate (busy) mode."
+      },
+      "min": {
+        "type": "number",
+        "default": 0
+      },
+      "max": {
+        "type": "number",
+        "default": 100
+      },
+      "size": {
+        "enum": [
+          "small",
+          "medium",
+          "large"
+        ],
+        "default": "medium"
+      },
+      "aria-label": {
+        "type": "string",
+        "description": "Accessible name for the progress bar."
+      },
+      "aria-labelledby": {
+        "type": "string"
+      }
+    }
+  },
+  "tokens": {
+    "color": [
+      "primary"
+    ],
+    "surface": [
+      "bold",
+      "subtle"
+    ],
+    "motion": [
+      "motion.duration.expressive.long",
+      "motion.easing.transition"
+    ]
+  },
+  "a11y": {
+    "accessibilityRole": "progressbar",
+    "accessibilityState": [
+      "busy"
+    ],
+    "accessibleNameSource": "aria-label",
+    "minTouchTarget": 44,
+    "honorsBoldText": false,
+    "honorsScreenReader": true
+  },
+  "renderHints": {
+    "baseElement": "View",
+    "animatedOn": [
+      "mount"
+    ],
+    "honorsReduceMotion": true,
+    "readsFromSurfaceContext": true
+  },
+  "figma": {
+    "componentKey": "jds-progress-v4",
+    "keyHistory": [],
+    "variantProperties": {
+      "Component": "Progress"
+    }
+  },
+  "codeSnippets": [
+    {
+      "id": "import-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { Progress } from '@oneui/ui-native';\n\n<Progress />"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "progress",
+    "feedback",
+    "progress",
+    "surface-aware"
+  ],
+  "importPath": "@oneui/ui-native"
+}

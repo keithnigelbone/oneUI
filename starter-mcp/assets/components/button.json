@@ -1,0 +1,423 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Button",
+  "generatedAt": "2026-01-01T00:00:00.000Z",
+  "machineReadable": true,
+  "intentAndPurpose": {
+    "intent": "Trigger a single user action with clear emphasis and accessible states.",
+    "taskContexts": [
+      "form-submission",
+      "destructive-action",
+      "navigation",
+      "inline-action"
+    ],
+    "sentiments": [
+      "positive",
+      "warning",
+      "destructive"
+    ]
+  },
+  "compositionRules": {
+    "requires": [
+      "label or aria-label",
+      "interactive button root"
+    ],
+    "allows": [
+      "leftIcon",
+      "rightIcon",
+      "loading spinner"
+    ],
+    "forbids": [
+      "table content",
+      "image-only content without aria-label"
+    ]
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "bold",
+        "useWhen": [
+          "single primary action per view",
+          "high emphasis CTA"
+        ],
+        "pairWith": [
+          "secondary action as subtle or ghost"
+        ]
+      },
+      {
+        "name": "subtle",
+        "useWhen": [
+          "secondary action with visible affordance"
+        ]
+      },
+      {
+        "name": "ghost",
+        "useWhen": [
+          "low-attention inline action",
+          "toolbar-like controls"
+        ],
+        "avoidWhen": [
+          "primary action in dense workflows"
+        ]
+      }
+    ]
+  },
+  "relationshipsAndDependencies": {
+    "related": [
+      "IconButton",
+      "ToggleButton"
+    ],
+    "escalatesTo": [
+      "Dialog",
+      "ConfirmationDialog"
+    ],
+    "degradesTo": [
+      "TextLink"
+    ],
+    "groupsWith": [
+      "ButtonGroup",
+      "Toolbar"
+    ]
+  },
+  "contextSignals": {
+    "density": [
+      "compact",
+      "default",
+      "open"
+    ],
+    "modality": [
+      "desktop",
+      "mobile",
+      "web"
+    ],
+    "brand": [
+      "theme-scope aware",
+      "recipe-driven"
+    ],
+    "mode": [
+      "light",
+      "dark",
+      "surface-context"
+    ]
+  },
+  "observabilityHooks": {
+    "track": [
+      "click",
+      "impression",
+      "abandonment"
+    ],
+    "health": [
+      "adoption_rate",
+      "override_frequency",
+      "a11y_violations"
+    ]
+  },
+  "props": [
+    {
+      "name": "appearance",
+      "type": "ButtonAppearance",
+      "required": false,
+      "defaultValue": "auto",
+      "description": "Multi-accent appearance role. 'auto' resolves to 'primary'."
+    },
+    {
+      "name": "attention",
+      "type": "ButtonAttention",
+      "required": false,
+      "defaultValue": "high",
+      "description": "Emphasis level — high (bold fill), medium (subtle/tinted fill), low (ghost, text-only). Drives the visual treatment; the component derives the internal variant + `data-variant` from this."
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "required": false,
+      "description": "Additional class name"
+    },
+    {
+      "name": "condensed",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": "Condensed mode: reduces height and horizontal padding while keeping the same typography. Use for dense layouts, inline actions, and compact UI areas. NOT the same as using a smaller size. Only applies when `contained={true}`."
+    },
+    {
+      "name": "contained",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "true",
+      "description": "Whether the button renders in its contained form (filled pill with a state-layer wrapper) or its uncontained form (transparent, underlined, text-link style). Mirrors the Figma `Contained` variant property on the Button component set. Props that only make sense for the contained form (`condensed`, `fullWidth`, `decoration`) are ignored when `contained={false}`."
+    },
+    {
+      "name": "data-testid",
+      "type": "string",
+      "required": false,
+      "description": "Test selector passthrough"
+    },
+    {
+      "name": "decoration",
+      "type": "DecorationConfig | null",
+      "required": false,
+      "description": "Direct decoration config — overrides DecorationContext. Use in Storybook stories or tests where context may not propagate."
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": "disabled property"
+    },
+    {
+      "name": "end",
+      "type": "SemanticIconName | ReactNode",
+      "required": false,
+      "description": "Content after the label. Pass a semantic icon name (string) for automatic color-inheriting icon rendering, or any ReactNode for custom content."
+    },
+    {
+      "name": "fullWidth",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": "Stretch to fill container width."
+    },
+    {
+      "name": "leftIcon",
+      "type": "ComponentIconInput | ReactElement",
+      "required": false,
+      "description": "leftIcon property"
+    },
+    {
+      "name": "loading",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": "loading property"
+    },
+    {
+      "name": "onClick",
+      "type": "() => void",
+      "required": false,
+      "description": "Web-only alias for onPress"
+    },
+    {
+      "name": "onPress",
+      "type": "() => void",
+      "required": false,
+      "description": "onPress property"
+    },
+    {
+      "name": "rightIcon",
+      "type": "ComponentIconInput | ReactElement",
+      "required": false,
+      "description": "rightIcon property"
+    },
+    {
+      "name": "size",
+      "type": "ButtonSize",
+      "required": false,
+      "defaultValue": "10",
+      "description": "Button size — f-step number or t-shirt alias."
+    },
+    {
+      "name": "start",
+      "type": "SemanticIconName | ReactNode",
+      "required": false,
+      "description": "Content before the label. Pass a semantic icon name (string) for automatic color-inheriting icon rendering, or any ReactNode for custom content."
+    },
+    {
+      "name": "style",
+      "type": "CSSProperties",
+      "required": false,
+      "description": "Inline styles"
+    },
+    {
+      "name": "type",
+      "type": "'button' | 'submit' | 'reset'",
+      "required": false,
+      "description": "HTML button type attribute"
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": false,
+      "description": "Accessible label override. Button always has a visible text label; for label-less icon buttons use <IconButton>."
+    }
+  ],
+  "slots": [
+    {
+      "name": "start",
+      "types": [
+        "icon",
+        "avatar",
+        "badge",
+        "custom"
+      ],
+      "tokens": [
+        "iconSizeStart",
+        "iconGapStart"
+      ]
+    },
+    {
+      "name": "end",
+      "types": [
+        "icon",
+        "chevron",
+        "badge",
+        "custom"
+      ],
+      "tokens": [
+        "iconSizeEnd",
+        "iconGapEnd"
+      ]
+    },
+    {
+      "name": "loading",
+      "types": [
+        "spinner"
+      ],
+      "tokens": [
+        "disabledOpacity",
+        "transitionDuration"
+      ]
+    }
+  ],
+  "propsSchema": {
+    "$id": "jds.docs.button",
+    "type": "object",
+    "properties": {
+      "appearance": {
+        "enum": [
+          "auto",
+          "primary",
+          "secondary",
+          "neutral",
+          "sparkle",
+          "brand-bg",
+          "positive",
+          "negative",
+          "warning",
+          "informative"
+        ],
+        "description": "Multi-accent appearance role. 'auto' resolves to 'primary'.",
+        "default": "auto"
+      },
+      "attention": {
+        "enum": [
+          "high",
+          "medium",
+          "low"
+        ],
+        "description": "Emphasis level — high (bold fill), medium (subtle/tinted fill), low (ghost, text-only). Drives the visual treatment; the component derives the internal variant + `data-variant` from this.",
+        "default": "high"
+      },
+      "className": {
+        "type": "string",
+        "description": "Additional class name"
+      },
+      "condensed": {
+        "type": "boolean",
+        "description": "Condensed mode: reduces height and horizontal padding while keeping the same typography. Use for dense layouts, inline actions, and compact UI areas. NOT the same as using a smaller size. Only applies when `contained={true}`.",
+        "default": "false"
+      },
+      "contained": {
+        "type": "boolean",
+        "description": "Whether the button renders in its contained form (filled pill with a state-layer wrapper) or its uncontained form (transparent, underlined, text-link style). Mirrors the Figma `Contained` variant property on the Button component set. Props that only make sense for the contained form (`condensed`, `fullWidth`, `decoration`) are ignored when `contained={false}`.",
+        "default": "true"
+      },
+      "data-testid": {
+        "type": "string",
+        "description": "Test selector passthrough"
+      },
+      "decoration": {
+        "description": "Direct decoration config — overrides DecorationContext. Use in Storybook stories or tests where context may not propagate."
+      },
+      "disabled": {
+        "type": "boolean",
+        "description": "disabled property",
+        "default": "false"
+      },
+      "end": {
+        "description": "Content after the label. Pass a semantic icon name (string) for automatic color-inheriting icon rendering, or any ReactNode for custom content."
+      },
+      "fullWidth": {
+        "type": "boolean",
+        "description": "Stretch to fill container width.",
+        "default": "false"
+      },
+      "leftIcon": {
+        "description": "leftIcon property"
+      },
+      "loading": {
+        "type": "boolean",
+        "description": "loading property",
+        "default": "false"
+      },
+      "onClick": {
+        "description": "Web-only alias for onPress"
+      },
+      "onPress": {
+        "description": "onPress property"
+      },
+      "rightIcon": {
+        "description": "rightIcon property"
+      },
+      "size": {
+        "enum": [
+          "xs",
+          "s",
+          "m",
+          "l",
+          6,
+          8,
+          10,
+          12
+        ],
+        "description": "Button size — f-step number or t-shirt alias.",
+        "default": "10"
+      },
+      "start": {
+        "description": "Content before the label. Pass a semantic icon name (string) for automatic color-inheriting icon rendering, or any ReactNode for custom content."
+      },
+      "style": {
+        "description": "Inline styles"
+      },
+      "type": {
+        "enum": [
+          "button",
+          "submit",
+          "reset"
+        ],
+        "description": "HTML button type attribute"
+      },
+      "aria-label": {
+        "type": "string",
+        "description": "Accessible label override. Button always has a visible text label; for label-less icon buttons use <IconButton>."
+      }
+    }
+  },
+  "codeSnippets": [
+    {
+      "id": "import-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { Button } from '@oneui/ui';\n\n<Button>Click me</Button>"
+    },
+    {
+      "id": "variants",
+      "title": "Variants",
+      "language": "tsx",
+      "code": "<Button variant=\"bold\">Primary</Button>\n<Button variant=\"subtle\">Secondary</Button>\n<Button variant=\"ghost\">Tertiary</Button>"
+    },
+    {
+      "id": "button-recipe-decisions",
+      "title": "Recipe Decisions",
+      "language": "json",
+      "code": "{\n  \"component\": \"Button\",\n  \"decisions\": [\n    \"Shape\",\n    \"Text case\",\n    \"Horizontal padding\"\n  ]\n}"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "button"
+  ],
+  "importPath": "@jds4/oneui-react"
+}

@@ -1,0 +1,374 @@
+/**
+ * AgentPulse.module.css
+ *
+ * Token-only styling for the AgentPulse component.
+ * - Sizes map to dimension f-step tokens (Spacing scale) so they inherit
+ *   density + platform cascades.
+ * - Animations are pure CSS keyframes (replaces the Lottie player).
+ * - Reduced-motion fallback uses motion-duration tokens.
+ *
+ * Verified by: pnpm check:literals
+ */
+
+.root {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  line-height: 0;
+}
+
+/* ============================================================
+   SIZES — 20 Figma dimension-token presets (`--Spacing-*`).
+   Legacy sm/md/lg/xl map via JS to 5/7/9/12. Numeric override sets
+   --AgentPulse-size inline.
+   ============================================================ */
+
+.root[data-size="2"] { width: var(--AgentPulse-size, var(--Spacing-2)); height: var(--AgentPulse-size, var(--Spacing-2)); }
+.root[data-size="2.5"] { width: var(--AgentPulse-size, var(--Spacing-2-5)); height: var(--AgentPulse-size, var(--Spacing-2-5)); }
+.root[data-size="3"] { width: var(--AgentPulse-size, var(--Spacing-3)); height: var(--AgentPulse-size, var(--Spacing-3)); }
+.root[data-size="3.5"] { width: var(--AgentPulse-size, var(--Spacing-3-5)); height: var(--AgentPulse-size, var(--Spacing-3-5)); }
+.root[data-size="4"] { width: var(--AgentPulse-size, var(--Spacing-4)); height: var(--AgentPulse-size, var(--Spacing-4)); }
+.root[data-size="4.5"] { width: var(--AgentPulse-size, var(--Spacing-4-5)); height: var(--AgentPulse-size, var(--Spacing-4-5)); }
+.root[data-size="5"] { width: var(--AgentPulse-size, var(--Spacing-5)); height: var(--AgentPulse-size, var(--Spacing-5)); }
+.root[data-size="6"] { width: var(--AgentPulse-size, var(--Spacing-6)); height: var(--AgentPulse-size, var(--Spacing-6)); }
+.root[data-size="7"] { width: var(--AgentPulse-size, var(--Spacing-7)); height: var(--AgentPulse-size, var(--Spacing-7)); }
+.root[data-size="8"] { width: var(--AgentPulse-size, var(--Spacing-8)); height: var(--AgentPulse-size, var(--Spacing-8)); }
+.root[data-size="9"] { width: var(--AgentPulse-size, var(--Spacing-9)); height: var(--AgentPulse-size, var(--Spacing-9)); }
+.root[data-size="10"] { width: var(--AgentPulse-size, var(--Spacing-10)); height: var(--AgentPulse-size, var(--Spacing-10)); }
+.root[data-size="12"] { width: var(--AgentPulse-size, var(--Spacing-12)); height: var(--AgentPulse-size, var(--Spacing-12)); }
+.root[data-size="14"] { width: var(--AgentPulse-size, var(--Spacing-14)); height: var(--AgentPulse-size, var(--Spacing-14)); }
+.root[data-size="16"] { width: var(--AgentPulse-size, var(--Spacing-16)); height: var(--AgentPulse-size, var(--Spacing-16)); }
+.root[data-size="18"] { width: var(--AgentPulse-size, var(--Spacing-18)); height: var(--AgentPulse-size, var(--Spacing-18)); }
+.root[data-size="20"] { width: var(--AgentPulse-size, var(--Spacing-20)); height: var(--AgentPulse-size, var(--Spacing-20)); }
+.root[data-size="24"] { width: var(--AgentPulse-size, var(--Spacing-24)); height: var(--AgentPulse-size, var(--Spacing-24)); }
+.root[data-size="32"] { width: var(--AgentPulse-size, var(--Spacing-32)); height: var(--AgentPulse-size, var(--Spacing-32)); }
+.root[data-size="40"] { width: var(--AgentPulse-size, var(--Spacing-40)); height: var(--AgentPulse-size, var(--Spacing-40)); }
+
+/* ============================================================
+   PLAYER — SVG fills the host, preserves aspect ratio.
+   ============================================================ */
+
+.player {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* ============================================================
+   PILL FILL — resolves the brand colour from the active
+   appearance role via the legacy alias chain.
+   ============================================================ */
+
+.pill {
+  fill: var(--AgentPulse-color, var(--Secondary-Tinted, var(--Text-High)));
+}
+
+/* ============================================================
+   REGISTERED CUSTOM PROPERTIES — `--pill-h` is the per-pill
+   height knob used by the listening keyframes; registering it
+   lets the height interpolate smoothly instead of stepping.
+   ============================================================ */
+
+@property --pill-h {
+  syntax: '<length>';
+  inherits: false;
+  initial-value: 120px;
+}
+
+/* ============================================================
+   IDLE — all 4 pills scale uniformly (1 → 1.41 → 1 → 1.41 → 1
+   over 4000ms). Matches the AE comp's idle pulse.
+   ============================================================ */
+
+@keyframes agentPulseIdle {
+  0%   { transform: scale(1); }
+  25%  { transform: scale(1.41); }
+  50%  { transform: scale(1); }
+  75%  { transform: scale(1.41); }
+  100% { transform: scale(1); }
+}
+
+.root[data-state="idle"] .pill {
+  animation: agentPulseIdle 4000ms var(--Motion-Easing-Transition-Moderate, cubic-bezier(0.5, 0, 0.3, 1)) infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+/* ============================================================
+   IDLE-SETTLING — bridge from idle scale-pulse to scale(1)
+   before the listening entry. JS sets --settle-from-scale on
+   each pill so the @keyframes 0% reads the live scale value.
+   ============================================================ */
+
+@keyframes agentPulseIdleSettle {
+  from { transform: scale(var(--settle-from-scale, 1)); }
+  to   { transform: scale(1); }
+}
+
+.root[data-state="idle-settling"] .pill {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: agentPulseIdleSettle 300ms cubic-bezier(0.5, 0, 0.3, 1) forwards;
+}
+
+/* ============================================================
+   THINKING — pills hold the idle 2×2 layout; the cluster
+   rotates 4 × 90° per 4000ms loop with Transition Moderate
+   easing per segment (slow start → fast finish).
+   ============================================================ */
+
+@keyframes agentPulseThinking {
+  0%   { transform: rotate(0deg);   animation-timing-function: cubic-bezier(0.5, 0, 0.3, 1); }
+  25%  { transform: rotate(90deg);  animation-timing-function: cubic-bezier(0.5, 0, 0.3, 1); }
+  50%  { transform: rotate(180deg); animation-timing-function: cubic-bezier(0.5, 0, 0.3, 1); }
+  75%  { transform: rotate(270deg); animation-timing-function: cubic-bezier(0.5, 0, 0.3, 1); }
+  100% { transform: rotate(360deg); }
+}
+
+.root[data-state="thinking"] .cluster {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: agentPulseThinking 4000ms linear infinite;
+}
+
+/* ============================================================
+   SPEAKING — pills hold the idle 2×2 layout. Scale is driven
+   in real-time by an external audio signal (the Motion story
+   demo writes `transform: scale(...)` inline per-frame). With
+   no audio, pills sit at scale(1).
+   ============================================================ */
+
+.root[data-state="speaking"] .pill {
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: transform 70ms linear;
+}
+
+/* ============================================================
+   TRANSITION TO LISTENING — phase 1 (0-833ms, 51%): rotation
+   0° → 180°, pills morph from idle 2×2 to listening row via
+   offset-path + scale 1 → 0.628. Phase 2 (833-1633ms, 51-100%):
+   staggered bounce. 1633ms total.
+   ============================================================ */
+
+@keyframes agentPulseTransitionInCluster {
+  0%   { transform: rotate(0deg); }
+  51%  { transform: rotate(180deg); }
+  100% { transform: rotate(180deg); }
+}
+
+.root[data-state="transitioning-to-listening"] .cluster {
+  transform-box: view-box;
+  transform-origin: 500px 500px;
+  animation: agentPulseTransitionInCluster 1633ms
+    var(--Motion-Easing-Transition-Moderate, cubic-bezier(0.5, 0, 0.3, 1)) forwards;
+}
+
+.root[data-state="transitioning-to-listening"] .pill {
+  transform-box: fill-box;
+  transform-origin: center;
+  offset-anchor: center;
+  offset-rotate: 0deg;
+}
+
+@keyframes agentPulseTransitionInPill1 {
+  0%, 22% { offset-distance: 0%;   transform: scale(1); }
+  51%     { offset-distance: 100%; transform: scale(0.628); }
+  63%     { offset-distance: 100%; transform: scale(0.628) translateY(163px); }
+  82%     { offset-distance: 100%; transform: scale(0.628); }
+  100%    { offset-distance: 100%; transform: scale(0.628); }
+}
+@keyframes agentPulseTransitionInPill2 {
+  0%, 22% { offset-distance: 0%;   transform: scale(1); }
+  51%     { offset-distance: 100%; transform: scale(0.628); }
+  69%     { offset-distance: 100%; transform: scale(0.628) translateY(168px); }
+  88%     { offset-distance: 100%; transform: scale(0.628); }
+  100%    { offset-distance: 100%; transform: scale(0.628); }
+}
+@keyframes agentPulseTransitionInPill3 {
+  0%, 22% { offset-distance: 0%;   transform: scale(1); }
+  51%     { offset-distance: 100%; transform: scale(0.628); }
+  76%     { offset-distance: 100%; transform: scale(0.628) translateY(172px); }
+  94%     { offset-distance: 100%; transform: scale(0.628); }
+  100%    { offset-distance: 100%; transform: scale(0.628); }
+}
+@keyframes agentPulseTransitionInPill4 {
+  0%, 22% { offset-distance: 0%;   transform: scale(1); }
+  51%     { offset-distance: 100%; transform: scale(0.628); }
+  82%     { offset-distance: 100%; transform: scale(0.628) translateY(178px); }
+  100%    { offset-distance: 100%; transform: scale(0.628); }
+}
+
+.root[data-state="transitioning-to-listening"] .pill[data-pill="1"] {
+  offset-path: path('M 404.5 404.5 C 664.814 230.093, 810 500, 810 500');
+  animation: agentPulseTransitionInPill1 1633ms
+    var(--Motion-Easing-Transition-Moderate, cubic-bezier(0.5, 0, 0.3, 1)) forwards;
+}
+.root[data-state="transitioning-to-listening"] .pill[data-pill="2"] {
+  offset-path: path('M 595.5 404.5 L 610 500');
+  animation: agentPulseTransitionInPill2 1633ms
+    var(--Motion-Easing-Transition-Moderate, cubic-bezier(0.5, 0, 0.3, 1)) forwards;
+}
+.root[data-state="transitioning-to-listening"] .pill[data-pill="3"] {
+  offset-path: path('M 404.5 595.5 L 410 500');
+  animation: agentPulseTransitionInPill3 1633ms
+    var(--Motion-Easing-Transition-Moderate, cubic-bezier(0.5, 0, 0.3, 1)) forwards;
+}
+.root[data-state="transitioning-to-listening"] .pill[data-pill="4"] {
+  offset-path: path('M 595.5 595.5 C 312.922 732.206, 210 500, 210 500');
+  animation: agentPulseTransitionInPill4 1633ms
+    var(--Motion-Easing-Transition-Moderate, cubic-bezier(0.5, 0, 0.3, 1)) forwards;
+}
+
+/* ============================================================
+   LISTENING — pills become 120-wide circles in a row at x =
+   130 / 330 / 530 / 730. Height is driven in real-time by an
+   external audio signal (the Motion story demo writes
+   `--pill-h` inline per-frame). With no audio, pills sit at
+   120px height.
+   ============================================================ */
+
+.root[data-state="listening"] .pill {
+  width: var(--AgentPulse-listeningPillWidth, 120px);
+  rx: 60px;
+  ry: 60px;
+  height: var(--pill-h, 120px);
+  y: calc(500px - var(--pill-h, 120px) / 2);
+  transition: --pill-h 70ms linear;
+}
+
+.root[data-state="listening"] .pill[data-pill="1"] { x: 130px; }
+.root[data-state="listening"] .pill[data-pill="2"] { x: 330px; }
+.root[data-state="listening"] .pill[data-pill="3"] { x: 530px; }
+.root[data-state="listening"] .pill[data-pill="4"] { x: 730px; }
+
+/* ============================================================
+   TRANSITION TO THINKING — exit from listening (1000ms).
+   Cluster rotates 180° → 360°, pills hold listening for 167ms
+   then morph back to the idle 2×2 over 167-767ms with scale
+   0.628 → 1.0 and curved offset-paths (Lottie ti tangents).
+   ============================================================ */
+
+@keyframes agentPulseTransitionOutCluster {
+  from { transform: rotate(180deg); }
+  to   { transform: rotate(360deg); }
+}
+
+.root[data-state="transitioning-to-thinking"] .cluster {
+  transform-box: view-box;
+  transform-origin: 500px 500px;
+  animation: agentPulseTransitionOutCluster 1000ms
+    var(--Motion-Easing-Transition-Moderate, cubic-bezier(0.5, 0, 0.3, 1)) forwards;
+}
+
+@keyframes agentPulseTransitionOutPill {
+  0%, 16.7% { offset-distance: 0%;   transform: scale(0.628); }
+  76.7%     { offset-distance: 100%; transform: scale(1); }
+  100%      { offset-distance: 100%; transform: scale(1); }
+}
+
+.root[data-state="transitioning-to-thinking"] .pill {
+  transform-box: fill-box;
+  transform-origin: center;
+  offset-anchor: center;
+  offset-rotate: 0deg;
+}
+
+.root[data-state="transitioning-to-thinking"] .pill[data-pill="1"] {
+  offset-path: path('M 810 500 C 810 500, 696.296 618.629, 595.5 595.5');
+  animation: agentPulseTransitionOutPill 1000ms
+    var(--Motion-Easing-Transition-Moderate, cubic-bezier(0.5, 0, 0.3, 1)) forwards;
+}
+.root[data-state="transitioning-to-thinking"] .pill[data-pill="2"] {
+  offset-path: path('M 610 500 L 595.5 404.5');
+  animation: agentPulseTransitionOutPill 1000ms
+    var(--Motion-Easing-Transition-Moderate, cubic-bezier(0.5, 0, 0.3, 1)) forwards;
+}
+.root[data-state="transitioning-to-thinking"] .pill[data-pill="3"] {
+  offset-path: path('M 410 500 L 404.5 595.5');
+  animation: agentPulseTransitionOutPill 1000ms
+    var(--Motion-Easing-Transition-Moderate, cubic-bezier(0.5, 0, 0.3, 1)) forwards;
+}
+.root[data-state="transitioning-to-thinking"] .pill[data-pill="4"] {
+  offset-path: path('M 210 500 C 210 500, 324.185 373.909, 404.5 404.5');
+  animation: agentPulseTransitionOutPill 1000ms
+    var(--Motion-Easing-Transition-Moderate, cubic-bezier(0.5, 0, 0.3, 1)) forwards;
+}
+
+/* ============================================================
+   PAUSED — freezes every animation. JS toggles `data-paused`.
+   ============================================================ */
+
+.root[data-paused="true"] .pill,
+.root[data-paused="true"] .cluster {
+  animation-play-state: paused;
+}
+
+/* ============================================================
+   STATIC FALLBACK — reduced-motion or pre-load placeholder.
+   ============================================================ */
+
+.fallback {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--AgentPulse-color, var(--Secondary-Tinted, var(--Text-High)));
+}
+
+.fallback svg {
+  width: 100%;
+  height: 100%;
+  fill: currentColor;
+}
+
+.fallbackPulse svg {
+  animation: agentPulseFade var(--AgentPulse-pulseDuration, var(--Motion-Duration-3XL, 1200ms))
+    var(--Motion-Easing-Transition-Moderate, ease-in-out) infinite;
+}
+
+@keyframes agentPulseFade {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.hidden {
+  display: none;
+}
+
+/* ============================================================
+   VISUALLY HIDDEN — sr-only label inside the live region.
+   ============================================================ */
+
+.srOnly {
+  position: absolute;
+  width: var(--Stroke-M);
+  height: var(--Stroke-M);
+  padding: var(--Spacing-0);
+  margin: calc(-1 * var(--Stroke-M));
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: var(--Stroke-None) solid transparent;
+}
+
+/* ============================================================
+   REDUCED MOTION — disable all CSS animations on the pills
+   and cluster. The consumer-controlled `reducedMotionFallback`
+   prop decides whether the static mark or the pulse fade
+   renders in place of the SVG geometry.
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .pill,
+  .cluster {
+    animation: none !important;
+  }
+  .fallbackPulse svg {
+    animation: none;
+  }
+}

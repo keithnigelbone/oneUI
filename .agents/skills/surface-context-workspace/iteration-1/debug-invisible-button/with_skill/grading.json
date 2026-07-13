@@ -1,0 +1,26 @@
+{
+  "eval_id": 1,
+  "run_type": "with_skill",
+  "expectations": [
+    {
+      "text": "identifies-missing-surface",
+      "passed": true,
+      "evidence": "States 'no data-surface attribute is present in the DOM, so the [data-surface=\"fg-bold\"] CSS blocks never activate'"
+    },
+    {
+      "text": "recommends-surface-component",
+      "passed": true,
+      "evidence": "Shows before/after code: raw <div> replaced with <Surface mode=\"fg-bold\"> from '@oneui/ui/components/Surface'"
+    },
+    {
+      "text": "explains-bold-inversion",
+      "passed": true,
+      "evidence": "Explains brand bold inversion: '--Primary-FG-Bold is remapped to a contrasting tinted accent (shifted +8 f-steps on the OkLCH scale)' and shows per-variant behavior table"
+    },
+    {
+      "text": "shows-correct-code",
+      "passed": true,
+      "evidence": "Includes correct import and usage: import { Surface } from '@oneui/ui/components/Surface'; <Surface mode=\"fg-bold\"><Button variant=\"ghost\">Get Started</Button></Surface>"
+    }
+  ]
+}

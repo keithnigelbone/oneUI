@@ -1,0 +1,791 @@
+{
+  "slug": "counter-badge",
+  "runs": [
+    {
+      "savedAt": "2026-06-23T09:12:03.082Z",
+      "report": {
+        "ok": true,
+        "slug": "counter-badge",
+        "message": "counter-badge QA Playwright run OK — 2026-06-17T07:33:02.575Z",
+        "suites": {
+          "accessibility": {
+            "suite": "accessibility",
+            "passed": 21,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "21 test(s) in Playwright report for accessibility.",
+              "Axe: scan completed — 0 violation rules reported."
+            ],
+            "errors": [],
+            "cases": [
+              {
+                "name": "[a11y] WCAG 2.1 AA tag scan + JSON artefact + HTML report",
+                "status": "passed",
+                "durationMs": 6088
+              },
+              {
+                "name": "[a11y] data-section=\"counter-qa-default\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 6382
+              },
+              {
+                "name": "[a11y] data-section=\"counter-qa-size\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 6660
+              },
+              {
+                "name": "[a11y] data-section=\"counter-qa-attention\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 6451
+              },
+              {
+                "name": "[a11y] data-section=\"counter-qa-appearance\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 6214
+              },
+              {
+                "name": "[a11y] data-section=\"counter-qa-variant\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 3247
+              },
+              {
+                "name": "[a11y] data-section=\"counter-qa-value-max-showzero\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 4039
+              },
+              {
+                "name": "[a11y] data-section=\"counter-qa-combos\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 3965
+              },
+              {
+                "name": "[a11y] Section 508 tag run on story bands — zero serious/critical",
+                "status": "passed",
+                "durationMs": 3847
+              },
+              {
+                "name": "[a11y] non-text-contrast rule — zero serious/critical (if rule exists)",
+                "status": "passed",
+                "durationMs": 3569
+              },
+              {
+                "name": "[a11y] ARIA validity rules on story bands — zero serious/critical",
+                "status": "passed",
+                "durationMs": 2052
+              },
+              {
+                "name": "[a11y] page lang on <html>",
+                "status": "passed",
+                "durationMs": 2478
+              },
+              {
+                "name": "[a11y] reflow: showcase regions fit at 320px (no horizontal overflow inside bands)",
+                "status": "passed",
+                "durationMs": 5167
+              },
+              {
+                "name": "[a11y] resize: 200% zoom — counter badges remain visible",
+                "status": "passed",
+                "durationMs": 2960
+              },
+              {
+                "name": "[a11y] Tab reaches a focusable control",
+                "status": "passed",
+                "durationMs": 3233
+              },
+              {
+                "name": "[a11y] default badge: role status + accessible name",
+                "status": "passed",
+                "durationMs": 2878
+              },
+              {
+                "name": "[a11y] every Counter Badge status in showcase has non-empty accessible name",
+                "status": "passed",
+                "durationMs": 5267
+              },
+              {
+                "name": "[a11y] every role=status on page has non-empty accessible name",
+                "status": "passed",
+                "durationMs": 4636
+              },
+              {
+                "name": "Mode select activates with Enter when focused",
+                "status": "passed",
+                "durationMs": 5291
+              },
+              {
+                "name": "Mode select activates with Space when focused",
+                "status": "passed",
+                "durationMs": 5139
+              },
+              {
+                "name": "[a11y] Theme toggle updates label via page chrome control",
+                "status": "passed",
+                "durationMs": 5291
+              }
+            ],
+            "axe": {
+              "violations": []
+            }
+          },
+          "functional": {
+            "suite": "functional",
+            "passed": 48,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "48 test(s) in Playwright report for functional."
+            ],
+            "errors": [],
+            "cases": [
+              {
+                "name": "1.1 — Page loads without console errors; default badge mounts",
+                "status": "passed",
+                "durationMs": 6353
+              },
+              {
+                "name": "1.2 — Every Test Scenarios `data-testid` is visible",
+                "status": "passed",
+                "durationMs": 5306
+              },
+              {
+                "name": "1.3 — Every `data-section` band is visible",
+                "status": "passed",
+                "durationMs": 5595
+              },
+              {
+                "name": "2.1 — Default exposes data-size m, data-variant bold, data-appearance primary",
+                "status": "passed",
+                "durationMs": 3546
+              },
+              {
+                "name": "2.1 — Each Figma size maps to correct data-size token",
+                "status": "passed",
+                "durationMs": 3138
+              },
+              {
+                "name": "2.1 — Attention maps to data-variant when variant prop omitted",
+                "status": "passed",
+                "durationMs": 2227
+              },
+              {
+                "name": "2.1 — Explicit variant wins over attention (variant=bold, attention=low)",
+                "status": "passed",
+                "durationMs": 2232
+              },
+              {
+                "name": "2.1 — auto appearance resolves to primary on data-appearance",
+                "status": "passed",
+                "durationMs": 3271
+              },
+              {
+                "name": "2.2 — Size xs → s → m → l bounding boxes scale progressively and stay circular",
+                "status": "passed",
+                "durationMs": 3119
+              },
+              {
+                "name": "3.x — CounterBadge is not clickable",
+                "status": "passed",
+                "durationMs": 2917
+              },
+              {
+                "name": "4.x — Counter badge is not in Tab order",
+                "status": "passed",
+                "durationMs": 3230
+              },
+              {
+                "name": "5.x — CounterBadge does not receive focus on click",
+                "status": "passed",
+                "durationMs": 3244
+              },
+              {
+                "name": "6.1 — Default state shows value 5 with role status",
+                "status": "passed",
+                "durationMs": 3831
+              },
+              {
+                "name": "6.1 — showZero renders zero when value is 0",
+                "status": "passed",
+                "durationMs": 3735
+              },
+              {
+                "name": "6.1 — max overflow renders capped label",
+                "status": "passed",
+                "durationMs": 4045
+              },
+              {
+                "name": "6.1 — variant=bold exposes data-variant on root",
+                "status": "passed",
+                "durationMs": 8533
+              },
+              {
+                "name": "6.1 — variant=subtle exposes data-variant on root",
+                "status": "passed",
+                "durationMs": 9117
+              },
+              {
+                "name": "6.1 — variant=ghost exposes data-variant on root",
+                "status": "passed",
+                "durationMs": 7675
+              },
+              {
+                "name": "6.3 — Disabled state is not in showcase",
+                "status": "passed",
+                "durationMs": 7737
+              },
+              {
+                "name": "7.x — CounterBadge has no start/end slots",
+                "status": "passed",
+                "durationMs": 8953
+              },
+              {
+                "name": "8.x — Not a toggle component",
+                "status": "passed",
+                "durationMs": 8518
+              },
+              {
+                "name": "9.x — Not a text input",
+                "status": "passed",
+                "durationMs": 10266
+              },
+              {
+                "name": "10.1 — variant prop has no effect when both variant and attention set — variant wins",
+                "status": "passed",
+                "durationMs": 11029
+              },
+              {
+                "name": "10.2 — showZero applies when value is 0 — badge renders instead of null",
+                "status": "passed",
+                "durationMs": 11544
+              },
+              {
+                "name": "11.1 — Combo matrix text matches expected overflow and values (non-XS rows)",
+                "status": "passed",
+                "durationMs": 10368
+              },
+              {
+                "name": "11.1 — combo 0 has accessible name via aria-label",
+                "status": "passed",
+                "durationMs": 7214
+              },
+              {
+                "name": "11.1 — combo 1 has accessible name via aria-label",
+                "status": "passed",
+                "durationMs": 5850
+              },
+              {
+                "name": "11.1 — combo 2 has accessible name via aria-label",
+                "status": "passed",
+                "durationMs": 7463
+              },
+              {
+                "name": "11.1 — combo 3 has accessible name via aria-label",
+                "status": "passed",
+                "durationMs": 7534
+              },
+              {
+                "name": "11.1 — combo 4 has accessible name via aria-label",
+                "status": "passed",
+                "durationMs": 8102
+              },
+              {
+                "name": "11.1 — combo 5 has accessible name via aria-label",
+                "status": "passed",
+                "durationMs": 8323
+              },
+              {
+                "name": "12.2 — At 320px viewport, scenario bands fit without horizontal scroll",
+                "status": "passed",
+                "durationMs": 17445
+              },
+              {
+                "name": "12.2b — Default badge visible at 1440px viewport",
+                "status": "passed",
+                "durationMs": 14842
+              },
+              {
+                "name": "12.1 — fullWidth is not a CounterBadge prop",
+                "status": "passed",
+                "durationMs": 10068
+              },
+              {
+                "name": "13.1 — After dark theme, all scenario sections remain visible",
+                "status": "passed",
+                "durationMs": 11386
+              },
+              {
+                "name": "Smoke — Page heading reads “Counter Badge”",
+                "status": "passed",
+                "durationMs": 8789
+              },
+              {
+                "name": "Smoke — Default status badge visible with value 5",
+                "status": "passed",
+                "durationMs": 4850
+              },
+              {
+                "name": "[fn] shows Counter Badge page heading",
+                "status": "passed",
+                "durationMs": 3108
+              },
+              {
+                "name": "[fn] theme toggle updates label",
+                "status": "passed",
+                "durationMs": 3636
+              },
+              {
+                "name": "[fn] scenario tabs are present",
+                "status": "passed",
+                "durationMs": 3271
+              },
+              {
+                "name": "[fn] Default counter badge is visible",
+                "status": "passed",
+                "durationMs": 3507
+              },
+              {
+                "name": "[fn] Size row — M / S / L badges visible with value 8",
+                "status": "passed",
+                "durationMs": 3441
+              },
+              {
+                "name": "[fn] Attention row — high / medium / low visible",
+                "status": "passed",
+                "durationMs": 4747
+              },
+              {
+                "name": "[fn] Appearance matrix — primary row triplet visible",
+                "status": "passed",
+                "durationMs": 5296
+              },
+              {
+                "name": "[fn] Variant band — bold / subtle / ghost visible",
+                "status": "passed",
+                "durationMs": 5833
+              },
+              {
+                "name": "[fn] showZero and max overflow badges",
+                "status": "passed",
+                "durationMs": 6026
+              },
+              {
+                "name": "[fn] Combination matrix renders all combo rows",
+                "status": "passed",
+                "durationMs": 5652
+              },
+              {
+                "name": "[fn] Figma Validation tab renders matrix root",
+                "status": "passed",
+                "durationMs": 4699
+              }
+            ]
+          },
+          "performance": {
+            "suite": "performance",
+            "passed": 0,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "Performance suite is not executed in apps/qa-playground counter-badge Playwright bundle."
+            ],
+            "errors": []
+          }
+        }
+      }
+    },
+    {
+      "savedAt": "2026-06-17T07:33:02.576Z",
+      "report": {
+        "ok": true,
+        "slug": "counter-badge",
+        "message": "Counter Badge QA Playwright run OK — 2026-06-04T09:49:28.283Z",
+        "suites": {
+          "accessibility": {
+            "suite": "accessibility",
+            "passed": 21,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "21 test(s) in Playwright report for accessibility.",
+              "Axe: scan completed — 0 violation rules reported."
+            ],
+            "errors": [],
+            "cases": [
+              {
+                "name": "[a11y] WCAG 2.1 AA tag scan + JSON artefact + HTML report",
+                "status": "passed",
+                "durationMs": 4221
+              },
+              {
+                "name": "[a11y] data-section=\"counter-qa-default\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 3415
+              },
+              {
+                "name": "[a11y] data-section=\"counter-qa-size\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 3841
+              },
+              {
+                "name": "[a11y] data-section=\"counter-qa-attention\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 3475
+              },
+              {
+                "name": "[a11y] data-section=\"counter-qa-appearance\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 3352
+              },
+              {
+                "name": "[a11y] data-section=\"counter-qa-variant\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 2888
+              },
+              {
+                "name": "[a11y] data-section=\"counter-qa-value-max-showzero\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 2871
+              },
+              {
+                "name": "[a11y] data-section=\"counter-qa-combos\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 3029
+              },
+              {
+                "name": "[a11y] Section 508 tag run on story bands — zero serious/critical",
+                "status": "passed",
+                "durationMs": 3022
+              },
+              {
+                "name": "[a11y] non-text-contrast rule — zero serious/critical (if rule exists)",
+                "status": "passed",
+                "durationMs": 2586
+              },
+              {
+                "name": "[a11y] ARIA validity rules on story bands — zero serious/critical",
+                "status": "passed",
+                "durationMs": 2970
+              },
+              {
+                "name": "[a11y] page lang on <html>",
+                "status": "passed",
+                "durationMs": 2492
+              },
+              {
+                "name": "[a11y] reflow: showcase regions fit at 320px (no horizontal overflow inside bands)",
+                "status": "passed",
+                "durationMs": 4489
+              },
+              {
+                "name": "[a11y] resize: 200% zoom — counter badges remain visible",
+                "status": "passed",
+                "durationMs": 3079
+              },
+              {
+                "name": "[a11y] Tab reaches a focusable control",
+                "status": "passed",
+                "durationMs": 2761
+              },
+              {
+                "name": "[a11y] default badge: role status + accessible name",
+                "status": "passed",
+                "durationMs": 2057
+              },
+              {
+                "name": "[a11y] every Counter Badge status in showcase has non-empty accessible name",
+                "status": "passed",
+                "durationMs": 2981
+              },
+              {
+                "name": "[a11y] every role=status on page has non-empty accessible name",
+                "status": "passed",
+                "durationMs": 2649
+              },
+              {
+                "name": "Mode select activates with Enter when focused",
+                "status": "passed",
+                "durationMs": 2516
+              },
+              {
+                "name": "Mode select activates with Space when focused",
+                "status": "passed",
+                "durationMs": 2272
+              },
+              {
+                "name": "[a11y] Theme toggle updates label via page chrome control",
+                "status": "passed",
+                "durationMs": 2323
+              }
+            ],
+            "axe": {
+              "violations": []
+            }
+          },
+          "functional": {
+            "suite": "functional",
+            "passed": 48,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "48 test(s) in Playwright report for functional."
+            ],
+            "errors": [],
+            "cases": [
+              {
+                "name": "1.1 — Page loads without console errors; default badge mounts",
+                "status": "passed",
+                "durationMs": 4029
+              },
+              {
+                "name": "1.2 — Every Test Scenarios `data-testid` is visible",
+                "status": "passed",
+                "durationMs": 4409
+              },
+              {
+                "name": "1.3 — Every `data-section` band is visible",
+                "status": "passed",
+                "durationMs": 2961
+              },
+              {
+                "name": "2.1 — Default exposes data-size m, data-variant bold, data-appearance primary",
+                "status": "passed",
+                "durationMs": 2553
+              },
+              {
+                "name": "2.1 — Each Figma size maps to correct data-size token",
+                "status": "passed",
+                "durationMs": 2279
+              },
+              {
+                "name": "2.1 — Attention maps to data-variant when variant prop omitted",
+                "status": "passed",
+                "durationMs": 2059
+              },
+              {
+                "name": "2.1 — Explicit variant wins over attention (variant=bold, attention=low)",
+                "status": "passed",
+                "durationMs": 2352
+              },
+              {
+                "name": "2.1 — auto appearance resolves to primary on data-appearance",
+                "status": "passed",
+                "durationMs": 2515
+              },
+              {
+                "name": "2.2 — Size xs → s → m → l bounding boxes scale progressively and stay circular",
+                "status": "passed",
+                "durationMs": 2931
+              },
+              {
+                "name": "3.x — CounterBadge is not clickable",
+                "status": "passed",
+                "durationMs": 2824
+              },
+              {
+                "name": "4.x — Counter badge is not in Tab order",
+                "status": "passed",
+                "durationMs": 2744
+              },
+              {
+                "name": "5.x — CounterBadge does not receive focus on click",
+                "status": "passed",
+                "durationMs": 2757
+              },
+              {
+                "name": "6.1 — Default state shows value 5 with role status",
+                "status": "passed",
+                "durationMs": 2695
+              },
+              {
+                "name": "6.1 — showZero renders zero when value is 0",
+                "status": "passed",
+                "durationMs": 2651
+              },
+              {
+                "name": "6.1 — max overflow renders capped label",
+                "status": "passed",
+                "durationMs": 2420
+              },
+              {
+                "name": "6.1 — variant=bold exposes data-variant on root",
+                "status": "passed",
+                "durationMs": 2478
+              },
+              {
+                "name": "6.1 — variant=subtle exposes data-variant on root",
+                "status": "passed",
+                "durationMs": 2440
+              },
+              {
+                "name": "6.1 — variant=ghost exposes data-variant on root",
+                "status": "passed",
+                "durationMs": 2446
+              },
+              {
+                "name": "6.3 — Disabled state is not in showcase",
+                "status": "passed",
+                "durationMs": 2466
+              },
+              {
+                "name": "7.x — CounterBadge has no start/end slots",
+                "status": "passed",
+                "durationMs": 2511
+              },
+              {
+                "name": "8.x — Not a toggle component",
+                "status": "passed",
+                "durationMs": 2484
+              },
+              {
+                "name": "9.x — Not a text input",
+                "status": "passed",
+                "durationMs": 2532
+              },
+              {
+                "name": "10.1 — variant prop has no effect when both variant and attention set — variant wins",
+                "status": "passed",
+                "durationMs": 2685
+              },
+              {
+                "name": "10.2 — showZero applies when value is 0 — badge renders instead of null",
+                "status": "passed",
+                "durationMs": 2595
+              },
+              {
+                "name": "11.1 — Combo matrix text matches expected overflow and values (non-XS rows)",
+                "status": "passed",
+                "durationMs": 2586
+              },
+              {
+                "name": "11.1 — combo 0 has accessible name via aria-label",
+                "status": "passed",
+                "durationMs": 2565
+              },
+              {
+                "name": "11.1 — combo 1 has accessible name via aria-label",
+                "status": "passed",
+                "durationMs": 2616
+              },
+              {
+                "name": "11.1 — combo 2 has accessible name via aria-label",
+                "status": "passed",
+                "durationMs": 2611
+              },
+              {
+                "name": "11.1 — combo 3 has accessible name via aria-label",
+                "status": "passed",
+                "durationMs": 2564
+              },
+              {
+                "name": "11.1 — combo 4 has accessible name via aria-label",
+                "status": "passed",
+                "durationMs": 2567
+              },
+              {
+                "name": "11.1 — combo 5 has accessible name via aria-label",
+                "status": "passed",
+                "durationMs": 2217
+              },
+              {
+                "name": "12.2 — At 320px viewport, scenario bands fit without horizontal scroll",
+                "status": "passed",
+                "durationMs": 5136
+              },
+              {
+                "name": "12.2b — Default badge visible at 1440px viewport",
+                "status": "passed",
+                "durationMs": 4577
+              },
+              {
+                "name": "12.1 — fullWidth is not a CounterBadge prop",
+                "status": "passed",
+                "durationMs": 2986
+              },
+              {
+                "name": "13.1 — After dark theme, all scenario sections remain visible",
+                "status": "passed",
+                "durationMs": 3913
+              },
+              {
+                "name": "Smoke — Page heading reads “Counter Badge”",
+                "status": "passed",
+                "durationMs": 3195
+              },
+              {
+                "name": "Smoke — Default status badge visible with value 5",
+                "status": "passed",
+                "durationMs": 1657
+              },
+              {
+                "name": "[fn] shows Counter Badge page heading",
+                "status": "passed",
+                "durationMs": 2395
+              },
+              {
+                "name": "[fn] theme toggle updates label",
+                "status": "passed",
+                "durationMs": 3357
+              },
+              {
+                "name": "[fn] scenario tabs are present",
+                "status": "passed",
+                "durationMs": 2946
+              },
+              {
+                "name": "[fn] Default counter badge is visible",
+                "status": "passed",
+                "durationMs": 3018
+              },
+              {
+                "name": "[fn] Size row — M / S / L badges visible with value 8",
+                "status": "passed",
+                "durationMs": 2904
+              },
+              {
+                "name": "[fn] Attention row — high / medium / low visible",
+                "status": "passed",
+                "durationMs": 2686
+              },
+              {
+                "name": "[fn] Appearance matrix — primary row triplet visible",
+                "status": "passed",
+                "durationMs": 2512
+              },
+              {
+                "name": "[fn] Variant band — bold / subtle / ghost visible",
+                "status": "passed",
+                "durationMs": 2695
+              },
+              {
+                "name": "[fn] showZero and max overflow badges",
+                "status": "passed",
+                "durationMs": 2740
+              },
+              {
+                "name": "[fn] Combination matrix renders all combo rows",
+                "status": "passed",
+                "durationMs": 2681
+              },
+              {
+                "name": "[fn] Figma Validation tab renders matrix root",
+                "status": "passed",
+                "durationMs": 2566
+              }
+            ]
+          },
+          "performance": {
+            "suite": "performance",
+            "passed": 0,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "Performance suite is not executed in apps/qa-playground Counter Badge Playwright bundle."
+            ],
+            "errors": []
+          }
+        }
+      }
+    }
+  ]
+}

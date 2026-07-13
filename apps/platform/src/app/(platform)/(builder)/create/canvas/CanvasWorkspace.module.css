@@ -1,0 +1,125 @@
+/**
+ * CanvasWorkspace — Standalone canvas editor for Create section
+ */
+
+.page {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  inset: 0;
+  max-width: none !important;
+  overflow: hidden;
+  background: var(--Surface-Minimal);
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-3-5);
+  padding: var(--Spacing-3) var(--Spacing-4);
+  border-bottom: var(--Stroke-M) solid var(--Border-Subtle);
+  flex-shrink: 0;
+  background: var(--Surface-Elevated);
+}
+
+.titleGroup {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-3-5);
+  min-width: 0;
+  flex: 1;
+}
+
+.nameInput {
+  font-family: var(--Title-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Title-S-FontSize, var(--Typography-Size-Title-S));
+  font-weight: var(--Title-FontWeight-High, var(--Typography-Weight-Title-High, 600));
+  color: var(--Text-High);
+  background: transparent;
+  border: var(--Stroke-M) solid transparent;
+  border-radius: var(--Shape-3);
+  padding: var(--Spacing-1) var(--Spacing-3);
+  min-width: 0;
+  width: 240px;
+  outline: none;
+  transition: border-color var(--Duration-XS, 100ms) var(--Motion-Easing-Transition, ease);
+}
+
+.nameInput:hover {
+  border-color: var(--Border-Subtle);
+}
+
+.nameInput:focus {
+  border-color: var(--Primary-Bold, var(--Surface-Bold));
+}
+
+.nameInput::placeholder {
+  color: var(--Text-Low);
+}
+
+.dimensionBadge {
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Body-S-FontSize, var(--Typography-Size-XS));
+  color: var(--Text-Low);
+  padding: var(--Spacing-1) var(--Spacing-3);
+  background: var(--Neutral-Subtle);
+  border-radius: var(--Shape-3);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.toolbarSpacer {
+  flex: 1;
+}
+
+.toolbarActions {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-3);
+  flex-shrink: 0;
+}
+
+.canvasWrap {
+  flex: 1;
+  min-height: 0;
+  position: relative;
+}
+
+.savingOverlay {
+  position: absolute;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: color-mix(in srgb, var(--Surface-Minimal) 80%, transparent);
+  backdrop-filter: blur(4px);
+}
+
+.savingContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--Spacing-3-5);
+}
+
+.savingText {
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Body-M-FontSize, var(--Typography-Size-M));
+  color: var(--Text-Medium);
+}
+
+.spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid var(--Border-Subtle);
+  border-top-color: var(--Primary-Bold, var(--Surface-Bold));
+  border-radius: 50%;
+  animation: spin 600ms linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

@@ -1,0 +1,112 @@
+.gridContainer {
+  overflow: auto;
+  border: var(--Stroke-S) solid var(--Neutral-Stroke-Low);
+  border-radius: var(--Shape-3);
+}
+
+.grid {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.cornerHeader {
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  font-weight: var(--Label-FontWeight-High);
+  font-size: var(--Label-S-FontSize);
+  color: var(--Text-Medium);
+  text-align: left;
+  padding: var(--Spacing-1) var(--Spacing-3);
+  background: var(--Neutral-Subtle);
+  border-bottom: var(--Stroke-M) solid var(--Neutral-Stroke-Low);
+  white-space: nowrap;
+}
+
+.columnHeader {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  font-size: var(--Label-XS-FontSize);
+  font-weight: var(--Label-FontWeight-High);
+  color: var(--Text-Medium);
+  text-align: center;
+  padding: var(--Spacing-1) var(--Spacing-3);
+  background: var(--Neutral-Subtle);
+  border-bottom: var(--Stroke-M) solid var(--Neutral-Stroke-Low);
+  white-space: nowrap;
+}
+
+.rowHeader {
+  font-weight: var(--Label-FontWeight-High);
+  font-size: var(--Label-S-FontSize);
+  color: var(--Text-High);
+  padding: var(--Spacing-1) var(--Spacing-3);
+  border-bottom: var(--Stroke-S) solid var(--Neutral-Stroke-Low);
+  white-space: nowrap;
+  font-family: var(--Typography-Font-Code);
+}
+
+.slotCell {
+  font-size: var(--Label-S-FontSize);
+  color: var(--Text-Medium);
+  padding: var(--Spacing-1) var(--Spacing-3);
+  border-bottom: var(--Stroke-S) solid var(--Neutral-Stroke-Low);
+  white-space: nowrap;
+}
+
+.cell {
+  padding: var(--Spacing-1);
+  border: var(--Stroke-S) solid var(--Neutral-Stroke-Low);
+  text-align: center;
+  vertical-align: middle;
+}
+
+.cell[data-status='mismatched'] {
+  background-color: var(--Warning-Subtle);
+}
+
+.cell[data-status='missing-in-figma'],
+.cell[data-status='missing-in-tool'] {
+  background-color: var(--Negative-Subtle);
+}
+
+.cell[data-empty='true'] {
+  color: var(--Text-Low);
+}
+
+.cellContent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--Spacing-0-5);
+}
+
+.cellValues {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--Spacing-0-5);
+}
+
+.figmaValue {
+  font-size: var(--Code-S-FontSize);
+  font-family: var(--Typography-Font-Code);
+  color: var(--Text-Medium);
+}
+
+.toolValue {
+  font-size: var(--Code-S-FontSize);
+  font-family: var(--Typography-Font-Code);
+  color: var(--Text-High);
+}
+
+.emptyState {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--Spacing-6);
+  color: var(--Text-Low);
+  font-size: var(--Body-M-FontSize);
+}

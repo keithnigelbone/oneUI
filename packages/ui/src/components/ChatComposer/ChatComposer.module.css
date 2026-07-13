@@ -1,0 +1,126 @@
+/**
+ * ChatComposer.module.css
+ *
+ * Token-only styles for the reusable chat composer. Layout mirrors the
+ * voice playground input so visual parity is trivial when/if we migrate
+ * that surface over.
+ *
+ * INTENTIONAL-LITERAL: the composer uses two tiny `rgba(0,0,0, <0.05)`
+ * ambient shadows for depth at rest / on focus. There are no elevation
+ * tokens that match this subtle magnitude — the smallest (--Elevation-1)
+ * is a stronger drop shadow intended for cards.
+ */
+
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-3-5);
+  width: 100%;
+}
+
+/* ── Input wrap ─────────────────────────────────────────────────────────── */
+
+.inputWrap {
+  display: flex;
+  flex-direction: column;
+  background: var(--Surface-Elevated, var(--Surface-Main));
+  border-radius: var(--Shape-5);
+  /* No outer padding — textarea and actionBar each own their insets so the
+     send button circle centers exactly on the container's corner arc. */
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.02);
+  transition:
+    border-color var(--Motion-Duration-Discreet-Short) var(--Motion-Easing-Transition),
+    box-shadow var(--Motion-Duration-Discreet-Short) var(--Motion-Easing-Transition);
+}
+
+.inputWrap:focus-within {
+  border-color: var(--Neutral-Stroke-Medium);
+  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.04);
+}
+
+.inputWrap[data-disabled='true'] {
+  opacity: var(--Disabled-Opacity, 0.5);
+  pointer-events: none;
+}
+
+/* ── Textarea ───────────────────────────────────────────────────────────── */
+
+.textarea {
+  width: 100%;
+  resize: none;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Body-M-FontSize);
+  line-height: var(--Body-M-LineHeight);
+  color: var(--Primary-High);
+  padding: var(--Spacing-4) var(--Spacing-4) var(--Spacing-2);
+  min-height: calc(var(--Body-M-LineHeight) * 3);
+  max-height: calc(var(--Body-M-LineHeight) * 8);
+  overflow-y: auto;
+}
+
+.textarea::placeholder {
+  color: var(--Primary-Low);
+}
+
+.textarea:disabled {
+  cursor: not-allowed;
+}
+
+/* ── Action bar ─────────────────────────────────────────────────────────── */
+
+.actionBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--Spacing-3);
+  padding: 0 var(--Spacing-3-5) var(--Spacing-3-5);
+}
+
+.leftActions {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-1-5);
+  min-width: 0;
+}
+
+.rightActions {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-2);
+  min-width: 0;
+}
+
+/* ── Model chip ─────────────────────────────────────────────────────────── */
+
+.modelChip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--Spacing-1);
+  padding: var(--Spacing-1-5) var(--Spacing-2-5);
+  font-family: var(--Label-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Label-S-FontSize, var(--Body-S-FontSize));
+  line-height: var(--Label-S-LineHeight, var(--Body-S-LineHeight));
+  font-weight: var(--Label-FontWeight-Medium, var(--Body-FontWeight-Medium));
+  color: var(--Primary-Medium-Text);
+  border-radius: var(--Shape-2);
+  user-select: none;
+  white-space: nowrap;
+}
+
+/* ── Suggestion chips row ───────────────────────────────────────────────── */
+
+.suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--Spacing-2);
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Suggestion chips use the real <Chip> component — no local styles needed. */

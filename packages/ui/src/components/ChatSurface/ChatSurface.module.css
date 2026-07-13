@@ -1,0 +1,259 @@
+/**
+ * ChatSurface.module.css
+ *
+ * Two layouts in one surface:
+ *  1. Empty state — greeting + composer centered vertically
+ *  2. Conversation — messages scroll, composer pinned to bottom
+ *
+ * Lifted verbatim from HomeChat.module.css.
+ *
+ * INTENTIONAL-LITERAL: product-design panel widths (max-width: 720px for
+ * conversation column, max-width/height: 280px for the preview card) and
+ * scroll-thumb geometry (8px × 8px) are intentionally outside the spacing
+ * token scale — those tokens exist for padding/gap rhythm, not arbitrary
+ * panel dimensions or tiny UA-style chrome.
+ */
+
+.root {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: calc(100vh - var(--Spacing-12));
+  padding: var(--Spacing-4-5) var(--Spacing-4-5) var(--Spacing-4);
+  gap: var(--Spacing-4-5);
+}
+
+/* ── Empty state (greeting + composer centered) ─────────────────────────── */
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--Spacing-4-5);
+  flex: 1;
+  max-width: 720px;
+  width: 100%;
+  margin: 0 auto;
+  padding-top: var(--Spacing-8);
+}
+
+.greetingSlot {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  /* Matches the original HomeChat greeting spacing to its composer. */
+  margin-bottom: var(--Spacing-6);
+}
+
+.emptyComposer {
+  width: 100%;
+  padding-bottom: var(--Spacing-5);
+}
+
+/* ── Conversation state ─────────────────────────────────────────────────── */
+
+/* INTENTIONAL-LITERAL: 720px conversation column width is a product-design
+   readable-column cap that isn't in the spacing/dimension token scale. */
+.conversation {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  gap: var(--Spacing-4-5);
+}
+
+.messages {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-4);
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--Spacing-3-5) 0;
+}
+
+.composerPinned {
+  position: sticky;
+  bottom: 0;
+  background: var(--Surface-Main);
+  padding-top: var(--Spacing-3-5);
+}
+
+.aboveComposer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--Spacing-2);
+  padding-bottom: var(--Spacing-2);
+}
+
+/* ── Stop generating pill ───────────────────────────────────────────────── */
+
+.stopPill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--Spacing-1-5);
+  padding: var(--Spacing-1) var(--Spacing-3-5);
+  background: var(--Primary-Subtle);
+  color: var(--Primary-High);
+  border: var(--Stroke-S) solid var(--Primary-Stroke-Low);
+  border-radius: var(--Shape-Pill);
+  font-family: var(--Label-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+  cursor: pointer;
+  transition: background-color var(--Motion-Duration-Discreet-Short);
+}
+
+.stopPill:hover {
+  background: var(--Primary-Stroke-Low);
+}
+
+.stopDot {
+  width: var(--Dimension-f-4);
+  height: var(--Dimension-f-4);
+  background: var(--Negative-Medium-Text);
+  border-radius: var(--Shape-2);
+}
+
+/* ── Regenerate action on the latest assistant row ──────────────────────── */
+
+.assistantActions {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-2);
+  margin-top: var(--Spacing-2);
+  opacity: 0;
+  transition: opacity var(--Motion-Duration-Discreet-Short);
+}
+
+.bubbleAssistant:hover .assistantActions,
+.assistantActions:focus-within {
+  opacity: 1;
+}
+
+.regenerateButton {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--Spacing-1-5);
+  padding: var(--Spacing-1) var(--Spacing-2-5);
+  background: transparent;
+  color: var(--Primary-Medium-Text);
+  border: var(--Stroke-S) solid var(--Primary-Stroke-Low);
+  border-radius: var(--Shape-Pill);
+  font-family: var(--Label-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+  cursor: pointer;
+  transition:
+    background-color var(--Motion-Duration-Discreet-Short),
+    color var(--Motion-Duration-Discreet-Short);
+}
+
+.regenerateButton:hover {
+  background: var(--Primary-Subtle);
+  color: var(--Primary-High);
+}
+
+/* ── Default error bubble ───────────────────────────────────────────────── */
+
+.errorBubble {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-1-5);
+  padding: var(--Spacing-3-5) var(--Spacing-4);
+  background: var(--Negative-Subtle);
+  color: var(--Negative-High);
+  border: var(--Stroke-S) solid var(--Negative-Stroke-Low);
+  border-radius: var(--Shape-4);
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+}
+
+.errorTitle {
+  font-size: var(--Label-S-FontSize);
+  line-height: var(--Label-S-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+}
+
+.errorMessage {
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  color: var(--Negative-Medium-Text);
+  word-break: break-word;
+}
+
+/* ── Message bubbles ────────────────────────────────────────────────────── */
+
+.row {
+  display: flex;
+  max-width: 85%;
+}
+
+.rowUser {
+  align-self: flex-end;
+  justify-content: flex-end;
+}
+
+.rowAssistant {
+  align-self: flex-start;
+}
+
+.userStack {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--Spacing-2);
+}
+
+/* INTENTIONAL-LITERAL: 280px cap on user-uploaded image previews is a
+   product-design choice that keeps inline images a consistent size in the
+   chat transcript. Not expressible via the spacing token scale. */
+.userImage {
+  max-width: 280px;
+  max-height: 280px;
+  border-radius: var(--Shape-4);
+  border: var(--Stroke-S) solid var(--Primary-Stroke-Low);
+  display: block;
+  object-fit: contain;
+}
+
+.bubbleUser {
+  background: var(--Primary-Bold);
+  color: var(--Primary-Bold-High);
+  padding: var(--Spacing-3) var(--Spacing-4);
+  border-radius: var(--Shape-4);
+  border-bottom-right-radius: var(--Shape-2);
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Body-M-FontSize);
+  line-height: var(--Body-M-LineHeight);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.bubbleAssistant {
+  color: var(--Primary-High);
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Body-M-FontSize);
+  line-height: var(--Body-M-LineHeight);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.toolCall {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--Spacing-1-5);
+  background: var(--Primary-Subtle);
+  color: var(--Primary-Medium-Text);
+  padding: var(--Spacing-1-5) var(--Spacing-2-5);
+  border-radius: var(--Shape-2);
+  font-family: var(--Label-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Label-S-FontSize, var(--Body-S-FontSize));
+  line-height: var(--Label-S-LineHeight, var(--Body-S-LineHeight));
+  margin-bottom: var(--Spacing-2);
+}
+

@@ -1,0 +1,274 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Avatar",
+  "generatedAt": "2026-07-09T13:07:37.407Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "User representation — image, icon, or initials. Attention drives the fill (high → bold surface, medium → subtle tint, low → transparent), with t-shirt sizing and multi-accent appearance. The icon/fallback slot supplies colour + size via ComponentSlotIconContext — pass a JDS <Icon>, never a raw SVG with its own fill."
+  },
+  "compositionRules": {
+    "requires": [],
+    "allows": [],
+    "forbids": [],
+    "childKind": "fixed-slots"
+  },
+  "props": [
+    {
+      "name": "content",
+      "type": "'image' | 'icon' | 'text'",
+      "required": false,
+      "defaultValue": "image",
+      "description": "image (src) → icon/text fallback on load error; icon → icon slot; text → initials from `alt`."
+    },
+    {
+      "name": "size",
+      "type": "'2xs' | 'xs' | 's' | 'm' | 'l' | 'xl' | '2xl' | 'custom'",
+      "required": false,
+      "defaultValue": "m",
+      "description": ""
+    },
+    {
+      "name": "attention",
+      "type": "'high' | 'medium' | 'low'",
+      "required": false,
+      "defaultValue": "high",
+      "description": "high = bold-surface fill, medium = subtle tint, low = transparent. Maps to the surface-resolved paint."
+    },
+    {
+      "name": "appearance",
+      "type": "'auto' | 'primary' | 'secondary' | 'neutral' | 'sparkle' | 'brand-bg' | 'positive' | 'negative' | 'warning' | 'informative'",
+      "required": false,
+      "defaultValue": "auto",
+      "description": "Multi-accent role resolved against the parent <Surface>. Explicit prop wins; 'auto' inherits the nearest <Surface appearance>; root fallback is primary."
+    },
+    {
+      "name": "src",
+      "type": "string",
+      "required": false,
+      "description": "Image URL (content=\"image\"). Falls back to icon/text on load error."
+    },
+    {
+      "name": "alt",
+      "type": "string",
+      "required": false,
+      "description": "Accessible name + source for the initials in text variant."
+    },
+    {
+      "name": "icon",
+      "type": "ReactNode",
+      "required": false,
+      "description": "ReactNode for the icon variant. MUST be a JDS <Icon> (or any component that reads ComponentSlotIconContext) so it inherits the slot colour + size. A raw <Svg> with a hardcoded fill ignores the slot and renders blank. — [warn] Use <Icon name=\"…\" /> from @oneui/ui-native/icons. The Avatar icon slot provides { sizePx, color } via ComponentSlotIconContext; a bare SVG with its own fill/size will not pick up brand paint and appears invisible."
+    },
+    {
+      "name": "fallback",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Custom node shown when the image fails or for icon/text variants. Same slot-context contract as `icon` — prefer a JDS <Icon> or string initials."
+    },
+    {
+      "name": "customSize",
+      "type": "number",
+      "required": false,
+      "description": "Pixel size — only honoured when size=\"custom\"."
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "backgroundColor",
+      "type": "string",
+      "required": false,
+      "description": "[error] Don't paint directly. Use `appearance` (role) + `variant`/`mode` and wrap in <Surface mode>; the brand cascade picks the right fill."
+    },
+    {
+      "name": "style",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Layout style only. backgroundColor / borderColor are forbidden — attention + appearance drive the fill. — [warn] Don't paint the Avatar via style. Use `attention` + `appearance`; the surface cascade resolves the fill."
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.kb.rn.Avatar",
+    "type": "object",
+    "properties": {
+      "content": {
+        "enum": [
+          "image",
+          "icon",
+          "text"
+        ],
+        "default": "image",
+        "description": "image (src) → icon/text fallback on load error; icon → icon slot; text → initials from `alt`."
+      },
+      "size": {
+        "enum": [
+          "2xs",
+          "xs",
+          "s",
+          "m",
+          "l",
+          "xl",
+          "2xl",
+          "custom"
+        ],
+        "default": "m"
+      },
+      "attention": {
+        "enum": [
+          "high",
+          "medium",
+          "low"
+        ],
+        "default": "high",
+        "description": "high = bold-surface fill, medium = subtle tint, low = transparent. Maps to the surface-resolved paint."
+      },
+      "appearance": {
+        "enum": [
+          "auto",
+          "primary",
+          "secondary",
+          "neutral",
+          "sparkle",
+          "brand-bg",
+          "positive",
+          "negative",
+          "warning",
+          "informative"
+        ],
+        "default": "auto",
+        "description": "Multi-accent role resolved against the parent <Surface>. Explicit prop wins; 'auto' inherits the nearest <Surface appearance>; root fallback is primary."
+      },
+      "src": {
+        "type": "string",
+        "description": "Image URL (content=\"image\"). Falls back to icon/text on load error."
+      },
+      "alt": {
+        "type": "string",
+        "description": "Accessible name + source for the initials in text variant."
+      },
+      "icon": {
+        "description": "ReactNode for the icon variant. MUST be a JDS <Icon> (or any component that reads ComponentSlotIconContext) so it inherits the slot colour + size. A raw <Svg> with a hardcoded fill ignores the slot and renders blank.",
+        "x-jds-suggestion": "Use <Icon name=\"…\" /> from @oneui/ui-native/icons. The Avatar icon slot provides { sizePx, color } via ComponentSlotIconContext; a bare SVG with its own fill/size will not pick up brand paint and appears invisible.",
+        "x-jds-severity": "warn"
+      },
+      "fallback": {
+        "description": "Custom node shown when the image fails or for icon/text variants. Same slot-context contract as `icon` — prefer a JDS <Icon> or string initials."
+      },
+      "customSize": {
+        "type": "number",
+        "description": "Pixel size — only honoured when size=\"custom\"."
+      },
+      "disabled": {
+        "type": "boolean",
+        "default": false
+      },
+      "backgroundColor": {
+        "type": "string",
+        "not": {
+          "anyOf": [
+            {
+              "pattern": "^#"
+            },
+            {
+              "pattern": "^rgba?\\("
+            },
+            {
+              "pattern": "^hsla?\\("
+            },
+            {
+              "pattern": "^oklch\\("
+            },
+            {
+              "pattern": "^color-mix\\("
+            },
+            {
+              "enum": [
+                "transparent",
+                "inherit"
+              ]
+            }
+          ]
+        },
+        "x-jds-suggestion": "Don't paint directly. Use `appearance` (role) + `variant`/`mode` and wrap in <Surface mode>; the brand cascade picks the right fill.",
+        "x-jds-severity": "error"
+      },
+      "style": {
+        "description": "Layout style only. backgroundColor / borderColor are forbidden — attention + appearance drive the fill.",
+        "x-jds-suggestion": "Don't paint the Avatar via style. Use `attention` + `appearance`; the surface cascade resolves the fill.",
+        "x-jds-severity": "warn"
+      }
+    }
+  },
+  "tokens": {
+    "color": [
+      "primary",
+      "secondary",
+      "neutral",
+      "sparkle",
+      "brand-bg",
+      "positive",
+      "negative",
+      "warning",
+      "informative"
+    ],
+    "surface": [
+      "bold",
+      "subtle"
+    ],
+    "typography": [
+      "label.3XS",
+      "label.2XS",
+      "label.XS",
+      "label.S",
+      "label.M",
+      "label.L"
+    ],
+    "shape": [
+      "pill"
+    ]
+  },
+  "a11y": {
+    "accessibilityRole": "image",
+    "accessibleNameSource": "aria-label",
+    "minTouchTarget": 44,
+    "honorsBoldText": true,
+    "honorsScreenReader": true
+  },
+  "renderHints": {
+    "baseElement": "View",
+    "animatedOn": [],
+    "honorsReduceMotion": false,
+    "readsFromSurfaceContext": true
+  },
+  "figma": {
+    "componentKey": "jds-avatar-v4",
+    "keyHistory": [],
+    "variantProperties": {
+      "Component": "Avatar"
+    }
+  },
+  "codeSnippets": [
+    {
+      "id": "import-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { Avatar } from '@oneui/ui-native';\n\n<Avatar />"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "avatar",
+    "display",
+    "avatar",
+    "media",
+    "inherits-appearance"
+  ],
+  "importPath": "@oneui/ui-native"
+}

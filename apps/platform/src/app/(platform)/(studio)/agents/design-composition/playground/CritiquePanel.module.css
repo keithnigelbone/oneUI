@@ -1,0 +1,230 @@
+/**
+ * CritiquePanel.module.css
+ *
+ * Token-only styles for the on-demand 5-dimension review panel. Mirrors the
+ * voice eval result density: dimension row at the top, structured sections
+ * beneath, no heavy chrome (the FoundationCard wrapper provides framing).
+ */
+
+.headerActions {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-2);
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-4);
+  padding: var(--Spacing-3-5) 0;
+  font-family: var(--Typography-Font-Text);
+}
+
+.summary {
+  margin: 0;
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Body-M-FontSize);
+  font-weight: var(--Body-FontWeight-Low);
+  line-height: var(--Body-M-LineHeight);
+  color: var(--Text-Medium);
+}
+
+/* ── Dimension row ──────────────────────────────────────────────────── */
+
+.dimensionRow {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--Spacing-3-5);
+  padding: var(--Spacing-3-5);
+  background-color: var(--Surface-Subtle);
+  border-radius: var(--Shape-2-5);
+}
+
+.dimensionCell {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-1-5);
+  min-width: 0;
+}
+
+.dimensionLabel {
+  font-family: var(--Label-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Label-XS-FontSize);
+  font-weight: var(--Label-FontWeight-Medium);
+  line-height: var(--Label-XS-LineHeight);
+  color: var(--Text-Medium);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.dimensionEvidence {
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Body-S-FontSize);
+  font-weight: var(--Body-FontWeight-Low);
+  line-height: var(--Body-S-LineHeight);
+  color: var(--Text-Low);
+}
+
+/* ── Sections (Keep / Fix / Quick wins) ─────────────────────────────── */
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-3);
+  padding: var(--Spacing-3-5);
+  border-radius: var(--Shape-2-5);
+}
+
+.section[data-tone='positive'] {
+  background-color: var(--Positive-Subtle);
+}
+
+.section[data-tone='warning'] {
+  background-color: var(--Warning-Subtle);
+}
+
+.section[data-tone='informative'] {
+  background-color: var(--Informative-Subtle);
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-2);
+  font-family: var(--Typography-Font-Text);
+  color: var(--Text-High);
+}
+
+.sectionTitle {
+  font-family: var(--Label-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Label-S-FontSize);
+  font-weight: var(--Label-FontWeight-Medium);
+  line-height: var(--Label-S-LineHeight);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-3);
+}
+
+.row {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-1-5);
+  padding: var(--Spacing-3) 0;
+  border-bottom: var(--Stroke-S) solid var(--Border-Subtle);
+}
+
+.row:last-child {
+  border-bottom: none;
+}
+
+.rowHead {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-2);
+  flex-wrap: wrap;
+}
+
+.rowTitle {
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Body-M-FontSize);
+  font-weight: var(--Body-FontWeight-Medium);
+  line-height: var(--Body-M-LineHeight);
+  color: var(--Text-High);
+}
+
+.rowEvidence {
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Body-S-FontSize);
+  font-weight: var(--Body-FontWeight-Low);
+  line-height: var(--Body-S-LineHeight);
+  color: var(--Text-Medium);
+}
+
+.rowLocation {
+  display: inline-block;
+  margin-top: var(--Spacing-1-5);
+  padding: var(--Spacing-1) var(--Spacing-1-5);
+  font-family: var(--Typography-Font-Code);
+  font-size: var(--Code-S-FontSize);
+  line-height: var(--Code-S-LineHeight);
+  color: var(--Text-Medium);
+  background-color: var(--Neutral-Minimal);
+  border-radius: var(--Shape-2);
+}
+
+/* ── Status / empty / error rows ────────────────────────────────────── */
+
+.statusRow {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-2);
+  padding: var(--Spacing-3-5) 0;
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Body-M-FontSize);
+  line-height: var(--Body-M-LineHeight);
+  color: var(--Text-Medium);
+}
+
+.muted {
+  color: var(--Text-Low);
+}
+
+.errorRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--Spacing-3-5);
+  padding: var(--Spacing-3-5);
+  background-color: var(--Negative-Subtle);
+  border-radius: var(--Shape-2-5);
+}
+
+.errorBody {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--Spacing-2);
+  color: var(--Text-High);
+}
+
+.errorTitle {
+  display: block;
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Body-M-FontSize);
+  font-weight: var(--Body-FontWeight-Medium);
+  line-height: var(--Body-M-LineHeight);
+}
+
+.errorMessage {
+  margin: 0;
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Body-S-FontSize);
+  font-weight: var(--Body-FontWeight-Low);
+  line-height: var(--Body-S-LineHeight);
+  color: var(--Text-Medium);
+}
+
+.retryButton {
+  appearance: none;
+  border: none;
+  background-color: transparent;
+  color: var(--Text-High);
+  font-family: var(--Label-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Label-S-FontSize);
+  font-weight: var(--Label-FontWeight-Medium);
+  line-height: var(--Label-S-LineHeight);
+  padding: var(--Spacing-2) var(--Spacing-3);
+  border-radius: var(--Shape-2);
+  cursor: pointer;
+}
+
+.retryButton:hover {
+  background-color: var(--Neutral-Minimal);
+}

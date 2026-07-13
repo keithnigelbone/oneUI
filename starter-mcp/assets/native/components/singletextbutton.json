@@ -1,0 +1,287 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "SingleTextButton",
+  "generatedAt": "2026-07-09T13:07:37.433Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "Circular single-text action button (max 2 characters). `attention` (high/medium/low) drives the full visual via surface-resolved bold/subtle/ghost variants. Supports `condensed` and `fullWidth` layout, `loading` (busy, non-disabled) and `disabled` states. Not a toggle — use IconButton/Chip for selection state."
+  },
+  "compositionRules": {
+    "requires": [
+      "children"
+    ],
+    "allows": [],
+    "forbids": [],
+    "childKind": "leaf"
+  },
+  "props": [
+    {
+      "name": "children",
+      "type": "string",
+      "required": true,
+      "description": "Visible label — max 2 characters (e.g. \"Ag\", \"En\", \"A\", \"12\"). Longer text is truncated in dev with a warning."
+    },
+    {
+      "name": "size",
+      "type": "'s' | 'm' | 'l'",
+      "required": false,
+      "defaultValue": "m",
+      "description": "Button size. S/M/L only — no XS."
+    },
+    {
+      "name": "attention",
+      "type": "'high' | 'medium' | 'low'",
+      "required": false,
+      "defaultValue": "high",
+      "description": "Figma attention alias. high→bold fill + on-bold text, medium→subtle fill + accent text, low→ghost (transparent) + accent text."
+    },
+    {
+      "name": "appearance",
+      "type": "'auto' | 'primary' | 'secondary' | 'tertiary' | 'quaternary' | 'neutral' | 'sparkle' | 'brand-bg' | 'positive' | 'negative' | 'warning' | 'informative'",
+      "required": false,
+      "defaultValue": "auto",
+      "description": "Multi-accent role. Widens the canonical 9-role set with 'tertiary'/'quaternary' for web parity. Explicit non-'auto' wins; otherwise inherits the nearest <Surface appearance>, falling back to 'primary'."
+    },
+    {
+      "name": "condensed",
+      "type": "boolean",
+      "required": false,
+      "description": "Reduces height/padding while keeping the same typography."
+    },
+    {
+      "name": "fullWidth",
+      "type": "boolean",
+      "required": false,
+      "description": "Stretch to fill container width — overrides the circular shape."
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "loading",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": "Shows a circular spinner replacing the label and marks the control busy (aria-busy / accessibilityState.busy). Activation is suppressed while busy but the control is not visually disabled unless `disabled` is also set."
+    },
+    {
+      "name": "onPress",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Press handler (React Native convention)."
+    },
+    {
+      "name": "onClick",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Web parity alias for onPress."
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": false,
+      "description": "Accessible label override — children text is visible so this is optional."
+    },
+    {
+      "name": "backgroundColor",
+      "type": "string",
+      "required": false,
+      "description": "[error] Don't paint directly. Use `appearance` (role) + `variant`/`mode` and wrap in <Surface mode>; the brand cascade picks the right fill."
+    },
+    {
+      "name": "style",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Layout style only. attention + appearance + the parent <Surface> drive bg / text — do not paint here. — [warn] SingleTextButton colour is surface-resolved from `attention` + `appearance`. Don't set backgroundColor; wrap in <Surface> and it adapts automatically."
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.kb.rn.SingleTextButton",
+    "type": "object",
+    "required": [
+      "children"
+    ],
+    "properties": {
+      "children": {
+        "type": "string",
+        "description": "Visible label — max 2 characters (e.g. \"Ag\", \"En\", \"A\", \"12\"). Longer text is truncated in dev with a warning."
+      },
+      "size": {
+        "enum": [
+          "s",
+          "m",
+          "l"
+        ],
+        "default": "m",
+        "description": "Button size. S/M/L only — no XS."
+      },
+      "attention": {
+        "enum": [
+          "high",
+          "medium",
+          "low"
+        ],
+        "default": "high",
+        "description": "Figma attention alias. high→bold fill + on-bold text, medium→subtle fill + accent text, low→ghost (transparent) + accent text."
+      },
+      "appearance": {
+        "enum": [
+          "auto",
+          "primary",
+          "secondary",
+          "tertiary",
+          "quaternary",
+          "neutral",
+          "sparkle",
+          "brand-bg",
+          "positive",
+          "negative",
+          "warning",
+          "informative"
+        ],
+        "default": "auto",
+        "description": "Multi-accent role. Widens the canonical 9-role set with 'tertiary'/'quaternary' for web parity. Explicit non-'auto' wins; otherwise inherits the nearest <Surface appearance>, falling back to 'primary'."
+      },
+      "condensed": {
+        "type": "boolean",
+        "description": "Reduces height/padding while keeping the same typography."
+      },
+      "fullWidth": {
+        "type": "boolean",
+        "description": "Stretch to fill container width — overrides the circular shape."
+      },
+      "disabled": {
+        "type": "boolean",
+        "default": false
+      },
+      "loading": {
+        "type": "boolean",
+        "default": false,
+        "description": "Shows a circular spinner replacing the label and marks the control busy (aria-busy / accessibilityState.busy). Activation is suppressed while busy but the control is not visually disabled unless `disabled` is also set."
+      },
+      "onPress": {
+        "description": "Press handler (React Native convention)."
+      },
+      "onClick": {
+        "description": "Web parity alias for onPress."
+      },
+      "aria-label": {
+        "type": "string",
+        "description": "Accessible label override — children text is visible so this is optional."
+      },
+      "backgroundColor": {
+        "type": "string",
+        "not": {
+          "anyOf": [
+            {
+              "pattern": "^#"
+            },
+            {
+              "pattern": "^rgba?\\("
+            },
+            {
+              "pattern": "^hsla?\\("
+            },
+            {
+              "pattern": "^oklch\\("
+            },
+            {
+              "pattern": "^color-mix\\("
+            },
+            {
+              "enum": [
+                "transparent",
+                "inherit"
+              ]
+            }
+          ]
+        },
+        "x-jds-suggestion": "Don't paint directly. Use `appearance` (role) + `variant`/`mode` and wrap in <Surface mode>; the brand cascade picks the right fill.",
+        "x-jds-severity": "error"
+      },
+      "style": {
+        "description": "Layout style only. attention + appearance + the parent <Surface> drive bg / text — do not paint here.",
+        "x-jds-suggestion": "SingleTextButton colour is surface-resolved from `attention` + `appearance`. Don't set backgroundColor; wrap in <Surface> and it adapts automatically.",
+        "x-jds-severity": "warn"
+      }
+    }
+  },
+  "tokens": {
+    "color": [
+      "primary",
+      "secondary",
+      "tertiary",
+      "quaternary",
+      "neutral",
+      "sparkle",
+      "brand-bg",
+      "positive",
+      "negative",
+      "warning",
+      "informative"
+    ],
+    "surface": [
+      "bold",
+      "subtle",
+      "ghost"
+    ],
+    "typography": [
+      "label.S",
+      "label.M",
+      "label.L"
+    ],
+    "shape": [
+      "pill"
+    ],
+    "motion": [
+      "motion.duration.expressive.long"
+    ]
+  },
+  "a11y": {
+    "accessibilityRole": "button",
+    "accessibleNameSource": "children",
+    "minTouchTarget": 44,
+    "honorsBoldText": true,
+    "honorsScreenReader": true
+  },
+  "renderHints": {
+    "baseElement": "View",
+    "animatedOn": [
+      "press"
+    ],
+    "honorsReduceMotion": true,
+    "readsFromSurfaceContext": true
+  },
+  "figma": {
+    "componentKey": "jds-single-text-button-v4",
+    "keyHistory": [],
+    "variantProperties": {
+      "Component": "SingleTextButton"
+    }
+  },
+  "codeSnippets": [
+    {
+      "id": "import-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { SingleTextButton } from '@oneui/ui-native';\n\n<SingleTextButton />"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "singletextbutton",
+    "action",
+    "button",
+    "circular",
+    "surface-aware",
+    "inherits-appearance"
+  ],
+  "importPath": "@oneui/ui-native"
+}

@@ -1,0 +1,101 @@
+/**
+ * FoundationTiles.module.css
+ * Compact per-foundation preview tiles for the brand overview rows.
+ * Token-only styling.
+ */
+
+.tileRow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--Spacing-3-5);
+}
+
+/* Shape language swatches — radius comes inline from live --Card/Button vars */
+.shapeSwatch {
+  width: var(--Spacing-6);
+  height: var(--Spacing-6);
+  background-color: var(--Primary-Subtle);
+  border: var(--Stroke-M) solid var(--Primary-Stroke-Low);
+}
+
+/* Elevation sample tiles — shadow comes inline from config or --Elevation-n */
+.elevationSwatch {
+  width: var(--Spacing-6);
+  height: var(--Spacing-6);
+  border-radius: var(--Shape-1);
+  background-color: var(--Surface-Elevated);
+  border: var(--Stroke-S) solid var(--Border-Subtle);
+}
+
+/* Motion curve */
+.motionCurve {
+  width: var(--Spacing-8);
+  height: var(--Spacing-6);
+  color: var(--Primary-TintedA11y);
+}
+
+.motionLabel {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Low);
+  color: var(--Text-Medium);
+}
+
+/* Grid columns */
+.gridBars {
+  display: inline-flex;
+  align-items: stretch;
+  gap: var(--Spacing-0-5);
+  height: var(--Spacing-5);
+}
+
+.gridBar {
+  width: var(--Spacing-1);
+  border-radius: var(--Shape-0);
+  background-color: var(--Primary-Tinted);
+}
+
+/* Materials metallic swatch — gradient colours come inline from config */
+.materialSwatch {
+  width: var(--Spacing-6);
+  height: var(--Spacing-6);
+  border-radius: var(--Shape-1);
+  border: var(--Stroke-S) solid var(--Border-Subtle);
+}
+
+/* ─── Completeness strip ─────────────────────────────────────────────────── */
+
+.completeness {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-4);
+  padding: var(--Spacing-4) 0;
+  border-bottom: var(--Stroke-S) solid var(--Border-Subtle);
+}
+
+.completenessMeter {
+  flex: 1;
+  /* Secondary appearance: remap the indicator fill token to the secondary
+     role. Progress's indicator reads var(--Surface-Bold); scoping the alias
+     here keeps the component generic while tinting just this instance. */
+  --Surface-Bold: var(--Secondary-Bold);
+}
+
+.completenessLabel {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Label-S-FontSize);
+  line-height: var(--Label-S-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+  color: var(--Text-High);
+  white-space: nowrap;
+}
+
+.completenessDetail {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Low);
+  color: var(--Text-Medium);
+  white-space: nowrap;
+}

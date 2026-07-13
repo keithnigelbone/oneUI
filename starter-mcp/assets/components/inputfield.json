@@ -1,0 +1,567 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "InputField",
+  "generatedAt": "2026-01-01T00:00:00.000Z",
+  "machineReadable": true,
+  "intentAndPurpose": {
+    "intent": "Text input field: `Field.Root` + **Input** (`Field.Label` / `Field.Description` for label-stack copy, `Field.Control` for the `<input>`, 4-slot shell), then `InputFeedback` (including native `Field.Error` when there is no string `error` / custom `feedback`), and DynamicText. Default info uses `IconButton` + `Tooltip` (override with `infoIconSlot`). Optional `labelSlot` replaces string `label` / `description`.",
+    "taskContexts": [
+      "input",
+      "field",
+      "text",
+      "form",
+      "text-field",
+      "validation"
+    ],
+    "sentiments": [
+      "neutral"
+    ]
+  },
+  "compositionRules": {
+    "requires": [],
+    "allows": [
+      "labelSlot",
+      "start",
+      "start2",
+      "end",
+      "end2",
+      "feedback",
+      "dynamicTextSlot",
+      "dynamicText",
+      "helperButton"
+    ],
+    "forbids": []
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "default",
+        "useWhen": [
+          "Default"
+        ]
+      }
+    ]
+  },
+  "relationshipsAndDependencies": {
+    "related": []
+  },
+  "contextSignals": {
+    "density": [
+      "compact",
+      "default",
+      "open"
+    ],
+    "modality": [
+      "desktop",
+      "mobile"
+    ],
+    "brand": [
+      "theme-scope aware",
+      "recipe-driven"
+    ],
+    "mode": [
+      "light",
+      "dark",
+      "surface-context"
+    ]
+  },
+  "observabilityHooks": {
+    "track": [],
+    "health": [
+      "a11y_violations"
+    ]
+  },
+  "props": [
+    {
+      "name": "appearance",
+      "type": "InputAppearance",
+      "required": false,
+      "description": "Multi-accent appearance role. 'auto' resolves to 'primary'."
+    },
+    {
+      "name": "attention",
+      "type": "InputAttention",
+      "required": false,
+      "description": "Visual attention — 'medium' (outlined, default) or 'high' (filled neutral background)."
+    },
+    {
+      "name": "autoComplete",
+      "type": "string",
+      "required": false,
+      "description": "Autocomplete attribute"
+    },
+    {
+      "name": "autoFocus",
+      "type": "boolean",
+      "required": false,
+      "description": "Autofocus attribute"
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "required": false,
+      "description": "Additional class name"
+    },
+    {
+      "name": "defaultValue",
+      "type": "string",
+      "required": false,
+      "description": "Default value (uncontrolled)"
+    },
+    {
+      "name": "description",
+      "type": "string",
+      "required": false,
+      "description": "Description text below the label row (ignored when `labelSlot` is set)"
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "required": false,
+      "description": "Whether the input is disabled"
+    },
+    {
+      "name": "dynamicText",
+      "type": "string",
+      "required": false,
+      "description": "Leading copy (trimmed non-empty string only). Ignored when `dynamicTextSlot` is set."
+    },
+    {
+      "name": "dynamicTextSlot",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Dynamic text row slot — pass `<InputDynamicText … />`. When set, `dynamicText` and `helperButton` are ignored."
+    },
+    {
+      "name": "end",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Trailing content slot — IconButton, Icon, Button, or Text"
+    },
+    {
+      "name": "end2",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Second trailing content slot — Text, Icon, or IconButton"
+    },
+    {
+      "name": "error",
+      "type": "string",
+      "required": false,
+      "description": "Error message to display (shorthand for InputFeedback variant=\"negative\")"
+    },
+    {
+      "name": "feedback",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Feedback slot — pass `<InputFeedback … />` or leave unset and use `error` string."
+    },
+    {
+      "name": "fullWidth",
+      "type": "boolean",
+      "required": false,
+      "description": "Stretch to fill container width"
+    },
+    {
+      "name": "helperButton",
+      "type": "string",
+      "required": false,
+      "description": "Trailing action label (trimmed non-empty string only); renders as `Button` attention low + condensed. Ignored when `dynamicTextSlot` is set."
+    },
+    {
+      "name": "id",
+      "type": "string",
+      "required": false,
+      "description": "HTML id attribute for the input element"
+    },
+    {
+      "name": "infoIcon",
+      "type": "boolean",
+      "required": false,
+      "description": "When true with a string `label`, shows the default info control unless `infoIconSlot` is set."
+    },
+    {
+      "name": "infoIconAriaLabel",
+      "type": "string",
+      "required": false,
+      "description": "Accessible name for the default info `IconButton`. Ignored when `infoIconSlot` is set."
+    },
+    {
+      "name": "infoIconSlot",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Replaces the default tooltip + info `IconButton` when `infoIcon` is true."
+    },
+    {
+      "name": "infoTooltipContent",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Tooltip content for the default info control. Ignored when `infoIconSlot` is set."
+    },
+    {
+      "name": "invalid",
+      "type": "boolean",
+      "required": false,
+      "description": "Mark the field invalid for `Field.Root` and error chrome on the bordered control."
+    },
+    {
+      "name": "label",
+      "type": "string",
+      "required": false,
+      "description": "Label text for the field (ignored when `labelSlot` is set)"
+    },
+    {
+      "name": "labelSlot",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Label slot — custom node (same `Field.Root`) replacing string `label` / `description` / default info props when set. When set, `label`, `description`, `infoIcon`, and default info props are ignored."
+    },
+    {
+      "name": "leftAddon",
+      "type": "ReactNode",
+      "required": false,
+      "description": "leftAddon property"
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "required": false,
+      "description": "Field name for form submission"
+    },
+    {
+      "name": "onBlur",
+      "type": "(e: FocusEvent<HTMLInputElement>) => void",
+      "required": false,
+      "description": "Blur event handler"
+    },
+    {
+      "name": "onChange",
+      "type": "(value: string) => void",
+      "required": false,
+      "description": "Change handler — receives the new value string"
+    },
+    {
+      "name": "onFocus",
+      "type": "(e: FocusEvent<HTMLInputElement>) => void",
+      "required": false,
+      "description": "Focus event handler"
+    },
+    {
+      "name": "onKeyDown",
+      "type": "(e: KeyboardEvent<HTMLInputElement>) => void",
+      "required": false,
+      "description": "Keydown event handler"
+    },
+    {
+      "name": "placeholder",
+      "type": "string",
+      "required": false,
+      "description": "Placeholder text"
+    },
+    {
+      "name": "readOnly",
+      "type": "boolean",
+      "required": false,
+      "description": "Whether the input is read-only"
+    },
+    {
+      "name": "required",
+      "type": "boolean",
+      "required": false,
+      "description": "Whether the control is required (native `required` on the `<input>`)."
+    },
+    {
+      "name": "rightAddon",
+      "type": "ReactNode",
+      "required": false,
+      "description": "rightAddon property"
+    },
+    {
+      "name": "shape",
+      "type": "InputShape",
+      "required": false,
+      "description": "Shape of the input field"
+    },
+    {
+      "name": "size",
+      "type": "InputSize",
+      "required": false,
+      "description": "Input size — f-step number or t-shirt alias. Default: 10 (M)."
+    },
+    {
+      "name": "start",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Leading content slot — Icon, IconButton, Avatar, Image, ChipGroup, or Text"
+    },
+    {
+      "name": "start2",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Second leading content slot — Text (prefix, currency symbol)"
+    },
+    {
+      "name": "style",
+      "type": "CSSProperties",
+      "required": false,
+      "description": "Inline styles"
+    },
+    {
+      "name": "type",
+      "type": "string",
+      "required": false,
+      "description": "Input type (text, email, password, number, tel, url, search)"
+    },
+    {
+      "name": "validate",
+      "type": "(value: unknown) => string | string[] | null",
+      "required": false,
+      "description": "Custom validation function"
+    },
+    {
+      "name": "validationMode",
+      "type": "'onBlur' | 'onChange'",
+      "required": false,
+      "description": "Validation mode"
+    },
+    {
+      "name": "value",
+      "type": "string",
+      "required": false,
+      "description": "Current value (controlled)"
+    }
+  ],
+  "slots": [
+    {
+      "name": "start",
+      "types": [
+        "icon",
+        "iconButton",
+        "avatar",
+        "image",
+        "chipGroup",
+        "text",
+        "custom"
+      ],
+      "tokens": [
+        "iconSize"
+      ]
+    },
+    {
+      "name": "start2",
+      "types": [
+        "text"
+      ],
+      "tokens": []
+    },
+    {
+      "name": "end",
+      "types": [
+        "iconButton",
+        "icon",
+        "button",
+        "text",
+        "custom"
+      ],
+      "tokens": [
+        "iconSize"
+      ]
+    },
+    {
+      "name": "end2",
+      "types": [
+        "text",
+        "icon",
+        "iconButton"
+      ],
+      "tokens": []
+    }
+  ],
+  "propsSchema": {
+    "$id": "jds.docs.input-field",
+    "type": "object",
+    "properties": {
+      "appearance": {
+        "enum": [
+          "auto",
+          "secondary",
+          "primary",
+          "neutral",
+          "sparkle",
+          "positive",
+          "negative",
+          "warning",
+          "informative"
+        ],
+        "description": "Multi-accent appearance role. 'auto' resolves to 'primary'."
+      },
+      "attention": {
+        "description": "Visual attention — 'medium' (outlined, default) or 'high' (filled neutral background)."
+      },
+      "autoComplete": {
+        "type": "string",
+        "description": "Autocomplete attribute"
+      },
+      "autoFocus": {
+        "type": "boolean",
+        "description": "Autofocus attribute"
+      },
+      "className": {
+        "type": "string",
+        "description": "Additional class name"
+      },
+      "defaultValue": {
+        "type": "string",
+        "description": "Default value (uncontrolled)"
+      },
+      "description": {
+        "type": "string",
+        "description": "Description text below the label"
+      },
+      "disabled": {
+        "type": "boolean",
+        "description": "Whether the input is disabled"
+      },
+      "dynamicText": {
+        "description": "Dynamic text below the input (character count, hints)"
+      },
+      "end": {
+        "description": "Trailing content slot — IconButton, Icon, Button, or Text"
+      },
+      "end2": {
+        "description": "Second trailing content slot — Text, Icon, or IconButton"
+      },
+      "error": {
+        "type": "string",
+        "description": "Error message to display (shorthand for InputFeedback variant=\"negative\")"
+      },
+      "feedback": {
+        "description": "Feedback content — overrides error for rich feedback"
+      },
+      "fullWidth": {
+        "type": "boolean",
+        "description": "Stretch to fill container width"
+      },
+      "helperButton": {
+        "description": "Helper button/link content below the input"
+      },
+      "id": {
+        "type": "string",
+        "description": "HTML id attribute for the input element"
+      },
+      "infoIcon": {
+        "type": "boolean",
+        "description": "Whether to show info icon next to label"
+      },
+      "invalid": {
+        "type": "boolean",
+        "description": "Whether the field is invalid (triggers error border)"
+      },
+      "label": {
+        "type": "string",
+        "description": "Label text for the field"
+      },
+      "leftAddon": {
+        "description": "leftAddon property"
+      },
+      "name": {
+        "type": "string",
+        "description": "Field name for form submission"
+      },
+      "onBlur": {
+        "description": "Blur event handler"
+      },
+      "onChange": {
+        "description": "Change handler — receives the new value string"
+      },
+      "onFocus": {
+        "description": "Focus event handler"
+      },
+      "onKeyDown": {
+        "description": "Keydown event handler"
+      },
+      "placeholder": {
+        "type": "string",
+        "description": "Placeholder text"
+      },
+      "readOnly": {
+        "type": "boolean",
+        "description": "Whether the input is read-only"
+      },
+      "required": {
+        "type": "boolean",
+        "description": "Whether the field is required"
+      },
+      "rightAddon": {
+        "description": "rightAddon property"
+      },
+      "shape": {
+        "enum": [
+          "default",
+          "pill"
+        ],
+        "description": "Shape of the input field"
+      },
+      "size": {
+        "enum": [
+          "s",
+          "m",
+          "l"
+        ],
+        "description": "Input size — f-step number or t-shirt alias. Default: 10 (M)."
+      },
+      "start": {
+        "description": "Leading content slot — Icon, IconButton, Avatar, Image, ChipGroup, or Text"
+      },
+      "start2": {
+        "description": "Second leading content slot — Text (prefix, currency symbol)"
+      },
+      "style": {
+        "description": "Inline styles"
+      },
+      "type": {
+        "type": "string",
+        "enum": [
+          "text",
+          "email",
+          "password",
+          "number",
+          "tel",
+          "url",
+          "search"
+        ],
+        "description": "Input type (text, email, password, number, tel, url, search)"
+      },
+      "validate": {
+        "description": "Custom validation function"
+      },
+      "validationMode": {
+        "description": "Validation mode"
+      },
+      "value": {
+        "type": "string",
+        "description": "Current value (controlled)"
+      }
+    }
+  },
+  "codeSnippets": [
+    {
+      "id": "input-field-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { InputField } from '@oneui/ui';\n\n<InputField />"
+    },
+    {
+      "id": "input-field-recipe-decisions",
+      "title": "Recipe Decisions",
+      "language": "json",
+      "code": "{\n  \"component\": \"InputField\",\n  \"decisions\": [\n    \"Shape\"\n  ]\n}"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "input-field"
+  ],
+  "importPath": "@jds4/oneui-react"
+}

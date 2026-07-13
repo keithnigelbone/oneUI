@@ -1,0 +1,274 @@
+/**
+ * Chip.module.css
+ *
+ * Surface-aware Chip component with three emphasis variants:
+ *   - filled  (high emphasis) — bold fill + on-bold text
+ *   - tinted  (medium emphasis) — subtle tinted fill + accent text
+ *   - outlined (low emphasis) — transparent + border + accent text
+ *
+ * Supports appearance roles: primary (default), neutral, negative.
+ * Additional roles can be added by following the same intermediate
+ * variable remapping pattern.
+ *
+ * Surface adaptation is fully automatic via the intermediate variable
+ * pattern: the component reads role-agnostic --_chip-* vars, which
+ * are remapped by appearance classes to role-specific V4 tokens.
+ * When placed inside <Surface mode="fg-bold">, the [data-surface]
+ * CSS blocks (injected by the brand CSS engine) remap the underlying
+ * V4 tokens, and the chip adapts with zero JavaScript.
+ *
+ * ZERO LITERALS — all values come from design tokens.
+ * Verified by: pnpm check:literals
+ */
+
+.chip {
+  /* ========================================
+     INTERMEDIATE VARIABLES — default = Primary role
+     These are remapped by .appearanceNeutral, .appearanceNegative, etc.
+     Each appearance role class overrides these 12 vars to point at
+     the corresponding role's V4 surface tokens.
+     ======================================== */
+  --_chip-fg-bold: var(--Primary-FG-Bold, var(--Surface-Bold));
+  --_chip-fg-bold-high: var(--Primary-FG-Bold-High, var(--Text-OnBold-High));
+  --_chip-fg-bold-hover: var(--Primary-FG-Bold-Hover, var(--Surface-Bold-Hover));
+  --_chip-fg-bold-pressed: var(--Primary-FG-Bold-Pressed, var(--Surface-Bold-Pressed));
+  --_chip-bg-subtle: var(--Primary-BG-Subtle, var(--Surface-Subtle));
+  --_chip-bg-subtle-hover: var(--Primary-BG-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_chip-bg-subtle-pressed: var(--Primary-BG-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+  --_chip-default-high: var(--Primary-Default-High, var(--Text-High));
+  --_chip-default-accent-a11y: var(--Primary-Default-Accent-A11y, var(--Surface-Bold));
+  --_chip-default-low-stroke: var(--Primary-Default-Low-Stroke, var(--Border-Subtle));
+  --_chip-default-hover: var(--Primary-Default-Hover, var(--Surface-Minimal));
+  --_chip-default-pressed: var(--Primary-Default-Pressed, var(--Surface-Subtle));
+
+  /* ========================================
+     SHAPE — chips use a subtle interactive radius by default
+     Overridable per-brand via --Chip-borderRadius
+     ======================================== */
+  border-radius: var(--Chip-borderRadius, var(--Shape-3XS));
+
+  /* ========================================
+     SPACING — compact pill-like proportions
+     ======================================== */
+  padding-top: var(--Chip-paddingVertical, var(--Spacing-6XS));
+  padding-bottom: var(--Chip-paddingVertical, var(--Spacing-6XS));
+  padding-left: var(--Chip-paddingHorizontal, var(--Spacing-XS));
+  padding-right: var(--Chip-paddingHorizontal, var(--Spacing-XS));
+
+  /* ========================================
+     TYPOGRAPHY — Label role tokens
+     ======================================== */
+  font-family: var(--Chip-fontFamily, var(--Typography-Font-Primary, inherit));
+  font-size: var(--Chip-fontSize, var(--Label-S-FontSize, inherit));
+  font-weight: var(--Chip-fontWeight, var(--Label-FontWeight-High, inherit));
+  line-height: var(--Chip-lineHeight, var(--Label-S-LineHeight, 1));
+  letter-spacing: var(--Chip-letterSpacing, normal);
+
+  /* ========================================
+     MOTION
+     ======================================== */
+  transition-duration: var(--Chip-transitionDuration, var(--Motion-Duration-Discreet-Medium));
+  transition-timing-function: var(--Chip-transitionEasing, var(--Motion-Easing-Standard));
+  transition-property: background-color, color, border-color, opacity;
+
+  /* ========================================
+     BASE LAYOUT
+     ======================================== */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--Chip-iconGap, var(--Spacing-5XS));
+  white-space: nowrap;
+  cursor: default;
+  user-select: none;
+  min-height: var(--Chip-minHeight, var(--Spacing-3XL));
+  border: 0 solid transparent;
+}
+
+/* ========================================
+   APPEARANCE — role-agnostic intermediate variable remapping.
+   Adding a new appearance = 1 new class with 12 remappings.
+   ======================================== */
+
+.appearanceNeutral {
+  --_chip-fg-bold: var(--Neutral-FG-Bold, var(--Surface-Bold));
+  --_chip-fg-bold-high: var(--Neutral-FG-Bold-High, var(--Text-OnBold-High));
+  --_chip-fg-bold-hover: var(--Neutral-FG-Bold-Hover, var(--Surface-Bold-Hover));
+  --_chip-fg-bold-pressed: var(--Neutral-FG-Bold-Pressed, var(--Surface-Bold-Pressed));
+  --_chip-bg-subtle: var(--Neutral-BG-Subtle, var(--Surface-Subtle));
+  --_chip-bg-subtle-hover: var(--Neutral-BG-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_chip-bg-subtle-pressed: var(--Neutral-BG-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+  --_chip-default-high: var(--Neutral-Default-High, var(--Text-High));
+  --_chip-default-accent-a11y: var(--Neutral-Default-Accent-A11y, var(--Surface-Bold));
+  --_chip-default-low-stroke: var(--Neutral-Default-Low-Stroke, var(--Border-Subtle));
+  --_chip-default-hover: var(--Neutral-Default-Hover, var(--Surface-Minimal));
+  --_chip-default-pressed: var(--Neutral-Default-Pressed, var(--Surface-Subtle));
+}
+
+.appearanceNegative {
+  --_chip-fg-bold: var(--Negative-FG-Bold, var(--Surface-Bold));
+  --_chip-fg-bold-high: var(--Negative-FG-Bold-High, var(--Text-OnBold-High));
+  --_chip-fg-bold-hover: var(--Negative-FG-Bold-Hover, var(--Surface-Bold-Hover));
+  --_chip-fg-bold-pressed: var(--Negative-FG-Bold-Pressed, var(--Surface-Bold-Pressed));
+  --_chip-bg-subtle: var(--Negative-BG-Subtle, var(--Surface-Subtle));
+  --_chip-bg-subtle-hover: var(--Negative-BG-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_chip-bg-subtle-pressed: var(--Negative-BG-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+  --_chip-default-high: var(--Negative-Default-High, var(--Text-High));
+  --_chip-default-accent-a11y: var(--Negative-Default-Accent-A11y, var(--Surface-Bold));
+  --_chip-default-low-stroke: var(--Negative-Default-Low-Stroke, var(--Border-Subtle));
+  --_chip-default-hover: var(--Negative-Default-Hover, var(--Surface-Minimal));
+  --_chip-default-pressed: var(--Negative-Default-Pressed, var(--Surface-Subtle));
+}
+
+/* ========================================
+   VARIANTS — consume intermediate vars, zero duplication
+   ======================================== */
+
+/* Filled: high emphasis — bold surface fill, on-bold text */
+.filled {
+  background-color: var(--Chip-backgroundColor-filled, var(--_chip-fg-bold));
+  color: var(--Chip-textColor-filled, var(--_chip-fg-bold-high));
+  border-width: var(--Chip-borderWidth-filled, 0px);
+}
+
+/* Tinted: medium emphasis — subtle tinted fill, accent text */
+.tinted {
+  background-color: var(--Chip-backgroundColor-tinted, var(--_chip-bg-subtle));
+  color: var(--Chip-textColor-tinted, var(--_chip-default-accent-a11y));
+  border-width: var(--Chip-borderWidth-tinted, 0px);
+}
+
+/* Outlined: low emphasis — transparent fill, border, accent text */
+.outlined {
+  background-color: var(--Chip-backgroundColor-outlined, transparent);
+  color: var(--Chip-textColor-outlined, var(--_chip-default-accent-a11y));
+  border-width: var(--Chip-borderWidth-outlined, var(--Border-Width-Hairline));
+  border-color: var(--Chip-borderColor-outlined, var(--_chip-default-low-stroke));
+}
+
+/* ========================================
+   INTERACTIVE STATES — only apply when chip is interactive
+   ======================================== */
+
+.interactive {
+  cursor: pointer;
+}
+
+/* Hover states */
+.interactive.filled:hover:not(.disabled) {
+  background-color: var(--Chip-backgroundColor-filled-hover, var(--_chip-fg-bold-hover));
+}
+
+.interactive.tinted:hover:not(.disabled) {
+  background-color: var(--Chip-backgroundColor-tinted-hover, var(--_chip-bg-subtle-hover));
+}
+
+.interactive.outlined:hover:not(.disabled) {
+  background-color: var(--Chip-backgroundColor-outlined-hover, var(--_chip-default-hover));
+}
+
+/* Pressed states */
+.interactive.filled:active:not(.disabled) {
+  background-color: var(--Chip-backgroundColor-filled-pressed, var(--_chip-fg-bold-pressed));
+}
+
+.interactive.tinted:active:not(.disabled) {
+  background-color: var(--Chip-backgroundColor-tinted-pressed, var(--_chip-bg-subtle-pressed));
+}
+
+.interactive.outlined:active:not(.disabled) {
+  background-color: var(--Chip-backgroundColor-outlined-pressed, var(--_chip-default-pressed));
+}
+
+/* ========================================
+   SELECTED STATE — toggles appearance when selected
+   ======================================== */
+
+.selected.tinted,
+.selected.outlined {
+  background-color: var(--Chip-backgroundColor-selected, var(--_chip-fg-bold));
+  color: var(--Chip-textColor-selected, var(--_chip-fg-bold-high));
+  border-color: var(--Chip-borderColor-selected, transparent);
+}
+
+/* ========================================
+   DISABLED STATE
+   ======================================== */
+
+.disabled {
+  opacity: var(--Disabled-Opacity);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ========================================
+   FOCUS
+   ======================================== */
+
+.chip:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 var(--Border-Width-Thin) var(--Surface-Main),
+    0 0 0 var(--Focus-Outline-Width) var(--Focus-Outline);
+}
+
+/* ========================================
+   SLOTS — icon, avatar, dismiss button
+   ======================================== */
+
+.leadingIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.leadingIcon svg {
+  display: block;
+  width: var(--Chip-iconSize, var(--Spacing-M));
+  height: var(--Chip-iconSize, var(--Spacing-M));
+}
+
+.label {
+  display: inline-flex;
+  align-items: center;
+}
+
+.dismiss {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  cursor: pointer;
+  border-radius: var(--Shape-Pill);
+  padding: var(--Spacing-6XS);
+  background-color: transparent;
+  border: none;
+  color: inherit;
+  transition-duration: var(--Chip-transitionDuration, var(--Motion-Duration-Discreet-Medium));
+  transition-timing-function: var(--Chip-transitionEasing, var(--Motion-Easing-Standard));
+  transition-property: background-color;
+}
+
+.dismiss:hover {
+  background-color: var(--_chip-default-hover);
+}
+
+.dismiss:active {
+  background-color: var(--_chip-default-pressed);
+}
+
+.dismiss svg {
+  display: block;
+  width: var(--Chip-dismissIconSize, var(--Spacing-S));
+  height: var(--Chip-dismissIconSize, var(--Spacing-S));
+}
+
+/**
+ * ========================================
+ * IMPORTANT: NO LITERALS IN THIS FILE
+ * ========================================
+ *
+ * All values MUST come from --Token-Name variables
+ * defined in @oneui/tokens CSS files.
+ */

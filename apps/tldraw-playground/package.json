@@ -1,0 +1,45 @@
+{
+  "name": "@oneui/tldraw-playground",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "//interim": "Radix/Tailwind/clsx/tailwind-merge deps below are TEMPORARY — kept only to run the relocated app unchanged; removed in Phase 4 (de-Tailwind).",
+  "scripts": {
+    "dev": "node ../../node_modules/vite/bin/vite.js",
+    "build": "node ../../node_modules/vite/bin/vite.js build",
+    "preview": "node ../../node_modules/vite/bin/vite.js preview",
+    "typecheck": "node ../../node_modules/typescript/bin/tsc --noEmit",
+    "tw:build": "node ../../node_modules/tailwindcss/lib/cli.js -i src/chrome-tailwind.css -o src/chrome-tailwind.generated.css",
+    "sync": "node ../../node_modules/tsx/dist/cli.mjs scripts/sync.ts"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.98.0",
+    "@oneui/convex": "workspace:*",
+    "@oneui/shared": "workspace:*",
+    "@oneui/tokens": "workspace:*",
+    "@oneui/ui": "workspace:*",
+    "convex": "^1.39.1",
+    "lucide-react": "^0.460.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "tldraw": "5.0.1",
+    "@radix-ui/react-checkbox": "^1.1.2",
+    "@radix-ui/react-label": "^2.1.0",
+    "@radix-ui/react-select": "^2.1.2",
+    "@radix-ui/react-slot": "^1.1.0",
+    "@radix-ui/react-switch": "^1.1.1",
+    "clsx": "^2.1.1",
+    "tailwind-merge": "^2.5.4"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "@vitejs/plugin-react": "^4.7.0",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.15",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
+    "vite": "^6.4.1"
+  }
+}

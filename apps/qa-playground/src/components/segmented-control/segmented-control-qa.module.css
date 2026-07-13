@@ -1,0 +1,143 @@
+/**
+ * SegmentedControl QA playground — controls panel & tooling chrome (token-only).
+ */
+
+.controlsSplit {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: var(--Spacing-5);
+  align-items: start;
+}
+
+@media (max-width: 960px) {
+  .controlsSplit {
+    grid-template-columns: 1fr;
+  }
+}
+
+.controlsPanel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-4);
+  padding: var(--Spacing-5);
+  border-radius: var(--Shape-L);
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+  background: var(--Surface-Minimal);
+  box-sizing: border-box;
+}
+
+.controlsTitle {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Title-M-FontSize);
+  line-height: var(--Title-M-LineHeight);
+  font-weight: var(--Title-M-FontWeight);
+  color: var(--Text-High);
+  margin: 0;
+}
+
+.controlRow {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-2);
+}
+
+.controlLabel {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Label-S-FontSize);
+  line-height: var(--Label-S-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+  color: var(--Text-High);
+}
+
+.segmentRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--Spacing-2);
+  align-items: center;
+}
+
+.checkboxGrid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-2);
+}
+
+.previewColumn {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-4);
+}
+
+.previewShell {
+  padding: var(--Spacing-5);
+  border-radius: var(--Shape-M);
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+  background: var(--Surface-Default);
+  box-sizing: border-box;
+  min-height: var(--Spacing-20);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.previewMeta {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Low);
+  color: var(--Text-Low);
+  margin: 0;
+}
+
+.codeBlock {
+  margin: 0;
+  padding: var(--Spacing-4);
+  border-radius: var(--Shape-M);
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+  background: var(--Surface-Ghost);
+  font-family: var(--Typography-Font-Code);
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  color: var(--Text-High);
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow: auto;
+  max-height: 280px;
+}
+
+.codeActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--Spacing-2);
+}
+
+.apiTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+}
+
+.apiTable th,
+.apiTable td {
+  padding: var(--Spacing-3);
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+  text-align: left;
+  vertical-align: top;
+}
+
+.apiTable th {
+  font-weight: var(--Body-FontWeight-Medium);
+  color: var(--Text-High);
+  background: var(--Surface-Minimal);
+}
+
+.apiTable td {
+  color: var(--Text-Medium);
+}
+
+.apiTable code {
+  font-family: var(--Typography-Font-Code);
+  font-size: var(--Label-XS-FontSize);
+}

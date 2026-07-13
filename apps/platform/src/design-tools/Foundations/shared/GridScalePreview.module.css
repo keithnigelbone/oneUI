@@ -1,0 +1,179 @@
+/* Spacing mirrors the Dimension preview (60px between text, settings and
+   tables) so foundation demos read consistently. */
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-12);
+  margin-top: var(--Spacing-12);
+}
+
+.specPx + code,
+.itemCell + td code {
+  font-family: var(--Typography-Font-Code, monospace);
+}
+
+/* ── Section ──────────────────────────────────────────────────── */
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-4);
+}
+
+/* Breakpoints / Specs / Preview headings — Title-M (Figma). */
+.sectionTitle {
+  margin: 0;
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Title-M-FontSize);
+  line-height: var(--Title-M-LineHeight);
+  font-weight: var(--Title-M-FontWeight);
+  color: var(--Text-High);
+}
+
+/* ── Breakpoint cards ─────────────────────────────────────────── */
+.bpCards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--Spacing-3);
+}
+
+/* Inactive = outline only (no fill). Active = minimal surface (no border). */
+.bpCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-1);
+  padding: var(--Spacing-4);
+  border: var(--Stroke-M, 1px) solid var(--Border-Subtle);
+  border-radius: var(--Shape-3);
+  background: transparent;
+}
+
+.bpCardActive {
+  border-color: transparent;
+  background: var(--Surface-Minimal);
+}
+
+.bpName {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Label-S-FontSize);
+  line-height: var(--Label-S-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+  color: var(--Text-High);
+}
+
+.bpRange {
+  font-family: var(--Typography-Font-Code, monospace);
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  color: var(--Text-Low);
+}
+
+/* ── Specs table (Item · Value · Token — single active value) ──── */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.colItem {
+  width: 16rem;
+}
+
+.colValue {
+  width: 16rem;
+}
+
+.table thead th {
+  text-align: left;
+  padding: var(--Spacing-3) var(--Spacing-3);
+  border-bottom: var(--Stroke-M, 1px) solid var(--Border-Subtle);
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Label-S-FontSize);
+  line-height: var(--Label-S-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+  color: var(--Text-High);
+  white-space: nowrap;
+}
+
+.table tbody td {
+  padding: var(--Spacing-3-5) var(--Spacing-3);
+  border-bottom: var(--Stroke-S, 1px) solid var(--Border-Subtle);
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  color: var(--Text-High);
+  vertical-align: middle;
+}
+
+.table tbody td code {
+  font-family: var(--Typography-Font-Code, monospace);
+  color: var(--Text-Medium);
+}
+
+.itemCell {
+  color: var(--Text-High);
+}
+
+/* ── Preview ──────────────────────────────────────────────────────
+   Container is a primary-tinted <Surface mode="minimal"> (lavender) and the
+   cells are <Surface mode="elevated"> (white) — both painted by Surface, so
+   no background/stroke here. Labels use the primary tinted-a11y colour. */
+/* Preview heading + Fit/Actual toggle on one row. */
+.sectionHeadRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--Spacing-4);
+  flex-wrap: wrap;
+}
+
+/* The canvas the preview window lives in. In 'actual' mode it scrolls
+   horizontally when the true-pixel window is wider than the column. */
+.previewStage {
+  width: 100%;
+  overflow: hidden;
+}
+
+.previewStageScroll {
+  overflow-x: auto;
+}
+
+/* Window renders at true pixel width (inline) in 'actual' mode and fills the
+   canvas in 'fit' mode. Fixed 400px canvas height; cells stretch to fill it. */
+.previewWrap {
+  padding-block: var(--Spacing-4);
+  border-radius: var(--Shape-4);
+  overflow: hidden;
+  max-width: none;
+  height: var(--GridScalePreview-stageHeight, 400px);
+  box-sizing: border-box;
+}
+
+.preview {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.previewCols {
+  display: flex;
+  align-items: stretch;
+  height: 100%;
+}
+
+.previewCol {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-block: var(--Spacing-2-5);
+  border-radius: var(--Shape-2);
+}
+
+.previewColLabel {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Label-M-FontSize);
+  line-height: var(--Label-M-LineHeight);
+  font-weight: var(--Label-FontWeight-Low);
+  color: var(--Primary-TintedA11y);
+}

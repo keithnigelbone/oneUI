@@ -1,0 +1,2839 @@
+{
+  "slug": "web-header",
+  "runs": [
+    {
+      "savedAt": "2026-07-09T14:54:19.179Z",
+      "report": {
+        "ok": false,
+        "slug": "web-header",
+        "message": "web-header QA Playwright run had failures — 2026-07-09T14:54:17.863Z",
+        "suites": {
+          "accessibility": {
+            "suite": "accessibility",
+            "passed": 43,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "43 test(s) in Playwright report for accessibility.",
+              "Axe: 1 violation rule(s) reported."
+            ],
+            "errors": [],
+            "cases": [
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — zero serious/critical + HTML report",
+                "status": "passed",
+                "durationMs": 10781
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Default (homeBar · fluid · search end) band",
+                "status": "passed",
+                "durationMs": 9899,
+                "componentBand": "web-header-qa-default"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — homeBar variations band",
+                "status": "passed",
+                "durationMs": 9880,
+                "componentBand": "web-header-qa-home-bar"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — contextBar variations band",
+                "status": "passed",
+                "durationMs": 9971,
+                "componentBand": "web-header-qa-context-bar"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — searchBar variations band",
+                "status": "passed",
+                "durationMs": 9811,
+                "componentBand": "web-header-qa-search-bar"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — start=true / false band",
+                "status": "passed",
+                "durationMs": 5458,
+                "componentBand": "web-header-qa-api-start"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — middle=fluid / centred band",
+                "status": "passed",
+                "durationMs": 5469,
+                "componentBand": "web-header-qa-api-middle"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — primaryNavItems=true / false band",
+                "status": "passed",
+                "durationMs": 5726,
+                "componentBand": "web-header-qa-api-primary-nav"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — end=true / false band",
+                "status": "passed",
+                "durationMs": 5735,
+                "componentBand": "web-header-qa-api-end"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — avatar=true / false band",
+                "status": "passed",
+                "durationMs": 5766,
+                "componentBand": "web-header-qa-api-avatar"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — EndActions Button / IconButton band",
+                "status": "passed",
+                "durationMs": 4168,
+                "componentBand": "web-header-qa-end-actions"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Header.Item slot band",
+                "status": "passed",
+                "durationMs": 4347,
+                "componentBand": "web-header-qa-header-item"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Negative / edge cases band",
+                "status": "passed",
+                "durationMs": 4623,
+                "componentBand": "web-header-qa-negative"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Responsive platform widths band",
+                "status": "passed",
+                "durationMs": 4980,
+                "componentBand": "web-header-qa-responsive"
+              },
+              {
+                "name": "[a11y] data-testid=\"web-header-default\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 4079
+              },
+              {
+                "name": "[a11y] data-testid=\"web-header-home-fluid-search-end\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 3026
+              },
+              {
+                "name": "[a11y] data-testid=\"web-header-start-false\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 3444
+              },
+              {
+                "name": "[a11y] data-testid=\"web-header-primary-nav-false\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 3717
+              },
+              {
+                "name": "[a11y] data-testid=\"web-header-end-button\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 3743
+              },
+              {
+                "name": "[a11y] data-testid=\"web-header-context-no-nav\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 3684
+              },
+              {
+                "name": "[a11y] data-testid=\"web-header-search-middle\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 3219
+              },
+              {
+                "name": "[a11y] data-testid=\"web-header-negative-empty-nav\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 3731
+              },
+              {
+                "name": "[a11y] data-testid=\"web-header-platform-360-inner\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 4888
+              },
+              {
+                "name": "[a11y] data-testid=\"web-header-platform-768-inner\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 4805
+              },
+              {
+                "name": "[a11y] data-testid=\"web-header-platform-1024-inner\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 5059
+              },
+              {
+                "name": "[a11y] Figma validation tab — property × platform grid — zero serious/critical",
+                "status": "passed",
+                "durationMs": 8399
+              },
+              {
+                "name": "[a11y] Section 508 tag run — zero serious/critical",
+                "status": "passed",
+                "durationMs": 3858
+              },
+              {
+                "name": "[a11y] axe label rule — showcase bands, zero serious/critical",
+                "status": "passed",
+                "durationMs": 3359
+              },
+              {
+                "name": "[a11y] ARIA validity rules — zero serious/critical",
+                "status": "passed",
+                "durationMs": 4277
+              },
+              {
+                "name": "[a11y] axe name rules — showcase bands, zero serious/critical",
+                "status": "passed",
+                "durationMs": 4025
+              },
+              {
+                "name": "[a11y] page lang on <html>",
+                "status": "passed",
+                "durationMs": 2700
+              },
+              {
+                "name": "[a11y] Default mount exposes labelled primary navigation landmark",
+                "status": "passed",
+                "durationMs": 2143
+              },
+              {
+                "name": "[a11y] search input has accessible label",
+                "status": "passed",
+                "durationMs": 3072
+              },
+              {
+                "name": "[a11y] icon buttons in end slot have accessible names",
+                "status": "passed",
+                "durationMs": 3918
+              },
+              {
+                "name": "[a11y] avatar exposes accessible name",
+                "status": "passed",
+                "durationMs": 4106
+              },
+              {
+                "name": "[a11y] Viewport 320px — horizontal overflow check per showcase band",
+                "status": "passed",
+                "durationMs": 8056
+              },
+              {
+                "name": "[a11y] 200% zoom — showcase headers remain visible",
+                "status": "passed",
+                "durationMs": 4319
+              },
+              {
+                "name": "[a11y] Tab reaches a focusable control",
+                "status": "passed",
+                "durationMs": 4114
+              },
+              {
+                "name": "[a11y] no keyboard trap (Tab cycle advances)",
+                "status": "passed",
+                "durationMs": 4238
+              },
+              {
+                "name": "[a11y] focus order — Tab visits multiple distinct targets",
+                "status": "passed",
+                "durationMs": 4007
+              },
+              {
+                "name": "[a11y] focused element shows outline or box-shadow",
+                "status": "passed",
+                "durationMs": 3847
+              },
+              {
+                "name": "[a11y] Mode select activates with Enter when focused",
+                "status": "passed",
+                "durationMs": 3055
+              },
+              {
+                "name": "[a11y] Mode select activates with Space when focused",
+                "status": "passed",
+                "durationMs": 3468
+              }
+            ],
+            "axe": {
+              "violations": [
+                {
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/color-contrast?application=playwright",
+                  "nodes": 28
+                }
+              ]
+            }
+          },
+          "functional": {
+            "suite": "functional",
+            "passed": 46,
+            "failed": 2,
+            "skipped": 0,
+            "logs": [
+              "48 test(s) in Playwright report for functional."
+            ],
+            "errors": [
+              "[fn] start=true shows logo: Error: expect(locator).toBeVisible() failed",
+              "[fn] avatar=true shows avatar: Error: expect(locator).toBeVisible() failed"
+            ],
+            "cases": [
+              {
+                "name": "[fn] 1.1 — Page loads without console errors",
+                "status": "passed",
+                "durationMs": 5607
+              },
+              {
+                "name": "[fn] 1.2 — manifest section count matches showcase bands",
+                "status": "passed",
+                "durationMs": 2366
+              },
+              {
+                "name": "[fn] 1.3 — every manifest testid is visible",
+                "status": "passed",
+                "durationMs": 3138
+              },
+              {
+                "name": "[fn] 1.4 — every data-section band is visible",
+                "status": "passed",
+                "durationMs": 5225
+              },
+              {
+                "name": "[fn] 2.1 — homeBar type attribute",
+                "status": "passed",
+                "durationMs": 4040
+              },
+              {
+                "name": "[fn] 2.2 — contextBar type attribute",
+                "status": "passed",
+                "durationMs": 3770
+              },
+              {
+                "name": "[fn] 2.3 — searchBar type attribute",
+                "status": "passed",
+                "durationMs": 4225
+              },
+              {
+                "name": "[fn] 3.1 — empty navigation band renders without crash",
+                "status": "passed",
+                "durationMs": 4716
+              },
+              {
+                "name": "[fn] 3.2 — no end + no avatar band renders",
+                "status": "passed",
+                "durationMs": 2295
+              },
+              {
+                "name": "[fn] 3.3 — searchBar without search input band renders",
+                "status": "passed",
+                "durationMs": 1855
+              },
+              {
+                "name": "[fn] 4.1 — mobile layout (360)",
+                "status": "passed",
+                "durationMs": 3482
+              },
+              {
+                "name": "[fn] 4.2 — tablet layout (768)",
+                "status": "passed",
+                "durationMs": 2586
+              },
+              {
+                "name": "[fn] 4.3 — desktop layout (1024)",
+                "status": "passed",
+                "durationMs": 2798
+              },
+              {
+                "name": "[fn] 5.1 — Tab reaches focusable controls in default header",
+                "status": "passed",
+                "durationMs": 2770
+              },
+              {
+                "name": "[fn] 5.2 — focus indicator visible after Tab",
+                "status": "passed",
+                "durationMs": 4058
+              },
+              {
+                "name": "[fn] Smoke — Page heading reads \"Web Header\"",
+                "status": "passed",
+                "durationMs": 3926
+              },
+              {
+                "name": "[fn] Smoke — Default mount visible",
+                "status": "passed",
+                "durationMs": 3836
+              },
+              {
+                "name": "[fn] Smoke — goto helper reaches default mount",
+                "status": "passed",
+                "durationMs": 7694
+              },
+              {
+                "name": "[fn] shows Web Header page heading",
+                "status": "passed",
+                "durationMs": 3287
+              },
+              {
+                "name": "[fn] scenario tabs are present",
+                "status": "passed",
+                "durationMs": 3265
+              },
+              {
+                "name": "[fn] theme toggle updates data-mode",
+                "status": "passed",
+                "durationMs": 2752
+              },
+              {
+                "name": "[fn] default header mount is visible",
+                "status": "passed",
+                "durationMs": 2406
+              },
+              {
+                "name": "[fn] default mount exposes primary navigation landmark",
+                "status": "passed",
+                "durationMs": 2328
+              },
+              {
+                "name": "[fn] default mount — four nav items render",
+                "status": "passed",
+                "durationMs": 3601
+              },
+              {
+                "name": "[fn] default mount — clicking Products updates active item",
+                "status": "passed",
+                "durationMs": 4063
+              },
+              {
+                "name": "[fn] homeBar mounts are visible",
+                "status": "passed",
+                "durationMs": 3613
+              },
+              {
+                "name": "[fn] contextBar mounts are visible",
+                "status": "passed",
+                "durationMs": 4261
+              },
+              {
+                "name": "[fn] searchBar mounts are visible",
+                "status": "passed",
+                "durationMs": 4486
+              },
+              {
+                "name": "[fn] start=true shows logo",
+                "status": "failed",
+                "durationMs": 8937,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[fn] start=false hides logo",
+                "status": "passed",
+                "durationMs": 3551
+              },
+              {
+                "name": "[fn] middle=fluid data attribute",
+                "status": "passed",
+                "durationMs": 3968
+              },
+              {
+                "name": "[fn] middle=centred data attribute",
+                "status": "passed",
+                "durationMs": 3823
+              },
+              {
+                "name": "[fn] primaryNavItems=false hides nav buttons",
+                "status": "passed",
+                "durationMs": 4096
+              },
+              {
+                "name": "[fn] primaryNavItems=true shows nav buttons",
+                "status": "passed",
+                "durationMs": 4148
+              },
+              {
+                "name": "[fn] end=true shows IconButton actions",
+                "status": "passed",
+                "durationMs": 3558
+              },
+              {
+                "name": "[fn] end=false hides end actions",
+                "status": "passed",
+                "durationMs": 1957
+              },
+              {
+                "name": "[fn] avatar=true shows avatar",
+                "status": "failed",
+                "durationMs": 6916,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[fn] avatar=false hides avatar",
+                "status": "passed",
+                "durationMs": 1603
+              },
+              {
+                "name": "[fn] EndActions Button slot renders",
+                "status": "passed",
+                "durationMs": 3861
+              },
+              {
+                "name": "[fn] EndActions IconButton cluster renders",
+                "status": "passed",
+                "durationMs": 2707
+              },
+              {
+                "name": "[fn] Header.Item slot — nav items clickable",
+                "status": "passed",
+                "durationMs": 2518
+              },
+              {
+                "name": "[fn] searchBar middle — search landmark visible",
+                "status": "passed",
+                "durationMs": 2894
+              },
+              {
+                "name": "[fn] contextBar without nav — no Home button",
+                "status": "passed",
+                "durationMs": 3551
+              },
+              {
+                "name": "[fn] responsive band — all Figma platform mounts visible",
+                "status": "passed",
+                "durationMs": 3776
+              },
+              {
+                "name": "[fn] platform 360 — hamburger menu button visible",
+                "status": "passed",
+                "durationMs": 3944
+              },
+              {
+                "name": "[fn] platform 1024 — expanded search input visible",
+                "status": "passed",
+                "durationMs": 3818
+              },
+              {
+                "name": "[fn] platform 360 — search hidden on mobile",
+                "status": "passed",
+                "durationMs": 4316
+              },
+              {
+                "name": "[fn] figma validation tab mounts property × platform grid",
+                "status": "passed",
+                "durationMs": 3615
+              }
+            ]
+          },
+          "performance": {
+            "suite": "performance",
+            "passed": 0,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "Performance suite is not executed in apps/qa-playground web-header Playwright bundle."
+            ],
+            "errors": []
+          }
+        }
+      }
+    },
+    {
+      "savedAt": "2026-07-09T14:54:17.868Z",
+      "report": {
+        "ok": false,
+        "slug": "web-header",
+        "message": "web-header QA Playwright run had failures — 2026-07-09T14:39:33.056Z",
+        "suites": {
+          "accessibility": {
+            "suite": "accessibility",
+            "passed": 43,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "43 test(s) in Playwright report for accessibility.",
+              "Axe: 1 violation rule(s) reported."
+            ],
+            "errors": [],
+            "cases": [
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — zero serious/critical + HTML report",
+                "status": "passed",
+                "durationMs": 10781
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Default (homeBar · fluid · search end) band",
+                "status": "passed",
+                "durationMs": 9899,
+                "componentBand": "web-header-qa-default"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — homeBar variations band",
+                "status": "passed",
+                "durationMs": 9880,
+                "componentBand": "web-header-qa-home-bar"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — contextBar variations band",
+                "status": "passed",
+                "durationMs": 9971,
+                "componentBand": "web-header-qa-context-bar"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — searchBar variations band",
+                "status": "passed",
+                "durationMs": 9811,
+                "componentBand": "web-header-qa-search-bar"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — start=true / false band",
+                "status": "passed",
+                "durationMs": 5458,
+                "componentBand": "web-header-qa-api-start"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — middle=fluid / centred band",
+                "status": "passed",
+                "durationMs": 5469,
+                "componentBand": "web-header-qa-api-middle"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — primaryNavItems=true / false band",
+                "status": "passed",
+                "durationMs": 5726,
+                "componentBand": "web-header-qa-api-primary-nav"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — end=true / false band",
+                "status": "passed",
+                "durationMs": 5735,
+                "componentBand": "web-header-qa-api-end"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — avatar=true / false band",
+                "status": "passed",
+                "durationMs": 5766,
+                "componentBand": "web-header-qa-api-avatar"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — EndActions Button / IconButton band",
+                "status": "passed",
+                "durationMs": 4168,
+                "componentBand": "web-header-qa-end-actions"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Header.Item slot band",
+                "status": "passed",
+                "durationMs": 4347,
+                "componentBand": "web-header-qa-header-item"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Negative / edge cases band",
+                "status": "passed",
+                "durationMs": 4623,
+                "componentBand": "web-header-qa-negative"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Responsive platform widths band",
+                "status": "passed",
+                "durationMs": 4980,
+                "componentBand": "web-header-qa-responsive"
+              },
+              {
+                "name": "[a11y] data-testid=\"web-header-default\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 4079
+              },
+              {
+                "name": "[a11y] data-testid=\"web-header-home-fluid-search-end\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 3026
+              },
+              {
+                "name": "[a11y] data-testid=\"web-header-start-false\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 3444
+              },
+              {
+                "name": "[a11y] data-testid=\"web-header-primary-nav-false\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 3717
+              },
+              {
+                "name": "[a11y] data-testid=\"web-header-end-button\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 3743
+              },
+              {
+                "name": "[a11y] data-testid=\"web-header-context-no-nav\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 3684
+              },
+              {
+                "name": "[a11y] data-testid=\"web-header-search-middle\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 3219
+              },
+              {
+                "name": "[a11y] data-testid=\"web-header-negative-empty-nav\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 3731
+              },
+              {
+                "name": "[a11y] data-testid=\"web-header-platform-360-inner\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 4888
+              },
+              {
+                "name": "[a11y] data-testid=\"web-header-platform-768-inner\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 4805
+              },
+              {
+                "name": "[a11y] data-testid=\"web-header-platform-1024-inner\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 5059
+              },
+              {
+                "name": "[a11y] Figma validation tab — property × platform grid — zero serious/critical",
+                "status": "passed",
+                "durationMs": 8399
+              },
+              {
+                "name": "[a11y] Section 508 tag run — zero serious/critical",
+                "status": "passed",
+                "durationMs": 3858
+              },
+              {
+                "name": "[a11y] axe label rule — showcase bands, zero serious/critical",
+                "status": "passed",
+                "durationMs": 3359
+              },
+              {
+                "name": "[a11y] ARIA validity rules — zero serious/critical",
+                "status": "passed",
+                "durationMs": 4277
+              },
+              {
+                "name": "[a11y] axe name rules — showcase bands, zero serious/critical",
+                "status": "passed",
+                "durationMs": 4025
+              },
+              {
+                "name": "[a11y] page lang on <html>",
+                "status": "passed",
+                "durationMs": 2700
+              },
+              {
+                "name": "[a11y] Default mount exposes labelled primary navigation landmark",
+                "status": "passed",
+                "durationMs": 2143
+              },
+              {
+                "name": "[a11y] search input has accessible label",
+                "status": "passed",
+                "durationMs": 3072
+              },
+              {
+                "name": "[a11y] icon buttons in end slot have accessible names",
+                "status": "passed",
+                "durationMs": 3918
+              },
+              {
+                "name": "[a11y] avatar exposes accessible name",
+                "status": "passed",
+                "durationMs": 4106
+              },
+              {
+                "name": "[a11y] Viewport 320px — horizontal overflow check per showcase band",
+                "status": "passed",
+                "durationMs": 8056
+              },
+              {
+                "name": "[a11y] 200% zoom — showcase headers remain visible",
+                "status": "passed",
+                "durationMs": 4319
+              },
+              {
+                "name": "[a11y] Tab reaches a focusable control",
+                "status": "passed",
+                "durationMs": 4114
+              },
+              {
+                "name": "[a11y] no keyboard trap (Tab cycle advances)",
+                "status": "passed",
+                "durationMs": 4238
+              },
+              {
+                "name": "[a11y] focus order — Tab visits multiple distinct targets",
+                "status": "passed",
+                "durationMs": 4007
+              },
+              {
+                "name": "[a11y] focused element shows outline or box-shadow",
+                "status": "passed",
+                "durationMs": 3847
+              },
+              {
+                "name": "[a11y] Mode select activates with Enter when focused",
+                "status": "passed",
+                "durationMs": 3055
+              },
+              {
+                "name": "[a11y] Mode select activates with Space when focused",
+                "status": "passed",
+                "durationMs": 3468
+              }
+            ],
+            "axe": {
+              "violations": [
+                {
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/color-contrast?application=playwright",
+                  "nodes": 28
+                }
+              ]
+            }
+          },
+          "functional": {
+            "suite": "functional",
+            "passed": 46,
+            "failed": 2,
+            "skipped": 0,
+            "logs": [
+              "48 test(s) in Playwright report for functional."
+            ],
+            "errors": [
+              "[fn] start=true shows logo: Error: expect(locator).toBeVisible() failed",
+              "[fn] avatar=true shows avatar: Error: expect(locator).toBeVisible() failed"
+            ],
+            "cases": [
+              {
+                "name": "[fn] 1.1 — Page loads without console errors",
+                "status": "passed",
+                "durationMs": 5607
+              },
+              {
+                "name": "[fn] 1.2 — manifest section count matches showcase bands",
+                "status": "passed",
+                "durationMs": 2366
+              },
+              {
+                "name": "[fn] 1.3 — every manifest testid is visible",
+                "status": "passed",
+                "durationMs": 3138
+              },
+              {
+                "name": "[fn] 1.4 — every data-section band is visible",
+                "status": "passed",
+                "durationMs": 5225
+              },
+              {
+                "name": "[fn] 2.1 — homeBar type attribute",
+                "status": "passed",
+                "durationMs": 4040
+              },
+              {
+                "name": "[fn] 2.2 — contextBar type attribute",
+                "status": "passed",
+                "durationMs": 3770
+              },
+              {
+                "name": "[fn] 2.3 — searchBar type attribute",
+                "status": "passed",
+                "durationMs": 4225
+              },
+              {
+                "name": "[fn] 3.1 — empty navigation band renders without crash",
+                "status": "passed",
+                "durationMs": 4716
+              },
+              {
+                "name": "[fn] 3.2 — no end + no avatar band renders",
+                "status": "passed",
+                "durationMs": 2295
+              },
+              {
+                "name": "[fn] 3.3 — searchBar without search input band renders",
+                "status": "passed",
+                "durationMs": 1855
+              },
+              {
+                "name": "[fn] 4.1 — mobile layout (360)",
+                "status": "passed",
+                "durationMs": 3482
+              },
+              {
+                "name": "[fn] 4.2 — tablet layout (768)",
+                "status": "passed",
+                "durationMs": 2586
+              },
+              {
+                "name": "[fn] 4.3 — desktop layout (1024)",
+                "status": "passed",
+                "durationMs": 2798
+              },
+              {
+                "name": "[fn] 5.1 — Tab reaches focusable controls in default header",
+                "status": "passed",
+                "durationMs": 2770
+              },
+              {
+                "name": "[fn] 5.2 — focus indicator visible after Tab",
+                "status": "passed",
+                "durationMs": 4058
+              },
+              {
+                "name": "[fn] Smoke — Page heading reads \"Web Header\"",
+                "status": "passed",
+                "durationMs": 3926
+              },
+              {
+                "name": "[fn] Smoke — Default mount visible",
+                "status": "passed",
+                "durationMs": 3836
+              },
+              {
+                "name": "[fn] Smoke — goto helper reaches default mount",
+                "status": "passed",
+                "durationMs": 7694
+              },
+              {
+                "name": "[fn] shows Web Header page heading",
+                "status": "passed",
+                "durationMs": 3287
+              },
+              {
+                "name": "[fn] scenario tabs are present",
+                "status": "passed",
+                "durationMs": 3265
+              },
+              {
+                "name": "[fn] theme toggle updates data-mode",
+                "status": "passed",
+                "durationMs": 2752
+              },
+              {
+                "name": "[fn] default header mount is visible",
+                "status": "passed",
+                "durationMs": 2406
+              },
+              {
+                "name": "[fn] default mount exposes primary navigation landmark",
+                "status": "passed",
+                "durationMs": 2328
+              },
+              {
+                "name": "[fn] default mount — four nav items render",
+                "status": "passed",
+                "durationMs": 3601
+              },
+              {
+                "name": "[fn] default mount — clicking Products updates active item",
+                "status": "passed",
+                "durationMs": 4063
+              },
+              {
+                "name": "[fn] homeBar mounts are visible",
+                "status": "passed",
+                "durationMs": 3613
+              },
+              {
+                "name": "[fn] contextBar mounts are visible",
+                "status": "passed",
+                "durationMs": 4261
+              },
+              {
+                "name": "[fn] searchBar mounts are visible",
+                "status": "passed",
+                "durationMs": 4486
+              },
+              {
+                "name": "[fn] start=true shows logo",
+                "status": "failed",
+                "durationMs": 8937,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[fn] start=false hides logo",
+                "status": "passed",
+                "durationMs": 3551
+              },
+              {
+                "name": "[fn] middle=fluid data attribute",
+                "status": "passed",
+                "durationMs": 3968
+              },
+              {
+                "name": "[fn] middle=centred data attribute",
+                "status": "passed",
+                "durationMs": 3823
+              },
+              {
+                "name": "[fn] primaryNavItems=false hides nav buttons",
+                "status": "passed",
+                "durationMs": 4096
+              },
+              {
+                "name": "[fn] primaryNavItems=true shows nav buttons",
+                "status": "passed",
+                "durationMs": 4148
+              },
+              {
+                "name": "[fn] end=true shows IconButton actions",
+                "status": "passed",
+                "durationMs": 3558
+              },
+              {
+                "name": "[fn] end=false hides end actions",
+                "status": "passed",
+                "durationMs": 1957
+              },
+              {
+                "name": "[fn] avatar=true shows avatar",
+                "status": "failed",
+                "durationMs": 6916,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[fn] avatar=false hides avatar",
+                "status": "passed",
+                "durationMs": 1603
+              },
+              {
+                "name": "[fn] EndActions Button slot renders",
+                "status": "passed",
+                "durationMs": 3861
+              },
+              {
+                "name": "[fn] EndActions IconButton cluster renders",
+                "status": "passed",
+                "durationMs": 2707
+              },
+              {
+                "name": "[fn] Header.Item slot — nav items clickable",
+                "status": "passed",
+                "durationMs": 2518
+              },
+              {
+                "name": "[fn] searchBar middle — search landmark visible",
+                "status": "passed",
+                "durationMs": 2894
+              },
+              {
+                "name": "[fn] contextBar without nav — no Home button",
+                "status": "passed",
+                "durationMs": 3551
+              },
+              {
+                "name": "[fn] responsive band — all Figma platform mounts visible",
+                "status": "passed",
+                "durationMs": 3776
+              },
+              {
+                "name": "[fn] platform 360 — hamburger menu button visible",
+                "status": "passed",
+                "durationMs": 3944
+              },
+              {
+                "name": "[fn] platform 1024 — expanded search input visible",
+                "status": "passed",
+                "durationMs": 3818
+              },
+              {
+                "name": "[fn] platform 360 — search hidden on mobile",
+                "status": "passed",
+                "durationMs": 4316
+              },
+              {
+                "name": "[fn] figma validation tab mounts property × platform grid",
+                "status": "passed",
+                "durationMs": 3615
+              }
+            ]
+          },
+          "performance": {
+            "suite": "performance",
+            "passed": 0,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "Performance suite is not executed in apps/qa-playground web-header Playwright bundle."
+            ],
+            "errors": []
+          }
+        }
+      }
+    },
+    {
+      "savedAt": "2026-07-09T14:39:33.058Z",
+      "report": {
+        "ok": false,
+        "slug": "web-header",
+        "message": "web-header QA Playwright run had failures — 2026-07-09T14:24:43.998Z",
+        "suites": {
+          "accessibility": {
+            "suite": "accessibility",
+            "passed": 43,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "43 test(s) in Playwright report for accessibility.",
+              "Axe: 1 violation rule(s) reported."
+            ],
+            "errors": [],
+            "cases": [
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — zero serious/critical + HTML report",
+                "status": "passed",
+                "durationMs": 7352
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Default (homeBar · fluid · search end) band",
+                "status": "passed",
+                "durationMs": 5414,
+                "componentBand": "web-header-qa-default"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — homeBar variations band",
+                "status": "passed",
+                "durationMs": 6420,
+                "componentBand": "web-header-qa-home-bar"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — contextBar variations band",
+                "status": "passed",
+                "durationMs": 5604,
+                "componentBand": "web-header-qa-context-bar"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — searchBar variations band",
+                "status": "passed",
+                "durationMs": 5629,
+                "componentBand": "web-header-qa-search-bar"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — start=true / false band",
+                "status": "passed",
+                "durationMs": 3934,
+                "componentBand": "web-header-qa-api-start"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — middle=fluid / centred band",
+                "status": "passed",
+                "durationMs": 4332,
+                "componentBand": "web-header-qa-api-middle"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — primaryNavItems=true / false band",
+                "status": "passed",
+                "durationMs": 4189,
+                "componentBand": "web-header-qa-api-primary-nav"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — end=true / false band",
+                "status": "passed",
+                "durationMs": 4849,
+                "componentBand": "web-header-qa-api-end"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — avatar=true / false band",
+                "status": "passed",
+                "durationMs": 3963,
+                "componentBand": "web-header-qa-api-avatar"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — EndActions Button / IconButton band",
+                "status": "passed",
+                "durationMs": 4500,
+                "componentBand": "web-header-qa-end-actions"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Header.Item slot band",
+                "status": "passed",
+                "durationMs": 4653,
+                "componentBand": "web-header-qa-header-item"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Negative / edge cases band",
+                "status": "passed",
+                "durationMs": 5816,
+                "componentBand": "web-header-qa-negative"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Responsive platform widths band",
+                "status": "passed",
+                "durationMs": 5745,
+                "componentBand": "web-header-qa-responsive"
+              },
+              {
+                "name": "[a11y] data-testid=\"web-header-default\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 5375
+              },
+              {
+                "name": "[a11y] data-testid=\"web-header-home-fluid-search-end\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 3876
+              },
+              {
+                "name": "[a11y] data-testid=\"web-header-start-false\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 4337
+              },
+              {
+                "name": "[a11y] data-testid=\"web-header-primary-nav-false\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 3816
+              },
+              {
+                "name": "[a11y] data-testid=\"web-header-end-button\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 4111
+              },
+              {
+                "name": "[a11y] data-testid=\"web-header-context-no-nav\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 4211
+              },
+              {
+                "name": "[a11y] data-testid=\"web-header-search-middle\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 3945
+              },
+              {
+                "name": "[a11y] data-testid=\"web-header-negative-empty-nav\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 3620
+              },
+              {
+                "name": "[a11y] data-testid=\"web-header-platform-360-inner\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 3468
+              },
+              {
+                "name": "[a11y] data-testid=\"web-header-platform-768-inner\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 4272
+              },
+              {
+                "name": "[a11y] data-testid=\"web-header-platform-1024-inner\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 4297
+              },
+              {
+                "name": "[a11y] Figma validation tab — property × platform grid — zero serious/critical",
+                "status": "passed",
+                "durationMs": 16139
+              },
+              {
+                "name": "[a11y] Section 508 tag run — zero serious/critical",
+                "status": "passed",
+                "durationMs": 4906
+              },
+              {
+                "name": "[a11y] axe label rule — showcase bands, zero serious/critical",
+                "status": "passed",
+                "durationMs": 5748
+              },
+              {
+                "name": "[a11y] ARIA validity rules — zero serious/critical",
+                "status": "passed",
+                "durationMs": 4552
+              },
+              {
+                "name": "[a11y] axe name rules — showcase bands, zero serious/critical",
+                "status": "passed",
+                "durationMs": 4434
+              },
+              {
+                "name": "[a11y] page lang on <html>",
+                "status": "passed",
+                "durationMs": 2545
+              },
+              {
+                "name": "[a11y] Default mount exposes labelled primary navigation landmark",
+                "status": "passed",
+                "durationMs": 3849
+              },
+              {
+                "name": "[a11y] search input has accessible label",
+                "status": "passed",
+                "durationMs": 3816
+              },
+              {
+                "name": "[a11y] icon buttons in end slot have accessible names",
+                "status": "passed",
+                "durationMs": 3780
+              },
+              {
+                "name": "[a11y] avatar exposes accessible name",
+                "status": "passed",
+                "durationMs": 4044
+              },
+              {
+                "name": "[a11y] Viewport 320px — horizontal overflow check per showcase band",
+                "status": "passed",
+                "durationMs": 6651
+              },
+              {
+                "name": "[a11y] 200% zoom — showcase headers remain visible",
+                "status": "passed",
+                "durationMs": 4100
+              },
+              {
+                "name": "[a11y] Tab reaches a focusable control",
+                "status": "passed",
+                "durationMs": 3849
+              },
+              {
+                "name": "[a11y] no keyboard trap (Tab cycle advances)",
+                "status": "passed",
+                "durationMs": 3560
+              },
+              {
+                "name": "[a11y] focus order — Tab visits multiple distinct targets",
+                "status": "passed",
+                "durationMs": 4594
+              },
+              {
+                "name": "[a11y] focused element shows outline or box-shadow",
+                "status": "passed",
+                "durationMs": 4807
+              },
+              {
+                "name": "[a11y] Mode select activates with Enter when focused",
+                "status": "passed",
+                "durationMs": 5491
+              },
+              {
+                "name": "[a11y] Mode select activates with Space when focused",
+                "status": "passed",
+                "durationMs": 5664
+              }
+            ],
+            "axe": {
+              "violations": [
+                {
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/color-contrast?application=playwright",
+                  "nodes": 28
+                }
+              ]
+            }
+          },
+          "functional": {
+            "suite": "functional",
+            "passed": 45,
+            "failed": 3,
+            "skipped": 0,
+            "logs": [
+              "48 test(s) in Playwright report for functional."
+            ],
+            "errors": [
+              "[fn] start=true shows logo: Error: expect(locator).toBeVisible() failed",
+              "[fn] avatar=true shows avatar: Error: expect(locator).toBeVisible() failed",
+              "[fn] Header.Item slot — nav items clickable: Error: expect(locator).toHaveAttribute(expected) failed"
+            ],
+            "cases": [
+              {
+                "name": "[fn] 1.1 — Page loads without console errors",
+                "status": "passed",
+                "durationMs": 5604
+              },
+              {
+                "name": "[fn] 1.2 — manifest section count matches showcase bands",
+                "status": "passed",
+                "durationMs": 3071
+              },
+              {
+                "name": "[fn] 1.3 — every manifest testid is visible",
+                "status": "passed",
+                "durationMs": 2424
+              },
+              {
+                "name": "[fn] 1.4 — every data-section band is visible",
+                "status": "passed",
+                "durationMs": 2415
+              },
+              {
+                "name": "[fn] 2.1 — homeBar type attribute",
+                "status": "passed",
+                "durationMs": 2670
+              },
+              {
+                "name": "[fn] 2.2 — contextBar type attribute",
+                "status": "passed",
+                "durationMs": 3645
+              },
+              {
+                "name": "[fn] 2.3 — searchBar type attribute",
+                "status": "passed",
+                "durationMs": 4197
+              },
+              {
+                "name": "[fn] 3.1 — empty navigation band renders without crash",
+                "status": "passed",
+                "durationMs": 6164
+              },
+              {
+                "name": "[fn] 3.2 — no end + no avatar band renders",
+                "status": "passed",
+                "durationMs": 2783
+              },
+              {
+                "name": "[fn] 3.3 — searchBar without search input band renders",
+                "status": "passed",
+                "durationMs": 2389
+              },
+              {
+                "name": "[fn] 4.1 — mobile layout (360)",
+                "status": "passed",
+                "durationMs": 4020
+              },
+              {
+                "name": "[fn] 4.2 — tablet layout (768)",
+                "status": "passed",
+                "durationMs": 2579
+              },
+              {
+                "name": "[fn] 4.3 — desktop layout (1024)",
+                "status": "passed",
+                "durationMs": 2633
+              },
+              {
+                "name": "[fn] 5.1 — Tab reaches focusable controls in default header",
+                "status": "passed",
+                "durationMs": 2066
+              },
+              {
+                "name": "[fn] 5.2 — focus indicator visible after Tab",
+                "status": "passed",
+                "durationMs": 2929
+              },
+              {
+                "name": "[fn] Smoke — Page heading reads \"Web Header\"",
+                "status": "passed",
+                "durationMs": 2818
+              },
+              {
+                "name": "[fn] Smoke — Default mount visible",
+                "status": "passed",
+                "durationMs": 3695
+              },
+              {
+                "name": "[fn] Smoke — goto helper reaches default mount",
+                "status": "passed",
+                "durationMs": 7570
+              },
+              {
+                "name": "[fn] shows Web Header page heading",
+                "status": "passed",
+                "durationMs": 4444
+              },
+              {
+                "name": "[fn] scenario tabs are present",
+                "status": "passed",
+                "durationMs": 4006
+              },
+              {
+                "name": "[fn] theme toggle updates data-mode",
+                "status": "passed",
+                "durationMs": 3193
+              },
+              {
+                "name": "[fn] default header mount is visible",
+                "status": "passed",
+                "durationMs": 2233
+              },
+              {
+                "name": "[fn] default mount exposes primary navigation landmark",
+                "status": "passed",
+                "durationMs": 1974
+              },
+              {
+                "name": "[fn] default mount — four nav items render",
+                "status": "passed",
+                "durationMs": 3483
+              },
+              {
+                "name": "[fn] default mount — clicking Products updates active item",
+                "status": "passed",
+                "durationMs": 3693
+              },
+              {
+                "name": "[fn] homeBar mounts are visible",
+                "status": "passed",
+                "durationMs": 4214
+              },
+              {
+                "name": "[fn] contextBar mounts are visible",
+                "status": "passed",
+                "durationMs": 4375
+              },
+              {
+                "name": "[fn] searchBar mounts are visible",
+                "status": "passed",
+                "durationMs": 3085
+              },
+              {
+                "name": "[fn] start=true shows logo",
+                "status": "failed",
+                "durationMs": 8641,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[fn] start=false hides logo",
+                "status": "passed",
+                "durationMs": 3508
+              },
+              {
+                "name": "[fn] middle=fluid data attribute",
+                "status": "passed",
+                "durationMs": 3324
+              },
+              {
+                "name": "[fn] middle=centred data attribute",
+                "status": "passed",
+                "durationMs": 3805
+              },
+              {
+                "name": "[fn] primaryNavItems=false hides nav buttons",
+                "status": "passed",
+                "durationMs": 5325
+              },
+              {
+                "name": "[fn] primaryNavItems=true shows nav buttons",
+                "status": "passed",
+                "durationMs": 3239
+              },
+              {
+                "name": "[fn] end=true shows IconButton actions",
+                "status": "passed",
+                "durationMs": 2391
+              },
+              {
+                "name": "[fn] end=false hides end actions",
+                "status": "passed",
+                "durationMs": 2256
+              },
+              {
+                "name": "[fn] avatar=true shows avatar",
+                "status": "failed",
+                "durationMs": 6486,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[fn] avatar=false hides avatar",
+                "status": "passed",
+                "durationMs": 1391
+              },
+              {
+                "name": "[fn] EndActions Button slot renders",
+                "status": "passed",
+                "durationMs": 3250
+              },
+              {
+                "name": "[fn] EndActions IconButton cluster renders",
+                "status": "passed",
+                "durationMs": 2935
+              },
+              {
+                "name": "[fn] Header.Item slot — nav items clickable",
+                "status": "failed",
+                "durationMs": 8166,
+                "error": "Error: expect(locator).toHaveAttribute(expected) failed"
+              },
+              {
+                "name": "[fn] searchBar middle — search landmark visible",
+                "status": "passed",
+                "durationMs": 4295
+              },
+              {
+                "name": "[fn] contextBar without nav — no Home button",
+                "status": "passed",
+                "durationMs": 5065
+              },
+              {
+                "name": "[fn] responsive band — all Figma platform mounts visible",
+                "status": "passed",
+                "durationMs": 3180
+              },
+              {
+                "name": "[fn] platform 360 — hamburger menu button visible",
+                "status": "passed",
+                "durationMs": 2712
+              },
+              {
+                "name": "[fn] platform 1024 — expanded search input visible",
+                "status": "passed",
+                "durationMs": 2283
+              },
+              {
+                "name": "[fn] platform 360 — search hidden on mobile",
+                "status": "passed",
+                "durationMs": 1466
+              },
+              {
+                "name": "[fn] figma validation tab mounts property × platform grid",
+                "status": "passed",
+                "durationMs": 1561
+              }
+            ]
+          },
+          "performance": {
+            "suite": "performance",
+            "passed": 0,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "Performance suite is not executed in apps/qa-playground web-header Playwright bundle."
+            ],
+            "errors": []
+          }
+        }
+      }
+    },
+    {
+      "savedAt": "2026-07-09T14:24:44.000Z",
+      "report": {
+        "ok": false,
+        "slug": "web-header",
+        "message": "web-header QA Playwright run had failures — 2026-07-09T14:20:28.009Z",
+        "suites": {
+          "accessibility": {
+            "suite": "accessibility",
+            "passed": 0,
+            "failed": 43,
+            "skipped": 0,
+            "logs": [
+              "43 test(s) in Playwright report for accessibility."
+            ],
+            "errors": [
+              "[a11y] WCAG 2.1 AA axe scan — zero serious/critical + HTML report: Error: expect(locator).toBeVisible() failed",
+              "[a11y] WCAG 2.1 AA axe scan — Default (homeBar · fluid · search end) band: Error: expect(locator).toBeVisible() failed",
+              "[a11y] WCAG 2.1 AA axe scan — homeBar variations band: Error: expect(locator).toBeVisible() failed",
+              "[a11y] WCAG 2.1 AA axe scan — contextBar variations band: Error: expect(locator).toBeVisible() failed",
+              "[a11y] WCAG 2.1 AA axe scan — searchBar variations band: Error: expect(locator).toBeVisible() failed",
+              "[a11y] WCAG 2.1 AA axe scan — start=true / false band: Error: expect(locator).toBeVisible() failed",
+              "[a11y] WCAG 2.1 AA axe scan — middle=fluid / centred band: Error: expect(locator).toBeVisible() failed",
+              "[a11y] WCAG 2.1 AA axe scan — primaryNavItems=true / false band: Error: expect(locator).toBeVisible() failed",
+              "[a11y] WCAG 2.1 AA axe scan — end=true / false band: Error: expect(locator).toBeVisible() failed",
+              "[a11y] WCAG 2.1 AA axe scan — avatar=true / false band: Error: expect(locator).toBeVisible() failed",
+              "[a11y] WCAG 2.1 AA axe scan — EndActions Button / IconButton band: Error: expect(locator).toBeVisible() failed",
+              "[a11y] WCAG 2.1 AA axe scan — Header.Item slot band: Error: expect(locator).toBeVisible() failed",
+              "[a11y] WCAG 2.1 AA axe scan — Negative / edge cases band: Error: expect(locator).toBeVisible() failed",
+              "[a11y] WCAG 2.1 AA axe scan — Responsive platform widths band: Error: expect(locator).toBeVisible() failed",
+              "[a11y] data-testid=\"web-header-default\" — zero serious/critical: Error: expect(locator).toBeVisible() failed",
+              "[a11y] data-testid=\"web-header-home-fluid-search-end\" — zero serious/critical: Error: expect(locator).toBeVisible() failed",
+              "[a11y] data-testid=\"web-header-start-false\" — zero serious/critical: Error: expect(locator).toBeVisible() failed",
+              "[a11y] data-testid=\"web-header-primary-nav-false\" — zero serious/critical: Error: expect(locator).toBeVisible() failed",
+              "[a11y] data-testid=\"web-header-end-button\" — zero serious/critical: Error: expect(locator).toBeVisible() failed",
+              "[a11y] data-testid=\"web-header-context-no-nav\" — zero serious/critical: Error: expect(locator).toBeVisible() failed",
+              "[a11y] data-testid=\"web-header-search-middle\" — zero serious/critical: Error: expect(locator).toBeVisible() failed",
+              "[a11y] data-testid=\"web-header-negative-empty-nav\" — zero serious/critical: Error: expect(locator).toBeVisible() failed",
+              "[a11y] data-testid=\"web-header-platform-360-inner\" — zero serious/critical: Error: expect(locator).toBeVisible() failed",
+              "[a11y] data-testid=\"web-header-platform-768-inner\" — zero serious/critical: Error: expect(locator).toBeVisible() failed",
+              "[a11y] data-testid=\"web-header-platform-1024-inner\" — zero serious/critical: Error: expect(locator).toBeVisible() failed",
+              "[a11y] Figma validation tab — property × platform grid — zero serious/critical: Error: expect(locator).toBeVisible() failed",
+              "[a11y] Section 508 tag run — zero serious/critical: Error: expect(locator).toBeVisible() failed",
+              "[a11y] axe label rule — showcase bands, zero serious/critical: Error: expect(locator).toBeVisible() failed",
+              "[a11y] ARIA validity rules — zero serious/critical: Error: expect(locator).toBeVisible() failed",
+              "[a11y] axe name rules — showcase bands, zero serious/critical: Error: expect(locator).toBeVisible() failed",
+              "[a11y] page lang on <html>: Error: expect(locator).toBeVisible() failed",
+              "[a11y] Default mount exposes labelled primary navigation landmark: Error: expect(locator).toBeVisible() failed",
+              "[a11y] search input has accessible label: Error: expect(locator).toBeVisible() failed",
+              "[a11y] icon buttons in end slot have accessible names: Error: expect(locator).toBeVisible() failed",
+              "[a11y] avatar exposes accessible name: Error: expect(locator).toBeVisible() failed",
+              "[a11y] Viewport 320px — horizontal overflow check per showcase band: Error: expect(locator).toBeVisible() failed",
+              "[a11y] 200% zoom — showcase headers remain visible: Error: expect(locator).toBeVisible() failed",
+              "[a11y] Tab reaches a focusable control: Error: expect(locator).toBeVisible() failed",
+              "[a11y] no keyboard trap (Tab cycle advances): Error: expect(locator).toBeVisible() failed",
+              "[a11y] focus order — Tab visits multiple distinct targets: Error: expect(locator).toBeVisible() failed",
+              "[a11y] focused element shows outline or box-shadow: Error: expect(locator).toBeVisible() failed",
+              "[a11y] Mode select activates with Enter when focused: Error: expect(locator).toBeVisible() failed",
+              "[a11y] Mode select activates with Space when focused: Error: expect(locator).toBeVisible() failed"
+            ],
+            "cases": [
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — zero serious/critical + HTML report",
+                "status": "failed",
+                "durationMs": 8935,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Default (homeBar · fluid · search end) band",
+                "status": "failed",
+                "durationMs": 9232,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — homeBar variations band",
+                "status": "failed",
+                "durationMs": 9167,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — contextBar variations band",
+                "status": "failed",
+                "durationMs": 9015,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — searchBar variations band",
+                "status": "failed",
+                "durationMs": 9181,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — start=true / false band",
+                "status": "failed",
+                "durationMs": 7429,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — middle=fluid / centred band",
+                "status": "failed",
+                "durationMs": 7436,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — primaryNavItems=true / false band",
+                "status": "failed",
+                "durationMs": 7990,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — end=true / false band",
+                "status": "failed",
+                "durationMs": 7901,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — avatar=true / false band",
+                "status": "failed",
+                "durationMs": 8013,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — EndActions Button / IconButton band",
+                "status": "failed",
+                "durationMs": 6948,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Header.Item slot band",
+                "status": "failed",
+                "durationMs": 6963,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Negative / edge cases band",
+                "status": "failed",
+                "durationMs": 7326,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Responsive platform widths band",
+                "status": "failed",
+                "durationMs": 7433,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[a11y] data-testid=\"web-header-default\" — zero serious/critical",
+                "status": "failed",
+                "durationMs": 7576,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[a11y] data-testid=\"web-header-home-fluid-search-end\" — zero serious/critical",
+                "status": "failed",
+                "durationMs": 6218,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[a11y] data-testid=\"web-header-start-false\" — zero serious/critical",
+                "status": "failed",
+                "durationMs": 6302,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[a11y] data-testid=\"web-header-primary-nav-false\" — zero serious/critical",
+                "status": "failed",
+                "durationMs": 5948,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[a11y] data-testid=\"web-header-end-button\" — zero serious/critical",
+                "status": "failed",
+                "durationMs": 6230,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[a11y] data-testid=\"web-header-context-no-nav\" — zero serious/critical",
+                "status": "failed",
+                "durationMs": 6224,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[a11y] data-testid=\"web-header-search-middle\" — zero serious/critical",
+                "status": "failed",
+                "durationMs": 6213,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[a11y] data-testid=\"web-header-negative-empty-nav\" — zero serious/critical",
+                "status": "failed",
+                "durationMs": 6219,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[a11y] data-testid=\"web-header-platform-360-inner\" — zero serious/critical",
+                "status": "failed",
+                "durationMs": 5645,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[a11y] data-testid=\"web-header-platform-768-inner\" — zero serious/critical",
+                "status": "failed",
+                "durationMs": 6158,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[a11y] data-testid=\"web-header-platform-1024-inner\" — zero serious/critical",
+                "status": "failed",
+                "durationMs": 6078,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[a11y] Figma validation tab — property × platform grid — zero serious/critical",
+                "status": "failed",
+                "durationMs": 6216,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[a11y] Section 508 tag run — zero serious/critical",
+                "status": "failed",
+                "durationMs": 6257,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[a11y] axe label rule — showcase bands, zero serious/critical",
+                "status": "failed",
+                "durationMs": 5807,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[a11y] ARIA validity rules — zero serious/critical",
+                "status": "failed",
+                "durationMs": 6795,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[a11y] axe name rules — showcase bands, zero serious/critical",
+                "status": "failed",
+                "durationMs": 6830,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[a11y] page lang on <html>",
+                "status": "failed",
+                "durationMs": 6819,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[a11y] Default mount exposes labelled primary navigation landmark",
+                "status": "failed",
+                "durationMs": 6833,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[a11y] search input has accessible label",
+                "status": "failed",
+                "durationMs": 6110,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[a11y] icon buttons in end slot have accessible names",
+                "status": "failed",
+                "durationMs": 6317,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[a11y] avatar exposes accessible name",
+                "status": "failed",
+                "durationMs": 6207,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[a11y] Viewport 320px — horizontal overflow check per showcase band",
+                "status": "failed",
+                "durationMs": 6672,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[a11y] 200% zoom — showcase headers remain visible",
+                "status": "failed",
+                "durationMs": 6669,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[a11y] Tab reaches a focusable control",
+                "status": "failed",
+                "durationMs": 5778,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[a11y] no keyboard trap (Tab cycle advances)",
+                "status": "failed",
+                "durationMs": 6756,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[a11y] focus order — Tab visits multiple distinct targets",
+                "status": "failed",
+                "durationMs": 6363,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[a11y] focused element shows outline or box-shadow",
+                "status": "failed",
+                "durationMs": 6184,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[a11y] Mode select activates with Enter when focused",
+                "status": "failed",
+                "durationMs": 6202,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[a11y] Mode select activates with Space when focused",
+                "status": "failed",
+                "durationMs": 5719,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              }
+            ]
+          },
+          "functional": {
+            "suite": "functional",
+            "passed": 0,
+            "failed": 48,
+            "skipped": 0,
+            "logs": [
+              "48 test(s) in Playwright report for functional."
+            ],
+            "errors": [
+              "[fn] 1.1 — Page loads without console errors: Error: expect(locator).toBeVisible() failed",
+              "[fn] 1.2 — manifest section count matches showcase bands: Error: expect(locator).toBeVisible() failed",
+              "[fn] 1.3 — every manifest testid is visible: Error: expect(locator).toBeVisible() failed",
+              "[fn] 1.4 — every data-section band is visible: Error: expect(locator).toBeVisible() failed",
+              "[fn] 2.1 — homeBar type attribute: Error: expect(locator).toBeVisible() failed",
+              "[fn] 2.2 — contextBar type attribute: Error: expect(locator).toBeVisible() failed",
+              "[fn] 2.3 — searchBar type attribute: Error: expect(locator).toBeVisible() failed",
+              "[fn] 3.1 — empty navigation band renders without crash: Error: expect(locator).toBeVisible() failed",
+              "[fn] 3.2 — no end + no avatar band renders: Error: expect(locator).toBeVisible() failed",
+              "[fn] 3.3 — searchBar without search input band renders: Error: expect(locator).toBeVisible() failed",
+              "[fn] 4.1 — mobile layout (360): Error: expect(locator).toBeVisible() failed",
+              "[fn] 4.2 — tablet layout (768): Error: expect(locator).toBeVisible() failed",
+              "[fn] 4.3 — desktop layout (1024): Error: expect(locator).toBeVisible() failed",
+              "[fn] 5.1 — Tab reaches focusable controls in default header: Error: expect(locator).toBeVisible() failed",
+              "[fn] 5.2 — focus indicator visible after Tab: Error: expect(locator).toBeVisible() failed",
+              "[fn] Smoke — Page heading reads \"Web Header\": Error: expect(locator).toBeVisible() failed",
+              "[fn] Smoke — Default mount visible: Error: expect(locator).toBeVisible() failed",
+              "[fn] Smoke — goto helper reaches default mount: Error: expect(locator).toBeVisible() failed",
+              "[fn] shows Web Header page heading: Error: expect(locator).toBeVisible() failed",
+              "[fn] scenario tabs are present: Error: expect(locator).toBeVisible() failed",
+              "[fn] theme toggle updates data-mode: Error: expect(locator).toBeVisible() failed",
+              "[fn] default header mount is visible: Error: expect(locator).toBeVisible() failed",
+              "[fn] default mount exposes primary navigation landmark: Error: expect(locator).toBeVisible() failed",
+              "[fn] default mount — four nav items render: Error: expect(locator).toBeVisible() failed",
+              "[fn] default mount — clicking Products updates active item: Error: expect(locator).toBeVisible() failed",
+              "[fn] homeBar mounts are visible: Error: expect(locator).toBeVisible() failed",
+              "[fn] contextBar mounts are visible: Error: expect(locator).toBeVisible() failed",
+              "[fn] searchBar mounts are visible: Error: expect(locator).toBeVisible() failed",
+              "[fn] start=true shows logo: Error: expect(locator).toBeVisible() failed",
+              "[fn] start=false hides logo: Error: expect(locator).toBeVisible() failed",
+              "[fn] middle=fluid data attribute: Error: expect(locator).toBeVisible() failed",
+              "[fn] middle=centred data attribute: Error: expect(locator).toBeVisible() failed",
+              "[fn] primaryNavItems=false hides nav buttons: Error: expect(locator).toBeVisible() failed",
+              "[fn] primaryNavItems=true shows nav buttons: Error: expect(locator).toBeVisible() failed",
+              "[fn] end=true shows IconButton actions: Error: expect(locator).toBeVisible() failed",
+              "[fn] end=false hides end actions: Error: expect(locator).toBeVisible() failed",
+              "[fn] avatar=true shows avatar: Error: expect(locator).toBeVisible() failed",
+              "[fn] avatar=false hides avatar: Error: expect(locator).toBeVisible() failed",
+              "[fn] EndActions Button slot renders: Error: expect(locator).toBeVisible() failed",
+              "[fn] EndActions IconButton cluster renders: Error: expect(locator).toBeVisible() failed",
+              "[fn] Header.Item slot — nav items clickable: Error: expect(locator).toBeVisible() failed",
+              "[fn] searchBar middle — search landmark visible: Error: expect(locator).toBeVisible() failed",
+              "[fn] contextBar without nav — no Home button: Error: expect(locator).toBeVisible() failed",
+              "[fn] responsive band — all Figma platform mounts visible: Error: expect(locator).toBeVisible() failed",
+              "[fn] platform 360 — hamburger menu button visible: Error: expect(locator).toBeVisible() failed",
+              "[fn] platform 1024 — expanded search input visible: Error: expect(locator).toBeVisible() failed",
+              "[fn] platform 360 — search hidden on mobile: Error: expect(locator).toBeVisible() failed",
+              "[fn] figma validation tab mounts property × platform grid: Error: expect(locator).toBeVisible() failed"
+            ],
+            "cases": [
+              {
+                "name": "[fn] 1.1 — Page loads without console errors",
+                "status": "failed",
+                "durationMs": 6460,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[fn] 1.2 — manifest section count matches showcase bands",
+                "status": "failed",
+                "durationMs": 7045,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[fn] 1.3 — every manifest testid is visible",
+                "status": "failed",
+                "durationMs": 8668,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[fn] 1.4 — every data-section band is visible",
+                "status": "failed",
+                "durationMs": 12999,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[fn] 2.1 — homeBar type attribute",
+                "status": "failed",
+                "durationMs": 6682,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[fn] 2.2 — contextBar type attribute",
+                "status": "failed",
+                "durationMs": 7460,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[fn] 2.3 — searchBar type attribute",
+                "status": "failed",
+                "durationMs": 6526,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[fn] 3.1 — empty navigation band renders without crash",
+                "status": "failed",
+                "durationMs": 6013,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[fn] 3.2 — no end + no avatar band renders",
+                "status": "failed",
+                "durationMs": 5674,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[fn] 3.3 — searchBar without search input band renders",
+                "status": "failed",
+                "durationMs": 5723,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[fn] 4.1 — mobile layout (360)",
+                "status": "failed",
+                "durationMs": 5892,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[fn] 4.2 — tablet layout (768)",
+                "status": "failed",
+                "durationMs": 6084,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[fn] 4.3 — desktop layout (1024)",
+                "status": "failed",
+                "durationMs": 6716,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[fn] 5.1 — Tab reaches focusable controls in default header",
+                "status": "failed",
+                "durationMs": 19752,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[fn] 5.2 — focus indicator visible after Tab",
+                "status": "failed",
+                "durationMs": 6687,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[fn] Smoke — Page heading reads \"Web Header\"",
+                "status": "failed",
+                "durationMs": 7596,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[fn] Smoke — Default mount visible",
+                "status": "failed",
+                "durationMs": 6661,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[fn] Smoke — goto helper reaches default mount",
+                "status": "failed",
+                "durationMs": 6731,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[fn] shows Web Header page heading",
+                "status": "failed",
+                "durationMs": 6184,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[fn] scenario tabs are present",
+                "status": "failed",
+                "durationMs": 6460,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[fn] theme toggle updates data-mode",
+                "status": "failed",
+                "durationMs": 8702,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[fn] default header mount is visible",
+                "status": "failed",
+                "durationMs": 19736,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[fn] default mount exposes primary navigation landmark",
+                "status": "failed",
+                "durationMs": 6779,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[fn] default mount — four nav items render",
+                "status": "failed",
+                "durationMs": 7518,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[fn] default mount — clicking Products updates active item",
+                "status": "failed",
+                "durationMs": 6656,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[fn] homeBar mounts are visible",
+                "status": "failed",
+                "durationMs": 6676,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[fn] contextBar mounts are visible",
+                "status": "failed",
+                "durationMs": 5603,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[fn] searchBar mounts are visible",
+                "status": "failed",
+                "durationMs": 5507,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[fn] start=true shows logo",
+                "status": "failed",
+                "durationMs": 6114,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[fn] start=false hides logo",
+                "status": "failed",
+                "durationMs": 6398,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[fn] middle=fluid data attribute",
+                "status": "failed",
+                "durationMs": 8437,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[fn] middle=centred data attribute",
+                "status": "failed",
+                "durationMs": 6280,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[fn] primaryNavItems=false hides nav buttons",
+                "status": "failed",
+                "durationMs": 6197,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[fn] primaryNavItems=true shows nav buttons",
+                "status": "failed",
+                "durationMs": 6300,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[fn] end=true shows IconButton actions",
+                "status": "failed",
+                "durationMs": 6590,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[fn] end=false hides end actions",
+                "status": "failed",
+                "durationMs": 6371,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[fn] avatar=true shows avatar",
+                "status": "failed",
+                "durationMs": 6506,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[fn] avatar=false hides avatar",
+                "status": "failed",
+                "durationMs": 6069,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[fn] EndActions Button slot renders",
+                "status": "failed",
+                "durationMs": 6444,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[fn] EndActions IconButton cluster renders",
+                "status": "failed",
+                "durationMs": 6948,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[fn] Header.Item slot — nav items clickable",
+                "status": "failed",
+                "durationMs": 8564,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[fn] searchBar middle — search landmark visible",
+                "status": "failed",
+                "durationMs": 6286,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[fn] contextBar without nav — no Home button",
+                "status": "failed",
+                "durationMs": 6305,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[fn] responsive band — all Figma platform mounts visible",
+                "status": "failed",
+                "durationMs": 6636,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[fn] platform 360 — hamburger menu button visible",
+                "status": "failed",
+                "durationMs": 6355,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[fn] platform 1024 — expanded search input visible",
+                "status": "failed",
+                "durationMs": 6622,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[fn] platform 360 — search hidden on mobile",
+                "status": "failed",
+                "durationMs": 5980,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[fn] figma validation tab mounts property × platform grid",
+                "status": "failed",
+                "durationMs": 5624,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              }
+            ]
+          },
+          "performance": {
+            "suite": "performance",
+            "passed": 0,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "Performance suite is not executed in apps/qa-playground web-header Playwright bundle."
+            ],
+            "errors": []
+          }
+        }
+      }
+    },
+    {
+      "savedAt": "2026-07-09T14:20:28.023Z",
+      "report": {
+        "ok": true,
+        "slug": "web-header",
+        "message": "web-header QA Playwright run OK — 2026-07-09T10:18:19.305Z",
+        "suites": {
+          "accessibility": {
+            "suite": "accessibility",
+            "passed": 27,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "27 test(s) in Playwright report for accessibility.",
+              "Axe: 1 violation rule(s) reported."
+            ],
+            "errors": [],
+            "cases": [
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — zero serious/critical + HTML report",
+                "status": "passed",
+                "durationMs": 7055
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Default (homeBar · fluid · search end) band",
+                "status": "passed",
+                "durationMs": 12496,
+                "componentBand": "web-header-qa-default"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — HomeBar variations band",
+                "status": "passed",
+                "durationMs": 6639,
+                "componentBand": "web-header-qa-home-bar"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — ContextBar variations band",
+                "status": "passed",
+                "durationMs": 6678,
+                "componentBand": "web-header-qa-context-bar"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — SearchBar variations band",
+                "status": "passed",
+                "durationMs": 6862,
+                "componentBand": "web-header-qa-search-bar"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Responsive platform widths band",
+                "status": "passed",
+                "durationMs": 3707,
+                "componentBand": "web-header-qa-responsive"
+              },
+              {
+                "name": "[a11y] data-testid=\"web-header-default\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 3637
+              },
+              {
+                "name": "[a11y] data-testid=\"web-header-home-fluid-search-end\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 4026
+              },
+              {
+                "name": "[a11y] data-testid=\"web-header-home-fluid-search-middle\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 4007
+              },
+              {
+                "name": "[a11y] data-testid=\"web-header-context-no-nav\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 2926
+              },
+              {
+                "name": "[a11y] data-testid=\"web-header-search-middle\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 2944
+              },
+              {
+                "name": "[a11y] data-testid=\"web-header-platform-360-inner\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 3344
+              },
+              {
+                "name": "[a11y] data-testid=\"web-header-platform-1024-inner\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 3329
+              },
+              {
+                "name": "[a11y] Section 508 tag run — zero serious/critical",
+                "status": "passed",
+                "durationMs": 3144
+              },
+              {
+                "name": "[a11y] axe label rule — showcase bands, zero serious/critical",
+                "status": "passed",
+                "durationMs": 3440
+              },
+              {
+                "name": "[a11y] ARIA validity rules — zero serious/critical",
+                "status": "passed",
+                "durationMs": 4249
+              },
+              {
+                "name": "[a11y] axe name rules — showcase bands, zero serious/critical",
+                "status": "passed",
+                "durationMs": 3843
+              },
+              {
+                "name": "[a11y] page lang on <html>",
+                "status": "passed",
+                "durationMs": 3155
+              },
+              {
+                "name": "[a11y] Default mount exposes labelled primary navigation landmark",
+                "status": "passed",
+                "durationMs": 2816
+              },
+              {
+                "name": "[a11y] Viewport 320px — horizontal overflow check per showcase band",
+                "status": "passed",
+                "durationMs": 5446
+              },
+              {
+                "name": "[a11y] 200% zoom — showcase headers remain visible",
+                "status": "passed",
+                "durationMs": 3398
+              },
+              {
+                "name": "[a11y] Tab reaches a focusable control",
+                "status": "passed",
+                "durationMs": 3347
+              },
+              {
+                "name": "[a11y] no keyboard trap (Tab cycle advances)",
+                "status": "passed",
+                "durationMs": 3598
+              },
+              {
+                "name": "[a11y] focus order — Tab visits multiple distinct targets",
+                "status": "passed",
+                "durationMs": 3469
+              },
+              {
+                "name": "[a11y] focused element shows outline or box-shadow",
+                "status": "passed",
+                "durationMs": 3505
+              },
+              {
+                "name": "[a11y] Mode select activates with Enter when focused",
+                "status": "passed",
+                "durationMs": 3691
+              },
+              {
+                "name": "[a11y] Mode select activates with Space when focused",
+                "status": "passed",
+                "durationMs": 3603
+              }
+            ],
+            "axe": {
+              "violations": [
+                {
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/color-contrast?application=playwright",
+                  "nodes": 13
+                }
+              ]
+            }
+          },
+          "functional": {
+            "suite": "functional",
+            "passed": 19,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "19 test(s) in Playwright report for functional."
+            ],
+            "errors": [],
+            "cases": [
+              {
+                "name": "[fn] 1.1 — manifest section count matches showcase bands",
+                "status": "passed",
+                "durationMs": 2627
+              },
+              {
+                "name": "[fn] 1.2 — every manifest testid is visible",
+                "status": "passed",
+                "durationMs": 3635
+              },
+              {
+                "name": "[fn] 1.3 — every data-section band is visible",
+                "status": "passed",
+                "durationMs": 3464
+              },
+              {
+                "name": "[fn] 2.1 — goto helper reaches smoke mount",
+                "status": "passed",
+                "durationMs": 4710
+              },
+              {
+                "name": "[fn] shows Web Header page heading",
+                "status": "passed",
+                "durationMs": 3250
+              },
+              {
+                "name": "[fn] theme toggle updates data-mode",
+                "status": "passed",
+                "durationMs": 3854
+              },
+              {
+                "name": "[fn] scenario tabs are present",
+                "status": "passed",
+                "durationMs": 3572
+              },
+              {
+                "name": "[fn] default header mount is visible",
+                "status": "passed",
+                "durationMs": 3309
+              },
+              {
+                "name": "[fn] responsive band — all Figma platform mounts visible",
+                "status": "passed",
+                "durationMs": 3291
+              },
+              {
+                "name": "[fn] default mount exposes primary navigation landmark",
+                "status": "passed",
+                "durationMs": 3264
+              },
+              {
+                "name": "[fn] default mount — four nav items render (Storybook Default)",
+                "status": "passed",
+                "durationMs": 3454
+              },
+              {
+                "name": "[fn] default mount — clicking Products updates active item",
+                "status": "passed",
+                "durationMs": 3230
+              },
+              {
+                "name": "[fn] HomeBar story mounts are visible",
+                "status": "passed",
+                "durationMs": 3136
+              },
+              {
+                "name": "[fn] contextBar mounts are visible",
+                "status": "passed",
+                "durationMs": 3570
+              },
+              {
+                "name": "[fn] searchBar mounts are visible",
+                "status": "passed",
+                "durationMs": 3137
+              },
+              {
+                "name": "[fn] contextBar without nav — primary nav items hidden",
+                "status": "passed",
+                "durationMs": 2729
+              },
+              {
+                "name": "[fn] searchBar middle — search landmark visible on desktop",
+                "status": "passed",
+                "durationMs": 3135
+              },
+              {
+                "name": "[fn] platform 360 — hamburger menu button visible",
+                "status": "passed",
+                "durationMs": 3493
+              },
+              {
+                "name": "[fn] platform 1024 — expanded search input visible",
+                "status": "passed",
+                "durationMs": 3167
+              }
+            ]
+          },
+          "performance": {
+            "suite": "performance",
+            "passed": 0,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "Performance suite is not executed in apps/qa-playground web-header Playwright bundle."
+            ],
+            "errors": []
+          }
+        }
+      }
+    },
+    {
+      "savedAt": "2026-07-09T10:18:19.306Z",
+      "report": {
+        "ok": true,
+        "slug": "web-header",
+        "message": "web-header QA Playwright run OK — 2026-07-08T14:02:05.436Z",
+        "suites": {
+          "accessibility": {
+            "suite": "accessibility",
+            "passed": 26,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "26 test(s) in Playwright report for accessibility.",
+              "Axe: 1 violation rule(s) reported."
+            ],
+            "errors": [],
+            "cases": [
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — zero serious/critical + HTML report",
+                "status": "passed",
+                "durationMs": 8990
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Default (homeBar) band",
+                "status": "passed",
+                "durationMs": 8619,
+                "componentBand": "web-header-qa-default"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — HomeBar — search middle band",
+                "status": "passed",
+                "durationMs": 8531,
+                "componentBand": "web-header-qa-home-bar"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — ContextBar band",
+                "status": "passed",
+                "durationMs": 8611,
+                "componentBand": "web-header-qa-context-bar"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — SearchBar band",
+                "status": "passed",
+                "durationMs": 8521,
+                "componentBand": "web-header-qa-search-bar"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Responsive platform widths band",
+                "status": "passed",
+                "durationMs": 4290,
+                "componentBand": "web-header-qa-responsive"
+              },
+              {
+                "name": "[a11y] data-testid=\"web-header-default\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 3963
+              },
+              {
+                "name": "[a11y] data-testid=\"web-header-home-bar\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 4116
+              },
+              {
+                "name": "[a11y] data-testid=\"web-header-context-bar\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 4423
+              },
+              {
+                "name": "[a11y] data-testid=\"web-header-search-bar\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 3816
+              },
+              {
+                "name": "[a11y] data-testid=\"web-header-platform-360-inner\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 3485
+              },
+              {
+                "name": "[a11y] data-testid=\"web-header-platform-1024-inner\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 3618
+              },
+              {
+                "name": "[a11y] Section 508 tag run — zero serious/critical",
+                "status": "passed",
+                "durationMs": 3612
+              },
+              {
+                "name": "[a11y] axe label rule — showcase bands, zero serious/critical",
+                "status": "passed",
+                "durationMs": 3741
+              },
+              {
+                "name": "[a11y] ARIA validity rules — zero serious/critical",
+                "status": "passed",
+                "durationMs": 3890
+              },
+              {
+                "name": "[a11y] axe name rules — showcase bands, zero serious/critical",
+                "status": "passed",
+                "durationMs": 2847
+              },
+              {
+                "name": "[a11y] page lang on <html>",
+                "status": "passed",
+                "durationMs": 2757
+              },
+              {
+                "name": "[a11y] Default mount exposes labelled primary navigation landmark",
+                "status": "passed",
+                "durationMs": 2844
+              },
+              {
+                "name": "[a11y] Viewport 320px — horizontal overflow check per showcase band",
+                "status": "passed",
+                "durationMs": 6154
+              },
+              {
+                "name": "[a11y] 200% zoom — showcase headers remain visible",
+                "status": "passed",
+                "durationMs": 3000
+              },
+              {
+                "name": "[a11y] Tab reaches a focusable control",
+                "status": "passed",
+                "durationMs": 3481
+              },
+              {
+                "name": "[a11y] no keyboard trap (Tab cycle advances)",
+                "status": "passed",
+                "durationMs": 4248
+              },
+              {
+                "name": "[a11y] focus order — Tab visits multiple distinct targets",
+                "status": "passed",
+                "durationMs": 3973
+              },
+              {
+                "name": "[a11y] focused element shows outline or box-shadow",
+                "status": "passed",
+                "durationMs": 3534
+              },
+              {
+                "name": "[a11y] Mode select activates with Enter when focused",
+                "status": "passed",
+                "durationMs": 2316
+              },
+              {
+                "name": "[a11y] Mode select activates with Space when focused",
+                "status": "passed",
+                "durationMs": 2846
+              }
+            ],
+            "axe": {
+              "violations": [
+                {
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/color-contrast?application=playwright",
+                  "nodes": 5
+                }
+              ]
+            }
+          },
+          "functional": {
+            "suite": "functional",
+            "passed": 16,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "16 test(s) in Playwright report for functional."
+            ],
+            "errors": [],
+            "cases": [
+              {
+                "name": "[fn] 1.1 — manifest section count matches showcase bands",
+                "status": "passed",
+                "durationMs": 2552
+              },
+              {
+                "name": "[fn] 1.2 — every manifest testid is visible",
+                "status": "passed",
+                "durationMs": 2675
+              },
+              {
+                "name": "[fn] 1.3 — every data-section band is visible",
+                "status": "passed",
+                "durationMs": 2393
+              },
+              {
+                "name": "[fn] 2.1 — goto helper reaches smoke mount",
+                "status": "passed",
+                "durationMs": 2951
+              },
+              {
+                "name": "[fn] shows Web Header page heading",
+                "status": "passed",
+                "durationMs": 3290
+              },
+              {
+                "name": "[fn] theme toggle updates data-mode",
+                "status": "passed",
+                "durationMs": 3027
+              },
+              {
+                "name": "[fn] scenario tabs are present",
+                "status": "passed",
+                "durationMs": 2487
+              },
+              {
+                "name": "[fn] default header mount is visible",
+                "status": "passed",
+                "durationMs": 2217
+              },
+              {
+                "name": "[fn] homeBar / contextBar / searchBar mounts are visible",
+                "status": "passed",
+                "durationMs": 3309
+              },
+              {
+                "name": "[fn] responsive band — all Figma platform mounts visible",
+                "status": "passed",
+                "durationMs": 2582
+              },
+              {
+                "name": "[fn] default mount exposes primary navigation landmark",
+                "status": "passed",
+                "durationMs": 2233
+              },
+              {
+                "name": "[fn] default mount — nav items render",
+                "status": "passed",
+                "durationMs": 2049
+              },
+              {
+                "name": "[fn] contextBar mount — primary nav items hidden",
+                "status": "passed",
+                "durationMs": 3297
+              },
+              {
+                "name": "[fn] searchBar mount — search landmark visible on desktop",
+                "status": "passed",
+                "durationMs": 2525
+              },
+              {
+                "name": "[fn] platform 360 — hamburger menu button visible",
+                "status": "passed",
+                "durationMs": 2393
+              },
+              {
+                "name": "[fn] platform 1024 — expanded search input visible",
+                "status": "passed",
+                "durationMs": 2465
+              }
+            ]
+          },
+          "performance": {
+            "suite": "performance",
+            "passed": 0,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "Performance suite is not executed in apps/qa-playground web-header Playwright bundle."
+            ],
+            "errors": []
+          }
+        }
+      }
+    }
+  ]
+}

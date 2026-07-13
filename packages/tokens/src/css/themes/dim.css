@@ -1,0 +1,69 @@
+/**
+ * DIM THEME
+ * Branded dark mode with primary color tint
+ *
+ * Surface naming follows Rang De convention:
+ * - Default: Base/background (step 200) with subtle brand tint
+ * - Minimal: +1 step lighter (step 300)
+ * - Subtle: +2 steps lighter (step 400)
+ * - Bold: High contrast (step ~2200) with brand tint
+ * - Elevated: Same as default + shadow
+ */
+
+[data-mode='dim'] {
+  /* Surface tokens - branded dark with subtle primary tint */
+  --Surface-Default: oklch(14% 0.01 340);
+  --Surface-Minimal: oklch(18% 0.015 340);
+  --Surface-Subtle: oklch(22% 0.02 340);
+  --Surface-Bold: oklch(75% 0.12 340);
+  --Surface-Elevated: oklch(14% 0.01 340);
+
+  /* Legacy aliases */
+  --Surface-Main: var(--Surface-Default);
+  --Surface-Ghost: var(--Surface-Minimal);
+
+  /* Text tokens - optimized for branded dark */
+  --Text-High: oklch(95% 0 0);
+  --Text-Medium: oklch(72% 0 0);
+  --Text-Low: oklch(52% 0 0);
+  --Text-OnBold-High: oklch(15% 0 0);
+
+  /* Text on surface tokens (Rang De) - inverted for dim mode */
+  /* On Default/Minimal/Subtle/Elevated (dark branded surfaces) */
+  --Text-On-Default-High: oklch(95% 0 0);
+  --Text-On-Default-Medium: oklch(76% 0 0);
+  --Text-On-Default-Low: oklch(66% 0 0);
+  --Text-On-Minimal-High: var(--Text-On-Default-High);
+  --Text-On-Minimal-Medium: var(--Text-On-Default-Medium);
+  --Text-On-Minimal-Low: var(--Text-On-Default-Low);
+  --Text-On-Subtle-High: var(--Text-On-Default-High);
+  --Text-On-Subtle-Medium: var(--Text-On-Default-Medium);
+  --Text-On-Subtle-Low: var(--Text-On-Default-Low);
+  --Text-On-Elevated-High: var(--Text-On-Default-High);
+  --Text-On-Elevated-Medium: var(--Text-On-Default-Medium);
+  --Text-On-Elevated-Low: var(--Text-On-Default-Low);
+
+  /* On Bold surface (light/brand surface in dim mode) */
+  --Text-On-Bold-High: oklch(15% 0 0);
+  --Text-On-Bold-Medium: oklch(32% 0 0);
+  --Text-On-Bold-Low: oklch(42% 0 0);
+
+  /* Border tokens - inverted for dark branded backgrounds */
+  --Border-Subtle: oklch(25% 0.01 340);
+  --Border-Default: oklch(32% 0.015 340);
+
+  /* Material tokens - Dim mode (same as dark) */
+  --Material-Frosted-Background-UltraThin: rgba(0, 0, 0, 0.30);
+  --Material-Frosted-Background-Thin: rgba(0, 0, 0, 0.50);
+  --Material-Frosted-Background-Regular: rgba(0, 0, 0, 0.65);
+  --Material-Frosted-Background-Thick: rgba(0, 0, 0, 0.75);
+  --Material-Frosted-Background-UltraThick: rgba(0, 0, 0, 0.85);
+  --Material-Frosted-Border: rgba(255, 255, 255, 0.10);
+  --Material-Frosted-Fallback-UltraThin: rgba(0, 0, 0, 0.80);
+  --Material-Frosted-Fallback-Thin: rgba(0, 0, 0, 0.85);
+  --Material-Frosted-Fallback-Regular: rgba(0, 0, 0, 0.92);
+  --Material-Frosted-Fallback-Thick: rgba(0, 0, 0, 0.95);
+  --Material-Frosted-Fallback-UltraThick: rgba(0, 0, 0, 0.97);
+  --Material-Glass-Tint: var(--Material-Glass-Tint-Dark);
+  --Material-Glass-Border: var(--Material-Glass-Border-Dark);
+}

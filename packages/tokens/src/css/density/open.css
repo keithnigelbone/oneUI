@@ -1,0 +1,17 @@
+/**
+ * OPEN DENSITY
+ * Component-level overrides for open density.
+ *
+ * NOTE: Spacing and typography tokens are NOT shifted here.
+ * scale.css handles all dimension f-step values per platform × density
+ * combination, and spacing/typography tokens in primitives.css alias
+ * directly to dimension f-steps — so they cascade automatically.
+ */
+
+@layer density {
+[data-density='open'] {
+  /* Component heights - Increased */
+  --Component-Height-TopBar: 72px;
+  --Touch-Target-Min: 48px;
+}
+} /* @layer density */

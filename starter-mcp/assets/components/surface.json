@@ -1,0 +1,126 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Surface",
+  "generatedAt": "2026-01-01T00:00:00.000Z",
+  "machineReadable": true,
+  "intentAndPurpose": {
+    "intent": "Container primitive that opts descendants into the OneUI surface cascade via [data-surface]. The `mode` prop maps to one of the 7 canonical surface tokens (default/ghost/minimal/subtle/moderate/bold/elevated). Optional transparent material composites over arbitrary media.",
+    "taskContexts": [
+      "surface",
+      "container",
+      "layout",
+      "context",
+      "background"
+    ],
+    "sentiments": [
+      "neutral"
+    ]
+  },
+  "compositionRules": {
+    "requires": [],
+    "allows": [],
+    "forbids": []
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "default",
+        "useWhen": [
+          "Default"
+        ]
+      },
+      {
+        "name": "ghost",
+        "useWhen": [
+          "Ghost"
+        ]
+      },
+      {
+        "name": "minimal",
+        "useWhen": [
+          "Minimal"
+        ]
+      },
+      {
+        "name": "subtle",
+        "useWhen": [
+          "Subtle"
+        ]
+      },
+      {
+        "name": "moderate",
+        "useWhen": [
+          "Moderate"
+        ]
+      },
+      {
+        "name": "bold",
+        "useWhen": [
+          "Bold"
+        ]
+      },
+      {
+        "name": "elevated",
+        "useWhen": [
+          "Elevated"
+        ]
+      }
+    ]
+  },
+  "relationshipsAndDependencies": {
+    "related": []
+  },
+  "contextSignals": {
+    "density": [
+      "compact",
+      "default",
+      "open"
+    ],
+    "modality": [
+      "desktop",
+      "mobile"
+    ],
+    "brand": [
+      "theme-scope aware",
+      "recipe-driven"
+    ],
+    "mode": [
+      "light",
+      "dark",
+      "surface-context"
+    ]
+  },
+  "observabilityHooks": {
+    "track": [],
+    "health": [
+      "a11y_violations"
+    ]
+  },
+  "props": [],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.docs.surface",
+    "type": "object",
+    "properties": {}
+  },
+  "codeSnippets": [
+    {
+      "id": "surface-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { Surface } from '@oneui/ui';\n\n<Surface />"
+    },
+    {
+      "id": "surface-recipe-decisions",
+      "title": "Recipe Decisions",
+      "language": "json",
+      "code": "{\n  \"component\": \"Surface\",\n  \"decisions\": [\n    \"Interior padding\"\n  ]\n}"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "surface"
+  ],
+  "importPath": "@jds4/oneui-react"
+}

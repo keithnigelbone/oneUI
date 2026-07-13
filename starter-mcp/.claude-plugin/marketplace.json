@@ -1,0 +1,29 @@
+{
+  "$schema": "https://raw.githubusercontent.com/anthropics/claude-code/main/plugins/marketplace.schema.json",
+  "name": "oneui-marketplace",
+  "description": "One UI / JDS design-system coding plugin for Claude Code (and Cursor) — knowledge, the validate_oneui_code gate, and Figma → code for React web + React Native. Internal distribution; the @jds4/* runtime packages live on the private JIO-DS-ONE-UI Azure DevOps feed.",
+  "owner": {
+    "name": "Jio Design System (One UI)",
+    "email": "ayush.t@ril.com"
+  },
+  "plugins": [
+    {
+      "name": "oneui",
+      "source": "./",
+      "description": "Build OneUI-compliant React (web) and React Native apps from a PRD or a Figma frame. Bundles the @jds4/oneui-mcp server (23 tools: offline knowledge snapshot, component catalogs, brand tokens, validate_oneui_code, figma_to_code), 5 agent-native skills, 6 slash commands, and an advisory PostToolUse validator hook. Every output is certified against the installed component API.",
+      "version": "0.1.0-alpha.9",
+      "license": "UNLICENSED",
+      "keywords": [
+        "oneui",
+        "jds",
+        "design-system",
+        "figma",
+        "design-to-code",
+        "react",
+        "react-native",
+        "tokens",
+        "accessibility"
+      ]
+    }
+  ]
+}

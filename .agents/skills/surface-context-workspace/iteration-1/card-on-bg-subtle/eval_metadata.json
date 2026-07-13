@@ -1,0 +1,27 @@
+{
+  "eval_id": 2,
+  "eval_name": "card-on-bg-subtle",
+  "prompt": "I need to understand what tokens are available when a component is placed inside <Surface mode='bg-subtle'>. Specifically, what text colors, border colors, and accent colors can I use? And how do they differ from the default surface?",
+  "assertions": [
+    {
+      "name": "lists-on-colour-tokens",
+      "description": "Lists most or all of the 9 on-colour tokens available (High, Medium-Text, Low-Text, Medium-Stroke, Low-Stroke, Accent, Accent-A11y, Hover, Pressed)",
+      "type": "qualitative"
+    },
+    {
+      "name": "mentions-on-subtle-context",
+      "description": "Mentions that bg-subtle uses the 'on-subtle' on-colour context (different from default's 'on-default' context)",
+      "type": "qualitative"
+    },
+    {
+      "name": "explains-differences-from-default",
+      "description": "Explains how bg-subtle on-colours differ from default — e.g. strokes are blended against the subtle surface, or mentions the +10 step stroke offset vs +8 on default",
+      "type": "qualitative"
+    },
+    {
+      "name": "uses-correct-token-names",
+      "description": "Provides actual token names following the naming convention (e.g. --Primary-BG-Subtle-High, --Primary-BG-Subtle-Accent-A11y)",
+      "type": "qualitative"
+    }
+  ]
+}

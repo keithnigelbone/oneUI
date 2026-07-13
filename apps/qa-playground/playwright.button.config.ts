@@ -1,0 +1,33 @@
+import path from 'node:path';
+import { defineConfig, devices } from 'playwright/test';
+
+/**
+ * Button QA — functional + accessibility automation.
+ * Writes JSON to `test-results/button-playwright.json` for {@link scripts/ingest-button-playwright-json.mts}.
+ */
+export default defineConfig({
+  testDir: './e2e',
+  testMatch: ['**/button-qa.spec.ts', '**/button-accessibility.spec.ts'],
+  fullyParallel: true,
+  forbidOnly: !!process.env.CI,
+  retries: process.env.CI ? 2 : 0,
+  workers: 1,
+  reporter: [
+    ['list'],
+    ['line'],
+    ['html', { outputFolder: 'playwright-report/button', open: 'never' }],
+    ['json', { outputFile: path.join('test-results', 'button-playwright.json') }],
+  ],
+  use: {
+    baseURL: 'http://localhost:5180',
+    trace: 'on-first-retry',
+    screenshot: 'only-on-failure',
+  },
+  projects: [{ name: 'chromium', use: { ...devices['Desktop Chrome'] } }],
+  webServer: {
+    command: 'node ../../node_modules/vite/bin/vite.js --host --port 5180',
+    url: 'http://localhost:5180',
+    reuseExistingServer: true,
+    cwd: '.',
+  },
+});

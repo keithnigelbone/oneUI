@@ -1,0 +1,51 @@
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--Spacing-4);
+  padding: var(--Spacing-4) var(--Spacing-4-5);
+  margin: 0 0 var(--Spacing-4-5);
+  border-bottom: var(--Stroke-M) solid var(--Border-Subtle);
+  background: var(--Surface-Default);
+  font-family: var(--Typography-Font-Primary);
+}
+
+.group {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-3-5);
+}
+
+.label {
+  font-size: var(--Label-S-FontSize);
+  line-height: var(--Label-S-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+  color: var(--Text-High);
+}
+
+.hint {
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  font-weight: var(--Body-FontWeight-Low);
+  color: var(--Text-Medium);
+  flex: 1 1 100%;
+}
+
+.select {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Label-S-FontSize);
+  line-height: var(--Label-S-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+  color: var(--Text-High);
+  min-width: var(--Spacing-40);
+  padding: var(--Spacing-0-5) var(--Spacing-3-5);
+  border-radius: var(--Shape-3XS);
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+  background: var(--Surface-Default);
+}
+
+.divider {
+  width: var(--Stroke-M);
+  align-self: stretch;
+  background: var(--Border-Subtle);
+}

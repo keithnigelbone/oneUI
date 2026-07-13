@@ -1,0 +1,333 @@
+/**
+ * composition.module.css
+ * Shared styles for design composition agent pages.
+ * Mirrors voice.module.css patterns — property rows, chip grids, inline editing.
+ */
+
+/* ── Property list — rows within cards ─────────────────────────────────── */
+
+.propertyList {
+  display: flex;
+  flex-direction: column;
+}
+
+.propertyRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--Spacing-3-5) 0;
+  border-bottom: var(--Stroke-M) solid var(--Border-Subtle);
+}
+
+.propertyRow:last-child {
+  border-bottom: none;
+}
+
+.propertyLabel {
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Body-M-FontSize);
+  line-height: var(--Body-M-LineHeight);
+  color: var(--Text-Medium);
+}
+
+.propertyValue {
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Body-M-FontSize);
+  line-height: var(--Body-M-LineHeight);
+  font-weight: var(--Body-FontWeight-Medium);
+  color: var(--Text-High);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Vertical description ───────────────────────────────────────────────── */
+
+.verticalDescription {
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  color: var(--Text-Low);
+  margin: var(--Spacing-3-5) 0 0 0;
+  padding-top: var(--Spacing-3-5);
+  border-top: var(--Stroke-M) solid var(--Border-Subtle);
+}
+
+/* ── Slider grid ───────────────────────────────────────────────────────── */
+
+.sliderGrid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-4-5);
+}
+
+/* ── Context selector chips ────────────────────────────────────────────── */
+
+.contextChips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--Spacing-2);
+}
+
+.contextChip {
+  background: var(--Surface-Main);
+  color: var(--Text-Medium);
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+  border-radius: var(--Shape-Pill);
+  padding: var(--Spacing-1-5) var(--Spacing-4);
+  font-family: var(--Label-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Label-S-FontSize);
+  line-height: var(--Label-S-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+  cursor: pointer;
+  transition: background-color var(--Motion-Duration-Discreet-Short),
+              border-color var(--Motion-Duration-Discreet-Short),
+              color var(--Motion-Duration-Discreet-Short);
+}
+
+.contextChip:hover {
+  background-color: var(--Surface-Subtle);
+  border-color: var(--Border-Default);
+  color: var(--Text-High);
+}
+
+.contextChip[data-active="true"] {
+  background-color: var(--Primary-Bold);
+  color: var(--Primary-Bold-High);
+  border-color: var(--Primary-Bold);
+}
+
+/* ── Rule card ─────────────────────────────────────────────────────────── */
+
+.ruleCard {
+  border: 1px solid var(--Border-Subtle);
+  border-radius: var(--Shape-4-5);
+  overflow: hidden;
+  background-color: var(--Surface-Main);
+}
+
+.ruleHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: var(--Spacing-3-5) var(--Spacing-4);
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  color: var(--Text-High);
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Body-M-FontSize);
+  line-height: var(--Body-M-LineHeight);
+}
+
+.ruleHeader:hover {
+  background-color: var(--Surface-Subtle);
+}
+
+.ruleHeaderLeft {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-3-5);
+}
+
+.ruleHeaderRight {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-3);
+}
+
+.rulePriority {
+  font-family: var(--Label-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  color: var(--Text-Low);
+  width: 24px;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.ruleTitle {
+  font-weight: var(--Body-FontWeight-Medium);
+}
+
+.chevron {
+  font-size: var(--Body-L-FontSize);
+  color: var(--Text-Low);
+  width: 20px;
+  text-align: center;
+  transition: transform var(--Motion-Duration-Discreet-Short);
+}
+
+.chevronOpen {
+  transform: rotate(90deg);
+}
+
+.ruleBody {
+  padding: var(--Spacing-3-5) var(--Spacing-4) var(--Spacing-4);
+  border-top: 1px solid var(--Border-Subtle);
+}
+
+.ruleContent {
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  color: var(--Text-Medium);
+  white-space: pre-wrap;
+}
+
+.ruleTextarea {
+  width: 100%;
+  min-height: 200px;
+  padding: var(--Spacing-3);
+  border: 1px solid var(--Border-Subtle);
+  border-radius: var(--Shape-3);
+  background-color: var(--Surface-Main);
+  color: var(--Text-High);
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  resize: vertical;
+}
+
+.ruleTextarea:focus {
+  outline: none;
+  border-color: var(--Primary-Bold);
+}
+
+.ruleActions {
+  display: flex;
+  gap: var(--Spacing-3);
+  margin-top: var(--Spacing-3-5);
+}
+
+.ruleMeta {
+  display: flex;
+  gap: var(--Spacing-4);
+  margin-top: var(--Spacing-3);
+  font-family: var(--Label-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  color: var(--Text-Low);
+}
+
+/* ── Validation card ───────────────────────────────────────────────────── */
+
+.validationCard {
+  padding: var(--Spacing-3-5) var(--Spacing-4);
+  background-color: transparent;
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+  border-radius: var(--Shape-4);
+}
+
+.validationHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: var(--Spacing-3);
+  margin-bottom: var(--Spacing-3);
+  border-bottom: var(--Stroke-M) solid var(--Border-Subtle);
+}
+
+.validationLabel {
+  font-family: var(--Label-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+  color: var(--Text-Medium);
+}
+
+.validationChecks {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-1-5);
+}
+
+.validationRow {
+  display: flex;
+  align-items: baseline;
+  gap: var(--Spacing-2);
+  font-family: var(--Label-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+}
+
+.validationPass {
+  color: var(--Positive-TintedA11y);
+  font-weight: var(--Label-FontWeight-Medium);
+  width: 14px;
+  flex-shrink: 0;
+}
+
+.validationFail {
+  color: var(--Negative-TintedA11y);
+  font-weight: var(--Label-FontWeight-Medium);
+  width: 14px;
+  flex-shrink: 0;
+}
+
+.validationWarn {
+  color: var(--Warning-TintedA11y);
+  font-weight: var(--Label-FontWeight-Medium);
+  width: 14px;
+  flex-shrink: 0;
+}
+
+.validationName {
+  color: var(--Text-Medium);
+}
+
+.validationDetail {
+  color: var(--Text-Low);
+}
+
+/* ── Shared empty/placeholder ──────────────────────────────────────────── */
+
+.empty {
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Body-M-FontSize);
+  line-height: var(--Body-M-LineHeight);
+  color: var(--Text-Medium);
+  text-align: center;
+  padding: var(--Spacing-7) 0;
+}
+
+/* ── Skill card ────────────────────────────────────────────────────────── */
+
+.skillCard {
+  border: 1px solid var(--Border-Subtle);
+  border-radius: var(--Shape-4-5);
+  padding: var(--Spacing-4);
+  background-color: var(--Surface-Main);
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-3);
+}
+
+.skillHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.skillName {
+  font-family: var(--Title-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Title-S-FontSize);
+  line-height: var(--Title-S-LineHeight);
+  font-weight: var(--Title-S-FontWeight);
+  color: var(--Text-High);
+  margin: 0;
+}
+
+.skillDescription {
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  color: var(--Text-Medium);
+  margin: 0;
+}
+
+.skillMeta {
+  display: flex;
+  gap: var(--Spacing-2);
+  flex-wrap: wrap;
+}

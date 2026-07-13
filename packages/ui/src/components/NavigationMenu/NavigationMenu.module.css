@@ -1,0 +1,117 @@
+/**
+ * NavigationMenu.module.css
+ * Token-only styling for NavigationMenu component
+ * Verified by: pnpm check:literals
+ */
+
+/* Root */
+.root {
+  position: relative;
+}
+
+/* List */
+.list {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: var(--Spacing-2);
+}
+
+.root[data-orientation='vertical'] .list {
+  flex-direction: column;
+}
+
+/* Item */
+.item {
+  position: relative;
+}
+
+/* Trigger */
+.trigger {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-2);
+  padding: var(--Spacing-3) var(--Spacing-4);
+  border: none;
+  border-radius: var(--Shape-4);
+  background-color: transparent;
+  font-family: inherit;
+  font-size: var(--Body-M-FontSize);
+  font-weight: var(--Body-FontWeight-Medium);
+  line-height: var(--Typography-LineHeight-Normal);
+  color: var(--Text-Medium);
+  cursor: pointer;
+  outline: none;
+  transition: all var(--Motion-Duration-Discreet-Short) var(--Motion-Easing-Standard);
+}
+
+.trigger:hover {
+  background-color: var(--Surface-Minimal);
+  color: var(--Text-High);
+}
+
+.trigger[data-popup-open] {
+  background-color: var(--Surface-Minimal);
+  color: var(--Text-High);
+}
+
+.trigger:focus {
+  outline: none;
+}
+
+.trigger:focus-visible {
+  outline: var(--Focus-Outline-Width) solid var(--Focus-Outline);
+}
+
+/* Content */
+.content {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: var(--Z-Index-Popover);
+  min-width: var(--NavigationMenu-Content-Min-Width, var(--Spacing-9));
+  padding: var(--Spacing-3-5);
+  border-radius: var(--Shape-4-5);
+  background-color: var(--Surface-Elevated);
+  box-shadow: var(--Elevation-3);
+  outline: var(--Stroke-M) solid var(--Border-Subtle);
+  transition: all var(--Motion-Duration-Expressive-Short) var(--Motion-Easing-Emphasized);
+}
+
+.content[data-starting-style],
+.content[data-ending-style] {
+  opacity: 0;
+  transform: translateY(calc(var(--Motion-Distance-Small) * -1));
+}
+
+/* Link */
+.link {
+  display: block;
+  padding: var(--Spacing-3) var(--Spacing-4);
+  border-radius: var(--Shape-4);
+  font-size: var(--Body-M-FontSize);
+  line-height: var(--Typography-LineHeight-Normal);
+  color: var(--Text-High);
+  text-decoration: none;
+  transition: background-color var(--Motion-Duration-Discreet-Short) var(--Motion-Easing-Standard);
+}
+
+.link:hover {
+  background-color: var(--Surface-Minimal);
+}
+
+.link:focus {
+  outline: none;
+}
+
+.link:focus-visible {
+  outline: var(--Focus-Outline-Width) solid var(--Focus-Outline);
+}
+
+/* Viewport */
+.viewport {
+  position: absolute;
+  top: 100%;
+  left: 0;
+}

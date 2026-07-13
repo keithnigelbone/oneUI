@@ -1,0 +1,33 @@
+{
+  "name": "@oneui/experience-builder-preview",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "sideEffects": false,
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./client-types": "./src/client-types.ts"
+  },
+  "description": "Separate-origin preview hosting for the Jio AI Experience Builder Lab. Exports the vendor-free PreviewExecutor seam (D-02) + the IframeCspExecutor MVP de-risk path (token-handoff + credential-free Playwright capture) + the PREV-03 lifecycle state machine. See PREVIEW-DECISION.md. The Daytona prod executor (Plan 05) drops in behind the same seam.",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "register-snapshot": "tsx scripts/register-snapshot.ts",
+    "render-diagnostic": "tsx scripts/render-diagnostic.ts",
+    "probe-diagnostic": "tsx scripts/probe-diagnostic.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.5",
+    "esbuild": "^0.27",
+    "playwright": "^1.49.0",
+    "typescript": "^5.7.2",
+    "vitest": "^4.1.5"
+  },
+  "dependencies": {
+    "@daytonaio/sdk": "0.184.0",
+    "@oneui/shared": "workspace:*"
+  }
+}

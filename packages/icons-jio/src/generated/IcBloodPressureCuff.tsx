@@ -1,0 +1,30 @@
+import React, { forwardRef } from 'react';
+import type { IconComponentProps } from '../iconProps';
+
+export const IcBloodPressureCuff = forwardRef<SVGSVGElement, IconComponentProps>(function IcBloodPressureCuff(
+  { size = 24, width, height, color = 'currentColor', className, style, ...props },
+  ref,
+) {
+  const dim = width ?? height ?? size;
+  return (
+    <svg
+      ref={ref}
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      width={width ?? dim}
+      height={height ?? dim}
+      color={color}
+      className={className}
+      style={style}
+      {...props}
+    >
+      <path
+            fill="currentColor"
+            d="M20 4h-6c-1.1 0-2 .9-2 2v5c0 1.1.9 2 2 2h2v3.5a2.5 2.5 0 0 1-5 0V11c0-2.21-1.79-4-4-4s-4 1.79-4 4v.28c-.6.35-1 .98-1 1.72v3c0 1.1.9 2 2 2s2-.9 2-2v-3c0-.74-.4-1.38-1-1.72V11c0-1.1.9-2 2-2s2 .9 2 2v5.5c0 2.48 2.02 4.5 4.5 4.5s4.5-2.02 4.5-4.5V13h2c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2m-2 5v-.5c0-.55-.45-1-1-1s-1 .45-1 1V9h-2c0-1.65 1.35-3 3-3s3 1.35 3 3z"
+          />
+    </svg>
+  );
+});
+
+IcBloodPressureCuff.displayName = 'IcBloodPressureCuff';

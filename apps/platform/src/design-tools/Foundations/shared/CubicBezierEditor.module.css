@@ -1,0 +1,174 @@
+/* CubicBezierEditor — token-only styles */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-2-5);
+}
+
+.typeLabel {
+  font-size: var(--Label-XS-FontSize);
+  font-weight: var(--Body-FontWeight-High);
+  color: var(--Text-High);
+}
+
+.svgContainer {
+  border-radius: var(--Shape-4);
+  overflow: visible;
+  line-height: 0;
+}
+
+.svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  touch-action: none;
+  user-select: none;
+}
+
+.valueRow {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-2-5);
+}
+
+.valueText {
+  flex: 1;
+  font-size: var(--Label-XS-FontSize);
+  font-family: var(--Typography-Font-Mono);
+  color: var(--Text-Medium);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.valueInput {
+  flex: 1;
+  min-width: 0;
+  padding: var(--Spacing-2) var(--Spacing-2-5);
+  border: 1px solid var(--Border-Subtle);
+  border-radius: var(--Shape-3);
+  font-size: var(--Label-XS-FontSize);
+  font-family: var(--Typography-Font-Mono);
+  color: var(--Text-High);
+  background-color: var(--Surface-Main);
+  box-sizing: border-box;
+}
+
+.valueInput:focus {
+  outline: var(--Stroke-XL) solid var(--Primary-Bold);
+  /* INTENTIONAL-LITERAL: negative focus offset keeps indicator inside the input bounds */
+  outline-offset: -1px;
+  border-color: transparent;
+}
+
+.resetButton {
+  all: unset;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: var(--Spacing-6);
+  height: var(--Spacing-6);
+  border-radius: var(--Shape-3);
+  color: var(--Text-Low);
+  cursor: pointer;
+  transition: color var(--Motion-Duration-Discreet-Short), background-color var(--Motion-Duration-Discreet-Short);
+}
+
+.resetButton:hover {
+  color: var(--Text-High);
+  background-color: var(--Surface-Subtle);
+}
+
+.animationTrack {
+  width: 100%;
+  min-height: var(--Spacing-6);
+  position: relative;
+  cursor: pointer;
+  margin-top: var(--Spacing-3-5);
+  display: flex;
+  align-items: center;
+  border-radius: var(--Shape-Pill);
+  background-color: var(--Surface-Minimal);
+  box-shadow: inset 0 0 0 var(--Stroke-S) var(--Border-Subtle);
+  transition:
+    background-color var(--Motion-Duration-Discreet-Short),
+    box-shadow var(--Motion-Duration-Discreet-Short);
+}
+
+.animationTrack:hover,
+.animationTrack:focus-visible,
+.trackHovered {
+  background-color: var(--Primary-Subtle);
+  box-shadow: inset 0 0 0 var(--Stroke-M) var(--Primary-Stroke-Low);
+}
+
+.animationTrack:focus-visible {
+  outline: none;
+}
+
+.marker {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: var(--Spacing-3);
+  height: var(--Spacing-3);
+  border-radius: var(--Shape-Pill);
+  background-color: var(--Primary-Tinted);
+  opacity: 0.3;
+}
+
+.animationDot {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: var(--Spacing-6);
+  height: var(--Spacing-6);
+  background-color: var(--Primary-Bold);
+  border-radius: var(--Shape-Pill);
+  pointer-events: none;
+  transition: transform var(--Motion-Duration-Discreet-Medium) var(--Motion-Easing-Transition-Moderate, ease);
+}
+
+.animationTrack:hover .animationDot {
+  transform: scale(1.07);
+}
+
+.trailContainer {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(var(--Spacing-6) / 2);
+  right: calc(var(--Spacing-6) / 2);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--Motion-Duration-Discreet-Medium) var(--Motion-Easing-Transition-Moderate, ease);
+}
+
+.trailVisible {
+  opacity: 1;
+}
+
+.trailDot {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: var(--Spacing-3);
+  height: var(--Spacing-3);
+  background-color: var(--Primary-Tinted);
+  border-radius: var(--Shape-Pill);
+  opacity: 0.25;
+  pointer-events: none;
+}
+
+.warning {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-2);
+  font-size: var(--Label-XS-FontSize);
+  color: var(--Warning-TintedA11y, var(--Text-Medium));
+  padding: var(--Spacing-2) var(--Spacing-2-5);
+  background-color: color-mix(in oklch, var(--Warning-TintedA11y, var(--Text-Low)) 8%, transparent);
+  border-radius: var(--Shape-3);
+}

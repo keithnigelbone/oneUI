@@ -1,0 +1,80 @@
+/**
+ * CreateCanvasEditor — full-screen ExperienceCanvas overlay (Create section)
+ */
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 50;
+  background: var(--Surface-Minimal);
+  display: flex;
+  flex-direction: column;
+  animation: editorFadeIn 150ms ease;
+}
+
+@keyframes editorFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-3-5);
+  padding: var(--Spacing-3) var(--Spacing-4);
+  border-bottom: var(--Stroke-M) solid var(--Border-Subtle);
+  flex-shrink: 0;
+  background: var(--Surface-Elevated);
+}
+
+.toolbarSpacer {
+  flex: 1;
+}
+
+.titleGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-1);
+  min-width: 0;
+}
+
+.assetTitle {
+  font-size: var(--Title-S-FontSize);
+  color: var(--Text-High);
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dimensionBadge {
+  font-size: var(--Label-XS-FontSize);
+  color: var(--Text-Low);
+  padding: var(--Spacing-1) var(--Spacing-3);
+  background: var(--Neutral-Subtle);
+  border-radius: var(--Shape-3);
+  width: fit-content;
+}
+
+.contextInfo {
+  font-size: var(--Label-XS-FontSize);
+  color: var(--Text-Low);
+  white-space: nowrap;
+  padding: var(--Spacing-1) var(--Spacing-3);
+  background: var(--Neutral-Subtle);
+  border-radius: var(--Shape-3);
+  max-width: min(var(--Dimension-f15), 40vw);
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.canvasWrap {
+  flex: 1;
+  min-height: 0;
+  position: relative;
+}
+

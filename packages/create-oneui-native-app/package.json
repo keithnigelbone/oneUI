@@ -1,0 +1,47 @@
+{
+  "name": "@oneui/create-native-app",
+  "version": "0.1.0-alpha.3",
+  "private": false,
+  "description": "Scaffold a OneUI Native app with Expo Router in one command",
+  "keywords": [
+    "react-native",
+    "expo",
+    "oneui",
+    "jio",
+    "create-app",
+    "scaffolding"
+  ],
+  "bin": {
+    "create-oneui-native-app": "./dist/index.cjs"
+  },
+  "files": [
+    "dist",
+    "templates"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nuno-Marcelino_jplgit/OneUiStudio_Base_v4.git",
+    "directory": "packages/create-oneui-native-app"
+  },
+  "scripts": {
+    "build": "tsup",
+    "typecheck": "tsc --noEmit",
+    "pack:dist": "node scripts/pack-dist.mjs",
+    "build:pack": "pnpm run build && node scripts/pack-dist.mjs",
+    "sync:demo": "node scripts/sync-demo.mjs",
+    "sync:templates": "node scripts/sync-template-versions.mjs"
+  },
+  "dependencies": {
+    "fs-extra": "^11.3.0",
+    "picocolors": "^1.1.1"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^11.0.4",
+    "@types/node": "^22.10.5",
+    "tsup": "^8.0.0",
+    "typescript": "^5.7.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

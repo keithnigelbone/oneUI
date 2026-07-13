@@ -1,0 +1,121 @@
+/**
+ * ChipGroup Figma validation — size × containerType matrix.
+ * Reuses the same visual language as chip-figma-validation.module.css.
+ */
+
+.page {
+  padding: 0;
+  max-width: 100%;
+}
+
+.metaLine {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  font-weight: var(--Body-FontWeight-Low);
+  color: var(--Text-Medium);
+  margin: 0 0 var(--Spacing-4-5);
+  word-break: break-word;
+}
+
+.mismatchWarning {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  font-weight: var(--Body-FontWeight-Low);
+  color: var(--Warning-High);
+  background: var(--Warning-Minimal);
+  border: var(--Stroke-M) solid var(--Warning-Tinted);
+  border-radius: var(--Shape-S);
+  padding: var(--Spacing-3-5) var(--Spacing-4);
+  margin: 0 0 var(--Spacing-4-5);
+}
+
+.tableWrap {
+  overflow: auto;
+  max-width: 100%;
+  margin-bottom: var(--Spacing-5);
+}
+
+.gridTable {
+  border-collapse: collapse;
+  width: max-content;
+  max-width: 100%;
+  font-family: var(--Typography-Font-Primary);
+}
+
+.gridTable th,
+.gridTable td {
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+  padding: var(--Spacing-3-5) var(--Spacing-4);
+  vertical-align: middle;
+  text-align: center;
+}
+
+.figmaCaption {
+  caption-side: top;
+  text-align: left;
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Headline-M-FontSize);
+  line-height: var(--Headline-M-LineHeight);
+  font-weight: var(--Headline-M-FontWeight);
+  color: var(--Sparkle-High);
+  padding: 0 0 var(--Spacing-3-5);
+}
+
+.figmaCaptionMark {
+  color: var(--Sparkle-High);
+}
+
+/* Column header — size label */
+.colHeader {
+  font-family: var(--Typography-Font-Code);
+  font-size: var(--Label-S-FontSize);
+  line-height: var(--Label-S-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+  color: var(--Text-Medium);
+  background: var(--Surface-Minimal);
+  text-align: center;
+  min-width: var(--Dimension-f13);
+  padding-block: var(--Spacing-3-5);
+}
+
+/* Row header — containerType label */
+.rowHeader {
+  font-family: var(--Typography-Font-Code);
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Low);
+  color: var(--Text-Medium);
+  background: var(--Surface-Minimal);
+  text-align: left;
+  white-space: nowrap;
+  padding-inline-end: var(--Spacing-5);
+  min-width: var(--Spacing-28);
+}
+
+.rowHeaderMismatch {
+  color: var(--Warning-High);
+}
+
+/* Data cell holds the ChipGroup */
+.cell {
+  background: var(--Surface-Default);
+  vertical-align: top;
+  padding: var(--Spacing-3-5);
+}
+
+.cellInner {
+  /* Cap inline cells so wrapping difference is visible */
+  max-width: var(--Dimension-f14);
+  overflow: hidden;
+}
+
+.cellInnerWrap {
+  max-width: var(--Dimension-f12);
+}
+
+.cornerCell {
+  background: var(--Surface-Minimal);
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+}

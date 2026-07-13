@@ -1,0 +1,110 @@
+/**
+ * Toaster.module.css
+ *
+ * Token-only styling for the app toast stack (Base UI Toast). The design
+ * system has no Toast component yet, so this is an app-level primitive built
+ * on `@base-ui/react/toast`. Styled with the active brand's surface/elevation/
+ * typography tokens so it adapts to brand + light/dark like everything else —
+ * NOT a hard-coded coloured banner.
+ */
+
+.viewport {
+  position: fixed;
+  top: var(--Spacing-4);
+  right: var(--Spacing-4);
+  /* Toasts sit above everything, including popovers (1300) and modals. */
+  z-index: 1400;
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-2);
+  width: min(400px, calc(100vw - var(--Spacing-8)));
+  outline: none;
+  pointer-events: none;
+}
+
+.toast {
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-3);
+  padding: var(--Spacing-3) var(--Spacing-3-5);
+  background-color: var(--Surface-Elevated);
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+  border-radius: var(--Shape-3);
+  box-shadow: var(--Elevation-3);
+  transition:
+    opacity var(--Motion-Duration-Discreet-Short, 160ms) var(--Motion-Easing-Standard, ease),
+    transform var(--Motion-Duration-Discreet-Short, 160ms) var(--Motion-Easing-Standard, ease);
+}
+
+.toast[data-starting-style],
+.toast[data-ending-style] {
+  opacity: 0;
+  transform: translateX(var(--Spacing-5));
+}
+
+.icon {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  color: var(--Text-Medium);
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-0-5);
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.title {
+  margin: 0;
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  font-weight: var(--Body-FontWeight-Low);
+  color: var(--Text-High);
+}
+
+.description {
+  margin: 0;
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Low);
+  color: var(--Text-Medium);
+}
+
+.action {
+  flex-shrink: 0;
+}
+
+.close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: var(--Spacing-7);
+  height: var(--Spacing-7);
+  padding: 0;
+  border: none;
+  background: transparent;
+  border-radius: var(--Shape-2);
+  color: var(--Text-Low);
+  cursor: pointer;
+  transition: background-color var(--Motion-Duration-Discreet-Short, 160ms) ease,
+    color var(--Motion-Duration-Discreet-Short, 160ms) ease;
+}
+
+.close:hover {
+  background-color: var(--Surface-Subtle);
+  color: var(--Text-High);
+}
+
+.close:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 var(--Stroke-XL) var(--Surface-Halo-Gap, var(--Surface-Main)),
+    0 0 0 var(--Focus-Outline-Width) var(--Focus-Outline);
+}

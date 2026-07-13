@@ -1,0 +1,30 @@
+import React, { forwardRef } from 'react';
+import type { IconComponentProps } from '../iconProps';
+
+export const IcCowAdult = forwardRef<SVGSVGElement, IconComponentProps>(function IcCowAdult(
+  { size = 24, width, height, color = 'currentColor', className, style, ...props },
+  ref,
+) {
+  const dim = width ?? height ?? size;
+  return (
+    <svg
+      ref={ref}
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      width={width ?? dim}
+      height={height ?? dim}
+      color={color}
+      className={className}
+      style={style}
+      {...props}
+    >
+      <path
+            fill="currentColor"
+            d="M18.75 8h-.09C20.93 6.05 21 4.23 21 4a1 1 0 0 0-.62-.92 1 1 0 0 0-1.09.21 12.6 12.6 0 0 1-2.62 1.88A3.87 3.87 0 0 0 14 4h-4a3.87 3.87 0 0 0-2.67 1.17 12.6 12.6 0 0 1-2.62-1.88 1 1 0 0 0-1.09-.21A1 1 0 0 0 3 4c0 .23.07 2.05 2.34 4h-.09A2.25 2.25 0 0 0 3 10.25a.76.76 0 0 0 .75.75h1.5c.307 0 .61-.065.89-.19.08.48.19.9.3 1.32s.22.87.32 1.43A4.8 4.8 0 0 1 9 13h6a4.8 4.8 0 0 1 2.24.56c.1-.56.21-1 .32-1.43s.22-.84.3-1.32c.28.125.583.19.89.19h1.5a.76.76 0 0 0 .75-.75A2.25 2.25 0 0 0 18.75 8M9 11a1 1 0 1 1 0-2.001 1 1 0 0 1 0 2m6 0a1 1 0 1 1 0-2.002A1 1 0 0 1 15 11m0 4H9a3 3 0 0 0 0 6h6a3 3 0 0 0 0-6"
+          />
+    </svg>
+  );
+});
+
+IcCowAdult.displayName = 'IcCowAdult';

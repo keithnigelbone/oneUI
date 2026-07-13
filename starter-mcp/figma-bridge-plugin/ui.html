@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      body {
+        font-family: system-ui, -apple-system, sans-serif;
+        padding: 16px;
+        color: #1a1a1a;
+      }
+      h1 {
+        font-size: 14px;
+        margin: 0 0 8px;
+      }
+      p {
+        font-size: 12px;
+        margin: 4px 0;
+        color: #555;
+      }
+      #status {
+        font-weight: 600;
+        color: #0a7;
+      }
+      #status.down {
+        color: #b00;
+      }
+      code {
+        font-size: 11px;
+        background: #f3f3f3;
+        padding: 1px 4px;
+        border-radius: 3px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>OneUI Figma Bridge</h1>
+    <p>Server: <span id="status" class="down">searching…</span></p>
+    <p>Keep this plugin open while generating OneUI code.</p>
+    <script>
+      // The UI iframe is the only place the plugin sandbox can open a WebSocket,
+      // so it holds the connection(s) to the oneui-mcp server and relays:
+      //   server → plugin: EXECUTE_CODE
+      //   plugin → server: EXECUTE_CODE_RESULT / FILE_INFO
+      // It scans the OneUI bridge port range and connects to every live server
+      // (multi-instance support), auto-reconnecting on drop.
+      var PORT_START = 9333;
+      var PORT_END = 9342;
+      var RESCAN_MS = 3000;
+      var RECONNECT_MS = 2000;
+
+      var conns = []; // [{ port, ws }]
+      var fileInfo = null;
+
+      function setStatus() {
+        var live = conns.filter(function (c) {
+          return c.ws.readyState === 1;
+        }).length;
+        var el = document.getElementById('status');
+        if (!el) return;
+        if (live > 0) {
+          el.textContent = 'connected (' + live + ')';
+          el.className = '';
+        } else {
+          el.textContent = 'searching…';
+          el.className = 'down';
+        }
+      }
+
+      function isConnected(port) {
+        return conns.some(function (c) {
+          return c.port === port && c.ws.readyState === 1;
+        });
+      }
+      function removeConn(port) {
+        conns = conns.filter(function (c) {
+          return c.port !== port;
+        });
+        setStatus();
+      }
+      function broadcast(obj) {
+        var s = JSON.stringify(obj);
+        conns.forEach(function (c) {
+          if (c.ws.readyState === 1) {
+            try {
+              c.ws.send(s);
+            } catch (e) {
+              /* ignore */
+            }
+          }
+        });
+      }
+      function toPlugin(m) {
+        parent.postMessage({ pluginMessage: m }, '*');
+      }
+
+      // ---- messages from the plugin main thread (code.js) ----
+      window.onmessage = function (e) {
+        var msg = e.data && e.data.pluginMessage;
+        if (!msg) return;
+        if (msg.type === 'PLUGIN_READY' || msg.type === 'FILE_INFO') {
+          fileInfo = msg.fileInfo || fileInfo;
+          broadcast({ type: 'FILE_INFO', fileInfo: fileInfo });
+        } else if (msg.type === 'EXECUTE_CODE_RESULT') {
+          // requestId lets the server match this to its pending call.
+          broadcast(msg);
+        }
+      };
+
+      // ---- messages from a connected server ----
+      function attach(ws, port) {
+        ws.onmessage = function (ev) {
+          var data;
+          try {
+            data = JSON.parse(ev.data);
+          } catch (e) {
+            return;
+          }
+          if (!data || typeof data !== 'object') return;
+          if (data.type === 'EXECUTE_CODE') {
+            toPlugin({
+              type: 'EXECUTE_CODE',
+              requestId: data.requestId,
+              code: data.code,
+              timeout: data.timeout,
+            });
+          } else if (data.type === 'PING') {
+            try {
+              ws.send(JSON.stringify({ type: 'PONG' }));
+            } catch (e) {
+              /* ignore */
+            }
+          }
+        };
+        ws.onclose = function () {
+          removeConn(port);
+          setTimeout(function () {
+            tryPort(port);
+          }, RECONNECT_MS);
+        };
+        ws.onerror = function () {
+          try {
+            ws.close();
+          } catch (e) {
+            /* ignore */
+          }
+        };
+      }
+
+      function tryPort(port) {
+        if (isConnected(port)) return;
+        var ws;
+        try {
+          ws = new WebSocket('ws://localhost:' + port);
+        } catch (e) {
+          return;
+        }
+        ws.onopen = function () {
+          if (isConnected(port)) {
+            try {
+              ws.close();
+            } catch (e) {
+              /* ignore */
+            }
+            return;
+          }
+          conns.push({ port: port, ws: ws });
+          attach(ws, port);
+          setStatus();
+          if (fileInfo) {
+            try {
+              ws.send(JSON.stringify({ type: 'FILE_INFO', fileInfo: fileInfo }));
+            } catch (e) {
+              /* ignore */
+            }
+          }
+          try {
+            ws.send(JSON.stringify({ type: 'HELLO' }));
+          } catch (e) {
+            /* ignore */
+          }
+        };
+        // Pre-open error/close (port not listening) are no-ops; the periodic
+        // rescan retries, so we avoid logging on every dead port.
+      }
+
+      function scan() {
+        for (var p = PORT_START; p <= PORT_END; p++) tryPort(p);
+      }
+
+      scan();
+      setInterval(scan, RESCAN_MS);
+    </script>
+  </body>
+</html>

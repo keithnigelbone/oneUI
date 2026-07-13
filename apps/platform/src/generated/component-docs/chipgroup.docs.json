@@ -1,0 +1,387 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "ChipGroup",
+  "generatedAt": "2026-01-01T00:00:00.000Z",
+  "machineReadable": true,
+  "intentAndPurpose": {
+    "intent": {
+      "value": "Groups multiple Chip components with shared selection state, keyboard navigation, and layout. Supports single-select (default) and multi-select modes. Propagates size, attention, and appearance to all child Chips.",
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "taskContexts": {
+      "value": [],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "sentiments": {
+      "value": [
+        "neutral"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "compositionRules": {
+    "requires": {
+      "value": [],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "allows": {
+      "value": [
+        "children"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "forbids": {
+      "value": [],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "ghost",
+        "useWhen": {
+          "value": [
+            "Low"
+          ],
+          "attribution": {
+            "source": "inferred"
+          }
+        }
+      },
+      {
+        "name": "subtle",
+        "useWhen": {
+          "value": [
+            "Medium"
+          ],
+          "attribution": {
+            "source": "inferred"
+          }
+        }
+      },
+      {
+        "name": "bold",
+        "useWhen": {
+          "value": [
+            "High"
+          ],
+          "attribution": {
+            "source": "inferred"
+          }
+        }
+      }
+    ]
+  },
+  "relationshipsAndDependencies": {
+    "related": {
+      "value": [],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "contextSignals": {
+    "density": {
+      "value": [
+        "compact",
+        "default",
+        "open"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "modality": {
+      "value": [
+        "desktop",
+        "mobile"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "brand": {
+      "value": [
+        "theme-scope aware",
+        "recipe-driven"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "mode": {
+      "value": [
+        "light",
+        "dark"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "observabilityHooks": {
+    "track": {
+      "value": [],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "health": {
+      "value": [
+        "a11y_violations"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "props": [
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "required": true,
+      "description": "children property"
+    },
+    {
+      "name": "appearance",
+      "type": "ChipAppearance",
+      "required": false,
+      "description": "Appearance propagated to all child Chips."
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": false,
+      "description": "Accessible label for the group element."
+    },
+    {
+      "name": "aria-labelledby",
+      "type": "string",
+      "required": false,
+      "description": "ID of an element that labels this group."
+    },
+    {
+      "name": "attention",
+      "type": "ChipAttention",
+      "required": false,
+      "description": "Emphasis level propagated to all child Chips."
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "required": false,
+      "description": "className property"
+    },
+    {
+      "name": "defaultValue",
+      "type": "string[]",
+      "required": false,
+      "description": "Uncontrolled default selected values."
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "required": false,
+      "description": "Disable all chips in the group."
+    },
+    {
+      "name": "loopFocus",
+      "type": "boolean",
+      "required": false,
+      "description": "Loop keyboard focus from last item back to first. Default: true (Base UI default)."
+    },
+    {
+      "name": "maxSelections",
+      "type": "number",
+      "required": false,
+      "description": "Maximum number of chips that can be selected at once (multi-select only)."
+    },
+    {
+      "name": "multiple",
+      "type": "boolean",
+      "required": false,
+      "description": "Allow multiple chips to be selected simultaneously. Default: false."
+    },
+    {
+      "name": "onValueChange",
+      "type": "(value: string[]) => void",
+      "required": false,
+      "description": "Called when the selection changes."
+    },
+    {
+      "name": "orientation",
+      "type": "'horizontal' | 'vertical'",
+      "required": false,
+      "description": "Stack direction. Default: 'horizontal'."
+    },
+    {
+      "name": "required",
+      "type": "boolean",
+      "required": false,
+      "description": "Prevent deselecting the last selected chip. In controlled mode this blocks the callback; in uncontrolled mode it also prevents the internal state from reaching an empty array."
+    },
+    {
+      "name": "size",
+      "type": "ChipSize",
+      "required": false,
+      "description": "Size propagated to all child Chips."
+    },
+    {
+      "name": "style",
+      "type": "CSSProperties",
+      "required": false,
+      "description": "style property"
+    },
+    {
+      "name": "value",
+      "type": "string[]",
+      "required": false,
+      "description": "Controlled selected values (array of chip `value` strings)."
+    },
+    {
+      "name": "wrap",
+      "type": "boolean",
+      "required": false,
+      "description": "Whether chips wrap to the next line. Default: true."
+    }
+  ],
+  "slots": [
+    {
+      "name": "children",
+      "types": [
+        "Chip"
+      ],
+      "tokens": []
+    }
+  ],
+  "propsSchema": {
+    "$id": "jds.docs.chip-group",
+    "type": "object",
+    "properties": {
+      "children": {
+        "description": "children property"
+      },
+      "appearance": {
+        "enum": [
+          "auto",
+          "primary",
+          "secondary",
+          "neutral",
+          "sparkle",
+          "brand-bg",
+          "positive",
+          "negative",
+          "warning",
+          "informative"
+        ],
+        "description": "Appearance propagated to all child Chips."
+      },
+      "aria-label": {
+        "type": "string",
+        "description": "Accessible label for the group element."
+      },
+      "aria-labelledby": {
+        "type": "string",
+        "description": "ID of an element that labels this group."
+      },
+      "attention": {
+        "enum": [
+          "high",
+          "medium",
+          "low"
+        ],
+        "description": "Emphasis level propagated to all child Chips."
+      },
+      "className": {
+        "type": "string",
+        "description": "className property"
+      },
+      "defaultValue": {
+        "description": "Uncontrolled default selected values."
+      },
+      "disabled": {
+        "type": "boolean",
+        "description": "Disable all chips in the group."
+      },
+      "loopFocus": {
+        "type": "boolean",
+        "description": "Loop keyboard focus from last item back to first. Default: true (Base UI default)."
+      },
+      "maxSelections": {
+        "type": "number",
+        "description": "Maximum number of chips that can be selected at once (multi-select only)."
+      },
+      "multiple": {
+        "type": "boolean",
+        "description": "Allow multiple chips to be selected simultaneously. Default: false."
+      },
+      "onValueChange": {
+        "description": "Called when the selection changes."
+      },
+      "orientation": {
+        "enum": [
+          "horizontal",
+          "vertical"
+        ],
+        "description": "Stack direction. Default: 'horizontal'."
+      },
+      "required": {
+        "type": "boolean",
+        "description": "Prevent deselecting the last selected chip. In controlled mode this blocks the callback; in uncontrolled mode it also prevents the internal state from reaching an empty array."
+      },
+      "size": {
+        "enum": [
+          "s",
+          "m",
+          "l"
+        ],
+        "description": "Size propagated to all child Chips."
+      },
+      "style": {
+        "description": "style property"
+      },
+      "value": {
+        "description": "Controlled selected values (array of chip `value` strings)."
+      },
+      "wrap": {
+        "type": "boolean",
+        "description": "Whether chips wrap to the next line. Default: true."
+      }
+    },
+    "required": [
+      "children"
+    ]
+  },
+  "codeSnippets": [
+    {
+      "id": "chip-group-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { ChipGroup } from '@oneui/ui';\n\n<ChipGroup />"
+    },
+    {
+      "id": "chip-group-recipe-decisions",
+      "title": "Recipe Decisions",
+      "language": "json",
+      "code": "{\n  \"component\": \"ChipGroup\",\n  \"decisions\": [\n    \"Gap density\",\n    \"Wrap behaviour\"\n  ]\n}"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "chip-group"
+  ],
+  "generatedMarkdown": "# ChipGroup Machine-Readable Documentation\n\n_Generated from source metadata. Do not edit manually._\n\n## Intent and Purpose\n\n- **Intent**: Groups multiple Chip components with shared selection state, keyboard navigation, and layout. Supports single-select (default) and multi-select modes. Propagates size, attention, and appearance to all child Chips.\n- **Task contexts**: \n- **Sentiments**: neutral\n\n## Composition Rules\n\n- **Requires**: \n- **Allows**: children\n- **Forbids**: \n\n## Variant Logic\n\n- **ghost**: use when Low\n- **subtle**: use when Medium\n- **bold**: use when High\n\n## Relationships and Dependencies\n\n- **Related**: \n- **Escalates to**: -\n- **Degrades to**: -\n- **Groups with**: -\n\n## Context Signals\n\n- **Density**: compact, default, open\n- **Modality**: desktop, mobile\n- **Brand**: theme-scope aware, recipe-driven\n- **Mode**: light, dark\n\n## Observability Hooks\n\n- **Track**: \n- **Health**: a11y_violations\n\n## Props\n\n| Prop | Type | Required | Default | Description |\n| --- | --- | --- | --- | --- |\n| `children` | `ReactNode` | Yes | - | children property |\n| `appearance` | `ChipAppearance` | No | - | Appearance propagated to all child Chips. |\n| `aria-label` | `string` | No | - | Accessible label for the group element. |\n| `aria-labelledby` | `string` | No | - | ID of an element that labels this group. |\n| `attention` | `ChipAttention` | No | - | Emphasis level propagated to all child Chips. |\n| `className` | `string` | No | - | className property |\n| `defaultValue` | `string[]` | No | - | Uncontrolled default selected values. |\n| `disabled` | `boolean` | No | - | Disable all chips in the group. |\n| `loopFocus` | `boolean` | No | - | Loop keyboard focus from last item back to first. Default: true (Base UI default). |\n| `maxSelections` | `number` | No | - | Maximum number of chips that can be selected at once (multi-select only). |\n| `multiple` | `boolean` | No | - | Allow multiple chips to be selected simultaneously. Default: false. |\n| `onValueChange` | `(value: string[]) => void` | No | - | Called when the selection changes. |\n| `orientation` | `'horizontal' | 'vertical'` | No | - | Stack direction. Default: 'horizontal'. |\n| `required` | `boolean` | No | - | Prevent deselecting the last selected chip. In controlled mode this blocks the callback; in uncontrolled mode it also prevents the internal state from reaching an empty array. |\n| `size` | `ChipSize` | No | - | Size propagated to all child Chips. |\n| `style` | `CSSProperties` | No | - | style property |\n| `value` | `string[]` | No | - | Controlled selected values (array of chip `value` strings). |\n| `wrap` | `boolean` | No | - | Whether chips wrap to the next line. Default: true. |\n\n## Slots\n\n| Slot | Types | Tokens |\n| --- | --- | --- |\n| `children` | Chip |  |\n\n## Code Snippets\n\n### Basic Usage\n\n```tsx\nimport { ChipGroup } from '@oneui/ui';\n\n<ChipGroup />\n```\n\n### Recipe Decisions\n\n```json\n{\n  \"component\": \"ChipGroup\",\n  \"decisions\": [\n    \"Gap density\",\n    \"Wrap behaviour\"\n  ]\n}\n```\n"
+}

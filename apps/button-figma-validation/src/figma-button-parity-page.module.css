@@ -1,0 +1,110 @@
+.page {
+  box-sizing: border-box;
+  padding: var(--Spacing-XL) var(--Spacing-L);
+  max-width: 100%;
+}
+
+.title {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Headline-L-FontSize);
+  line-height: var(--Headline-L-LineHeight);
+  font-weight: var(--Headline-L-FontWeight);
+  margin: 0 0 var(--Spacing-3-5);
+}
+
+.metaLine {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  font-weight: var(--Body-FontWeight-Low);
+  color: var(--Text-Medium);
+  margin: 0 0 var(--Spacing-4-5);
+  word-break: break-all;
+}
+
+/* Card-like matrix shell — matches QA playground `.storySandbox` rhythm */
+.tableWrap {
+  overflow: auto;
+  max-width: 100%;
+  border-radius: var(--Shape-L);
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+  background: var(--Surface-Minimal);
+  padding: var(--Spacing-2XL);
+  box-sizing: border-box;
+}
+
+.gridTable {
+  border-collapse: collapse;
+  width: max-content;
+  min-width: 100%;
+  font-family: var(--Typography-Font-Primary);
+}
+
+.gridTable th,
+.gridTable td {
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+  padding: var(--Spacing-M) var(--Spacing-L);
+  vertical-align: middle;
+  text-align: center;
+}
+
+.cornerHeader {
+  text-align: left;
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  background: var(--Surface-Default);
+  font-size: var(--Label-S-FontSize);
+  line-height: var(--Label-S-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+  min-width: var(--Spacing-40);
+}
+
+.sizeHeader {
+  font-size: var(--Label-S-FontSize);
+  line-height: var(--Label-S-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+  background: var(--Surface-Default);
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.rowHeader {
+  text-align: left;
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  background: var(--Surface-Default);
+  min-width: var(--Spacing-40);
+  max-width: var(--Spacing-40);
+}
+
+.rowPrimary {
+  display: block;
+  font-size: var(--Label-S-FontSize);
+  line-height: var(--Label-S-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+  color: var(--Text-High);
+}
+
+.rowSecondary {
+  display: block;
+  margin-top: var(--Spacing-0-5);
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Low);
+  color: var(--Text-Low);
+  word-break: break-word;
+}
+
+.cell {
+  white-space: nowrap;
+  min-width: var(--Dimension-f14);
+}
+
+.missing {
+  font-size: var(--Label-S-FontSize);
+  color: var(--Text-Low);
+}

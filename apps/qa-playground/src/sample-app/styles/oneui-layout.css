@@ -1,0 +1,51 @@
+/* Page-level typography — only on the document shell, not inside Surface contexts. */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--Surface-Fill-Default, var(--Surface-Main));
+  color: var(--Text-High, var(--Primary-High));
+  font-family: var(--Typography-Font-Primary);
+}
+
+/*
+ * Surface tokens (alpha.5+):
+ * - `ghost` inherits the parent surface appearance — use for layout wrappers
+ *   inside cards, heroes, and headers (no new fill layer).
+ * - Use explicit surfaces (`subtle`, `elevated`, `bold`, etc.) when you need
+ *   a visible container or token remapping context for children.
+ */
+
+button,
+input {
+  font-family: var(--Typography-Font-Primary);
+}
+
+.pageIntro {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: var(--Spacing-6);
+  align-items: end;
+}
+
+.pageIntro p {
+  max-width: 62ch;
+  margin-top: var(--Spacing-3);
+}
+
+.introAction {
+  display: flex;
+  justify-content: flex-end;
+}
+
+@media (max-width: 56rem) {
+  .pageIntro {
+    grid-template-columns: 1fr;
+  }
+
+  .introAction {
+    justify-content: flex-start;
+  }
+}

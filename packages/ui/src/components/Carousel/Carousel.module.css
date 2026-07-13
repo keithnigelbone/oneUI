@@ -1,0 +1,505 @@
+.root {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  /* Below-controls have their own block padding (Spacing-2-5 top + bottom)
+     per Figma — no extra root gap on top of that. */
+  width: 100%;
+}
+
+.root[data-fullwidth='true'] {
+  padding-inline: 0;
+  margin-inline: calc(var(--Spacing-Margin, var(--Spacing-4-5)) * -1);
+}
+
+/* ============================================================
+   VIEWPORT — overflow-hidden window Embla animates inside.
+   Container queries let peek work even outside a known parent width.
+   ============================================================ */
+
+.viewport {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  border-radius: var(--Carousel-Viewport-borderRadius, var(--Carousel-Slide-borderRadius, var(--Shape-3)));
+  container-type: inline-size;
+}
+
+.root[data-height-mode='followsAspectRatio'] .viewport {
+  aspect-ratio: var(--Carousel-Viewport-Aspect-Ratio, 16 / 9);
+}
+
+.root[data-height-mode='custom'] .viewport {
+  height: var(--Carousel-Viewport-Height);
+}
+
+.track {
+  display: flex;
+  flex-direction: row;
+  gap: var(--Carousel-Slide-Gap, var(--Spacing-3-5));
+  touch-action: pan-y pinch-zoom;
+  backface-visibility: hidden;
+  height: 100%;
+  min-height: 100%;
+}
+
+.slide {
+  position: relative;
+  flex: 0 0 var(--Carousel-Slide-Width, 100%);
+  width: var(--Carousel-Slide-Width, 100%);
+  min-width: var(--Carousel-Slide-Width, 0);
+  border-radius: var(--Carousel-Slide-borderRadius, var(--Shape-3));
+  overflow: hidden;
+  background-color: var(--Surface-Subtle);
+  font-family: var(--Typography-Font-Text);
+  transition:
+    opacity var(--Carousel-Motion-Duration, var(--Motion-Duration-Expressive-M))
+      var(--Carousel-Motion-Easing, var(--Motion-Easing-Transition-Expressive));
+}
+
+/* When the viewport carries the shared aspect ratio, slides fill its box. */
+.root[data-height-mode='followsAspectRatio'] .slide {
+  height: 100%;
+  aspect-ratio: unset;
+}
+
+.slide[data-aspect='1:2'] { aspect-ratio: 1 / 2; }
+.slide[data-aspect='9:16'] { aspect-ratio: 9 / 16; }
+.slide[data-aspect='3:4'] { aspect-ratio: 3 / 4; }
+.slide[data-aspect='1:1'] { aspect-ratio: 1 / 1; }
+.slide[data-aspect='4:3'] { aspect-ratio: 4 / 3; }
+.slide[data-aspect='5:3'] { aspect-ratio: 5 / 3; }
+.slide[data-aspect='16:9'] { aspect-ratio: 16 / 9; }
+.slide[data-aspect='2:1'] { aspect-ratio: 2 / 1; }
+.slide[data-aspect='21:9'] { aspect-ratio: 21 / 9; }
+.slide[data-aspect='flexible'] { aspect-ratio: auto; min-height: var(--Spacing-40); }
+.slide[data-aspect='custom'] { aspect-ratio: auto; min-height: var(--Spacing-40); }
+
+/* Peek modes shrink the slide flex-basis so adjacent edges show. */
+.viewport[data-peek='prev'] .slide,
+.viewport[data-peek='next'] .slide,
+.viewport[data-peek='both'] .slide {
+  flex-basis: calc(var(--Carousel-Slide-Width, 100%) - var(--Spacing-12));
+  width: calc(var(--Carousel-Slide-Width, 100%) - var(--Spacing-12));
+  min-width: calc(var(--Carousel-Slide-Width, 100%) - var(--Spacing-12));
+  max-width: calc(var(--Carousel-Slide-Width, 100%) - var(--Spacing-12));
+}
+
+/* ============================================================
+   IMAGE
+   ============================================================ */
+
+.image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.scrimOverlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: var(--Z-Index-Base);
+}
+
+.scrim {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  /* --Neutral-Bold is the high-contrast neutral relative to the page surface:
+     dark in light mode (makes white text readable) and light in dark mode
+     (makes dark text readable). The scrim sits at slide root level — outside
+     any [data-surface] block — so it reads the root-level value correctly. */
+  background-image: linear-gradient(
+    var(--Carousel-Scrim-Direction, to top),
+    var(--Carousel-Scrim-FromColor, color-mix(in oklch, var(--Neutral-Bold) 70%, transparent)),
+    var(--Carousel-Scrim-ToColor, transparent)
+  );
+}
+
+/* ============================================================
+   CONTENT — overlay block (badge / headline / body / actions)
+   ============================================================ */
+
+.content {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  /* Outer gap separates the title-cluster from the button group. Larger
+     than the inner gap so action buttons clearly cluster apart from the
+     text. Per Figma node 2097:17288 (Spacing-3 + ButtonGroup pt-Spacing-2). */
+  gap: var(--Carousel-Content-OuterGap, var(--Spacing-3-5));
+  padding-block-start: var(--Carousel-Content-PaddingBlockStart, var(--Spacing-4-5));
+  padding-block-end: var(--Carousel-Content-PaddingBlockEnd, var(--Spacing-6));
+  padding-inline: var(--Carousel-Content-PaddingInline, var(--Spacing-4-5));
+  font-family: var(--Typography-Font-Text);
+}
+
+/* Inner wrapper that holds the bold-surface text (badge + headline + body).
+   Splitting it out keeps Slide.ButtonGroup outside the bold cascade so
+   buttons render in their normal Primary palette instead of being shifted
+   to the slide's bold-context variant.
+   Inner gap is tight so the title cluster reads as one group. */
+.contentText {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Carousel-Content-Gap, var(--Spacing-2-5));
+  align-items: inherit;
+  text-align: inherit;
+}
+
+/* Alignment matrix */
+.content[data-align='startBottom'] {
+  inset-inline-start: 0;
+  inset-block-end: 0;
+  align-items: flex-start;
+  text-align: start;
+}
+.content[data-align='startMiddle'] {
+  inset-inline-start: 0;
+  inset-block: 0;
+  align-items: flex-start;
+  justify-content: center;
+  text-align: start;
+}
+.content[data-align='middleBottom'] {
+  inset-inline: 0;
+  inset-block-end: 0;
+  /* margin-inline: auto centres the absolute block when max-width caps it
+     below 100% — without this it sticks to the left despite inset-inline:0. */
+  margin-inline: auto;
+  align-items: center;
+  text-align: center;
+}
+.content[data-align='middleMiddle'] {
+  inset: 0;
+  margin: auto;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.content[data-align='middleTop'] {
+  inset-inline: 0;
+  inset-block-start: 0;
+  margin-inline: auto;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+}
+
+/* When the content is centred horizontally, propagate centring to the
+   button group so action buttons line up with the headline / body. */
+.content[data-align='middleBottom'] .buttonGroup[data-orientation='horizontal'],
+.content[data-align='middleMiddle'] .buttonGroup[data-orientation='horizontal'],
+.content[data-align='middleTop'] .buttonGroup[data-orientation='horizontal'] {
+  justify-content: center;
+}
+
+/* Width matrix — percentages of the slide so content scales with viewport. */
+.content[data-width='fill'] { inset-inline: 0; }
+.content[data-width='s'] { max-width: 33%; }
+.content[data-width='m'] { max-width: 50%; }
+.content[data-width='l'] { max-width: 66%; }
+
+.slide[data-badges-start='false'] .cornerStart { display: none; }
+.slide[data-badges-end='false'] .cornerEnd { display: none; }
+.slide[data-play-button='false'] .cornerEnd [data-carousel-part='play'] { display: none; }
+
+.content[data-badges-middle='false'] [data-carousel-part='badges-middle'] { display: none; }
+.content[data-button-secondary='false'] .buttonGroup [data-carousel-part='button-secondary'] { display: none; }
+.content[data-icon-button-secondary='false'] .buttonGroup [data-carousel-part='icon-button-secondary'] { display: none; }
+
+/* Headline + body typography inside Slide.Content.
+   Both share the same colour (per Figma node 481:9796 — visual hierarchy
+   comes from size and weight, not colour). Slides sit on imagery, NOT a
+   coloured surface, so we deliberately avoid the surface-aware
+   `--Primary-Bold-High` chain — that token would remap if the carousel
+   were nested inside another `<Surface mode="bold">`, producing dark
+   text on a dark image. Use the root-only `--Text-On-Bold-High` (theme
+   token, never remapped by surface cascade).
+
+   font-synthesis: none stops the browser from synthesising a fake-bold
+   from the system fallback while JioType Black (weight 900) loads —
+   that synthetic bold has different metrics and causes a vertical jump. */
+.content :where(h1, h2, h3) {
+  font-family: var(--Headline-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Headline-L-FontSize);
+  line-height: var(--Headline-L-LineHeight);
+  font-weight: var(--Headline-L-FontWeight);
+  font-synthesis: none;
+  font-feature-settings: 'liga' 0;
+  margin: 0;
+  color: var(--Carousel-Slide-OnImage-Color, var(--Text-On-Bold-High));
+}
+
+.content :where(h1, h2, h3)::after {
+  content: '.';
+}
+
+.content :where(p) {
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Body-M-FontSize);
+  line-height: var(--Body-M-LineHeight);
+  font-weight: var(--Body-FontWeight-Low);
+  font-synthesis: none;
+  margin: 0;
+  color: var(--Carousel-Slide-OnImage-Color, var(--Text-On-Bold-High));
+}
+
+/* ============================================================
+   CORNER — top-left / top-right slot
+   ============================================================ */
+
+.cornerStart,
+.cornerEnd {
+  position: absolute;
+  inset-block-start: 0;
+  padding: var(--Carousel-Corner-Padding, var(--Spacing-3-5));
+  display: inline-flex;
+  align-items: center;
+  gap: var(--Spacing-2-5);
+  z-index: var(--Z-Index-Base);
+}
+
+.cornerStart { inset-inline-start: 0; }
+.cornerEnd { inset-inline-end: 0; }
+
+/* ============================================================
+   BUTTON GROUP — hosted inside Slide.Content
+   ============================================================ */
+
+.buttonGroup {
+  display: flex;
+  gap: var(--Spacing-2-5);
+  width: 100%;
+  /* Buttons inside a slide sit on imagery, not on a coloured surface —
+     so they should render in the brand's normal Primary palette
+     regardless of any surrounding `[data-surface]` cascade. The root-only
+     `--{Role}-Fill-*` and `--Surface-Fill-*` tokens are never remapped
+     inside surface blocks (per CLAUDE.md), so re-anchoring the role
+     tokens to the Fill variants gives us a brand-aware reset. */
+  /* Re-anchor button background fills to the brand's normal Primary palette
+     (Fill tokens are root-only — never remapped by surface cascade). */
+  --Primary-Bold: var(--Primary-Fill-Bold, var(--Primary-Bold));
+  --Primary-Bold-Hover: var(--Primary-Fill-Bold, var(--Primary-Bold-Hover));
+  --Primary-Bold-Pressed: var(--Primary-Fill-Bold, var(--Primary-Bold-Pressed));
+  --Primary-Subtle: var(--Primary-Fill-Subtle, var(--Primary-Subtle));
+  --Primary-Subtle-Hover: var(--Primary-Fill-Subtle, var(--Primary-Subtle-Hover));
+  --Primary-Subtle-Pressed: var(--Primary-Fill-Subtle, var(--Primary-Subtle-Pressed));
+  /* Use Button's built-in text-colour override hooks so the cascaded
+     `--Primary-Bold-TintedA11y` / `--Primary-TintedA11y` (which Button
+     resolves through internal `--_btn-*` chains) don't bleed in.
+     Bold button: white text on the brand's red bg.
+     Subtle button: brand's red text on the light subtle bg. */
+  --Button-textColor-bold: var(--Text-On-Bold-High);
+  --Button-textColor-subtle: var(--Primary-Fill-Bold, var(--Primary-Bold));
+  --Button-textColor-ghost: var(--Text-On-Bold-High);
+}
+
+.buttonGroup[data-orientation='horizontal'] {
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.buttonGroup[data-orientation='vertical'] {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.buttonGroup[data-width='wide'],
+.buttonGroup[data-width='fill'] > * {
+  flex: 1 1 0;
+}
+
+/* ============================================================
+   CONTROLS
+   ============================================================ */
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: var(--Carousel-Controls-Gap, var(--Spacing-3-5));
+}
+
+.controls[data-placement='below'] {
+  flex-direction: row;
+  justify-content: center;
+  /* One f-step up from the original Spacing-2-5 — Spacing-3 reads as
+     comfortable separation between the slide image and the controls row.
+     Brand-overridable via --Carousel-Controls-PaddingBlock. */
+  padding-block: var(--Carousel-Controls-PaddingBlock, var(--Spacing-3));
+}
+
+/* Layout: split — first child (typically IndicatorList) hugs the start,
+   remaining children (typically Prev + Next) cluster at the end. */
+.controls[data-layout='split'] {
+  justify-content: space-between;
+}
+
+.controls[data-layout='split'] > :first-child {
+  margin-inline-end: auto;
+}
+
+/* onMedia controls span the slide width at the same baseline as the action
+   buttons inside Slide.Content. Insets mirror the content padding tokens. */
+.controls[data-placement='onMedia'] {
+  position: absolute;
+  inset-block-end: var(--Carousel-Content-PaddingBlockEnd, var(--Spacing-6));
+  inset-inline: var(--Carousel-Content-PaddingInline, var(--Spacing-4-5));
+  justify-content: flex-end;
+  pointer-events: none;
+}
+
+.controls[data-placement='onMedia'] > * {
+  pointer-events: auto;
+}
+
+/* In split layout on media, the indicators sit centred in the slide width
+   while the arrows (and any play button) cluster at the far right. The
+   first child is taken out of flex flow and absolutely centred so the
+   remaining children flow naturally to flex-end. */
+.controls[data-placement='onMedia'][data-layout='split'] > :first-child {
+  position: absolute;
+  inset-inline: 0;
+  inset-block: 0;
+  margin: auto;
+  width: max-content;
+  height: max-content;
+}
+
+.controls[data-placement='onMedia'][data-pagination-align='start'] {
+  justify-content: flex-start;
+}
+
+.controls[data-placement='onMedia'][data-pagination-align='end'] {
+  justify-content: flex-end;
+}
+
+.controls[data-placement='onMedia'][data-pagination-align='middle'] {
+  justify-content: center;
+}
+
+.controlsOnMediaSelectionRail {
+  inset-block-end: var(--Spacing-0);
+  inset-inline: var(--Spacing-Margin, var(--Spacing-4-5));
+  min-height: var(--Spacing-28);
+  padding-block: var(--Spacing-1);
+}
+
+.controlsBelowSelectionRail {
+  padding-block: var(--Carousel-Controls-PaddingBlock, var(--Spacing-3));
+  padding-inline: var(--Spacing-Margin, var(--Spacing-4-5));
+}
+
+.controlsBelowSelectionRailWithNav {
+  padding-block: var(--Carousel-Controls-PaddingBlock, var(--Spacing-3));
+  padding-inline: var(--Spacing-Margin, var(--Spacing-4-5));
+  gap: var(--Spacing-1);
+}
+
+.controlsBelowSelectionRailChild {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.controlsOnMediaSplitFirst {
+  position: absolute;
+  inset-inline: 0;
+  inset-block: 0;
+  margin: auto;
+  width: max-content;
+  height: max-content;
+}
+
+.controlsSplitFirst {
+  margin-inline-end: auto;
+}
+
+/* ============================================================
+   SELECTION RAIL — Figma `.CarouselSelectionRail/*`
+   ============================================================ */
+
+.selectionRail {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--Spacing-2);
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.selectionRail::-webkit-scrollbar {
+  display: none;
+}
+
+.selectionRailBelow {
+  width: 100%;
+}
+
+.selectionRailOnMedia {
+  align-items: center;
+}
+
+.selectionRailItem {
+  position: relative;
+  flex-shrink: 0;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: var(--Shape-2);
+  background-color: var(--Surface-Default);
+  font-family: var(--Typography-Font-Primary);
+  transition: opacity var(--Motion-Duration-Discreet-S) var(--Motion-Easing-Transition-Discreet);
+}
+
+.selectionRailItem[data-surface='transparent'] {
+  background-color: var(--Neutral-Subtle);
+}
+
+.selectionRailItem:not([data-active='true']):hover {
+  opacity: 0.85;
+}
+
+.selectionRailImageFrame {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: inherit;
+  border: var(--Stroke-M) solid var(--Neutral-Stroke-Medium);
+}
+
+.selectionRailImage {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.selectionRailActiveRing {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  border: var(--Stroke-2XL) solid var(--Primary-Tinted);
+}
+
+.selectionRailItem[data-surface='transparent'] .selectionRailActiveRing {
+  border-color: var(--Neutral-Tinted);
+}
+
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .slide {
+    transition: none;
+  }
+}

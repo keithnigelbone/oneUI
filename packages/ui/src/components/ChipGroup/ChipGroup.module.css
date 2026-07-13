@@ -1,0 +1,37 @@
+/**
+ * ChipGroup.module.css
+ *
+ * Layout only — all visual styling lives on individual Chip components.
+ * Zero literals: all values via design tokens.
+ *
+ * Verified by: pnpm check:literals
+ */
+
+.chipGroup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--Spacing-2);
+  align-items: flex-start;
+  /* No border, background, or color — chips handle their own visual styling */
+}
+
+/* ── Orientation ─────────────────────────────────────────────── */
+
+.chipGroup[data-orientation="vertical"] {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+/* ── Wrap off: horizontal scrolling row ──────────────────────── */
+
+.chipGroup[data-wrap="false"] {
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  /* Prevent scroll from causing layout shifts on touch */
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* hide scrollbar — swipe gesture UX */
+}
+
+.chipGroup[data-wrap="false"]::-webkit-scrollbar {
+  display: none;
+}

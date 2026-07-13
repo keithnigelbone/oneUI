@@ -1,0 +1,30 @@
+import React, { forwardRef } from 'react';
+import type { IconComponentProps } from '../iconProps';
+
+export const IcPhoneKeyAccess = forwardRef<SVGSVGElement, IconComponentProps>(function IcPhoneKeyAccess(
+  { size = 24, width, height, color = 'currentColor', className, style, ...props },
+  ref,
+) {
+  const dim = width ?? height ?? size;
+  return (
+    <svg
+      ref={ref}
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      width={width ?? dim}
+      height={height ?? dim}
+      color={color}
+      className={className}
+      style={style}
+      {...props}
+    >
+      <path
+            fill="currentColor"
+            d="M19 2c-1.65 0-3 1.35-3 3 0 .47.12.9.31 1.3l-1.99 1.98s-.02 0-.02.01 0 .01-.01.02l-.98.98a.996.996 0 0 0 0 1.41.99.99 0 0 0 1.41.01l.3-.29.29.29c.2.2.45.29.71.29s.51-.1.71-.29a.996.996 0 0 0 0-1.41l-.29-.29 1.31-1.3c.39.18.82.29 1.27.29 1.65 0 3-1.35 3-3s-1.35-3-3-3zm0 4c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1m-8 4V3c0-.35.07-.69.18-1H9C7.34 2 6 3.34 6 5v14c0 1.66 1.34 3 3 3h6c1.66 0 3-1.34 3-3v-6h-4c-1.66 0-3-1.34-3-3m1 10c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1"
+          />
+    </svg>
+  );
+});
+
+IcPhoneKeyAccess.displayName = 'IcPhoneKeyAccess';

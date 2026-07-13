@@ -1,0 +1,299 @@
+/**
+ * BottomNavigation.module.css
+ *
+ * Token-only styling for BottomNavigation + BottomNavItem.
+ * Zero literals — verified by `pnpm check:literals`.
+ *
+ * Architecture:
+ *  - Role-agnostic intermediate variables (--_bn-*) default to the Primary role.
+ *  - Appearance classes remap --_bn-* to other roles (matches SelectableIconButton pattern).
+ *  - Item height is driven by [data-label-type] on the item element.
+ *  - Active state uses [data-active] (set by the React component).
+ *  - Focus halo follows the Focus Halo Pattern: 2-layer box-shadow, surface-aware gap.
+ */
+
+/* ============================================================
+   ROOT (container) — <nav>
+   ============================================================ */
+
+.root {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+  position: relative;
+  box-sizing: border-box;
+
+  /* Transparent by default — surface context comes from the wrapping
+     <Surface> (or the page background). This lets the nav adapt to
+     every surface mode via the [data-surface] cascade instead of
+     intercepting it with a hardcoded fill. */
+  background-color: var(--BottomNavigation-backgroundColor, transparent);
+  padding: var(--BottomNavigation-paddingVertical, var(--Spacing-0))
+           var(--BottomNavigation-paddingHorizontal, var(--Spacing-4));
+
+  font-family: var(--Label-FontFamily, var(--Typography-Font-Text));
+}
+
+.topDivider {
+  /* Bleed edge-to-edge: negate the horizontal padding of the root. */
+  margin-inline: calc(-1 * var(--BottomNavigation-paddingHorizontal, var(--Spacing-4)));
+}
+
+.itemList {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  width: 100%;
+  gap: var(--BottomNavigation-itemGap, var(--Spacing-0));
+}
+
+/* ============================================================
+   ITEM — <a> or <button>
+   ============================================================ */
+
+.item {
+  /* ----- Intermediate variables (default = Primary role) ----- */
+  --_bn-text-high: var(--Primary-High, var(--Text-High));
+  --_bn-text-low: var(--Primary-Low, var(--Text-Low));
+  --_bn-accent: var(--Primary-TintedA11y, var(--Primary-Tinted, var(--Text-High)));
+  --_bn-hover: var(--Primary-Hover, var(--Surface-Minimal));
+  --_bn-pressed: var(--Primary-Pressed, var(--Surface-Subtle));
+
+  flex: 1 0 0;
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  box-sizing: border-box;
+  padding: var(--BottomNavItem-padding, var(--Spacing-1));
+  border: none;
+  border-radius: var(--BottomNavItem-borderRadius, var(--BottomNavigation-itemBorderRadius, var(--Shape-2)));
+  background-color: transparent;
+  color: var(--_bn-text-low);
+  text-decoration: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+
+  transition-property: background-color, color, box-shadow, opacity;
+  transition-duration: var(--BottomNavItem-transitionDuration, var(--Motion-Duration-Discreet-S));
+  transition-timing-function: var(--BottomNavItem-transitionEasing, var(--Motion-Easing-Transition-Moderate));
+}
+
+/* Reset default <button> baseline so tokens control everything */
+.item[type="button"] {
+  font: inherit;
+  color: inherit;
+}
+
+/* ----- Item heights per label layout (matches Figma h = 56/64/72) ----- */
+.item[data-label-type="none"] {
+  height: var(--BottomNavItem-height-none, var(--Spacing-14));   /* 56px */
+}
+
+.item[data-label-type="1line"] {
+  height: var(--BottomNavItem-height-1line, var(--Spacing-16));  /* 64px */
+}
+
+.item[data-label-type="2line"] {
+  height: var(--BottomNavItem-height-2line, var(--Spacing-18)); /* 72px */
+}
+
+/* ----- Inner container (icon + label) -----
+   `justify-content: center` keeps the icon+label block centred inside the
+   fixed item height. The 2-line label uses a fixed 24px box (see below) so
+   icons across items line up at the same Y regardless of wrap length.
+   `border-radius` matches Figma's state-layer pill — hover / pressed fill
+   honours the rounded corners instead of bleeding to the item edges. */
+.itemInner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--BottomNavItem-gap, var(--Spacing-1-5));
+  width: 100%;
+  height: 100%;
+  padding: var(--BottomNavItem-innerPadding, var(--Spacing-1)) 0;
+  border-radius: var(--BottomNavItem-stateLayerBorderRadius, var(--BottomNavigation-itemBorderRadius, var(--Shape-2)));
+  pointer-events: none;
+  transition: inherit;
+}
+
+/* ----- Icon slot -----
+   Setting `--Icon-color` overrides the `<Icon>` primitive's internal
+   emphasis-driven color so the icon follows the nav's active/inactive
+   state. `--Icon-color` is the documented component-override hook in
+   Icon.module.css and its value participates in the [data-surface]
+   cascade (via --_bn-text-*), giving correct bold-on-bold contrast. */
+.iconSlot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--_bn-text-low);
+  --Icon-color: var(--_bn-text-low);
+}
+
+.item[data-active] .iconSlot {
+  color: var(--_bn-accent);
+  --Icon-color: var(--_bn-accent);
+}
+
+/* Raw SVG children (when icon is a ReactElement, not <Icon>) */
+.iconSlot > svg {
+  display: block;
+  width: var(--BottomNavItem-iconSize, var(--Spacing-5));
+  height: var(--BottomNavItem-iconSize, var(--Spacing-5));
+}
+
+.item[data-label-type="none"] .iconSlot > svg {
+  width: var(--BottomNavItem-iconSize-none, var(--Spacing-6));
+  height: var(--BottomNavItem-iconSize-none, var(--Spacing-6));
+}
+
+/* ----- Label ----- */
+.label {
+  font-family: var(--Label-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--BottomNavItem-labelFontSize, var(--Label-XS-FontSize));
+  line-height: var(--BottomNavItem-labelLineHeight, var(--Label-XS-LineHeight));
+  font-weight: var(--BottomNavItem-labelFontWeight, var(--Label-FontWeight-Medium));
+  font-optical-sizing: var(--BottomNavigation-fontOpticalSizing, var(--Label-FontOpticalSizing, auto));
+  font-variation-settings: var(--BottomNavigation-fontVariationSettings, var(--Label-OpszVariation, normal));
+  color: var(--_bn-text-low);
+  text-align: center;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0;
+}
+
+.label[data-lines="1"] {
+  white-space: nowrap;
+}
+
+/* Fixed 24px (Spacing-6 = f3) box accommodates up to 2 lines of Label-XS
+   (12px × 2 = 24px). Reserving the height at the container level keeps the
+   icon vertically positioned the same across every item, so icons always
+   line up even when one label wraps and another doesn't. */
+.label[data-lines="2"] {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  white-space: normal;
+  word-break: break-word;
+  height: var(--BottomNavItem-label2LineHeight, var(--Spacing-6));
+}
+
+/* ----- Active state ----- */
+.item[data-active] {
+  color: var(--_bn-text-high);
+}
+
+.item[data-active] .label {
+  color: var(--_bn-text-high);
+}
+
+/* ----- Hover + pressed (state-layer on the inner pill only, not full column) ----- */
+.item:hover:not([data-disabled]) .itemInner {
+  background-color: var(--BottomNavItem-backgroundColor-hover, var(--_bn-hover));
+}
+
+.item:active:not([data-disabled]) .itemInner {
+  background-color: var(--BottomNavItem-backgroundColor-pressed, var(--_bn-pressed));
+}
+
+/* ----- Disabled ----- */
+.item[data-disabled] {
+  opacity: var(--Disabled-Opacity);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ----- Focus halo (Focus Halo Pattern — matches TouchSlider)
+   inner ring: Stroke-XL gap using --Surface-Halo-Gap (adapts to surface)
+   outer ring: Informative role — always informative so the halo reads
+               as a focus signal across every appearance. */
+.item:focus {
+  outline: none;
+}
+
+.item:focus-visible,
+:global([data-force-state="focus"]) .item {
+  box-shadow:
+    0 0 0 var(--Stroke-XL) var(--Surface-Halo-Gap, var(--Surface-Main)),
+    0 0 0 calc(var(--Stroke-XL) + var(--Focus-Outline-Width))
+      var(--Informative-Bold, var(--Focus-Outline));
+}
+
+/* ============================================================
+   APPEARANCE ROLE CLASSES — remap --_bn-* intermediates
+   Matches SelectableIconButton pattern.
+   ============================================================ */
+
+.appearanceNeutral {
+  --_bn-text-high: var(--Neutral-High, var(--Text-High));
+  --_bn-text-low: var(--Neutral-Low, var(--Text-Low));
+  --_bn-accent: var(--Neutral-TintedA11y, var(--Neutral-Tinted, var(--Text-High)));
+  --_bn-hover: var(--Neutral-Hover, var(--Surface-Minimal));
+  --_bn-pressed: var(--Neutral-Pressed, var(--Surface-Subtle));
+}
+
+.appearanceSecondary {
+  --_bn-text-high: var(--Secondary-High, var(--Text-High));
+  --_bn-text-low: var(--Secondary-Low, var(--Text-Low));
+  --_bn-accent: var(--Secondary-TintedA11y, var(--Secondary-Tinted, var(--Text-High)));
+  --_bn-hover: var(--Secondary-Hover, var(--Surface-Minimal));
+  --_bn-pressed: var(--Secondary-Pressed, var(--Surface-Subtle));
+}
+
+.appearanceSparkle {
+  --_bn-text-high: var(--Sparkle-High, var(--Text-High));
+  --_bn-text-low: var(--Sparkle-Low, var(--Text-Low));
+  --_bn-accent: var(--Sparkle-TintedA11y, var(--Sparkle-Tinted, var(--Text-High)));
+  --_bn-hover: var(--Sparkle-Hover, var(--Surface-Minimal));
+  --_bn-pressed: var(--Sparkle-Pressed, var(--Surface-Subtle));
+}
+
+.appearanceBrandBg {
+  --_bn-text-high: var(--Brand-Bg-High, var(--Text-High));
+  --_bn-text-low: var(--Brand-Bg-Low, var(--Text-Low));
+  --_bn-accent: var(--Brand-Bg-TintedA11y, var(--Brand-Bg-Tinted, var(--Text-High)));
+  --_bn-hover: var(--Brand-Bg-Hover, var(--Surface-Minimal));
+  --_bn-pressed: var(--Brand-Bg-Pressed, var(--Surface-Subtle));
+}
+
+.appearancePositive {
+  --_bn-text-high: var(--Positive-High, var(--Text-High));
+  --_bn-text-low: var(--Positive-Low, var(--Text-Low));
+  --_bn-accent: var(--Positive-TintedA11y, var(--Positive-Tinted, var(--Text-High)));
+  --_bn-hover: var(--Positive-Hover, var(--Surface-Minimal));
+  --_bn-pressed: var(--Positive-Pressed, var(--Surface-Subtle));
+}
+
+.appearanceNegative {
+  --_bn-text-high: var(--Negative-High, var(--Text-High));
+  --_bn-text-low: var(--Negative-Low, var(--Text-Low));
+  --_bn-accent: var(--Negative-TintedA11y, var(--Negative-Tinted, var(--Text-High)));
+  --_bn-hover: var(--Negative-Hover, var(--Surface-Minimal));
+  --_bn-pressed: var(--Negative-Pressed, var(--Surface-Subtle));
+}
+
+.appearanceWarning {
+  --_bn-text-high: var(--Warning-High, var(--Text-High));
+  --_bn-text-low: var(--Warning-Low, var(--Text-Low));
+  --_bn-accent: var(--Warning-TintedA11y, var(--Warning-Tinted, var(--Text-High)));
+  --_bn-hover: var(--Warning-Hover, var(--Surface-Minimal));
+  --_bn-pressed: var(--Warning-Pressed, var(--Surface-Subtle));
+}
+
+.appearanceInformative {
+  --_bn-text-high: var(--Informative-High, var(--Text-High));
+  --_bn-text-low: var(--Informative-Low, var(--Text-Low));
+  --_bn-accent: var(--Informative-TintedA11y, var(--Informative-Tinted, var(--Text-High)));
+  --_bn-hover: var(--Informative-Hover, var(--Surface-Minimal));
+  --_bn-pressed: var(--Informative-Pressed, var(--Surface-Subtle));
+}

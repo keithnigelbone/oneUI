@@ -1,0 +1,30 @@
+import React, { forwardRef } from 'react';
+import type { IconComponentProps } from '../iconProps';
+
+export const IcThunderstorm = forwardRef<SVGSVGElement, IconComponentProps>(function IcThunderstorm(
+  { size = 24, width, height, color = 'currentColor', className, style, ...props },
+  ref,
+) {
+  const dim = width ?? height ?? size;
+  return (
+    <svg
+      ref={ref}
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      width={width ?? dim}
+      height={height ?? dim}
+      color={color}
+      className={className}
+      style={style}
+      {...props}
+    >
+      <path
+            fill="currentColor"
+            d="M14.5 15.67c-.48-.28-1.09-.11-1.37.37l-2 3.46c-.28.48-.11 1.09.37 1.37s1.09.11 1.37-.37l2-3.46c.28-.48.11-1.09-.37-1.37m-4 0c-.48-.28-1.09-.11-1.37.37l-2 3.46c-.28.48-.11 1.09.37 1.37s1.09.11 1.37-.37l2-3.46c.28-.48.11-1.09-.37-1.37m-4 0c-.48-.28-1.09-.11-1.37.37l-2 3.46c-.28.48-.11 1.09.37 1.37s1.09.11 1.37-.37l2-3.46c.28-.48.11-1.09-.37-1.37M6 14h8.42c.03-.05.05-.11.08-.17l3-4.5c.45-.69 1.17-1.13 1.96-1.27.01-.1.03-.21.03-.32 0-2.62-2.13-4.75-4.75-4.75-1.64 0-3.08.83-3.93 2.09a3.7 3.7 0 0 0-.82-.09A3.98 3.98 0 0 0 6.13 8c-.05 0-.09-.01-.14-.01-1.66 0-3 1.34-3 3s1.34 3 3 3zm15.36.99a.99.99 0 0 0-.86-.49h-1.63l1.96-2.95a1.001 1.001 0 1 0-1.67-1.11l-3 4.5c-.2.31-.22.7-.05 1.03s.51.53.88.53h1.8l-1.67 3.01c-.27.48-.09 1.09.39 1.36.15.09.32.13.48.13.35 0 .69-.19.88-.51l2.5-4.5c.17-.31.17-.69-.01-.99z"
+          />
+    </svg>
+  );
+});
+
+IcThunderstorm.displayName = 'IcThunderstorm';

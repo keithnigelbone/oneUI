@@ -1,0 +1,3686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flutter QA — icon-button</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0f1117; color: #e2e8f0; min-height: 100vh; }
+    .header { background: #1a1d27; border-bottom: 1px solid #2d3147; padding: 20px 32px; display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
+    .header-title { font-size: 18px; font-weight: 600; color: #f0f4ff; }
+    .header-sub { font-size: 12px; color: #64748b; margin-top: 2px; }
+    .stat-card { display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 8px 16px; border-radius: 8px; min-width: 80px; }
+    .stat-value { font-size: 22px; font-weight: 700; line-height: 1; }
+    .stat-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; color: #94a3b8; }
+    .stat-total { background: #1e2235; }
+    .stat-pass { background: #0f2a1a; }
+    .stat-fail { background: #2a0f0f; }
+    .stat-skip { background: #1e2235; }
+    .stat-time { background: #1e2235; }
+    .stat-pass .stat-value { color: #4ade80; }
+    .stat-fail .stat-value { color: #f87171; }
+    .stat-skip .stat-value { color: #94a3b8; }
+    .stat-total .stat-value, .stat-time .stat-value { color: #94a3b8; }
+    .status-banner { margin-left: auto; padding: 6px 16px; border-radius: 20px; font-size: 13px; font-weight: 600; }
+    .status-banner.all-pass { background: #052e16; color: #4ade80; border: 1px solid #16a34a; }
+    .status-banner.has-fail { background: #2a0f0f; color: #f87171; border: 1px solid #dc2626; }
+    .content { padding: 24px 32px; max-width: 1100px; margin: 0 auto; }
+    .toolbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; }
+    .filters { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+    .filter-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; color: #64748b; }
+    .filter-select { appearance: none; background: #1e2235; color: #c7d2fe; border: 1px solid #2d3147; border-radius: 6px; padding: 6px 12px; font-size: 12px; min-width: 140px; }
+    .suite-pills { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+    .suite-pill { font-size: 11px; padding: 4px 10px; border-radius: 999px; border: 1px solid #2d3147; color: #94a3b8; }
+    .suite-pill.fn { border-color: #4c1d95; color: #c4b5fd; }
+    .suite-pill.a11y { border-color: #14532d; color: #6ee7b7; }
+    .suite-pill.smoke { border-color: #0c4a6e; color: #7dd3fc; }
+    .file-block { background: #1a1d27; border: 1px solid #2d3147; border-radius: 10px; margin-bottom: 16px; overflow: hidden; }
+    .file-block.file-fail { border-color: #7f1d1d; }
+    .file-block.file-pass { border-color: #14532d; }
+    .file-summary { display: flex; align-items: center; gap: 10px; padding: 12px 16px; cursor: pointer; list-style: none; background: #20243a; user-select: none; }
+    .file-summary::-webkit-details-marker { display: none; }
+    .file-icon { font-size: 14px; }
+    .file-block.file-pass .file-icon { color: #4ade80; }
+    .file-block.file-fail .file-icon { color: #f87171; }
+    .file-path { font-size: 13px; font-weight: 500; color: #c7d2fe; font-family: 'JetBrains Mono', monospace; flex: 1; }
+    .file-counts { display: flex; gap: 8px; font-size: 12px; }
+    .pass-count { color: #4ade80; }
+    .fail-count { color: #f87171; }
+    .file-dur { font-size: 12px; color: #475569; }
+    .suite-block { padding: 4px 16px 12px; }
+    .test-row { border-radius: 6px; margin: 2px 0; }
+    .test-row.failed { background: #1a0a0a; }
+    .test-header { display: flex; align-items: center; gap: 8px; padding: 7px 10px; border-radius: 6px; }
+    .test-header:hover { background: #252a3f; }
+    .status-icon { font-size: 13px; font-weight: 700; width: 18px; flex-shrink: 0; }
+    .status-icon.pass { color: #4ade80; }
+    .status-icon.fail { color: #f87171; }
+    .status-icon.skip { color: #94a3b8; }
+    .test-name { flex: 1; font-size: 13px; color: #cbd5e1; }
+    .test-dur { font-size: 11px; color: #475569; flex-shrink: 0; }
+    .tag { font-size: 10px; font-weight: 600; padding: 2px 7px; border-radius: 10px; letter-spacing: 0.3px; flex-shrink: 0; }
+    .tag-smoke { background: #1e3a5f; color: #7dd3fc; }
+    .tag-fn { background: #2d1b69; color: #c4b5fd; }
+    .tag-a11y { background: #1a3a2a; color: #6ee7b7; }
+    .tag-catalog { background: #3b2f0a; color: #fcd34d; }
+    .tag-other { background: #2d2d2d; color: #94a3b8; }
+    .platform-badge { font-size: 10px; color: #64748b; border: 1px solid #334155; border-radius: 4px; padding: 1px 5px; }
+    .error-block { margin: 4px 10px 8px 36px; padding: 8px 12px; background: #1f0a0a; border-left: 3px solid #dc2626; border-radius: 0 4px 4px 0; }
+    .error-block pre { font-size: 11px; color: #fca5a5; white-space: pre-wrap; word-break: break-word; font-family: 'JetBrains Mono', monospace; max-height: 240px; overflow: auto; }
+    .footer { text-align: center; padding: 32px; font-size: 12px; color: #334155; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div>
+      <div class="header-title">Flutter QA — icon-button</div>
+      <div class="header-sub">flutter_test · headless VM · 6/30/2026, 11:08:20 AM</div>
+    </div>
+    <div class="stat-card stat-total"><div class="stat-value">345</div><div class="stat-label">Total</div></div>
+    <div class="stat-card stat-pass"><div class="stat-value">345</div><div class="stat-label">Passed</div></div>
+    <div class="stat-card stat-fail"><div class="stat-value">0</div><div class="stat-label">Failed</div></div>
+    <div class="stat-card stat-skip"><div class="stat-value">0</div><div class="stat-label">Skipped</div></div>
+    <div class="stat-card stat-time"><div class="stat-value">12.5s</div><div class="stat-label">Duration</div></div>
+    <div class="status-banner all-pass">✓ All tests passed</div>
+  </div>
+  <div class="content">
+    <div class="toolbar">
+      <div class="filters">
+        <span class="filter-label">Component</span>
+        <select class="filter-select" id="comp-filter" onchange="applyFilters()">
+          <option value="">All</option>
+          <option value="icon_button">icon_button</option>
+        </select>
+        <span class="filter-label">Tier</span>
+        <select class="filter-select" id="tier-filter" onchange="applyFilters()">
+          <option value="">All</option>
+          <option value="smoke">Smoke</option>
+          <option value="fn">Functional</option>
+          <option value="a11y">Accessibility</option>
+          <option value="catalog">Catalog</option>
+        </select>
+      </div>
+    </div>
+    <div class="suite-pills">
+      <span class="suite-pill smoke">Smoke: 30</span>
+      <span class="suite-pill fn">Functional: 105</span>
+      <span class="suite-pill a11y">Accessibility: 34</span>
+      <span class="suite-pill">Catalog: 2</span>
+    </div>
+    <details class="file-block file-pass" data-component="icon_button" open>
+      <summary class="file-summary">
+        <span class="file-icon">✓</span>
+        <span class="file-path">test/components/icon_button/icon_button_a11y_test.dart</span>
+        <span class="file-counts">
+          <span class="pass-count">34 passed</span>
+          
+        </span>
+        <span class="file-dur">2.58s</span>
+      </summary>
+      <div class="suite-block"><div class="test-row passed" data-component="icon_button" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          
+          <span class="test-name">[a11y] resolveOneUiIconButtonState — disabled contract [a11y] disabled or loading → isDisabled</span>
+          <span class="test-dur">8ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[a11y] IconButton widget — semantics [a11y] exposes button role + semanticsLabel</span>
+          <span class="test-dur">760ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[a11y] IconButton widget — semantics [a11y] exposes button role + semanticsLabel</span>
+          <span class="test-dur">63ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[a11y] IconButton widget — semantics [a11y] exposes button role + semanticsLabel</span>
+          <span class="test-dur">101ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[a11y] IconButton widget — semantics [a11y] disabled marks not-enabled + blocks tap</span>
+          <span class="test-dur">112ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[a11y] IconButton widget — semantics [a11y] disabled marks not-enabled + blocks tap</span>
+          <span class="test-dur">239ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[a11y] IconButton widget — semantics [a11y] disabled marks not-enabled + blocks tap</span>
+          <span class="test-dur">60ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[a11y] IconButton widget — semantics [a11y] loading announces busy via hint + not-enabled</span>
+          <span class="test-dur">87ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[a11y] IconButton widget — semantics [a11y] loading announces busy via hint + not-enabled</span>
+          <span class="test-dur">43ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[a11y] IconButton widget — semantics [a11y] loading announces busy via hint + not-enabled</span>
+          <span class="test-dur">65ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[a11y] IconButton widget — semantics [a11y] semanticsHint merges with loading hint</span>
+          <span class="test-dur">50ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[a11y] IconButton widget — semantics [a11y] semanticsHint merges with loading hint</span>
+          <span class="test-dur">38ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[a11y] IconButton widget — semantics [a11y] semanticsHint merges with loading hint</span>
+          <span class="test-dur">33ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[a11y] IconButton widget — semantics [a11y] semanticsHint surfaces when not loading</span>
+          <span class="test-dur">39ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[a11y] IconButton widget — semantics [a11y] semanticsHint surfaces when not loading</span>
+          <span class="test-dur">38ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[a11y] IconButton widget — semantics [a11y] semanticsHint surfaces when not loading</span>
+          <span class="test-dur">30ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[a11y] IconButton widget — semantics [a11y] semanticsExpanded surfaces in AT tree</span>
+          <span class="test-dur">33ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[a11y] IconButton widget — semantics [a11y] semanticsExpanded surfaces in AT tree</span>
+          <span class="test-dur">32ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[a11y] IconButton widget — semantics [a11y] semanticsExpanded surfaces in AT tree</span>
+          <span class="test-dur">51ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[a11y] IconButton widget — semantics [a11y] icon glyph is excluded from semantics tree</span>
+          <span class="test-dur">45ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[a11y] IconButton widget — semantics [a11y] icon glyph is excluded from semantics tree</span>
+          <span class="test-dur">46ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[a11y] IconButton widget — semantics [a11y] icon glyph is excluded from semantics tree</span>
+          <span class="test-dur">47ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[a11y] IconButton widget — semantics [a11y] autofocus takes keyboard focus</span>
+          <span class="test-dur">34ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[a11y] IconButton widget — semantics [a11y] autofocus takes keyboard focus</span>
+          <span class="test-dur">43ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[a11y] IconButton widget — semantics [a11y] autofocus takes keyboard focus</span>
+          <span class="test-dur">46ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[a11y] IconButton widget — semantics [a11y] Space activates focused control</span>
+          <span class="test-dur">123ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[a11y] IconButton widget — semantics [a11y] Space activates focused control</span>
+          <span class="test-dur">32ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[a11y] IconButton widget — semantics [a11y] Space activates focused control</span>
+          <span class="test-dur">38ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[a11y] IconButton widget — semantics [a11y] Enter activates focused control</span>
+          <span class="test-dur">37ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[a11y] IconButton widget — semantics [a11y] Enter activates focused control</span>
+          <span class="test-dur">34ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[a11y] IconButton widget — semantics [a11y] Enter activates focused control</span>
+          <span class="test-dur">34ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[a11y] IconButton widget — semantics [a11y] forceFocusRing paints focus halo decoration</span>
+          <span class="test-dur">38ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[a11y] IconButton widget — semantics [a11y] forceFocusRing paints focus halo decoration</span>
+          <span class="test-dur">41ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[a11y] IconButton widget — semantics [a11y] forceFocusRing paints focus halo decoration</span>
+          <span class="test-dur">63ms</span>
+        </div>
+        
+      </div></div>
+    </details>
+<details class="file-block file-pass" data-component="icon_button" open>
+      <summary class="file-summary">
+        <span class="file-icon">✓</span>
+        <span class="file-path">test/components/icon_button/icon_button_figma_parity_test.dart</span>
+        <span class="file-counts">
+          <span class="pass-count">83 passed</span>
+          
+        </span>
+        <span class="file-dur">2.59s</span>
+      </summary>
+      <div class="suite-block"><div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] IconButton — size [figma] size=2xs → 20.0px chrome</span>
+          <span class="test-dur">607ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] IconButton — size [figma] size=2xs → 20.0px chrome</span>
+          <span class="test-dur">55ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] IconButton — size [figma] size=2xs → 20.0px chrome</span>
+          <span class="test-dur">45ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] IconButton — size [figma] size=xs → 24.0px chrome</span>
+          <span class="test-dur">30ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] IconButton — size [figma] size=xs → 24.0px chrome</span>
+          <span class="test-dur">27ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] IconButton — size [figma] size=xs → 24.0px chrome</span>
+          <span class="test-dur">25ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] IconButton — size [figma] size=s → 32.0px chrome</span>
+          <span class="test-dur">28ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] IconButton — size [figma] size=s → 32.0px chrome</span>
+          <span class="test-dur">28ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] IconButton — size [figma] size=s → 32.0px chrome</span>
+          <span class="test-dur">28ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] IconButton — size [figma] size=m → 40.0px chrome</span>
+          <span class="test-dur">26ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] IconButton — size [figma] size=m → 40.0px chrome</span>
+          <span class="test-dur">27ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] IconButton — size [figma] size=m → 40.0px chrome</span>
+          <span class="test-dur">26ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] IconButton — size [figma] size=l → 48.0px chrome</span>
+          <span class="test-dur">26ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] IconButton — size [figma] size=l → 48.0px chrome</span>
+          <span class="test-dur">26ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] IconButton — size [figma] size=l → 48.0px chrome</span>
+          <span class="test-dur">22ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] IconButton — size [figma] size=xl → 56.0px chrome</span>
+          <span class="test-dur">23ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] IconButton — size [figma] size=xl → 56.0px chrome</span>
+          <span class="test-dur">23ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] IconButton — size [figma] size=xl → 56.0px chrome</span>
+          <span class="test-dur">24ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] IconButton — size [figma] default size is m (40px)</span>
+          <span class="test-dur">24ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] IconButton — size [figma] default size is m (40px)</span>
+          <span class="test-dur">25ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] IconButton — size [figma] default size is m (40px)</span>
+          <span class="test-dur">25ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          
+          <span class="test-name">[figma] IconButton — attention [figma] attention→variant mapping (IconButton.shared.ts)</span>
+          <span class="test-dur">4ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] IconButton — attention [figma] attention=high renders</span>
+          <span class="test-dur">27ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] IconButton — attention [figma] attention=high renders</span>
+          <span class="test-dur">25ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] IconButton — attention [figma] attention=high renders</span>
+          <span class="test-dur">28ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] IconButton — attention [figma] attention=medium renders</span>
+          <span class="test-dur">29ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] IconButton — attention [figma] attention=medium renders</span>
+          <span class="test-dur">29ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] IconButton — attention [figma] attention=medium renders</span>
+          <span class="test-dur">25ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] IconButton — attention [figma] attention=low renders</span>
+          <span class="test-dur">43ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] IconButton — attention [figma] attention=low renders</span>
+          <span class="test-dur">24ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] IconButton — attention [figma] attention=low renders</span>
+          <span class="test-dur">26ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] IconButton — attention [figma] high vs low fill differs</span>
+          <span class="test-dur">41ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] IconButton — attention [figma] high vs low fill differs</span>
+          <span class="test-dur">33ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] IconButton — attention [figma] high vs low fill differs</span>
+          <span class="test-dur">30ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] IconButton — appearance [figma] appearance=neutral renders contained button</span>
+          <span class="test-dur">21ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] IconButton — appearance [figma] appearance=neutral renders contained button</span>
+          <span class="test-dur">24ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] IconButton — appearance [figma] appearance=neutral renders contained button</span>
+          <span class="test-dur">20ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] IconButton — appearance [figma] appearance=primary renders contained button</span>
+          <span class="test-dur">22ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] IconButton — appearance [figma] appearance=primary renders contained button</span>
+          <span class="test-dur">24ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] IconButton — appearance [figma] appearance=primary renders contained button</span>
+          <span class="test-dur">21ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] IconButton — appearance [figma] appearance=secondary renders contained button</span>
+          <span class="test-dur">21ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] IconButton — appearance [figma] appearance=secondary renders contained button</span>
+          <span class="test-dur">23ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] IconButton — appearance [figma] appearance=secondary renders contained button</span>
+          <span class="test-dur">21ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] IconButton — appearance [figma] appearance=negative renders contained button</span>
+          <span class="test-dur">27ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] IconButton — appearance [figma] appearance=negative renders contained button</span>
+          <span class="test-dur">24ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] IconButton — appearance [figma] appearance=negative renders contained button</span>
+          <span class="test-dur">40ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] IconButton — appearance [figma] appearance=positive renders contained button</span>
+          <span class="test-dur">22ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] IconButton — appearance [figma] appearance=positive renders contained button</span>
+          <span class="test-dur">25ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] IconButton — appearance [figma] appearance=positive renders contained button</span>
+          <span class="test-dur">21ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] IconButton — appearance [figma] appearance=informative renders contained button</span>
+          <span class="test-dur">22ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] IconButton — appearance [figma] appearance=informative renders contained button</span>
+          <span class="test-dur">29ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] IconButton — appearance [figma] appearance=informative renders contained button</span>
+          <span class="test-dur">23ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] IconButton — appearance [figma] appearance=warning renders contained button</span>
+          <span class="test-dur">20ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] IconButton — appearance [figma] appearance=warning renders contained button</span>
+          <span class="test-dur">21ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] IconButton — appearance [figma] appearance=warning renders contained button</span>
+          <span class="test-dur">19ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          
+          <span class="test-name">[figma] IconButton — appearance [figma] appearance=auto resolves to primary</span>
+          <span class="test-dur">4ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] IconButton — shape / layout [figma] shape 1:1 is square</span>
+          <span class="test-dur">23ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] IconButton — shape / layout [figma] shape 1:1 is square</span>
+          <span class="test-dur">20ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] IconButton — shape / layout [figma] shape 1:1 is square</span>
+          <span class="test-dur">21ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] IconButton — shape / layout [figma] shape 3:2 is 1.5× wider</span>
+          <span class="test-dur">21ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] IconButton — shape / layout [figma] shape 3:2 is 1.5× wider</span>
+          <span class="test-dur">19ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] IconButton — shape / layout [figma] shape 3:2 is 1.5× wider</span>
+          <span class="test-dur">20ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          
+          <span class="test-name">[figma] IconButton — shape / layout [figma] wide layout emits data-layout 3:2</span>
+          <span class="test-dur">3ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] IconButton — condensed (contained only) [figma] condensed shrinks container</span>
+          <span class="test-dur">29ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] IconButton — condensed (contained only) [figma] condensed shrinks container</span>
+          <span class="test-dur">26ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] IconButton — condensed (contained only) [figma] condensed shrinks container</span>
+          <span class="test-dur">23ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          
+          <span class="test-name">[figma] IconButton — condensed (contained only) [figma] condensed ignored when uncontained</span>
+          <span class="test-dur">4ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] IconButton — contained / fullWidth [figma] uncontained has transparent fill</span>
+          <span class="test-dur">22ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] IconButton — contained / fullWidth [figma] uncontained has transparent fill</span>
+          <span class="test-dur">19ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] IconButton — contained / fullWidth [figma] uncontained has transparent fill</span>
+          <span class="test-dur">19ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] IconButton — contained / fullWidth [figma] fullWidth expands beyond square chrome</span>
+          <span class="test-dur">32ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] IconButton — contained / fullWidth [figma] fullWidth expands beyond square chrome</span>
+          <span class="test-dur">27ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] IconButton — contained / fullWidth [figma] fullWidth expands beyond square chrome</span>
+          <span class="test-dur">26ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] IconButton — disabled [figma] disabled dims via Opacity 0.38</span>
+          <span class="test-dur">19ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] IconButton — disabled [figma] disabled dims via Opacity 0.38</span>
+          <span class="test-dur">17ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] IconButton — disabled [figma] disabled dims via Opacity 0.38</span>
+          <span class="test-dur">21ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] IconButton — disabled [figma] enabled opacity is 1.0</span>
+          <span class="test-dur">22ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] IconButton — disabled [figma] enabled opacity is 1.0</span>
+          <span class="test-dur">35ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] IconButton — disabled [figma] enabled opacity is 1.0</span>
+          <span class="test-dur">22ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] IconButton — loading [figma] loading replaces icon with spinner</span>
+          <span class="test-dur">33ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] IconButton — loading [figma] loading replaces icon with spinner</span>
+          <span class="test-dur">19ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] IconButton — loading [figma] loading replaces icon with spinner</span>
+          <span class="test-dur">19ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          
+          <span class="test-name">[figma] IconButton — loading [figma] loading emits data-loading</span>
+          <span class="test-dur">4ms</span>
+        </div>
+        
+      </div></div>
+    </details>
+<details class="file-block file-pass" data-component="icon_button" open>
+      <summary class="file-summary">
+        <span class="file-icon">✓</span>
+        <span class="file-path">test/components/icon_button/icon_button_functional_test.dart</span>
+        <span class="file-counts">
+          <span class="pass-count">135 passed</span>
+          
+        </span>
+        <span class="file-dur">3.82s</span>
+      </summary>
+      <div class="suite-block"><div class="test-row passed" data-component="icon_button" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[smoke] IconButton [smoke] renders icon button</span>
+          <span class="test-dur">595ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[smoke] IconButton [smoke] renders icon button</span>
+          <span class="test-dur">54ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[smoke] IconButton [smoke] renders icon button</span>
+          <span class="test-dur">47ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[smoke] IconButton [smoke] sizeAlias=2xs renders</span>
+          <span class="test-dur">33ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[smoke] IconButton [smoke] sizeAlias=2xs renders</span>
+          <span class="test-dur">30ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[smoke] IconButton [smoke] sizeAlias=2xs renders</span>
+          <span class="test-dur">25ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[smoke] IconButton [smoke] sizeAlias=xs renders</span>
+          <span class="test-dur">25ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[smoke] IconButton [smoke] sizeAlias=xs renders</span>
+          <span class="test-dur">27ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[smoke] IconButton [smoke] sizeAlias=xs renders</span>
+          <span class="test-dur">27ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[smoke] IconButton [smoke] sizeAlias=s renders</span>
+          <span class="test-dur">23ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[smoke] IconButton [smoke] sizeAlias=s renders</span>
+          <span class="test-dur">27ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[smoke] IconButton [smoke] sizeAlias=s renders</span>
+          <span class="test-dur">41ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[smoke] IconButton [smoke] sizeAlias=m renders</span>
+          <span class="test-dur">27ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[smoke] IconButton [smoke] sizeAlias=m renders</span>
+          <span class="test-dur">23ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[smoke] IconButton [smoke] sizeAlias=m renders</span>
+          <span class="test-dur">28ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[smoke] IconButton [smoke] sizeAlias=l renders</span>
+          <span class="test-dur">24ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[smoke] IconButton [smoke] sizeAlias=l renders</span>
+          <span class="test-dur">24ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[smoke] IconButton [smoke] sizeAlias=l renders</span>
+          <span class="test-dur">21ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[smoke] IconButton [smoke] sizeAlias=xl renders</span>
+          <span class="test-dur">26ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[smoke] IconButton [smoke] sizeAlias=xl renders</span>
+          <span class="test-dur">23ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[smoke] IconButton [smoke] sizeAlias=xl renders</span>
+          <span class="test-dur">24ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[smoke] IconButton [smoke] attention=high renders</span>
+          <span class="test-dur">24ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[smoke] IconButton [smoke] attention=high renders</span>
+          <span class="test-dur">29ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[smoke] IconButton [smoke] attention=high renders</span>
+          <span class="test-dur">31ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[smoke] IconButton [smoke] attention=medium renders</span>
+          <span class="test-dur">26ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[smoke] IconButton [smoke] attention=medium renders</span>
+          <span class="test-dur">38ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[smoke] IconButton [smoke] attention=medium renders</span>
+          <span class="test-dur">24ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[smoke] IconButton [smoke] attention=low renders</span>
+          <span class="test-dur">29ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[smoke] IconButton [smoke] attention=low renders</span>
+          <span class="test-dur">27ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[smoke] IconButton [smoke] attention=low renders</span>
+          <span class="test-dur">25ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[functional] IconButton — callbacks [fn] tap invokes onPressed once</span>
+          <span class="test-dur">59ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[functional] IconButton — callbacks [fn] tap invokes onPressed once</span>
+          <span class="test-dur">26ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[functional] IconButton — callbacks [fn] tap invokes onPressed once</span>
+          <span class="test-dur">30ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[functional] IconButton — callbacks [fn] onPress alias invokes callback</span>
+          <span class="test-dur">22ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[functional] IconButton — callbacks [fn] onPress alias invokes callback</span>
+          <span class="test-dur">24ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[functional] IconButton — callbacks [fn] onPress alias invokes callback</span>
+          <span class="test-dur">24ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[functional] IconButton — callbacks [fn] onClick alias invokes callback</span>
+          <span class="test-dur">23ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[functional] IconButton — callbacks [fn] onClick alias invokes callback</span>
+          <span class="test-dur">25ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[functional] IconButton — callbacks [fn] onClick alias invokes callback</span>
+          <span class="test-dur">24ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[functional] IconButton — callbacks [fn] onPressed takes precedence over onClick</span>
+          <span class="test-dur">24ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[functional] IconButton — callbacks [fn] onPressed takes precedence over onClick</span>
+          <span class="test-dur">25ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[functional] IconButton — callbacks [fn] onPressed takes precedence over onClick</span>
+          <span class="test-dur">22ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[functional] IconButton — callbacks [fn] disabled blocks onPressed</span>
+          <span class="test-dur">23ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[functional] IconButton — callbacks [fn] disabled blocks onPressed</span>
+          <span class="test-dur">24ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[functional] IconButton — callbacks [fn] disabled blocks onPressed</span>
+          <span class="test-dur">23ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[functional] IconButton — callbacks [fn] loading blocks onPressed</span>
+          <span class="test-dur">41ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[functional] IconButton — callbacks [fn] loading blocks onPressed</span>
+          <span class="test-dur">25ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[functional] IconButton — callbacks [fn] loading blocks onPressed</span>
+          <span class="test-dur">24ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[functional] IconButton — loading state [fn] loading shows spinner not icon</span>
+          <span class="test-dur">25ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[functional] IconButton — loading state [fn] loading shows spinner not icon</span>
+          <span class="test-dur">36ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[functional] IconButton — loading state [fn] loading shows spinner not icon</span>
+          <span class="test-dur">24ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[functional] IconButton — loading state [fn] not loading shows icon not spinner</span>
+          <span class="test-dur">22ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[functional] IconButton — loading state [fn] not loading shows icon not spinner</span>
+          <span class="test-dur">22ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[functional] IconButton — loading state [fn] not loading shows icon not spinner</span>
+          <span class="test-dur">25ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[functional] IconButton — loading state [fn] loading dims via Opacity 0.38</span>
+          <span class="test-dur">22ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[functional] IconButton — loading state [fn] loading dims via Opacity 0.38</span>
+          <span class="test-dur">21ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[functional] IconButton — loading state [fn] loading dims via Opacity 0.38</span>
+          <span class="test-dur">23ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[functional] IconButton — sizes map to real container px [fn] sizeAlias=2xs → 20.0px</span>
+          <span class="test-dur">18ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[functional] IconButton — sizes map to real container px [fn] sizeAlias=2xs → 20.0px</span>
+          <span class="test-dur">19ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[functional] IconButton — sizes map to real container px [fn] sizeAlias=2xs → 20.0px</span>
+          <span class="test-dur">21ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[functional] IconButton — sizes map to real container px [fn] sizeAlias=xs → 24.0px</span>
+          <span class="test-dur">20ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[functional] IconButton — sizes map to real container px [fn] sizeAlias=xs → 24.0px</span>
+          <span class="test-dur">22ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[functional] IconButton — sizes map to real container px [fn] sizeAlias=xs → 24.0px</span>
+          <span class="test-dur">17ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[functional] IconButton — sizes map to real container px [fn] sizeAlias=s → 32.0px</span>
+          <span class="test-dur">20ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[functional] IconButton — sizes map to real container px [fn] sizeAlias=s → 32.0px</span>
+          <span class="test-dur">21ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[functional] IconButton — sizes map to real container px [fn] sizeAlias=s → 32.0px</span>
+          <span class="test-dur">20ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[functional] IconButton — sizes map to real container px [fn] sizeAlias=m → 40.0px</span>
+          <span class="test-dur">21ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[functional] IconButton — sizes map to real container px [fn] sizeAlias=m → 40.0px</span>
+          <span class="test-dur">20ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[functional] IconButton — sizes map to real container px [fn] sizeAlias=m → 40.0px</span>
+          <span class="test-dur">19ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[functional] IconButton — sizes map to real container px [fn] sizeAlias=l → 48.0px</span>
+          <span class="test-dur">19ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[functional] IconButton — sizes map to real container px [fn] sizeAlias=l → 48.0px</span>
+          <span class="test-dur">19ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[functional] IconButton — sizes map to real container px [fn] sizeAlias=l → 48.0px</span>
+          <span class="test-dur">20ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[functional] IconButton — sizes map to real container px [fn] sizeAlias=xl → 56.0px</span>
+          <span class="test-dur">19ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[functional] IconButton — sizes map to real container px [fn] sizeAlias=xl → 56.0px</span>
+          <span class="test-dur">22ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[functional] IconButton — sizes map to real container px [fn] sizeAlias=xl → 56.0px</span>
+          <span class="test-dur">23ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[functional] IconButton — sizes map to real container px [fn] sizes are strictly increasing 2xs &lt; xs &lt; s &lt; m &lt; l &lt; xl</span>
+          <span class="test-dur">81ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[functional] IconButton — sizes map to real container px [fn] sizes are strictly increasing 2xs &lt; xs &lt; s &lt; m &lt; l &lt; xl</span>
+          <span class="test-dur">50ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[functional] IconButton — sizes map to real container px [fn] sizes are strictly increasing 2xs &lt; xs &lt; s &lt; m &lt; l &lt; xl</span>
+          <span class="test-dur">45ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[functional] IconButton — condensed (contained only) [fn] condensed sizeAlias=2xs → 16.0px</span>
+          <span class="test-dur">16ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[functional] IconButton — condensed (contained only) [fn] condensed sizeAlias=2xs → 16.0px</span>
+          <span class="test-dur">16ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[functional] IconButton — condensed (contained only) [fn] condensed sizeAlias=2xs → 16.0px</span>
+          <span class="test-dur">19ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[functional] IconButton — condensed (contained only) [fn] condensed sizeAlias=xs → 20.0px</span>
+          <span class="test-dur">18ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[functional] IconButton — condensed (contained only) [fn] condensed sizeAlias=xs → 20.0px</span>
+          <span class="test-dur">15ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[functional] IconButton — condensed (contained only) [fn] condensed sizeAlias=xs → 20.0px</span>
+          <span class="test-dur">22ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[functional] IconButton — condensed (contained only) [fn] condensed sizeAlias=s → 28.0px</span>
+          <span class="test-dur">20ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[functional] IconButton — condensed (contained only) [fn] condensed sizeAlias=s → 28.0px</span>
+          <span class="test-dur">18ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[functional] IconButton — condensed (contained only) [fn] condensed sizeAlias=s → 28.0px</span>
+          <span class="test-dur">18ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[functional] IconButton — condensed (contained only) [fn] condensed sizeAlias=m → 32.0px</span>
+          <span class="test-dur">18ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[functional] IconButton — condensed (contained only) [fn] condensed sizeAlias=m → 32.0px</span>
+          <span class="test-dur">18ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[functional] IconButton — condensed (contained only) [fn] condensed sizeAlias=m → 32.0px</span>
+          <span class="test-dur">17ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[functional] IconButton — condensed (contained only) [fn] condensed sizeAlias=l → 40.0px</span>
+          <span class="test-dur">14ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[functional] IconButton — condensed (contained only) [fn] condensed sizeAlias=l → 40.0px</span>
+          <span class="test-dur">18ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[functional] IconButton — condensed (contained only) [fn] condensed sizeAlias=l → 40.0px</span>
+          <span class="test-dur">17ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[functional] IconButton — condensed (contained only) [fn] condensed sizeAlias=xl → 48.0px</span>
+          <span class="test-dur">18ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[functional] IconButton — condensed (contained only) [fn] condensed sizeAlias=xl → 48.0px</span>
+          <span class="test-dur">19ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[functional] IconButton — condensed (contained only) [fn] condensed sizeAlias=xl → 48.0px</span>
+          <span class="test-dur">17ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[functional] IconButton — condensed (contained only) [fn] condensed is smaller than regular at same size</span>
+          <span class="test-dur">22ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[functional] IconButton — condensed (contained only) [fn] condensed is smaller than regular at same size</span>
+          <span class="test-dur">21ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[functional] IconButton — condensed (contained only) [fn] condensed is smaller than regular at same size</span>
+          <span class="test-dur">22ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[functional] IconButton — condensed (contained only) [fn] uncontained ignores condensed (icon-only chrome)</span>
+          <span class="test-dur">29ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[functional] IconButton — condensed (contained only) [fn] uncontained ignores condensed (icon-only chrome)</span>
+          <span class="test-dur">23ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[functional] IconButton — condensed (contained only) [fn] uncontained ignores condensed (icon-only chrome)</span>
+          <span class="test-dur">23ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[functional] IconButton — layout + fullWidth [fn] wide layout (3:2) is wider than square</span>
+          <span class="test-dur">74ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[functional] IconButton — layout + fullWidth [fn] wide layout (3:2) is wider than square</span>
+          <span class="test-dur">25ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[functional] IconButton — layout + fullWidth [fn] wide layout (3:2) is wider than square</span>
+          <span class="test-dur">24ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[functional] IconButton — layout + fullWidth [fn] fullWidth=true is wider than square default</span>
+          <span class="test-dur">24ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[functional] IconButton — layout + fullWidth [fn] fullWidth=true is wider than square default</span>
+          <span class="test-dur">24ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[functional] IconButton — layout + fullWidth [fn] fullWidth=true is wider than square default</span>
+          <span class="test-dur">23ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[functional] IconButton — layout + fullWidth [fn] fullWidth=true fills the harness width</span>
+          <span class="test-dur">15ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[functional] IconButton — layout + fullWidth [fn] fullWidth=true fills the harness width</span>
+          <span class="test-dur">18ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[functional] IconButton — layout + fullWidth [fn] fullWidth=true fills the harness width</span>
+          <span class="test-dur">17ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[functional] IconButton — layout + fullWidth [fn] uncontained ignores fullWidth (Figma rule)</span>
+          <span class="test-dur">17ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[functional] IconButton — layout + fullWidth [fn] uncontained ignores fullWidth (Figma rule)</span>
+          <span class="test-dur">17ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[functional] IconButton — layout + fullWidth [fn] uncontained ignores fullWidth (Figma rule)</span>
+          <span class="test-dur">16ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[functional] IconButton — attention / variant fills [fn] high (bold) has opaque fill</span>
+          <span class="test-dur">16ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[functional] IconButton — attention / variant fills [fn] high (bold) has opaque fill</span>
+          <span class="test-dur">16ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[functional] IconButton — attention / variant fills [fn] high (bold) has opaque fill</span>
+          <span class="test-dur">16ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[functional] IconButton — attention / variant fills [fn] low (ghost) fill differs from high (bold)</span>
+          <span class="test-dur">21ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[functional] IconButton — attention / variant fills [fn] low (ghost) fill differs from high (bold)</span>
+          <span class="test-dur">22ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[functional] IconButton — attention / variant fills [fn] low (ghost) fill differs from high (bold)</span>
+          <span class="test-dur">21ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[functional] IconButton — attention / variant fills [fn] variant overrides attention</span>
+          <span class="test-dur">25ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[functional] IconButton — attention / variant fills [fn] variant overrides attention</span>
+          <span class="test-dur">23ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[functional] IconButton — attention / variant fills [fn] variant overrides attention</span>
+          <span class="test-dur">24ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[functional] IconButton — contained vs uncontained [fn] uncontained renders transparent default fill</span>
+          <span class="test-dur">15ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[functional] IconButton — contained vs uncontained [fn] uncontained renders transparent default fill</span>
+          <span class="test-dur">14ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[functional] IconButton — contained vs uncontained [fn] uncontained renders transparent default fill</span>
+          <span class="test-dur">28ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[functional] IconButton — contained vs uncontained [fn] contained renders opaque fill at high attention</span>
+          <span class="test-dur">16ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[functional] IconButton — contained vs uncontained [fn] contained renders opaque fill at high attention</span>
+          <span class="test-dur">18ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[functional] IconButton — contained vs uncontained [fn] contained renders opaque fill at high attention</span>
+          <span class="test-dur">17ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[functional] IconButton — custom icon widget [fn] renders custom Widget icon</span>
+          <span class="test-dur">20ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[functional] IconButton — custom icon widget [fn] renders custom Widget icon</span>
+          <span class="test-dur">16ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[functional] IconButton — custom icon widget [fn] renders custom Widget icon</span>
+          <span class="test-dur">14ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[functional] IconButton — testId [fn] testId exposes ValueKey subtree</span>
+          <span class="test-dur">18ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[functional] IconButton — testId [fn] testId exposes ValueKey subtree</span>
+          <span class="test-dur">17ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[functional] IconButton — testId [fn] testId exposes ValueKey subtree</span>
+          <span class="test-dur">18ms</span>
+        </div>
+        
+      </div></div>
+    </details>
+<details class="file-block file-pass" data-component="icon_button" open>
+      <summary class="file-summary">
+        <span class="file-icon">✓</span>
+        <span class="file-path">test/components/icon_button/icon_button_golden_dark_test.dart</span>
+        <span class="file-counts">
+          <span class="pass-count">20 passed</span>
+          
+        </span>
+        <span class="file-dur">2.29s</span>
+      </summary>
+      <div class="suite-block"><div class="test-row passed" data-component="icon_button" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden][dark] IconButton — attention × appearance high / primary (dark)</span>
+          <span class="test-dur">1194ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden][dark] IconButton — attention × appearance high / secondary (dark)</span>
+          <span class="test-dur">79ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden][dark] IconButton — attention × appearance high / neutral (dark)</span>
+          <span class="test-dur">71ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden][dark] IconButton — attention × appearance high / sparkle (dark)</span>
+          <span class="test-dur">68ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden][dark] IconButton — attention × appearance high / positive (dark)</span>
+          <span class="test-dur">64ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden][dark] IconButton — attention × appearance high / negative (dark)</span>
+          <span class="test-dur">71ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden][dark] IconButton — attention × appearance medium / primary (dark)</span>
+          <span class="test-dur">62ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden][dark] IconButton — attention × appearance medium / secondary (dark)</span>
+          <span class="test-dur">63ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden][dark] IconButton — attention × appearance medium / neutral (dark)</span>
+          <span class="test-dur">96ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden][dark] IconButton — attention × appearance medium / sparkle (dark)</span>
+          <span class="test-dur">76ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden][dark] IconButton — attention × appearance medium / positive (dark)</span>
+          <span class="test-dur">45ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden][dark] IconButton — attention × appearance medium / negative (dark)</span>
+          <span class="test-dur">42ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden][dark] IconButton — attention × appearance low / primary (dark)</span>
+          <span class="test-dur">39ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden][dark] IconButton — attention × appearance low / secondary (dark)</span>
+          <span class="test-dur">45ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden][dark] IconButton — attention × appearance low / neutral (dark)</span>
+          <span class="test-dur">79ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden][dark] IconButton — attention × appearance low / sparkle (dark)</span>
+          <span class="test-dur">43ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden][dark] IconButton — attention × appearance low / positive (dark)</span>
+          <span class="test-dur">36ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden][dark] IconButton — attention × appearance low / negative (dark)</span>
+          <span class="test-dur">38ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden][dark] IconButton — state combos disabled / high (dark)</span>
+          <span class="test-dur">38ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden][dark] IconButton — state combos loading / high (dark)</span>
+          <span class="test-dur">46ms</span>
+        </div>
+        
+      </div></div>
+    </details>
+<details class="file-block file-pass" data-component="icon_button" open>
+      <summary class="file-summary">
+        <span class="file-icon">✓</span>
+        <span class="file-path">test/components/icon_button/icon_button_golden_surface_test.dart</span>
+        <span class="file-counts">
+          <span class="pass-count">13 passed</span>
+          
+        </span>
+        <span class="file-dur">2.08s</span>
+      </summary>
+      <div class="suite-block"><div class="test-row passed" data-component="icon_button" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden][surface] IconButton — inside Surface(mode=X) surface=bold / attention=high</span>
+          <span class="test-dur">1174ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden][surface] IconButton — inside Surface(mode=X) surface=bold / attention=medium</span>
+          <span class="test-dur">95ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden][surface] IconButton — inside Surface(mode=X) surface=bold / attention=low</span>
+          <span class="test-dur">84ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden][surface] IconButton — inside Surface(mode=X) surface=subtle / attention=high</span>
+          <span class="test-dur">77ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden][surface] IconButton — inside Surface(mode=X) surface=subtle / attention=medium</span>
+          <span class="test-dur">90ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden][surface] IconButton — inside Surface(mode=X) surface=subtle / attention=low</span>
+          <span class="test-dur">77ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden][surface] IconButton — inside Surface(mode=X) surface=minimal / attention=high</span>
+          <span class="test-dur">54ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden][surface] IconButton — inside Surface(mode=X) surface=minimal / attention=medium</span>
+          <span class="test-dur">70ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden][surface] IconButton — inside Surface(mode=X) surface=minimal / attention=low</span>
+          <span class="test-dur">49ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden][surface] IconButton — inside Surface(mode=X) surface=elevated / attention=high</span>
+          <span class="test-dur">58ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden][surface] IconButton — inside Surface(mode=X) surface=elevated / attention=medium</span>
+          <span class="test-dur">91ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden][surface] IconButton — inside Surface(mode=X) surface=elevated / attention=low</span>
+          <span class="test-dur">88ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden][surface] IconButton — cross-role secondary surface secondary subtle / high attention</span>
+          <span class="test-dur">73ms</span>
+        </div>
+        
+      </div></div>
+    </details>
+<details class="file-block file-pass" data-component="icon_button" open>
+      <summary class="file-summary">
+        <span class="file-icon">✓</span>
+        <span class="file-path">test/components/icon_button/icon_button_golden_test.dart</span>
+        <span class="file-counts">
+          <span class="pass-count">24 passed</span>
+          
+        </span>
+        <span class="file-dur">1.83s</span>
+      </summary>
+      <div class="suite-block"><div class="test-row passed" data-component="icon_button" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] IconButton — core attention levels attention=high / primary</span>
+          <span class="test-dur">612ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] IconButton — core attention levels attention=medium / primary</span>
+          <span class="test-dur">49ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] IconButton — core attention levels attention=low / primary</span>
+          <span class="test-dur">61ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] IconButton — states disabled / high</span>
+          <span class="test-dur">56ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] IconButton — states loading / high</span>
+          <span class="test-dur">50ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] IconButton — layout variants condensed / high</span>
+          <span class="test-dur">39ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] IconButton — layout variants wide 3:2 / high</span>
+          <span class="test-dur">220ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] IconButton — layout variants fullWidth / high</span>
+          <span class="test-dur">49ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] IconButton — layout variants uncontained / high</span>
+          <span class="test-dur">45ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] IconButton — sizes (high / primary) size=2xs</span>
+          <span class="test-dur">40ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] IconButton — sizes (high / primary) size=xs</span>
+          <span class="test-dur">45ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] IconButton — sizes (high / primary) size=s</span>
+          <span class="test-dur">41ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] IconButton — sizes (high / primary) size=m</span>
+          <span class="test-dur">48ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] IconButton — sizes (high / primary) size=l</span>
+          <span class="test-dur">45ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] IconButton — sizes (high / primary) size=xl</span>
+          <span class="test-dur">40ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] IconButton — attention × appearance matrix (high only) high / primary</span>
+          <span class="test-dur">41ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] IconButton — attention × appearance matrix (high only) high / secondary</span>
+          <span class="test-dur">43ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] IconButton — attention × appearance matrix (high only) high / neutral</span>
+          <span class="test-dur">41ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] IconButton — attention × appearance matrix (high only) high / sparkle</span>
+          <span class="test-dur">41ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] IconButton — attention × appearance matrix (high only) high / positive</span>
+          <span class="test-dur">39ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] IconButton — attention × appearance matrix (high only) high / negative</span>
+          <span class="test-dur">43ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] IconButton — attention × appearance matrix (high only) high / warning</span>
+          <span class="test-dur">44ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] IconButton — attention × appearance matrix (high only) high / informative</span>
+          <span class="test-dur">57ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] IconButton — attention × appearance matrix (high only) high / brand-bg</span>
+          <span class="test-dur">42ms</span>
+        </div>
+        
+      </div></div>
+    </details>
+<details class="file-block file-pass" data-component="icon_button" open>
+      <summary class="file-summary">
+        <span class="file-icon">✓</span>
+        <span class="file-path">test/components/icon_button/icon_button_platform_test.dart</span>
+        <span class="file-counts">
+          <span class="pass-count">20 passed</span>
+          
+        </span>
+        <span class="file-dur">2.07s</span>
+      </summary>
+      <div class="suite-block"><div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[platform][mobile] IconButton [mobile] tap invokes onPressed</span>
+          <span class="test-dur">889ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[platform][mobile] IconButton [mobile] tap invokes onPressed</span>
+          <span class="test-dur">287ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[platform][mobile] IconButton [mobile] exposes button semantics</span>
+          <span class="test-dur">61ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[platform][mobile] IconButton [mobile] exposes button semantics</span>
+          <span class="test-dur">50ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[platform][mobile] IconButton [mobile] disabled blocks tap</span>
+          <span class="test-dur">49ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[platform][mobile] IconButton [mobile] disabled blocks tap</span>
+          <span class="test-dur">63ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[platform][mobile] IconButton [mobile] chrome is hit-testable at resolved size</span>
+          <span class="test-dur">46ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[platform][mobile] IconButton [mobile] chrome is hit-testable at resolved size</span>
+          <span class="test-dur">43ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[platform][web] IconButton [web] autofocus takes keyboard focus</span>
+          <span class="test-dur">58ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">macos</span>
+          <span class="test-name">[platform][web] IconButton [web] autofocus takes keyboard focus (macOS)</span>
+          <span class="test-dur">42ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[platform][web] IconButton [web] Space activates focused control</span>
+          <span class="test-dur">64ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">macos</span>
+          <span class="test-name">[platform][web] IconButton [web] Space activates focused control (macOS)</span>
+          <span class="test-dur">40ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[platform][web] IconButton [web] Enter activates focused control</span>
+          <span class="test-dur">54ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">macos</span>
+          <span class="test-name">[platform][web] IconButton [web] Enter activates focused control (macOS)</span>
+          <span class="test-dur">60ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[platform][web] IconButton [web] pointer tap invokes onPressed</span>
+          <span class="test-dur">40ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">macos</span>
+          <span class="test-name">[platform][web] IconButton [web] pointer tap invokes onPressed (macOS)</span>
+          <span class="test-dur">43ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[platform][web] IconButton [web] disabled is not keyboard-activatable</span>
+          <span class="test-dur">32ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">macos</span>
+          <span class="test-name">[platform][web] IconButton [web] disabled is not keyboard-activatable (macOS)</span>
+          <span class="test-dur">42ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[platform][web] IconButton [web] hover enter updates chrome (MouseRegion)</span>
+          <span class="test-dur">55ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">macos</span>
+          <span class="test-name">[platform][web] IconButton [web] hover enter updates chrome (MouseRegion) (macOS)</span>
+          <span class="test-dur">53ms</span>
+        </div>
+        
+      </div></div>
+    </details>
+<details class="file-block file-pass" data-component="icon_button" open>
+      <summary class="file-summary">
+        <span class="file-icon">✓</span>
+        <span class="file-path">test/components/icon_button/icon_button_regression_test.dart</span>
+        <span class="file-counts">
+          <span class="pass-count">14 passed</span>
+          
+        </span>
+        <span class="file-dur">1.42s</span>
+      </summary>
+      <div class="suite-block"><div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          
+          <span class="test-name">[regression][parity] IconButton [parity] [IBT-DEB-001] testId reaches Semantics.identifier</span>
+          <span class="test-dur">887ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          
+          <span class="test-name">[regression][parity] IconButton [parity] [IBT-DEB-002] size 2xs keeps 20px chrome but expands mobile hit target to 44px</span>
+          <span class="test-dur">91ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          
+          <span class="test-name">[regression][parity] IconButton [parity] attention high → bold variant</span>
+          <span class="test-dur">7ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          
+          <span class="test-name">[regression][parity] IconButton [parity] appearance auto → primary</span>
+          <span class="test-dur">4ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          
+          <span class="test-name">[regression][parity] IconButton [parity] condensed ignored when uncontained</span>
+          <span class="test-dur">5ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[regression][parity] IconButton [parity] disabled blocks tap + dims opacity</span>
+          <span class="test-dur">80ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[regression][parity] IconButton [parity] disabled blocks tap + dims opacity</span>
+          <span class="test-dur">91ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[regression][parity] IconButton [parity] disabled blocks tap + dims opacity</span>
+          <span class="test-dur">70ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[regression][parity] IconButton [parity] loading blocks tap + shows spinner</span>
+          <span class="test-dur">48ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[regression][parity] IconButton [parity] loading blocks tap + shows spinner</span>
+          <span class="test-dur">29ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[regression][parity] IconButton [parity] loading blocks tap + shows spinner</span>
+          <span class="test-dur">29ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[regression][parity] IconButton [parity] onPressed fires on tap</span>
+          <span class="test-dur">28ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[regression][parity] IconButton [parity] onPressed fires on tap</span>
+          <span class="test-dur">28ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[regression][parity] IconButton [parity] onPressed fires on tap</span>
+          <span class="test-dur">24ms</span>
+        </div>
+        
+      </div></div>
+    </details>
+<details class="file-block file-pass" data-component="icon_button" open>
+      <summary class="file-summary">
+        <span class="file-icon">✓</span>
+        <span class="file-path">test/components/icon_button/icon_button_story_catalog_test.dart</span>
+        <span class="file-counts">
+          <span class="pass-count">2 passed</span>
+          
+        </span>
+        <span class="file-dur">0.02s</span>
+      </summary>
+      <div class="suite-block"><div class="test-row passed" data-component="icon_button" data-tier="catalog">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-catalog">CATALOG</span>
+          
+          <span class="test-name">[catalog] IconButton Storybook parity [catalog] kIconButtonStoryNavOrder matches web export order</span>
+          <span class="test-dur">17ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="icon_button" data-tier="catalog">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-catalog">CATALOG</span>
+          
+          <span class="test-name">[catalog] IconButton Storybook parity [catalog] every catalog entry has a non-empty description</span>
+          <span class="test-dur">6ms</span>
+        </div>
+        
+      </div></div>
+    </details>
+  </div>
+  <div class="footer">Generated by <code>generate-html-report.mts</code> · OneUI QA Playground Flutter</div>
+  <script>
+    function applyFilters() {
+      var comp = document.getElementById('comp-filter').value;
+      var tier = document.getElementById('tier-filter').value;
+      document.querySelectorAll('.file-block').forEach(function(block) {
+        var bc = block.getAttribute('data-component');
+        var showFile = (!comp || bc === comp);
+        if (showFile && tier) {
+          var rows = block.querySelectorAll('.test-row');
+          var any = false;
+          rows.forEach(function(row) {
+            var match = row.getAttribute('data-tier') === tier;
+            row.style.display = match ? '' : 'none';
+            if (match) any = true;
+          });
+          block.style.display = any ? '' : 'none';
+        } else {
+          block.style.display = showFile ? '' : 'none';
+          block.querySelectorAll('.test-row').forEach(function(row) { row.style.display = ''; });
+        }
+      });
+    }
+  </script>
+</body>
+</html>

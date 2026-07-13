@@ -1,0 +1,69 @@
+/**
+ * DecorationSection.module.css
+ *
+ * Styles for the decoration behavioral controls.
+ * Token-only styling (zero literals).
+ */
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-3-5);
+}
+
+.controlGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-2);
+}
+
+.controlLabel {
+  font-size: var(--Label-XS-FontSize);
+  color: var(--Text-High);
+  font-weight: var(--Body-FontWeight-Medium);
+  text-transform: lowercase;
+}
+
+.chipRow {
+  display: flex;
+  gap: var(--Spacing-2);
+  flex-wrap: wrap;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--Spacing-1-5) var(--Spacing-3-5);
+  border-radius: var(--Shape-Pill);
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+  background-color: transparent;
+  color: var(--Text-Medium);
+  font-size: var(--Label-XS-FontSize);
+  cursor: pointer;
+  transition: background-color var(--Motion-Duration-Discreet-Short),
+              color var(--Motion-Duration-Discreet-Short),
+              border-color var(--Motion-Duration-Discreet-Short);
+  white-space: nowrap;
+}
+
+.chip:hover {
+  background-color: var(--Surface-Subtle);
+  color: var(--Text-High);
+}
+
+.chip[data-selected] {
+  background-color: var(--Primary-Bold, var(--Surface-Bold));
+  color: var(--Primary-Bold-High, var(--Text-OnBold-High));
+  border-color: var(--Primary-Bold, var(--Surface-Bold));
+}
+
+.chip:disabled {
+  opacity: var(--Disabled-Opacity, 0.3);
+  pointer-events: none;
+  cursor: default;
+}
+
+.controlGroup[data-disabled] .controlLabel {
+  opacity: var(--Disabled-Opacity, 0.3);
+}

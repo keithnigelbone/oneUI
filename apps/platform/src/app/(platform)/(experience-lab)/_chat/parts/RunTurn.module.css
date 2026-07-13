@@ -1,0 +1,121 @@
+/*
+ * RunTurn.module.css
+ *
+ * Token-only styling for the streaming run-turn message part (D-11, LAB-02
+ * zero-literals). The container reads as a calm `minimal` Surface section inside
+ * the assistant bubble; the Surface fill + token remapping are owned by the
+ * chat host's `<Surface>` wrapper, so this module only lays out the ticker,
+ * summary, refusal headline, and the expandable event log.
+ *
+ * Typography uses the role-explicit V2 tokens with paired line-height + weight +
+ * `font-family: var(--Typography-Font-Primary)` on every text element; the
+ * event-log rows use the Code role (`--Code-S-*` + `var(--Typography-Font-Code)`)
+ * per UI-SPEC. No legacy `--Typography-Size-*` / `--Typography-Weight-*`, no
+ * literal numbers (only `0` / `100%`).
+ *
+ * Focus Halo (CLAUDE.md): the expand toggle draws the 2-layer indicator with the
+ * inner gap via `--Surface-Halo-Gap` (NOT `--Surface-Main`) so it adapts inside
+ * `<Surface>` containers.
+ */
+
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-3);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Live ticker region (aria-live polite). AgentThinking owns its own visuals. */
+.ticker {
+  display: flex;
+  align-items: center;
+}
+
+/* Done summary — Title role, one calm line. */
+.summary {
+  margin: 0;
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Title-M-FontSize);
+  font-weight: var(--Title-M-FontWeight);
+  line-height: var(--Title-M-LineHeight);
+  color: var(--Text-High);
+}
+
+/* Refusal / error headline block (aria-live assertive). */
+.refusal {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-1);
+}
+
+.refusalHeading {
+  margin: 0;
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Title-M-FontSize);
+  font-weight: var(--Title-M-FontWeight);
+  line-height: var(--Title-M-LineHeight);
+  color: var(--Warning-High);
+}
+
+.refusalBody {
+  margin: 0;
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Body-S-FontSize);
+  font-weight: var(--Body-FontWeight-Low);
+  line-height: var(--Body-S-LineHeight);
+  color: var(--Text-Medium);
+}
+
+/* Expandable run-detail section. */
+.detail {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-2);
+}
+
+.detailToggle {
+  align-self: flex-start;
+  background: transparent;
+  border: 0;
+  padding: var(--Spacing-1) var(--Spacing-2);
+  border-radius: var(--Shape-3);
+  cursor: pointer;
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Label-S-FontSize);
+  font-weight: var(--Label-FontWeight-Medium);
+  line-height: var(--Label-S-LineHeight);
+  color: var(--Primary-TintedA11y);
+}
+
+.detailToggle:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 var(--Stroke-XL) var(--Surface-Halo-Gap, var(--Surface-Main)),
+    0 0 0 var(--Focus-Outline-Width) var(--Focus-Outline);
+}
+
+/* The structured event log — Code typography role (monospace). */
+.eventLog {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-2);
+}
+
+.eventRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--Spacing-2);
+}
+
+.eventLabel {
+  font-family: var(--Typography-Font-Code);
+  font-size: var(--Code-S-FontSize);
+  font-weight: var(--Code-FontWeight-Medium);
+  line-height: var(--Code-S-LineHeight);
+  color: var(--Text-High);
+}

@@ -1,0 +1,220 @@
+/*
+ * AgentWorkbench.module.css
+ *
+ * Token-only workbench cards for the Experience Lab run transcript. The cards
+ * sit inside ChatSurface; tinted panels use <Surface> in TSX, so this file only
+ * handles layout, typography, and focus-safe structure.
+ */
+
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-3);
+  width: 100%;
+  box-sizing: border-box;
+  min-width: 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--Spacing-3);
+  min-width: 0;
+}
+
+.statusCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-2);
+  padding: var(--Spacing-3);
+  border-radius: var(--Shape-4);
+  min-width: 0;
+  min-height: var(--Spacing-12);
+}
+
+.compactStatus {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--Spacing-2);
+  min-width: 0;
+}
+
+.detailsSummary {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-1);
+  min-width: 0;
+}
+
+.statusTitle {
+  margin: 0;
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Title-M-FontSize);
+  font-weight: var(--Title-M-FontWeight);
+  line-height: var(--Title-M-LineHeight);
+  color: var(--Text-High);
+  overflow-wrap: anywhere;
+}
+
+.loadingDots {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--Spacing-1);
+}
+
+.loadingDots span {
+  width: var(--Spacing-1);
+  height: var(--Spacing-1);
+  border-radius: var(--Shape-Pill);
+  background: var(--Primary-Subtle);
+  animation: lab-dot-pulse var(--Motion-Duration-3XL) var(--Motion-Easing-Transition-Moderate)
+    infinite;
+}
+
+.loadingDots span:nth-child(1) {
+  --_lab-dot-rest: var(--Primary-Subtle);
+  --_lab-dot-active: var(--Primary-Bold);
+}
+
+.loadingDots span:nth-child(2) {
+  --_lab-dot-rest: var(--Secondary-Subtle);
+  --_lab-dot-active: var(--Secondary-Bold);
+  animation-delay: var(--Motion-Duration-XS);
+}
+
+.loadingDots span:nth-child(3) {
+  --_lab-dot-rest: var(--Sparkle-Subtle);
+  --_lab-dot-active: var(--Sparkle-Bold);
+  animation-delay: var(--Motion-Duration-S);
+}
+
+.progressMeta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--Spacing-2);
+}
+
+.detailsPanel {
+  width: min(calc(var(--Spacing-40) * 2), 90vw);
+  max-height: var(--available-height);
+  min-width: 0;
+  overflow: auto;
+}
+
+.detailsPopup {
+  --Popover-Max-Width: min(calc(var(--Spacing-40) * 2), 90vw);
+  padding: var(--Spacing-3);
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-2);
+  padding: var(--Spacing-3);
+  border-radius: var(--Shape-3);
+  min-width: 0;
+}
+
+.wideCard {
+  grid-column: 1 / -1;
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--Spacing-2);
+}
+
+.title {
+  margin: 0;
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Title-M-FontSize);
+  font-weight: var(--Title-M-FontWeight);
+  line-height: var(--Title-M-LineHeight);
+  color: var(--Text-High);
+  overflow-wrap: anywhere;
+}
+
+.body {
+  margin: 0;
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Body-S-FontSize);
+  font-weight: var(--Body-FontWeight-Low);
+  line-height: var(--Body-S-LineHeight);
+  color: var(--Text-Medium);
+  overflow-wrap: anywhere;
+}
+
+.meta {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Label-XS-FontSize);
+  font-weight: var(--Label-FontWeight-Low);
+  line-height: var(--Label-XS-LineHeight);
+  color: var(--Text-Medium);
+}
+
+.label {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Label-S-FontSize);
+  font-weight: var(--Label-FontWeight-Medium);
+  line-height: var(--Label-S-LineHeight);
+  color: var(--Text-High);
+  overflow-wrap: anywhere;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--Spacing-2);
+  min-width: 0;
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-1);
+}
+
+.progressTrack {
+  width: 100%;
+  height: var(--Spacing-1);
+  border-radius: var(--Shape-Pill);
+  overflow: hidden;
+  background: var(--Surface-Fill-Subtle, var(--Surface-Subtle));
+}
+
+.progressFill {
+  height: 100%;
+  border-radius: var(--Shape-Pill);
+  background: var(--Primary-Bold);
+}
+
+@keyframes lab-dot-pulse {
+  0%,
+  100% {
+    background: var(--_lab-dot-rest, var(--Primary-Subtle));
+  }
+
+  50% {
+    background: var(--_lab-dot-active, var(--Primary-Bold));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loadingDots span {
+    animation: none;
+  }
+}

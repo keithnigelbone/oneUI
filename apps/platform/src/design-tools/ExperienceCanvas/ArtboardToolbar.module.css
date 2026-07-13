@@ -1,0 +1,139 @@
+/**
+ * ArtboardToolbar.module.css
+ *
+ * Floating pill toolbar that sits above the hovered/renamed artboard.
+ * The wrapper is positioned at the horizontal CENTRE of the artboard so all
+ * children self-centre via translate(-50%). Idle label shows while selected
+ * but not hovered; the full pill appears on hover.
+ */
+
+.toolbarWrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 450;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.toolbarWrapper > * {
+  pointer-events: auto;
+}
+
+/* ── Idle label — visible when selected but not hovered ─────────────────── */
+
+/* INTENTIONAL-LITERAL: max-width is a content-clamp with no f-step equivalent */
+.idleLabel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(-50%, calc(-100% - var(--Spacing-2-5)));
+  font-family: var(--Label-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Low);
+  color: var(--Text-Low);
+  white-space: nowrap;
+  pointer-events: none;
+  max-width: 280px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ── Full pill — visible on hover ───────────────────────────────────────── */
+
+/* INTENTIONAL-LITERAL: max-width is a viewport-relative content clamp */
+.pill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--Spacing-2);
+  padding: var(--Spacing-1-5) var(--Spacing-2) var(--Spacing-1-5) var(--Spacing-2-5);
+  /*
+   * Float the pill clearly above the artboard so it never overlaps the
+   * frame content. --Spacing-4 gives a consistent gap regardless of
+   * zoom or device icon size.
+   */
+  transform: translate(-50%, calc(-100% - var(--Spacing-4)));
+  background: var(--Surface-Elevated, var(--Surface-Main));
+  color: var(--Text-High);
+  border-radius: var(--Shape-Pill);
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+  box-shadow: var(--Elevation-2, 0 2px 12px rgba(0, 0, 0, 0.08));
+  font-family: var(--Label-FontFamily, var(--Typography-Font-Text));
+  max-width: min(420px, 80vw);
+  white-space: nowrap;
+}
+
+.deviceIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--Spacing-5);
+  height: var(--Spacing-5);
+  color: var(--Text-Medium);
+  border-radius: var(--Shape-Pill);
+  background: var(--Neutral-Subtle);
+  flex-shrink: 0;
+}
+
+/* Wrapper around the name Button so we can catch onDoubleClick for rename. */
+/* INTENTIONAL-LITERAL: max-width is a content-clamp with no f-step equivalent */
+.nameWrap {
+  display: inline-flex;
+  max-width: 220px;
+}
+
+/* INTENTIONAL-LITERAL: max-width is a content-clamp with no f-step equivalent */
+.nameButton {
+  max-width: 220px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* INTENTIONAL-LITERAL: min-width is a content-clamp with no f-step equivalent */
+.nameInput {
+  min-width: 160px;
+}
+
+.divider {
+  width: var(--Stroke-S);
+  height: var(--Spacing-4);
+  background: var(--Border-Subtle);
+  flex-shrink: 0;
+  margin: 0 var(--Spacing-1-5);
+}
+
+/* ── Toast ──────────────────────────────────────────────────────────────── */
+
+.toast {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(-50%, var(--Spacing-3));
+  padding: var(--Spacing-2) var(--Spacing-4);
+  background: var(--Surface-Elevated);
+  color: var(--Text-High);
+  border-radius: var(--Shape-Pill);
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+  box-shadow: var(--Elevation-2);
+  font-family: var(--Label-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  white-space: nowrap;
+  animation: oneui-artboard-toast-in var(--Motion-Duration-Discreet-Short, 180ms) ease-out;
+}
+
+@keyframes oneui-artboard-toast-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, calc(var(--Spacing-3) + var(--Spacing-2-5)));
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, var(--Spacing-3));
+  }
+}

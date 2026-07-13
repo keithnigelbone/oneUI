@@ -1,0 +1,304 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Radio",
+  "generatedAt": "2026-07-09T13:07:37.409Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "Single-selection control (leaf). Controlled via `checked` / uncontrolled via `defaultChecked`; mutual exclusion is owned by the parent (RadioField). `appearance=\"auto\"` → secondary stack; dot + ring resolve against the parent <Surface>."
+  },
+  "compositionRules": {
+    "requires": [],
+    "allows": [],
+    "forbids": [],
+    "childKind": "leaf"
+  },
+  "props": [
+    {
+      "name": "value",
+      "type": "string",
+      "required": false,
+      "description": "Option identifier read by RadioField to map the selected value."
+    },
+    {
+      "name": "label",
+      "type": "string",
+      "required": false,
+      "description": "Visible label; takes precedence over children. Becomes the accessible name."
+    },
+    {
+      "name": "description",
+      "type": "string",
+      "required": false,
+      "description": "Plain-text supplementary copy below the label row."
+    },
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Option label when `label` is omitted."
+    },
+    {
+      "name": "checked",
+      "type": "boolean",
+      "required": false,
+      "description": "Checked state (controlled)."
+    },
+    {
+      "name": "defaultChecked",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": "Initial checked state (uncontrolled)."
+    },
+    {
+      "name": "onChange",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Called when a press would change the checked state (intended next value)."
+    },
+    {
+      "name": "onPress",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Raw press handler — fires before onChange."
+    },
+    {
+      "name": "size",
+      "type": "'s' | 'm' | 'l'",
+      "required": false,
+      "defaultValue": "m",
+      "description": ""
+    },
+    {
+      "name": "appearance",
+      "type": "'auto' | 'primary' | 'secondary' | 'neutral' | 'sparkle' | 'brand-bg' | 'positive' | 'negative' | 'warning' | 'informative'",
+      "required": false,
+      "defaultValue": "auto",
+      "description": "Multi-accent role for ring + dot, resolved against the parent <Surface>. 'auto' → secondary."
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "readOnly",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": "Focusable but cannot be toggled."
+    },
+    {
+      "name": "errorHighlight",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "aria-describedby",
+      "type": "string",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "backgroundColor",
+      "type": "string",
+      "required": false,
+      "description": "[error] Don't paint directly. Use `appearance` (role) + `variant`/`mode` and wrap in <Surface mode>; the brand cascade picks the right fill."
+    },
+    {
+      "name": "style",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Layout style only. Paint is driven by appearance + the parent <Surface>. — [warn] Don't paint the Radio. Use `appearance`; the surface cascade resolves ring + dot."
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.kb.rn.Radio",
+    "type": "object",
+    "properties": {
+      "value": {
+        "type": "string",
+        "description": "Option identifier read by RadioField to map the selected value."
+      },
+      "label": {
+        "type": "string",
+        "description": "Visible label; takes precedence over children. Becomes the accessible name."
+      },
+      "description": {
+        "type": "string",
+        "description": "Plain-text supplementary copy below the label row."
+      },
+      "children": {
+        "description": "Option label when `label` is omitted."
+      },
+      "checked": {
+        "type": "boolean",
+        "description": "Checked state (controlled)."
+      },
+      "defaultChecked": {
+        "type": "boolean",
+        "default": false,
+        "description": "Initial checked state (uncontrolled)."
+      },
+      "onChange": {
+        "description": "Called when a press would change the checked state (intended next value)."
+      },
+      "onPress": {
+        "description": "Raw press handler — fires before onChange."
+      },
+      "size": {
+        "enum": [
+          "s",
+          "m",
+          "l"
+        ],
+        "default": "m"
+      },
+      "appearance": {
+        "enum": [
+          "auto",
+          "primary",
+          "secondary",
+          "neutral",
+          "sparkle",
+          "brand-bg",
+          "positive",
+          "negative",
+          "warning",
+          "informative"
+        ],
+        "default": "auto",
+        "description": "Multi-accent role for ring + dot, resolved against the parent <Surface>. 'auto' → secondary."
+      },
+      "disabled": {
+        "type": "boolean",
+        "default": false
+      },
+      "readOnly": {
+        "type": "boolean",
+        "default": false,
+        "description": "Focusable but cannot be toggled."
+      },
+      "errorHighlight": {
+        "type": "boolean",
+        "default": false
+      },
+      "aria-label": {
+        "type": "string"
+      },
+      "aria-describedby": {
+        "type": "string"
+      },
+      "backgroundColor": {
+        "type": "string",
+        "not": {
+          "anyOf": [
+            {
+              "pattern": "^#"
+            },
+            {
+              "pattern": "^rgba?\\("
+            },
+            {
+              "pattern": "^hsla?\\("
+            },
+            {
+              "pattern": "^oklch\\("
+            },
+            {
+              "pattern": "^color-mix\\("
+            },
+            {
+              "enum": [
+                "transparent",
+                "inherit"
+              ]
+            }
+          ]
+        },
+        "x-jds-suggestion": "Don't paint directly. Use `appearance` (role) + `variant`/`mode` and wrap in <Surface mode>; the brand cascade picks the right fill.",
+        "x-jds-severity": "error"
+      },
+      "style": {
+        "description": "Layout style only. Paint is driven by appearance + the parent <Surface>.",
+        "x-jds-suggestion": "Don't paint the Radio. Use `appearance`; the surface cascade resolves ring + dot.",
+        "x-jds-severity": "warn"
+      }
+    }
+  },
+  "tokens": {
+    "color": [
+      "primary",
+      "secondary",
+      "neutral",
+      "sparkle",
+      "brand-bg",
+      "positive",
+      "negative",
+      "warning",
+      "informative"
+    ],
+    "surface": [
+      "bold"
+    ],
+    "typography": [
+      "label.S",
+      "label.M",
+      "label.L"
+    ]
+  },
+  "a11y": {
+    "accessibilityRole": "radio",
+    "accessibilityState": [
+      "selected",
+      "disabled"
+    ],
+    "accessibleNameSource": "aria-label",
+    "minTouchTarget": 44,
+    "honorsBoldText": true,
+    "honorsScreenReader": true
+  },
+  "renderHints": {
+    "baseElement": "Pressable",
+    "animatedOn": [],
+    "honorsReduceMotion": false,
+    "readsFromSurfaceContext": true
+  },
+  "figma": {
+    "componentKey": "jds-radio-v4",
+    "keyHistory": [],
+    "variantProperties": {
+      "Component": "Radio"
+    }
+  },
+  "codeSnippets": [
+    {
+      "id": "import-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { Radio } from '@oneui/ui-native';\n\n<Radio />"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "radio",
+    "form",
+    "selection",
+    "control",
+    "surface-aware"
+  ],
+  "importPath": "@oneui/ui-native"
+}

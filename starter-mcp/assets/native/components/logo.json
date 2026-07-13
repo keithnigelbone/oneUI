@@ -1,0 +1,213 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Logo",
+  "generatedAt": "2026-07-09T13:07:37.415Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "Brand mark / full logo. Content from children (svg node) / svgContent (string) / src (image). `alt` required — meaningful = image|button role, empty = decorative (hidden). Optional interactive (tappable) mode. Five sizes + custom."
+  },
+  "compositionRules": {
+    "requires": [
+      "alt"
+    ],
+    "allows": [],
+    "forbids": [],
+    "childKind": "leaf"
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "mark"
+      },
+      {
+        "name": "full"
+      }
+    ]
+  },
+  "props": [
+    {
+      "name": "variant",
+      "type": "'mark' | 'full'",
+      "required": false,
+      "defaultValue": "mark",
+      "description": ""
+    },
+    {
+      "name": "size",
+      "type": "'xs' | 's' | 'm' | 'l' | 'xl' | 'custom'",
+      "required": false,
+      "defaultValue": "m",
+      "description": "Figma XS–XL aliases accepted; canonicalised to lowercase."
+    },
+    {
+      "name": "customSize",
+      "type": "number",
+      "required": false,
+      "description": "Pixel box size — required when size=\"custom\"."
+    },
+    {
+      "name": "alt",
+      "type": "string",
+      "required": true,
+      "description": "REQUIRED. Meaningful text → image/button role; empty/whitespace → decorative (hidden from assistive tech)."
+    },
+    {
+      "name": "src",
+      "type": "string",
+      "required": false,
+      "description": "Image URL (image content mode)."
+    },
+    {
+      "name": "svgContent",
+      "type": "string",
+      "required": false,
+      "description": "Raw SVG markup string (svg content mode)."
+    },
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "required": false,
+      "description": "SVG node content mode (wins over svgContent / src)."
+    },
+    {
+      "name": "fallback",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Shown when the image/svg fails to load."
+    },
+    {
+      "name": "interactive",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": "Tappable — requires a handler AND a meaningful alt, else renders static."
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "onPress",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Press handler when interactive."
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.kb.rn.Logo",
+    "type": "object",
+    "properties": {
+      "variant": {
+        "enum": [
+          "mark",
+          "full"
+        ],
+        "default": "mark"
+      },
+      "size": {
+        "enum": [
+          "xs",
+          "s",
+          "m",
+          "l",
+          "xl",
+          "custom"
+        ],
+        "default": "m",
+        "description": "Figma XS–XL aliases accepted; canonicalised to lowercase."
+      },
+      "customSize": {
+        "type": "number",
+        "description": "Pixel box size — required when size=\"custom\"."
+      },
+      "alt": {
+        "type": "string",
+        "description": "REQUIRED. Meaningful text → image/button role; empty/whitespace → decorative (hidden from assistive tech)."
+      },
+      "src": {
+        "type": "string",
+        "description": "Image URL (image content mode)."
+      },
+      "svgContent": {
+        "type": "string",
+        "description": "Raw SVG markup string (svg content mode)."
+      },
+      "children": {
+        "description": "SVG node content mode (wins over svgContent / src)."
+      },
+      "fallback": {
+        "description": "Shown when the image/svg fails to load."
+      },
+      "interactive": {
+        "type": "boolean",
+        "default": false,
+        "description": "Tappable — requires a handler AND a meaningful alt, else renders static."
+      },
+      "disabled": {
+        "type": "boolean",
+        "default": false
+      },
+      "onPress": {
+        "description": "Press handler when interactive."
+      }
+    },
+    "required": [
+      "alt"
+    ]
+  },
+  "tokens": {
+    "color": [
+      "brand-bg",
+      "neutral"
+    ],
+    "surface": [
+      "bold"
+    ]
+  },
+  "a11y": {
+    "accessibilityRole": "image",
+    "accessibilityState": [
+      "disabled"
+    ],
+    "accessibleNameSource": "aria-label",
+    "minTouchTarget": 44,
+    "honorsBoldText": false,
+    "honorsScreenReader": true
+  },
+  "renderHints": {
+    "baseElement": "View",
+    "animatedOn": [],
+    "honorsReduceMotion": false,
+    "readsFromSurfaceContext": true
+  },
+  "figma": {
+    "componentKey": "jds-logo-v4",
+    "keyHistory": [],
+    "variantProperties": {
+      "Component": "Logo"
+    }
+  },
+  "codeSnippets": [
+    {
+      "id": "import-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { Logo } from '@oneui/ui-native';\n\n<Logo />"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "logo",
+    "display",
+    "brand",
+    "media",
+    "surface-aware"
+  ],
+  "importPath": "@oneui/ui-native"
+}

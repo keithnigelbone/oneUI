@@ -1,0 +1,117 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "CarouselControls",
+  "generatedAt": "2026-07-09T13:07:37.430Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "Carousel controls row — dots + optional prev/next/play buttons, placed below the rail or floating onMedia."
+  },
+  "compositionRules": {
+    "requires": [
+      "children"
+    ],
+    "allows": [],
+    "forbids": [],
+    "childKind": "fixed-slots"
+  },
+  "props": [
+    {
+      "name": "placement",
+      "type": "'below' | 'onMedia'",
+      "required": false,
+      "defaultValue": "below",
+      "description": ""
+    },
+    {
+      "name": "layout",
+      "type": "'center' | 'split'",
+      "required": false,
+      "defaultValue": "center",
+      "description": ""
+    },
+    {
+      "name": "paginationAlign",
+      "type": "'start' | 'middle' | 'end'",
+      "required": false,
+      "description": "onMedia only."
+    },
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "required": true,
+      "description": "CarouselIndicatorList + optional CarouselPrevButton/CarouselNextButton/CarouselPlayButton."
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.kb.rn.CarouselControls",
+    "type": "object",
+    "required": [
+      "children"
+    ],
+    "properties": {
+      "placement": {
+        "enum": [
+          "below",
+          "onMedia"
+        ],
+        "default": "below"
+      },
+      "layout": {
+        "enum": [
+          "center",
+          "split"
+        ],
+        "default": "center"
+      },
+      "paginationAlign": {
+        "enum": [
+          "start",
+          "middle",
+          "end"
+        ],
+        "description": "onMedia only."
+      },
+      "children": {
+        "description": "CarouselIndicatorList + optional CarouselPrevButton/CarouselNextButton/CarouselPlayButton."
+      }
+    }
+  },
+  "tokens": {
+    "spacing": []
+  },
+  "a11y": {
+    "accessibilityRole": "none",
+    "accessibleNameSource": "children",
+    "minTouchTarget": 44,
+    "honorsBoldText": false,
+    "honorsScreenReader": true
+  },
+  "renderHints": {
+    "baseElement": "View",
+    "animatedOn": [],
+    "honorsReduceMotion": false,
+    "readsFromSurfaceContext": true
+  },
+  "figma": {
+    "componentKey": "jds-carousel-controls-v1",
+    "keyHistory": []
+  },
+  "codeSnippets": [
+    {
+      "id": "import-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { CarouselControls } from '@oneui/ui-native';\n\n<CarouselControls />"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "carouselcontrols",
+    "carousel",
+    "compound"
+  ],
+  "importPath": "@oneui/ui-native"
+}

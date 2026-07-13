@@ -1,0 +1,19 @@
+---
+title: OneUI Design System
+description: Centralized, multi-brand documentation for consuming OneUI web components.
+---
+
+OneUI is the multi-brand design system behind the Jio web alpha package. These docs centralize the release runbook, AI component playbook, generated component metadata, and live brand previews in one place.
+
+<BrandAwareExample />
+
+## What adopters get
+
+- Published packages: `@oneui/ui`, `@oneui/tokens`, and `@oneui/shared`.
+- Path-importable web components from the Jio web alpha catalog.
+- Runtime brand CSS so the same component API can adapt across brands.
+- Surface context rules that keep contrast correct on branded, colored, and dark backgrounds.
+
+## Source of truth
+
+The supported component list comes from `packages/ui/src/registry/jioAlphaCatalog.ts`. Generated component specs come from `docs/components/generated/*.docs.json`. Release and AI usage guidance is mirrored from the existing root docs so adopters and agents read the same rules.

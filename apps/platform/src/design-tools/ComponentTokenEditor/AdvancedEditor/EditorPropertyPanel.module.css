@@ -1,0 +1,259 @@
+/**
+ * EditorPropertyPanel.module.css
+ *
+ * Compact right-side property panel for the Advanced Editor.
+ * 320px width, focused on token editing with minimal padding.
+ * Token-only styling (zero literals).
+ */
+
+/* INTENTIONAL-LITERAL: panel geometry constant — no dimension token covers fixed sidebar widths */
+.panel {
+  width: 360px;
+  height: 100%;
+  background-color: var(--Surface-Main);
+  border-left: var(--Stroke-M) solid var(--Border-Subtle);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+/* Panel Header */
+.panelHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-3);
+  padding: var(--Spacing-3-5) var(--Spacing-4);
+  border-bottom: var(--Stroke-M) solid var(--Border-Subtle);
+  flex-shrink: 0;
+}
+
+.headerTitle {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-1-5);
+  min-width: 0;
+}
+
+.componentName {
+  font-size: var(--Body-M-FontSize);
+  font-weight: var(--Body-FontWeight-High);
+  color: var(--Text-High);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tokenCount {
+  font-size: var(--Label-XS-FontSize);
+  color: var(--Text-Low);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: color var(--Motion-Duration-Discreet-Short);
+}
+
+.tokenCount:hover {
+  color: var(--Text-Medium);
+}
+
+.dirtyIndicator {
+  font-size: var(--Body-L-FontSize);
+  color: var(--Surface-Bold);
+  line-height: 1;
+}
+
+/* Sync status indicator (auto-save) */
+.syncStatus {
+  font-size: var(--Label-2XS-FontSize);
+  font-weight: var(--Body-FontWeight-Medium);
+  color: var(--Text-Low);
+  padding: var(--Spacing-1-5) var(--Spacing-3);
+  border-radius: var(--Shape-Pill);
+  background-color: var(--Surface-Ghost);
+  white-space: nowrap;
+}
+
+.syncStatus[data-status='saving'] {
+  color: var(--Text-Medium);
+  background-color: var(--Surface-Subtle);
+}
+
+.syncStatus[data-status='dirty'] {
+  font-size: var(--Body-L-FontSize);
+  color: var(--Surface-Bold);
+  background-color: transparent;
+  padding: 0;
+  line-height: 1;
+}
+
+/* Actions Menu */
+.menuWrapper {
+  position: relative;
+}
+
+.menuButton {
+  --IconButton-containerSize-6-condensed: var(--Spacing-4-5);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--Spacing-4-5);
+  height: var(--Spacing-4-5);
+  border-radius: var(--Shape-3-5);
+  border: none;
+  background-color: transparent;
+  color: var(--Text-Medium);
+  cursor: pointer;
+  transition: all var(--Motion-Duration-Discreet-Short);
+}
+
+.menuButton:hover {
+  background-color: var(--Surface-Ghost);
+  color: var(--Text-High);
+}
+
+.menuDropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: var(--Spacing-2);
+  /* INTENTIONAL-LITERAL: dropdown min-width — layout geometry with no dimension token mapping */
+  min-width: 120px;
+  background-color: var(--Surface-Main);
+  border: 1px solid var(--Border-Subtle);
+  border-radius: var(--Shape-4);
+  box-shadow: var(--Elevation-3);
+  padding: var(--Spacing-2);
+  z-index: 100;
+}
+
+.menuItem {
+  --Button-condensedMinHeight-8: var(--Spacing-6);
+  --Button-condensedPaddingHorizontal-8: var(--Spacing-3-5);
+  --Button-condensedPaddingVertical-8: var(--Spacing-2);
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--Spacing-3);
+  width: 100%;
+  padding: var(--Spacing-3) var(--Spacing-3-5);
+  border: none;
+  border-radius: var(--Shape-3-5);
+  background-color: transparent;
+  color: var(--Text-High);
+  font-size: var(--Body-S-FontSize);
+  cursor: pointer;
+  transition: background-color var(--Motion-Duration-Discreet-Short);
+  text-align: left;
+}
+
+.menuItem:hover:not(:disabled) {
+  background-color: var(--Surface-Subtle);
+}
+
+.menuItem:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Preview Configuration - Two Column Grid Layout */
+.previewGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--Spacing-4) var(--Spacing-3-5);
+}
+
+.previewColumn {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-3-5);
+}
+
+.previewControlGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-2);
+}
+
+.previewControlGroup + .previewControlGroup {
+  margin-top: var(--Spacing-3-5);
+}
+
+.previewControlLabel {
+  font-size: var(--Label-XS-FontSize);
+  font-weight: var(--Body-FontWeight-Medium);
+  color: var(--Text-High);
+  text-transform: lowercase;
+}
+
+/* Typography font selector within token section */
+.typographyFontInSection {
+  margin-bottom: var(--Spacing-3);
+}
+
+/* Surface Controls Inline - appears below other controls when surfaces mode is active */
+.surfaceControlsInline {
+  margin-top: var(--Spacing-3);
+}
+
+/* Content Area - Scrollable */
+.content {
+  flex: 1;
+  overflow-y: auto;
+  /* No horizontal padding - sections handle their own */
+  padding: 0;
+  min-height: 0;
+  /* Hide scrollbar until hover */
+  scrollbar-width: none;
+}
+
+/* INTENTIONAL-LITERAL: webkit scrollbar thumb width — sub-token precision, no Spacing token at this scale */
+.content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.content::-webkit-scrollbar-thumb {
+  background: transparent;
+  border-radius: var(--Shape-Pill);
+}
+
+.content:hover::-webkit-scrollbar-thumb {
+  background: var(--Border-Subtle);
+}
+
+.content:hover {
+  scrollbar-width: thin;
+}
+
+/* Section Divider - same style as Shell dividers */
+.sectionDivider {
+  width: 100%;
+  height: var(--Stroke-M);
+  background-color: var(--Border-Subtle);
+  flex-shrink: 0;
+}
+
+/* Token List */
+.tokenList {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Two-column layout for compact tokens */
+.tokenListTwoColumn {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--Spacing-2) var(--Spacing-2-5);
+}
+
+.tokenListTwoColumn > * {
+  padding: var(--Spacing-1-5) 0;
+}

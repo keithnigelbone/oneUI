@@ -1,0 +1,65 @@
+/**
+ * PlatformSyncIndicator.module.css
+ * Sync status and controls for typography/spacing
+ */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-4);
+}
+
+.syncRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--Spacing-3-5) var(--Spacing-4);
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+  border-radius: var(--Shape-4);
+  background-color: var(--Surface-Main);
+}
+
+.syncLabel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-2);
+}
+
+.syncTitle {
+  font-size: var(--Body-S-FontSize);
+  font-weight: var(--Body-FontWeight-Medium);
+  color: var(--Text-High);
+}
+
+.syncDescription {
+  font-size: var(--Label-XS-FontSize);
+  color: var(--Text-Low);
+}
+
+.syncButton {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-3);
+  padding: var(--Spacing-3) var(--Spacing-4);
+  border: none;
+  border-radius: var(--Shape-4);
+  background-color: var(--Surface-Bold);
+  color: var(--Text-OnBold-High);
+  font-size: var(--Body-S-FontSize);
+  font-family: inherit;
+  cursor: pointer;
+  transition: opacity var(--Motion-Duration-Discreet-Short) var(--Motion-Easing-Standard);
+}
+
+.syncButton:hover {
+  opacity: 0.85;
+}
+
+.syncButton:disabled {
+  opacity: var(--Disabled-Opacity);
+  cursor: not-allowed;
+}
+
+.syncButtonSyncing {
+  cursor: wait;
+}

@@ -1,0 +1,323 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "WebHeader",
+  "generatedAt": "2026-01-01T00:00:00.000Z",
+  "machineReadable": true,
+  "intentAndPurpose": {
+    "intent": {
+      "value": "Responsive web navigation header with primary nav bar, secondary nav tabs, mobile drawer, search, and scroll-based show/hide.",
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "taskContexts": {
+      "value": [
+        "header",
+        "navigation",
+        "nav",
+        "topbar",
+        "menu",
+        "responsive",
+        "drawer",
+        "search"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "sentiments": {
+      "value": [
+        "neutral"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "compositionRules": {
+    "requires": {
+      "value": [],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "allows": {
+      "value": [
+        "logo",
+        "avatar",
+        "end",
+        "children",
+        "start",
+        "end"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "forbids": {
+      "value": [],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "default",
+        "useWhen": {
+          "value": [
+            "Default"
+          ],
+          "attribution": {
+            "source": "inferred"
+          }
+        }
+      },
+      {
+        "name": "transparent",
+        "useWhen": {
+          "value": [
+            "Transparent"
+          ],
+          "attribution": {
+            "source": "inferred"
+          }
+        }
+      },
+      {
+        "name": "glass",
+        "useWhen": {
+          "value": [
+            "Glass"
+          ],
+          "attribution": {
+            "source": "inferred"
+          }
+        }
+      }
+    ]
+  },
+  "relationshipsAndDependencies": {
+    "related": {
+      "value": [],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "contextSignals": {
+    "density": {
+      "value": [
+        "compact",
+        "default",
+        "open"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "modality": {
+      "value": [
+        "desktop",
+        "mobile"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "brand": {
+      "value": [
+        "theme-scope aware",
+        "recipe-driven"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "mode": {
+      "value": [
+        "light",
+        "dark"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "observabilityHooks": {
+    "track": {
+      "value": [],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "health": {
+      "value": [
+        "a11y_violations"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "props": [
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "required": true,
+      "description": "PrimaryNav + SecondaryNav children"
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": false,
+      "description": "Accessible name for the banner landmark. Only apply when this `WebHeader` is the top-level page banner (i.e. a direct child of `<body>`, not nested inside another sectioning element). Pass a short descriptor such as \"Main site header\" when the default implicit banner name is not descriptive enough. Note: do NOT set this when the header is rendered inside a `<section>`, `<article>`, `<main>`, `<nav>`, or `<aside>` — nesting strips the implicit `banner` role and `aria-label` becomes a prohibited attribute on the now role-less `<header>`."
+    },
+    {
+      "name": "aria-labelledby",
+      "type": "string",
+      "required": false,
+      "description": "IDREF of a visible element that labels the banner landmark."
+    },
+    {
+      "name": "breakpoint",
+      "type": "WebHeaderBreakpoint",
+      "required": false,
+      "description": "Override breakpoint (auto-detected by default)"
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "required": false,
+      "description": "Additional class name"
+    },
+    {
+      "name": "style",
+      "type": "CSSProperties",
+      "required": false,
+      "description": "Inline styles"
+    },
+    {
+      "name": "variant",
+      "type": "WebHeaderVariant",
+      "required": false,
+      "description": "Header variant controlling position and background"
+    }
+  ],
+  "slots": [
+    {
+      "name": "logo",
+      "types": [
+        "Logo"
+      ],
+      "tokens": []
+    },
+    {
+      "name": "avatar",
+      "types": [
+        "Avatar"
+      ],
+      "tokens": []
+    },
+    {
+      "name": "end",
+      "types": [
+        "IconButton"
+      ],
+      "tokens": []
+    },
+    {
+      "name": "children",
+      "types": [
+        "HeaderItem"
+      ],
+      "tokens": []
+    },
+    {
+      "name": "start",
+      "types": [
+        "Icon",
+        "Avatar",
+        "CounterBadge",
+        "IndicatorBadge"
+      ],
+      "tokens": []
+    },
+    {
+      "name": "end",
+      "types": [
+        "Icon",
+        "Avatar",
+        "CounterBadge",
+        "IndicatorBadge"
+      ],
+      "tokens": []
+    }
+  ],
+  "propsSchema": {
+    "$id": "jds.docs.web-header",
+    "type": "object",
+    "properties": {
+      "children": {
+        "description": "PrimaryNav + SecondaryNav children"
+      },
+      "aria-label": {
+        "type": "string",
+        "description": "Accessible name for the banner landmark. Only apply when this `WebHeader` is the top-level page banner (i.e. a direct child of `<body>`, not nested inside another sectioning element). Pass a short descriptor such as \"Main site header\" when the default implicit banner name is not descriptive enough. Note: do NOT set this when the header is rendered inside a `<section>`, `<article>`, `<main>`, `<nav>`, or `<aside>` — nesting strips the implicit `banner` role and `aria-label` becomes a prohibited attribute on the now role-less `<header>`."
+      },
+      "aria-labelledby": {
+        "type": "string",
+        "description": "IDREF of a visible element that labels the banner landmark."
+      },
+      "breakpoint": {
+        "enum": [
+          "S",
+          "M",
+          "L"
+        ],
+        "description": "Override breakpoint (auto-detected by default)"
+      },
+      "className": {
+        "type": "string",
+        "description": "Additional class name"
+      },
+      "style": {
+        "description": "Inline styles"
+      },
+      "variant": {
+        "enum": [
+          "default",
+          "transparent",
+          "glass",
+          "hidden",
+          "stickyHidden"
+        ],
+        "description": "Header variant controlling position and background"
+      }
+    },
+    "required": [
+      "children"
+    ]
+  },
+  "codeSnippets": [
+    {
+      "id": "web-header-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { WebHeader } from '@oneui/ui';\n\n<WebHeader />"
+    },
+    {
+      "id": "web-header-recipe-decisions",
+      "title": "Recipe Decisions",
+      "language": "json",
+      "code": "{\n  \"component\": \"WebHeader\",\n  \"decisions\": [\n    \"Item Shape\",\n    \"Active Indicator\"\n  ]\n}"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "web-header"
+  ],
+  "generatedMarkdown": "# WebHeader Machine-Readable Documentation\n\n_Generated from source metadata. Do not edit manually._\n\n## Intent and Purpose\n\n- **Intent**: Responsive web navigation header with primary nav bar, secondary nav tabs, mobile drawer, search, and scroll-based show/hide.\n- **Task contexts**: header, navigation, nav, topbar, menu, responsive, drawer, search\n- **Sentiments**: neutral\n\n## Composition Rules\n\n- **Requires**: \n- **Allows**: logo, avatar, end, children, start, end\n- **Forbids**: \n\n## Variant Logic\n\n- **default**: use when Default\n- **transparent**: use when Transparent\n- **glass**: use when Glass\n\n## Relationships and Dependencies\n\n- **Related**: \n- **Escalates to**: -\n- **Degrades to**: -\n- **Groups with**: -\n\n## Context Signals\n\n- **Density**: compact, default, open\n- **Modality**: desktop, mobile\n- **Brand**: theme-scope aware, recipe-driven\n- **Mode**: light, dark\n\n## Observability Hooks\n\n- **Track**: \n- **Health**: a11y_violations\n\n## Props\n\n| Prop | Type | Required | Default | Description |\n| --- | --- | --- | --- | --- |\n| `children` | `ReactNode` | Yes | - | PrimaryNav + SecondaryNav children |\n| `aria-label` | `string` | No | - | Accessible name for the banner landmark. Only apply when this `WebHeader` is the top-level page banner (i.e. a direct child of `<body>`, not nested inside another sectioning element). Pass a short descriptor such as \"Main site header\" when the default implicit banner name is not descriptive enough. Note: do NOT set this when the header is rendered inside a `<section>`, `<article>`, `<main>`, `<nav>`, or `<aside>` — nesting strips the implicit `banner` role and `aria-label` becomes a prohibited attribute on the now role-less `<header>`. |\n| `aria-labelledby` | `string` | No | - | IDREF of a visible element that labels the banner landmark. |\n| `breakpoint` | `WebHeaderBreakpoint` | No | - | Override breakpoint (auto-detected by default) |\n| `className` | `string` | No | - | Additional class name |\n| `style` | `CSSProperties` | No | - | Inline styles |\n| `variant` | `WebHeaderVariant` | No | - | Header variant controlling position and background |\n\n## Slots\n\n| Slot | Types | Tokens |\n| --- | --- | --- |\n| `logo` | Logo |  |\n| `avatar` | Avatar |  |\n| `end` | IconButton |  |\n| `children` | HeaderItem |  |\n| `start` | Icon, Avatar, CounterBadge, IndicatorBadge |  |\n| `end` | Icon, Avatar, CounterBadge, IndicatorBadge |  |\n\n## Code Snippets\n\n### Basic Usage\n\n```tsx\nimport { WebHeader } from '@oneui/ui';\n\n<WebHeader />\n```\n\n### Recipe Decisions\n\n```json\n{\n  \"component\": \"WebHeader\",\n  \"decisions\": [\n    \"Item Shape\",\n    \"Active Indicator\"\n  ]\n}\n```\n"
+}

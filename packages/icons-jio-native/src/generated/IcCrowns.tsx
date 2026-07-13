@@ -1,0 +1,13 @@
+import React from 'react';
+import Svg, { Path, type SvgProps } from 'react-native-svg';
+export function IcCrowns(props: SvgProps) {
+  const fill = String(props.fill ?? '#000000');
+  return (
+    <Svg viewBox="0 0 24 24" fill="none" {...props}>
+      <Path
+            fill={fill}
+            d="M18.5 16h-13c-.83 0-1.5.67-1.5 1.5S4.67 19 5.5 19h13c.83 0 1.5-.67 1.5-1.5s-.67-1.5-1.5-1.5m.96-8.89-1.38 1.16c-1.01.85-2.57.54-3.16-.63l-.63-1.25c-.94-1.86-3.63-1.86-4.58 0l-.63 1.25c-.6 1.17-2.15 1.48-3.16.63L4.54 7.11c-1.15-.97-2.88.11-2.48 1.55l1.34 4.86c.24.88 1.05 1.49 1.97 1.49h13.25c.92 0 1.73-.61 1.97-1.49l1.34-4.86c.4-1.44-1.33-2.52-2.48-1.55z"
+          />
+    </Svg>
+  );
+}

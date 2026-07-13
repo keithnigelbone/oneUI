@@ -1,0 +1,209 @@
+/**
+ * IconContained.module.css
+ *
+ * Architecture: Role-agnostic intermediate variables (--_ic-*)
+ * - Default = Primary role
+ * - Appearance classes remap --_ic-* to other roles
+ * - Attention selectors consume --_ic-*
+ *
+ * Surface-context-aware: automatically adapts when inside
+ * <Surface mode="fg-bold"> via brand CSS [data-surface] cascade.
+ *
+ * Verified by: pnpm check:literals
+ */
+
+.root {
+  /* ========================================
+     INTERMEDIATE VARIABLES — default = Primary role
+     Remapped by .appearanceNeutral, .appearanceSecondary, etc.
+     ======================================== */
+  --_ic-bold: var(--Primary-Bold, var(--Surface-Bold));
+  --_ic-bold-high: var(--Primary-Bold-TintedA11y, var(--Primary-Bold-High, var(--Text-OnBold-High)));
+  --_ic-subtle: var(--Primary-Subtle, var(--Surface-Subtle));
+  --_ic-default-accent: var(--Primary-Tinted, var(--Text-High));
+
+  /* ========================================
+     SHAPE
+     ======================================== */
+  border-radius: var(--IconContained-borderRadius, var(--Shape-Pill));
+  overflow: hidden;
+
+  /* ========================================
+     BASE STYLES
+     ======================================== */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  user-select: none;
+  vertical-align: middle;
+}
+
+/* ========================================
+   APPEARANCE — role-agnostic intermediate variable remapping
+   ======================================== */
+
+.appearanceNeutral {
+  --_ic-bold: var(--Neutral-Bold, var(--Surface-Bold));
+  --_ic-bold-high: var(--Neutral-Bold-TintedA11y, var(--Neutral-Bold-High, var(--Text-OnBold-High)));
+  --_ic-subtle: var(--Neutral-Subtle, var(--Surface-Subtle));
+  --_ic-default-accent: var(--Neutral-Tinted, var(--Text-High));
+}
+
+.appearanceSecondary {
+  --_ic-bold: var(--Secondary-Bold, var(--Surface-Bold));
+  --_ic-bold-high: var(--Secondary-Bold-TintedA11y, var(--Secondary-Bold-High, var(--Text-OnBold-High)));
+  --_ic-subtle: var(--Secondary-Subtle, var(--Surface-Subtle));
+  --_ic-default-accent: var(--Secondary-Tinted, var(--Text-High));
+}
+
+.appearanceSparkle {
+  --_ic-bold: var(--Sparkle-Bold, var(--Surface-Bold));
+  --_ic-bold-high: var(--Sparkle-Bold-TintedA11y, var(--Sparkle-Bold-High, var(--Text-OnBold-High)));
+  --_ic-subtle: var(--Sparkle-Subtle, var(--Surface-Subtle));
+  --_ic-default-accent: var(--Sparkle-Tinted, var(--Text-High));
+}
+
+.appearanceBrandBg {
+  --_ic-bold: var(--Brand-Bg-Bold, var(--Surface-Bold));
+  --_ic-bold-high: var(--Brand-Bg-Bold-TintedA11y, var(--Brand-Bg-Bold-High, var(--Text-OnBold-High)));
+  --_ic-subtle: var(--Brand-Bg-Subtle, var(--Surface-Subtle));
+  --_ic-default-accent: var(--Brand-Bg-Tinted, var(--Text-High));
+}
+
+.appearancePositive {
+  --_ic-bold: var(--Positive-Bold, var(--Surface-Bold));
+  --_ic-bold-high: var(--Positive-Bold-TintedA11y, var(--Positive-Bold-High, var(--Text-OnBold-High)));
+  --_ic-subtle: var(--Positive-Subtle, var(--Surface-Subtle));
+  --_ic-default-accent: var(--Positive-Tinted, var(--Text-High));
+}
+
+.appearanceNegative {
+  --_ic-bold: var(--Negative-Bold, var(--Surface-Bold));
+  --_ic-bold-high: var(--Negative-Bold-TintedA11y, var(--Negative-Bold-High, var(--Text-OnBold-High)));
+  --_ic-subtle: var(--Negative-Subtle, var(--Surface-Subtle));
+  --_ic-default-accent: var(--Negative-Tinted, var(--Text-High));
+}
+
+.appearanceWarning {
+  --_ic-bold: var(--Warning-Bold, var(--Surface-Bold));
+  --_ic-bold-high: var(--Warning-Bold-TintedA11y, var(--Warning-Bold-High, var(--Text-OnBold-High)));
+  --_ic-subtle: var(--Warning-Subtle, var(--Surface-Subtle));
+  --_ic-default-accent: var(--Warning-Tinted, var(--Text-High));
+}
+
+.appearanceInformative {
+  --_ic-bold: var(--Informative-Bold, var(--Surface-Bold));
+  --_ic-bold-high: var(--Informative-Bold-TintedA11y, var(--Informative-Bold-High, var(--Text-OnBold-High)));
+  --_ic-subtle: var(--Informative-Subtle, var(--Surface-Subtle));
+  --_ic-default-accent: var(--Informative-Tinted, var(--Text-High));
+}
+
+/* ========================================
+   ATTENTION — consume intermediate vars
+   ======================================== */
+
+.high {
+  background-color: var(--IconContained-backgroundColor-high, var(--IconContained-backgroundColor, var(--_ic-bold)));
+}
+
+.high .icon {
+  color: var(--IconContained-iconColor-high, var(--IconContained-iconColor, var(--_ic-bold-high)));
+}
+
+.medium {
+  background-color: var(--IconContained-backgroundColor-medium, var(--IconContained-backgroundColor, var(--_ic-subtle)));
+}
+
+.medium .icon {
+  color: var(--IconContained-iconColor-medium, var(--IconContained-iconColor, var(--_ic-default-accent)));
+}
+
+/* ========================================
+   SIZES — via data-size attribute selectors
+   Container sizes are 2 f-steps smaller than Avatar at each position.
+   Icon sizes are also 2 f-steps smaller than Avatar's icons.
+
+   | Size | Container Token    | Icon Token       |
+   |------|--------------------|------------------|
+   | xs   | Spacing-3  (12px) | Spacing-2 (8px)|
+   | s    | Spacing-4   (16px) | Spacing-2-5(10px)|
+   | m    | Spacing-5  (20px) | Spacing-3 (12px)|
+   | l    | Spacing-6 (24px) | Spacing-4  (16px)|
+   | xl   | Spacing-8 (32px) | Spacing-5 (20px)|
+   ======================================== */
+
+.root[data-size="xs"] {
+  width: var(--IconContained-size-xs, var(--Spacing-3));
+  height: var(--IconContained-size-xs, var(--Spacing-3));
+}
+
+.root[data-size="s"] {
+  width: var(--IconContained-size-s, var(--Spacing-4));
+  height: var(--IconContained-size-s, var(--Spacing-4));
+}
+
+.root[data-size="m"] {
+  width: var(--IconContained-size-m, var(--Spacing-5));
+  height: var(--IconContained-size-m, var(--Spacing-5));
+}
+
+.root[data-size="l"] {
+  width: var(--IconContained-size-l, var(--Spacing-6));
+  height: var(--IconContained-size-l, var(--Spacing-6));
+}
+
+.root[data-size="xl"] {
+  width: var(--IconContained-size-xl, var(--Spacing-8));
+  height: var(--IconContained-size-xl, var(--Spacing-8));
+}
+
+/* ========================================
+   ICON — sized proportionally per container size
+   ======================================== */
+
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.root[data-size="xs"] .icon svg {
+  width: var(--IconContained-iconSize-xs, var(--Spacing-2));
+  height: var(--IconContained-iconSize-xs, var(--Spacing-2));
+}
+
+.root[data-size="s"] .icon svg {
+  width: var(--IconContained-iconSize-s, var(--Spacing-2-5));
+  height: var(--IconContained-iconSize-s, var(--Spacing-2-5));
+}
+
+.root[data-size="m"] .icon svg {
+  width: var(--IconContained-iconSize-m, var(--Spacing-3));
+  height: var(--IconContained-iconSize-m, var(--Spacing-3));
+}
+
+.root[data-size="l"] .icon svg {
+  width: var(--IconContained-iconSize-l, var(--Spacing-4));
+  height: var(--IconContained-iconSize-l, var(--Spacing-4));
+}
+
+.root[data-size="xl"] .icon svg {
+  width: var(--IconContained-iconSize-xl, var(--Spacing-5));
+  height: var(--IconContained-iconSize-xl, var(--Spacing-5));
+}
+
+/* ========================================
+   DISABLED
+   ======================================== */
+
+.disabled {
+  opacity: var(--IconContained-disabledOpacity, var(--Disabled-Opacity));
+  pointer-events: none;
+}
+
+/**
+ * ========================================
+ * IMPORTANT: NO LITERALS IN THIS FILE
+ * ========================================
+ */

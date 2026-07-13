@@ -1,0 +1,26 @@
+{
+  "eval_id": 1,
+  "run_type": "without_skill",
+  "expectations": [
+    {
+      "text": "identifies-missing-surface",
+      "passed": true,
+      "evidence": "States 'Without the <Surface> component (or the raw data-surface=\"fg-bold\" attribute), the CSS cascade has no way to know the Button is sitting on a colored surface'"
+    },
+    {
+      "text": "recommends-surface-component",
+      "passed": true,
+      "evidence": "Recommends wrapping with <Surface mode=\"fg-bold\"> and also mentions raw data-surface attribute as alternative"
+    },
+    {
+      "text": "explains-bold-inversion",
+      "passed": true,
+      "evidence": "Explains token remapping including brand bold inversion: mentions @layer brand blocks, token remapping table showing --Primary-FG-Bold changing to '#8584fc' (brand bold inversion)"
+    },
+    {
+      "text": "shows-correct-code",
+      "passed": true,
+      "evidence": "Shows before/after code with <Surface mode=\"fg-bold\"> wrapping, plus alternative raw attribute approach"
+    }
+  ]
+}

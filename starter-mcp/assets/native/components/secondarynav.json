@@ -1,0 +1,107 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "SecondaryNav",
+  "generatedAt": "2026-07-09T13:07:37.432Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "HeaderNative tab row — a set of HeaderItem tabs. Rendered only when HeaderNative.secondaryNav is true."
+  },
+  "compositionRules": {
+    "requires": [],
+    "allows": [],
+    "forbids": [],
+    "childKind": "fixed-slots"
+  },
+  "props": [
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "required": false,
+      "description": "HeaderItem elements only."
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "aria-labelledby",
+      "type": "string",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "accessibilityHint",
+      "type": "string",
+      "required": false,
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.kb.rn.SecondaryNav",
+    "type": "object",
+    "properties": {
+      "children": {
+        "description": "HeaderItem elements only."
+      },
+      "aria-label": {
+        "type": "string"
+      },
+      "aria-labelledby": {
+        "type": "string"
+      },
+      "accessibilityHint": {
+        "type": "string"
+      }
+    }
+  },
+  "tokens": {
+    "color": [
+      "neutral"
+    ],
+    "typography": [
+      "label.S"
+    ]
+  },
+  "a11y": {
+    "accessibilityRole": "tablist",
+    "accessibleNameSource": "aria-label",
+    "minTouchTarget": 44,
+    "honorsBoldText": true,
+    "honorsScreenReader": true
+  },
+  "renderHints": {
+    "baseElement": "View",
+    "animatedOn": [],
+    "honorsReduceMotion": false,
+    "readsFromSurfaceContext": true
+  },
+  "figma": {
+    "componentKey": "jds-header-native-secondarynav-v1",
+    "keyHistory": [],
+    "variantProperties": {
+      "Component": "HeaderNative.SecondaryNav"
+    }
+  },
+  "codeSnippets": [
+    {
+      "id": "import-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { SecondaryNav } from '@oneui/ui-native';\n\n<SecondaryNav />"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "secondarynav",
+    "navigation",
+    "header",
+    "tabs",
+    "compound"
+  ],
+  "importPath": "@oneui/ui-native"
+}

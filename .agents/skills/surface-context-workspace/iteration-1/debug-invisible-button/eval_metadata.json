@@ -1,0 +1,27 @@
+{
+  "eval_id": 1,
+  "eval_name": "debug-invisible-button",
+  "prompt": "I have a Button inside a hero section with a purple background using var(--Primary-FG-Bold), but the button text is invisible — it's the same color as the background. I'm not using the Surface component. What's going wrong and how do I fix it?",
+  "assertions": [
+    {
+      "name": "identifies-missing-surface",
+      "description": "Correctly identifies the root cause: using a raw div with background color doesn't trigger token remapping via [data-surface]",
+      "type": "qualitative"
+    },
+    {
+      "name": "recommends-surface-component",
+      "description": "Recommends using <Surface mode='fg-bold'> as the fix (not just setting data-surface manually)",
+      "type": "qualitative"
+    },
+    {
+      "name": "explains-bold-inversion",
+      "description": "Explains bold inversion — that <Surface> triggers CSS remapping which flips text to white and adjusts button fills to remain visible on bold surfaces",
+      "type": "qualitative"
+    },
+    {
+      "name": "shows-correct-code",
+      "description": "Includes a corrected code example using <Surface mode='fg-bold'> wrapping the Button",
+      "type": "qualitative"
+    }
+  ]
+}

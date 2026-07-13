@@ -1,0 +1,345 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Logo",
+  "generatedAt": "2026-01-01T00:00:00.000Z",
+  "machineReadable": true,
+  "intentAndPurpose": {
+    "intent": {
+      "value": "A visual mark that identifies and reinforces brand identity throughout the interface. Transparent size container — the SVG content controls its own shape and colors. Inside a BrandProvider, `<Logo alt=\"…\" />` renders the active brand's logo automatically; pass children / svgContent / src only to override it.",
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "taskContexts": {
+      "value": [
+        "brand",
+        "identity",
+        "mark",
+        "wordmark",
+        "image"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "sentiments": {
+      "value": [
+        "neutral"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "compositionRules": {
+    "requires": {
+      "value": [],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "allows": {
+      "value": [
+        "children"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "forbids": {
+      "value": [],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "mark",
+        "useWhen": {
+          "value": [
+            "Mark"
+          ],
+          "attribution": {
+            "source": "inferred"
+          }
+        }
+      },
+      {
+        "name": "full",
+        "useWhen": {
+          "value": [
+            "Full"
+          ],
+          "attribution": {
+            "source": "inferred"
+          }
+        }
+      }
+    ]
+  },
+  "relationshipsAndDependencies": {
+    "related": {
+      "value": [],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "contextSignals": {
+    "density": {
+      "value": [
+        "compact",
+        "default",
+        "open"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "modality": {
+      "value": [
+        "desktop",
+        "mobile"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "brand": {
+      "value": [
+        "theme-scope aware",
+        "recipe-driven"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "mode": {
+      "value": [
+        "light",
+        "dark"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "observabilityHooks": {
+    "track": {
+      "value": [],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "health": {
+      "value": [
+        "a11y_violations"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "props": [
+    {
+      "name": "alt",
+      "type": "string",
+      "required": true,
+      "description": "Accessible alt text describing the brand (required)"
+    },
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Logo content as React node (SVG element, icon, etc.) — highest priority"
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "required": false,
+      "description": "Additional class name"
+    },
+    {
+      "name": "customSize",
+      "type": "number",
+      "required": false,
+      "description": "Custom size in pixels (only when size='custom')"
+    },
+    {
+      "name": "fallback",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Fallback content when src fails to load"
+    },
+    {
+      "name": "material",
+      "type": "LogoMaterial",
+      "required": false,
+      "description": "Metallic material paint for inline SVG content. Raster src logos are unchanged."
+    },
+    {
+      "name": "materialGradientAngle",
+      "type": "number",
+      "required": false,
+      "description": "Gradient direction angle used by the metallic SVG paint server. Defaults to 135."
+    },
+    {
+      "name": "materialGradientType",
+      "type": "MetallicGradientType",
+      "required": false,
+      "description": "Gradient style used by the metallic SVG paint server. Defaults to linear."
+    },
+    {
+      "name": "materialTarget",
+      "type": "LogoMaterialTarget",
+      "required": false,
+      "description": "SVG paint channels that receive the metallic material. Default: fill-stroke"
+    },
+    {
+      "name": "onError",
+      "type": "() => void",
+      "required": false,
+      "description": "Image error callback (src mode only)"
+    },
+    {
+      "name": "onLoad",
+      "type": "() => void",
+      "required": false,
+      "description": "Image load callback (src mode only)"
+    },
+    {
+      "name": "size",
+      "type": "LogoSize",
+      "required": false,
+      "description": "Size preset. Default: 'm'"
+    },
+    {
+      "name": "src",
+      "type": "string",
+      "required": false,
+      "description": "Image source URL for raster/external logos"
+    },
+    {
+      "name": "style",
+      "type": "CSSProperties",
+      "required": false,
+      "description": "Inline styles"
+    },
+    {
+      "name": "svgContent",
+      "type": "string",
+      "required": false,
+      "description": "Raw SVG markup string (e.g., from Convex brand.logoSvg)"
+    },
+    {
+      "name": "variant",
+      "type": "LogoVariant",
+      "required": false,
+      "description": "Circular mark or full rectangular wordmark. Default: 'mark'"
+    }
+  ],
+  "slots": [
+    {
+      "name": "children",
+      "types": [],
+      "tokens": []
+    }
+  ],
+  "propsSchema": {
+    "$id": "jds.docs.logo",
+    "type": "object",
+    "properties": {
+      "alt": {
+        "type": "string",
+        "description": "Accessible alt text describing the brand (required)"
+      },
+      "children": {
+        "description": "Logo content as React node (SVG element, icon, etc.) — highest priority"
+      },
+      "className": {
+        "type": "string",
+        "description": "Additional class name"
+      },
+      "customSize": {
+        "type": "number",
+        "description": "Custom size in pixels (only when size='custom')"
+      },
+      "fallback": {
+        "description": "Fallback content when src fails to load"
+      },
+      "material": {
+        "description": "Metallic material paint for inline SVG content. Raster src logos are unchanged."
+      },
+      "materialGradientAngle": {
+        "type": "number",
+        "description": "Gradient direction angle used by the metallic SVG paint server. Defaults to 135."
+      },
+      "materialGradientType": {
+        "description": "Gradient style used by the metallic SVG paint server. Defaults to linear."
+      },
+      "materialTarget": {
+        "description": "SVG paint channels that receive the metallic material. Default: fill-stroke"
+      },
+      "onError": {
+        "description": "Image error callback (src mode only)"
+      },
+      "onLoad": {
+        "description": "Image load callback (src mode only)"
+      },
+      "size": {
+        "enum": [
+          "xs",
+          "s",
+          "m",
+          "l",
+          "xl",
+          "custom"
+        ],
+        "description": "Size preset. Default: 'm'"
+      },
+      "src": {
+        "type": "string",
+        "description": "Image source URL for raster/external logos"
+      },
+      "style": {
+        "description": "Inline styles"
+      },
+      "svgContent": {
+        "type": "string",
+        "description": "Raw SVG markup string (e.g., from Convex brand.logoSvg)"
+      },
+      "variant": {
+        "enum": [
+          "mark",
+          "full"
+        ],
+        "description": "Circular mark or full rectangular wordmark. Default: 'mark'"
+      }
+    },
+    "required": [
+      "alt"
+    ]
+  },
+  "codeSnippets": [
+    {
+      "id": "logo-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { Logo } from '@oneui/ui';\n\n<Logo />"
+    },
+    {
+      "id": "logo-recipe-decisions",
+      "title": "Recipe Decisions",
+      "language": "json",
+      "code": "{\n  \"component\": \"Logo\",\n  \"decisions\": []\n}"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "logo"
+  ],
+  "generatedMarkdown": "# Logo Machine-Readable Documentation\n\n_Generated from source metadata. Do not edit manually._\n\n## Intent and Purpose\n\n- **Intent**: A visual mark that identifies and reinforces brand identity throughout the interface. Transparent size container — the SVG content controls its own shape and colors. Inside a BrandProvider, `<Logo alt=\"…\" />` renders the active brand's logo automatically; pass children / svgContent / src only to override it.\n- **Task contexts**: brand, identity, mark, wordmark, image\n- **Sentiments**: neutral\n\n## Composition Rules\n\n- **Requires**: \n- **Allows**: children\n- **Forbids**: \n\n## Variant Logic\n\n- **mark**: use when Mark\n- **full**: use when Full\n\n## Relationships and Dependencies\n\n- **Related**: \n- **Escalates to**: -\n- **Degrades to**: -\n- **Groups with**: -\n\n## Context Signals\n\n- **Density**: compact, default, open\n- **Modality**: desktop, mobile\n- **Brand**: theme-scope aware, recipe-driven\n- **Mode**: light, dark\n\n## Observability Hooks\n\n- **Track**: \n- **Health**: a11y_violations\n\n## Props\n\n| Prop | Type | Required | Default | Description |\n| --- | --- | --- | --- | --- |\n| `alt` | `string` | Yes | - | Accessible alt text describing the brand (required) |\n| `children` | `ReactNode` | No | - | Logo content as React node (SVG element, icon, etc.) — highest priority |\n| `className` | `string` | No | - | Additional class name |\n| `customSize` | `number` | No | - | Custom size in pixels (only when size='custom') |\n| `fallback` | `ReactNode` | No | - | Fallback content when src fails to load |\n| `material` | `LogoMaterial` | No | - | Metallic material paint for inline SVG content. Raster src logos are unchanged. |\n| `materialGradientAngle` | `number` | No | - | Gradient direction angle used by the metallic SVG paint server. Defaults to 135. |\n| `materialGradientType` | `MetallicGradientType` | No | - | Gradient style used by the metallic SVG paint server. Defaults to linear. |\n| `materialTarget` | `LogoMaterialTarget` | No | - | SVG paint channels that receive the metallic material. Default: fill-stroke |\n| `onError` | `() => void` | No | - | Image error callback (src mode only) |\n| `onLoad` | `() => void` | No | - | Image load callback (src mode only) |\n| `size` | `LogoSize` | No | - | Size preset. Default: 'm' |\n| `src` | `string` | No | - | Image source URL for raster/external logos |\n| `style` | `CSSProperties` | No | - | Inline styles |\n| `svgContent` | `string` | No | - | Raw SVG markup string (e.g., from Convex brand.logoSvg) |\n| `variant` | `LogoVariant` | No | - | Circular mark or full rectangular wordmark. Default: 'mark' |\n\n## Slots\n\n| Slot | Types | Tokens |\n| --- | --- | --- |\n| `children` |  |  |\n\n## Code Snippets\n\n### Basic Usage\n\n```tsx\nimport { Logo } from '@oneui/ui';\n\n<Logo />\n```\n\n### Recipe Decisions\n\n```json\n{\n  \"component\": \"Logo\",\n  \"decisions\": []\n}\n```\n"
+}

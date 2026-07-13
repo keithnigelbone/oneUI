@@ -1,0 +1,356 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Button",
+  "generatedAt": "2026-07-09T13:07:37.398Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "Primary call-to-action. Three variants (bold / subtle / ghost), 9 multi-accent appearances + auto, four sizes (6/8/10/12). Adapts on coloured surfaces via the parent <Surface> cascade."
+  },
+  "compositionRules": {
+    "requires": [
+      "children"
+    ],
+    "allows": [],
+    "forbids": [],
+    "childKind": "leaf"
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "bold"
+      },
+      {
+        "name": "subtle"
+      },
+      {
+        "name": "ghost"
+      }
+    ]
+  },
+  "props": [
+    {
+      "name": "children",
+      "type": "string",
+      "required": true,
+      "description": "Visible label. Serves as accessible name."
+    },
+    {
+      "name": "variant",
+      "type": "'bold' | 'subtle' | 'ghost'",
+      "required": false,
+      "defaultValue": "bold",
+      "description": ""
+    },
+    {
+      "name": "attention",
+      "type": "'high' | 'medium' | 'low'",
+      "required": false,
+      "defaultValue": "high",
+      "description": ""
+    },
+    {
+      "name": "appearance",
+      "type": "'auto' | 'primary' | 'secondary' | 'neutral' | 'sparkle' | 'brand-bg' | 'positive' | 'negative' | 'warning' | 'informative'",
+      "required": false,
+      "defaultValue": "auto",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "loading",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "fullWidth",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "size",
+      "type": "6 | 8 | 10 | 12",
+      "required": false,
+      "defaultValue": "10",
+      "description": ""
+    },
+    {
+      "name": "condensed",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": "Reduces height + horizontal padding. Ignored when contained=false."
+    },
+    {
+      "name": "contained",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "true",
+      "description": "When false, renders as an uncontained text-style button."
+    },
+    {
+      "name": "start",
+      "type": "ReactNode",
+      "required": false,
+      "description": "ReactNode rendered before the label. SemanticIconName strings warn at dev time."
+    },
+    {
+      "name": "end",
+      "type": "ReactNode",
+      "required": false,
+      "description": "ReactNode rendered after the label."
+    },
+    {
+      "name": "onPress",
+      "type": "ReactNode",
+      "required": false,
+      "description": "RN press handler."
+    },
+    {
+      "name": "backgroundColor",
+      "type": "string",
+      "required": false,
+      "description": "[error] Don't paint directly. Use `appearance` (role) + `variant`/`mode` and wrap in <Surface mode>; the brand cascade picks the right fill."
+    },
+    {
+      "name": "style",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Inline style allowed only for layout. Painting via style.backgroundColor / borderColor is rejected. — [warn] Use the appearance + surface system. Inline paint defeats brand cascade and Surface context."
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.kb.rn.Button",
+    "type": "object",
+    "properties": {
+      "children": {
+        "type": "string",
+        "description": "Visible label. Serves as accessible name."
+      },
+      "variant": {
+        "enum": [
+          "bold",
+          "subtle",
+          "ghost"
+        ],
+        "default": "bold"
+      },
+      "attention": {
+        "enum": [
+          "high",
+          "medium",
+          "low"
+        ],
+        "default": "high"
+      },
+      "appearance": {
+        "enum": [
+          "auto",
+          "primary",
+          "secondary",
+          "neutral",
+          "sparkle",
+          "brand-bg",
+          "positive",
+          "negative",
+          "warning",
+          "informative"
+        ],
+        "default": "auto"
+      },
+      "disabled": {
+        "type": "boolean",
+        "default": false
+      },
+      "loading": {
+        "type": "boolean",
+        "default": false
+      },
+      "fullWidth": {
+        "type": "boolean",
+        "default": false
+      },
+      "size": {
+        "enum": [
+          6,
+          8,
+          10,
+          12
+        ],
+        "default": 10
+      },
+      "condensed": {
+        "type": "boolean",
+        "default": false,
+        "description": "Reduces height + horizontal padding. Ignored when contained=false."
+      },
+      "contained": {
+        "type": "boolean",
+        "default": true,
+        "description": "When false, renders as an uncontained text-style button."
+      },
+      "start": {
+        "description": "ReactNode rendered before the label. SemanticIconName strings warn at dev time."
+      },
+      "end": {
+        "description": "ReactNode rendered after the label."
+      },
+      "onPress": {
+        "description": "RN press handler."
+      },
+      "backgroundColor": {
+        "type": "string",
+        "not": {
+          "anyOf": [
+            {
+              "pattern": "^#"
+            },
+            {
+              "pattern": "^rgba?\\("
+            },
+            {
+              "pattern": "^hsla?\\("
+            },
+            {
+              "pattern": "^oklch\\("
+            },
+            {
+              "pattern": "^color-mix\\("
+            },
+            {
+              "enum": [
+                "transparent",
+                "inherit"
+              ]
+            }
+          ]
+        },
+        "x-jds-suggestion": "Don't paint directly. Use `appearance` (role) + `variant`/`mode` and wrap in <Surface mode>; the brand cascade picks the right fill.",
+        "x-jds-severity": "error"
+      },
+      "style": {
+        "description": "Inline style allowed only for layout. Painting via style.backgroundColor / borderColor is rejected.",
+        "x-jds-suggestion": "Use the appearance + surface system. Inline paint defeats brand cascade and Surface context.",
+        "x-jds-severity": "warn"
+      }
+    },
+    "required": [
+      "children"
+    ],
+    "oneOf": [
+      {
+        "required": [
+          "variant"
+        ]
+      },
+      {
+        "required": [
+          "attention"
+        ]
+      }
+    ]
+  },
+  "tokens": {
+    "color": [
+      "primary",
+      "secondary",
+      "neutral",
+      "sparkle",
+      "brand-bg",
+      "positive",
+      "negative",
+      "warning",
+      "informative"
+    ],
+    "surface": [
+      "bold",
+      "subtle",
+      "ghost"
+    ],
+    "typography": [
+      "label.XS",
+      "label.S",
+      "label.M",
+      "label.L"
+    ],
+    "spacing": [
+      "6XS",
+      "5XS",
+      "4XS",
+      "3XS",
+      "2XS",
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL"
+    ],
+    "shape": [
+      "pill",
+      "3XS",
+      "2XS",
+      "XS",
+      "S",
+      "M"
+    ],
+    "motion": [
+      "motion.duration.discreet.short",
+      "motion.easing.transition"
+    ]
+  },
+  "a11y": {
+    "accessibilityRole": "button",
+    "accessibilityState": [
+      "disabled",
+      "busy"
+    ],
+    "accessibleNameSource": "children",
+    "minTouchTarget": 44,
+    "honorsBoldText": true,
+    "honorsScreenReader": true
+  },
+  "renderHints": {
+    "baseElement": "Pressable",
+    "animatedOn": [
+      "press"
+    ],
+    "honorsReduceMotion": true,
+    "readsFromSurfaceContext": true
+  },
+  "figma": {
+    "componentKey": "jds-button-v4",
+    "keyHistory": [],
+    "variantProperties": {
+      "Component": "Button"
+    }
+  },
+  "codeSnippets": [
+    {
+      "id": "import-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { Button } from '@oneui/ui-native';\n\n<Button />"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "button",
+    "cta",
+    "action",
+    "interactive"
+  ],
+  "importPath": "@oneui/ui-native"
+}

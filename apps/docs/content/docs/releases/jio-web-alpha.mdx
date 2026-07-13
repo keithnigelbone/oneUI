@@ -1,0 +1,62 @@
+---
+title: Jio Web Alpha
+description: Human release runbook for the first publishable OneUI web alpha.
+---
+
+The Jio web alpha is web-only, validated with the Jio brand, and scoped to the packages `@oneui/ui`, `@oneui/tokens`, and `@oneui/shared`.
+
+## Scope
+
+- Platform: React web only.
+- Brand: Jio for release validation.
+- Component source of truth: `packages/ui/src/registry/jioAlphaCatalog.ts`.
+- Brand source of truth: `docs/exports/jio.DESIGN.md` plus the Convex Jio brand record used by Storybook and this docs site.
+
+The package remains multi-brand-safe: component code must use role-explicit tokens and `Surface` context rather than Jio-specific values.
+
+## Storybook Validation
+
+Storybook must run with a Convex deployment that contains the canonical Jio brand record:
+
+```bash
+STORYBOOK_CONVEX_URL=<convex-url> pnpm build:storybook
+```
+
+Validate these states before cutting the alpha:
+
+- Jio selected in Storybook, light theme, default density.
+- Jio selected in Storybook, dark theme, default density.
+- `Surface` examples for `default`, `subtle`, and `bold`.
+- Focus halo around buttons, icon buttons, tabs, chips, and form controls.
+- Jio icon loader and icon fallback behaviour.
+- Carousel controls and slide content on image surfaces.
+
+## Alpha QA Gate
+
+Run the same release bar as the design-system CI workflow:
+
+```bash
+pnpm check:literals
+pnpm validate:tokens
+pnpm check:ai-vocab
+pnpm check:metadata
+pnpm check:support-matrix
+pnpm check:jio-alpha-catalog
+pnpm check:machine-docs-fresh
+pnpm check:layers
+pnpm check:oneui-barrel
+pnpm typecheck
+pnpm lint
+pnpm test:a11y
+pnpm --filter @oneui/shared test -- --run
+pnpm --filter @oneui/ui test -- --run
+pnpm bench:pipeline --iterations=300
+pnpm check:perf --tolerance=25
+pnpm build:storybook
+```
+
+`pnpm check:parity` is a known web-alpha waiver because React Native is not in scope for this release.
+
+## Release Decision
+
+The alpha can be cut when the UI package builds, the support matrix passes, the alpha catalog includes generated docs for every alpha component, Storybook builds with Jio brand data, and QA output is captured in release notes.

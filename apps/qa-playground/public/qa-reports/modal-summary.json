@@ -1,0 +1,803 @@
+{
+  "ok": false,
+  "slug": "modal",
+  "message": "modal QA Playwright run had failures — 2026-06-23T10:28:32.151Z",
+  "suites": {
+    "accessibility": {
+      "suite": "accessibility",
+      "passed": 27,
+      "failed": 0,
+      "skipped": 0,
+      "logs": [
+        "27 test(s) in Playwright report for accessibility.",
+        "Axe: scan completed — 0 violation rules reported."
+      ],
+      "errors": [],
+      "cases": [
+        {
+          "name": "[a11y] Full page WCAG 2.1 AA scan has no serious or critical issues (report saved)",
+          "status": "passed",
+          "durationMs": 5222
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — Default band",
+          "status": "passed",
+          "durationMs": 4973,
+          "componentBand": "modal-figma-default"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — Size (S · M · L · FullWidth) band",
+          "status": "passed",
+          "durationMs": 4986,
+          "componentBand": "modal-figma-size"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — Header start slot band",
+          "status": "passed",
+          "durationMs": 4963,
+          "componentBand": "modal-figma-header-start"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — Header align band",
+          "status": "passed",
+          "durationMs": 5242,
+          "componentBand": "modal-figma-header-align"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — No header band",
+          "status": "passed",
+          "durationMs": 3467,
+          "componentBand": "modal-figma-no-header"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — No footer band",
+          "status": "passed",
+          "durationMs": 3478,
+          "componentBand": "modal-figma-no-footer"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — Title and description visibility band",
+          "status": "passed",
+          "durationMs": 3716,
+          "componentBand": "modal-figma-description"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — Dividers (none · onScroll · always) band",
+          "status": "passed",
+          "durationMs": 3881,
+          "componentBand": "modal-figma-dividers"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — Footer orientation band",
+          "status": "passed",
+          "durationMs": 3984,
+          "componentBand": "modal-figma-footer-orientation"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — Appearance (colour roles) band",
+          "status": "passed",
+          "durationMs": 3833,
+          "componentBand": "modal-figma-appearance"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — Scrollable body band",
+          "status": "passed",
+          "durationMs": 3657,
+          "componentBand": "modal-figma-scrollable"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — Dismissible backdrop band",
+          "status": "passed",
+          "durationMs": 4300,
+          "componentBand": "modal-figma-dismissible"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — Appearance auto band",
+          "status": "passed",
+          "durationMs": 4035,
+          "componentBand": "modal-figma-appearance-auto"
+        },
+        {
+          "name": "[a11y] axe label rule — Modal story bands",
+          "status": "passed",
+          "durationMs": 3945
+        },
+        {
+          "name": "[a11y] ARIA validity rules — Modal story bands",
+          "status": "passed",
+          "durationMs": 2737
+        },
+        {
+          "name": "[a11y] Open dialog via \"modal-trigger-default\" — axe on [role=\"dialog\"]",
+          "status": "passed",
+          "durationMs": 3705
+        },
+        {
+          "name": "[a11y] Open dialog via \"modal-trigger-size-m\" — axe on [role=\"dialog\"]",
+          "status": "passed",
+          "durationMs": 4721
+        },
+        {
+          "name": "[a11y] Open dialog via \"modal-trigger-scrollable\" — axe on [role=\"dialog\"]",
+          "status": "passed",
+          "durationMs": 4735
+        },
+        {
+          "name": "[a11y] Open dialog via \"modal-trigger-dismissible-true\" — axe on [role=\"dialog\"]",
+          "status": "passed",
+          "durationMs": 4527
+        },
+        {
+          "name": "[a11y] Open dialog via \"modal-trigger-appearance-primary\" — axe on [role=\"dialog\"]",
+          "status": "passed",
+          "durationMs": 3828
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — open default dialog ([role=\"dialog\"])",
+          "status": "passed",
+          "durationMs": 3200
+        },
+        {
+          "name": "[a11y] Header close button exposes aria-label=\"Close\" when dialog is open",
+          "status": "passed",
+          "durationMs": 2619
+        },
+        {
+          "name": "[a11y] Keyboard Escape — closes open modal",
+          "status": "passed",
+          "durationMs": 2792
+        },
+        {
+          "name": "[a11y] Focus trap — Tab keeps focus inside open dialog",
+          "status": "passed",
+          "durationMs": 2918
+        },
+        {
+          "name": "[a11y] Reflow at 320px — story bands fit without horizontal scroll",
+          "status": "passed",
+          "durationMs": 5156
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — Figma validation grid",
+          "status": "passed",
+          "durationMs": 3381
+        }
+      ],
+      "axe": {
+        "violations": []
+      }
+    },
+    "functional": {
+      "suite": "functional",
+      "passed": 119,
+      "failed": 2,
+      "skipped": 0,
+      "logs": [
+        "121 test(s) in Playwright report for functional."
+      ],
+      "errors": [
+        "4.7 — Focus trap (modal WCAG): Tab keeps focus inside dialog: TimeoutError: locator.click: Timeout 8000ms exceeded.",
+        "5.1 — Opening modal moves focus into dialog: TimeoutError: locator.click: Timeout 8000ms exceeded."
+      ],
+      "cases": [
+        {
+          "name": "1.1 — Page loads without console errors; default trigger mounts",
+          "status": "passed",
+          "durationMs": 4216
+        },
+        {
+          "name": "1.2 — Every trigger `data-testid` is visible on Test Scenarios",
+          "status": "passed",
+          "durationMs": 4085
+        },
+        {
+          "name": "1.3 — Every `data-section` band is visible",
+          "status": "passed",
+          "durationMs": 3423
+        },
+        {
+          "name": "2.1 — Default open dialog exposes title and footer region",
+          "status": "passed",
+          "durationMs": 2914
+        },
+        {
+          "name": "2.1 — size S emits data-size on dialog",
+          "status": "passed",
+          "durationMs": 2318
+        },
+        {
+          "name": "2.1 — size M emits data-size on dialog",
+          "status": "passed",
+          "durationMs": 3166
+        },
+        {
+          "name": "2.1 — size L emits data-size on dialog",
+          "status": "passed",
+          "durationMs": 3017
+        },
+        {
+          "name": "2.1 — size FullWidth emits data-size on dialog",
+          "status": "passed",
+          "durationMs": 3073
+        },
+        {
+          "name": "2.2 — Size S dialog width is less than FullWidth when open",
+          "status": "passed",
+          "durationMs": 4606
+        },
+        {
+          "name": "3.1 — Trigger click opens dialog",
+          "status": "passed",
+          "durationMs": 3392
+        },
+        {
+          "name": "3.2 — Disabled (N/A)",
+          "status": "passed",
+          "durationMs": 2277
+        },
+        {
+          "name": "3.3 — Readonly (N/A)",
+          "status": "passed",
+          "durationMs": 2377
+        },
+        {
+          "name": "3.4 — Backdrop click closes dismissible modal",
+          "status": "passed",
+          "durationMs": 2665
+        },
+        {
+          "name": "4.1 — Tab keeps focus inside open dialog (focus trap)",
+          "status": "passed",
+          "durationMs": 2981
+        },
+        {
+          "name": "4.2 — Enter on focused header Close button closes modal",
+          "status": "passed",
+          "durationMs": 3046
+        },
+        {
+          "name": "4.3 — Space on focused header Close button closes modal",
+          "status": "passed",
+          "durationMs": 2983
+        },
+        {
+          "name": "4.4 — Arrow keys (N/A)",
+          "status": "passed",
+          "durationMs": 2651
+        },
+        {
+          "name": "4.5 — Home/End (N/A)",
+          "status": "passed",
+          "durationMs": 2632
+        },
+        {
+          "name": "4.6 — Escape closes open modal",
+          "status": "passed",
+          "durationMs": 2708
+        },
+        {
+          "name": "4.7 — Focus trap (modal WCAG): Tab keeps focus inside dialog",
+          "status": "failed",
+          "durationMs": 13952,
+          "error": "TimeoutError: locator.click: Timeout 8000ms exceeded."
+        },
+        {
+          "name": "5.1 — Opening modal moves focus into dialog",
+          "status": "failed",
+          "durationMs": 13884,
+          "error": "TimeoutError: locator.click: Timeout 8000ms exceeded."
+        },
+        {
+          "name": "5.2 — Focused header Close shows visible focus ring",
+          "status": "passed",
+          "durationMs": 3299
+        },
+        {
+          "name": "5.3 — Header Close button is focusable in tab order",
+          "status": "passed",
+          "durationMs": 3636
+        },
+        {
+          "name": "5.4 — Closing modal removes dialog from DOM",
+          "status": "passed",
+          "durationMs": 3042
+        },
+        {
+          "name": "5.5 — autoFocus (N/A)",
+          "status": "passed",
+          "durationMs": 2302
+        },
+        {
+          "name": "6.1 — Closed state has zero dialogs",
+          "status": "passed",
+          "durationMs": 2098
+        },
+        {
+          "name": "6.2 — Selected/checked (N/A)",
+          "status": "passed",
+          "durationMs": 1892
+        },
+        {
+          "name": "6.3 — Disabled (N/A)",
+          "status": "passed",
+          "durationMs": 1889
+        },
+        {
+          "name": "6.4 — Readonly (N/A)",
+          "status": "passed",
+          "durationMs": 1759
+        },
+        {
+          "name": "6.5 — Error state (N/A)",
+          "status": "passed",
+          "durationMs": 1497
+        },
+        {
+          "name": "6.6 — Loading state (N/A)",
+          "status": "passed",
+          "durationMs": 3480
+        },
+        {
+          "name": "7.1 — headerStart icon slot renders when open",
+          "status": "passed",
+          "durationMs": 2426
+        },
+        {
+          "name": "7.2 — footerStart slot renders leading footer content",
+          "status": "passed",
+          "durationMs": 2397
+        },
+        {
+          "name": "7.3 — headerStart badge renders when open",
+          "status": "passed",
+          "durationMs": 1517
+        },
+        {
+          "name": "7.4 — Icon colour inheritance (N/A)",
+          "status": "passed",
+          "durationMs": 2175
+        },
+        {
+          "name": "8.x — Not a toggle component",
+          "status": "passed",
+          "durationMs": 1843
+        },
+        {
+          "name": "9.x — Not a text input",
+          "status": "passed",
+          "durationMs": 1503
+        },
+        {
+          "name": "10.2 — dismissible=false blocks backdrop dismiss and Escape",
+          "status": "passed",
+          "durationMs": 5198
+        },
+        {
+          "name": "10.3 — Loading overrides (N/A)",
+          "status": "passed",
+          "durationMs": 2294
+        },
+        {
+          "name": "11.1 — Open default modal body text is non-empty",
+          "status": "passed",
+          "durationMs": 5092
+        },
+        {
+          "name": "11.2 — headerStart icon content visible when open",
+          "status": "passed",
+          "durationMs": 2528
+        },
+        {
+          "name": "11.3 — Progress value (N/A)",
+          "status": "passed",
+          "durationMs": 2305
+        },
+        {
+          "name": "13.1 — After dark theme, all scenario sections remain visible",
+          "status": "passed",
+          "durationMs": 2136
+        },
+        {
+          "name": "13.1 — Default trigger remains visible in dark mode",
+          "status": "passed",
+          "durationMs": 3091
+        },
+        {
+          "name": "Smoke — Page heading reads “Modal”",
+          "status": "passed",
+          "durationMs": 2083
+        },
+        {
+          "name": "Smoke — Default trigger opens dialog with role=dialog",
+          "status": "passed",
+          "durationMs": 2304
+        },
+        {
+          "name": "Smoke — Trigger count in showcase scope",
+          "status": "passed",
+          "durationMs": 2114
+        },
+        {
+          "name": "[fn] shows Modal page heading",
+          "status": "passed",
+          "durationMs": 2781
+        },
+        {
+          "name": "[fn] theme toggle updates label",
+          "status": "passed",
+          "durationMs": 3126
+        },
+        {
+          "name": "[fn] scenario, figma-validation, accessibility, and functional tabs are present",
+          "status": "passed",
+          "durationMs": 2737
+        },
+        {
+          "name": "[fn] trigger button exists: modal-trigger-default",
+          "status": "passed",
+          "durationMs": 2209
+        },
+        {
+          "name": "[fn] trigger button exists: modal-trigger-size-s",
+          "status": "passed",
+          "durationMs": 2403
+        },
+        {
+          "name": "[fn] trigger button exists: modal-trigger-size-m",
+          "status": "passed",
+          "durationMs": 2597
+        },
+        {
+          "name": "[fn] trigger button exists: modal-trigger-size-l",
+          "status": "passed",
+          "durationMs": 2731
+        },
+        {
+          "name": "[fn] trigger button exists: modal-trigger-size-fullwidth",
+          "status": "passed",
+          "durationMs": 2847
+        },
+        {
+          "name": "[fn] trigger button exists: modal-trigger-header-start-icon",
+          "status": "passed",
+          "durationMs": 2942
+        },
+        {
+          "name": "[fn] trigger button exists: modal-trigger-header-start-badge",
+          "status": "passed",
+          "durationMs": 3632
+        },
+        {
+          "name": "[fn] trigger button exists: modal-trigger-header-align-left",
+          "status": "passed",
+          "durationMs": 4133
+        },
+        {
+          "name": "[fn] trigger button exists: modal-trigger-header-align-center",
+          "status": "passed",
+          "durationMs": 4069
+        },
+        {
+          "name": "[fn] trigger button exists: modal-trigger-no-header",
+          "status": "passed",
+          "durationMs": 4269
+        },
+        {
+          "name": "[fn] trigger button exists: modal-trigger-no-footer",
+          "status": "passed",
+          "durationMs": 3541
+        },
+        {
+          "name": "[fn] trigger button exists: modal-trigger-title-false",
+          "status": "passed",
+          "durationMs": 3278
+        },
+        {
+          "name": "[fn] trigger button exists: modal-trigger-desc-false",
+          "status": "passed",
+          "durationMs": 3323
+        },
+        {
+          "name": "[fn] trigger button exists: modal-trigger-desc-true",
+          "status": "passed",
+          "durationMs": 3574
+        },
+        {
+          "name": "[fn] trigger button exists: modal-trigger-dividers-none",
+          "status": "passed",
+          "durationMs": 3332
+        },
+        {
+          "name": "[fn] trigger button exists: modal-trigger-dividers-onScroll",
+          "status": "passed",
+          "durationMs": 3611
+        },
+        {
+          "name": "[fn] trigger button exists: modal-trigger-dividers-always",
+          "status": "passed",
+          "durationMs": 3138
+        },
+        {
+          "name": "[fn] trigger button exists: modal-trigger-footer-start",
+          "status": "passed",
+          "durationMs": 3124
+        },
+        {
+          "name": "[fn] trigger button exists: modal-trigger-footer-horizontal",
+          "status": "passed",
+          "durationMs": 3074
+        },
+        {
+          "name": "[fn] trigger button exists: modal-trigger-footer-vertical",
+          "status": "passed",
+          "durationMs": 3000
+        },
+        {
+          "name": "[fn] trigger button exists: modal-trigger-scrollable",
+          "status": "passed",
+          "durationMs": 3107
+        },
+        {
+          "name": "[fn] trigger button exists: modal-trigger-dismissible-true",
+          "status": "passed",
+          "durationMs": 2982
+        },
+        {
+          "name": "[fn] trigger button exists: modal-trigger-dismissible-false",
+          "status": "passed",
+          "durationMs": 3096
+        },
+        {
+          "name": "[fn] trigger button exists: modal-trigger-appearance-neutral",
+          "status": "passed",
+          "durationMs": 3105
+        },
+        {
+          "name": "[fn] trigger button exists: modal-trigger-appearance-primary",
+          "status": "passed",
+          "durationMs": 3088
+        },
+        {
+          "name": "[fn] trigger button exists: modal-trigger-appearance-secondary",
+          "status": "passed",
+          "durationMs": 3320
+        },
+        {
+          "name": "[fn] trigger button exists: modal-trigger-appearance-sparkle",
+          "status": "passed",
+          "durationMs": 3111
+        },
+        {
+          "name": "[fn] trigger button exists: modal-trigger-appearance-negative",
+          "status": "passed",
+          "durationMs": 3847
+        },
+        {
+          "name": "[fn] trigger button exists: modal-trigger-appearance-positive",
+          "status": "passed",
+          "durationMs": 3931
+        },
+        {
+          "name": "[fn] trigger button exists: modal-trigger-appearance-warning",
+          "status": "passed",
+          "durationMs": 3836
+        },
+        {
+          "name": "[fn] trigger button exists: modal-trigger-appearance-informative",
+          "status": "passed",
+          "durationMs": 3138
+        },
+        {
+          "name": "[fn] trigger button exists: modal-trigger-appearance-brand-bg",
+          "status": "passed",
+          "durationMs": 2963
+        },
+        {
+          "name": "[fn] trigger button exists: modal-trigger-appearance-auto",
+          "status": "passed",
+          "durationMs": 2657
+        },
+        {
+          "name": "[fn] figma validation tab mounts grid",
+          "status": "passed",
+          "durationMs": 7076
+        },
+        {
+          "name": "[fn] figma validation grid shows all 4 sizes across 5 platform rows",
+          "status": "passed",
+          "durationMs": 7307
+        },
+        {
+          "name": "[fn] default modal opens on trigger click",
+          "status": "passed",
+          "durationMs": 3709
+        },
+        {
+          "name": "[fn] default modal closes via header close button",
+          "status": "passed",
+          "durationMs": 3887
+        },
+        {
+          "name": "[fn] default modal closes via header Close button (Enter)",
+          "status": "passed",
+          "durationMs": 2470
+        },
+        {
+          "name": "[fn] default modal closes on Escape key",
+          "status": "passed",
+          "durationMs": 1583
+        },
+        {
+          "name": "[fn] size S modal carries data-size=\"S\"",
+          "status": "passed",
+          "durationMs": 2624
+        },
+        {
+          "name": "[fn] size M modal carries data-size=\"M\"",
+          "status": "passed",
+          "durationMs": 2528
+        },
+        {
+          "name": "[fn] size L modal carries data-size=\"L\"",
+          "status": "passed",
+          "durationMs": 2178
+        },
+        {
+          "name": "[fn] size FullWidth modal carries data-size=\"FullWidth\"",
+          "status": "passed",
+          "durationMs": 2938
+        },
+        {
+          "name": "[fn] header=false modal has no header close button",
+          "status": "passed",
+          "durationMs": 11938
+        },
+        {
+          "name": "[fn] headerAlign=center emits data-header-align=\"center\" on dialog",
+          "status": "passed",
+          "durationMs": 3646
+        },
+        {
+          "name": "[fn] headerAlign=left (default) does NOT set data-header-align on dialog",
+          "status": "passed",
+          "durationMs": 3802
+        },
+        {
+          "name": "[fn] footer=false modal has no footer action buttons",
+          "status": "passed",
+          "durationMs": 4398
+        },
+        {
+          "name": "[fn] default modal renders title text",
+          "status": "passed",
+          "durationMs": 2681
+        },
+        {
+          "name": "[fn] showTitle=false (Figma: Title: false) hides title text",
+          "status": "passed",
+          "durationMs": 2703
+        },
+        {
+          "name": "[fn] showDescription=true (Figma: Description: true) renders description text",
+          "status": "passed",
+          "durationMs": 2702
+        },
+        {
+          "name": "[fn] showDescription=false (Figma: Description: false) hides description",
+          "status": "passed",
+          "durationMs": 2676
+        },
+        {
+          "name": "[fn] footerOrientation=vertical emits data-footer-orientation=\"vertical\"",
+          "status": "passed",
+          "durationMs": 3206
+        },
+        {
+          "name": "[fn] footerOrientation=horizontal (default) does NOT emit data-footer-orientation",
+          "status": "passed",
+          "durationMs": 2929
+        },
+        {
+          "name": "[fn] dismissible modal closes on backdrop click",
+          "status": "passed",
+          "durationMs": 2224
+        },
+        {
+          "name": "[fn] non-dismissible modal stays open on backdrop click",
+          "status": "passed",
+          "durationMs": 2398
+        },
+        {
+          "name": "[fn] appearance=\"neutral\" band opens dialog without data-appearance on popup",
+          "status": "passed",
+          "durationMs": 5836
+        },
+        {
+          "name": "[fn] appearance=\"primary\" band opens dialog without data-appearance on popup",
+          "status": "passed",
+          "durationMs": 6366
+        },
+        {
+          "name": "[fn] appearance=\"secondary\" band opens dialog without data-appearance on popup",
+          "status": "passed",
+          "durationMs": 2008
+        },
+        {
+          "name": "[fn] appearance=\"sparkle\" band opens dialog without data-appearance on popup",
+          "status": "passed",
+          "durationMs": 6927
+        },
+        {
+          "name": "[fn] appearance=\"positive\" band opens dialog without data-appearance on popup",
+          "status": "passed",
+          "durationMs": 5836
+        },
+        {
+          "name": "[fn] appearance=\"negative\" band opens dialog without data-appearance on popup",
+          "status": "passed",
+          "durationMs": 1749
+        },
+        {
+          "name": "[fn] appearance=\"warning\" band opens dialog without data-appearance on popup",
+          "status": "passed",
+          "durationMs": 5557
+        },
+        {
+          "name": "[fn] appearance=\"informative\" band opens dialog without data-appearance on popup",
+          "status": "passed",
+          "durationMs": 1695
+        },
+        {
+          "name": "[fn] appearance=\"auto\" band opens dialog without data-appearance on popup",
+          "status": "passed",
+          "durationMs": 2667
+        },
+        {
+          "name": "[fn] appearance=\"brand-bg\" band opens dialog without data-appearance on popup",
+          "status": "passed",
+          "durationMs": 1353
+        },
+        {
+          "name": "[fn] headerStart=\"icon\" renders headerStartContent",
+          "status": "passed",
+          "durationMs": 3235
+        },
+        {
+          "name": "[fn] headerStart=\"badge\" renders headerStartContent",
+          "status": "passed",
+          "durationMs": 3144
+        },
+        {
+          "name": "[fn] footerStart slot renders leading footer content",
+          "status": "passed",
+          "durationMs": 3228
+        },
+        {
+          "name": "[fn] dialog emits default divider scroll position data attributes",
+          "status": "passed",
+          "durationMs": 3223
+        },
+        {
+          "name": "[fn] non-dismissible modal stays open on Escape",
+          "status": "passed",
+          "durationMs": 2508
+        },
+        {
+          "name": "[fn] footer=false modal still has header close button",
+          "status": "passed",
+          "durationMs": 2964
+        }
+      ]
+    },
+    "performance": {
+      "suite": "performance",
+      "passed": 0,
+      "failed": 0,
+      "skipped": 0,
+      "logs": [
+        "Performance suite is not executed in apps/qa-playground modal Playwright bundle."
+      ],
+      "errors": []
+    }
+  }
+}

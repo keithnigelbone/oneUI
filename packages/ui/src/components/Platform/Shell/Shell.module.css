@@ -1,0 +1,195 @@
+/**
+ * Shell.module.css
+ *
+ * Layout: Fixed grey frame, LeftNav in grey, SecondaryNav inside white content
+ *
+ * INTENTIONAL-LITERAL: content column max-width (1200px) is a product-
+ * design readable-column cap that isn't in the spacing/dimension token
+ * scale (tokens top out at --Dimension-f16 = 160px for design-system
+ * rhythm values; page-layout caps like this are chosen per surface).
+ */
+
+.shell {
+  min-height: 100vh;
+  height: 100vh;
+  background-color: var(--Surface-Main);
+  color: var(--Text-High);
+  overscroll-behavior: none;
+  overflow: hidden;
+  /* Nav rail width — f10 (×4 base). Single source so all layout offsets stay in sync. */
+  --Shell-LeftNav-Width: var(--Dimension-f10);
+  /* Secondary nav width — mirrors on the right to keep content centred. */
+  --Shell-SecondaryNav-Width: 260px;
+}
+
+/* Sidebar container - fixed, only LeftNav */
+
+.sidebar {
+  display: flex;
+  flex-shrink: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 550;
+  width: var(--Shell-LeftNav-Width);
+  background-color: var(--Surface-Main);
+  box-sizing: border-box;
+}
+
+.verticalDivider {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: var(--Shell-LeftNav-Width);
+  width: var(--Stroke-S);
+  background-color: var(--Border-Subtle);
+  z-index: 610;
+  pointer-events: none;
+}
+
+/* Left Navigation - icon rail */
+
+.leftNav {
+  flex-shrink: 0;
+  height: 100vh;
+}
+
+/* TopBar container - positioned above content area */
+
+.topBarContainer {
+  position: fixed;
+  top: 0;
+  left: var(--Shell-LeftNav-Width);
+  right: 0;
+  z-index: 600;
+  background-color: var(--Surface-Main);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Main content area - white, contains secondary nav + content */
+
+.content {
+  display: flex;
+  flex-direction: row;
+  margin-left: var(--Shell-LeftNav-Width);
+  margin-top: 0;
+  margin-right: 0;
+  margin-bottom: 0;
+  /* Use height instead of min-height to enable proper scroll behavior */
+  height: 100vh;
+  background-color: var(--Surface-Main);
+  border-radius: 0;
+}
+
+/* Adjust content area when TopBar is present */
+.shell[data-has-topbar="true"] .content {
+  margin-top: calc(
+    var(--Component-Height-TopBar) + var(--Stroke-M)
+  );
+  /* Use height instead of min-height to enable proper scroll behavior */
+  height: calc(
+    100vh - var(--Component-Height-TopBar) - var(--Stroke-M)
+  );
+  border-radius: 0;
+}
+
+.shell[data-has-topbar="true"] .topBarContainer {
+  border-radius: 0;
+}
+
+/* Secondary Navigation - inside white content area */
+
+.secondaryNav {
+  flex-shrink: 0;
+  width: var(--Shell-SecondaryNav-Width);
+  padding: var(--Spacing-4-5) 0;
+  overflow-y: auto;
+}
+
+/* Vertical divider between secondary nav and content — full height */
+
+.secondaryNavDivider {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: calc(var(--Shell-LeftNav-Width) + var(--Shell-SecondaryNav-Width));
+  width: var(--Stroke-S);
+  background-color: var(--Border-Subtle);
+  z-index: 560;
+  pointer-events: none;
+}
+
+/* Mirror the secondary nav offset on the right so content stays centred
+   relative to the full viewport (top bar centre = content centre).
+   Padding (not a sibling spacer) keeps the scrollbar at the viewport edge. */
+.content[data-has-secondary-nav="true"] .contentInner {
+  padding-right: var(--Shell-SecondaryNav-Width);
+}
+
+@media (max-width: 75rem) {
+  .content[data-has-secondary-nav="true"] .contentInner {
+    padding-right: var(--Spacing-6);
+  }
+}
+
+/* Generic dividers (horizontal under TopBar, etc.) */
+
+.divider {
+  background-color: var(--Border-Subtle);
+  flex-shrink: 0;
+}
+
+.divider[data-orientation="vertical"] {
+  width: var(--Stroke-S);
+}
+
+.divider[data-orientation="horizontal"] {
+  width: 100%;
+  height: var(--Stroke-S);
+}
+
+/* Content inner - main content area */
+
+.contentInner {
+  flex: 1;
+  padding: var(--Spacing-6);
+  overflow-y: auto;
+  overflow-x: hidden;
+  /* Reserve the scrollbar gutter so the content width never shifts when
+     a scrollbar appears on expand/collapse. Without this, opening an
+     accordion row that makes the page taller than the viewport pushes
+     the whole layout left by ~15px as the scrollbar claims its space. */
+  scrollbar-gutter: stable;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* Needed to contain absolute-positioned loading overlays */
+  position: relative;
+}
+
+/* INTENTIONAL-LITERAL: 1200px readable-column cap is a product-layout
+   decision that isn't in the spacing/dimension token scale. */
+.contentInner > * {
+  width: 100%;
+  max-width: 1200px;
+  /* Ensure Next.js route wrapper divs stretch in the flex column
+     so child pages can use height: 100% or flex: 1 */
+  flex: 1;
+  min-height: 0;
+}
+
+/* Full-bleed pages (experience builder) opt out of max-width constraint.
+   The page sets data-full-bleed on its wrapper, which also propagates
+   via the :has() selector when a .page child uses max-width: none. */
+.contentInner:has([data-full-bleed]) > * {
+  max-width: none;
+  padding: 0;
+}
+
+/* Also kill contentInner's own padding — including the secondary-nav mirror
+   on the right — so the full-bleed page truly reaches the viewport edge. */
+.contentInner:has([data-full-bleed]) {
+  padding: 0 !important;
+}

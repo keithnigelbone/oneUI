@@ -1,0 +1,27 @@
+import React, { forwardRef } from 'react';
+import type { IconComponentProps } from '../iconProps';
+
+export const RatingOutlined = forwardRef<SVGSVGElement, IconComponentProps>(function RatingOutlined(
+  { size = 24, width, height, color = 'currentColor', className, style, ...props },
+  ref,
+) {
+  const dim = width ?? height ?? size;
+  return (
+    <svg
+      ref={ref}
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      width={width ?? dim}
+      height={height ?? dim}
+      color={color}
+      className={className}
+      style={style}
+      {...props}
+    >
+      <path fillRule="evenodd" clipRule="evenodd" d="M11.137 2.48844C11.5229 1.82693 12.4787 1.82693 12.8646 2.48844L15.8238 7.56139L21.2863 8.82196C22.0288 8.9933 22.3145 9.89892 21.8047 10.4653L18.0158 14.6752L18.4367 20.1478C18.494 20.8925 17.7445 21.4349 17.0551 21.1476L12.0008 19.0417L6.94656 21.1476C6.25716 21.4348 5.50761 20.8925 5.56489 20.1478L5.98586 14.6752L2.19692 10.4653C1.68717 9.89892 1.97286 8.9933 2.71536 8.82196L8.17781 7.56139L11.137 2.48844ZM12.0008 2.99231L9.04159 8.06526C8.90262 8.3035 8.67142 8.47376 8.40267 8.53578L2.94021 9.79635L6.72915 14.0063C6.91218 14.2096 7.00389 14.4791 6.98291 14.7519L6.56194 20.2245L11.6162 18.1186C11.8624 18.016 12.1393 18.016 12.3854 18.1186L17.4397 20.2245L17.0187 14.7519C16.9977 14.4791 17.0894 14.2096 17.2725 14.0063L21.0614 9.79635L15.599 8.53578C15.3302 8.47376 15.099 8.3035 14.96 8.06526L12.0008 2.99231Z" fill="currentColor"/>
+    </svg>
+  );
+});
+
+RatingOutlined.displayName = 'RatingOutlined';

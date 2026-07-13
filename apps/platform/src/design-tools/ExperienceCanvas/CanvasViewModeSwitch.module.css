@@ -1,0 +1,40 @@
+/**
+ * CanvasViewModeSwitch.module.css
+ *
+ * Floating Edit/Preview switch at the top-right of the canvas. Minimal
+ * chrome — two text buttons with a subtle underline on the active one.
+ * No pill background, no outline.
+ */
+
+.wrap {
+  position: absolute;
+  top: var(--Spacing-3-5);
+  right: var(--Spacing-3-5);
+  z-index: 430;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--Spacing-1-5);
+  background: transparent;
+}
+
+.btn {
+  /* Kill the Button's default ghost chrome so these read as plain text. */
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  padding: var(--Spacing-1-5) var(--Spacing-3) !important;
+  font-weight: var(--Label-FontWeight-Medium) !important;
+  color: var(--Text-Low) !important;
+  transition: color var(--Motion-Duration-Discreet-Short, 140ms)
+    var(--Motion-Easing-Transition, ease) !important;
+}
+
+.btn:hover {
+  color: var(--Text-Medium) !important;
+  background: transparent !important;
+}
+
+.btn[data-active] {
+  color: var(--Text-High) !important;
+}

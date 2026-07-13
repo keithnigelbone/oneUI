@@ -1,0 +1,384 @@
+/**
+ * ColorScaleRow styles
+ * Horizontal 25-step color scale row with selection state
+ */
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-4);
+  padding: var(--Spacing-3-5) var(--Spacing-4);
+  background-color: var(--Surface-Main);
+  border-radius: var(--Shape-4);
+  border: 2px solid transparent;
+  transition: background-color var(--Duration-XS) var(--Motion-Easing-Transition),
+              border-color var(--Duration-XS) var(--Motion-Easing-Transition);
+  cursor: pointer;
+  overflow: visible;
+  position: relative;
+}
+
+.row:hover {
+  background-color: var(--Neutral-Subtle);
+}
+
+.row.selected {
+  background-color: var(--Neutral-Subtle);
+}
+
+.row.active {
+  background-color: var(--Neutral-Subtle);
+}
+
+.row.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.row.compact {
+  padding: var(--Spacing-3) var(--Spacing-3-5);
+  gap: var(--Spacing-3-5);
+}
+
+/* Checkbox */
+.checkbox {
+  flex-shrink: 0;
+  width: var(--Spacing-5);
+  height: var(--Spacing-5);
+  border-radius: var(--Shape-3);
+  border: var(--Stroke-XL) solid var(--Border-Subtle);
+  background-color: var(--Surface-Main);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color var(--Duration-XS) var(--Motion-Easing-Transition),
+              border-color var(--Duration-XS) var(--Motion-Easing-Transition);
+}
+
+.checkbox.checked {
+  background-color: var(--Text-High);
+  border-color: var(--Text-High);
+}
+
+.checkmark {
+  color: var(--Text-OnBold-High);
+  font-size: var(--Label-XS-FontSize);
+  font-weight: var(--Body-FontWeight-High);
+}
+
+/* Scale name */
+.nameSection {
+  flex-shrink: 0;
+  /* INTENTIONAL-LITERAL: fixed scale name column — 100px has no matching f-scale token.
+     Fixed (not min-) width so every row's strip starts at the same x and stays equal size. */
+  width: 100px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-2);
+}
+
+.name {
+  font-size: var(--Body-S-FontSize);
+  font-weight: var(--Body-FontWeight-Medium);
+  color: var(--Text-High);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.baseLabel {
+  font-size: var(--Label-2XS-FontSize);
+  color: var(--Text-Low);
+}
+
+/* Scale strip container */
+.scaleContainer {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-2-5);
+  overflow: visible;
+  position: relative;
+}
+
+/* 25-step horizontal strip */
+.scaleStrip {
+  display: flex;
+  height: var(--Spacing-8);
+  position: relative;
+}
+
+.compact .scaleStrip {
+  height: var(--Spacing-6);
+}
+
+.step {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform var(--Duration-2XS) var(--Motion-Easing-Transition);
+}
+
+/* Apply border-radius to first and last steps for rounded strip edges */
+.step:first-child {
+  border-radius: var(--Shape-3-5) 0 0 var(--Shape-3-5);
+}
+
+.step:last-child {
+  border-radius: 0 var(--Shape-3-5) var(--Shape-3-5) 0;
+}
+
+.step:hover {
+  transform: scaleY(1.1);
+  z-index: 10;
+}
+
+/* Base step indicator */
+.baseIndicator {
+  width: var(--Spacing-1-5);
+  height: var(--Spacing-1-5);
+  border-radius: var(--Shape-Pill);
+  background-color: var(--Text-OnBold-High);
+  box-shadow: var(--Elevation-1);
+}
+
+.compact .baseIndicator {
+  width: var(--Spacing-1);
+  height: var(--Spacing-1);
+}
+
+/* Step labels */
+.stepLabels {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 var(--Spacing-2-5);
+}
+
+.stepLabel {
+  font-size: var(--Label-2XS-FontSize);
+  color: var(--Text-Low);
+}
+
+/* Step tooltip on hover - legacy simple tooltip */
+.stepTooltip {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: var(--Spacing-2-5) var(--Spacing-3);
+  background-color: var(--Surface-Bold);
+  color: var(--Text-OnBold-High);
+  border-radius: var(--Shape-3);
+  font-size: var(--Label-2XS-FontSize);
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--Duration-XS) var(--Motion-Easing-Transition);
+  z-index: 10;
+}
+
+.step:hover .stepTooltip {
+  opacity: 1;
+}
+
+/* Detailed tooltip with accessibility info */
+.detailedTooltip {
+  position: absolute;
+  bottom: calc(100% + var(--Spacing-3));
+  left: 50%;
+  transform: translateX(-50%);
+  /* INTENTIONAL-LITERAL: tooltip fixed width — 220px has no matching spacing token */
+  width: 220px;
+  padding: var(--Spacing-3-5);
+  background-color: var(--Surface-Main);
+  border: 1px solid var(--Border-Subtle);
+  border-radius: var(--Shape-4);
+  box-shadow: var(--Elevation-3);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--Duration-XS) var(--Motion-Easing-Transition);
+  z-index: 100;
+}
+
+/* Position adjustment for edge steps */
+.step:first-child .detailedTooltip {
+  left: 0;
+  transform: translateX(0);
+}
+
+.step:last-child .detailedTooltip {
+  left: auto;
+  right: 0;
+  transform: translateX(0);
+}
+
+.step:hover .detailedTooltip {
+  opacity: 1;
+}
+
+/* Tooltip header */
+.tooltipHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--Spacing-3);
+  padding-bottom: var(--Spacing-3);
+  border-bottom: 1px solid var(--Border-Subtle);
+}
+
+.tooltipStep {
+  font-size: var(--Body-S-FontSize);
+  font-weight: var(--Body-FontWeight-High);
+  color: var(--Text-High);
+}
+
+.tooltipBase {
+  font-size: var(--Label-2XS-FontSize);
+  font-weight: var(--Body-FontWeight-High);
+  color: var(--Text-OnBold-High);
+  background-color: var(--Surface-Bold);
+  padding: var(--Spacing-2) var(--Spacing-2-5);
+  border-radius: var(--Shape-3);
+}
+
+/* Color values section */
+.tooltipValues {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-2);
+  margin-bottom: var(--Spacing-3-5);
+}
+
+.tooltipRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.tooltipLabel {
+  font-size: var(--Label-2XS-FontSize);
+  color: var(--Text-Low);
+  font-weight: var(--Body-FontWeight-Medium);
+}
+
+.tooltipValue {
+  font-size: var(--Label-2XS-FontSize);
+  font-family: var(--Typography-Family-Mono, monospace);
+  color: var(--Text-High);
+}
+
+/* Accessibility section */
+.tooltipA11y {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-2);
+}
+
+.tooltipA11yTitle {
+  font-size: var(--Label-2XS-FontSize);
+  font-weight: var(--Body-FontWeight-High);
+  color: var(--Text-Medium);
+  margin-bottom: var(--Spacing-2);
+}
+
+/* Contrast row */
+.tooltipContrastRow {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-2-5);
+}
+
+.tooltipContrastPreview {
+  width: var(--Spacing-6);
+  height: var(--Spacing-6);
+  border-radius: var(--Shape-3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--Label-2XS-FontSize);
+  font-weight: var(--Body-FontWeight-High);
+  flex-shrink: 0;
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+}
+
+.tooltipContrastInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  min-width: 0;
+}
+
+.tooltipContrastLabel {
+  font-size: var(--Label-2XS-FontSize);
+  color: var(--Text-Medium);
+}
+
+.tooltipContrastRatio {
+  font-size: var(--Label-2XS-FontSize);
+  font-family: var(--Typography-Family-Mono, monospace);
+  color: var(--Text-High);
+  font-weight: var(--Body-FontWeight-Medium);
+}
+
+.tooltipContrastRatio.fail {
+  color: var(--Status-Error);
+}
+
+/* Accessibility badges */
+.tooltipBadges {
+  display: flex;
+  gap: var(--Spacing-2);
+}
+
+.tooltipBadge {
+  font-size: var(--Label-3XS-FontSize);
+  font-weight: var(--Body-FontWeight-High);
+  padding: var(--Spacing-1) var(--Spacing-1-5);
+  border-radius: var(--Shape-3);
+}
+
+.tooltipBadge.pass {
+  background-color: var(--Status-Success-Light);
+  color: var(--Status-Success);
+}
+
+.tooltipBadge.fail {
+  background-color: var(--Status-Error-Light);
+  color: var(--Status-Error);
+}
+
+/* Actions */
+.actions {
+  flex-shrink: 0;
+  display: flex;
+  gap: var(--Spacing-3);
+}
+
+.actionButton {
+  padding: var(--Spacing-2-5) var(--Spacing-3-5);
+  border-radius: var(--Shape-4);
+  border: 1px solid var(--Border-Subtle);
+  background-color: transparent;
+  color: var(--Text-Medium);
+  font-size: var(--Label-XS-FontSize);
+  cursor: pointer;
+  transition: background-color var(--Duration-XS) var(--Motion-Easing-Transition),
+              color var(--Duration-XS) var(--Motion-Easing-Transition),
+              border-color var(--Duration-XS) var(--Motion-Easing-Transition);
+}
+
+.actionButton:hover {
+  background-color: var(--Surface-Subtle);
+  color: var(--Text-High);
+}
+
+.actionButton.delete:hover {
+  background-color: var(--Surface-Bold);
+  color: var(--Text-OnBold-High);
+  border-color: var(--Surface-Bold);
+}

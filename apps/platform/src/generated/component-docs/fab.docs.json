@@ -1,0 +1,315 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "FAB",
+  "generatedAt": "2026-01-01T00:00:00.000Z",
+  "machineReadable": true,
+  "intentAndPurpose": {
+    "intent": {
+      "value": "Floating Action Button — elevated primary action that lifts above the page. Circular when no label is present; pill-shaped when extended with a label. Supports 3 sizes (small/medium/large), 3 variants (primary/secondary/surface), and optional on-screen fixed positioning.",
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "taskContexts": {
+      "value": [
+        "action",
+        "fab",
+        "floating",
+        "cta",
+        "elevated"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "sentiments": {
+      "value": [
+        "neutral"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "compositionRules": {
+    "requires": {
+      "value": [],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "allows": {
+      "value": [],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "forbids": {
+      "value": [],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "primary",
+        "useWhen": {
+          "value": [
+            "Primary"
+          ],
+          "attribution": {
+            "source": "inferred"
+          }
+        }
+      },
+      {
+        "name": "secondary",
+        "useWhen": {
+          "value": [
+            "Secondary"
+          ],
+          "attribution": {
+            "source": "inferred"
+          }
+        }
+      },
+      {
+        "name": "surface",
+        "useWhen": {
+          "value": [
+            "Surface"
+          ],
+          "attribution": {
+            "source": "inferred"
+          }
+        }
+      }
+    ]
+  },
+  "relationshipsAndDependencies": {
+    "related": {
+      "value": [],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "contextSignals": {
+    "density": {
+      "value": [
+        "compact",
+        "default",
+        "open"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "modality": {
+      "value": [
+        "desktop",
+        "mobile"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "brand": {
+      "value": [
+        "theme-scope aware",
+        "recipe-driven"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "mode": {
+      "value": [
+        "light",
+        "dark",
+        "surface-context"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "observabilityHooks": {
+    "track": {
+      "value": [],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "health": {
+      "value": [
+        "a11y_violations"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "props": [
+    {
+      "name": "icon",
+      "type": "ComponentIconInput | ReactElement",
+      "required": true,
+      "description": "Icon to display"
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": false,
+      "description": "Accessibility label (required if no label prop)"
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "required": false,
+      "description": "Additional CSS class name"
+    },
+    {
+      "name": "data-testid",
+      "type": "string",
+      "required": false,
+      "description": "Test ID for testing"
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "required": false,
+      "description": "Disabled state"
+    },
+    {
+      "name": "label",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Optional label text (creates extended FAB)"
+    },
+    {
+      "name": "loading",
+      "type": "boolean",
+      "required": false,
+      "description": "Loading state"
+    },
+    {
+      "name": "onPress",
+      "type": "() => void",
+      "required": false,
+      "description": "Press/click handler"
+    },
+    {
+      "name": "position",
+      "type": "FABPosition",
+      "required": false,
+      "description": "Position on screen (only applies when position=\"fixed\")"
+    },
+    {
+      "name": "size",
+      "type": "FABSize",
+      "required": false,
+      "description": "Size affecting dimensions"
+    },
+    {
+      "name": "style",
+      "type": "CSSProperties",
+      "required": false,
+      "description": "Inline styles (primarily for Storybook positioning)"
+    },
+    {
+      "name": "variant",
+      "type": "FABVariant",
+      "required": false,
+      "description": "Visual variant affecting colors"
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.docs.fab",
+    "type": "object",
+    "properties": {
+      "icon": {
+        "description": "Icon to display"
+      },
+      "aria-label": {
+        "type": "string",
+        "description": "Accessibility label (required if no label prop)"
+      },
+      "className": {
+        "type": "string",
+        "description": "Additional CSS class name"
+      },
+      "data-testid": {
+        "type": "string",
+        "description": "Test ID for testing"
+      },
+      "disabled": {
+        "type": "boolean",
+        "description": "Disabled state"
+      },
+      "label": {
+        "description": "Optional label text (creates extended FAB)"
+      },
+      "loading": {
+        "type": "boolean",
+        "description": "Loading state"
+      },
+      "onPress": {
+        "description": "Press/click handler"
+      },
+      "position": {
+        "enum": [
+          "bottom-right",
+          "bottom-left",
+          "bottom-center"
+        ],
+        "description": "Position on screen (only applies when position=\"fixed\")"
+      },
+      "size": {
+        "enum": [
+          "small",
+          "medium",
+          "large"
+        ],
+        "description": "Size affecting dimensions"
+      },
+      "style": {
+        "description": "Inline styles (primarily for Storybook positioning)"
+      },
+      "variant": {
+        "enum": [
+          "primary",
+          "secondary",
+          "surface"
+        ],
+        "description": "Visual variant affecting colors"
+      }
+    },
+    "required": [
+      "icon"
+    ]
+  },
+  "codeSnippets": [
+    {
+      "id": "fab-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { FAB } from '@oneui/ui';\n\n<FAB />"
+    },
+    {
+      "id": "fab-recipe-decisions",
+      "title": "Recipe Decisions",
+      "language": "json",
+      "code": "{\n  \"component\": \"FAB\",\n  \"decisions\": [\n    \"Shape\",\n    \"Elevation\"\n  ]\n}"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "fab"
+  ],
+  "generatedMarkdown": "# FAB Machine-Readable Documentation\n\n_Generated from source metadata. Do not edit manually._\n\n## Intent and Purpose\n\n- **Intent**: Floating Action Button — elevated primary action that lifts above the page. Circular when no label is present; pill-shaped when extended with a label. Supports 3 sizes (small/medium/large), 3 variants (primary/secondary/surface), and optional on-screen fixed positioning.\n- **Task contexts**: action, fab, floating, cta, elevated\n- **Sentiments**: neutral\n\n## Composition Rules\n\n- **Requires**: \n- **Allows**: \n- **Forbids**: \n\n## Variant Logic\n\n- **primary**: use when Primary\n- **secondary**: use when Secondary\n- **surface**: use when Surface\n\n## Relationships and Dependencies\n\n- **Related**: \n- **Escalates to**: -\n- **Degrades to**: -\n- **Groups with**: -\n\n## Context Signals\n\n- **Density**: compact, default, open\n- **Modality**: desktop, mobile\n- **Brand**: theme-scope aware, recipe-driven\n- **Mode**: light, dark, surface-context\n\n## Observability Hooks\n\n- **Track**: \n- **Health**: a11y_violations\n\n## Props\n\n| Prop | Type | Required | Default | Description |\n| --- | --- | --- | --- | --- |\n| `icon` | `ComponentIconInput | ReactElement` | Yes | - | Icon to display |\n| `aria-label` | `string` | No | - | Accessibility label (required if no label prop) |\n| `className` | `string` | No | - | Additional CSS class name |\n| `data-testid` | `string` | No | - | Test ID for testing |\n| `disabled` | `boolean` | No | - | Disabled state |\n| `label` | `ReactNode` | No | - | Optional label text (creates extended FAB) |\n| `loading` | `boolean` | No | - | Loading state |\n| `onPress` | `() => void` | No | - | Press/click handler |\n| `position` | `FABPosition` | No | - | Position on screen (only applies when position=\"fixed\") |\n| `size` | `FABSize` | No | - | Size affecting dimensions |\n| `style` | `CSSProperties` | No | - | Inline styles (primarily for Storybook positioning) |\n| `variant` | `FABVariant` | No | - | Visual variant affecting colors |\n\n## Slots\n\n| Slot | Types | Tokens |\n| --- | --- | --- |\n\n\n## Code Snippets\n\n### Basic Usage\n\n```tsx\nimport { FAB } from '@oneui/ui';\n\n<FAB />\n```\n\n### Recipe Decisions\n\n```json\n{\n  \"component\": \"FAB\",\n  \"decisions\": [\n    \"Shape\",\n    \"Elevation\"\n  ]\n}\n```\n"
+}

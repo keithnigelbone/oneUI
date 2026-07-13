@@ -1,0 +1,28 @@
+.ribbon {
+  font-family: var(--Label-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Label-M-FontSize);
+  line-height: var(--Label-M-LineHeight);
+  font-weight: var(--Body-FontWeight-Medium);
+  padding: var(--Spacing-3) var(--Spacing-4);
+  border-radius: var(--Shape-3-5);
+  text-align: center;
+}
+
+.ribbon[data-variant='neutral'] {
+  background: var(--Neutral-Subtle);
+  color: var(--Neutral-High, var(--Text-High));
+}
+
+.ribbon[data-variant='accent'] {
+  background: var(--Primary-Subtle, var(--Neutral-Subtle));
+  color: var(--Primary-High, var(--Text-High));
+}
+
+.ribbon[data-variant='inverse'] {
+  background: var(--Primary-Bold, var(--Surface-Bold));
+  color: var(--Primary-Bold-High, var(--Text-OnBold-High));
+}
+
+.jioRibbonWrap {
+  margin: 0 auto;
+}

@@ -1,0 +1,207 @@
+/**
+ * CounterBadge.module.css
+ *
+ * CRITICAL: This file demonstrates the ZERO LITERALS rule
+ * ALL styling uses design tokens ONLY
+ *
+ * Architecture: Role-agnostic intermediate variables (--_cb-*)
+ * - Default = Primary role
+ * - Appearance classes remap --_cb-* to other roles
+ * - Variant selectors consume --_cb-* without duplication
+ *
+ * Verified by: pnpm check:literals
+ */
+
+.badge {
+  /* ========================================
+     INTERMEDIATE VARIABLES — default = Primary role
+     These are remapped by appearance classes
+   Bold counters use the on-bold high token for numeric text. Do not prefer
+   Bold-TintedA11y here: badge counts need maximum contrast (white on red,
+   white on positive, etc.), unlike decorative tinted icons.
+     ======================================== */
+  --_cb-bold: var(--Primary-Bold, var(--Surface-Bold));
+  --_cb-bold-high: var(--Primary-Bold-High, var(--Text-OnBold-High));
+  --_cb-subtle: var(--Primary-Subtle, var(--Surface-Subtle));
+  --_cb-default-accent-a11y: var(--Primary-TintedA11y, var(--Primary-Tinted, var(--Surface-Bold)));
+  --_cb-default-low-stroke: var(--Primary-Stroke-Low, var(--Surface-Bold));
+
+  /* ========================================
+     SHAPE
+     ======================================== */
+  border-radius: var(--CounterBadge-borderRadius, var(--Shape-Pill));
+
+  /* ========================================
+     BASE STYLES — Typography uses Label role tokens
+     ======================================== */
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--CounterBadge-fontFamily, var(--Label-FontFamily, var(--Typography-Font-Primary, inherit)));
+  font-weight: var(--CounterBadge-fontWeight, var(--Label-FontWeight-Medium));
+  text-transform: var(--CounterBadge-textTransform, none);
+  letter-spacing: var(--CounterBadge-letterSpacing, normal);
+  white-space: nowrap;
+  box-sizing: border-box;
+  position: relative;
+  clip-path: var(--CounterBadge-cssDecorationClipPath, none);
+}
+
+.badge::after {
+  content: '';
+  position: absolute;
+  inset: var(--Spacing-0);
+  box-sizing: border-box;
+  pointer-events: none;
+  border-radius: inherit;
+  clip-path: var(--CounterBadge-cssDecorationClipPath, none);
+  border-style: var(--CounterBadge-cssDecorationStrokeStyle, solid);
+  border-color: var(--CounterBadge-cssDecorationColor, currentColor);
+  border-width:
+    var(--CounterBadge-cssDecorationInsetStrokeWidth, var(--Spacing-0))
+    var(--CounterBadge-cssDecorationInsetStrokeWidth, var(--Spacing-0))
+    var(--CounterBadge-cssDecorationInsetStrokeWidth, var(--CounterBadge-cssDecorationUnderlineWidth, var(--Spacing-0)))
+    var(--CounterBadge-cssDecorationInsetStrokeWidth, var(--Spacing-0));
+}
+
+/* ========================================
+   APPEARANCE — role-agnostic intermediate variable remapping
+   Adding a new appearance = 1 new class with 5 remappings
+   ======================================== */
+
+.appearanceNeutral {
+  --_cb-bold: var(--Neutral-Bold, var(--Surface-Bold));
+  --_cb-bold-high: var(--Neutral-Bold-High, var(--Text-OnBold-High));
+  --_cb-subtle: var(--Neutral-Subtle, var(--Surface-Subtle));
+  --_cb-default-accent-a11y: var(--Neutral-TintedA11y, var(--Neutral-Tinted, var(--Surface-Bold)));
+  --_cb-default-low-stroke: var(--Neutral-Stroke-Low, var(--Surface-Bold));
+}
+
+.appearanceSecondary {
+  --_cb-bold: var(--Secondary-Bold, var(--Surface-Bold));
+  --_cb-bold-high: var(--Secondary-Bold-High, var(--Text-OnBold-High));
+  --_cb-subtle: var(--Secondary-Subtle, var(--Surface-Subtle));
+  --_cb-default-accent-a11y: var(--Secondary-TintedA11y, var(--Secondary-Tinted, var(--Surface-Bold)));
+  --_cb-default-low-stroke: var(--Secondary-Stroke-Low, var(--Surface-Bold));
+}
+
+.appearanceSparkle {
+  --_cb-bold: var(--Sparkle-Bold, var(--Surface-Bold));
+  --_cb-bold-high: var(--Sparkle-Bold-High, var(--Text-OnBold-High));
+  --_cb-subtle: var(--Sparkle-Subtle, var(--Surface-Subtle));
+  --_cb-default-accent-a11y: var(--Sparkle-TintedA11y, var(--Sparkle-Tinted, var(--Surface-Bold)));
+  --_cb-default-low-stroke: var(--Sparkle-Stroke-Low, var(--Surface-Bold));
+}
+
+.appearanceBrandBg {
+  --_cb-bold: var(--Brand-Bg-Bold, var(--Surface-Bold));
+  --_cb-bold-high: var(--Brand-Bg-Bold-High, var(--Text-OnBold-High));
+  --_cb-subtle: var(--Brand-Bg-Subtle, var(--Surface-Subtle));
+  --_cb-default-accent-a11y: var(--Brand-Bg-TintedA11y, var(--Brand-Bg-Tinted, var(--Surface-Bold)));
+  --_cb-default-low-stroke: var(--Brand-Bg-Stroke-Low, var(--Surface-Bold));
+}
+
+.appearancePositive {
+  --_cb-bold: var(--Positive-Bold, var(--Surface-Bold));
+  --_cb-bold-high: var(--Positive-Bold-High, var(--Text-OnBold-High));
+  --_cb-subtle: var(--Positive-Subtle, var(--Surface-Subtle));
+  --_cb-default-accent-a11y: var(--Positive-TintedA11y, var(--Positive-Tinted, var(--Surface-Bold)));
+  --_cb-default-low-stroke: var(--Positive-Stroke-Low, var(--Surface-Bold));
+}
+
+.appearanceNegative {
+  --_cb-bold: var(--Negative-Bold, var(--Surface-Bold));
+  --_cb-bold-high: var(--Negative-Bold-High, var(--Text-OnBold-High));
+  --_cb-subtle: var(--Negative-Subtle, var(--Surface-Subtle));
+  --_cb-default-accent-a11y: var(--Negative-TintedA11y, var(--Negative-Tinted, var(--Surface-Bold)));
+  --_cb-default-low-stroke: var(--Negative-Stroke-Low, var(--Surface-Bold));
+}
+
+.appearanceWarning {
+  --_cb-bold: var(--Warning-Bold, var(--Surface-Bold));
+  --_cb-bold-high: var(--Warning-Bold-High, var(--Text-OnBold-High));
+  --_cb-subtle: var(--Warning-Subtle, var(--Surface-Subtle));
+  --_cb-default-accent-a11y: var(--Warning-TintedA11y, var(--Warning-Tinted, var(--Surface-Bold)));
+  --_cb-default-low-stroke: var(--Warning-Stroke-Low, var(--Surface-Bold));
+}
+
+.appearanceInformative {
+  --_cb-bold: var(--Informative-Bold, var(--Surface-Bold));
+  --_cb-bold-high: var(--Informative-Bold-High, var(--Text-OnBold-High));
+  --_cb-subtle: var(--Informative-Subtle, var(--Surface-Subtle));
+  --_cb-default-accent-a11y: var(--Informative-TintedA11y, var(--Informative-Tinted, var(--Surface-Bold)));
+  --_cb-default-low-stroke: var(--Informative-Stroke-Low, var(--Surface-Bold));
+}
+
+/* ========================================
+   VARIANTS — consume intermediate vars, zero duplication
+   ======================================== */
+
+.bold {
+  background-color: var(--CounterBadge-backgroundColor-bold, var(--_cb-bold));
+  color: var(--CounterBadge-textColor-bold, var(--_cb-bold-high));
+  border: 0 solid transparent;
+}
+
+.subtle {
+  background-color: var(--CounterBadge-backgroundColor-subtle, var(--_cb-subtle));
+  color: var(--CounterBadge-textColor-subtle, var(--_cb-default-accent-a11y));
+  border: 0 solid transparent;
+}
+
+.ghost {
+  background-color: var(--CounterBadge-backgroundColor-ghost, transparent);
+  color: var(--CounterBadge-textColor-ghost, var(--_cb-default-accent-a11y));
+  border: var(--CounterBadge-borderWidth-ghost, var(--Stroke-M)) solid var(--CounterBadge-borderColor-ghost, var(--_cb-default-low-stroke));
+}
+
+/* ========================================
+   SIZES — via data-size attribute selectors
+   Typography uses Label role tokens
+   ======================================== */
+
+.badge[data-size="xs"] {
+  height: var(--CounterBadge-height-xs, var(--Spacing-3));
+  min-width: var(--CounterBadge-height-xs, var(--Spacing-3));
+  padding-left: var(--CounterBadge-paddingHorizontal-xs, var(--Spacing-0-5));
+  padding-right: var(--CounterBadge-paddingHorizontal-xs, var(--Spacing-0-5));
+  font-size: var(--CounterBadge-fontSize-xs, var(--Label-3XS-FontSize));
+  line-height: var(--CounterBadge-lineHeight-xs, var(--Label-3XS-LineHeight));
+}
+
+.badge[data-size="s"] {
+  height: var(--CounterBadge-height-s, var(--Spacing-3-5));
+  min-width: var(--CounterBadge-height-s, var(--Spacing-3-5));
+  padding-left: var(--CounterBadge-paddingHorizontal-s, var(--Spacing-0-5));
+  padding-right: var(--CounterBadge-paddingHorizontal-s, var(--Spacing-0-5));
+  font-size: var(--CounterBadge-fontSize-s, var(--Label-3XS-FontSize));
+  line-height: var(--CounterBadge-lineHeight-s, var(--Label-3XS-LineHeight));
+}
+
+.badge[data-size="m"] {
+  height: var(--CounterBadge-height-m, var(--Spacing-4));
+  min-width: var(--CounterBadge-height-m, var(--Spacing-4));
+  padding-left: var(--CounterBadge-paddingHorizontal-m, var(--Spacing-0-5));
+  padding-right: var(--CounterBadge-paddingHorizontal-m, var(--Spacing-0-5));
+  font-size: var(--CounterBadge-fontSize-m, var(--Label-2XS-FontSize));
+  line-height: var(--CounterBadge-lineHeight-m, var(--Label-2XS-LineHeight));
+}
+
+.badge[data-size="l"] {
+  height: var(--CounterBadge-height-l, var(--Spacing-5));
+  min-width: var(--CounterBadge-height-l, var(--Spacing-5));
+  padding-left: var(--CounterBadge-paddingHorizontal-l, var(--Spacing-0-5));
+  padding-right: var(--CounterBadge-paddingHorizontal-l, var(--Spacing-0-5));
+  font-size: var(--CounterBadge-fontSize-l, var(--Label-XS-FontSize));
+  line-height: var(--CounterBadge-lineHeight-l, var(--Label-XS-LineHeight));
+}
+
+/**
+ * ========================================
+ * IMPORTANT: NO LITERALS IN THIS FILE
+ * ========================================
+ *
+ * All values MUST come from --Token-Name variables
+ * defined in @oneui/tokens CSS files
+ */

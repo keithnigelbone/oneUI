@@ -1,0 +1,359 @@
+/**
+ * TouchSlider.module.css
+ *
+ * Single size per Figma (node 5723-7946). 138×32 horizontal, 32×138 vertical.
+ *
+ * progressEdge behaviour (per Figma):
+ *   The OUTER container is ALWAYS pill-shaped — progressStyle does NOT change it.
+ *   Only the INDICATOR'S TRAILING edge (right for horizontal, top for vertical) flips:
+ *     - rounded → pill cap at the value boundary
+ *     - sharp   → flat 90° edge at the value boundary
+ *   The indicator's leading edge stays pill-rounded so it always meets the
+ *   container's pill-rounded start edge flush.
+ *
+ * Slots:
+ *   start/end slots render inside .control as absolute-positioned overlays on the
+ *   pill cap centres (horizontal: left/right; vertical: bottom/top). They never
+ *   live on the thumb or inside the indicator.
+ *
+ * Surface context:
+ *   Fill/on-color reference role tokens — brand CSS remaps them inside
+ *   [data-surface] blocks for automatic adaptation. The rail follows the
+ *   PARENT surface's appearance (neutral on the page / default / elevated
+ *   surfaces), not the appearance prop.
+ *
+ * Force state:
+ *   Ancestor [data-force-state="focus"] triggers the focus halo for showcase use,
+ *   matching the pattern in SliderKnob/SliderValueTooltip.
+ *
+ * ZERO LITERALS.
+ */
+
+/* ============================================
+   ROOT
+   ============================================ */
+
+.root {
+  /* Secondary is the default appearance.
+     The rail is SURFACE-relative, NOT appearance-relative: on the page
+     background it stays Neutral-Minimal regardless of the appearance prop
+     (matching Slider's always-neutral rail); inside a colored <Surface> it
+     follows the PARENT surface's appearance (see the [data-surface] override
+     near the bottom). Only the fill + on-color follow the appearance prop —
+     same chrome convention as Switch's unchecked track and Input's idle
+     stroke. */
+  --_ts-fill:              var(--Secondary-Bold, var(--Surface-Bold));
+  --_ts-rail:              var(--Neutral-Minimal, var(--Surface-Subtle));
+  --_ts-on-color:          var(--Secondary-Bold-TintedA11y, var(--Secondary-Bold-High, var(--Text-OnBold-High)));
+  /* On-bold content Low — the start icon at value 0 in ROUNDED mode, where it
+     sits on the parked bold fill. Uses --{Role}-Bold-Low (resolved against the
+     bold fill so it stays legible on the fill), with page content Low as a
+     defensive fallback. Sharp mode uses --_ts-on-rail instead (icon on track). */
+  --_ts-on-color-low:      var(--Secondary-Bold-Low, var(--Secondary-Low, var(--Text-Low)));
+  /* Slot on empty rail — content Low on the page; remapped to parent
+     surface appearance inside colored Surfaces (see override below). */
+  --_ts-on-rail:           var(--Neutral-Low, var(--Text-Low));
+
+  /* Leading edge always rounded; trailing edge flips with progressStyle */
+  --_ts-lead-radius:       var(--TouchSlider-borderRadius, var(--Shape-Pill));
+  --_ts-trail-radius:      var(--TouchSlider-borderRadius, var(--Shape-Pill));
+
+  /* Indicator slide-off floor/ceiling (see .indicator transform).
+     Default: floor -100% → indicator slides fully off the leading edge at value=0.
+     With a start slot: clamp at `thickness − 100%` so one circle stays anchored
+     under the icon at min value. Ceiling mirrors for vertical. */
+  --_ts-slide-floor-x:     -100%;
+  --_ts-slide-ceiling-y:   100%;
+
+  box-sizing: border-box;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  user-select: none;
+  touch-action: none;
+}
+
+/* Rounded + start slot: clamp so the pill cap stays under the icon at min value.
+   Sharp ignores this — fill slides fully off at value=0 regardless of slots. */
+.root[data-progress-style="rounded"][data-has-start-slot] {
+  --_ts-slide-floor-x:   calc(var(--TouchSlider-thickness, var(--Spacing-9)) - 100%);
+  --_ts-slide-ceiling-y: calc(100% - var(--TouchSlider-thickness, var(--Spacing-9)));
+}
+
+.rootHorizontal {
+  flex-direction: row;
+}
+
+.rootVertical {
+  flex-direction: column;
+}
+
+/* progressStyle only flips the trailing edge — container stays pill.
+   Rounded: indicator carries the pill cap at the value (no visible thumb).
+   Sharp: flat trailing edge inside the clipped pill. */
+.root[data-progress-style="rounded"] {
+  --_ts-trail-radius: var(--TouchSlider-borderRadius, var(--Shape-Pill));
+}
+
+.root[data-progress-style="sharp"] {
+  --_ts-trail-radius: var(--Shape-0);
+}
+
+.root[data-disabled]:not([data-readonly]) {
+  opacity: var(--Disabled-Opacity);
+  pointer-events: none;
+}
+
+.root[data-readonly] {
+  pointer-events: none;
+}
+
+/* ============================================
+   CONTROL — always pill-shaped outer container.
+   overflow:hidden clips the track background to the pill; the indicator's
+   sharp trailing edge sits INSIDE the pill so it isn't clipped away.
+   ============================================ */
+
+.control {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex: 1 1 auto;
+  min-width: 0;
+  touch-action: none;
+  user-select: none;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: var(--TouchSlider-borderRadius, var(--Shape-Pill));
+}
+
+.rootHorizontal .control {
+  height: var(--TouchSlider-thickness, var(--Spacing-9));
+  min-width: var(--TouchSlider-width, var(--Dimension-f14));
+}
+
+.rootVertical .control {
+  flex-direction: column;
+  width: var(--TouchSlider-thickness, var(--Spacing-9));
+  min-height: var(--TouchSlider-width, var(--Dimension-f14));
+}
+
+.root[data-disabled] .control {
+  cursor: not-allowed;
+}
+
+/* ============================================
+   FOCUS HALO — accessibility-only.
+     Uses :has(:focus-visible), NOT :focus-within, so the halo appears only
+     when focus arrived via keyboard / screen-reader / other AT — never on a
+     mouse click. Matches SliderKnob / Button / Switch convention.
+
+   Two concentric rings:
+     inner: Stroke-XL (2px) gap using --Surface-Halo-Gap (adapts to surface)
+     outer: Stroke-XL + Focus-Outline-Width (4px total) in the Informative role
+            — always Informative so the halo reads as a focus signal across
+              every appearance, regardless of the slider's own accent.
+     Visible ring width = 2px (outer − inner).
+
+   Storybook forced focus uses [data-force-state="focus"] to showcase the
+   visual state without needing real keyboard input.
+   ============================================ */
+
+.control:has(:focus-visible),
+:global([data-force-state="focus"]) .control {
+  box-shadow:
+    0 0 0 var(--Stroke-XL) var(--Surface-Halo-Gap, var(--Surface-Main)),
+    0 0 0 calc(var(--Stroke-XL) + var(--Focus-Outline-Width))
+      var(--Informative-Bold, var(--Focus-Outline));
+}
+
+/* ============================================
+   TRACK — rail; .control handles the pill clip
+   ============================================ */
+
+.track {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: var(--_ts-rail);
+  transition: background-color var(--Motion-Duration-XS) var(--Motion-Easing-Transition-Moderate);
+}
+
+.rootVertical .track {
+  flex: 1 1 auto;
+}
+
+/* ============================================
+   INDICATOR — full-track pill that slides off the leading edge based on value.
+   Base UI is in `thumbAlignment="edge"` (inset) mode, which exposes the value
+   as --start-position: X% on the indicator. We override Base UI's inline width
+   so the fill spans the track at a FIXED size, then translateX moves it so its
+   trailing edge sits at value% of the track.
+     - border-radius lives on the fill itself → pill cap size never changes
+     - transform is GPU-composited → smooth entrance settle, no layout thrash
+     - max() clamps how far left the fill can slide (see --_ts-slide-floor-x)
+   ============================================ */
+
+.indicator {
+  width: 100% !important;
+  height: 100%;
+  background-color: var(--_ts-fill);
+
+  /* Horizontal LTR defaults: leading = left, trailing = right */
+  border-top-left-radius:     var(--_ts-lead-radius);
+  border-bottom-left-radius:  var(--_ts-lead-radius);
+  border-top-right-radius:    var(--_ts-trail-radius);
+  border-bottom-right-radius: var(--_ts-trail-radius);
+
+  transform: translateX(
+    max(var(--_ts-slide-floor-x), calc(var(--start-position, 0%) - 100%))
+  );
+
+  transition:
+    transform        var(--Motion-Duration-M)  var(--Motion-Easing-Entrance-Moderate),
+    background-color var(--Motion-Duration-XS) var(--Motion-Easing-Transition-Moderate);
+}
+
+.rootVertical .indicator {
+  width: 100%;
+  height: 100% !important;
+
+  border-top-left-radius:     var(--_ts-trail-radius);
+  border-top-right-radius:    var(--_ts-trail-radius);
+  border-bottom-left-radius:  var(--_ts-lead-radius);
+  border-bottom-right-radius: var(--_ts-lead-radius);
+
+  transform: translateY(
+    min(var(--_ts-slide-ceiling-y), calc(100% - var(--start-position, 0%)))
+  );
+}
+
+/* ============================================
+   SLOT — optional icon(s), absolute-positioned inside .control.
+   pointer-events: none so drag/tap passes through to the track.
+   Horizontal mirrors vertical: cap-centre anchors, never on the thumb/indicator.
+   ============================================ */
+
+.slot {
+  position: absolute;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  color: var(--_ts-on-color);
+  /* Bridge slot color into the Icon component's token system so the data-at-min
+     grey override is respected by both raw SVG (currentColor) and the Icon
+     component wrapper (which reads --Icon-color before its own defaults). */
+  --Icon-color: currentColor;
+  width: var(--TouchSlider-slotSize, var(--Spacing-4-5));
+  height: var(--TouchSlider-slotSize, var(--Spacing-4-5));
+}
+
+/* Horizontal — leading cap centre. */
+.rootHorizontal .slot[data-slider-slot="start"] {
+  left: calc(var(--TouchSlider-thickness, var(--Spacing-9)) / 2);
+  right: auto;
+  top: 50%;
+  bottom: auto;
+  transform: translate(-50%, -50%);
+}
+
+/* Vertical — bottom cap centre. */
+.rootVertical .slot[data-slider-slot="start"] {
+  left: 50%;
+  right: auto;
+  top: auto;
+  bottom: calc(var(--TouchSlider-thickness, var(--Spacing-9)) / 2);
+  transform: translate(-50%, 50%);
+}
+
+/* Sharp mode at value 0 — icon is on the empty rail/track, NOT the fill, so it
+   uses the rail's content-Low (--_ts-on-rail), calculated against the track
+   background. --Icon-color inherits currentColor so the Icon follows along. */
+.root[data-progress-style="sharp"][data-start-on-rail] .slot[data-slider-slot="start"] {
+  color: var(--TouchSlider-slotRailColor, var(--_ts-on-rail));
+}
+
+
+/* ============================================
+   APPEARANCE — remap fill + rail + on-color per role.
+   Brand CSS remaps these inside [data-surface] blocks automatically.
+   ============================================ */
+
+/* Per-appearance: override fill + on-color only. The rail does NOT follow the
+   appearance prop — it stays neutral on the page and follows the PARENT
+   surface's appearance inside colored surfaces (see the [data-surface]
+   override below). */
+
+.appearancePrimary {
+  --_ts-fill:          var(--Primary-Bold, var(--Surface-Bold));
+  --_ts-on-color:      var(--Primary-Bold-TintedA11y, var(--Primary-Bold-High, var(--Text-OnBold-High)));
+  --_ts-on-color-low:  var(--Primary-Bold-Low, var(--Primary-Low, var(--Text-Low)));
+}
+
+.appearanceNeutral {
+  --_ts-fill:          var(--Neutral-Bold, var(--Surface-Bold));
+  --_ts-on-color:      var(--Neutral-Bold-TintedA11y, var(--Neutral-Bold-High, var(--Text-OnBold-High)));
+  --_ts-on-color-low:  var(--Neutral-Bold-Low, var(--Neutral-Low, var(--Text-Low)));
+}
+
+.appearanceSecondary {
+  --_ts-fill:          var(--Secondary-Bold, var(--Surface-Bold));
+  --_ts-on-color:      var(--Secondary-Bold-TintedA11y, var(--Secondary-Bold-High, var(--Text-OnBold-High)));
+  --_ts-on-color-low:  var(--Secondary-Bold-Low, var(--Secondary-Low, var(--Text-Low)));
+}
+
+.appearanceSparkle {
+  --_ts-fill:          var(--Sparkle-Bold, var(--Surface-Bold));
+  --_ts-on-color:      var(--Sparkle-Bold-TintedA11y, var(--Sparkle-Bold-High, var(--Text-OnBold-High)));
+  --_ts-on-color-low:  var(--Sparkle-Bold-Low, var(--Sparkle-Low, var(--Text-Low)));
+}
+
+.appearanceBrandBg {
+  --_ts-fill:          var(--Brand-Bg-Bold, var(--Surface-Bold));
+  --_ts-on-color:      var(--Brand-Bg-Bold-TintedA11y, var(--Brand-Bg-Bold-High, var(--Text-OnBold-High)));
+  --_ts-on-color-low:  var(--Brand-Bg-Bold-Low, var(--Brand-Bg-Low, var(--Text-Low)));
+}
+
+.appearancePositive {
+  --_ts-fill:          var(--Positive-Bold, var(--Surface-Bold));
+  --_ts-on-color:      var(--Positive-Bold-TintedA11y, var(--Positive-Bold-High, var(--Text-OnBold-High)));
+  --_ts-on-color-low:  var(--Positive-Bold-Low, var(--Positive-Low, var(--Text-Low)));
+}
+
+.appearanceNegative {
+  --_ts-fill:          var(--Negative-Bold, var(--Surface-Bold));
+  --_ts-on-color:      var(--Negative-Bold-TintedA11y, var(--Negative-Bold-High, var(--Text-OnBold-High)));
+  --_ts-on-color-low:  var(--Negative-Bold-Low, var(--Negative-Low, var(--Text-Low)));
+}
+
+.appearanceWarning {
+  --_ts-fill:          var(--Warning-Bold, var(--Surface-Bold));
+  --_ts-on-color:      var(--Warning-Bold-TintedA11y, var(--Warning-Bold-High, var(--Text-OnBold-High)));
+  --_ts-on-color-low:  var(--Warning-Bold-Low, var(--Warning-Low, var(--Text-Low)));
+}
+
+.appearanceInformative {
+  --_ts-fill:          var(--Informative-Bold, var(--Surface-Bold));
+  --_ts-on-color:      var(--Informative-Bold-TintedA11y, var(--Informative-Bold-High, var(--Text-OnBold-High)));
+  --_ts-on-color-low:  var(--Informative-Bold-Low, var(--Informative-Low, var(--Text-Low)));
+}
+
+/* ============================================
+   SURFACE CONTEXT AWARENESS — rail + on-rail slots.
+   On colored surfaces the rail follows the PARENT surface's appearance,
+   never the slider's own appearance prop. --Text-Minimal / --Text-Low are
+   redirected per-role by the engine's [data-appearance="<role>"] blocks
+   (Surface always emits data-appearance), and custom-property inheritance
+   picks the nearest surface ancestor. Default/elevated surfaces are excluded —
+   they sit at the extreme page step (2500 light / 100 dark) and read as
+   "no surface", so the rail keeps the neutral chrome there even when the
+   Surface carries a non-neutral appearance. Mirrors Input's idle-chrome
+   pattern (commit 5a564a1a).
+   ============================================ */
+
+:global([data-surface]:not([data-surface="default"]):not([data-surface="elevated"])) .root {
+  --_ts-rail: var(--Text-Minimal, var(--Neutral-Minimal, var(--Surface-Subtle)));
+  --_ts-on-rail: var(--Text-Low, var(--Neutral-Low, var(--Text-Low)));
+}

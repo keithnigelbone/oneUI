@@ -1,0 +1,13 @@
+import React from 'react';
+import Svg, { Path, type SvgProps } from 'react-native-svg';
+export function IcMoneySend(props: SvgProps) {
+  const fill = String(props.fill ?? '#000000');
+  return (
+    <Svg viewBox="0 0 24 24" fill="none" {...props}>
+      <Path
+            fill={fill}
+            d="M17 7h1.59l-.3.29a1 1 0 0 0 .325 1.64 1 1 0 0 0 1.095-.22l2-2a1 1 0 0 0 .21-.33 1 1 0 0 0 0-.76 1 1 0 0 0-.21-.33l-2-2a1.003 1.003 0 1 0-1.42 1.42l.3.29H17a1 1 0 1 0 0 2m2 4a5 5 0 0 1-4.9-6H5a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-6a5 5 0 0 1-3 1m-8 0a3 3 0 0 1-1.11 2.33l1.56.78A1 1 0 0 1 11 16a.93.93 0 0 1-.45-.11l-4-2A1 1 0 0 1 7 12h1a1 1 0 0 0 0-2H6a1 1 0 0 1 0-2h5a1 1 0 1 1 0 2h-.18a3 3 0 0 1 .18 1"
+          />
+    </Svg>
+  );
+}

@@ -1,0 +1,619 @@
+/**
+ * Input.module.css
+ *
+ * Styles for the Input container component (bordered box with 4-slot system).
+ *
+ * CRITICAL: ZERO LITERALS rule — ALL styling uses design tokens ONLY
+ *
+ * Token mapping verified against Figma variables (node 4306:7247 + 4654:4141):
+ *
+ * Figma Spacings → CSS Spacing tokens → Dimension f-steps:
+ *   Spacings/0  → --Spacing-0     → 0px
+ *   Spacings/1  → --Spacing-1      → f-6  (4px base / 5px 1920)
+ *   Spacings/1.5→ --Spacing-1-5      → f-5  (6px base / 7.5px 1920)
+ *   Spacings/2  → --Spacing-2      → f-4  (8px base / 10px 1920)
+ *   Spacings/3  → --Spacing-3       → f-2  (12px base / 15px 1920)
+ *   Spacings/4  → --Spacing-4        → f0   (16px base / 20px 1920)
+ *   Spacings/5  → --Spacing-5       → f2   (20px base / 25px 1920)
+ *   Spacings/6  → --Spacing-6      → f3   (24px base / 30px 1920)
+ *   Spacings/8  → --Spacing-8      → f5   (32px base / 40px 1920)
+ *   Spacings/10 → --Spacing-10      → f7   (40px base / 50px 1920)
+ *   Spacings/12 → --Spacing-12      → f8   (48px base / 60px 1920)
+ *
+ * Figma Shapes → CSS Shape tokens (container radius per size, from DNA frames):
+ *   S  (h=32) → Shape/2   → --Shape-2 → f-4 (8px at S default)
+ *   M  (h=40) → Shape/2   → --Shape-2 → f-4 (8px at S default)
+ *   L  (h=48) → Shape/3   → --Shape-3  → f-2 (12px at S default)
+ *
+ * History: from commit c617194 ("Figma-verified") these were always the
+ * correct per-size values. An earlier debug session flipped them to the
+ * SMALLER Figma value in each pair (Shape/0.5 / 1 / 1 / 1.5) because the
+ * real bug looked like "too round" in Storybook — but that rounding was
+ * actually caused by Input.tokens.ts emitting `--Input-borderRadius:
+ * var(--Shape-4)` (= 16px) at :root via buildAllComponentCSS, which
+ * masked the per-size CSS values uniformly. The pipeline fix lives in
+ * Input.tokens.ts (size-aware borderRadius) and
+ * packages/ui/src/utils/buildComponentOverrideCSS.ts (Pass 2 modifier
+ * clearing on recipe/manual base overrides).
+ *
+ * Typography: Body role, weight Low (400 = Regular)
+ * Chrome border: medium attention idle = `Stroke-M` (1px); high attention idle = 0;
+ *   focus or invalid → `Stroke-XL` (2px) on the same border (no outline ring).
+ *
+ * Verified by: pnpm check:literals
+ */
+
+/* ========================================
+   CONTAINER — the visible input box
+   ======================================== */
+
+.container {
+  /* ========================================
+     INTERMEDIATE VARIABLES — default = Primary role
+     Remapped by .appearanceNeutral, .appearanceSecondary, etc.
+     ======================================== */
+  --_inp-bold: var(--Input-roleBold, var(--Primary-Bold, var(--Surface-Bold)));
+  --_inp-default-high: var(--Input-roleHigh, var(--Primary-High, var(--Text-High)));
+  --_inp-default-low: var(--Input-roleLow, var(--Primary-Low, var(--Text-Low)));
+  --_inp-default-medium-text: var(--Input-roleMediumText, var(--Primary-Medium-Text, var(--Text-Medium)));
+  /* Idle stroke, hover fill and filled (attention="high") chrome are
+     surface-relative, NOT appearance-relative: on the page background they
+     stay neutral regardless of the appearance prop; inside a colored
+     <Surface> they follow the parent surface's appearance (see the
+     [data-surface] override near the bottom). Only the focus accent
+     (--_inp-default-tinted) and content tints follow the appearance prop.
+     Chrome chains omit --Input-role* slots — those are appearance-scoped at
+     :root and would override neutral / --Text-* surface-following tints. */
+  --_inp-default-medium-stroke: var(--Neutral-Stroke-Medium, var(--Text-Medium));
+  --_inp-default-low-stroke: var(--Input-roleStrokeLow, var(--Primary-Stroke-Low, var(--Text-Low)));
+  --_inp-default-tinted: var(--Input-roleTinted, var(--Primary-Tinted, var(--Text-High)));
+  --_inp-default-accent-a11y: var(--Input-roleTintedA11y, var(--Primary-TintedA11y, var(--Surface-Bold)));
+  --_inp-default-hover: var(--Neutral-Hover, var(--Surface-Minimal));
+  /* Filled background for attention="high" — neutral Minimal (lightest
+     container tint, matches Figma 4918:51844 Colour/surface = ~16% alpha). */
+  --_inp-subtle: var(--Neutral-Minimal, var(--Neutral-Subtle, var(--Surface-Minimal)));
+
+  /* ========================================
+     BASE STYLES — always outlined
+     ======================================== */
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  position: relative;
+  width: 100%;
+  clip-path: var(--Input-cssDecorationClipPath, none);
+
+  /* Background — Figma: Colour/ghost = transparent (#80808000).
+     Input background is truly transparent so parent surface shows through. */
+  background-color: var(--Input-backgroundColor, transparent);
+
+  /* Border — medium attention: 1px idle (`Stroke-M`). High attention overrides width to 0 at rest.
+     Focus / invalid promote the same border to `Stroke-XL` (2px) with accent /
+     error colour. Extra idle padding (`--_inp-idle-pad-adj`) absorbs the width
+     delta so content never shifts between states. */
+  border-style: solid;
+  border-width: var(--Input-borderWidth, var(--Stroke-M));
+  border-color: var(
+    --Input-borderColor,
+    var(--_inp-default-medium-stroke, var(--Neutral-Stroke-Medium, var(--Text-Medium)))
+  );
+
+  /* Typography — Body role, weight LOW (400 = Regular, NOT Medium/500)
+     Figma: Typography/fontweight/Body Low = 400 */
+  font-family: var(--Input-fontFamily, var(--Body-FontFamily, var(--Typography-Font-Primary, inherit)));
+  font-weight: var(--Body-FontWeight-Low);
+
+  /* Compensate for border-width change between idle and focus/invalid so content
+     doesn't shift. Idle absorbs the delta; focused/invalid states zero it out. */
+  --_inp-idle-pad-adj: calc(
+    var(--Input-borderWidthFocus, var(--Stroke-XL)) - var(--Input-borderWidth, var(--Stroke-M))
+  );
+
+  /* ========================================
+     MOTION
+     ======================================== */
+  /* Border-width swaps instantly with padding compensation — animating width
+     desyncs from --_inp-idle-pad-adj and makes content jump on focus. */
+  transition:
+    background-color var(--Motion-Duration-M) var(--Motion-Easing-Transition-Moderate),
+    border-color var(--Motion-Duration-M) var(--Motion-Easing-Transition-Moderate),
+    box-shadow var(--Motion-Duration-M) var(--Motion-Easing-Transition-Moderate);
+}
+
+.container::after {
+  content: '';
+  position: absolute;
+  inset: var(--Spacing-0);
+  box-sizing: border-box;
+  pointer-events: none;
+  border-radius: inherit;
+  clip-path: var(--Input-cssDecorationClipPath, none);
+  border-style: var(--Input-cssDecorationStrokeStyle, solid);
+  border-color: var(--Input-cssDecorationColor, currentColor);
+  border-width:
+    var(--Input-cssDecorationInsetStrokeWidth, var(--Spacing-0))
+    var(--Input-cssDecorationInsetStrokeWidth, var(--Spacing-0))
+    var(--Input-cssDecorationInsetStrokeWidth, var(--Input-cssDecorationUnderlineWidth, var(--Spacing-0)))
+    var(--Input-cssDecorationInsetStrokeWidth, var(--Spacing-0));
+}
+
+/* ========================================
+   APPEARANCE — role-agnostic intermediate variable remapping
+   ======================================== */
+
+.appearancePrimary {
+  --_inp-bold: var(--Primary-Bold, var(--Surface-Bold));
+  --_inp-default-high: var(--Primary-High, var(--Text-High));
+  --_inp-default-low: var(--Primary-Low, var(--Text-Low));
+  --_inp-default-medium-text: var(--Primary-Medium-Text, var(--Text-Medium));
+  --_inp-default-low-stroke: var(--Primary-Stroke-Low, var(--Text-Low));
+  --_inp-default-tinted: var(--Primary-Tinted, var(--Text-High));
+  --_inp-default-accent-a11y: var(--Primary-TintedA11y, var(--Surface-Bold));
+}
+
+.appearanceNeutral {
+  --_inp-bold: var(--Neutral-Bold, var(--Surface-Bold));
+  --_inp-default-high: var(--Neutral-High, var(--Text-High));
+  --_inp-default-low: var(--Neutral-Low, var(--Text-Low));
+  --_inp-default-medium-text: var(--Neutral-Medium-Text, var(--Text-Medium));
+  --_inp-default-low-stroke: var(--Neutral-Stroke-Low, var(--Text-Low));
+  --_inp-default-tinted: var(--Neutral-Tinted, var(--Text-High));
+  --_inp-default-accent-a11y: var(--Neutral-TintedA11y, var(--Surface-Bold));
+}
+
+.appearanceSecondary {
+  --_inp-bold: var(--Secondary-Bold, var(--Surface-Bold));
+  --_inp-default-high: var(--Secondary-High, var(--Text-High));
+  --_inp-default-low: var(--Secondary-Low, var(--Text-Low));
+  --_inp-default-medium-text: var(--Secondary-Medium-Text, var(--Text-Medium));
+  --_inp-default-low-stroke: var(--Secondary-Stroke-Low, var(--Text-Low));
+  --_inp-default-tinted: var(--Secondary-Tinted, var(--Text-High));
+  --_inp-default-accent-a11y: var(--Secondary-TintedA11y, var(--Surface-Bold));
+}
+
+.appearanceSparkle {
+  --_inp-bold: var(--Sparkle-Bold, var(--Surface-Bold));
+  --_inp-default-high: var(--Sparkle-High, var(--Text-High));
+  --_inp-default-low: var(--Sparkle-Low, var(--Text-Low));
+  --_inp-default-medium-text: var(--Sparkle-Medium-Text, var(--Text-Medium));
+  --_inp-default-low-stroke: var(--Sparkle-Stroke-Low, var(--Text-Low));
+  --_inp-default-tinted: var(--Sparkle-Tinted, var(--Text-High));
+  --_inp-default-accent-a11y: var(--Sparkle-TintedA11y, var(--Surface-Bold));
+}
+
+.appearancePositive {
+  --_inp-bold: var(--Positive-Bold, var(--Surface-Bold));
+  --_inp-default-high: var(--Positive-High, var(--Text-High));
+  --_inp-default-low: var(--Positive-Low, var(--Text-Low));
+  --_inp-default-medium-text: var(--Positive-Medium-Text, var(--Text-Medium));
+  --_inp-default-low-stroke: var(--Positive-Stroke-Low, var(--Text-Low));
+  --_inp-default-tinted: var(--Positive-Tinted, var(--Text-High));
+  --_inp-default-accent-a11y: var(--Positive-TintedA11y, var(--Surface-Bold));
+}
+
+.appearanceNegative {
+  --_inp-bold: var(--Negative-Bold, var(--Surface-Bold));
+  --_inp-default-high: var(--Negative-High, var(--Text-High));
+  --_inp-default-low: var(--Negative-Low, var(--Text-Low));
+  --_inp-default-medium-text: var(--Negative-Medium-Text, var(--Text-Medium));
+  --_inp-default-low-stroke: var(--Negative-Stroke-Low, var(--Text-Low));
+  --_inp-default-tinted: var(--Negative-Tinted, var(--Text-High));
+  --_inp-default-accent-a11y: var(--Negative-TintedA11y, var(--Surface-Bold));
+}
+
+.appearanceWarning {
+  --_inp-bold: var(--Warning-Bold, var(--Surface-Bold));
+  --_inp-default-high: var(--Warning-High, var(--Text-High));
+  --_inp-default-low: var(--Warning-Low, var(--Text-Low));
+  --_inp-default-medium-text: var(--Warning-Medium-Text, var(--Text-Medium));
+  --_inp-default-low-stroke: var(--Warning-Stroke-Low, var(--Text-Low));
+  --_inp-default-tinted: var(--Warning-Tinted, var(--Text-High));
+  --_inp-default-accent-a11y: var(--Warning-TintedA11y, var(--Surface-Bold));
+}
+
+.appearanceInformative {
+  --_inp-bold: var(--Informative-Bold, var(--Surface-Bold));
+  --_inp-default-high: var(--Informative-High, var(--Text-High));
+  --_inp-default-low: var(--Informative-Low, var(--Text-Low));
+  --_inp-default-medium-text: var(--Informative-Medium-Text, var(--Text-Medium));
+  --_inp-default-low-stroke: var(--Informative-Stroke-Low, var(--Text-Low));
+  --_inp-default-tinted: var(--Informative-Tinted, var(--Text-High));
+  --_inp-default-accent-a11y: var(--Informative-TintedA11y, var(--Surface-Bold));
+}
+
+/* ========================================
+   SHAPE — pill override
+   ======================================== */
+
+.shapePill {
+  border-radius: var(--Input-borderRadius-pill, var(--Shape-Pill));
+}
+
+/* ========================================
+   ATTENTION — 'high' = filled
+   Default attention is 'medium' (outlined — the base .container style).
+
+   Fill-colour rule (per Figma 4918:51844 + 4306:7247):
+   1. Default / elevated surface context → filled bg is NEUTRAL
+      (Neutral-Minimal — a clean grey tint that doesn't carry role colour)
+   2. Tinted surface context ([data-surface="bg-*" | "fg-*"]) → filled bg
+      adapts to the surface role via --_inp-subtle (see override at the
+      bottom of this file). The surface context engine also remaps the
+      underlying role tokens per container.
+
+   The outlined stroke is hidden at rest for attention="high" only. Focus paints
+   the same reserved `Stroke-XL` border with accent stroke (width never changes).
+   ======================================== */
+
+.attentionHigh {
+  /* Filled chrome tints with the resolved appearance role via --_inp-subtle
+     (same pattern as Checkbox). Optional --Input-backgroundColor overrides. */
+  background-color: var(--Input-backgroundColor, var(--_inp-subtle));
+  /* Reserve focus border width at rest — transparent stroke, no pad compensation
+     (padding delta caused horizontal shift when border-width jumped 0 → XL). */
+  border-width: var(--Input-borderWidthFocus, var(--Stroke-XL));
+  border-color: transparent;
+  --_inp-idle-pad-adj: 0px;
+}
+
+.attentionHigh:hover:not(:focus-within):not([data-disabled]) {
+  background-color: var(--_inp-default-hover);
+}
+
+/* ========================================
+   SIZE — Figma-verified token mapping
+
+   All values verified against Figma variables:
+
+   | Size | Height       | Pad-H     | Pad-V     | Gap       | Radius     | Icon      |
+   |------|-------------|-----------|-----------|-----------|------------|-----------|
+   | XS   | Sp/6=f-2    | Sp/1.5=f-5| 0         | Sp/1=f-6  | Sh/0.5=f-7 | Sp/3=f-2  |
+   | S    | Sp/8=f5     | Sp/2=f-4  | 0         | Sp/1.5=f-5| Sh/2=f-4   | Sp/4=f0   |
+   | M    | Sp/10=f7    | Sp/3=f-2  | Sp/1.5=f-5| Sp/1.5=f-5| Sh/2=f-4   | Sp/5=f2   |
+   | L    | Sp/12=f8    | Sp/4=f0   | Sp/2=f-4  | Sp/2=f-4  | Sh/3=f-2   | Sp/6=f3   |
+   ======================================== */
+
+/* XS — Figma: h=Spacing-6, padH=Spacing-1-5, padV=0, gap=Spacing-1, radius=Shape-0-5, icon=Spacing-3 */
+.container[data-size="6"] {
+  min-height: var(--Input-height-6, var(--Input-height, var(--Spacing-6)));
+  padding-top: calc(var(--Input-paddingVertical-6, var(--Input-paddingVertical, var(--Spacing-0))) + var(--_inp-idle-pad-adj, 0px));
+  padding-bottom: calc(var(--Input-paddingVertical-6, var(--Input-paddingVertical, var(--Spacing-0))) + var(--_inp-idle-pad-adj, 0px));
+  padding-left: calc(var(--Input-paddingHorizontal-6, var(--Input-paddingHorizontal, var(--Spacing-1-5))) + var(--_inp-idle-pad-adj, 0px));
+  padding-right: calc(var(--Input-paddingHorizontal-6, var(--Input-paddingHorizontal, var(--Spacing-1-5))) + var(--_inp-idle-pad-adj, 0px));
+  gap: var(--Input-slotGap, var(--Spacing-1));
+  border-radius: var(--Input-borderRadius-6, var(--Shape-1-5));
+  font-size: var(--Body-XS-FontSize);
+  line-height: var(--Body-XS-LineHeight);
+  --_inp-icon-size: var(--Spacing-3);
+}
+
+/* S — Figma: h=32(Sp/8), padH=8(Sp/2), padV=0, gap=6(Sp/1.5), radius=Shape/2, icon=16(Sp/4) */
+.container[data-size="8"] {
+  min-height: var(--Input-height-8, var(--Input-height, var(--Spacing-8)));
+  padding-top: calc(var(--Input-paddingVertical-8, var(--Input-paddingVertical, var(--Spacing-0))) + var(--_inp-idle-pad-adj, 0px));
+  padding-bottom: calc(var(--Input-paddingVertical-8, var(--Input-paddingVertical, var(--Spacing-0))) + var(--_inp-idle-pad-adj, 0px));
+  padding-left: calc(var(--Input-paddingHorizontal-8, var(--Input-paddingHorizontal, var(--Spacing-2))) + var(--_inp-idle-pad-adj, 0px));
+  padding-right: calc(var(--Input-paddingHorizontal-8, var(--Input-paddingHorizontal, var(--Spacing-2))) + var(--_inp-idle-pad-adj, 0px));
+  gap: var(--Input-slotGap, var(--Spacing-1-5));
+  border-radius: var(--Input-borderRadius-8, var(--Shape-2));
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  --_inp-icon-size: var(--Spacing-4);
+}
+
+/* M — Figma: h=40/50(Sp/10), padH=12/15(Sp/3), padV=6/7.5(Sp/1.5), gap=6/7.5(Sp/1.5), radius=Shape/2, icon=20/25(Sp/5) */
+.container[data-size="10"] {
+  min-height: var(--Input-height-10, var(--Input-height, var(--Spacing-10)));
+  padding-top: calc(var(--Input-paddingVertical-10, var(--Input-paddingVertical, var(--Spacing-1-5))) + var(--_inp-idle-pad-adj, 0px));
+  padding-bottom: calc(var(--Input-paddingVertical-10, var(--Input-paddingVertical, var(--Spacing-1-5))) + var(--_inp-idle-pad-adj, 0px));
+  padding-left: calc(var(--Input-paddingHorizontal-10, var(--Input-paddingHorizontal, var(--Spacing-3))) + var(--_inp-idle-pad-adj, 0px));
+  padding-right: calc(var(--Input-paddingHorizontal-10, var(--Input-paddingHorizontal, var(--Spacing-3))) + var(--_inp-idle-pad-adj, 0px));
+  gap: var(--Input-slotGap, var(--Spacing-1-5));
+  border-radius: var(--Input-borderRadius-10, var(--Shape-2));
+  font-size: var(--Body-M-FontSize);
+  line-height: var(--Body-M-LineHeight);
+  --_inp-icon-size: var(--Spacing-5);
+}
+
+/* L — Figma: h=48/60(Sp/12), padH=16/20(Sp/4), padV=8/10(Sp/2), gap=8/10(Sp/2), radius=Shape/3, icon=24/30(Sp/6) */
+.container[data-size="12"] {
+  min-height: var(--Input-height-12, var(--Input-height, var(--Spacing-12)));
+  padding-top: calc(var(--Input-paddingVertical-12, var(--Input-paddingVertical, var(--Spacing-2))) + var(--_inp-idle-pad-adj, 0px));
+  padding-bottom: calc(var(--Input-paddingVertical-12, var(--Input-paddingVertical, var(--Spacing-2))) + var(--_inp-idle-pad-adj, 0px));
+  padding-left: calc(var(--Input-paddingHorizontal-12, var(--Input-paddingHorizontal, var(--Spacing-4))) + var(--_inp-idle-pad-adj, 0px));
+  padding-right: calc(var(--Input-paddingHorizontal-12, var(--Input-paddingHorizontal, var(--Spacing-4))) + var(--_inp-idle-pad-adj, 0px));
+  gap: var(--Input-slotGap, var(--Spacing-2));
+  border-radius: var(--Input-borderRadius-12, var(--Shape-3));
+  font-size: var(--Body-L-FontSize);
+  line-height: var(--Body-L-LineHeight);
+  --_inp-icon-size: var(--Spacing-6);
+}
+
+/* Pill shape overrides per-size radius */
+.shapePill.container[data-size="6"],
+.shapePill.container[data-size="8"],
+.shapePill.container[data-size="10"],
+.shapePill.container[data-size="12"] {
+  border-radius: var(--Input-borderRadius-pill, var(--Shape-Pill));
+}
+
+/* ========================================
+   CONTROL — the actual <input> element
+   Transparent/borderless — the container draws all chrome
+   ======================================== */
+
+.control {
+  flex: 1 1 0%;
+  min-width: 0;
+  border: none;
+  background: transparent;
+  /* Typed value colour follows appearance via --_inp-default-high. */
+  color: var(--Input-textColor, var(--_inp-default-high, var(--Neutral-High, var(--Text-High))));
+  font-family: inherit;
+  font-size: inherit;
+  /* Figma: Body Low = 400 (Regular). Force 400 — do NOT inherit container weight. */
+  font-weight: var(--Body-FontWeight-Low);
+  font-optical-sizing: var(--Input-fontOpticalSizing, var(--Body-FontOpticalSizing, auto));
+  font-variation-settings: var(--Input-fontVariationSettings, var(--Body-OpszVariation, normal));
+  line-height: inherit;
+  outline: none;
+  padding: var(--Spacing-0);
+  margin: var(--Spacing-0);
+  box-sizing: border-box;
+}
+
+.control::placeholder {
+  color: var(--Input-placeholderColor, var(--_inp-default-low, var(--Neutral-Low, var(--Text-Low))));
+}
+
+.control::-webkit-search-cancel-button,
+.control::-webkit-search-decoration {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+/* ========================================
+   INTERACTION STATES
+   ======================================== */
+
+/* Hover — outlined (medium attention): role hover fill. */
+.container:not(.attentionHigh):hover:not(:focus-within):not([data-disabled]) {
+  background-color: var(--_inp-default-hover);
+}
+
+/* Focus — single accent stroke at Stroke-XL (2px), role Tinted colour. */
+.container:focus-within:not([data-disabled]) {
+  --_inp-idle-pad-adj: 0px;
+  border-width: var(--Input-borderWidthFocus, var(--Stroke-XL));
+  border-color: var(--Input-borderColorFocus, var(--_inp-default-tinted));
+  outline: none;
+}
+
+/* Disabled */
+.container[data-disabled] {
+  opacity: var(--Disabled-Opacity);
+  cursor: not-allowed;
+}
+
+.container[data-disabled] .control {
+  cursor: not-allowed;
+}
+
+/* Read-only */
+.readOnly {
+  cursor: default;
+}
+
+.readOnly:hover:not(:focus-within) {
+  background-color: transparent;
+}
+
+.readOnly .control {
+  cursor: default;
+}
+
+/* ========================================
+   INVALID (FEEDBACK) STATE
+   ======================================== */
+
+.container[data-invalid] {
+  --_inp-error-bold: var(--Negative-Bold, var(--Surface-Bold));
+  --_inp-idle-pad-adj: 0px;
+  border-width: var(--Input-borderWidthInvalid, var(--Stroke-XL));
+  border-color: var(--_inp-error-bold);
+  outline: none;
+}
+
+/* Medium attention: 1px error stroke until focus promotes to Stroke-XL. */
+.container:not(.attentionHigh)[data-invalid]:not(:focus-within) {
+  --_inp-idle-pad-adj: calc(
+    var(--Input-borderWidthInvalid, var(--Stroke-XL)) - var(--Input-borderWidth, var(--Stroke-M))
+  );
+  border-width: var(--Input-borderWidth, var(--Stroke-M));
+}
+
+.container[data-invalid]:focus-within {
+  border-width: var(--Input-borderWidthInvalid, var(--Stroke-XL));
+  border-color: var(--_inp-error-bold);
+  outline: none;
+}
+
+/* ========================================
+   SLOTS — start, start2, end, end2
+   ======================================== */
+
+.start,
+.start2,
+.end,
+.end2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* All slot icons (leading AND trailing) tint to the accent role via the
+   appearance intermediate var. Default appearance (auto → secondary) paints
+   them with Secondary-Medium-Text; explicit appearance="primary" / "neutral"
+   / etc. flip via .appearance* class remap. Raw SVG icons inherit this via
+   fill="currentColor"; IconButton slots need their own appearance prop set
+   to "secondary" (see showcase). */
+.start,
+.start2,
+.end,
+.end2 {
+  color: var(--_inp-default-medium-text);
+}
+
+.start,
+.end {
+  width: var(--_inp-icon-size, var(--Spacing-5));
+  height: var(--_inp-icon-size, var(--Spacing-5));
+}
+
+.end,
+.end2 {
+  pointer-events: auto;
+}
+
+.start2,
+.end2 {
+  white-space: nowrap;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+/* ========================================
+   SURFACE CONTEXT AWARENESS
+   On colored [data-surface] containers:
+   - Border, hover and filled chrome tint to the PARENT surface's
+     appearance role (via the engine's [data-appearance] Text-* redirects)
+   - Text, placeholder, and slot icons use backward-compat tokens
+     (--Text-High / --Text-Low / --Text-Medium) which are remapped by
+     the surface context CSS alongside the InputField label. This keeps
+     all text/icon colors on-surface-consistent — white on bold dark
+     surfaces, dark on lightly-tinted surfaces — matching the label.
+
+   default surface → same as no surface (Neutral border, inherited text)
+   tinted surfaces → role-specific border; Text-* tokens for text/icons
+   ======================================== */
+
+/* Border / hover / filled chrome on colored surfaces follow the PARENT
+   surface's appearance, never the input's own appearance prop. The
+   --Text-Hover / --Text-Minimal / --Text-Medium-Stroke aliases are
+   redirected per-role by the engine's [data-appearance="<role>"] blocks
+   (Surface always emits data-appearance), and custom-property inheritance
+   picks the nearest surface ancestor. Default/elevated surfaces are
+   excluded — they read as "no surface" and keep the neutral chrome. */
+:global([data-surface]:not([data-surface="default"]):not([data-surface="elevated"])) .container {
+  --_inp-default-medium-stroke: var(--Text-Medium-Stroke, var(--Neutral-Stroke-Medium));
+  --_inp-default-hover: var(--Text-Hover, var(--Neutral-Hover));
+  --_inp-subtle: var(--Text-Minimal, var(--Neutral-Minimal));
+}
+
+:global([data-surface]:not([data-surface="default"]):not([data-surface="elevated"])) .container:not(.attentionHigh):not(:focus-within):not([data-invalid]) {
+  border-color: var(--Input-borderColor, var(--_inp-default-medium-stroke));
+}
+
+/* Outlined medium on tinted surfaces: idle uses Stroke-Medium; focus promotes to
+   role Tinted (Figma content/tinted). Without this, the idle rule above outranks
+   the generic :focus-within selector and focus stays on the soft stroke colour. */
+:global([data-surface]:not([data-surface="default"]):not([data-surface="elevated"])) .container:not(.attentionHigh):focus-within:not([data-disabled]) {
+  border-color: var(--Input-borderColorFocus, var(--_inp-default-tinted));
+}
+
+:global([data-surface]:not([data-surface="default"]):not([data-surface="elevated"])) .container:not(.attentionHigh)[data-invalid]:focus-within {
+  border-color: var(--_inp-error-bold);
+}
+
+/* Hover fill: tinted only on colored surfaces, not default or elevated */
+:global([data-surface]:not([data-surface="default"]):not([data-surface="elevated"])) .container:hover:not(:focus-within):not([data-disabled]) {
+  background-color: var(--_inp-default-hover);
+}
+
+/* REMOVED: Legacy V4 .appearanceNeutral override.
+   In V2, Input natively inherits the surface role via useSurfaceAppearance,
+   so it naturally becomes .appearancePositive, .appearanceSecondary, etc.
+   If an input explicitly has appearance="neutral" (or inherits neutral from a
+   neutral surface), it should STAY neutral, not forcefully remap to Primary. */
+
+/* INTENTIONAL-LITERAL: the #ffffff / #000000 strings below are references
+   inside a docblock describing how --Text-High resolves at runtime — they
+   aren't applied to any property. The scanner flags them because they live
+   across lines of a block comment whose continuation doesn't re-open with `/*`.
+   Text / placeholder / icons: use --Text-High for all on-surface content.
+   --Text-High resolves to pure #ffffff (dark surface) or #000000 (light
+   surface) — no pre-composited primary tinting. --Text-Medium / --Text-Low
+   blend white against the PRIMARY bold step, producing lavender on purple
+   brands. Using --Text-High keeps icons consistent with the label text.
+   The placeholder stays LOW emphasis (--Text-Low, surface-remapped) so it
+   reads as a hint, matching the off-surface grey — never full contrast. */
+:global([data-surface]) .control {
+  color: var(--Input-textColor, var(--Text-High));
+}
+
+:global([data-surface]) .control::placeholder {
+  color: var(--Input-placeholderColor, var(--Text-Low));
+}
+
+:global([data-surface]) .start,
+:global([data-surface]) .start2,
+:global([data-surface]) .end,
+:global([data-surface]) .end2 {
+  color: var(--Input-iconColor, var(--Text-High));
+}
+
+/* Filled (attention="high") on non-default surfaces:
+   The base .attentionHigh rule uses --_inp-subtle so the filled chrome follows
+   the resolved appearance role (and the surface context engine remaps the
+   underlying role tokens per surface).
+
+   Keep the reserved Stroke-XL transparent border (same as off-surface) so
+   focus does not shift content; the tinted .container border-color override
+   above must not paint on filled chrome at rest.
+
+   Hover on tinted surface also uses the role hover fill. */
+:global([data-surface]:not([data-surface="default"]):not([data-surface="elevated"])) .attentionHigh {
+  background-color: var(--Input-backgroundColor, var(--_inp-subtle));
+  border-width: var(--Input-borderWidthFocus, var(--Stroke-XL));
+  border-color: transparent;
+}
+
+:global([data-surface]:not([data-surface="default"]):not([data-surface="elevated"])) .attentionHigh:focus-within:not([data-disabled]) {
+  border-color: var(--Input-borderColorFocus, var(--_inp-default-tinted));
+}
+
+:global([data-surface]:not([data-surface="default"]):not([data-surface="elevated"])) .attentionHigh[data-invalid] {
+  border-color: var(--_inp-error-bold);
+}
+
+:global([data-surface]:not([data-surface="default"]):not([data-surface="elevated"])) .attentionHigh[data-invalid]:focus-within {
+  border-color: var(--_inp-error-bold);
+}
+
+:global([data-surface]:not([data-surface="default"]):not([data-surface="elevated"])) .attentionHigh:hover:not(:focus-within):not([data-disabled]) {
+  background-color: var(--_inp-default-hover);
+}
+
+/* ========================================
+   ROOT STACK (label + bordered control)
+   Matches InputField vertical gap (Figma InputField stack).
+   ======================================== */
+
+.rootStack {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--Input-rootStackGap, var(--Spacing-1-5));
+  width: 100%;
+}
+
+/* ========================================
+   REDUCED MOTION
+   ======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .container {
+    transition: none;
+  }
+}

@@ -1,0 +1,620 @@
+{
+  "ok": false,
+  "slug": "touch-slider",
+  "message": "touch-slider QA Playwright run had failures — 2026-06-23T09:50:43.267Z",
+  "suites": {
+    "accessibility": {
+      "suite": "accessibility",
+      "passed": 14,
+      "failed": 21,
+      "skipped": 0,
+      "logs": [
+        "35 test(s) in Playwright report for accessibility.",
+        "Axe: 1 violation rule(s) reported."
+      ],
+      "errors": [
+        "[a11y] WCAG 2.1 AA axe scan — zero serious/critical + HTML report: Ensure every form element has a label 38 elements affected. (Rule: label, critical impact).",
+        "BUG-TOUCHSLIDER-001: Ensure every form element has a label Element: #base-ui-_r_k_. (Rule: label, critical impact).",
+        "BUG-TOUCHSLIDER-001: Error: expect(locator).toHaveAccessibleName(expected) failed",
+        "[a11y] WCAG 2.1 AA axe scan — Default band: Ensure every form element has a label Element: #base-ui-_r_k_. (Rule: label, critical impact).",
+        "[a11y] WCAG 2.1 AA axe scan — Orientation band: Ensure every form element has a label 2 elements affected. (Rule: label, critical impact).",
+        "[a11y] WCAG 2.1 AA axe scan — Progress style band: Ensure every form element has a label 2 elements affected. (Rule: label, critical impact).",
+        "[a11y] WCAG 2.1 AA axe scan — Appearance band: Ensure every form element has a label 10 elements affected. (Rule: label, critical impact).",
+        "[a11y] WCAG 2.1 AA axe scan — Value band: Ensure every form element has a label 5 elements affected. (Rule: label, critical impact).",
+        "[a11y] WCAG 2.1 AA axe scan — Start / end slots band: Ensure every form element has a label 3 elements affected. (Rule: label, critical impact).",
+        "[a11y] WCAG 2.1 AA axe scan — Disabled and read-only band: Ensure every form element has a label 2 elements affected. (Rule: label, critical impact).",
+        "[a11y] WCAG 2.1 AA axe scan — Edge (min/max · step) band: Ensure every form element has a label 3 elements affected. (Rule: label, critical impact).",
+        "[a11y] WCAG 2.1 AA axe scan — Surface context band: Ensure every form element has a label 3 elements affected. (Rule: label, critical impact).",
+        "[a11y] WCAG 2.1 AA axe scan — Interaction demo band: Ensure every form element has a label Element: #base-ui-_r_4p_. (Rule: label, critical impact).",
+        "[a11y] WCAG 2.1 AA axe scan — Combination matrix band: Ensure every form element has a label 6 elements affected. (Rule: label, critical impact).",
+        "[a11y] data-testid=\"touch-slider-default\" — zero serious/critical: Error: touch-slider-default: 1 serious/critical violation(s)",
+        "[a11y] data-testid=\"touch-slider-orientation-vertical\" — zero serious/critical: Error: touch-slider-orientation-vertical: 1 serious/critical violation(s)",
+        "[a11y] data-testid=\"touch-slider-disabled\" — zero serious/critical: Error: touch-slider-disabled: 1 serious/critical violation(s)",
+        "[a11y] data-testid=\"touch-slider-readonly\" — zero serious/critical: Error: touch-slider-readonly: 1 serious/critical violation(s)",
+        "[a11y] data-testid=\"touch-slider-interaction-demo\" — zero serious/critical: Error: touch-slider-interaction-demo: 1 serious/critical violation(s)",
+        "[a11y] data-testid=\"touch-slider-combo-0\" — zero serious/critical: Error: touch-slider-combo-0: 1 serious/critical violation(s)",
+        "[a11y] data-testid=\"touch-slider-appearance-primary\" — zero serious/critical: Error: touch-slider-appearance-primary: 1 serious/critical violation(s)"
+      ],
+      "cases": [
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — zero serious/critical + HTML report",
+          "status": "failed",
+          "durationMs": 5893,
+          "error": "Ensure every form element has a label 38 elements affected. (Rule: label, critical impact)."
+        },
+        {
+          "name": "[a11y] axe label rule — default instance, zero serious/critical",
+          "status": "failed",
+          "durationMs": 5445,
+          "error": "Ensure every form element has a label Element: #base-ui-_r_k_. (Rule: label, critical impact).",
+          "bugId": "BUG-TOUCHSLIDER-001",
+          "componentBand": "touch-slider-qa-default"
+        },
+        {
+          "name": "[a11y] Native range input exposes accessible name from aria-label",
+          "status": "failed",
+          "durationMs": 7285,
+          "error": "Error: expect(locator).toHaveAccessibleName(expected) failed",
+          "bugId": "BUG-TOUCHSLIDER-001",
+          "componentBand": "touch-slider-qa-default"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — Figma visual gaps band",
+          "status": "passed",
+          "durationMs": 2005,
+          "componentBand": "touch-slider-qa-figma-visual-gaps"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — Default band",
+          "status": "failed",
+          "durationMs": 1868,
+          "error": "Ensure every form element has a label Element: #base-ui-_r_k_. (Rule: label, critical impact).",
+          "componentBand": "touch-slider-qa-default"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — Orientation band",
+          "status": "failed",
+          "durationMs": 3965,
+          "error": "Ensure every form element has a label 2 elements affected. (Rule: label, critical impact).",
+          "componentBand": "touch-slider-qa-orientation"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — Progress style band",
+          "status": "failed",
+          "durationMs": 4581,
+          "error": "Ensure every form element has a label 2 elements affected. (Rule: label, critical impact).",
+          "componentBand": "touch-slider-qa-progress-style"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — Appearance band",
+          "status": "failed",
+          "durationMs": 5322,
+          "error": "Ensure every form element has a label 10 elements affected. (Rule: label, critical impact).",
+          "componentBand": "touch-slider-qa-appearance"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — Value band",
+          "status": "failed",
+          "durationMs": 6341,
+          "error": "Ensure every form element has a label 5 elements affected. (Rule: label, critical impact).",
+          "componentBand": "touch-slider-qa-value"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — Start / end slots band",
+          "status": "failed",
+          "durationMs": 3170,
+          "error": "Ensure every form element has a label 3 elements affected. (Rule: label, critical impact).",
+          "componentBand": "touch-slider-qa-slots"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — Disabled and read-only band",
+          "status": "failed",
+          "durationMs": 1921,
+          "error": "Ensure every form element has a label 2 elements affected. (Rule: label, critical impact).",
+          "componentBand": "touch-slider-qa-states"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — Edge (min/max · step) band",
+          "status": "failed",
+          "durationMs": 3681,
+          "error": "Ensure every form element has a label 3 elements affected. (Rule: label, critical impact).",
+          "componentBand": "touch-slider-qa-edge"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — Surface context band",
+          "status": "failed",
+          "durationMs": 3878,
+          "error": "Ensure every form element has a label 3 elements affected. (Rule: label, critical impact).",
+          "componentBand": "touch-slider-qa-surface"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — Interaction demo band",
+          "status": "failed",
+          "durationMs": 4347,
+          "error": "Ensure every form element has a label Element: #base-ui-_r_4p_. (Rule: label, critical impact).",
+          "componentBand": "touch-slider-qa-interaction"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — Combination matrix band",
+          "status": "failed",
+          "durationMs": 5483,
+          "error": "Ensure every form element has a label 6 elements affected. (Rule: label, critical impact).",
+          "componentBand": "touch-slider-qa-combos"
+        },
+        {
+          "name": "[a11y] data-testid=\"touch-slider-default\" — zero serious/critical",
+          "status": "failed",
+          "durationMs": 4321,
+          "error": "Error: touch-slider-default: 1 serious/critical violation(s)"
+        },
+        {
+          "name": "[a11y] data-testid=\"touch-slider-orientation-vertical\" — zero serious/critical",
+          "status": "failed",
+          "durationMs": 3035,
+          "error": "Error: touch-slider-orientation-vertical: 1 serious/critical violation(s)"
+        },
+        {
+          "name": "[a11y] data-testid=\"touch-slider-disabled\" — zero serious/critical",
+          "status": "failed",
+          "durationMs": 4105,
+          "error": "Error: touch-slider-disabled: 1 serious/critical violation(s)"
+        },
+        {
+          "name": "[a11y] data-testid=\"touch-slider-readonly\" — zero serious/critical",
+          "status": "failed",
+          "durationMs": 3939,
+          "error": "Error: touch-slider-readonly: 1 serious/critical violation(s)"
+        },
+        {
+          "name": "[a11y] data-testid=\"touch-slider-interaction-demo\" — zero serious/critical",
+          "status": "failed",
+          "durationMs": 2354,
+          "error": "Error: touch-slider-interaction-demo: 1 serious/critical violation(s)"
+        },
+        {
+          "name": "[a11y] data-testid=\"touch-slider-combo-0\" — zero serious/critical",
+          "status": "failed",
+          "durationMs": 4410,
+          "error": "Error: touch-slider-combo-0: 1 serious/critical violation(s)"
+        },
+        {
+          "name": "[a11y] data-testid=\"touch-slider-appearance-primary\" — zero serious/critical",
+          "status": "failed",
+          "durationMs": 5222,
+          "error": "Error: touch-slider-appearance-primary: 1 serious/critical violation(s)"
+        },
+        {
+          "name": "[a11y] Decorative slot wrappers are aria-hidden",
+          "status": "passed",
+          "durationMs": 4852
+        },
+        {
+          "name": "[a11y] DOM inspection — every Touch Slider root exposes aria-label",
+          "status": "passed",
+          "durationMs": 2102
+        },
+        {
+          "name": "[a11y] Default slider exposes min, max, and aria-valuenow on native range input",
+          "status": "passed",
+          "durationMs": 1435
+        },
+        {
+          "name": "[a11y] Vertical slider exposes aria-orientation on native range input",
+          "status": "passed",
+          "durationMs": 1415
+        },
+        {
+          "name": "[a11y] Keyboard arrows — default slider value change",
+          "status": "passed",
+          "durationMs": 1486
+        },
+        {
+          "name": "[a11y] Keyboard Home and End — default slider",
+          "status": "passed",
+          "durationMs": 1382
+        },
+        {
+          "name": "[a11y] Keyboard ArrowRight — disabled slider (value must not change)",
+          "status": "passed",
+          "durationMs": 4453
+        },
+        {
+          "name": "[a11y] DOM inspection — Figma validation grid sample cell",
+          "status": "passed",
+          "durationMs": 2161
+        },
+        {
+          "name": "[a11y] axe WCAG 2.1 AA — Figma validation grid, zero serious/critical",
+          "status": "passed",
+          "durationMs": 1980
+        },
+        {
+          "name": "[a11y] page lang on <html>",
+          "status": "passed",
+          "durationMs": 5210
+        },
+        {
+          "name": "[a11y] Tab reaches default slider with visible focus",
+          "status": "passed",
+          "durationMs": 1797
+        },
+        {
+          "name": "[a11y] no keyboard trap (Tab cycle advances)",
+          "status": "passed",
+          "durationMs": 1568
+        },
+        {
+          "name": "[a11y] Viewport 320px — horizontal overflow check per showcase band",
+          "status": "passed",
+          "durationMs": 2919
+        }
+      ],
+      "axe": {
+        "violations": [
+          {
+            "id": "label",
+            "impact": "critical",
+            "description": "Ensure every form element has a label",
+            "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/label?application=playwright",
+            "nodes": 38
+          }
+        ]
+      }
+    },
+    "functional": {
+      "suite": "functional",
+      "passed": 65,
+      "failed": 1,
+      "skipped": 0,
+      "logs": [
+        "66 test(s) in Playwright report for functional."
+      ],
+      "errors": [
+        "[fn] validation grid — value 100 vertical sharp cell at maximum: Test timeout of 30000ms exceeded."
+      ],
+      "cases": [
+        {
+          "name": "[fn] 1.1 — no console errors on playground load",
+          "status": "passed",
+          "durationMs": 3928
+        },
+        {
+          "name": "[fn] 1.2 — every playground data-testid is visible",
+          "status": "passed",
+          "durationMs": 2873
+        },
+        {
+          "name": "[fn] 1.3 — every data-section is visible",
+          "status": "passed",
+          "durationMs": 3260
+        },
+        {
+          "name": "[fn] 2.1 — orientation prop sets data-orientation and aria-orientation",
+          "status": "passed",
+          "durationMs": 1179
+        },
+        {
+          "name": "[fn] 2.1 — progressStyle prop sets data-progress-style on root",
+          "status": "passed",
+          "durationMs": 1134
+        },
+        {
+          "name": "[fn] 2.2 — Size scaling (N/A)",
+          "status": "passed",
+          "durationMs": 1200
+        },
+        {
+          "name": "[fn] 3.1 — keyboard ArrowRight changes aria-valuenow on interaction demo",
+          "status": "passed",
+          "durationMs": 4182
+        },
+        {
+          "name": "[fn] 3.2 — disabled slider value unchanged after keyboard nudge",
+          "status": "passed",
+          "durationMs": 1839
+        },
+        {
+          "name": "[fn] 3.3 — readOnly slider value unchanged after keyboard nudge",
+          "status": "passed",
+          "durationMs": 1282
+        },
+        {
+          "name": "[fn] 3.4 — click outside removes focus from slider thumb",
+          "status": "passed",
+          "durationMs": 1174
+        },
+        {
+          "name": "[fn] 4.1 — Tab reaches default slider thumb",
+          "status": "passed",
+          "durationMs": 1180
+        },
+        {
+          "name": "[fn] 4.2 — Enter (N/A)",
+          "status": "passed",
+          "durationMs": 1521
+        },
+        {
+          "name": "[fn] 4.3 — Space (N/A)",
+          "status": "passed",
+          "durationMs": 9172
+        },
+        {
+          "name": "[fn] 4.4 — ArrowRight and ArrowLeft adjust value on default slider",
+          "status": "passed",
+          "durationMs": 1959
+        },
+        {
+          "name": "[fn] 4.5 — Home and End move to min and max",
+          "status": "passed",
+          "durationMs": 2158
+        },
+        {
+          "name": "[fn] 4.6 — Escape (N/A)",
+          "status": "passed",
+          "durationMs": 1385
+        },
+        {
+          "name": "[fn] 4.7 — Tab through page without keyboard trap",
+          "status": "passed",
+          "durationMs": 1496
+        },
+        {
+          "name": "[fn] 5.1 — focus lands on slider thumb",
+          "status": "passed",
+          "durationMs": 1165
+        },
+        {
+          "name": "[fn] 5.2 — focus ring visible on thumb",
+          "status": "passed",
+          "durationMs": 1827
+        },
+        {
+          "name": "[fn] 5.5 — autoFocus (N/A)",
+          "status": "passed",
+          "durationMs": 1809
+        },
+        {
+          "name": "[fn] 6.3 — disabled slider is not editable via keyboard",
+          "status": "passed",
+          "durationMs": 2053
+        },
+        {
+          "name": "[fn] 6.4 — readOnly slider keeps aria-valuenow on keyboard nudge",
+          "status": "passed",
+          "durationMs": 1893
+        },
+        {
+          "name": "[fn] 6.5 — Error state (N/A)",
+          "status": "passed",
+          "durationMs": 1892
+        },
+        {
+          "name": "[fn] 6.6 — Loading state (N/A)",
+          "status": "passed",
+          "durationMs": 1917
+        },
+        {
+          "name": "[fn] 7.1 — slots none renders without start/end slot wrappers",
+          "status": "passed",
+          "durationMs": 2299
+        },
+        {
+          "name": "[fn] 7.1 — slots start renders icon in start slot",
+          "status": "passed",
+          "durationMs": 1884
+        },
+        {
+          "name": "[fn] 7.3 — slots both renders start and end icons",
+          "status": "passed",
+          "durationMs": 1232
+        },
+        {
+          "name": "[fn] 8.1 — Toggle (N/A)",
+          "status": "passed",
+          "durationMs": 1500
+        },
+        {
+          "name": "[fn] 9.1 — Typing text (N/A)",
+          "status": "passed",
+          "durationMs": 1299
+        },
+        {
+          "name": "[fn] 10.1 — start slot only visible when start prop passed",
+          "status": "passed",
+          "durationMs": 9891
+        },
+        {
+          "name": "[fn] 11.3 — min, max, and aria-valuenow on default range input",
+          "status": "passed",
+          "durationMs": 1951
+        },
+        {
+          "name": "[fn] 11.3 — value band reflects defaultValue in aria-valuenow",
+          "status": "passed",
+          "durationMs": 2319
+        },
+        {
+          "name": "[fn] 12.1 — fullWidth (N/A)",
+          "status": "passed",
+          "durationMs": 2007
+        },
+        {
+          "name": "[fn] 12.2 — visible at 320px viewport",
+          "status": "passed",
+          "durationMs": 3415
+        },
+        {
+          "name": "[fn] 12.2 — visible at 1440px viewport",
+          "status": "passed",
+          "durationMs": 3946
+        },
+        {
+          "name": "[fn] 12.3 — horizontal and vertical orientation cells render side-by-side vs stacked",
+          "status": "passed",
+          "durationMs": 1444
+        },
+        {
+          "name": "[fn] Smoke — Page heading reads “Touch Slider”",
+          "status": "passed",
+          "durationMs": 1354
+        },
+        {
+          "name": "[fn] Smoke — Default touch slider is visible",
+          "status": "passed",
+          "durationMs": 1318
+        },
+        {
+          "name": "[fn] Smoke — Appearance primary row is visible",
+          "status": "passed",
+          "durationMs": 1382
+        },
+        {
+          "name": "[fn] default instance — secondary appearance, rounded progressStyle, value 50",
+          "status": "passed",
+          "durationMs": 1532
+        },
+        {
+          "name": "[fn] appearance auto — resolves to neutral on root (surface context)",
+          "status": "passed",
+          "durationMs": 1890
+        },
+        {
+          "name": "[fn] orientation horizontal — native input aria-orientation horizontal",
+          "status": "passed",
+          "durationMs": 1318
+        },
+        {
+          "name": "[fn] orientation vertical — root data-orientation and input aria-orientation vertical",
+          "status": "passed",
+          "durationMs": 1330
+        },
+        {
+          "name": "[fn] progressStyle rounded and sharp — root data-progress-style matches prop",
+          "status": "passed",
+          "durationMs": 1464
+        },
+        {
+          "name": "[fn] progressStyle sharp — outer control keeps pill border-radius (not square track)",
+          "status": "passed",
+          "durationMs": 2303
+        },
+        {
+          "name": "[fn] defaultValue — aria-valuenow reflects 0, 50, 100, and 37",
+          "status": "passed",
+          "durationMs": 1340
+        },
+        {
+          "name": "[fn] appearance roles — each spot-check row exposes data-appearance on root",
+          "status": "passed",
+          "durationMs": 5362
+        },
+        {
+          "name": "[fn] start slot — icon present in data-slider-slot=start; no slot when omitted",
+          "status": "passed",
+          "durationMs": 1803
+        },
+        {
+          "name": "[fn] rounded progressStyle — no separate visible knob node in DOM",
+          "status": "passed",
+          "durationMs": 3454
+        },
+        {
+          "name": "[fn] custom min max — aria-valuenow 5 within range 0–10",
+          "status": "passed",
+          "durationMs": 1654
+        },
+        {
+          "name": "[fn] fractional step — aria-valuenow supports half steps (2.5)",
+          "status": "passed",
+          "durationMs": 1512
+        },
+        {
+          "name": "[fn] disabled — input disabled and ArrowRight does not change value",
+          "status": "passed",
+          "durationMs": 1506
+        },
+        {
+          "name": "[fn] readOnly — root data-readonly and ArrowRight does not change value",
+          "status": "passed",
+          "durationMs": 1574
+        },
+        {
+          "name": "[fn] surface context — sliders reachable on default, subtle, and bold surfaces",
+          "status": "passed",
+          "durationMs": 1869
+        },
+        {
+          "name": "[fn] combination matrix — each combo row renders an interactive slider",
+          "status": "passed",
+          "durationMs": 1483
+        },
+        {
+          "name": "[fn] keyboard ArrowRight — increases aria-valuenow by step on default slider",
+          "status": "passed",
+          "durationMs": 12300
+        },
+        {
+          "name": "[fn] keyboard ArrowLeft — decreases aria-valuenow by step on default slider",
+          "status": "passed",
+          "durationMs": 1837
+        },
+        {
+          "name": "[fn] keyboard Home and End — move to min and max of range",
+          "status": "passed",
+          "durationMs": 2840
+        },
+        {
+          "name": "[fn] controlled volume — ArrowRight updates aria-valuenow and live caption text",
+          "status": "passed",
+          "durationMs": 2177
+        },
+        {
+          "name": "[fn] interaction demo — ArrowRight updates live value label",
+          "status": "passed",
+          "durationMs": 1588
+        },
+        {
+          "name": "[fn] validation grid — horizontal rounded cell value 50 and orientation",
+          "status": "passed",
+          "durationMs": 1676
+        },
+        {
+          "name": "[fn] validation grid — value 0 horizontal rounded cell at minimum",
+          "status": "passed",
+          "durationMs": 1751
+        },
+        {
+          "name": "[fn] validation grid — value 100 vertical sharp cell at maximum",
+          "status": "failed",
+          "durationMs": 30593,
+          "error": "Test timeout of 30000ms exceeded."
+        },
+        {
+          "name": "[fn] validation grid — vertical rounded cell is interactive at mid value",
+          "status": "passed",
+          "durationMs": 2034
+        },
+        {
+          "name": "[fn] theme toggle updates label",
+          "status": "passed",
+          "durationMs": 2052
+        },
+        {
+          "name": "[fn] scenario tabs are present",
+          "status": "passed",
+          "durationMs": 1803
+        }
+      ]
+    },
+    "performance": {
+      "suite": "performance",
+      "passed": 0,
+      "failed": 0,
+      "skipped": 0,
+      "logs": [
+        "Performance suite is not executed in apps/qa-playground touch-slider Playwright bundle."
+      ],
+      "errors": []
+    }
+  }
+}

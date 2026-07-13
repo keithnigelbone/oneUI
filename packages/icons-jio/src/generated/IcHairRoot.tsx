@@ -1,0 +1,30 @@
+import React, { forwardRef } from 'react';
+import type { IconComponentProps } from '../iconProps';
+
+export const IcHairRoot = forwardRef<SVGSVGElement, IconComponentProps>(function IcHairRoot(
+  { size = 24, width, height, color = 'currentColor', className, style, ...props },
+  ref,
+) {
+  const dim = width ?? height ?? size;
+  return (
+    <svg
+      ref={ref}
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      width={width ?? dim}
+      height={height ?? dim}
+      color={color}
+      className={className}
+      style={style}
+      {...props}
+    >
+      <path
+            fill="currentColor"
+            d="M9.84 14.08c.05.06.12.11.17.16.5.47 1.15.76 1.86.76h.12c1.43 0 2.62-1 2.92-2.33v-.03c.04-.21.07-.42.07-.64q0-.3-.06-.6v-.02c-.1-.49-.28-.96-.47-1.42-.51-1.27-1.03-2.57.23-4.79.37-.54.74-1.08 1.11-1.6.31-.44.22-1.05-.21-1.38a.994.994 0 0 0-1.38.17 13.4 13.4 0 0 0-1.13 1.62c-1.64 2.41-4.08 6.27-4.08 7.86v.14c0 .81.32 1.54.84 2.08zM7 12v-.14c0-.38 0-1.12.8-2.86H4c-1.1 0-2 .9-2 2v2h5.11c-.07-.33-.11-.66-.11-1m13-3h-3.76c.03.07.06.14.09.22.23.56.44 1.12.56 1.72v.04l.02.03v.03c.07.34.1.65.1.96 0 .32-.04.66-.11 1h5.11v-2c0-1.1-.9-2-2-2zm-7.98 8h-.14c-1.18 0-2.32-.46-3.21-1.29-.02-.02-.05-.04-.07-.06l-.04-.03-.13-.13-.1-.1-.02-.03c-.1-.11-.18-.23-.26-.35H2v2c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2v-2h-6.02a4.96 4.96 0 0 1-3.96 2z"
+          />
+    </svg>
+  );
+});
+
+IcHairRoot.displayName = 'IcHairRoot';

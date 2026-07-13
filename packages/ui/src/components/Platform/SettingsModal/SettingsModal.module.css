@@ -1,0 +1,325 @@
+/**
+ * SettingsModal.module.css
+ *
+ * Settings modal styling - token-only
+ *
+ * INTENTIONAL-LITERAL: dialog max-width (560px) is a product-design size
+ * that fits settings form content comfortably without stretching across
+ * large screens. Not expressible via the spacing token scale.
+ */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background-color: var(--Scrim);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--Spacing-4-5);
+  z-index: var(--Z-Index-Modal);
+  animation: fadeIn var(--Motion-Duration-Discreet-Short) var(--Motion-Easing-Standard);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.dialog {
+  background-color: var(--Surface-Default);
+  border-radius: var(--Shape-5);
+  max-width: 560px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: var(--Elevation-4);
+  animation: slideUp var(--Motion-Duration-Expressive-Short) var(--Motion-Easing-Standard);
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-4-5);
+  padding: var(--Spacing-5);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.title {
+  font-size: var(--Body-L-FontSize);
+  font-weight: var(--Body-FontWeight-High);
+  color: var(--Text-High);
+  margin: 0;
+}
+
+/* Section divider - breaks out of container padding for full-width */
+.sectionDivider {
+  height: 0;
+  border: none;
+  border-top: var(--Stroke-M) solid var(--Border-Subtle);
+  margin: 0 calc(-1 * var(--Spacing-5));
+  width: calc(100% + 2 * var(--Spacing-5));
+}
+
+/* Sections */
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-4);
+}
+
+.sectionHeader {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-2-5);
+}
+
+.sectionTitle {
+  font-size: var(--Body-L-FontSize);
+  font-weight: var(--Body-FontWeight-Medium);
+  color: var(--Text-High);
+  margin: 0;
+}
+
+.sectionDescription {
+  font-size: var(--Body-S-FontSize);
+  color: var(--Text-Medium);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Styling System Options */
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-3-5);
+}
+
+.option {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--Spacing-4);
+  padding: var(--Spacing-4);
+  border-radius: var(--Shape-4-5);
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+  background-color: var(--Surface-Default);
+  cursor: pointer;
+  transition: all var(--Motion-Duration-Discreet-Short) var(--Motion-Easing-Standard);
+  text-align: left;
+  width: 100%;
+}
+
+.option:hover {
+  border-color: var(--Border-Subtle);
+  background-color: var(--Surface-Minimal);
+}
+
+.option[data-selected="true"] {
+  border-color: var(--Primary-Bold, var(--Surface-Bold));
+  background-color: var(--Surface-Minimal);
+}
+
+.option:focus {
+  outline: none;
+}
+
+.option:focus-visible {
+  outline: var(--Focus-Outline-Width) solid var(--Focus-Outline);
+  outline-offset: var(--Focus-Outline-Offset, var(--Stroke-XL));
+}
+
+.optionRadio {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--Dimension-f2);
+  height: var(--Dimension-f2);
+  border-radius: var(--Shape-Pill);
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+  flex-shrink: 0;
+  margin-top: var(--Spacing-2);
+  transition: all var(--Motion-Duration-Discreet-Short) var(--Motion-Easing-Standard);
+}
+
+.option[data-selected="true"] .optionRadio {
+  border-color: var(--Primary-Bold, var(--Surface-Bold));
+  background-color: var(--Primary-Bold, var(--Surface-Bold));
+}
+
+.optionRadioInner {
+  width: var(--Dimension-f-4);
+  height: var(--Dimension-f-4);
+  border-radius: var(--Shape-Pill);
+  background-color: var(--Text-OnBold-High);
+  opacity: 0;
+  transform: scale(0);
+  transition: all var(--Motion-Duration-Discreet-Short) var(--Motion-Easing-Standard);
+}
+
+.option[data-selected="true"] .optionRadioInner {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.optionContent {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-2-5);
+  flex: 1;
+}
+
+.optionLabel {
+  font-size: var(--Body-M-FontSize);
+  font-weight: var(--Body-FontWeight-Medium);
+  color: var(--Text-High);
+}
+
+.optionDescription {
+  font-size: var(--Body-S-FontSize);
+  color: var(--Text-Medium);
+  line-height: 1.4;
+}
+
+/* Density Options */
+.densityOptions {
+  display: flex;
+  gap: var(--Spacing-3-5);
+}
+
+.densityOption {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--Spacing-3);
+  padding: var(--Spacing-4);
+  border-radius: var(--Shape-4-5);
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+  background-color: var(--Surface-Default);
+  cursor: pointer;
+  transition: all var(--Motion-Duration-Discreet-Short) var(--Motion-Easing-Standard);
+  text-align: center;
+  width: 100%;
+}
+
+.densityOption:hover {
+  border-color: var(--Border-Subtle);
+  background-color: var(--Surface-Minimal);
+}
+
+.densityOption[data-selected='true'] {
+  border-color: var(--Primary-Bold, var(--Surface-Bold));
+  background-color: var(--Surface-Minimal);
+}
+
+.densityOption:focus {
+  outline: none;
+}
+
+.densityOption:focus-visible {
+  outline: var(--Focus-Outline-Width) solid var(--Focus-Outline);
+  outline-offset: var(--Focus-Outline-Offset, var(--Stroke-XL));
+}
+
+.densityIcon {
+  color: var(--Text-Medium);
+}
+
+.densityOption[data-selected='true'] .densityIcon {
+  color: var(--Primary-Bold, var(--Surface-Bold));
+}
+
+.densityLabel {
+  font-size: var(--Body-M-FontSize);
+  font-weight: var(--Body-FontWeight-Medium);
+  color: var(--Text-High);
+}
+
+.densityDescription {
+  font-size: var(--Body-XS-FontSize);
+  color: var(--Text-Medium);
+  line-height: 1.4;
+}
+
+/* Brand Defaults */
+.defaultsRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--Spacing-4);
+}
+
+.defaultsInfo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-2);
+  min-width: 0;
+}
+
+.defaultsLabel {
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Body-M-FontSize);
+  line-height: var(--Body-M-LineHeight);
+  font-weight: var(--Body-FontWeight-Medium);
+  color: var(--Text-High);
+}
+
+.defaultsSubLabel {
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  font-weight: var(--Body-FontWeight-Low);
+  color: var(--Text-Medium);
+}
+
+.defaultsTrigger {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--Spacing-2) var(--Spacing-3-5);
+  border-radius: var(--Shape-Pill);
+  background-color: var(--Primary-Subtle);
+  color: var(--Primary-TintedA11y);
+  border: none;
+  font-family: var(--Label-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Label-S-FontSize);
+  line-height: var(--Label-S-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+  cursor: pointer;
+  transition: background-color var(--Motion-Duration-Discreet-Short) var(--Motion-Easing-Standard);
+}
+
+.defaultsTrigger:hover {
+  background-color: var(--Primary-Subtle-Hover);
+}
+
+.defaultsTrigger:focus {
+  outline: none;
+}
+
+.defaultsTrigger:focus-visible {
+  outline: var(--Focus-Outline-Width) solid var(--Focus-Outline);
+  outline-offset: var(--Focus-Outline-Offset, var(--Stroke-XL));
+}
+
+/* Actions */
+.actions {
+  display: flex;
+  gap: var(--Spacing-4);
+  justify-content: flex-end;
+  margin-top: var(--Spacing-4);
+}

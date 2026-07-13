@@ -1,0 +1,259 @@
+/**
+ * Icon.module.css
+ *
+ * Architecture: Role-agnostic intermediate variables (--_icon-*)
+ * - Default = Neutral role
+ * - Appearance classes remap --_icon-* to other roles
+ * - Emphasis selectors consume --_icon-*
+ *
+ * Figma properties: size (20) × appearance (8) × emphasis (5)
+ *
+ * Surface-context-aware: tokens remap automatically via brand CSS
+ * [data-surface] cascade when placed inside <Surface>.
+ *
+ * Verified by: pnpm check:literals
+ */
+
+.root {
+  /* ========================================
+     INTERMEDIATE VARIABLES — default = Neutral role
+     Remapped by .appearancePrimary, .appearanceSecondary, etc.
+     ======================================== */
+  --_icon-high: var(--Neutral-High, var(--Text-High));
+  --_icon-medium: var(--Neutral-Medium-Text, var(--Text-Medium));
+  --_icon-low: var(--Neutral-Low, var(--Text-Low));
+  --_icon-tinted: var(--Neutral-Tinted, var(--Text-High));
+  --_icon-tintedA11y: var(--Neutral-TintedA11y, var(--Text-High));
+
+  /* ========================================
+     BASE STYLES
+     ======================================== */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  vertical-align: middle;
+}
+
+/* ========================================
+   APPEARANCE — role-agnostic intermediate variable remapping
+   Neutral is default (no class needed)
+   ======================================== */
+
+.appearancePrimary {
+  --_icon-high: var(--Primary-High, var(--Text-High));
+  --_icon-medium: var(--Primary-Medium-Text, var(--Text-Medium));
+  --_icon-low: var(--Primary-Low, var(--Text-Low));
+  --_icon-tinted: var(--Primary-Tinted, var(--Text-High));
+  --_icon-tintedA11y: var(--Primary-TintedA11y, var(--Text-High));
+}
+
+.appearanceSecondary {
+  --_icon-high: var(--Secondary-High, var(--Text-High));
+  --_icon-medium: var(--Secondary-Medium-Text, var(--Text-Medium));
+  --_icon-low: var(--Secondary-Low, var(--Text-Low));
+  --_icon-tinted: var(--Secondary-Tinted, var(--Text-High));
+  --_icon-tintedA11y: var(--Secondary-TintedA11y, var(--Text-High));
+}
+
+.appearanceSparkle {
+  --_icon-high: var(--Sparkle-High, var(--Text-High));
+  --_icon-medium: var(--Sparkle-Medium-Text, var(--Text-Medium));
+  --_icon-low: var(--Sparkle-Low, var(--Text-Low));
+  --_icon-tinted: var(--Sparkle-Tinted, var(--Text-High));
+  --_icon-tintedA11y: var(--Sparkle-TintedA11y, var(--Text-High));
+}
+
+.appearanceNegative {
+  --_icon-high: var(--Negative-High, var(--Text-High));
+  --_icon-medium: var(--Negative-Medium-Text, var(--Text-Medium));
+  --_icon-low: var(--Negative-Low, var(--Text-Low));
+  --_icon-tinted: var(--Negative-Tinted, var(--Text-High));
+  --_icon-tintedA11y: var(--Negative-TintedA11y, var(--Text-High));
+}
+
+.appearancePositive {
+  --_icon-high: var(--Positive-High, var(--Text-High));
+  --_icon-medium: var(--Positive-Medium-Text, var(--Text-Medium));
+  --_icon-low: var(--Positive-Low, var(--Text-Low));
+  --_icon-tinted: var(--Positive-Tinted, var(--Text-High));
+  --_icon-tintedA11y: var(--Positive-TintedA11y, var(--Text-High));
+}
+
+.appearanceWarning {
+  --_icon-high: var(--Warning-High, var(--Text-High));
+  --_icon-medium: var(--Warning-Medium-Text, var(--Text-Medium));
+  --_icon-low: var(--Warning-Low, var(--Text-Low));
+  --_icon-tinted: var(--Warning-Tinted, var(--Text-High));
+  --_icon-tintedA11y: var(--Warning-TintedA11y, var(--Text-High));
+}
+
+.appearanceInformative {
+  --_icon-high: var(--Informative-High, var(--Text-High));
+  --_icon-medium: var(--Informative-Medium-Text, var(--Text-Medium));
+  --_icon-low: var(--Informative-Low, var(--Text-Low));
+  --_icon-tinted: var(--Informative-Tinted, var(--Text-High));
+  --_icon-tintedA11y: var(--Informative-TintedA11y, var(--Text-High));
+}
+
+/* ========================================
+   EMPHASIS — consume intermediate vars
+   ======================================== */
+
+.high {
+  color: var(--Icon-color-high, var(--Icon-color, var(--_icon-high)));
+}
+
+.medium {
+  color: var(--Icon-color-medium, var(--Icon-color, var(--_icon-medium)));
+}
+
+.low {
+  color: var(--Icon-color-low, var(--Icon-color, var(--_icon-low)));
+}
+
+.tinted {
+  color: var(--Icon-color-tinted, var(--Icon-color, var(--_icon-tinted)));
+}
+
+.tintedA11y {
+  color: var(--Icon-color-tintedA11y, var(--Icon-color, var(--_icon-tintedA11y)));
+}
+
+/* ========================================
+   SIZES — 20 presets via data-size selectors.
+   Each size maps directly to the matching numeric Spacing token.
+   ======================================== */
+
+.root[data-size="2"] {
+  width: var(--Icon-size-2, var(--Spacing-2));
+  height: var(--Icon-size-2, var(--Spacing-2));
+}
+
+.root[data-size="2.5"] {
+  width: var(--Icon-size-2-5, var(--Spacing-2-5));
+  height: var(--Icon-size-2-5, var(--Spacing-2-5));
+}
+
+.root[data-size="3"] {
+  width: var(--Icon-size-3, var(--Spacing-3));
+  height: var(--Icon-size-3, var(--Spacing-3));
+}
+
+.root[data-size="3.5"] {
+  width: var(--Icon-size-3-5, var(--Spacing-3-5));
+  height: var(--Icon-size-3-5, var(--Spacing-3-5));
+}
+
+.root[data-size="4"] {
+  width: var(--Icon-size-4, var(--Spacing-4));
+  height: var(--Icon-size-4, var(--Spacing-4));
+}
+
+.root[data-size="4.5"] {
+  width: var(--Icon-size-4-5, var(--Spacing-4-5));
+  height: var(--Icon-size-4-5, var(--Spacing-4-5));
+}
+
+.root[data-size="5"] {
+  width: var(--Icon-size-5, var(--Spacing-5));
+  height: var(--Icon-size-5, var(--Spacing-5));
+}
+
+.root[data-size="6"] {
+  width: var(--Icon-size-6, var(--Spacing-6));
+  height: var(--Icon-size-6, var(--Spacing-6));
+}
+
+.root[data-size="7"] {
+  width: var(--Icon-size-7, var(--Spacing-7));
+  height: var(--Icon-size-7, var(--Spacing-7));
+}
+
+.root[data-size="8"] {
+  width: var(--Icon-size-8, var(--Spacing-8));
+  height: var(--Icon-size-8, var(--Spacing-8));
+}
+
+.root[data-size="9"] {
+  width: var(--Icon-size-9, var(--Spacing-9));
+  height: var(--Icon-size-9, var(--Spacing-9));
+}
+
+.root[data-size="10"] {
+  width: var(--Icon-size-10, var(--Spacing-10));
+  height: var(--Icon-size-10, var(--Spacing-10));
+}
+
+.root[data-size="12"] {
+  width: var(--Icon-size-12, var(--Spacing-12));
+  height: var(--Icon-size-12, var(--Spacing-12));
+}
+
+.root[data-size="14"] {
+  width: var(--Icon-size-14, var(--Spacing-14));
+  height: var(--Icon-size-14, var(--Spacing-14));
+}
+
+.root[data-size="16"] {
+  width: var(--Icon-size-16, var(--Spacing-16));
+  height: var(--Icon-size-16, var(--Spacing-16));
+}
+
+.root[data-size="18"] {
+  width: var(--Icon-size-18, var(--Spacing-18));
+  height: var(--Icon-size-18, var(--Spacing-18));
+}
+
+.root[data-size="20"] {
+  width: var(--Icon-size-20, var(--Spacing-20));
+  height: var(--Icon-size-20, var(--Spacing-20));
+}
+
+.root[data-size="24"] {
+  width: var(--Icon-size-24, var(--Spacing-24));
+  height: var(--Icon-size-24, var(--Spacing-24));
+}
+
+.root[data-size="32"] {
+  width: var(--Icon-size-32, var(--Spacing-32));
+  height: var(--Icon-size-32, var(--Spacing-32));
+}
+
+.root[data-size="40"] {
+  width: var(--Icon-size-40, var(--Spacing-40));
+  height: var(--Icon-size-40, var(--Spacing-40));
+}
+
+/* ========================================
+   INNER CONTENT — fill container size
+   Handles both SVG elements (with explicit width/height attributes
+   from the IconResolver utility) and lazy-loaded placeholder spans.
+   ======================================== */
+
+.root > * {
+  width: 100%;
+  height: 100%;
+  flex-shrink: 0;
+}
+
+/* Override SVG intrinsic width/height attributes set by icon libraries.
+   Without this, the SVG attribute sizes (e.g. width="20" height="20")
+   take precedence over CSS width: 100%. */
+.root svg[width] {
+  width: 100%;
+}
+
+.root svg[height] {
+  height: 100%;
+}
+
+.root svg {
+  display: block;
+}
+
+/**
+ * ========================================
+ * IMPORTANT: NO LITERALS IN THIS FILE
+ * ========================================
+ */

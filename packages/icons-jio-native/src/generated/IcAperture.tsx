@@ -1,0 +1,15 @@
+import React from 'react';
+import Svg, { Path, type SvgProps } from 'react-native-svg';
+export function IcAperture(props: SvgProps) {
+  const fill = String(props.fill ?? '#000000');
+  return (
+    <Svg viewBox="0 0 24 24" fill="none" {...props}>
+      <Path
+            fill={fill}
+            fillRule="evenodd"
+            d="M20.11 6.16 15.5 8.82a.996.996 0 0 0 0 1.73l6.26 3.61c.15-.7.24-1.42.24-2.17 0-2.18-.71-4.19-1.89-5.84zM12.5 8.24l6.26-3.61A9.97 9.97 0 0 0 11 2.06v5.32c0 .77.83 1.25 1.5.87zM9 9.68V2.47c-.68.22-1.35.5-2 .87A9.93 9.93 0 0 0 2.89 7.9l4.61 2.66c.67.38 1.5-.1 1.5-.87zm-.5 3.75L2.24 9.82c-.15.7-.24 1.42-.24 2.17 0 2.18.71 4.19 1.89 5.84l4.61-2.66a.996.996 0 0 0 0-1.73zm3 2.31-6.26 3.61A9.97 9.97 0 0 0 13 21.92V16.6c0-.77-.83-1.25-1.5-.87zM15 14.3v7.23c.68-.22 1.35-.5 2-.87a9.93 9.93 0 0 0 4.11-4.56l-4.61-2.66c-.67-.38-1.5.1-1.5.87z"
+            clipRule="evenodd"
+          />
+    </Svg>
+  );
+}

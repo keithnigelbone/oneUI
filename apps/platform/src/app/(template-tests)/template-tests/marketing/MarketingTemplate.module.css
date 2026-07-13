@@ -1,0 +1,280 @@
+.page {
+  --_marketing-measure: calc(var(--Spacing-40) * 3);
+
+  min-height: 100dvh;
+  height: 100dvh;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scroll-behavior: smooth;
+  background: var(--Surface-Fill-Default, var(--Surface-Default));
+  color: var(--Primary-High);
+  font-family: var(--Typography-Font-Text);
+}
+
+.headerRow {
+  width: 100%;
+  max-width: var(--Grid-MaxWidth);
+  margin-inline: auto;
+}
+
+.page h1,
+.page h2,
+.page h3 {
+  font-family: var(--Headline-FontFamily, var(--Typography-Font-Text));
+}
+
+.page p,
+.page span {
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+}
+
+.hero {
+  overflow: hidden;
+  padding-block: var(--Spacing-18);
+}
+
+.heroGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: center;
+  gap: var(--Spacing-14);
+}
+
+.heroCopy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--Spacing-6);
+}
+
+.heroCopy h1 {
+  max-width: var(--_marketing-measure);
+  margin: 0;
+  color: var(--Primary-High);
+  font-size: var(--Display-L-FontSize);
+  line-height: var(--Display-L-LineHeight);
+  font-weight: var(--Display-L-FontWeight);
+  letter-spacing: var(--Typography-LetterSpacing-Tight);
+}
+
+.heroCopy p,
+.sectionHeader p,
+.productCard p,
+.planCard p,
+.appCopy p,
+.finalCta p {
+  margin: 0;
+  color: var(--Primary-Medium-Text);
+  font-size: var(--Body-M-FontSize);
+  line-height: var(--Body-M-LineHeight);
+  font-weight: var(--Body-FontWeight-Low);
+}
+
+.heroActions,
+.finalActions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--Spacing-4);
+}
+
+.heroImage {
+  width: 100%;
+  aspect-ratio: 21 / 9;
+  border-radius: var(--Shape-6);
+  box-shadow: var(--Elevation-3);
+}
+
+.cardTopline,
+.planCardHeader,
+.phoneHeader,
+.serviceItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--Spacing-4);
+}
+
+.cardTopline span,
+.phoneHeader span,
+.serviceItem span {
+  color: var(--Primary-Medium-Text);
+  font-size: var(--Label-S-FontSize);
+  line-height: var(--Label-S-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+}
+
+.section,
+.appSection {
+  padding-block: var(--Spacing-16);
+}
+
+.sectionHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--Spacing-4);
+  max-width: var(--_marketing-measure);
+  margin-block-end: var(--Spacing-9);
+}
+
+.sectionHeader h2,
+.appCopy h2,
+.finalCta h2 {
+  margin: 0;
+  color: var(--Primary-High);
+  font-size: var(--Headline-L-FontSize);
+  line-height: var(--Headline-L-LineHeight);
+  font-weight: var(--Headline-L-FontWeight);
+  letter-spacing: var(--Typography-LetterSpacing-Tight);
+}
+
+.productGrid,
+.planGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--Spacing-6);
+}
+
+.productCard,
+.planCard {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--Spacing-4-5);
+  padding: var(--Spacing-6);
+  border-radius: var(--Shape-5);
+  box-shadow: var(--Elevation-1);
+}
+
+.productCard h3,
+.planCard h3 {
+  margin: 0;
+  color: var(--Primary-High);
+  font-size: var(--Title-L-FontSize);
+  line-height: var(--Title-L-LineHeight);
+  font-weight: var(--Title-L-FontWeight);
+}
+
+.cardTopline,
+.planCardHeader {
+  width: 100%;
+}
+
+.plansBand {
+  padding-block: var(--Spacing-6);
+}
+
+.planCard {
+  min-height: 100%;
+}
+
+.planCard p {
+  flex: 1;
+}
+
+.appPanel {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, var(--_marketing-measure));
+  align-items: center;
+  gap: var(--Spacing-10);
+  padding: var(--Spacing-8);
+  border-radius: var(--Shape-6);
+  box-shadow: var(--Elevation-2);
+}
+
+.appCopy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--Spacing-4-5);
+}
+
+.chipRow {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--Spacing-3-5);
+  margin-block-start: var(--Spacing-3-5);
+}
+
+.phoneMock {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-4-5);
+  padding: var(--Spacing-6);
+  border-radius: var(--Shape-6);
+}
+
+.serviceList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-3-5);
+}
+
+.serviceItem {
+  padding: var(--Spacing-4);
+  border-radius: var(--Shape-4);
+}
+
+.finalCta {
+  padding-block: var(--Spacing-14);
+}
+
+.finalCtaInner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--Spacing-9);
+}
+
+.finalCtaInner > div:first-child {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--Spacing-4-5);
+}
+
+:global([data-Breakpoint='S']) .heroGrid,
+:global([data-Breakpoint='M']) .heroGrid,
+:global([data-Breakpoint='S']) .appPanel,
+:global([data-Breakpoint='M']) .appPanel,
+:global([data-Breakpoint='S']) .finalCtaInner,
+:global([data-Breakpoint='M']) .finalCtaInner {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+:global([data-Breakpoint='S']) .productGrid,
+:global([data-Breakpoint='M']) .productGrid,
+:global([data-Breakpoint='S']) .planGrid,
+:global([data-Breakpoint='M']) .planGrid {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+:global([data-Breakpoint='S']) .finalActions,
+:global([data-Breakpoint='M']) .finalActions {
+  justify-content: flex-start;
+}
+
+:global([data-Breakpoint='S']) .hero,
+:global([data-Breakpoint='M']) .hero {
+  padding-block: var(--Spacing-12);
+}
+
+:global([data-Breakpoint='S']) .appPanel,
+:global([data-Breakpoint='M']) .appPanel {
+  padding: var(--Spacing-6);
+}
+
+:global([data-Breakpoint='S']) .section,
+:global([data-Breakpoint='M']) .section,
+:global([data-Breakpoint='S']) .appSection,
+:global([data-Breakpoint='M']) .appSection {
+  padding-block: var(--Spacing-12);
+}
+
+/*
+ * The selectors above mirror the platform breakpoint attributes used by the
+ * foundation cascade, so this test page adapts through the same mechanism as
+ * the component library.
+ */

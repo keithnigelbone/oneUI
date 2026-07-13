@@ -1,0 +1,296 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "IconContained",
+  "generatedAt": "2026-01-01T00:00:00.000Z",
+  "machineReadable": true,
+  "intentAndPurpose": {
+    "intent": {
+      "value": "Display an icon within a filled container shape with attention-level emphasis.",
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "taskContexts": {
+      "value": [
+        "status-badge",
+        "category-indicator",
+        "feature-highlight",
+        "list-item-icon"
+      ],
+      "attribution": {
+        "source": "authored"
+      }
+    },
+    "sentiments": {
+      "value": [
+        "neutral",
+        "positive",
+        "negative",
+        "warning",
+        "informative"
+      ],
+      "attribution": {
+        "source": "authored"
+      }
+    }
+  },
+  "compositionRules": {
+    "requires": {
+      "value": [
+        "icon prop (semantic name or React element)"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "allows": {
+      "value": [
+        "aria-label for accessibility"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "forbids": {
+      "value": [
+        "interactive behaviour (non-interactive display only)",
+        "text content"
+      ],
+      "attribution": {
+        "source": "authored"
+      }
+    }
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "high attention",
+        "useWhen": {
+          "value": [
+            "prominent solid bold fill container"
+          ],
+          "attribution": {
+            "source": "inferred"
+          }
+        }
+      },
+      {
+        "name": "medium attention",
+        "useWhen": {
+          "value": [
+            "subtle tinted fill container"
+          ],
+          "attribution": {
+            "source": "inferred"
+          }
+        }
+      }
+    ]
+  },
+  "relationshipsAndDependencies": {
+    "related": {
+      "value": [
+        "Icon",
+        "Avatar",
+        "IconButton"
+      ],
+      "attribution": {
+        "source": "authored"
+      }
+    }
+  },
+  "contextSignals": {
+    "density": {
+      "value": [
+        "compact",
+        "default",
+        "open"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "modality": {
+      "value": [
+        "desktop",
+        "mobile"
+      ],
+      "attribution": {
+        "source": "authored"
+      }
+    },
+    "brand": {
+      "value": [
+        "theme-scope aware",
+        "recipe-driven"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "mode": {
+      "value": [
+        "light",
+        "dark",
+        "surface-context"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "observabilityHooks": {
+    "track": {
+      "value": [
+        "impression"
+      ],
+      "attribution": {
+        "source": "authored"
+      }
+    },
+    "health": {
+      "value": [
+        "a11y_violations"
+      ],
+      "attribution": {
+        "source": "authored"
+      }
+    }
+  },
+  "props": [
+    {
+      "name": "icon",
+      "type": "ComponentIconInput | ReactElement",
+      "required": true,
+      "description": "icon property"
+    },
+    {
+      "name": "appearance",
+      "type": "IconContainedAppearance",
+      "required": false,
+      "description": "Multi-accent appearance role. 'auto' resolves to 'primary'. Default: 'secondary'."
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": false,
+      "description": "Accessible label for the icon"
+    },
+    {
+      "name": "attention",
+      "type": "IconContainedAttention",
+      "required": false,
+      "description": "Attention level — High (solid bold fill), Medium (subtle tinted fill). Default: 'medium'"
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "required": false,
+      "description": "Additional class name"
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "required": false,
+      "description": "Disabled state"
+    },
+    {
+      "name": "size",
+      "type": "IconContainedSize",
+      "required": false,
+      "description": "Size preset. Default: 'm'"
+    },
+    {
+      "name": "style",
+      "type": "CSSProperties",
+      "required": false,
+      "description": "Inline styles"
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.docs.icon-contained",
+    "type": "object",
+    "properties": {
+      "icon": {
+        "description": "icon property"
+      },
+      "appearance": {
+        "enum": [
+          "auto",
+          "primary",
+          "secondary",
+          "neutral",
+          "sparkle",
+          "brand-bg",
+          "positive",
+          "negative",
+          "warning",
+          "informative"
+        ],
+        "description": "Multi-accent appearance role. 'auto' resolves to 'primary'. Default: 'secondary'."
+      },
+      "aria-label": {
+        "type": "string",
+        "description": "Accessible label for the icon"
+      },
+      "attention": {
+        "enum": [
+          "high",
+          "medium"
+        ],
+        "description": "Attention level — High (solid bold fill), Medium (subtle tinted fill). Default: 'medium'"
+      },
+      "className": {
+        "type": "string",
+        "description": "Additional class name"
+      },
+      "disabled": {
+        "type": "boolean",
+        "description": "Disabled state"
+      },
+      "size": {
+        "enum": [
+          "xs",
+          "s",
+          "m",
+          "l",
+          "xl"
+        ],
+        "description": "Size preset. Default: 'm'"
+      },
+      "style": {
+        "description": "Inline styles"
+      }
+    },
+    "required": [
+      "icon"
+    ]
+  },
+  "codeSnippets": [
+    {
+      "id": "iconcontained-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { IconContained } from '@oneui/ui';\n\n<IconContained icon=\"check\" />"
+    },
+    {
+      "id": "iconcontained-subtle",
+      "title": "Medium Attention",
+      "language": "tsx",
+      "code": "<IconContained icon=\"info\" attention=\"medium\" appearance=\"informative\" />"
+    },
+    {
+      "id": "icon-contained-recipe-decisions",
+      "title": "Recipe Decisions",
+      "language": "json",
+      "code": "{\n  \"component\": \"IconContained\",\n  \"decisions\": [\n    \"Shape\"\n  ]\n}"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "icon-contained"
+  ],
+  "generatedMarkdown": "# IconContained Machine-Readable Documentation\n\n_Generated from source metadata. Do not edit manually._\n\n## Intent and Purpose\n\n- **Intent**: Display an icon within a filled container shape with attention-level emphasis.\n- **Task contexts**: status-badge, category-indicator, feature-highlight, list-item-icon\n- **Sentiments**: neutral, positive, negative, warning, informative\n\n## Composition Rules\n\n- **Requires**: icon prop (semantic name or React element)\n- **Allows**: aria-label for accessibility\n- **Forbids**: interactive behaviour (non-interactive display only), text content\n\n## Variant Logic\n\n- **high attention**: use when prominent solid bold fill container\n- **medium attention**: use when subtle tinted fill container\n\n## Relationships and Dependencies\n\n- **Related**: Icon, Avatar, IconButton\n- **Escalates to**: -\n- **Degrades to**: -\n- **Groups with**: -\n\n## Context Signals\n\n- **Density**: compact, default, open\n- **Modality**: desktop, mobile\n- **Brand**: theme-scope aware, recipe-driven\n- **Mode**: light, dark, surface-context\n\n## Observability Hooks\n\n- **Track**: impression\n- **Health**: a11y_violations\n\n## Props\n\n| Prop | Type | Required | Default | Description |\n| --- | --- | --- | --- | --- |\n| `icon` | `ComponentIconInput | ReactElement` | Yes | - | icon property |\n| `appearance` | `IconContainedAppearance` | No | - | Multi-accent appearance role. 'auto' resolves to 'primary'. Default: 'secondary'. |\n| `aria-label` | `string` | No | - | Accessible label for the icon |\n| `attention` | `IconContainedAttention` | No | - | Attention level — High (solid bold fill), Medium (subtle tinted fill). Default: 'medium' |\n| `className` | `string` | No | - | Additional class name |\n| `disabled` | `boolean` | No | - | Disabled state |\n| `size` | `IconContainedSize` | No | - | Size preset. Default: 'm' |\n| `style` | `CSSProperties` | No | - | Inline styles |\n\n## Slots\n\n| Slot | Types | Tokens |\n| --- | --- | --- |\n\n\n## Code Snippets\n\n### Basic Usage\n\n```tsx\nimport { IconContained } from '@oneui/ui';\n\n<IconContained icon=\"check\" />\n```\n\n### Medium Attention\n\n```tsx\n<IconContained icon=\"info\" attention=\"medium\" appearance=\"informative\" />\n```\n\n### Recipe Decisions\n\n```json\n{\n  \"component\": \"IconContained\",\n  \"decisions\": [\n    \"Shape\"\n  ]\n}\n```\n"
+}

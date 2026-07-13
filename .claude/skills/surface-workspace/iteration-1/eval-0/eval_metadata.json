@@ -1,0 +1,12 @@
+{
+  "eval_id": 0,
+  "eval_name": "finance-restraint-cashback",
+  "prompt": "",
+  "assertions": [
+    "Page/screen background stays default neutral (page not wrapped in a tinted/bold/brand Surface)",
+    "Cashback offer is the single non-default surface (bold/brand-bg/sparkle present)",
+    "Offer uses <Surface>, not a hardcoded background div",
+    "No hardcoded hex color literals in the code",
+    "Transactions list not given its own tinted/colored surface"
+  ]
+}

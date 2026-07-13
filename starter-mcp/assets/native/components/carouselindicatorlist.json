@@ -1,0 +1,94 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "CarouselIndicatorList",
+  "generatedAt": "2026-07-09T13:07:37.430Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "Pagination dots for the enclosing Carousel — reads slide count/selection from context."
+  },
+  "compositionRules": {
+    "requires": [],
+    "allows": [],
+    "forbids": [],
+    "childKind": "leaf"
+  },
+  "props": [
+    {
+      "name": "appearance",
+      "type": "'auto' | 'primary' | 'secondary' | 'neutral' | 'sparkle' | 'brand-bg' | 'positive' | 'negative' | 'warning' | 'informative'",
+      "required": false,
+      "defaultValue": "auto",
+      "description": ""
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": false,
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.kb.rn.CarouselIndicatorList",
+    "type": "object",
+    "properties": {
+      "appearance": {
+        "enum": [
+          "auto",
+          "primary",
+          "secondary",
+          "neutral",
+          "sparkle",
+          "brand-bg",
+          "positive",
+          "negative",
+          "warning",
+          "informative"
+        ],
+        "default": "auto"
+      },
+      "aria-label": {
+        "type": "string"
+      }
+    }
+  },
+  "tokens": {
+    "color": [
+      "primary"
+    ]
+  },
+  "a11y": {
+    "accessibilityRole": "tablist",
+    "accessibleNameSource": "aria-label",
+    "minTouchTarget": 44,
+    "honorsBoldText": false,
+    "honorsScreenReader": true
+  },
+  "renderHints": {
+    "baseElement": "View",
+    "animatedOn": [],
+    "honorsReduceMotion": false,
+    "readsFromSurfaceContext": true
+  },
+  "figma": {
+    "componentKey": "jds-carousel-indicatorlist-v1",
+    "keyHistory": []
+  },
+  "codeSnippets": [
+    {
+      "id": "import-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { CarouselIndicatorList } from '@oneui/ui-native';\n\n<CarouselIndicatorList />"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "carouselindicatorlist",
+    "carousel",
+    "pagination"
+  ],
+  "importPath": "@oneui/ui-native"
+}

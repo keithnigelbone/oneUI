@@ -1,0 +1,27 @@
+import React, { forwardRef } from 'react';
+import type { IconComponentProps } from '../iconProps';
+
+export const Orders2Outlined = forwardRef<SVGSVGElement, IconComponentProps>(function Orders2Outlined(
+  { size = 24, width, height, color = 'currentColor', className, style, ...props },
+  ref,
+) {
+  const dim = width ?? height ?? size;
+  return (
+    <svg
+      ref={ref}
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      width={width ?? dim}
+      height={height ?? dim}
+      color={color}
+      className={className}
+      style={style}
+      {...props}
+    >
+      <path d="M11.4932 2.29805C11.806 2.11419 12.194 2.11419 12.5068 2.29805L20.0693 6.74629C20.3363 6.90337 20.5 7.19043 20.5 7.50019C20.5 7.51198 20.4975 7.52364 20.4971 7.53535C20.4975 7.5476 20.5 7.56014 20.5 7.57246V16.4279C20.5 16.7823 20.3123 17.1106 20.0068 17.2902L12.5068 21.7023C12.194 21.8862 11.806 21.8862 11.4932 21.7023L3.99316 17.2902C3.68773 17.1106 3.5 16.7823 3.5 16.4279V7.57246C3.5 7.56016 3.5015 7.54759 3.50195 7.53535C3.50148 7.52365 3.5 7.51197 3.5 7.50019C3.5 7.19043 3.66368 6.90337 3.93066 6.74629L11.4932 2.29805ZM4.7002 16.3137L11.4004 20.2541V12.6477L4.7002 8.70625V16.3137ZM12.5996 12.6477V20.2541L19.2998 16.3137V8.70625L12.5996 12.6477ZM5.0166 7.50019L12 11.6076L15.0234 9.82832L8.04102 5.7209L5.0166 7.50019ZM9.22559 5.02363L16.208 9.13105L18.9824 7.50019L12 3.39277L9.22559 5.02363Z" fill="currentColor"/>
+    </svg>
+  );
+});
+
+Orders2Outlined.displayName = 'Orders2Outlined';

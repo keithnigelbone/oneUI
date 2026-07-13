@@ -1,0 +1,486 @@
+.variantRow {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-3-5);
+}
+
+.variantHint {
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  color: var(--Text-Low);
+  margin: 0;
+}
+
+.controlTabsRow {
+  max-width: 100%;
+  overflow-x: auto;
+  border-bottom: var(--Stroke-M) solid var(--Border-Subtle);
+  scrollbar-width: none;
+}
+
+.controlTabsRow::-webkit-scrollbar {
+  display: none;
+}
+
+.controlTabsList {
+  width: max-content;
+  min-width: 100%;
+}
+
+/* ─── Per-platform configuration cards ──────────────────────────────────── */
+
+.platformGrid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-3);
+}
+
+/*
+ * platformCard — rendered via <Surface mode="subtle">.
+ * Surface sets background + data-surface attribute, which remaps all child
+ * component tokens (SliderControl, Checkbox, etc.) automatically via the
+ * [data-surface="subtle"] cascade. We ONLY handle layout here — no hardcoded
+ * background, no stroke (the tinted fill already provides the card boundary).
+ */
+.platformCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-4);
+  padding: var(--Spacing-4);
+  border-radius: var(--Shape-4);
+}
+
+.platformHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+/*
+ * Text colours read --Text-High / --Text-Low, which the brand CSS engine
+ * remaps inside [data-surface="subtle"] to the correct on-colour values for
+ * that surface. Never hardcode a role-specific alias like --Secondary-Subtle-High
+ * here — that pins the colour and skips context awareness.
+ */
+.platformName {
+  font-family: var(--Label-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Label-M-FontSize);
+  line-height: var(--Label-M-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+  color: var(--Text-High);
+}
+
+.platformId {
+  font-family: var(--Typography-Font-Code);
+  font-size: var(--Code-S-FontSize);
+  line-height: var(--Code-S-LineHeight);
+  color: var(--Text-Low);
+}
+
+.maxWidthRow {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-3-5);
+}
+
+.maxWidthLabel {
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  color: var(--Text-Medium);
+}
+
+/* ─── Preview controls ──────────────────────────────────────────────────── */
+
+.previewControls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--Spacing-4);
+  margin-bottom: var(--Spacing-3-5);
+  flex-wrap: wrap;
+}
+
+.previewControlsRight {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-4);
+}
+
+.guidesToggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--Spacing-2-5);
+  font-family: var(--Label-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Label-S-FontSize);
+  line-height: var(--Label-S-LineHeight);
+  color: var(--Text-Medium);
+  cursor: pointer;
+  user-select: none;
+}
+
+.fullscreenButton {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--Spacing-2-5);
+  padding: var(--Spacing-2-5) var(--Spacing-3-5);
+  background-color: transparent;
+  color: var(--Text-High);
+  border: 1px solid var(--Border-Subtle);
+  border-radius: var(--Shape-Pill);
+  font-family: var(--Label-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Label-S-FontSize);
+  line-height: var(--Label-S-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+  cursor: pointer;
+  transition: background-color 120ms ease, border-color 120ms ease;
+}
+
+.fullscreenButton:hover {
+  background-color: var(--Surface-Subtle);
+  border-color: var(--Border-Default, var(--Border-Subtle));
+}
+
+.fullscreenButton:focus-visible {
+  outline: 2px solid var(--Focus-Outline, var(--Primary-Bold));
+  outline-offset: 2px;
+}
+
+.previewMetaRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--Spacing-2-5);
+  margin-bottom: var(--Spacing-4);
+}
+
+.previewChip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--Spacing-2);
+  padding: var(--Spacing-2) var(--Spacing-3-5);
+  background-color: var(--Surface-Subtle);
+  color: var(--Text-Medium);
+  border-radius: var(--Shape-Pill);
+  font-family: var(--Typography-Font-Code);
+  font-size: var(--Code-S-FontSize);
+  line-height: var(--Code-S-LineHeight);
+}
+
+.spacingReadout {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-3);
+  margin-bottom: var(--Spacing-4);
+}
+
+.spacingReadoutHeader {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--Spacing-4);
+  flex-wrap: wrap;
+}
+
+.spacingReadoutTitle {
+  font-family: var(--Label-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Label-M-FontSize);
+  line-height: var(--Label-M-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+  color: var(--Text-High);
+}
+
+.spacingReadoutDescription {
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  font-weight: var(--Body-FontWeight-Low);
+  color: var(--Text-Low);
+}
+
+.spacingTable {
+  display: grid;
+  gap: var(--Spacing-2);
+}
+
+.spacingRow {
+  display: grid;
+  grid-template-columns: minmax(var(--Dimension-f13), 0.8fr) repeat(2, minmax(var(--Dimension-f16), 1fr));
+  gap: var(--Spacing-3);
+  align-items: center;
+  padding: var(--Spacing-2-5) var(--Spacing-3);
+  border-radius: var(--Shape-2);
+  background-color: var(--Surface-Subtle);
+  color: var(--Text-Medium);
+  font-family: var(--Label-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Label-S-FontSize);
+  line-height: var(--Label-S-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+}
+
+.spacingRow:first-child {
+  background-color: transparent;
+  color: var(--Text-Low);
+}
+
+.spacingRow code {
+  font-family: var(--Typography-Font-Code);
+  font-size: var(--Code-S-FontSize);
+  line-height: var(--Code-S-LineHeight);
+  color: var(--Text-High);
+}
+
+/* ─── Grid Visualizer — the heart of the preview ────────────────────────── */
+
+/*
+ * visualizer — rendered via <Surface mode="minimal">.
+ * Surface applies --Surface-Fill-Minimal and sets data-surface="minimal" so
+ * child sample blocks (primary/secondary/accent) adapt via the CSS cascade.
+ * No hardcoded background here, no stroke — the tint IS the boundary.
+ */
+.visualizer {
+  position: relative;
+  border-radius: var(--Shape-4);
+  padding-block: var(--Spacing-4-5);
+  overflow: hidden;
+  min-height: 320px;
+}
+
+.visualizerFullscreen {
+  flex: 1;
+  width: 100%;
+  border-radius: 0;
+  padding-block: var(--Spacing-5);
+  min-height: 0;
+}
+
+/* Margin rulers — only rendered when guides enabled.
+   Position absolute stripes at the container's edge.
+   Width = var(--Grid-Margin). */
+.marginRuler {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: var(--Grid-Margin);
+  background-image: repeating-linear-gradient(
+    45deg,
+    color-mix(in oklab, var(--Primary-Bold, #0066ff) 14%, transparent) 0,
+    color-mix(in oklab, var(--Primary-Bold, #0066ff) 14%, transparent) 4px,
+    transparent 4px,
+    transparent 10px
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+.marginRuler[data-side="start"] {
+  left: 0;
+  border-right: 1px dashed color-mix(in oklab, var(--Primary-Bold, #0066ff) 40%, transparent);
+}
+
+.marginRuler[data-side="end"] {
+  right: 0;
+  border-left: 1px dashed color-mix(in oklab, var(--Primary-Bold, #0066ff) 40%, transparent);
+}
+
+/* Fixed-variant containers are centered — the rulers still hug the container
+   edges. For fluid, margin = container padding, so rulers at viewport edges
+   match. For full-bleed, no rulers (hidden by conditional render). */
+
+.visualizerContainer {
+  position: relative;
+  z-index: 1;
+}
+
+/* Column grid — cells */
+.visualizerGrid {
+  position: relative;
+}
+
+.visualizerCell {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: var(--Spacing-2-5) 0 var(--Spacing-4-5) 0;
+  border-radius: var(--Shape-1-5);
+  min-height: 56px;
+  background-color: color-mix(
+    in oklab,
+    var(--Primary-Bold, #0066ff) 10%,
+    transparent
+  );
+  border: 1px solid color-mix(
+    in oklab,
+    var(--Primary-Bold, #0066ff) 22%,
+    transparent
+  );
+  transition: background-color 120ms ease;
+}
+
+.withGuides .visualizerCell {
+  background-color: color-mix(
+    in oklab,
+    var(--Primary-Bold, #0066ff) 16%,
+    transparent
+  );
+}
+
+.visualizerCellIndex {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  padding: 2px var(--Spacing-2);
+  margin: var(--Spacing-2);
+  background-color: var(--Primary-Bold, var(--Surface-Bold));
+  color: var(--Primary-Bold-High, var(--Text-OnBold-High));
+  border-radius: var(--Shape-Pill);
+  font-family: var(--Typography-Font-Code);
+  font-size: var(--Code-S-FontSize);
+  line-height: 1;
+  font-weight: var(--Label-FontWeight-Medium);
+}
+
+/* Sample row — realistic span demonstration */
+
+.sampleRow {
+  margin-top: var(--Spacing-4-5);
+  padding-top: var(--Spacing-4-5);
+  border-top: 1px dashed var(--Border-Subtle);
+}
+
+.sampleBlock {
+  padding: var(--Spacing-4);
+  border-radius: var(--Shape-2-5);
+  font-family: var(--Label-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Label-S-FontSize);
+  line-height: var(--Label-S-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+  min-height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.sampleBlock[data-tone="primary"] {
+  background-color: var(--Primary-Bold, var(--Surface-Bold));
+  color: var(--Primary-Bold-High, var(--Text-OnBold-High));
+}
+
+.sampleBlock[data-tone="secondary"] {
+  background-color: var(--Secondary-Subtle, var(--Surface-Subtle));
+  color: var(--Secondary-Subtle-High, var(--Text-High));
+  border: 1px solid var(--Secondary-Subtle-Low-Stroke, var(--Border-Subtle));
+}
+
+.sampleBlock[data-tone="accent"] {
+  background-color: color-mix(in oklab, var(--Primary-Bold, #0066ff) 20%, var(--Surface-Subtle));
+  color: var(--Primary-High, var(--Text-High));
+  border: 1px solid color-mix(in oklab, var(--Primary-Bold, #0066ff) 40%, transparent);
+}
+
+/* Footnote */
+
+.previewFootnote {
+  margin-top: var(--Spacing-4);
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  color: var(--Text-Low);
+}
+
+.previewFootnote code {
+  font-family: var(--Typography-Font-Code);
+  font-size: var(--Code-S-FontSize);
+  color: var(--Text-Medium);
+  background-color: var(--Surface-Subtle);
+  padding: var(--Spacing-1) var(--Spacing-2);
+  border-radius: var(--Shape-1-5);
+}
+
+/* ─── Fullscreen overlay ────────────────────────────────────────────────── */
+
+.fullscreenOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--Surface-Main);
+  color: var(--Text-High);
+}
+
+.fullscreenBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--Spacing-4);
+  padding: var(--Spacing-3-5) var(--Spacing-4-5);
+  background-color: var(--Surface-Subtle);
+  border-bottom: 1px solid var(--Border-Subtle);
+  flex-wrap: wrap;
+}
+
+.fullscreenBarGroup {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-4);
+  flex-wrap: wrap;
+}
+
+.fullscreenStage {
+  flex: 1;
+  display: flex;
+  overflow: auto;
+}
+
+/* ─── Saving indicator ─────────────────────────────────────────────────── */
+
+.savingIndicator {
+  position: fixed;
+  bottom: var(--Spacing-4-5);
+  right: var(--Spacing-4-5);
+  padding: var(--Spacing-3-5) var(--Spacing-4);
+  background-color: var(--Surface-Bold);
+  color: var(--Text-OnBold-High);
+  border-radius: var(--Shape-Pill);
+  font-family: var(--Label-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Label-S-FontSize);
+  line-height: var(--Label-S-LineHeight);
+  opacity: 0.9;
+  z-index: 1100;
+}
+
+/* ── Side-sheet pattern ──────────────────────────────────────────── */
+.pageHeaderRow {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--Spacing-4);
+}
+
+/*
+ * Sheet open: re-center the content column in the space *beside* the sheet
+ * instead of padding/squishing it. `margin-right` shifts the whole max-width
+ * column left (it keeps its full width and simply moves), so the content never
+ * compresses. On very wide screens the centered column already clears the
+ * 25rem sheet, so we drop the shift entirely — no push when there's room.
+ */
+.pageWithSheet {
+  /* Slightly wider than --Sheet-Width (25rem) so content keeps ~1rem breathing
+     room beside the open sheet. */
+  margin-right: var(--Grid-SheetPushWidth, 26rem);
+  transition: margin-right var(--Motion-Duration-Expressive-S, 200ms) var(--Motion-Easing-Transition, ease-out);
+}
+
+/* Centered 1200px column clears a 25rem sheet once the viewport is wide
+   enough — at that point leave it put rather than nudging it off-center.
+   INTENTIONAL-LITERAL: CSS media-query conditions can't reference custom
+   properties, so this layout breakpoint stays a literal. */
+@media (min-width: 2200px) {
+  .pageWithSheet {
+    margin-right: 0;
+  }
+}

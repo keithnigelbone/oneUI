@@ -1,0 +1,120 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Spinner",
+  "generatedAt": "2026-07-09T13:07:37.411Z",
+  "machineReadable": true,
+  "status": "planned",
+  "intentAndPurpose": {
+    "intent": "Indeterminate loading indicator — a continuously rotating SVG ring. Ten t-shirt sizes (2XS…5XL) with geometry-mapped stroke widths. Honours reduce-motion. Announces via progressbar + busy + polite live region. Use Progress for a determinate value."
+  },
+  "compositionRules": {
+    "requires": [],
+    "allows": [],
+    "forbids": [],
+    "childKind": "leaf"
+  },
+  "props": [
+    {
+      "name": "size",
+      "type": "'2XS' | 'XS' | 'S' | 'M' | 'L' | 'XL' | '2XL' | '3XL' | '4XL' | '5XL'",
+      "required": false,
+      "defaultValue": "M",
+      "description": "Ring diameter; stroke width is derived per-size via SPINNER_SVG_STROKE_MAP."
+    },
+    {
+      "name": "label",
+      "type": "string",
+      "required": false,
+      "description": "Accessible name announced via the polite live region (e.g. \"Loading…\")."
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.kb.rn.Spinner",
+    "type": "object",
+    "properties": {
+      "size": {
+        "enum": [
+          "2XS",
+          "XS",
+          "S",
+          "M",
+          "L",
+          "XL",
+          "2XL",
+          "3XL",
+          "4XL",
+          "5XL"
+        ],
+        "default": "M",
+        "description": "Ring diameter; stroke width is derived per-size via SPINNER_SVG_STROKE_MAP."
+      },
+      "label": {
+        "type": "string",
+        "description": "Accessible name announced via the polite live region (e.g. \"Loading…\")."
+      }
+    }
+  },
+  "tokens": {
+    "color": [
+      "primary",
+      "secondary",
+      "neutral",
+      "sparkle",
+      "positive",
+      "negative",
+      "warning",
+      "informative"
+    ],
+    "motion": [
+      "motion.duration.expressive.long",
+      "motion.easing.transition"
+    ],
+    "shape": [
+      "pill"
+    ]
+  },
+  "a11y": {
+    "accessibilityRole": "progressbar",
+    "accessibilityState": [
+      "busy"
+    ],
+    "accessibleNameSource": "aria-label",
+    "minTouchTarget": 44,
+    "honorsBoldText": false,
+    "honorsScreenReader": true
+  },
+  "renderHints": {
+    "baseElement": "View",
+    "animatedOn": [
+      "mount"
+    ],
+    "honorsReduceMotion": true,
+    "readsFromSurfaceContext": true
+  },
+  "figma": {
+    "componentKey": "jds-spinner-v4",
+    "keyHistory": [],
+    "variantProperties": {
+      "Component": "Spinner"
+    }
+  },
+  "codeSnippets": [
+    {
+      "id": "import-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { Spinner } from '@oneui/ui-native';\n\n<Spinner />"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "spinner",
+    "feedback",
+    "loading",
+    "indeterminate",
+    "surface-aware"
+  ],
+  "importPath": "@oneui/ui-native"
+}

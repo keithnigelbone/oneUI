@@ -1,0 +1,30 @@
+import React, { forwardRef } from 'react';
+import type { IconComponentProps } from '../iconProps';
+
+export const IcFlipCamera = forwardRef<SVGSVGElement, IconComponentProps>(function IcFlipCamera(
+  { size = 24, width, height, color = 'currentColor', className, style, ...props },
+  ref,
+) {
+  const dim = width ?? height ?? size;
+  return (
+    <svg
+      ref={ref}
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      width={width ?? dim}
+      height={height ?? dim}
+      color={color}
+      className={className}
+      style={style}
+      {...props}
+    >
+      <path
+            fill="currentColor"
+            d="M21.12 7.88A3 3 0 0 0 19 7h-.9c-.17 0-.34-.05-.48-.13a.9.9 0 0 1-.36-.34l-1-1.6c-.19-.29-.44-.52-.73-.69-.3-.16-.64-.24-.97-.24H9.44c-.34 0-.67.08-.97.25-.29.16-.54.39-.72.68l-1 1.6c-.09.14-.22.26-.37.34-.15.09-.31.13-.48.13H5c-.8 0-1.56.31-2.13.88S2 9.2 2 10v7c0 .79.31 1.56.87 2.12.57.56 1.33.88 2.13.88h14c.79 0 1.55-.32 2.12-.88.56-.56.88-1.33.88-2.12v-7c0-.8-.32-1.56-.88-2.12M8 16c-.26 0-.51-.1-.71-.29l-2-2A.996.996 0 1 1 6.7 12.3l.33.33c.2-2.58 2.33-4.62 4.96-4.62.39 0 .8.06 1.25.17.53.14.85.68.72 1.22-.14.54-.69.85-1.22.72a3.2 3.2 0 0 0-.75-.11c-1.5 0-2.73 1.1-2.95 2.54l.25-.25a.996.996 0 1 1 1.41 1.41l-2 2c-.2.2-.45.29-.71.29zm10.71-2.29c-.2.2-.45.29-.71.29s-.51-.1-.71-.29l-.33-.33C16.76 15.96 14.63 18 12 18c-.39 0-.8-.06-1.25-.17-.53-.14-.85-.68-.72-1.22.14-.54.68-.85 1.22-.72.29.07.52.11.75.11 1.5 0 2.73-1.1 2.95-2.54l-.25.25a.996.996 0 1 1-1.41-1.41l2-2a.996.996 0 0 1 1.41 0l2 2c.39.39.39 1.02 0 1.41z"
+          />
+    </svg>
+  );
+});
+
+IcFlipCamera.displayName = 'IcFlipCamera';

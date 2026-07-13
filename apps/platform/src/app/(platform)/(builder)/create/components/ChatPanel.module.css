@@ -1,0 +1,197 @@
+/**
+ * ChatPanel — Left panel with messages and input
+ *
+ * Input transitions from pill → rounded-rect as content grows (like OpenAI).
+ * Attachments render inside the input box above the text row.
+ */
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  flex: 1;
+  border-right: var(--Stroke-M) solid var(--Border-Subtle);
+  background: transparent;
+  overflow: hidden;
+}
+
+.messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--Spacing-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-4);
+}
+
+.inputArea {
+  padding: var(--Spacing-3-5) var(--Spacing-4) var(--Spacing-4);
+}
+
+/* Compact mode — used in empty workspace state */
+.compact {
+  flex: none;
+  border-right: none;
+  width: 100%;
+  max-width: 600px;
+}
+
+.compact .messages {
+  display: none;
+}
+
+.compact .inputArea {
+  padding: 0;
+}
+
+/* ========================================
+ * Input wrapper — pill shape by default,
+ * transitions to rounded-rect when expanded
+ * ======================================== */
+.inputWrapper {
+  display: flex;
+  flex-direction: column;
+  background: var(--Surface-Elevated);
+  border-radius: var(--Shape-Pill);
+  padding: var(--Spacing-2);
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+  box-shadow: var(--Elevation-0);
+  transition: border-radius var(--Duration-S) var(--Motion-Easing-Transition),
+              border-color var(--Duration-XS) var(--Motion-Easing-Transition),
+              box-shadow var(--Duration-XS) var(--Motion-Easing-Transition);
+}
+
+.inputWrapper:focus-within {
+  border-color: var(--Neutral-Default);
+  box-shadow: var(--Elevation-1);
+}
+
+/* Expanded state — rounded rectangle when attachments or multiline */
+.inputWrapper.expanded {
+  border-radius: var(--Shape-5);
+}
+
+/* ========================================
+ * Text row — + button, textarea, send
+ * ======================================== */
+.textRow {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--Spacing-2);
+}
+
+/* Attach / upload button */
+.attachButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--Shape-Pill);
+  background: var(--Surface-Ghost, var(--Surface-Minimal));
+  color: var(--Text-Medium);
+  border: none;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background-color var(--Duration-XS) var(--Motion-Easing-Transition);
+}
+
+.attachButton:hover {
+  background: var(--Surface-Subtle);
+  color: var(--Text-High);
+}
+
+.textarea {
+  flex: 1;
+  resize: none;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Body-M-FontSize);
+  line-height: var(--Body-M-LineHeight);
+  color: var(--Text-High);
+  padding: var(--Spacing-2) var(--Spacing-3);
+  min-height: 22px;
+  max-height: 160px;
+}
+
+.textarea::placeholder {
+  color: var(--Text-Low);
+}
+
+.sendButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--Shape-Pill);
+  background: var(--Surface-Bold);
+  color: var(--Text-OnBold-High);
+  border: none;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: opacity var(--Duration-XS) var(--Motion-Easing-Transition);
+}
+
+.sendButton:hover {
+  opacity: 0.85;
+}
+
+.sendButton:disabled {
+  opacity: 0.25;
+  cursor: not-allowed;
+}
+
+.sendIcon {
+  width: 14px;
+  height: 14px;
+}
+
+/* ========================================
+ * Attachment previews — inside the input
+ * ======================================== */
+.attachments {
+  display: flex;
+  gap: var(--Spacing-3);
+  padding: var(--Spacing-3) var(--Spacing-3) var(--Spacing-2);
+  flex-wrap: wrap;
+}
+
+.attachmentThumb {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  border-radius: var(--Shape-4);
+  overflow: hidden;
+  background: var(--Surface-Minimal);
+}
+
+.attachmentImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.attachmentRemove {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 22px;
+  height: 22px;
+  border-radius: var(--Shape-Pill);
+  background: var(--Scrim-Heavy);
+  color: var(--Text-OnBold-High);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: background-color var(--Duration-XS) var(--Motion-Easing-Transition);
+}
+
+.attachmentRemove:hover {
+  background: var(--Scrim-Heavy);
+}

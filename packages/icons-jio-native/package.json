@@ -1,0 +1,42 @@
+{
+  "name": "@oneui/icons-jio-native",
+  "version": "0.1.1",
+  "private": false,
+  "description": "Full Jio icon set (1,622 icons) for React Native via react-native-svg",
+  "keywords": [
+    "react-native",
+    "icons",
+    "jio",
+    "oneui"
+  ],
+  "sideEffects": true,
+  "main": "./dist/index.cjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "src",
+    "scripts",
+    "tsup.config.ts",
+    "tsconfig.build.json"
+  ],
+  "scripts": {
+    "generate": "node scripts/generate.mjs",
+    "build": "tsup",
+    "build:dts": "tsc --project tsconfig.build.json --emitDeclarationOnly",
+    "pack:dist": "node scripts/pack-dist.mjs",
+    "build:pack": "pnpm run generate && pnpm run build && pnpm run build:dts && node scripts/pack-dist.mjs",
+    "typecheck": "tsc --project tsconfig.build.json --noEmit"
+  },
+  "peerDependencies": {
+    "@oneui/shared": "workspace:*",
+    "react": "^18.3.0 || ^19.0.0",
+    "react-native": ">=0.76.0",
+    "react-native-svg": ">=15.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "@types/react-native": "^0.73.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.7.0"
+  }
+}

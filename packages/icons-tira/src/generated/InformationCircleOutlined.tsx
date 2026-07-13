@@ -1,0 +1,29 @@
+import React, { forwardRef } from 'react';
+import type { IconComponentProps } from '../iconProps';
+
+export const InformationCircleOutlined = forwardRef<SVGSVGElement, IconComponentProps>(function InformationCircleOutlined(
+  { size = 24, width, height, color = 'currentColor', className, style, ...props },
+  ref,
+) {
+  const dim = width ?? height ?? size;
+  return (
+    <svg
+      ref={ref}
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      width={width ?? dim}
+      height={height ?? dim}
+      color={color}
+      className={className}
+      style={style}
+      {...props}
+    >
+      <path d="M12.0671 17.6997C12.3985 17.6997 12.6671 17.4311 12.6671 17.0997V10.0997C12.6671 9.76834 12.3985 9.49971 12.0671 9.49971C11.7358 9.49971 11.4671 9.76834 11.4671 10.0997V17.0997C11.4671 17.4311 11.7358 17.6997 12.0671 17.6997Z" fill="currentColor"/>
+      <path d="M12.067 6.89973C12.3984 6.89973 12.667 7.16836 12.667 7.49973C12.667 7.8311 12.3984 8.09973 12.067 8.09973C11.7357 8.09973 11.467 7.8311 11.467 7.49973C11.467 7.16836 11.7357 6.89973 12.067 6.89973Z" fill="currentColor"/>
+      <path fillRule="evenodd" clipRule="evenodd" d="M12.0001 1.99976C17.523 1.99976 22.0002 6.47696 22.0002 11.9999C22.0002 17.5228 17.523 22 12.0001 22C6.47721 22 2 17.5228 2 11.9999C2 6.47696 6.47721 1.99976 12.0001 1.99976ZM12.0001 3.19976C16.8603 3.19976 20.8002 7.13971 20.8002 11.9999C20.8002 16.8601 16.8603 20.8 12.0001 20.8C7.13995 20.8 3.2 16.8601 3.2 11.9999C3.2 7.13971 7.13995 3.19976 12.0001 3.19976Z" fill="currentColor"/>
+    </svg>
+  );
+});
+
+InformationCircleOutlined.displayName = 'InformationCircleOutlined';

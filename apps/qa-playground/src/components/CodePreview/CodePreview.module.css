@@ -1,0 +1,185 @@
+/* Code preview panel — VS Code / Storybook docs aesthetic */
+
+.root {
+  --CodePreview-surface: #FFFFFF;
+  --CodePreview-border: #E7E7E7;
+  --CodePreview-text: #000000;
+  --CodePreview-component: #5B3DF5;
+  --CodePreview-property: #2E7D32;
+  --CodePreview-string: #3D5AFE;
+  --CodePreview-boolean: #3D5AFE;
+  --CodePreview-boolean-json: #000000;
+  --CodePreview-null: #8A8A8A;
+  --CodePreview-number: #000000;
+  --CodePreview-punctuation: #000000;
+  --CodePreview-function: #3D5AFE;
+  --CodePreview-tab-active: #5B3DF5;
+  --CodePreview-tab-inactive: #000000;
+  --CodePreview-font-size: 16px;
+  --CodePreview-line-height: 1.8;
+  --CodePreview-radius: 12px;
+  --CodePreview-padding-block: 22px;
+  --CodePreview-padding-inline: 24px;
+  --CodePreview-min-height: 350px;
+  --CodePreview-max-height: 600px;
+
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  height: 100%;
+}
+
+:global([data-theme='dark']) .root,
+:global([data-mode='dark']) .root {
+  --CodePreview-surface: #1E1E1E;
+  --CodePreview-border: #3A3A3A;
+  --CodePreview-text: #FFFFFF;
+  --CodePreview-component: #A78BFA;
+  --CodePreview-property: #6CBF6C;
+  --CodePreview-string: #7AA2FF;
+  --CodePreview-boolean: #7AA2FF;
+  --CodePreview-boolean-json: #FFFFFF;
+  --CodePreview-null: #8A8A8A;
+  --CodePreview-number: #FFFFFF;
+  --CodePreview-punctuation: #FFFFFF;
+  --CodePreview-function: #7AA2FF;
+  --CodePreview-tab-active: #A78BFA;
+  --CodePreview-tab-inactive: #FFFFFF;
+}
+
+.tabsRow {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--Spacing-3);
+  border-bottom: 1px solid var(--CodePreview-border);
+  padding-bottom: 0;
+  margin-bottom: var(--Spacing-3);
+}
+
+.tabList {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--Spacing-6);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tab {
+  position: relative;
+  margin: 0;
+  padding: 0 0 var(--Spacing-2);
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-family: var(--Typography-Font-Primary);
+  font-size: 18px;
+  line-height: 1.4;
+  font-weight: 600;
+  letter-spacing: 0;
+  color: var(--CodePreview-tab-inactive);
+  -webkit-font-smoothing: antialiased;
+  transition: color var(--Motion-Duration-Discreet-S) ease;
+}
+
+.tab:hover {
+  color: var(--CodePreview-tab-active);
+}
+
+.tabActive {
+  font-weight: 700;
+  color: var(--CodePreview-tab-active);
+}
+
+.tabActive::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3px;
+  border-radius: var(--Shape-Pill);
+  background: var(--CodePreview-tab-active);
+}
+
+.copyWrap {
+  flex-shrink: 0;
+  padding-bottom: var(--Spacing-2);
+}
+
+.panel {
+  flex: 1;
+  min-height: var(--CodePreview-min-height);
+  max-height: var(--CodePreview-max-height);
+  overflow: auto;
+  border: 1px solid var(--CodePreview-border);
+  border-radius: var(--CodePreview-radius);
+  background: var(--CodePreview-surface);
+  box-sizing: border-box;
+}
+
+.code {
+  margin: 0;
+  padding: var(--CodePreview-padding-block) var(--CodePreview-padding-inline);
+  font-family: 'SF Mono', 'JetBrains Mono', Menlo, Monaco, Consolas, monospace;
+  font-size: var(--CodePreview-font-size);
+  font-weight: 400;
+  line-height: var(--CodePreview-line-height);
+  letter-spacing: 0;
+  color: var(--CodePreview-text);
+  white-space: pre;
+  tab-size: 2;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.tokenComponent {
+  color: var(--CodePreview-component);
+  font-weight: 500;
+}
+
+.tokenProperty {
+  color: var(--CodePreview-property);
+  font-weight: 400;
+}
+
+.tokenString {
+  color: var(--CodePreview-string);
+  font-weight: 400;
+}
+
+.tokenBoolean {
+  color: var(--CodePreview-boolean);
+  font-weight: 400;
+}
+
+.tokenBooleanJson {
+  color: var(--CodePreview-boolean-json);
+  font-weight: 400;
+}
+
+.tokenNull {
+  color: var(--CodePreview-null);
+  font-weight: 400;
+}
+
+.tokenNumber {
+  color: var(--CodePreview-number);
+  font-weight: 400;
+}
+
+.tokenPunctuation {
+  color: var(--CodePreview-punctuation);
+  font-weight: 400;
+}
+
+.tokenFunction {
+  color: var(--CodePreview-function);
+  font-weight: 400;
+}
+
+.tokenKey {
+  color: var(--CodePreview-text);
+  font-weight: 400;
+}

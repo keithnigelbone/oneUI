@@ -1,0 +1,107 @@
+/**
+ * FamilyMetricsMatrix.module.css
+ *
+ * Per-size metrics matrix (ramp stepper + pinnable size cells).
+ * Token-only styling (zero literals).
+ */
+
+.matrix {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-3);
+}
+
+.hint {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  font-weight: var(--Body-FontWeight-Low);
+  color: var(--Text-Medium);
+}
+
+.metricRow {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-1-5);
+  padding: var(--Spacing-2);
+  border-radius: var(--Shape-3);
+  background-color: var(--Surface-Minimal);
+}
+
+.metricHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--Spacing-2);
+}
+
+.metricLabel {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Label-S-FontSize);
+  line-height: var(--Label-S-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+  color: var(--Text-High);
+}
+
+.ramp {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-1);
+}
+
+.rampValue {
+  min-width: var(--Spacing-6);
+  text-align: center;
+  font-family: var(--Typography-Font-Code, var(--Typography-Font-Primary));
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+  color: var(--Text-Medium);
+}
+
+.cells {
+  display: flex;
+  gap: var(--Spacing-1-5);
+}
+
+.cell {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-0-5);
+  flex: 1;
+  min-width: var(--Spacing-0);
+  position: relative;
+}
+
+.cellSize {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Low);
+  color: var(--Text-Low);
+  text-align: center;
+}
+
+.cell[data-pinned] .cellSize {
+  color: var(--Primary-TintedA11y);
+  font-weight: var(--Label-FontWeight-Medium);
+}
+
+.pinnedBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--Spacing-0-5);
+  color: var(--Primary-TintedA11y);
+}
+
+.collapseWarning {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  font-weight: var(--Body-FontWeight-Low);
+  color: var(--Warning-TintedA11y);
+  background-color: var(--Warning-Minimal);
+  border-radius: var(--Shape-2);
+  padding: var(--Spacing-1-5) var(--Spacing-2);
+}

@@ -1,0 +1,224 @@
+/**
+ * EditorToolbar.module.css
+ *
+ * Compact top toolbar for the Advanced Editor.
+ * Token-only styling (zero literals).
+ */
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: var(--Spacing-6);
+  padding: var(--Spacing-2-5) var(--Spacing-3-5);
+  background-color: var(--Surface-Subtle);
+  flex-shrink: 0;
+  position: relative;
+  z-index: 10;
+}
+
+.toolbarLeft {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-2);
+}
+
+.backButton {
+  --IconButton-containerSize-6-condensed: var(--Spacing-4);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--Spacing-4);
+  height: var(--Spacing-4);
+  border-radius: var(--Shape-4);
+  border: none;
+  background-color: transparent;
+  color: var(--Text-Medium);
+  cursor: pointer;
+  transition: all var(--Motion-Duration-Discreet-Short);
+}
+
+.backButton:hover {
+  color: var(--Text-High);
+}
+
+.titleSection {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-2);
+}
+
+.title {
+  font-size: var(--Label-2XS-FontSize);
+  font-weight: var(--Body-FontWeight-Medium);
+  color: var(--Text-High);
+  margin: 0;
+}
+
+.subtitle {
+  font-size: var(--Label-3XS-FontSize);
+  color: var(--Text-Low);
+  margin: 0;
+}
+
+.toolbarCenter {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-2-5);
+}
+
+.selectorGroup {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-2);
+  padding: var(--Spacing-2) var(--Spacing-2-5);
+  background-color: var(--Surface-Main);
+  border-radius: var(--Shape-3-5);
+  border: 1px solid var(--Border-Subtle);
+}
+
+.selectorLabel {
+  font-size: var(--Label-3XS-FontSize);
+  font-weight: var(--Body-FontWeight-Medium);
+  color: var(--Text-Low);
+}
+
+/* INTENTIONAL-LITERAL: brand selector min-width — layout geometry with no dimension token at this scale */
+.brandSelect {
+  min-width: 80px;
+}
+
+/* Override Select background within selector group */
+.brandSelect [class*='trigger'] {
+  background-color: transparent;
+  border: none;
+}
+
+.toolbarRight {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-2);
+}
+
+.dirtyIndicator {
+  font-size: var(--Label-3XS-FontSize);
+  color: var(--Text-Low);
+  padding: var(--Spacing-2) var(--Spacing-2-5);
+  background-color: var(--Surface-Ghost);
+  border-radius: var(--Shape-Pill);
+}
+
+.divider {
+  width: var(--Stroke-M);
+  height: var(--Spacing-3-5);
+  background-color: var(--Border-Subtle);
+  margin: 0 var(--Spacing-2);
+}
+
+.iconButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--Spacing-4);
+  height: var(--Spacing-4);
+  border-radius: var(--Shape-Pill);
+  border: none;
+  background-color: transparent;
+  color: var(--Text-Low);
+  cursor: pointer;
+  transition: all var(--Motion-Duration-Discreet-Short);
+}
+
+.iconButton:hover:not(:disabled) {
+  color: var(--Text-High);
+}
+
+.iconButton:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.iconButton[data-variant='primary'] {
+  background-color: var(--Surface-Bold);
+  color: var(--Text-OnBold-High);
+}
+
+.iconButton[data-variant='primary']:hover:not(:disabled) {
+  opacity: 0.9;
+}
+
+/* Actions Menu */
+.menuWrapper {
+  position: relative;
+}
+
+.menuButton {
+  --IconButton-containerSize-6-condensed: var(--Spacing-4-5);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--Spacing-4-5);
+  height: var(--Spacing-4-5);
+  border-radius: var(--Shape-Pill);
+  border: none;
+  background-color: transparent;
+  color: var(--Text-Medium);
+  cursor: pointer;
+  transition: all var(--Motion-Duration-Discreet-Short);
+}
+
+.menuButton:hover {
+  background-color: var(--Surface-Ghost);
+  color: var(--Text-High);
+}
+
+.menuDropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: var(--Spacing-2);
+  /* INTENTIONAL-LITERAL: dropdown min-width — layout geometry with no dimension token mapping */
+  min-width: 120px;
+  background-color: var(--Surface-Main);
+  border: 1px solid var(--Border-Subtle);
+  border-radius: var(--Shape-4);
+  box-shadow: var(--Elevation-3);
+  padding: var(--Spacing-2);
+  z-index: 100;
+}
+
+.menuItem {
+  --Button-condensedMinHeight-8: var(--Spacing-5);
+  --Button-condensedPaddingHorizontal-8: var(--Spacing-3);
+  --Button-condensedPaddingVertical-8: var(--Spacing-1-5);
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--Spacing-3);
+  width: 100%;
+  padding: var(--Spacing-2-5) var(--Spacing-3);
+  border: none;
+  border-radius: var(--Shape-3-5);
+  background-color: transparent;
+  color: var(--Text-High);
+  font-size: var(--Label-2XS-FontSize);
+  cursor: pointer;
+  transition: background-color var(--Motion-Duration-Discreet-Short);
+  text-align: left;
+}
+
+.menuItem:hover:not(:disabled) {
+  background-color: var(--Surface-Subtle);
+}
+
+.menuItem:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.menuItemIcon {
+  color: var(--Text-Medium);
+}

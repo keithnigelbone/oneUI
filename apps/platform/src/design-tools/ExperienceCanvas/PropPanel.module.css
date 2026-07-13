@@ -1,0 +1,356 @@
+/**
+ * PropPanel.module.css
+ * Token-only styling — uses Neutral appearance to avoid brand interference.
+ */
+
+/* Force neutral appearance on all Select triggers */
+.panel :global(.trigger),
+.panel :global([class*="trigger"]) {
+  border-color: var(--Neutral-Stroke-Low) !important;
+  background-color: var(--Neutral-Minimal) !important;
+}
+
+.panel :global(.trigger):hover,
+.panel :global([class*="trigger"]):hover {
+  background-color: var(--Neutral-Subtle) !important;
+}
+
+.panel :global(.trigger):focus-visible,
+.panel :global([class*="trigger"]):focus-visible {
+  box-shadow: 0 0 0 var(--Stroke-M) var(--Neutral-Tinted) !important;
+}
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-3);
+  padding: var(--Spacing-3-5) var(--Spacing-4);
+  background: var(--Surface-Elevated);
+  border-radius: var(--Shape-4);
+  box-shadow: var(--Elevation-1);
+  outline: var(--Stroke-M) solid var(--Neutral-Stroke-Low);
+  /* Fixed width + stable scrollbar gutter so the panel does not shift when selection/content changes */
+  /* INTENTIONAL-LITERAL: 300px panel width is fixed chrome; no f-step equivalent */
+  box-sizing: border-box;
+  width: 300px;
+  min-width: 300px;
+  max-width: 300px;
+  max-height: min(72vh, 560px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-gutter: stable;
+  scrollbar-width: thin;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-3);
+  padding-bottom: var(--Spacing-2);
+  border-bottom: var(--Stroke-M) solid var(--Neutral-Stroke-Low);
+}
+
+.title {
+  font-size: var(--Body-M-FontSize);
+  font-weight: var(--Body-FontWeight-Medium);
+  color: var(--Text-High);
+  flex: 1;
+}
+
+.badge {
+  font-size: var(--Label-2XS-FontSize);
+  padding: var(--Spacing-0-5) var(--Spacing-2);
+  border-radius: var(--Shape-0-5);
+  background: var(--Neutral-Subtle);
+  color: var(--Text-Medium);
+}
+
+.copyJSXButton {
+  font-family: var(--Typography-Font-Code);
+  font-size: var(--Code-XS-FontSize);
+  font-weight: var(--Label-FontWeight-Medium);
+  color: var(--Text-Low);
+  background: transparent;
+  border: var(--Stroke-M) solid var(--Neutral-Stroke-Low);
+  border-radius: var(--Shape-2);
+  padding: var(--Spacing-0-5) var(--Spacing-1-5);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.copyJSXButton:hover {
+  background: var(--Neutral-Subtle);
+  color: var(--Neutral-Tinted);
+}
+
+.dimensions {
+  flex-shrink: 0;
+}
+
+.dimensionButton {
+  font-family: var(--Typography-Font-Code);
+  font-size: var(--Code-XS-FontSize);
+  color: var(--Text-Low);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: var(--Spacing-0-5) var(--Spacing-1-5);
+  border-radius: var(--Shape-0-5);
+}
+
+.dimensionButton:hover {
+  background: var(--Neutral-Subtle);
+  color: var(--Text-Medium);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-1-5);
+}
+
+.label {
+  font-size: var(--Body-S-FontSize);
+  font-weight: var(--Body-FontWeight-Low);
+  color: var(--Text-Medium);
+}
+
+/* Quick variant presets */
+.presets {
+  display: flex;
+  gap: var(--Spacing-1-5);
+}
+
+.presetButton {
+  flex: 1;
+  padding: var(--Spacing-1-5);
+  font-size: var(--Label-XS-FontSize);
+  font-weight: var(--Label-FontWeight-Low);
+  color: var(--Text-Low);
+  background: transparent;
+  border: var(--Stroke-M) solid var(--Neutral-Stroke-Low);
+  border-radius: var(--Shape-2);
+  cursor: pointer;
+  text-align: center;
+  transition: all var(--Motion-Duration-Discreet-Short) var(--Motion-Easing-Standard);
+}
+
+.presetButton:hover {
+  background: var(--Neutral-Subtle);
+  color: var(--Text-Medium);
+}
+
+.presetButton[data-active] {
+  background: var(--Text-High);
+  color: var(--Surface-Elevated);
+  border-color: transparent;
+}
+
+/* Boolean props rendered as inline Switch */
+.switchField {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--Spacing-3);
+  padding: var(--Spacing-1-5) 0;
+}
+
+.switchLabel {
+  font-size: var(--Body-S-FontSize);
+  font-weight: var(--Body-FontWeight-Low);
+  color: var(--Text-Medium);
+}
+
+/* -------------------------------------------------------------------------- */
+/* ContentBlock — grouped inspector (sections, grids, advanced disclosure)     */
+/* -------------------------------------------------------------------------- */
+
+.cbFoundationBlock {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-1-5);
+  padding: var(--Spacing-1-5) 0;
+  border-top: var(--Stroke-M) solid var(--Neutral-Stroke-Low);
+}
+
+.cbFrameHint {
+  margin: 0;
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  color: var(--Text-Low);
+}
+
+.cbSections {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-4);
+  padding-top: var(--Spacing-1-5);
+}
+
+.cbSection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-3);
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+/* INTENTIONAL-LITERAL: font-weight 600 has no token equivalent (High=700, Medium=500) */
+.cbSectionTitle {
+  margin: 0;
+  font-size: var(--Label-S-FontSize);
+  font-weight: 600;
+  line-height: var(--Label-S-LineHeight);
+  color: var(--Text-High);
+}
+
+.cbHint {
+  margin: 0;
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  color: var(--Text-Low);
+}
+
+.cbSectionFields {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-3);
+}
+
+.cbVisibilityGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--Spacing-1-5) var(--Spacing-3-5);
+  align-items: center;
+}
+
+.cbVisibilityGrid .switchField {
+  padding: var(--Spacing-1-5);
+  border-radius: var(--Shape-2);
+  background: var(--Neutral-Minimal);
+}
+
+.cbPaddingGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--Spacing-3);
+}
+
+.cbDetails {
+  border-radius: var(--Shape-2);
+  border: var(--Stroke-M) solid var(--Neutral-Stroke-Low);
+  background: var(--Neutral-Minimal);
+  overflow: hidden;
+}
+
+.cbDetailsSummary {
+  cursor: pointer;
+  list-style: none;
+  padding: var(--Spacing-3) var(--Spacing-3-5);
+  font-size: var(--Label-S-FontSize);
+  font-weight: var(--Label-FontWeight-Medium);
+  color: var(--Text-Medium);
+  user-select: none;
+}
+
+.cbDetailsSummary::-webkit-details-marker {
+  display: none;
+}
+
+.cbDetails[open] .cbDetailsSummary {
+  border-bottom: var(--Stroke-M) solid var(--Neutral-Stroke-Low);
+}
+
+.cbDetailsBody {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-3);
+  padding: var(--Spacing-3-5);
+}
+
+/* Scale row — platform + density side by side */
+.cbScaleRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--Spacing-3);
+}
+
+/* Breakpoint selector */
+.breakpointList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-1-5);
+}
+
+.breakpointButton {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--Spacing-3);
+  padding: var(--Spacing-1-5) var(--Spacing-3);
+  font-size: var(--Label-XS-FontSize);
+  font-weight: var(--Label-FontWeight-Low);
+  color: var(--Text-Low);
+  background: transparent;
+  border: var(--Stroke-M) solid var(--Neutral-Stroke-Low);
+  border-radius: var(--Shape-2);
+  cursor: pointer;
+  text-align: left;
+  transition: all var(--Motion-Duration-Discreet-Short) var(--Motion-Easing-Standard);
+}
+
+.breakpointButton:hover {
+  background: var(--Neutral-Subtle);
+  color: var(--Text-Medium);
+}
+
+.breakpointButton[data-active] {
+  background: var(--Text-High);
+  color: var(--Surface-Elevated);
+  border-color: transparent;
+}
+
+.breakpointLabel {
+  font-weight: var(--Label-FontWeight-Medium);
+}
+
+.breakpointWidth {
+  font-family: var(--Typography-Font-Code);
+  font-size: var(--Code-XS-FontSize);
+  opacity: 0.7;
+}
+
+.breakpointButton[data-active] .breakpointWidth {
+  opacity: 0.8;
+}
+
+/* Position controls for hug-content shapes (ContentBlock, JioRibbon) */
+.positionRow {
+  display: flex;
+  gap: var(--Spacing-1-5);
+  align-items: center;
+}
+
+/* INTENTIONAL-LITERAL: min-width 14px is a fixed label column width with no token equivalent */
+.positionRow .label {
+  flex-shrink: 0;
+  min-width: 14px;
+  font-size: var(--Label-XS-FontSize);
+  font-weight: var(--Label-FontWeight-Medium);
+  color: var(--Text-Low);
+  text-align: center;
+}
+
+.positionFields {
+  display: flex;
+  gap: var(--Spacing-3);
+  align-items: center;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.positionFields .field {
+  flex: 1;
+  min-width: 0;
+}

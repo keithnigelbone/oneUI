@@ -1,0 +1,25 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "noEmit": true,
+    "declaration": false,
+    "declarationMap": false,
+    "incremental": false,
+    "paths": {
+      "@/*": ["src/*"],
+      "@oneui/ui": ["../../packages/ui/src"],
+      "@oneui/ui/*": ["../../packages/ui/src/*"],
+      "@oneui-ui-internals": ["../../packages/ui/src"],
+      "@oneui-ui-internals/*": ["../../packages/ui/src/*"],
+      "@oneui/shared": ["../../packages/shared/src"],
+      "@oneui/shared/*": ["../../packages/shared/src/*"],
+      "@oneui/shared/engine": ["../../packages/shared/src/engine"],
+      "@oneui/tokens": ["../../packages/tokens/src"],
+      "@oneui/convex": ["../../packages/convex/src"],
+      "@oneui/convex/*": ["../../packages/convex/convex/*"]
+    }
+  },
+  "include": ["src/**/*.ts", "src/**/*.tsx", "vite.config.ts"],
+  "exclude": ["node_modules", "dist"]
+}

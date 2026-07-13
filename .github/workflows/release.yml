@@ -1,0 +1,173 @@
+name: Release
+
+# Two modes — one workflow file.
+#
+# 1. push to `main` → Changesets bot maintains a "Version Packages" PR.
+#    When that PR is merged (versions are bumped, .changeset/*.md is
+#    consumed), the bot calls the `publish` command which packs + pushes
+#    the @jds4/* tarballs to the JIO-DS-ONE-UI Azure DevOps Artifacts feed.
+#
+# 2. workflow_dispatch → manual run. Skips the changesets bot entirely,
+#    packs whatever versions are currently in the package.json files,
+#    and (unless --dry-run is checked) publishes them. Useful for
+#    emergencies or first-time publishes.
+#
+# Required GitHub Actions secrets:
+#   AZURE_DEVOPS_PAT  raw PAT with `Packaging: read, write, & manage`
+#                     scope. The workflow base64-encodes it at runtime
+#                     and writes the matching ~/.npmrc.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      dry-run:
+        description: 'Pack only — do not publish to Azure. (Manual mode.)'
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+  pull-requests: write
+
+# Cancel any in-flight release if a new push lands. The Changesets PR
+# itself is idempotent so the cancel is safe.
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  REGISTRY_URL: https://jio-dsp.pkgs.visualstudio.com/_packaging/JIO-DS-ONE-UI/npm/registry/
+
+jobs:
+  release:
+    name: Release to JIO-DS-ONE-UI
+    runs-on: [self-hosted, linux]
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout (full history for changesets)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.15.9
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      # ──────────────────────────────────────────────────────────────────
+      # Auth setup — write ~/.npmrc against the JIO-DS-ONE-UI feed.
+      #
+      # Azure DevOps Artifacts requires the PAT base64-encoded and
+      # repeated for both the registry path and the base /npm/ path.
+      # The presence of `AZURE_DEVOPS_PAT` is treated as a precondition:
+      # if it's not set, fail loud rather than producing an unpublished
+      # tarball that looks like success.
+      # ──────────────────────────────────────────────────────────────────
+      - name: Write ~/.npmrc for Azure DevOps Artifacts
+        env:
+          AZURE_DEVOPS_PAT: ${{ secrets.AZURE_DEVOPS_PAT }}
+        run: |
+          if [ -z "$AZURE_DEVOPS_PAT" ]; then
+            echo "::error::AZURE_DEVOPS_PAT is empty — add it under repo Settings → Secrets → Actions."
+            exit 1
+          fi
+          B64=$(printf '%s' "$AZURE_DEVOPS_PAT" | base64 -w 0)
+          REG="//jio-dsp.pkgs.visualstudio.com/_packaging/JIO-DS-ONE-UI/npm/registry/"
+          BASE="//jio-dsp.pkgs.visualstudio.com/_packaging/JIO-DS-ONE-UI/npm/"
+          cat > "$HOME/.npmrc" <<EOF
+          @jds4:registry=https:${REG}
+          always-auth=true
+          ${REG}:username=AzureDevOps
+          ${REG}:_password=${B64}
+          ${REG}:email=ci@noreply.local
+          ${BASE}:username=AzureDevOps
+          ${BASE}:_password=${B64}
+          ${BASE}:email=ci@noreply.local
+          EOF
+          chmod 600 "$HOME/.npmrc"
+          # Sanity check — never log the secret. Just confirm the structure.
+          echo "wrote ~/.npmrc with $(grep -c '^\(@jds4\|//jio-dsp\.pkgs\.visualstudio\.com\)' "$HOME/.npmrc") config lines"
+
+      # ──────────────────────────────────────────────────────────────────
+      # Mode 1: push to main → run the Changesets bot.
+      #
+      # When .changeset/*.md files exist:
+      #   - The bot opens / updates the "Version Packages" PR.
+      #
+      # When .changeset/*.md is empty AND versions just got bumped on main
+      # (the PR was merged):
+      #   - The bot runs the `publish` command. We pass a bash loop that
+      #     calls pack:release and then npm publish for each tarball.
+      # ──────────────────────────────────────────────────────────────────
+      - name: Changesets — open Version PR or publish
+        if: github.event_name == 'push'
+        id: changesets
+        uses: changesets/action@v1
+        with:
+          version: pnpm version-packages
+          publish: |
+            pnpm pack:release && \
+            for tgz in release/tarballs/*.tgz; do \
+              echo "→ npm publish $tgz" ; \
+              npm publish "$tgz" --registry="$REGISTRY_URL" --access=restricted --tag=latest ; \
+            done
+          title: 'chore: release packages'
+          commit: 'chore: bump versions [skip ci]'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Summary (push mode)
+        if: github.event_name == 'push'
+        run: |
+          if [ "${{ steps.changesets.outputs.published }}" = "true" ]; then
+            echo "::notice::Published packages: ${{ steps.changesets.outputs.publishedPackages }}"
+          elif [ -n "${{ steps.changesets.outputs.pullRequestNumber }}" ]; then
+            echo "::notice::Version PR open / updated: #${{ steps.changesets.outputs.pullRequestNumber }}"
+          else
+            echo "::notice::No changesets pending and no version bump on this push — nothing to do."
+          fi
+
+      # ──────────────────────────────────────────────────────────────────
+      # Mode 2: workflow_dispatch → manual pack + (optional) publish.
+      # Skips the changesets bot. Honors the `dry-run` input.
+      # ──────────────────────────────────────────────────────────────────
+      - name: Manual pack (always runs in dispatch mode)
+        if: github.event_name == 'workflow_dispatch'
+        run: pnpm pack:release
+
+      - name: Manual publish (skipped if dry-run)
+        if: github.event_name == 'workflow_dispatch' && inputs.dry-run == false
+        run: |
+          for tgz in release/tarballs/*.tgz; do
+            echo "→ npm publish $tgz"
+            npm publish "$tgz" --registry="$REGISTRY_URL" --access=restricted --tag=latest
+          done
+
+      - name: Manual publish — dry-run note
+        if: github.event_name == 'workflow_dispatch' && inputs.dry-run == true
+        run: |
+          echo "Dry run — would have published:"
+          ls -la release/tarballs/*.tgz
+
+      # Keep the tarballs around as a workflow artifact for inspection /
+      # rollback. ~3 MB total; safe to retain for 30 days.
+      - name: Upload tarballs as artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-tarballs
+          path: release/tarballs/*.tgz
+          if-no-files-found: ignore
+          retention-days: 30

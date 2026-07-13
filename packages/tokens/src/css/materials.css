@@ -1,0 +1,330 @@
+/**
+ * MATERIAL UTILITY CLASSES
+ * Ready-to-use material effects via class application
+ *
+ * Usage:
+ *   <div class="material-frosted-regular">...</div>
+ *   <div class="material-metallic-gold">...</div>
+ *   <div class="material-glass-regular">...</div>
+ *
+ * Performance Guidelines:
+ *   - Max 3 blur elements per viewport
+ *   - Mobile: avoid thick/ultra-thick variants
+ *   - Use .material-metallic-with-shine sparingly (hover only)
+ */
+
+/* ========================================
+   TRANSLUCENT MATERIALS
+   Simple opacity-based overlays
+   ======================================== */
+
+/* Light variants (white with alpha) */
+.material-translucent-light-minimal {
+  background: var(--Material-Translucent-Light-Minimal);
+}
+
+.material-translucent-light-subtle {
+  background: var(--Material-Translucent-Light-Subtle);
+}
+
+.material-translucent-light-moderate {
+  background: var(--Material-Translucent-Light-Moderate);
+}
+
+.material-translucent-light-heavy {
+  background: var(--Material-Translucent-Light-Heavy);
+}
+
+/* Dark variants (black with alpha) */
+.material-translucent-dark-minimal {
+  background: var(--Material-Translucent-Dark-Minimal);
+}
+
+.material-translucent-dark-subtle {
+  background: var(--Material-Translucent-Dark-Subtle);
+}
+
+.material-translucent-dark-moderate {
+  background: var(--Material-Translucent-Dark-Moderate);
+}
+
+.material-translucent-dark-heavy {
+  background: var(--Material-Translucent-Dark-Heavy);
+}
+
+/* ========================================
+   FROSTED MATERIALS
+   Blur-based glass effects
+   ======================================== */
+
+.material-frosted-ultra-thin {
+  backdrop-filter: blur(var(--Material-Frosted-Blur-UltraThin));
+  -webkit-backdrop-filter: blur(var(--Material-Frosted-Blur-UltraThin));
+  background: var(--Material-Frosted-Background-UltraThin);
+  border: 1px solid var(--Material-Frosted-Border);
+}
+
+.material-frosted-thin {
+  backdrop-filter: blur(var(--Material-Frosted-Blur-Thin));
+  -webkit-backdrop-filter: blur(var(--Material-Frosted-Blur-Thin));
+  background: var(--Material-Frosted-Background-Thin);
+  border: 1px solid var(--Material-Frosted-Border);
+}
+
+.material-frosted-regular {
+  backdrop-filter: blur(var(--Material-Frosted-Blur-Regular));
+  -webkit-backdrop-filter: blur(var(--Material-Frosted-Blur-Regular));
+  background: var(--Material-Frosted-Background-Regular);
+  border: 1px solid var(--Material-Frosted-Border);
+}
+
+.material-frosted-thick {
+  backdrop-filter: blur(var(--Material-Frosted-Blur-Thick));
+  -webkit-backdrop-filter: blur(var(--Material-Frosted-Blur-Thick));
+  background: var(--Material-Frosted-Background-Thick);
+  border: 1px solid var(--Material-Frosted-Border);
+}
+
+.material-frosted-ultra-thick {
+  backdrop-filter: blur(var(--Material-Frosted-Blur-UltraThick));
+  -webkit-backdrop-filter: blur(var(--Material-Frosted-Blur-UltraThick));
+  background: var(--Material-Frosted-Background-UltraThick);
+  border: 1px solid var(--Material-Frosted-Border);
+}
+
+/* Frosted fallbacks for unsupported browsers */
+@supports not (backdrop-filter: blur(16px)) {
+  .material-frosted-ultra-thin {
+    background: var(--Material-Frosted-Fallback-UltraThin);
+  }
+
+  .material-frosted-thin {
+    background: var(--Material-Frosted-Fallback-Thin);
+  }
+
+  .material-frosted-regular {
+    background: var(--Material-Frosted-Fallback-Regular);
+  }
+
+  .material-frosted-thick {
+    background: var(--Material-Frosted-Fallback-Thick);
+  }
+
+  .material-frosted-ultra-thick {
+    background: var(--Material-Frosted-Fallback-UltraThick);
+  }
+}
+
+/* ========================================
+   GLASS MATERIALS
+   Advanced glass with highlights and shadows
+   ======================================== */
+
+.material-glass-regular {
+  backdrop-filter: blur(var(--Material-Glass-Blur-Regular)) saturate(var(--Material-Glass-Saturation-Regular));
+  -webkit-backdrop-filter: blur(var(--Material-Glass-Blur-Regular)) saturate(var(--Material-Glass-Saturation-Regular));
+  background:
+    radial-gradient(
+      ellipse 100% 50% at 50% 0%,
+      rgba(255, 255, 255, var(--Material-Glass-Highlight-Moderate)) 0%,
+      transparent 70%
+    ),
+    var(--Material-Glass-Tint);
+  border: 1px solid var(--Material-Glass-Border);
+  box-shadow: var(--Elevation-2);
+}
+
+.material-glass-clear {
+  backdrop-filter: blur(var(--Material-Glass-Blur-Clear)) saturate(var(--Material-Glass-Saturation-Clear));
+  -webkit-backdrop-filter: blur(var(--Material-Glass-Blur-Clear)) saturate(var(--Material-Glass-Saturation-Clear));
+  background:
+    radial-gradient(
+      ellipse 100% 40% at 50% 0%,
+      rgba(255, 255, 255, var(--Material-Glass-Highlight-Minimal)) 0%,
+      transparent 60%
+    ),
+    rgba(255, 255, 255, 0.20);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: var(--Elevation-1);
+}
+
+/* Glass with strong highlight */
+.material-glass-highlight {
+  backdrop-filter: blur(var(--Material-Glass-Blur-Regular)) saturate(var(--Material-Glass-Saturation-Regular));
+  -webkit-backdrop-filter: blur(var(--Material-Glass-Blur-Regular)) saturate(var(--Material-Glass-Saturation-Regular));
+  background:
+    radial-gradient(
+      ellipse 100% 50% at 50% 0%,
+      rgba(255, 255, 255, var(--Material-Glass-Highlight-Strong)) 0%,
+      transparent 70%
+    ),
+    var(--Material-Glass-Tint);
+  border: 1px solid var(--Material-Glass-Border);
+  box-shadow: var(--Elevation-2);
+}
+
+/* Glass hover state */
+.material-glass-regular:hover,
+.material-glass-clear:hover {
+  background:
+    radial-gradient(
+      ellipse 100% 50% at 50% 0%,
+      rgba(255, 255, 255, var(--Material-Glass-Highlight-Strong)) 0%,
+      transparent 70%
+    ),
+    var(--Material-Glass-Tint);
+}
+
+/* Glass fallback */
+@supports not (backdrop-filter: blur(20px)) {
+  .material-glass-regular,
+  .material-glass-clear,
+  .material-glass-highlight {
+    background: rgba(255, 255, 255, 0.92);
+  }
+
+  [data-mode='dark'] .material-glass-regular,
+  [data-mode='dark'] .material-glass-clear,
+  [data-mode='dark'] .material-glass-highlight {
+    background: rgba(0, 0, 0, 0.92);
+  }
+}
+
+/* ========================================
+   METALLIC MATERIALS
+   Gradient-based metal simulations
+   ======================================== */
+
+.material-metallic-gold {
+  background: var(--Material-Metallic-Gold-Fill);
+  color: var(--Material-Metallic-Gold-Text);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--Material-Metallic-Gold-StrokeColor);
+}
+
+.material-metallic-silver {
+  background: var(--Material-Metallic-Silver-Fill);
+  color: var(--Material-Metallic-Silver-Text);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+  border: 1px solid var(--Material-Metallic-Silver-StrokeColor);
+}
+
+.material-metallic-bronze {
+  background: var(--Material-Metallic-Bronze-Fill);
+  color: var(--Material-Metallic-Bronze-Text);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.35),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--Material-Metallic-Bronze-StrokeColor);
+}
+
+.material-metallic-custom {
+  background: var(--Material-Metallic-Custom-Fill);
+  color: var(--Material-Metallic-Custom-Text);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.35),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.18);
+  border: 1px solid var(--Material-Metallic-Custom-StrokeColor);
+}
+
+.material-metallic-platinum {
+  background: var(--Material-Metallic-Platinum-Fill);
+  color: var(--Material-Metallic-Platinum-Text);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.6),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--Material-Metallic-Platinum-StrokeColor);
+}
+
+.material-metallic-rose-gold {
+  background: var(--Material-Metallic-RoseGold-Fill);
+  color: var(--Material-Metallic-RoseGold-Text);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+  border: 1px solid var(--Material-Metallic-RoseGold-StrokeColor);
+}
+
+/* ========================================
+   METALLIC SHINE ANIMATION (opt-in)
+   Add .material-metallic-with-shine for animated effect
+   ======================================== */
+
+.material-metallic-with-shine {
+  position: relative;
+  overflow: hidden;
+}
+
+.material-metallic-with-shine::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    transparent 100%
+  );
+  animation: metallic-shine 3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes metallic-shine {
+  0% {
+    left: -100%;
+  }
+  50%,
+  100% {
+    left: 100%;
+  }
+}
+
+/* Shine on hover only (performance optimization) */
+.material-metallic-shine-on-hover::after {
+  animation: none;
+}
+
+.material-metallic-shine-on-hover:hover::after {
+  animation: metallic-shine 1.5s ease-in-out;
+}
+
+/* ========================================
+   ACCESSIBILITY: REDUCED MOTION
+   ======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .material-metallic-with-shine::after,
+  .material-metallic-shine-on-hover:hover::after {
+    animation: none;
+  }
+
+  .material-glass-regular,
+  .material-glass-clear,
+  .material-frosted-regular {
+    transition: none;
+  }
+}
+
+/* ========================================
+   DARK MODE ADJUSTMENTS
+   Auto-applied via [data-mode='dark']
+   ======================================== */
+
+[data-mode='dark'] .material-glass-regular,
+[data-mode='dark'] .material-glass-clear,
+[data-mode='dark'] .material-glass-highlight {
+  background:
+    radial-gradient(
+      ellipse 100% 50% at 50% 0%,
+      rgba(255, 255, 255, 0.15) 0%,
+      transparent 70%
+    ),
+    var(--Material-Glass-Tint);
+}

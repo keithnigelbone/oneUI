@@ -1,0 +1,105 @@
+/**
+ * Popover.module.css
+ * Token-only styling for Popover component
+ * Verified by: pnpm check:literals
+ */
+
+/* Backdrop */
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: transparent;
+}
+
+/* Positioner */
+/* Popover must render above Shell chrome (TopBar z-index: 1100, LeftNav etc.)
+   so that popovers triggered from the nav rail work correctly. */
+.positioner {
+  z-index: 1300;
+}
+
+/* Popup */
+.popup {
+  box-sizing: border-box;
+  border-radius: var(--Shape-4-5);
+  background-color: var(--Surface-Elevated);
+  color: var(--Text-High);
+  padding: var(--Spacing-4-5);
+  box-shadow: var(--Elevation-3);
+  outline: var(--Stroke-M) solid var(--Border-Subtle);
+  max-width: var(--Popover-Max-Width, var(--Spacing-9));
+  transform-origin: var(--transform-origin);
+  transition: transform var(--Motion-Duration-Expressive-Short) var(--Motion-Easing-Emphasized),
+    opacity var(--Motion-Duration-Expressive-Short) var(--Motion-Easing-Emphasized);
+}
+
+.popup[data-starting-style],
+.popup[data-ending-style] {
+  opacity: 0;
+  transform: scale(0.95);
+}
+
+/* Arrow */
+.arrow {
+  width: var(--Spacing-4);
+  height: var(--Spacing-3);
+}
+
+.arrow > svg {
+  display: block;
+}
+
+.arrowFill {
+  fill: var(--Surface-Elevated);
+}
+
+.arrowStroke {
+  fill: var(--Border-Subtle);
+}
+
+/* Title */
+.title {
+  font-size: var(--Body-L-FontSize);
+  font-weight: var(--Body-FontWeight-High);
+  line-height: var(--Typography-LineHeight-Tight);
+  color: var(--Text-High);
+  margin: 0 0 var(--Spacing-3) 0;
+}
+
+/* Description */
+.description {
+  font-size: var(--Body-M-FontSize);
+  line-height: var(--Typography-LineHeight-Normal);
+  color: var(--Text-Medium);
+  margin: 0;
+}
+
+/* Close */
+.close {
+  position: absolute;
+  top: var(--Spacing-3-5);
+  right: var(--Spacing-3-5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--Spacing-4-5);
+  height: var(--Spacing-4-5);
+  border: none;
+  border-radius: var(--Shape-4);
+  background-color: transparent;
+  color: var(--Text-Medium);
+  cursor: pointer;
+  transition: background-color var(--Motion-Duration-Discreet-Short) var(--Motion-Easing-Standard);
+}
+
+.close:hover {
+  background-color: var(--Surface-Minimal);
+}
+
+.close:focus {
+  outline: none;
+}
+
+.close:focus-visible {
+  outline: var(--Focus-Outline-Width) solid var(--Focus-Outline);
+}

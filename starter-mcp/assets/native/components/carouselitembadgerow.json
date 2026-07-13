@@ -1,0 +1,89 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "CarouselItemBadgeRow",
+  "generatedAt": "2026-07-09T13:07:37.429Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "Corner-pinned badge/action row on a slide."
+  },
+  "compositionRules": {
+    "requires": [
+      "placement",
+      "children"
+    ],
+    "allows": [],
+    "forbids": [],
+    "childKind": "fixed-slots"
+  },
+  "props": [
+    {
+      "name": "placement",
+      "type": "'start' | 'end'",
+      "required": true,
+      "description": ""
+    },
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "required": true,
+      "description": "Badge or CarouselPlayButton."
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.kb.rn.CarouselItemBadgeRow",
+    "type": "object",
+    "required": [
+      "placement",
+      "children"
+    ],
+    "properties": {
+      "placement": {
+        "enum": [
+          "start",
+          "end"
+        ]
+      },
+      "children": {
+        "description": "Badge or CarouselPlayButton."
+      }
+    }
+  },
+  "tokens": {
+    "spacing": []
+  },
+  "a11y": {
+    "accessibilityRole": "none",
+    "accessibleNameSource": "children",
+    "minTouchTarget": 44,
+    "honorsBoldText": false,
+    "honorsScreenReader": true
+  },
+  "renderHints": {
+    "baseElement": "View",
+    "animatedOn": [],
+    "honorsReduceMotion": false,
+    "readsFromSurfaceContext": true
+  },
+  "figma": {
+    "componentKey": "jds-carousel-item-badgerow-v1",
+    "keyHistory": []
+  },
+  "codeSnippets": [
+    {
+      "id": "import-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { CarouselItemBadgeRow } from '@oneui/ui-native';\n\n<CarouselItemBadgeRow />"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "carouselitembadgerow",
+    "carousel",
+    "compound"
+  ],
+  "importPath": "@oneui/ui-native"
+}

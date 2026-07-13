@@ -1,0 +1,311 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "RadioField",
+  "generatedAt": "2026-01-01T00:00:00.000Z",
+  "machineReadable": true,
+  "intentAndPurpose": {
+    "intent": "`Field.Root` + **RadioGroup** with optional `Field.Label` / `Field.Description`, `infoIconSlot`, `error` / `feedback`, native `Field.Error` slot, and optional `InputDynamicText` row — same shell as **InputField** / **CheckboxField**. Integrated single mode has no `Radio` children; colour follows **`appearance`** on inner radios.",
+    "taskContexts": [
+      "radio",
+      "field",
+      "form",
+      "selection"
+    ],
+    "sentiments": [
+      "neutral"
+    ]
+  },
+  "compositionRules": {
+    "requires": [],
+    "allows": [
+      "children",
+      "feedback",
+      "dynamicTextSlot",
+      "infoIconSlot"
+    ],
+    "forbids": []
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "default",
+        "useWhen": [
+          "Default"
+        ]
+      }
+    ]
+  },
+  "relationshipsAndDependencies": {
+    "related": []
+  },
+  "contextSignals": {
+    "density": [
+      "compact",
+      "default",
+      "open"
+    ],
+    "modality": [
+      "desktop",
+      "mobile"
+    ],
+    "brand": [
+      "theme-scope aware",
+      "recipe-driven"
+    ],
+    "mode": [
+      "light",
+      "dark",
+      "surface-context"
+    ]
+  },
+  "observabilityHooks": {
+    "track": [],
+    "health": [
+      "a11y_violations"
+    ]
+  },
+  "props": [
+    {
+      "name": "appearance",
+      "type": "RadioAppearance",
+      "required": false,
+      "description": "Multi-accent appearance role for all children."
+    },
+    {
+      "name": "aria-describedby",
+      "type": "string",
+      "required": false,
+      "description": "Optional description id(s) for the radiogroup (e.g. field description)."
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": false,
+      "description": "When there is no string `label`, sets the radiogroup accessible name."
+    },
+    {
+      "name": "checked",
+      "type": "boolean",
+      "required": false,
+      "description": "Integrated single mode only — controlled on/off (`true` = selected `singleOptionValue`). Prefer `value` / `onValueChange` when you need the string value directly."
+    },
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "required": false,
+      "description": "`Radio` options. Omit for integrated single-option field (label + implicit control)."
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "required": false,
+      "description": "className property"
+    },
+    {
+      "name": "defaultChecked",
+      "type": "boolean",
+      "required": false,
+      "description": "Integrated single mode only — uncontrolled default on/off. When set, overrides `defaultValue` for the implicit lone option unless `value` is controlled."
+    },
+    {
+      "name": "defaultValue",
+      "type": "string",
+      "required": false,
+      "description": "Default selected value (uncontrolled)"
+    },
+    {
+      "name": "description",
+      "type": "string",
+      "required": false,
+      "description": "description property"
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "required": false,
+      "description": "Whether the group is disabled"
+    },
+    {
+      "name": "dynamicText",
+      "type": "string",
+      "required": false,
+      "description": "dynamicText property"
+    },
+    {
+      "name": "dynamicTextSlot",
+      "type": "ReactNode",
+      "required": false,
+      "description": "dynamicTextSlot property"
+    },
+    {
+      "name": "error",
+      "type": "string",
+      "required": false,
+      "description": "error property"
+    },
+    {
+      "name": "feedback",
+      "type": "ReactNode",
+      "required": false,
+      "description": "feedback property"
+    },
+    {
+      "name": "fullWidth",
+      "type": "boolean",
+      "required": false,
+      "description": "fullWidth property"
+    },
+    {
+      "name": "helperButton",
+      "type": "string",
+      "required": false,
+      "description": "helperButton property"
+    },
+    {
+      "name": "infoIconSlot",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Trailing control beside the label (custom info trigger or `InputFieldDefaultInfo`)."
+    },
+    {
+      "name": "invalid",
+      "type": "boolean",
+      "required": false,
+      "description": "Mark the field invalid for `Field.Root`."
+    },
+    {
+      "name": "label",
+      "type": "string",
+      "required": false,
+      "description": "label property"
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "required": false,
+      "description": "Field name for form submission"
+    },
+    {
+      "name": "omitLayoutWrapper",
+      "type": "boolean",
+      "required": false,
+      "description": "When true, the group root does not apply the default flex layout (use with `display: contents` class for grid embedding)."
+    },
+    {
+      "name": "onCheckedChange",
+      "type": "(checked: boolean) => void",
+      "required": false,
+      "description": "Integrated single mode — fired when the lone option toggles (in addition to `onValueChange`)."
+    },
+    {
+      "name": "onValueChange",
+      "type": "(value: string) => void",
+      "required": false,
+      "description": "Called when value changes"
+    },
+    {
+      "name": "orientation",
+      "type": "'vertical' | 'horizontal'",
+      "required": false,
+      "description": "Layout orientation. Default: 'vertical'"
+    },
+    {
+      "name": "readOnly",
+      "type": "boolean",
+      "required": false,
+      "description": "Whether the group is read-only (focusable but value cannot change)"
+    },
+    {
+      "name": "required",
+      "type": "boolean",
+      "required": false,
+      "description": "When true with a string `label`, shows the required asterisk in the label row."
+    },
+    {
+      "name": "singleOptionValue",
+      "type": "string",
+      "required": false,
+      "description": "Form value for the implicit lone **Radio** when `children` is omitted (default `'on'`). Group is “on” when `value === singleOptionValue`, “off” when `value === ''`."
+    },
+    {
+      "name": "size",
+      "type": "RadioSize",
+      "required": false,
+      "description": "Size preset for all children. Default: 'm'"
+    },
+    {
+      "name": "style",
+      "type": "CSSProperties",
+      "required": false,
+      "description": "style property"
+    },
+    {
+      "name": "validate",
+      "type": "(value: unknown) => string | string[] | null",
+      "required": false,
+      "description": "validate property"
+    },
+    {
+      "name": "validationMode",
+      "type": "'onBlur' | 'onChange'",
+      "required": false,
+      "description": "validationMode property"
+    },
+    {
+      "name": "value",
+      "type": "string",
+      "required": false,
+      "description": "Selected value (controlled)"
+    }
+  ],
+  "slots": [
+    {
+      "name": "children",
+      "types": [
+        "Radio"
+      ],
+      "tokens": []
+    },
+    {
+      "name": "feedback",
+      "types": [
+        "InputFeedback"
+      ],
+      "tokens": []
+    },
+    {
+      "name": "dynamicTextSlot",
+      "types": [
+        "InputDynamicText"
+      ],
+      "tokens": []
+    },
+    {
+      "name": "infoIconSlot",
+      "types": [
+        "IconButton"
+      ],
+      "tokens": []
+    }
+  ],
+  "codeSnippets": [
+    {
+      "id": "radio-field-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { RadioField } from '@oneui/ui';\n\n<RadioField />"
+    },
+    {
+      "id": "radio-field-recipe-decisions",
+      "title": "Recipe Decisions",
+      "language": "json",
+      "code": "{\n  \"component\": \"RadioField\",\n  \"decisions\": []\n}"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "radio-field"
+  ],
+  "importPath": "@jds4/oneui-react"
+}

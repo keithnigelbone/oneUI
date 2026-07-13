@@ -1,0 +1,49 @@
+/**
+ * InputField QA playground — controls panel chrome (token-only).
+ */
+
+.controlsPanel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-5);
+  padding: var(--Spacing-5);
+  border-radius: var(--Shape-L);
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+  background: var(--Surface-Minimal);
+  box-sizing: border-box;
+}
+
+.controlRow {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-2);
+}
+
+.controlLabel {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Label-S-FontSize);
+  line-height: var(--Label-S-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+  color: var(--Text-High);
+}
+
+.segmentRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--Spacing-2);
+  align-items: center;
+}
+
+.checkboxGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(calc(var(--Spacing-40) + var(--Spacing-8)), 1fr));
+  gap: var(--Spacing-3);
+}
+
+.previewShell {
+  padding: var(--Spacing-5);
+  border-radius: var(--Shape-M);
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+  background: var(--Surface-Default);
+  box-sizing: border-box;
+}

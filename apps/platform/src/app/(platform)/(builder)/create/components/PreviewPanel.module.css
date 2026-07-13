@@ -1,0 +1,80 @@
+/**
+ * PreviewPanel — Right panel with asset grid
+ */
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+  background: var(--Surface-Minimal, var(--Surface-Minimal));
+}
+
+.header {
+  padding: var(--Spacing-3-5) var(--Spacing-4);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--Spacing-4);
+}
+
+.filters {
+  display: flex;
+  gap: var(--Spacing-2);
+  flex-wrap: wrap;
+}
+
+.filterChip {
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  padding: var(--Spacing-1-5) var(--Spacing-3);
+  border-radius: var(--Shape-Pill);
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+  background: transparent;
+  color: var(--Text-Medium);
+  cursor: pointer;
+  transition: background-color var(--Duration-XS) var(--Motion-Easing-Transition),
+              color var(--Duration-XS) var(--Motion-Easing-Transition),
+              border-color var(--Duration-XS) var(--Motion-Easing-Transition);
+}
+
+.filterChip:hover {
+  background: var(--Neutral-Subtle);
+}
+
+.filterChip[data-active] {
+  background: var(--Surface-Bold);
+  color: var(--Text-OnBold-High);
+  border-color: var(--Surface-Bold);
+}
+
+.assetCount {
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Body-S-FontSize);
+  color: var(--Text-Low);
+  white-space: nowrap;
+}
+
+.grid {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--Spacing-4-5);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--Spacing-4-5);
+  align-items: flex-start;
+  align-content: flex-start;
+  justify-content: center;
+}
+
+.emptyGrid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  color: var(--Text-Low);
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Body-M-FontSize);
+}

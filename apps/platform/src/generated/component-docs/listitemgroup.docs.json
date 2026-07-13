@@ -1,0 +1,271 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "ListItemGroup",
+  "generatedAt": "2026-01-01T00:00:00.000Z",
+  "machineReadable": true,
+  "intentAndPurpose": {
+    "intent": {
+      "value": "Stacks <ListItem> children vertically. Optional top edge-to-edge hairline (sectionDivider), inset rounded-card framing (container=\"inset\"), and a uniform inter-row divider style propagated to all children (per-row override wins).",
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "taskContexts": {
+      "value": [
+        "list",
+        "group",
+        "section",
+        "layout"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "sentiments": {
+      "value": [
+        "neutral"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "compositionRules": {
+    "requires": {
+      "value": [],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "allows": {
+      "value": [
+        "children"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "forbids": {
+      "value": [],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "fullWidth",
+        "useWhen": {
+          "value": [
+            "Full Width"
+          ],
+          "attribution": {
+            "source": "inferred"
+          }
+        }
+      },
+      {
+        "name": "inset",
+        "useWhen": {
+          "value": [
+            "Inset"
+          ],
+          "attribution": {
+            "source": "inferred"
+          }
+        }
+      }
+    ]
+  },
+  "relationshipsAndDependencies": {
+    "related": {
+      "value": [],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "contextSignals": {
+    "density": {
+      "value": [
+        "compact",
+        "default",
+        "open"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "modality": {
+      "value": [
+        "desktop",
+        "mobile"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "brand": {
+      "value": [
+        "theme-scope aware",
+        "recipe-driven"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "mode": {
+      "value": [
+        "light",
+        "dark",
+        "surface-context"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "observabilityHooks": {
+    "track": {
+      "value": [],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "health": {
+      "value": [
+        "a11y_violations"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "props": [
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": false,
+      "description": "Accessible name for the group landmark."
+    },
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "required": false,
+      "description": "<ListItem> children — maps to Figma's `content` slot. Optional so empty groups are valid."
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "required": false,
+      "description": "Additional CSS class on the root."
+    },
+    {
+      "name": "container",
+      "type": "ListItemGroupContainer",
+      "required": false,
+      "description": "Container framing. Default: 'fullWidth'."
+    },
+    {
+      "name": "divider",
+      "type": "ListItemGroupDivider",
+      "required": false,
+      "description": "Inter-row divider style injected into all <ListItem> children. Matches Figma's `divider` group property (`none` | `full` | `inset`). Per-child `divider` prop overrides the group default. The last row auto-suppresses via `:last-child` so there's no dangling hairline. Default: `'inset'`."
+    },
+    {
+      "name": "role",
+      "type": "ListItemGroupRole",
+      "required": false,
+      "description": "Group landmark role. Default: 'group'."
+    },
+    {
+      "name": "sectionDivider",
+      "type": "boolean",
+      "required": false,
+      "description": "Top edge-to-edge hairline above the first row. Default: true."
+    },
+    {
+      "name": "style",
+      "type": "CSSProperties",
+      "required": false,
+      "description": "Inline styles on the root."
+    }
+  ],
+  "slots": [
+    {
+      "name": "children",
+      "types": [
+        "ListItem"
+      ],
+      "tokens": []
+    }
+  ],
+  "propsSchema": {
+    "$id": "jds.docs.list-item-group",
+    "type": "object",
+    "properties": {
+      "aria-label": {
+        "type": "string",
+        "description": "Accessible name for the group landmark."
+      },
+      "children": {
+        "description": "<ListItem> children — maps to Figma's `content` slot. Optional so empty groups are valid."
+      },
+      "className": {
+        "type": "string",
+        "description": "Additional CSS class on the root."
+      },
+      "container": {
+        "enum": [
+          "fullWidth",
+          "inset"
+        ],
+        "description": "Container framing. Default: 'fullWidth'."
+      },
+      "divider": {
+        "enum": [
+          "none",
+          "full",
+          "inset"
+        ],
+        "description": "Inter-row divider style injected into all <ListItem> children. Matches Figma's `divider` group property (`none` | `full` | `inset`). Per-child `divider` prop overrides the group default. The last row auto-suppresses via `:last-child` so there's no dangling hairline. Default: `'inset'`."
+      },
+      "role": {
+        "enum": [
+          "group",
+          "list",
+          "menu"
+        ],
+        "description": "Group landmark role. Default: 'group'."
+      },
+      "sectionDivider": {
+        "type": "boolean",
+        "description": "Top edge-to-edge hairline above the first row. Default: true."
+      },
+      "style": {
+        "description": "Inline styles on the root."
+      }
+    }
+  },
+  "codeSnippets": [
+    {
+      "id": "list-item-group-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { ListItemGroup } from '@oneui/ui';\n\n<ListItemGroup />"
+    },
+    {
+      "id": "list-item-group-recipe-decisions",
+      "title": "Recipe Decisions",
+      "language": "json",
+      "code": "{\n  \"component\": \"ListItemGroup\",\n  \"decisions\": [\n    \"Divider\"\n  ]\n}"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "list-item-group"
+  ],
+  "generatedMarkdown": "# ListItemGroup Machine-Readable Documentation\n\n_Generated from source metadata. Do not edit manually._\n\n## Intent and Purpose\n\n- **Intent**: Stacks <ListItem> children vertically. Optional top edge-to-edge hairline (sectionDivider), inset rounded-card framing (container=\"inset\"), and a uniform inter-row divider style propagated to all children (per-row override wins).\n- **Task contexts**: list, group, section, layout\n- **Sentiments**: neutral\n\n## Composition Rules\n\n- **Requires**: \n- **Allows**: children\n- **Forbids**: \n\n## Variant Logic\n\n- **fullWidth**: use when Full Width\n- **inset**: use when Inset\n\n## Relationships and Dependencies\n\n- **Related**: \n- **Escalates to**: -\n- **Degrades to**: -\n- **Groups with**: -\n\n## Context Signals\n\n- **Density**: compact, default, open\n- **Modality**: desktop, mobile\n- **Brand**: theme-scope aware, recipe-driven\n- **Mode**: light, dark, surface-context\n\n## Observability Hooks\n\n- **Track**: \n- **Health**: a11y_violations\n\n## Props\n\n| Prop | Type | Required | Default | Description |\n| --- | --- | --- | --- | --- |\n| `aria-label` | `string` | No | - | Accessible name for the group landmark. |\n| `children` | `ReactNode` | No | - | <ListItem> children — maps to Figma's `content` slot. Optional so empty groups are valid. |\n| `className` | `string` | No | - | Additional CSS class on the root. |\n| `container` | `ListItemGroupContainer` | No | - | Container framing. Default: 'fullWidth'. |\n| `divider` | `ListItemGroupDivider` | No | - | Inter-row divider style injected into all <ListItem> children. Matches Figma's `divider` group property (`none` | `full` | `inset`). Per-child `divider` prop overrides the group default. The last row auto-suppresses via `:last-child` so there's no dangling hairline. Default: `'inset'`. |\n| `role` | `ListItemGroupRole` | No | - | Group landmark role. Default: 'group'. |\n| `sectionDivider` | `boolean` | No | - | Top edge-to-edge hairline above the first row. Default: true. |\n| `style` | `CSSProperties` | No | - | Inline styles on the root. |\n\n## Slots\n\n| Slot | Types | Tokens |\n| --- | --- | --- |\n| `children` | ListItem |  |\n\n## Code Snippets\n\n### Basic Usage\n\n```tsx\nimport { ListItemGroup } from '@oneui/ui';\n\n<ListItemGroup />\n```\n\n### Recipe Decisions\n\n```json\n{\n  \"component\": \"ListItemGroup\",\n  \"decisions\": [\n    \"Divider\"\n  ]\n}\n```\n"
+}

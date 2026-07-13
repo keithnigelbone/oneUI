@@ -1,0 +1,91 @@
+/**
+ * select-figma-validation.module.css
+ */
+
+.page {
+  padding: 0;
+  max-width: 100%;
+}
+
+.section {
+  margin-bottom: var(--Spacing-8);
+}
+
+.sectionTitle {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Title-M-FontSize);
+  line-height: var(--Title-M-LineHeight);
+  font-weight: var(--Title-M-FontWeight);
+  color: var(--Text-High);
+  margin: 0 0 var(--Spacing-3);
+}
+
+.metaLine {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  font-weight: var(--Body-FontWeight-Low);
+  color: var(--Text-Medium);
+  margin: 0 0 var(--Spacing-4);
+}
+
+.tableWrap {
+  overflow: auto;
+  max-width: 100%;
+}
+
+.gridTable {
+  border-collapse: collapse;
+  width: max-content;
+  max-width: 100%;
+  font-family: var(--Typography-Font-Primary);
+}
+
+.gridTable th,
+.gridTable td {
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+  padding: var(--Spacing-3-5);
+  vertical-align: middle;
+  text-align: center;
+}
+
+.figmaCaption {
+  caption-side: top;
+  text-align: left;
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Headline-M-FontSize);
+  line-height: var(--Headline-M-LineHeight);
+  font-weight: var(--Headline-M-FontWeight);
+  color: var(--Sparkle-High);
+  padding: 0 0 var(--Spacing-3-5);
+}
+
+.cell {
+  background: var(--Surface-Default);
+  min-width: var(--Spacing-40);
+}
+
+.cellAnchor {
+  width: calc(2 * var(--Spacing-40) + var(--Spacing-2));
+  max-width: 100%;
+}
+
+.rowLabelRight {
+  font-size: var(--Label-S-FontSize);
+  line-height: var(--Label-S-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+  color: var(--Text-Medium);
+  text-align: right;
+  white-space: nowrap;
+}
+
+.footerRow td {
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  color: var(--Text-Low);
+}
+
+.footerCorner {
+  border: none;
+  background: transparent;
+}

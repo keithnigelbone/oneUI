@@ -1,0 +1,206 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Spinner",
+  "generatedAt": "2026-01-01T00:00:00.000Z",
+  "machineReadable": true,
+  "intentAndPurpose": {
+    "intent": {
+      "value": "Indeterminate three-arc loading indicator. Renders three distinct role-colored arcs (primary + secondary + sparkle) and adapts on colored surfaces via the [data-surface] system.",
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "taskContexts": {
+      "value": [
+        "loading",
+        "progress",
+        "indeterminate",
+        "spinner",
+        "busy"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "sentiments": {
+      "value": [
+        "neutral"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "compositionRules": {
+    "requires": {
+      "value": [],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "allows": {
+      "value": [],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "forbids": {
+      "value": [],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "default",
+        "useWhen": {
+          "value": [
+            "Default"
+          ],
+          "attribution": {
+            "source": "inferred"
+          }
+        }
+      }
+    ]
+  },
+  "relationshipsAndDependencies": {
+    "related": {
+      "value": [],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "contextSignals": {
+    "density": {
+      "value": [
+        "compact",
+        "default",
+        "open"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "modality": {
+      "value": [
+        "desktop",
+        "mobile"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "brand": {
+      "value": [
+        "theme-scope aware",
+        "recipe-driven"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "mode": {
+      "value": [
+        "light",
+        "dark",
+        "surface-context"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "observabilityHooks": {
+    "track": {
+      "value": [],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "health": {
+      "value": [
+        "a11y_violations"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "props": [
+    {
+      "name": "className",
+      "type": "string",
+      "required": false,
+      "description": "Additional class name"
+    },
+    {
+      "name": "label",
+      "type": "string",
+      "required": false,
+      "description": "Accessible label announced by screen readers. Default: 'Loading'. The Spinner always renders with role=\"progressbar\" aria-busy=\"true\"."
+    },
+    {
+      "name": "size",
+      "type": "SpinnerSize",
+      "required": false,
+      "description": "Size preset — maps to spacing dimension tokens. Default: 'M' (20px)."
+    },
+    {
+      "name": "style",
+      "type": "CSSProperties",
+      "required": false,
+      "description": "Inline styles"
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.docs.spinner",
+    "type": "object",
+    "properties": {
+      "className": {
+        "type": "string",
+        "description": "Additional class name"
+      },
+      "label": {
+        "type": "string",
+        "description": "Accessible label announced by screen readers. Default: 'Loading'. The Spinner always renders with role=\"progressbar\" aria-busy=\"true\"."
+      },
+      "size": {
+        "enum": [
+          "2XS",
+          "XS",
+          "S",
+          "M",
+          "L",
+          "XL",
+          "2XL",
+          "3XL",
+          "4XL",
+          "5XL"
+        ],
+        "description": "Size preset — maps to spacing dimension tokens. Default: 'M' (20px)."
+      },
+      "style": {
+        "description": "Inline styles"
+      }
+    }
+  },
+  "codeSnippets": [
+    {
+      "id": "spinner-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { Spinner } from '@oneui/ui';\n\n<Spinner />"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "spinner"
+  ],
+  "generatedMarkdown": "# Spinner Machine-Readable Documentation\n\n_Generated from source metadata. Do not edit manually._\n\n## Intent and Purpose\n\n- **Intent**: Indeterminate three-arc loading indicator. Renders three distinct role-colored arcs (primary + secondary + sparkle) and adapts on colored surfaces via the [data-surface] system.\n- **Task contexts**: loading, progress, indeterminate, spinner, busy\n- **Sentiments**: neutral\n\n## Composition Rules\n\n- **Requires**: \n- **Allows**: \n- **Forbids**: \n\n## Variant Logic\n\n- **default**: use when Default\n\n## Relationships and Dependencies\n\n- **Related**: \n- **Escalates to**: -\n- **Degrades to**: -\n- **Groups with**: -\n\n## Context Signals\n\n- **Density**: compact, default, open\n- **Modality**: desktop, mobile\n- **Brand**: theme-scope aware, recipe-driven\n- **Mode**: light, dark, surface-context\n\n## Observability Hooks\n\n- **Track**: \n- **Health**: a11y_violations\n\n## Props\n\n| Prop | Type | Required | Default | Description |\n| --- | --- | --- | --- | --- |\n| `className` | `string` | No | - | Additional class name |\n| `label` | `string` | No | - | Accessible label announced by screen readers. Default: 'Loading'. The Spinner always renders with role=\"progressbar\" aria-busy=\"true\". |\n| `size` | `SpinnerSize` | No | - | Size preset — maps to spacing dimension tokens. Default: 'M' (20px). |\n| `style` | `CSSProperties` | No | - | Inline styles |\n\n## Slots\n\n| Slot | Types | Tokens |\n| --- | --- | --- |\n\n\n## Code Snippets\n\n### Basic Usage\n\n```tsx\nimport { Spinner } from '@oneui/ui';\n\n<Spinner />\n```\n"
+}

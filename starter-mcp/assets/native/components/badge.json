@@ -1,0 +1,235 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Badge",
+  "generatedAt": "2026-07-09T13:07:37.408Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "Non-interactive status / notification chip. Three variants resolved against the current <Surface> via useSurfaceTokens — bold (filled), subtle (tinted), ghost (transparent + hairline). Optional start/end slots for icon / avatar / sub-badge. `attention` is the Figma alias (high→bold, medium→subtle, low→ghost)."
+  },
+  "compositionRules": {
+    "requires": [],
+    "allows": [],
+    "forbids": [],
+    "childKind": "fixed-slots"
+  },
+  "props": [
+    {
+      "name": "children",
+      "type": "string",
+      "required": false,
+      "description": "Visible label text. Serves as the accessible name when present."
+    },
+    {
+      "name": "attention",
+      "type": "'high' | 'medium' | 'low'",
+      "required": false,
+      "defaultValue": "high",
+      "description": "Public paint driver. Maps to an internal surface-resolved variant: high→bold (surfaces.bold + onBoldContent.high), medium→subtle (surfaces.subtle + onSubtleContent.tintedA11y), low→ghost (transparent + content.strokeLow border + content.tintedA11y text). There is no separate `variant` prop."
+    },
+    {
+      "name": "size",
+      "type": "'xs' | 's' | 'm' | 'l' | 'xl'",
+      "required": false,
+      "defaultValue": "m",
+      "description": ""
+    },
+    {
+      "name": "appearance",
+      "type": "'auto' | 'primary' | 'secondary' | 'neutral' | 'sparkle' | 'brand-bg' | 'positive' | 'negative' | 'warning' | 'informative'",
+      "required": false,
+      "defaultValue": "auto",
+      "description": "Multi-accent role filling the badge. Explicit roles win; unset/'auto' inherits the nearest <Surface appearance>; root fallback is sparkle."
+    },
+    {
+      "name": "start",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Leading slot — Icon / Avatar / CounterBadge / IndicatorBadge."
+    },
+    {
+      "name": "end",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Trailing slot — Icon / Avatar / CounterBadge / IndicatorBadge."
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": false,
+      "description": "Recommended when the badge has no visible text content."
+    },
+    {
+      "name": "backgroundColor",
+      "type": "string",
+      "required": false,
+      "description": "[error] Don't paint directly. Use `appearance` (role) + `variant`/`mode` and wrap in <Surface mode>; the brand cascade picks the right fill."
+    },
+    {
+      "name": "style",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Layout style only. attention + appearance + the parent <Surface> drive bg / text / border — do not paint here. — [warn] Badge colour is surface-resolved from `attention` + `appearance`. Don't set backgroundColor / borderColor; wrap in <Surface> and it adapts automatically."
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.kb.rn.Badge",
+    "type": "object",
+    "properties": {
+      "children": {
+        "type": "string",
+        "description": "Visible label text. Serves as the accessible name when present."
+      },
+      "attention": {
+        "enum": [
+          "high",
+          "medium",
+          "low"
+        ],
+        "default": "high",
+        "description": "Public paint driver. Maps to an internal surface-resolved variant: high→bold (surfaces.bold + onBoldContent.high), medium→subtle (surfaces.subtle + onSubtleContent.tintedA11y), low→ghost (transparent + content.strokeLow border + content.tintedA11y text). There is no separate `variant` prop."
+      },
+      "size": {
+        "enum": [
+          "xs",
+          "s",
+          "m",
+          "l",
+          "xl"
+        ],
+        "default": "m"
+      },
+      "appearance": {
+        "enum": [
+          "auto",
+          "primary",
+          "secondary",
+          "neutral",
+          "sparkle",
+          "brand-bg",
+          "positive",
+          "negative",
+          "warning",
+          "informative"
+        ],
+        "default": "auto",
+        "description": "Multi-accent role filling the badge. Explicit roles win; unset/'auto' inherits the nearest <Surface appearance>; root fallback is sparkle."
+      },
+      "start": {
+        "description": "Leading slot — Icon / Avatar / CounterBadge / IndicatorBadge."
+      },
+      "end": {
+        "description": "Trailing slot — Icon / Avatar / CounterBadge / IndicatorBadge."
+      },
+      "aria-label": {
+        "type": "string",
+        "description": "Recommended when the badge has no visible text content."
+      },
+      "backgroundColor": {
+        "type": "string",
+        "not": {
+          "anyOf": [
+            {
+              "pattern": "^#"
+            },
+            {
+              "pattern": "^rgba?\\("
+            },
+            {
+              "pattern": "^hsla?\\("
+            },
+            {
+              "pattern": "^oklch\\("
+            },
+            {
+              "pattern": "^color-mix\\("
+            },
+            {
+              "enum": [
+                "transparent",
+                "inherit"
+              ]
+            }
+          ]
+        },
+        "x-jds-suggestion": "Don't paint directly. Use `appearance` (role) + `variant`/`mode` and wrap in <Surface mode>; the brand cascade picks the right fill.",
+        "x-jds-severity": "error"
+      },
+      "style": {
+        "description": "Layout style only. attention + appearance + the parent <Surface> drive bg / text / border — do not paint here.",
+        "x-jds-suggestion": "Badge colour is surface-resolved from `attention` + `appearance`. Don't set backgroundColor / borderColor; wrap in <Surface> and it adapts automatically.",
+        "x-jds-severity": "warn"
+      }
+    }
+  },
+  "tokens": {
+    "color": [
+      "primary",
+      "secondary",
+      "neutral",
+      "sparkle",
+      "brand-bg",
+      "positive",
+      "negative",
+      "warning",
+      "informative"
+    ],
+    "surface": [
+      "bold",
+      "subtle"
+    ],
+    "typography": [
+      "label.3XS",
+      "label.2XS",
+      "label.XS",
+      "label.S",
+      "label.M"
+    ],
+    "shape": [
+      "6XS",
+      "5XS",
+      "4XS",
+      "3XS"
+    ]
+  },
+  "a11y": {
+    "accessibilityRole": "text",
+    "accessibleNameSource": "children",
+    "minTouchTarget": 44,
+    "honorsBoldText": true,
+    "honorsScreenReader": true
+  },
+  "renderHints": {
+    "baseElement": "View",
+    "animatedOn": [],
+    "honorsReduceMotion": false,
+    "readsFromSurfaceContext": true
+  },
+  "figma": {
+    "componentKey": "jds-badge-v4",
+    "keyHistory": [],
+    "variantProperties": {
+      "Component": "Badge"
+    }
+  },
+  "codeSnippets": [
+    {
+      "id": "import-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { Badge } from '@oneui/ui-native';\n\n<Badge />"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "badge",
+    "display",
+    "status",
+    "notification",
+    "surface-aware",
+    "inherits-appearance"
+  ],
+  "importPath": "@oneui/ui-native"
+}

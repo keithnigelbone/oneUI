@@ -1,0 +1,120 @@
+.section {
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+  border-radius: var(--Shape-4);
+  padding: var(--Spacing-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-3);
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--Spacing-3-5);
+  padding-top: var(--Spacing-3);
+  border-top: var(--Stroke-M) solid var(--Border-Subtle);
+  margin-top: var(--Spacing-2);
+}
+
+.sectionTitle {
+  margin: 0;
+  color: var(--Text-Medium);
+  font-size: var(--Body-S-FontSize);
+  font-weight: var(--Body-FontWeight-Medium);
+}
+
+.fieldGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-2);
+}
+
+.fieldLabel {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-2-5);
+  color: var(--Text-Low);
+  font-size: var(--Label-XS-FontSize);
+  font-weight: var(--Label-FontWeight-Medium);
+}
+
+.fieldValue {
+  color: var(--Text-High);
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+}
+
+.textarea {
+  width: 100%;
+  min-height: var(--Spacing-8);
+  padding: var(--Spacing-2-5) var(--Spacing-3);
+  border: var(--Stroke-M) solid var(--Border-Default);
+  border-radius: var(--Shape-3-5);
+  background: var(--Surface-Ghost);
+  color: var(--Text-High);
+  font-family: inherit;
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  resize: vertical;
+}
+
+.textarea:focus {
+  outline: none;
+  border-color: var(--Primary-Tinted, var(--Border-Default));
+}
+
+.chipEditWrap {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-2);
+}
+
+.chipList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--Spacing-2);
+  align-items: center;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--Spacing-1-5);
+  padding: var(--Spacing-1-5) var(--Spacing-2-5);
+  border-radius: var(--Shape-2);
+  background: var(--Surface-Ghost);
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+  color: var(--Text-High);
+  font-size: var(--Code-S-FontSize);
+  font-family: var(--Typography-Font-Code, monospace);
+}
+
+.attributionDot {
+  display: inline-block;
+  width: var(--Spacing-2);
+  height: var(--Spacing-2);
+  border-radius: var(--Shape-Pill);
+  flex-shrink: 0;
+}
+
+.dotInferred {
+  background: var(--Informative-Tinted, oklch(0.55 0.12 260));
+}
+
+.dotAuthored {
+  background: var(--Positive-Tinted, oklch(0.50 0.12 155));
+}
+
+.dotOverridden {
+  background: var(--Warning-Tinted, oklch(0.55 0.12 85));
+}
+
+.editIcon {
+  opacity: 0;
+  transition: opacity var(--Motion-Duration-Discreet-Micro) ease;
+}
+
+.fieldGroup:hover .editIcon {
+  opacity: 1;
+}

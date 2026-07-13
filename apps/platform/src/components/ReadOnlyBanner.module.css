@@ -1,0 +1,32 @@
+/**
+ * ReadOnlyBanner.module.css
+ *
+ * Token-only styling. Fill + text colors are provided by the <Surface>
+ * cascade (mode="subtle" appearance="informative") — this module only owns
+ * layout, spacing, shape, and typography.
+ */
+
+.banner {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-3);
+  padding: var(--Spacing-3) var(--Spacing-4);
+  border-radius: var(--Shape-2);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.icon {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  color: var(--Informative-TintedA11y);
+}
+
+.text {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  font-weight: var(--Body-FontWeight-Low);
+  color: var(--Text-High);
+}

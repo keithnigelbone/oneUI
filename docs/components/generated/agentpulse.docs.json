@@ -1,0 +1,326 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "AgentPulse",
+  "generatedAt": "2026-01-01T00:00:00.000Z",
+  "machineReadable": true,
+  "intentAndPurpose": {
+    "intent": {
+      "value": "Animated brand-coloured indicator that visualises the four canonical agent states (idle, listening, thinking, speaking) using the OneUI logo geometry. Recolours per brand and adapts on coloured surfaces.",
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "taskContexts": {
+      "value": [
+        "ai",
+        "agent",
+        "thinking",
+        "listening",
+        "speaking",
+        "lottie",
+        "animated",
+        "status",
+        "voice"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "sentiments": {
+      "value": [
+        "neutral"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "compositionRules": {
+    "requires": {
+      "value": [],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "allows": {
+      "value": [],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "forbids": {
+      "value": [],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "idle",
+        "useWhen": {
+          "value": [
+            "Idle"
+          ],
+          "attribution": {
+            "source": "inferred"
+          }
+        }
+      },
+      {
+        "name": "listening",
+        "useWhen": {
+          "value": [
+            "Listening"
+          ],
+          "attribution": {
+            "source": "inferred"
+          }
+        }
+      },
+      {
+        "name": "thinking",
+        "useWhen": {
+          "value": [
+            "Thinking"
+          ],
+          "attribution": {
+            "source": "inferred"
+          }
+        }
+      },
+      {
+        "name": "speaking",
+        "useWhen": {
+          "value": [
+            "Speaking"
+          ],
+          "attribution": {
+            "source": "inferred"
+          }
+        }
+      }
+    ]
+  },
+  "relationshipsAndDependencies": {
+    "related": {
+      "value": [],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "contextSignals": {
+    "density": {
+      "value": [
+        "compact",
+        "default",
+        "open"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "modality": {
+      "value": [
+        "desktop",
+        "mobile"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "brand": {
+      "value": [
+        "theme-scope aware",
+        "recipe-driven"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "mode": {
+      "value": [
+        "light",
+        "dark",
+        "surface-context"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "observabilityHooks": {
+    "track": {
+      "value": [],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "health": {
+      "value": [
+        "a11y_violations"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "props": [
+    {
+      "name": "appearance",
+      "type": "ComponentAppearance",
+      "required": false,
+      "description": "Multi-accent appearance role. Recolours the Lottie at runtime."
+    },
+    {
+      "name": "aria-live",
+      "type": "'off' | 'polite' | 'assertive'",
+      "required": false,
+      "description": "Live region politeness for screen readers."
+    },
+    {
+      "name": "autoTransition",
+      "type": "boolean",
+      "required": false,
+      "description": "Skip the bridge animation between states."
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "required": false,
+      "description": "className property"
+    },
+    {
+      "name": "label",
+      "type": "string",
+      "required": false,
+      "description": "Override the auto-derived a11y label (e.g. \"Agent is thinking\")."
+    },
+    {
+      "name": "paused",
+      "type": "boolean",
+      "required": false,
+      "description": "Pause animation playback."
+    },
+    {
+      "name": "reducedMotionFallback",
+      "type": "AgentPulseReducedMotionFallback",
+      "required": false,
+      "description": "Reduced-motion fallback."
+    },
+    {
+      "name": "size",
+      "type": "AgentPulseSize | number",
+      "required": false,
+      "description": "Size preset (maps to dimension f-step tokens) or pixel override."
+    },
+    {
+      "name": "speed",
+      "type": "number",
+      "required": false,
+      "description": "Playback rate (1 = normal, 2 = double, 0.5 = half)."
+    },
+    {
+      "name": "state",
+      "type": "AgentPulseState",
+      "required": false,
+      "description": "Visual state. Component plays the matching loop and auto-runs a bridge animation between states when one exists."
+    },
+    {
+      "name": "style",
+      "type": "CSSProperties",
+      "required": false,
+      "description": "style property"
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.docs.agent-pulse",
+    "type": "object",
+    "properties": {
+      "appearance": {
+        "enum": [
+          "auto",
+          "primary",
+          "secondary",
+          "neutral",
+          "sparkle",
+          "brand-bg",
+          "positive",
+          "negative",
+          "warning",
+          "informative"
+        ],
+        "description": "Multi-accent appearance role. Recolours the Lottie at runtime."
+      },
+      "aria-live": {
+        "description": "Live region politeness for screen readers."
+      },
+      "autoTransition": {
+        "type": "boolean",
+        "description": "Skip the bridge animation between states."
+      },
+      "className": {
+        "type": "string",
+        "description": "className property"
+      },
+      "label": {
+        "type": "string",
+        "description": "Override the auto-derived a11y label (e.g. \"Agent is thinking\")."
+      },
+      "paused": {
+        "type": "boolean",
+        "description": "Pause animation playback."
+      },
+      "reducedMotionFallback": {
+        "enum": [
+          "static",
+          "pulse",
+          "none"
+        ],
+        "description": "Reduced-motion fallback."
+      },
+      "size": {
+        "enum": [
+          "sm",
+          "md",
+          "lg",
+          "xl"
+        ],
+        "description": "Size preset (maps to dimension f-step tokens) or pixel override."
+      },
+      "speed": {
+        "type": "number",
+        "description": "Playback rate (1 = normal, 2 = double, 0.5 = half)."
+      },
+      "state": {
+        "enum": [
+          "idle",
+          "listening",
+          "thinking",
+          "speaking"
+        ],
+        "description": "Visual state. Component plays the matching loop and auto-runs a bridge animation between states when one exists."
+      },
+      "style": {
+        "description": "style property"
+      }
+    }
+  },
+  "codeSnippets": [
+    {
+      "id": "agent-pulse-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { AgentPulse } from '@oneui/ui';\n\n<AgentPulse />"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "agent-pulse"
+  ],
+  "generatedMarkdown": "# AgentPulse Machine-Readable Documentation\n\n_Generated from source metadata. Do not edit manually._\n\n## Intent and Purpose\n\n- **Intent**: Animated brand-coloured indicator that visualises the four canonical agent states (idle, listening, thinking, speaking) using the OneUI logo geometry. Recolours per brand and adapts on coloured surfaces.\n- **Task contexts**: ai, agent, thinking, listening, speaking, lottie, animated, status, voice\n- **Sentiments**: neutral\n\n## Composition Rules\n\n- **Requires**: \n- **Allows**: \n- **Forbids**: \n\n## Variant Logic\n\n- **idle**: use when Idle\n- **listening**: use when Listening\n- **thinking**: use when Thinking\n- **speaking**: use when Speaking\n\n## Relationships and Dependencies\n\n- **Related**: \n- **Escalates to**: -\n- **Degrades to**: -\n- **Groups with**: -\n\n## Context Signals\n\n- **Density**: compact, default, open\n- **Modality**: desktop, mobile\n- **Brand**: theme-scope aware, recipe-driven\n- **Mode**: light, dark, surface-context\n\n## Observability Hooks\n\n- **Track**: \n- **Health**: a11y_violations\n\n## Props\n\n| Prop | Type | Required | Default | Description |\n| --- | --- | --- | --- | --- |\n| `appearance` | `ComponentAppearance` | No | - | Multi-accent appearance role. Recolours the Lottie at runtime. |\n| `aria-live` | `'off' | 'polite' | 'assertive'` | No | - | Live region politeness for screen readers. |\n| `autoTransition` | `boolean` | No | - | Skip the bridge animation between states. |\n| `className` | `string` | No | - | className property |\n| `label` | `string` | No | - | Override the auto-derived a11y label (e.g. \"Agent is thinking\"). |\n| `paused` | `boolean` | No | - | Pause animation playback. |\n| `reducedMotionFallback` | `AgentPulseReducedMotionFallback` | No | - | Reduced-motion fallback. |\n| `size` | `AgentPulseSize | number` | No | - | Size preset (maps to dimension f-step tokens) or pixel override. |\n| `speed` | `number` | No | - | Playback rate (1 = normal, 2 = double, 0.5 = half). |\n| `state` | `AgentPulseState` | No | - | Visual state. Component plays the matching loop and auto-runs a bridge animation between states when one exists. |\n| `style` | `CSSProperties` | No | - | style property |\n\n## Slots\n\n| Slot | Types | Tokens |\n| --- | --- | --- |\n\n\n## Code Snippets\n\n### Basic Usage\n\n```tsx\nimport { AgentPulse } from '@oneui/ui';\n\n<AgentPulse />\n```\n"
+}

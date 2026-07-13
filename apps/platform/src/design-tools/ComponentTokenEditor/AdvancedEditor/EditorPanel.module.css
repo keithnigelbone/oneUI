@@ -1,0 +1,113 @@
+/**
+ * EditorPanel.module.css
+ *
+ * Styles for the EditorPanel (token editing).
+ * Token-only styling (zero literals).
+ */
+
+.panel {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Token list layouts */
+.tokenList {
+  display: flex;
+  flex-direction: column;
+}
+
+.tokenListTwoColumn {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--Spacing-2) var(--Spacing-2-5);
+}
+
+/* Typography font selector within token section */
+.typographyFontInSection {
+  margin-bottom: var(--Spacing-3);
+}
+
+.interactionPanel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-4);
+}
+
+.interactionTarget {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-2);
+}
+
+.interactionTarget:not(:last-child) {
+  padding-bottom: var(--Spacing-3);
+  border-bottom: var(--Stroke-M) solid var(--Border-Subtle);
+}
+
+.interactionTargetHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--Spacing-2);
+}
+
+.interactionTargetName {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Label-S-FontSize);
+  line-height: var(--Label-S-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+  color: var(--Text-High);
+}
+
+.interactionTargetMeta {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Low);
+  color: var(--Text-Low);
+}
+
+.interactionRows {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-2);
+}
+
+.interactionRow {
+  display: grid;
+  grid-template-columns: minmax(var(--Spacing-12), var(--Spacing-16)) repeat(3, minmax(0, 1fr));
+  gap: var(--Spacing-2);
+  align-items: end;
+}
+
+.interactionStateName {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+  color: var(--Text-Medium);
+  padding-bottom: var(--Spacing-2);
+}
+
+.interactionField {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-1);
+  min-width: 0;
+}
+
+.interactionField span {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Low);
+  color: var(--Text-Low);
+}
+
+/* Section divider between categories */
+.sectionDivider {
+  height: var(--Stroke-M);
+  background-color: var(--Border-Subtle);
+  margin: 0;
+  flex-shrink: 0;
+}

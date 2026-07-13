@@ -1,0 +1,127 @@
+/**
+ * Logo.module.css
+ *
+ * Brand identity mark — transparent size container.
+ * The SVG content controls its own shape, colors, and background.
+ * The component only handles sizing and accessibility.
+ *
+ * Size mapping (same as IconContained):
+ *   XS: Spacing-3  (12px, f-2)
+ *   S:  Spacing-4   (16px, f0)
+ *   M:  Spacing-5  (20px, f2)
+ *   L:  Spacing-6 (24px, f3)
+ *   XL: Spacing-8 (32px, f5)
+ *
+ * Verified by: pnpm check:literals
+ */
+
+.root {
+  /* ========================================
+     BASE STYLES — transparent size container
+     Color defaults to the brand's primary bold so that SVGs
+     using currentColor (including placeholders) automatically
+     reflect the active brand. Brands with explicit SVG fills
+     are unaffected. Override per-brand via --Logo-color.
+     ======================================== */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  user-select: none;
+  vertical-align: middle;
+  color: var(--Logo-color, var(--Primary-Bold, var(--Surface-Bold)));
+}
+
+/* ========================================
+   SIZES — via data-size attribute selectors
+   Same container tokens as IconContained.
+
+   | Size | Container Token      |
+   |------|----------------------|
+   | xs   | Spacing-3   (12px) |
+   | s    | Spacing-4    (16px) |
+   | m    | Spacing-5   (20px) |
+   | l    | Spacing-6  (24px) |
+   | xl   | Spacing-8  (32px) |
+   ======================================== */
+
+.root[data-size="xs"] {
+  width: var(--Logo-size-xs, var(--Spacing-3));
+  height: var(--Logo-size-xs, var(--Spacing-3));
+}
+
+.root[data-size="s"] {
+  width: var(--Logo-size-s, var(--Spacing-4));
+  height: var(--Logo-size-s, var(--Spacing-4));
+}
+
+.root[data-size="m"] {
+  width: var(--Logo-size-m, var(--Spacing-5));
+  height: var(--Logo-size-m, var(--Spacing-5));
+}
+
+.root[data-size="l"] {
+  width: var(--Logo-size-l, var(--Spacing-6));
+  height: var(--Logo-size-l, var(--Spacing-6));
+}
+
+.root[data-size="xl"] {
+  width: var(--Logo-size-xl, var(--Spacing-8));
+  height: var(--Logo-size-xl, var(--Spacing-8));
+}
+
+.root[data-size="custom"] {
+  width: var(--Logo-customSize);
+  height: var(--Logo-customSize);
+}
+
+/* Full variant: height controlled by size, width auto for wordmarks */
+.root[data-variant="full"] { width: auto; }
+.root[data-variant="full"][data-size="custom"] { height: var(--Logo-customSize); width: auto; }
+
+/* ========================================
+   MARK — inner content container
+   Fills the size container. SVG controls its own visuals.
+   ======================================== */
+
+.mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.mark svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* ========================================
+   IMAGE — for src mode
+   ======================================== */
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* ========================================
+   FALLBACK
+   ======================================== */
+
+.fallback {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  color: var(--Neutral-Low);
+}
+
+/**
+ * ========================================
+ * IMPORTANT: NO LITERALS IN THIS FILE
+ * ========================================
+ */

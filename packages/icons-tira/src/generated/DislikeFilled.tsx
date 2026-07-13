@@ -1,0 +1,28 @@
+import React, { forwardRef } from 'react';
+import type { IconComponentProps } from '../iconProps';
+
+export const DislikeFilled = forwardRef<SVGSVGElement, IconComponentProps>(function DislikeFilled(
+  { size = 24, width, height, color = 'currentColor', className, style, ...props },
+  ref,
+) {
+  const dim = width ?? height ?? size;
+  return (
+    <svg
+      ref={ref}
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      width={width ?? dim}
+      height={height ?? dim}
+      color={color}
+      className={className}
+      style={style}
+      {...props}
+    >
+      <path d="M12.5597 21.021C12.8559 21.021 13.1241 20.8455 13.2426 20.5739L16.228 13.7354H18.0006C19.4366 13.7354 20.6006 12.5714 20.6006 11.1354V6.77719C20.6006 5.34124 19.4366 4.17719 18.0006 4.17719H7.31652C6.04343 4.17719 4.95758 5.09904 4.75098 6.35526L3.79095 12.1928C3.53059 13.7759 4.75211 15.2147 6.35649 15.2147H9.53987V18.0012C9.53987 19.669 10.8919 21.021 12.5597 21.021Z" fill="currentColor"/>
+      <path fillRule="evenodd" clipRule="evenodd" d="M17.4245 4.17821L17.4244 13.7667L16.2244 13.7667L16.2245 4.17819L17.4245 4.17821Z" fill="white"/>
+    </svg>
+  );
+});
+
+DislikeFilled.displayName = 'DislikeFilled';

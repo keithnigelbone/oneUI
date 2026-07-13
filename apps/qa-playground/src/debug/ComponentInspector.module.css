@@ -1,0 +1,95 @@
+/* Inline shell — wraps Button, Chip, Icon, Text without breaking layout */
+.inspectShellInline {
+  display: inline-flex;
+  max-width: 100%;
+  vertical-align: middle;
+  position: relative;
+}
+
+/* Block shell — wraps InputField, Slider, ChipGroup, etc. */
+.inspectShellBlock {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  position: relative;
+}
+
+.inspectActive {
+  outline: 1px dashed color-mix(in srgb, var(--Primary-High, #141414) 35%, transparent) !important;
+  outline-offset: 2px;
+  border-radius: var(--Shape-1, 2px);
+}
+
+.popover {
+  z-index: 100000;
+  max-width: 340px;
+  padding: 8px 10px;
+  border-radius: var(--Shape-3, 8px);
+  background: #1f1f1f;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
+  pointer-events: none;
+}
+
+.infoBtn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--Primary-High, #141414) 78%, transparent);
+  color: #fff;
+  font-size: 10px;
+  line-height: 1;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(40%, -40%);
+  transition: opacity 120ms ease;
+}
+
+.inspectShellInline:hover .infoBtn,
+.inspectShellBlock:hover .infoBtn {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.inspectorContent {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 11px;
+  line-height: 1.45;
+  text-align: left;
+  white-space: pre-wrap;
+  word-break: break-word;
+  color: #f5f5f5;
+}
+
+.inspectorTitle {
+  font-weight: 600;
+  margin-bottom: 2px;
+  color: #ffffff;
+}
+
+.inspectorRow {
+  display: grid;
+  grid-template-columns: minmax(72px, auto) 1fr;
+  gap: 8px;
+}
+
+.inspectorKey {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.inspectorValue {
+  color: #ffffff;
+  font-weight: 500;
+}

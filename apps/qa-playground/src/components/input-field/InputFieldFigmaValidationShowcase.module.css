@@ -1,0 +1,137 @@
+/**
+ * InputField Figma validation — size matrix (M · S · L) matching attached Figma spec.
+ * Layout mirrors InputFeedback: cells left, size labels on the right.
+ */
+.page {
+  box-sizing: border-box;
+  padding: 0;
+  max-width: 100%;
+}
+
+.specHeader {
+  margin: 0 0 var(--Spacing-2XL);
+  max-width: var(--Spacing-96);
+}
+
+.specTitleRow {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-3);
+  margin: 0 0 var(--Spacing-2);
+}
+
+.specIcon {
+  flex-shrink: 0;
+  color: var(--Sparkle-High);
+}
+
+.specTitle {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Headline-L-FontSize);
+  line-height: var(--Headline-L-LineHeight);
+  font-weight: var(--Headline-L-FontWeight);
+  margin: 0;
+  color: var(--Text-High);
+}
+
+.specDescription {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Body-M-FontSize);
+  line-height: var(--Body-M-LineHeight);
+  font-weight: var(--Body-FontWeight-Low);
+  color: var(--Text-Medium);
+  margin: 0 0 var(--Spacing-3);
+}
+
+.specDnaPath {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-2);
+  font-family: var(--Typography-Font-Code);
+  font-size: var(--Label-S-FontSize);
+  line-height: var(--Label-S-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+  color: var(--Sparkle-High);
+  margin: 0;
+}
+
+.specDnaMark {
+  color: var(--Sparkle-High);
+}
+
+.matrixSection {
+  margin-bottom: 0;
+}
+
+.tableWrap {
+  overflow: auto;
+  max-width: 100%;
+}
+
+.gridTable {
+  border-collapse: collapse;
+  width: max-content;
+  max-width: 100%;
+  font-family: var(--Typography-Font-Primary);
+}
+
+.gridTable th,
+.gridTable td {
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+  padding: var(--Spacing-3-5);
+  vertical-align: middle;
+}
+
+.figmaCaption {
+  caption-side: top;
+  text-align: left;
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Headline-M-FontSize);
+  line-height: var(--Headline-M-LineHeight);
+  font-weight: var(--Headline-M-FontWeight);
+  color: var(--Sparkle-High);
+  padding: 0 0 var(--Spacing-3-5);
+}
+
+.figmaCaptionMark {
+  color: var(--Sparkle-High);
+}
+
+.cell {
+  text-align: left;
+  white-space: nowrap;
+  background: var(--Surface-Default);
+  min-width: var(--Spacing-48);
+}
+
+.cellInner {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+  min-width: 0;
+}
+
+.cellAnchor {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.rowLabelRight {
+  text-align: left;
+  vertical-align: middle;
+  font-family: var(--Typography-Font-Code);
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Low);
+  color: var(--Text-Medium);
+  white-space: nowrap;
+  padding-inline-start: var(--Spacing-4);
+  min-width: var(--Spacing-20);
+  background: var(--Surface-Default);
+}
+
+.rowSizeLabel {
+  display: block;
+}

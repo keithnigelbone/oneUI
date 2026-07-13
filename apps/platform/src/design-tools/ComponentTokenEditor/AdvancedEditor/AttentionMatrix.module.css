@@ -1,0 +1,72 @@
+/**
+ * AttentionMatrix.module.css
+ *
+ * Attention-level style & role matrix (High/Medium/Low rows).
+ * Token-only styling (zero literals).
+ */
+
+.matrix {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-2-5);
+}
+
+.matrixLabel {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+  color: var(--Text-Medium);
+  text-transform: uppercase;
+  letter-spacing: var(--Typography-LetterSpacing-Wide);
+}
+
+.levelRow {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-1-5);
+  padding: var(--Spacing-2);
+  border-radius: var(--Shape-3);
+  background-color: var(--Surface-Minimal);
+}
+
+.levelHeader {
+  display: flex;
+  align-items: baseline;
+  gap: var(--Spacing-1-5);
+}
+
+.levelLabel {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Label-S-FontSize);
+  line-height: var(--Label-S-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+  color: var(--Text-High);
+}
+
+.levelVariant {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Low);
+  color: var(--Text-Low);
+}
+
+.validation {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  font-weight: var(--Body-FontWeight-Low);
+  padding: var(--Spacing-2);
+  border-radius: var(--Shape-2);
+}
+
+.validation[data-level='warn'] {
+  background-color: var(--Warning-Minimal);
+  color: var(--Warning-TintedA11y);
+}
+
+.validation[data-level='error'] {
+  background-color: var(--Negative-Minimal);
+  color: var(--Negative-TintedA11y);
+}

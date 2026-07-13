@@ -1,0 +1,30 @@
+import React, { forwardRef } from 'react';
+import type { IconComponentProps } from '../iconProps';
+
+export const IcAntibacteria = forwardRef<SVGSVGElement, IconComponentProps>(function IcAntibacteria(
+  { size = 24, width, height, color = 'currentColor', className, style, ...props },
+  ref,
+) {
+  const dim = width ?? height ?? size;
+  return (
+    <svg
+      ref={ref}
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      width={width ?? dim}
+      height={height ?? dim}
+      color={color}
+      className={className}
+      style={style}
+      {...props}
+    >
+      <path
+            fill="currentColor"
+            d="M4 11h.4a5 5 0 0 0 1.06 1.6l.3.29-.47.46a1 1 0 0 0-.09 1.27l9.36-9.42a1 1 0 0 0-1.27.09l-.46.47-.29-.3a5 5 0 0 0-1.6-1.06v-.2a1.019 1.019 0 1 0-2-.4L9 4a5 5 0 0 0-2.74.83l-.53-.54a1.011 1.011 0 0 0-1.44 1.42l.54.53A5 5 0 0 0 4 9h-.2a1.005 1.005 0 0 0 .2 2m3-3a1 1 0 1 1 0 2 1 1 0 0 1 0-2m12.8 5h-.2a5 5 0 0 0-1.06-1.6l-.3-.29.47-.46A1.005 1.005 0 0 0 18 8.936a1 1 0 0 0-.71.294l-.46.47-.59-.59 4.47-4.46A1.005 1.005 0 0 0 20 2.936a1 1 0 0 0-.71.294l-16 16a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l4.46-4.47.59.59-.47.46a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l.46-.47.29.3a5 5 0 0 0 1.6 1.06v.2A1 1 0 0 0 13.8 21h.2a1 1 0 0 0 1-.8V20a5 5 0 0 0 2.74-.83l.53.54a1.002 1.002 0 0 0 1.639-.326 1 1 0 0 0-.219-1.094l-.54-.53A5 5 0 0 0 20 15h.2a1.02 1.02 0 0 0-.4-2M14 18a1 1 0 1 1 0-2.002A1 1 0 0 1 14 18m2-4a1 1 0 1 1 0-2.002A1 1 0 0 1 16 14"
+          />
+    </svg>
+  );
+});
+
+IcAntibacteria.displayName = 'IcAntibacteria';

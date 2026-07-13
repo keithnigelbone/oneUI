@@ -1,0 +1,2319 @@
+{
+  "slug": "input-dynamic-text",
+  "runs": [
+    {
+      "savedAt": "2026-06-23T10:15:19.138Z",
+      "report": {
+        "ok": false,
+        "slug": "input-dynamic-text",
+        "message": "input-dynamic-text QA Playwright run had failures — 2026-06-23T09:24:16.518Z",
+        "suites": {
+          "accessibility": {
+            "suite": "accessibility",
+            "passed": 39,
+            "failed": 1,
+            "skipped": 0,
+            "logs": [
+              "40 test(s) in Playwright report for accessibility.",
+              "Axe: 1 violation rule(s) reported."
+            ],
+            "errors": [
+              "[a11y] Row \"Disabled\": WCAG 2.1 AA scan has no serious or critical issues: Test timeout of 30000ms exceeded."
+            ],
+            "cases": [
+              {
+                "name": "[a11y] Full page WCAG 2.1 AA scan has no serious or critical issues (report saved)",
+                "status": "passed",
+                "durationMs": 5116
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Default band",
+                "status": "passed",
+                "durationMs": 5095,
+                "componentBand": "idt-qa-default"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Size (S · M · L) band",
+                "status": "passed",
+                "durationMs": 5478,
+                "componentBand": "idt-qa-size"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Content × end slots band",
+                "status": "passed",
+                "durationMs": 5190,
+                "componentBand": "idt-qa-content-end"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — States & behaviour band",
+                "status": "passed",
+                "durationMs": 5381,
+                "componentBand": "idt-qa-states"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Combination matrix band",
+                "status": "passed",
+                "durationMs": 3924,
+                "componentBand": "idt-qa-combos"
+              },
+              {
+                "name": "[a11y] Row \"Default\": WCAG 2.1 AA scan has no serious or critical issues",
+                "status": "passed",
+                "durationMs": 4028
+              },
+              {
+                "name": "[a11y] Row \"Size M\": WCAG 2.1 AA scan has no serious or critical issues",
+                "status": "passed",
+                "durationMs": 4190
+              },
+              {
+                "name": "[a11y] Row \"Slot Both\": WCAG 2.1 AA scan has no serious or critical issues",
+                "status": "passed",
+                "durationMs": 4137
+              },
+              {
+                "name": "[a11y] Row \"Slot Content\": WCAG 2.1 AA scan has no serious or critical issues",
+                "status": "passed",
+                "durationMs": 4459
+              },
+              {
+                "name": "[a11y] Row \"Slot End\": WCAG 2.1 AA scan has no serious or critical issues",
+                "status": "passed",
+                "durationMs": 3898
+              },
+              {
+                "name": "[a11y] Row \"Disabled\": WCAG 2.1 AA scan has no serious or critical issues",
+                "status": "failed",
+                "durationMs": 40224,
+                "error": "Test timeout of 30000ms exceeded."
+              },
+              {
+                "name": "[a11y] Row \"Aria Live Polite\": WCAG 2.1 AA scan has no serious or critical issues",
+                "status": "passed",
+                "durationMs": 4167
+              },
+              {
+                "name": "[a11y] Row \"End Aria Label\": WCAG 2.1 AA scan has no serious or critical issues",
+                "status": "passed",
+                "durationMs": 4502
+              },
+              {
+                "name": "[a11y] Row \"End Click\": WCAG 2.1 AA scan has no serious or critical issues",
+                "status": "passed",
+                "durationMs": 4156
+              },
+              {
+                "name": "[a11y] Row \"Combo M Both\": WCAG 2.1 AA scan has no serious or critical issues",
+                "status": "passed",
+                "durationMs": 2559
+              },
+              {
+                "name": "[a11y] Size S row is visible",
+                "status": "passed",
+                "durationMs": 2589
+              },
+              {
+                "name": "[a11y] Size M row is visible",
+                "status": "passed",
+                "durationMs": 2414
+              },
+              {
+                "name": "[a11y] Size L row is visible",
+                "status": "passed",
+                "durationMs": 2655
+              },
+              {
+                "name": "[a11y] Content and end preset \"both\" behaves as expected",
+                "status": "passed",
+                "durationMs": 2002
+              },
+              {
+                "name": "[a11y] Content and end preset \"content\" behaves as expected",
+                "status": "passed",
+                "durationMs": 2399
+              },
+              {
+                "name": "[a11y] Content and end preset \"end\" behaves as expected",
+                "status": "passed",
+                "durationMs": 2390
+              },
+              {
+                "name": "[a11y] Content and end preset \"none\" behaves as expected",
+                "status": "passed",
+                "durationMs": 2511
+              },
+              {
+                "name": "[a11y] Disabled row trailing button is disabled",
+                "status": "passed",
+                "durationMs": 2092
+              },
+              {
+                "name": "[a11y] Default trailing button has an accessible name from its label",
+                "status": "passed",
+                "durationMs": 2421
+              },
+              {
+                "name": "[a11y] endAriaLabel override exposes accessible name on trailing button",
+                "status": "passed",
+                "durationMs": 2627
+              },
+              {
+                "name": "[a11y] Polite aria-live region on content copy",
+                "status": "passed",
+                "durationMs": 2515
+              },
+              {
+                "name": "[a11y] ARIA validity rules — Test Scenarios story bands",
+                "status": "passed",
+                "durationMs": 2667
+              },
+              {
+                "name": "[a11y] Document has a non-empty lang attribute on the html element",
+                "status": "passed",
+                "durationMs": 1976
+              },
+              {
+                "name": "[a11y] Combination row \"Combo S Both\" is visible",
+                "status": "passed",
+                "durationMs": 2293
+              },
+              {
+                "name": "[a11y] Combination row \"Combo S Content\" is visible",
+                "status": "passed",
+                "durationMs": 2406
+              },
+              {
+                "name": "[a11y] Combination row \"Combo S End\" is visible",
+                "status": "passed",
+                "durationMs": 2195
+              },
+              {
+                "name": "[a11y] Combination row \"Combo M Both\" is visible",
+                "status": "passed",
+                "durationMs": 2109
+              },
+              {
+                "name": "[a11y] Combination row \"Combo M Content\" is visible",
+                "status": "passed",
+                "durationMs": 2269
+              },
+              {
+                "name": "[a11y] Combination row \"Combo M End\" is visible",
+                "status": "passed",
+                "durationMs": 2348
+              },
+              {
+                "name": "[a11y] Combination row \"Combo L Both\" is visible",
+                "status": "passed",
+                "durationMs": 2382
+              },
+              {
+                "name": "[a11y] Combination row \"Combo L Content\" is visible",
+                "status": "passed",
+                "durationMs": 2277
+              },
+              {
+                "name": "[a11y] Combination row \"Combo L End\" is visible",
+                "status": "passed",
+                "durationMs": 2257
+              },
+              {
+                "name": "[a11y] Empty slot preset does not mount a row root in the DOM",
+                "status": "passed",
+                "durationMs": 2142
+              },
+              {
+                "name": "[a11y] Reflow at 320px — story bands fit without horizontal scroll",
+                "status": "passed",
+                "durationMs": 4285
+              }
+            ],
+            "axe": {
+              "violations": [
+                {
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/color-contrast?application=playwright",
+                  "nodes": 1
+                }
+              ]
+            }
+          },
+          "functional": {
+            "suite": "functional",
+            "passed": 101,
+            "failed": 1,
+            "skipped": 0,
+            "logs": [
+              "102 test(s) in Playwright report for functional."
+            ],
+            "errors": [
+              "1.1 — Page loads without console errors; default row mounts: Test timeout of 30000ms exceeded."
+            ],
+            "cases": [
+              {
+                "name": "[fn] Page heading is visible",
+                "status": "passed",
+                "durationMs": 1958
+              },
+              {
+                "name": "[fn] Playground loads without console errors",
+                "status": "passed",
+                "durationMs": 4083
+              },
+              {
+                "name": "[fn] Default row shows counter text and helper button",
+                "status": "passed",
+                "durationMs": 2289
+              },
+              {
+                "name": "[fn] Every showcase row is visible without error text",
+                "status": "passed",
+                "durationMs": 2770
+              },
+              {
+                "name": "[fn] Every showcase section is visible",
+                "status": "passed",
+                "durationMs": 2227
+              },
+              {
+                "name": "[fn] Default row uses medium size",
+                "status": "passed",
+                "durationMs": 3728
+              },
+              {
+                "name": "[fn] Size S maps to data-size \"s\"",
+                "status": "passed",
+                "durationMs": 2865
+              },
+              {
+                "name": "[fn] Size M maps to data-size \"m\"",
+                "status": "passed",
+                "durationMs": 2725
+              },
+              {
+                "name": "[fn] Size L maps to data-size \"l\"",
+                "status": "passed",
+                "durationMs": 3126
+              },
+              {
+                "name": "[fn] Slot preset \"both\" shows the expected regions",
+                "status": "passed",
+                "durationMs": 3176
+              },
+              {
+                "name": "[fn] Slot preset \"content\" shows the expected regions",
+                "status": "passed",
+                "durationMs": 2019
+              },
+              {
+                "name": "[fn] Slot preset \"end\" shows the expected regions",
+                "status": "passed",
+                "durationMs": 2209
+              },
+              {
+                "name": "[fn] Slot preset \"none\" shows the expected regions",
+                "status": "passed",
+                "durationMs": 2150
+              },
+              {
+                "name": "[fn] Clicking the end button updates the live copy",
+                "status": "passed",
+                "durationMs": 2080
+              },
+              {
+                "name": "[fn] Default end button stays visible after click",
+                "status": "passed",
+                "durationMs": 2161
+              },
+              {
+                "name": "[fn] Disabled end button does not change content when clicked",
+                "status": "passed",
+                "durationMs": 2213
+              },
+              {
+                "name": "[fn] Clicking outside the row blurs the end button",
+                "status": "passed",
+                "durationMs": 2301
+              },
+              {
+                "name": "[fn] Tab reaches the trailing button on the default row",
+                "status": "passed",
+                "durationMs": 2346
+              },
+              {
+                "name": "[fn] Disabled end button is not focused when force-clicked",
+                "status": "passed",
+                "durationMs": 1733
+              },
+              {
+                "name": "[fn] Enter on the focused end button runs the click handler",
+                "status": "passed",
+                "durationMs": 2576
+              },
+              {
+                "name": "[fn] Space on the focused end button runs the click handler",
+                "status": "passed",
+                "durationMs": 1949
+              },
+              {
+                "name": "[fn] Tab can move focus away from the end button",
+                "status": "passed",
+                "durationMs": 2228
+              },
+              {
+                "name": "[fn] Clicking the end button focuses it",
+                "status": "passed",
+                "durationMs": 2043
+              },
+              {
+                "name": "[fn] Focused end button shows a visible focus ring",
+                "status": "passed",
+                "durationMs": 2016
+              },
+              {
+                "name": "[fn] Blur moves focus off the end button",
+                "status": "passed",
+                "durationMs": 2142
+              },
+              {
+                "name": "[fn] Default row is not marked data-disabled",
+                "status": "passed",
+                "durationMs": 2516
+              },
+              {
+                "name": "[fn] Disabled row sets data-disabled and disables the button",
+                "status": "passed",
+                "durationMs": 3450
+              },
+              {
+                "name": "[fn] Polite aria-live is set on the live region example",
+                "status": "passed",
+                "durationMs": 3514
+              },
+              {
+                "name": "[fn] Content-only slot shows counter without an end button",
+                "status": "passed",
+                "durationMs": 3355
+              },
+              {
+                "name": "[fn] End-only slot shows the button without inline content",
+                "status": "passed",
+                "durationMs": 3032
+              },
+              {
+                "name": "[fn] Both slots show content and end button together",
+                "status": "passed",
+                "durationMs": 3552
+              },
+              {
+                "name": "[fn] Empty content and end renders nothing for the none preset",
+                "status": "passed",
+                "durationMs": 2072
+              },
+              {
+                "name": "[fn] endAriaLabel overrides the visible button accessible name",
+                "status": "passed",
+                "durationMs": 2273
+              },
+              {
+                "name": "[fn] Default content text is non-empty",
+                "status": "passed",
+                "durationMs": 1829
+              },
+              {
+                "name": "[fn] Content stays within the row width",
+                "status": "passed",
+                "durationMs": 1882
+              },
+              {
+                "name": "[fn] End button has an accessible name",
+                "status": "passed",
+                "durationMs": 1593
+              },
+              {
+                "name": "[fn] Default section fits at a 320px wide viewport",
+                "status": "passed",
+                "durationMs": 3367
+              },
+              {
+                "name": "[fn] Default row is visible at a 1440px wide viewport",
+                "status": "passed",
+                "durationMs": 3947
+              },
+              {
+                "name": "[fn] Content and end button sit on one horizontal row",
+                "status": "passed",
+                "durationMs": 2009
+              },
+              {
+                "name": "[fn] Dark theme still renders the default row and samples",
+                "status": "passed",
+                "durationMs": 2532
+              },
+              {
+                "name": "[fn] Combination size s with both slots",
+                "status": "passed",
+                "durationMs": 2092
+              },
+              {
+                "name": "[fn] Combination size s with content slots",
+                "status": "passed",
+                "durationMs": 1532
+              },
+              {
+                "name": "[fn] Combination size s with end slots",
+                "status": "passed",
+                "durationMs": 2522
+              },
+              {
+                "name": "[fn] Combination size m with both slots",
+                "status": "passed",
+                "durationMs": 2632
+              },
+              {
+                "name": "[fn] Combination size m with content slots",
+                "status": "passed",
+                "durationMs": 2525
+              },
+              {
+                "name": "[fn] Combination size m with end slots",
+                "status": "passed",
+                "durationMs": 2644
+              },
+              {
+                "name": "[fn] Combination size l with both slots",
+                "status": "passed",
+                "durationMs": 3526
+              },
+              {
+                "name": "[fn] Combination size l with content slots",
+                "status": "passed",
+                "durationMs": 3132
+              },
+              {
+                "name": "[fn] Combination size l with end slots",
+                "status": "passed",
+                "durationMs": 3420
+              },
+              {
+                "name": "1.1 — Page loads without console errors; default row mounts",
+                "status": "failed",
+                "durationMs": 38069,
+                "error": "Test timeout of 30000ms exceeded."
+              },
+              {
+                "name": "1.2 — Every Test Scenarios `data-testid` is visible",
+                "status": "passed",
+                "durationMs": 1994
+              },
+              {
+                "name": "1.3 — Every `data-section` band is visible",
+                "status": "passed",
+                "durationMs": 1701
+              },
+              {
+                "name": "2.1 — Default row exposes data-size m with content and end button",
+                "status": "passed",
+                "durationMs": 1731
+              },
+              {
+                "name": "2.1 — Size S maps to data-size \"s\"",
+                "status": "passed",
+                "durationMs": 1445
+              },
+              {
+                "name": "2.1 — Size M maps to data-size \"m\"",
+                "status": "passed",
+                "durationMs": 1489
+              },
+              {
+                "name": "2.1 — Size L maps to data-size \"l\"",
+                "status": "passed",
+                "durationMs": 1303
+              },
+              {
+                "name": "2.3 — Appearance colour (N/A)",
+                "status": "passed",
+                "durationMs": 1277
+              },
+              {
+                "name": "3.1 — End button click increments onEndClick counter",
+                "status": "passed",
+                "durationMs": 1660
+              },
+              {
+                "name": "3.2 — Disabled end button does not change content on click",
+                "status": "passed",
+                "durationMs": 1653
+              },
+              {
+                "name": "3.3 — Readonly (N/A)",
+                "status": "passed",
+                "durationMs": 1862
+              },
+              {
+                "name": "3.4 — Click outside blurs focused end button",
+                "status": "passed",
+                "durationMs": 1502
+              },
+              {
+                "name": "4.1 — Tab reaches default row trailing button",
+                "status": "passed",
+                "durationMs": 1428
+              },
+              {
+                "name": "4.1 — Disabled trailing button is not focused after force click",
+                "status": "passed",
+                "durationMs": 1341
+              },
+              {
+                "name": "4.2 — Enter activates onEndClick handler",
+                "status": "passed",
+                "durationMs": 2448
+              },
+              {
+                "name": "4.3 — Space activates onEndClick handler",
+                "status": "passed",
+                "durationMs": 2593
+              },
+              {
+                "name": "4.4 — Arrow keys (N/A)",
+                "status": "passed",
+                "durationMs": 2586
+              },
+              {
+                "name": "4.5 — Home/End (N/A)",
+                "status": "passed",
+                "durationMs": 2588
+              },
+              {
+                "name": "4.6 — Escape (N/A)",
+                "status": "passed",
+                "durationMs": 3880
+              },
+              {
+                "name": "4.7 — Tab escapes end button without trap",
+                "status": "passed",
+                "durationMs": 3423
+              },
+              {
+                "name": "5.1 — Click focuses trailing button",
+                "status": "passed",
+                "durationMs": 2692
+              },
+              {
+                "name": "5.2 — Focused button shows visible focus ring",
+                "status": "passed",
+                "durationMs": 3732
+              },
+              {
+                "name": "5.3 — Tab order reaches end button after page chrome",
+                "status": "passed",
+                "durationMs": 2068
+              },
+              {
+                "name": "5.4 — Blur removes focus from end button",
+                "status": "passed",
+                "durationMs": 1926
+              },
+              {
+                "name": "5.5 — autoFocus (N/A)",
+                "status": "passed",
+                "durationMs": 1778
+              },
+              {
+                "name": "6.1 — Default row is enabled without data-disabled",
+                "status": "passed",
+                "durationMs": 1979
+              },
+              {
+                "name": "6.2 — Selected/checked (N/A)",
+                "status": "passed",
+                "durationMs": 1844
+              },
+              {
+                "name": "6.3 — Disabled row sets data-disabled and disables button",
+                "status": "passed",
+                "durationMs": 2109
+              },
+              {
+                "name": "6.4 — Readonly (N/A)",
+                "status": "passed",
+                "durationMs": 2006
+              },
+              {
+                "name": "6.5 — Error state (N/A)",
+                "status": "passed",
+                "durationMs": 1965
+              },
+              {
+                "name": "6.6 — Loading state (N/A)",
+                "status": "passed",
+                "durationMs": 2168
+              },
+              {
+                "name": "7.1 — content-only preset shows copy without end button",
+                "status": "passed",
+                "durationMs": 1954
+              },
+              {
+                "name": "7.2 — end-only preset shows button without content paragraph",
+                "status": "passed",
+                "durationMs": 2205
+              },
+              {
+                "name": "7.3 — both preset shows content and end together",
+                "status": "passed",
+                "durationMs": 2127
+              },
+              {
+                "name": "7.4 — Icon colour inheritance (N/A)",
+                "status": "passed",
+                "durationMs": 1574
+              },
+              {
+                "name": "8.x — Not a toggle component",
+                "status": "passed",
+                "durationMs": 1110
+              },
+              {
+                "name": "9.x — Not a native text input",
+                "status": "passed",
+                "durationMs": 1096
+              },
+              {
+                "name": "10.1 — none preset with empty content+end renders null (no testid in DOM)",
+                "status": "passed",
+                "durationMs": 1075
+              },
+              {
+                "name": "10.2 — endAriaLabel overrides default button accessible name",
+                "status": "passed",
+                "durationMs": 1103
+              },
+              {
+                "name": "10.3 — Loading overrides (N/A)",
+                "status": "passed",
+                "durationMs": 1064
+              },
+              {
+                "name": "11.1 — Default content copy is non-empty",
+                "status": "passed",
+                "durationMs": 1130
+              },
+              {
+                "name": "11.1 — aria-live polite is on content region",
+                "status": "passed",
+                "durationMs": 1310
+              },
+              {
+                "name": "11.2 — End button exposes accessible name from visible label",
+                "status": "passed",
+                "durationMs": 1239
+              },
+              {
+                "name": "11.3 — Progress value (N/A)",
+                "status": "passed",
+                "durationMs": 1749
+              },
+              {
+                "name": "12.1 — fullWidth (N/A)",
+                "status": "passed",
+                "durationMs": 1706
+              },
+              {
+                "name": "12.2 — At 320px viewport, story bands fit without horizontal scroll",
+                "status": "passed",
+                "durationMs": 3210
+              },
+              {
+                "name": "12.2b — Default row visible at 1440px viewport",
+                "status": "passed",
+                "durationMs": 2270
+              },
+              {
+                "name": "12.3 — Content and end button share one horizontal row",
+                "status": "passed",
+                "durationMs": 1551
+              },
+              {
+                "name": "13.1 — After dark theme, all scenario sections remain visible",
+                "status": "passed",
+                "durationMs": 3706
+              },
+              {
+                "name": "13.1 — Default row remains visible in dark mode",
+                "status": "passed",
+                "durationMs": 1690
+              },
+              {
+                "name": "Smoke — Page heading reads “Input Dynamic Text”",
+                "status": "passed",
+                "durationMs": 1359
+              },
+              {
+                "name": "Smoke — Default row visible with counter and helper button",
+                "status": "passed",
+                "durationMs": 1227
+              },
+              {
+                "name": "Smoke — Manifest testid count in showcase scope",
+                "status": "passed",
+                "durationMs": 1101
+              }
+            ]
+          },
+          "performance": {
+            "suite": "performance",
+            "passed": 0,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "Performance suite is not executed in apps/qa-playground input-dynamic-text Playwright bundle."
+            ],
+            "errors": []
+          }
+        }
+      }
+    },
+    {
+      "savedAt": "2026-06-23T09:24:16.520Z",
+      "report": {
+        "ok": true,
+        "slug": "input-dynamic-text",
+        "message": "input-dynamic-text QA Playwright run OK — 2026-06-22T21:20:41.658Z",
+        "suites": {
+          "accessibility": {
+            "suite": "accessibility",
+            "passed": 40,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "40 test(s) in Playwright report for accessibility.",
+              "Axe: 1 violation rule(s) reported."
+            ],
+            "errors": [],
+            "cases": [
+              {
+                "name": "[a11y] Full page WCAG 2.1 AA scan has no serious or critical issues (report saved)",
+                "status": "passed",
+                "durationMs": 5189
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Default band",
+                "status": "passed",
+                "durationMs": 5076,
+                "componentBand": "idt-qa-default"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Size (S · M · L) band",
+                "status": "passed",
+                "durationMs": 5394,
+                "componentBand": "idt-qa-size"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Content × end slots band",
+                "status": "passed",
+                "durationMs": 5313,
+                "componentBand": "idt-qa-content-end"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — States & behaviour band",
+                "status": "passed",
+                "durationMs": 5208,
+                "componentBand": "idt-qa-states"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Combination matrix band",
+                "status": "passed",
+                "durationMs": 2262,
+                "componentBand": "idt-qa-combos"
+              },
+              {
+                "name": "[a11y] Row \"Default\": WCAG 2.1 AA scan has no serious or critical issues",
+                "status": "passed",
+                "durationMs": 9040
+              },
+              {
+                "name": "[a11y] Row \"Size M\": WCAG 2.1 AA scan has no serious or critical issues",
+                "status": "passed",
+                "durationMs": 2728
+              },
+              {
+                "name": "[a11y] Row \"Slot Both\": WCAG 2.1 AA scan has no serious or critical issues",
+                "status": "passed",
+                "durationMs": 3120
+              },
+              {
+                "name": "[a11y] Row \"Slot Content\": WCAG 2.1 AA scan has no serious or critical issues",
+                "status": "passed",
+                "durationMs": 8664
+              },
+              {
+                "name": "[a11y] Row \"Slot End\": WCAG 2.1 AA scan has no serious or critical issues",
+                "status": "passed",
+                "durationMs": 3134
+              },
+              {
+                "name": "[a11y] Row \"Disabled\": WCAG 2.1 AA scan has no serious or critical issues",
+                "status": "passed",
+                "durationMs": 3032
+              },
+              {
+                "name": "[a11y] Row \"Aria Live Polite\": WCAG 2.1 AA scan has no serious or critical issues",
+                "status": "passed",
+                "durationMs": 5787
+              },
+              {
+                "name": "[a11y] Row \"End Aria Label\": WCAG 2.1 AA scan has no serious or critical issues",
+                "status": "passed",
+                "durationMs": 5726
+              },
+              {
+                "name": "[a11y] Row \"End Click\": WCAG 2.1 AA scan has no serious or critical issues",
+                "status": "passed",
+                "durationMs": 1722
+              },
+              {
+                "name": "[a11y] Row \"Combo M Both\": WCAG 2.1 AA scan has no serious or critical issues",
+                "status": "passed",
+                "durationMs": 2492
+              },
+              {
+                "name": "[a11y] Size S row is visible",
+                "status": "passed",
+                "durationMs": 1362
+              },
+              {
+                "name": "[a11y] Size M row is visible",
+                "status": "passed",
+                "durationMs": 1303
+              },
+              {
+                "name": "[a11y] Size L row is visible",
+                "status": "passed",
+                "durationMs": 1530
+              },
+              {
+                "name": "[a11y] Content and end preset \"both\" behaves as expected",
+                "status": "passed",
+                "durationMs": 1827
+              },
+              {
+                "name": "[a11y] Content and end preset \"content\" behaves as expected",
+                "status": "passed",
+                "durationMs": 1678
+              },
+              {
+                "name": "[a11y] Content and end preset \"end\" behaves as expected",
+                "status": "passed",
+                "durationMs": 1439
+              },
+              {
+                "name": "[a11y] Content and end preset \"none\" behaves as expected",
+                "status": "passed",
+                "durationMs": 2073
+              },
+              {
+                "name": "[a11y] Disabled row trailing button is disabled",
+                "status": "passed",
+                "durationMs": 2053
+              },
+              {
+                "name": "[a11y] Default trailing button has an accessible name from its label",
+                "status": "passed",
+                "durationMs": 2055
+              },
+              {
+                "name": "[a11y] endAriaLabel override exposes accessible name on trailing button",
+                "status": "passed",
+                "durationMs": 3285
+              },
+              {
+                "name": "[a11y] Polite aria-live region on content copy",
+                "status": "passed",
+                "durationMs": 3946
+              },
+              {
+                "name": "[a11y] ARIA validity rules — Test Scenarios story bands",
+                "status": "passed",
+                "durationMs": 3940
+              },
+              {
+                "name": "[a11y] Document has a non-empty lang attribute on the html element",
+                "status": "passed",
+                "durationMs": 1689
+              },
+              {
+                "name": "[a11y] Combination row \"Combo S Both\" is visible",
+                "status": "passed",
+                "durationMs": 1792
+              },
+              {
+                "name": "[a11y] Combination row \"Combo S Content\" is visible",
+                "status": "passed",
+                "durationMs": 1803
+              },
+              {
+                "name": "[a11y] Combination row \"Combo S End\" is visible",
+                "status": "passed",
+                "durationMs": 1623
+              },
+              {
+                "name": "[a11y] Combination row \"Combo M Both\" is visible",
+                "status": "passed",
+                "durationMs": 2864
+              },
+              {
+                "name": "[a11y] Combination row \"Combo M Content\" is visible",
+                "status": "passed",
+                "durationMs": 2935
+              },
+              {
+                "name": "[a11y] Combination row \"Combo M End\" is visible",
+                "status": "passed",
+                "durationMs": 3116
+              },
+              {
+                "name": "[a11y] Combination row \"Combo L Both\" is visible",
+                "status": "passed",
+                "durationMs": 3019
+              },
+              {
+                "name": "[a11y] Combination row \"Combo L Content\" is visible",
+                "status": "passed",
+                "durationMs": 2953
+              },
+              {
+                "name": "[a11y] Combination row \"Combo L End\" is visible",
+                "status": "passed",
+                "durationMs": 1870
+              },
+              {
+                "name": "[a11y] Empty slot preset does not mount a row root in the DOM",
+                "status": "passed",
+                "durationMs": 2435
+              },
+              {
+                "name": "[a11y] Reflow at 320px — story bands fit without horizontal scroll",
+                "status": "passed",
+                "durationMs": 5789
+              }
+            ],
+            "axe": {
+              "violations": [
+                {
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/color-contrast?application=playwright",
+                  "nodes": 1
+                }
+              ]
+            }
+          },
+          "functional": {
+            "suite": "functional",
+            "passed": 102,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "102 test(s) in Playwright report for functional."
+            ],
+            "errors": [],
+            "cases": [
+              {
+                "name": "[fn] Page heading is visible",
+                "status": "passed",
+                "durationMs": 2633
+              },
+              {
+                "name": "[fn] Playground loads without console errors",
+                "status": "passed",
+                "durationMs": 5441
+              },
+              {
+                "name": "[fn] Default row shows counter text and helper button",
+                "status": "passed",
+                "durationMs": 2768
+              },
+              {
+                "name": "[fn] Every showcase row is visible without error text",
+                "status": "passed",
+                "durationMs": 3186
+              },
+              {
+                "name": "[fn] Every showcase section is visible",
+                "status": "passed",
+                "durationMs": 7711
+              },
+              {
+                "name": "[fn] Default row uses medium size",
+                "status": "passed",
+                "durationMs": 2637
+              },
+              {
+                "name": "[fn] Size S maps to data-size \"s\"",
+                "status": "passed",
+                "durationMs": 4822
+              },
+              {
+                "name": "[fn] Size M maps to data-size \"m\"",
+                "status": "passed",
+                "durationMs": 4329
+              },
+              {
+                "name": "[fn] Size L maps to data-size \"l\"",
+                "status": "passed",
+                "durationMs": 3156
+              },
+              {
+                "name": "[fn] Slot preset \"both\" shows the expected regions",
+                "status": "passed",
+                "durationMs": 4627
+              },
+              {
+                "name": "[fn] Slot preset \"content\" shows the expected regions",
+                "status": "passed",
+                "durationMs": 2964
+              },
+              {
+                "name": "[fn] Slot preset \"end\" shows the expected regions",
+                "status": "passed",
+                "durationMs": 3093
+              },
+              {
+                "name": "[fn] Slot preset \"none\" shows the expected regions",
+                "status": "passed",
+                "durationMs": 2854
+              },
+              {
+                "name": "[fn] Clicking the end button updates the live copy",
+                "status": "passed",
+                "durationMs": 14810
+              },
+              {
+                "name": "[fn] Default end button stays visible after click",
+                "status": "passed",
+                "durationMs": 3464
+              },
+              {
+                "name": "[fn] Disabled end button does not change content when clicked",
+                "status": "passed",
+                "durationMs": 3449
+              },
+              {
+                "name": "[fn] Clicking outside the row blurs the end button",
+                "status": "passed",
+                "durationMs": 19597
+              },
+              {
+                "name": "[fn] Tab reaches the trailing button on the default row",
+                "status": "passed",
+                "durationMs": 1779
+              },
+              {
+                "name": "[fn] Disabled end button is not focused when force-clicked",
+                "status": "passed",
+                "durationMs": 3234
+              },
+              {
+                "name": "[fn] Enter on the focused end button runs the click handler",
+                "status": "passed",
+                "durationMs": 2198
+              },
+              {
+                "name": "[fn] Space on the focused end button runs the click handler",
+                "status": "passed",
+                "durationMs": 2793
+              },
+              {
+                "name": "[fn] Tab can move focus away from the end button",
+                "status": "passed",
+                "durationMs": 2819
+              },
+              {
+                "name": "[fn] Clicking the end button focuses it",
+                "status": "passed",
+                "durationMs": 3724
+              },
+              {
+                "name": "[fn] Focused end button shows a visible focus ring",
+                "status": "passed",
+                "durationMs": 2294
+              },
+              {
+                "name": "[fn] Blur moves focus off the end button",
+                "status": "passed",
+                "durationMs": 2829
+              },
+              {
+                "name": "[fn] Default row is not marked data-disabled",
+                "status": "passed",
+                "durationMs": 1696
+              },
+              {
+                "name": "[fn] Disabled row sets data-disabled and disables the button",
+                "status": "passed",
+                "durationMs": 2031
+              },
+              {
+                "name": "[fn] Polite aria-live is set on the live region example",
+                "status": "passed",
+                "durationMs": 2400
+              },
+              {
+                "name": "[fn] Content-only slot shows counter without an end button",
+                "status": "passed",
+                "durationMs": 2651
+              },
+              {
+                "name": "[fn] End-only slot shows the button without inline content",
+                "status": "passed",
+                "durationMs": 1883
+              },
+              {
+                "name": "[fn] Both slots show content and end button together",
+                "status": "passed",
+                "durationMs": 3103
+              },
+              {
+                "name": "[fn] Empty content and end renders nothing for the none preset",
+                "status": "passed",
+                "durationMs": 8468
+              },
+              {
+                "name": "[fn] endAriaLabel overrides the visible button accessible name",
+                "status": "passed",
+                "durationMs": 5571
+              },
+              {
+                "name": "[fn] Default content text is non-empty",
+                "status": "passed",
+                "durationMs": 4233
+              },
+              {
+                "name": "[fn] Content stays within the row width",
+                "status": "passed",
+                "durationMs": 3520
+              },
+              {
+                "name": "[fn] End button has an accessible name",
+                "status": "passed",
+                "durationMs": 3657
+              },
+              {
+                "name": "[fn] Default section fits at a 320px wide viewport",
+                "status": "passed",
+                "durationMs": 5349
+              },
+              {
+                "name": "[fn] Default row is visible at a 1440px wide viewport",
+                "status": "passed",
+                "durationMs": 4742
+              },
+              {
+                "name": "[fn] Content and end button sit on one horizontal row",
+                "status": "passed",
+                "durationMs": 3387
+              },
+              {
+                "name": "[fn] Dark theme still renders the default row and samples",
+                "status": "passed",
+                "durationMs": 3188
+              },
+              {
+                "name": "[fn] Combination size s with both slots",
+                "status": "passed",
+                "durationMs": 2726
+              },
+              {
+                "name": "[fn] Combination size s with content slots",
+                "status": "passed",
+                "durationMs": 15694
+              },
+              {
+                "name": "[fn] Combination size s with end slots",
+                "status": "passed",
+                "durationMs": 3362
+              },
+              {
+                "name": "[fn] Combination size m with both slots",
+                "status": "passed",
+                "durationMs": 2736
+              },
+              {
+                "name": "[fn] Combination size m with content slots",
+                "status": "passed",
+                "durationMs": 2641
+              },
+              {
+                "name": "[fn] Combination size m with end slots",
+                "status": "passed",
+                "durationMs": 1578
+              },
+              {
+                "name": "[fn] Combination size l with both slots",
+                "status": "passed",
+                "durationMs": 1954
+              },
+              {
+                "name": "[fn] Combination size l with content slots",
+                "status": "passed",
+                "durationMs": 2499
+              },
+              {
+                "name": "[fn] Combination size l with end slots",
+                "status": "passed",
+                "durationMs": 2502
+              },
+              {
+                "name": "1.1 — Page loads without console errors; default row mounts",
+                "status": "passed",
+                "durationMs": 4385
+              },
+              {
+                "name": "1.2 — Every Test Scenarios `data-testid` is visible",
+                "status": "passed",
+                "durationMs": 9849
+              },
+              {
+                "name": "1.3 — Every `data-section` band is visible",
+                "status": "passed",
+                "durationMs": 5792
+              },
+              {
+                "name": "2.1 — Default row exposes data-size m with content and end button",
+                "status": "passed",
+                "durationMs": 4224
+              },
+              {
+                "name": "2.1 — Size S maps to data-size \"s\"",
+                "status": "passed",
+                "durationMs": 3104
+              },
+              {
+                "name": "2.1 — Size M maps to data-size \"m\"",
+                "status": "passed",
+                "durationMs": 4385
+              },
+              {
+                "name": "2.1 — Size L maps to data-size \"l\"",
+                "status": "passed",
+                "durationMs": 2612
+              },
+              {
+                "name": "2.3 — Appearance colour (N/A)",
+                "status": "passed",
+                "durationMs": 2874
+              },
+              {
+                "name": "3.1 — End button click increments onEndClick counter",
+                "status": "passed",
+                "durationMs": 2425
+              },
+              {
+                "name": "3.2 — Disabled end button does not change content on click",
+                "status": "passed",
+                "durationMs": 2760
+              },
+              {
+                "name": "3.3 — Readonly (N/A)",
+                "status": "passed",
+                "durationMs": 15169
+              },
+              {
+                "name": "3.4 — Click outside blurs focused end button",
+                "status": "passed",
+                "durationMs": 3913
+              },
+              {
+                "name": "4.1 — Tab reaches default row trailing button",
+                "status": "passed",
+                "durationMs": 3836
+              },
+              {
+                "name": "4.1 — Disabled trailing button is not focused after force click",
+                "status": "passed",
+                "durationMs": 17897
+              },
+              {
+                "name": "4.2 — Enter activates onEndClick handler",
+                "status": "passed",
+                "durationMs": 5690
+              },
+              {
+                "name": "4.3 — Space activates onEndClick handler",
+                "status": "passed",
+                "durationMs": 3007
+              },
+              {
+                "name": "4.4 — Arrow keys (N/A)",
+                "status": "passed",
+                "durationMs": 6248
+              },
+              {
+                "name": "4.5 — Home/End (N/A)",
+                "status": "passed",
+                "durationMs": 4321
+              },
+              {
+                "name": "4.6 — Escape (N/A)",
+                "status": "passed",
+                "durationMs": 2932
+              },
+              {
+                "name": "4.7 — Tab escapes end button without trap",
+                "status": "passed",
+                "durationMs": 3728
+              },
+              {
+                "name": "5.1 — Click focuses trailing button",
+                "status": "passed",
+                "durationMs": 3625
+              },
+              {
+                "name": "5.2 — Focused button shows visible focus ring",
+                "status": "passed",
+                "durationMs": 3030
+              },
+              {
+                "name": "5.3 — Tab order reaches end button after page chrome",
+                "status": "passed",
+                "durationMs": 3217
+              },
+              {
+                "name": "5.4 — Blur removes focus from end button",
+                "status": "passed",
+                "durationMs": 3161
+              },
+              {
+                "name": "5.5 — autoFocus (N/A)",
+                "status": "passed",
+                "durationMs": 2512
+              },
+              {
+                "name": "6.1 — Default row is enabled without data-disabled",
+                "status": "passed",
+                "durationMs": 10137
+              },
+              {
+                "name": "6.2 — Selected/checked (N/A)",
+                "status": "passed",
+                "durationMs": 4761
+              },
+              {
+                "name": "6.3 — Disabled row sets data-disabled and disables button",
+                "status": "passed",
+                "durationMs": 3671
+              },
+              {
+                "name": "6.4 — Readonly (N/A)",
+                "status": "passed",
+                "durationMs": 3742
+              },
+              {
+                "name": "6.5 — Error state (N/A)",
+                "status": "passed",
+                "durationMs": 15280
+              },
+              {
+                "name": "6.6 — Loading state (N/A)",
+                "status": "passed",
+                "durationMs": 3155
+              },
+              {
+                "name": "7.1 — content-only preset shows copy without end button",
+                "status": "passed",
+                "durationMs": 2195
+              },
+              {
+                "name": "7.2 — end-only preset shows button without content paragraph",
+                "status": "passed",
+                "durationMs": 2506
+              },
+              {
+                "name": "7.3 — both preset shows content and end together",
+                "status": "passed",
+                "durationMs": 1856
+              },
+              {
+                "name": "7.4 — Icon colour inheritance (N/A)",
+                "status": "passed",
+                "durationMs": 1528
+              },
+              {
+                "name": "8.x — Not a toggle component",
+                "status": "passed",
+                "durationMs": 1993
+              },
+              {
+                "name": "9.x — Not a native text input",
+                "status": "passed",
+                "durationMs": 2003
+              },
+              {
+                "name": "10.1 — none preset with empty content+end renders null (no testid in DOM)",
+                "status": "passed",
+                "durationMs": 2416
+              },
+              {
+                "name": "10.2 — endAriaLabel overrides default button accessible name",
+                "status": "passed",
+                "durationMs": 2198
+              },
+              {
+                "name": "10.3 — Loading overrides (N/A)",
+                "status": "passed",
+                "durationMs": 2616
+              },
+              {
+                "name": "11.1 — Default content copy is non-empty",
+                "status": "passed",
+                "durationMs": 2795
+              },
+              {
+                "name": "11.1 — aria-live polite is on content region",
+                "status": "passed",
+                "durationMs": 8377
+              },
+              {
+                "name": "11.2 — End button exposes accessible name from visible label",
+                "status": "passed",
+                "durationMs": 5398
+              },
+              {
+                "name": "11.3 — Progress value (N/A)",
+                "status": "passed",
+                "durationMs": 4096
+              },
+              {
+                "name": "12.1 — fullWidth (N/A)",
+                "status": "passed",
+                "durationMs": 3379
+              },
+              {
+                "name": "12.2 — At 320px viewport, story bands fit without horizontal scroll",
+                "status": "passed",
+                "durationMs": 6335
+              },
+              {
+                "name": "12.2b — Default row visible at 1440px viewport",
+                "status": "passed",
+                "durationMs": 4902
+              },
+              {
+                "name": "12.3 — Content and end button share one horizontal row",
+                "status": "passed",
+                "durationMs": 2210
+              },
+              {
+                "name": "13.1 — After dark theme, all scenario sections remain visible",
+                "status": "passed",
+                "durationMs": 12184
+              },
+              {
+                "name": "13.1 — Default row remains visible in dark mode",
+                "status": "passed",
+                "durationMs": 3747
+              },
+              {
+                "name": "Smoke — Page heading reads “Input Dynamic Text”",
+                "status": "passed",
+                "durationMs": 3785
+              },
+              {
+                "name": "Smoke — Default row visible with counter and helper button",
+                "status": "passed",
+                "durationMs": 19136
+              },
+              {
+                "name": "Smoke — Manifest testid count in showcase scope",
+                "status": "passed",
+                "durationMs": 1875
+              }
+            ]
+          },
+          "performance": {
+            "suite": "performance",
+            "passed": 0,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "Performance suite is not executed in apps/qa-playground input-dynamic-text Playwright bundle."
+            ],
+            "errors": []
+          }
+        }
+      }
+    },
+    {
+      "savedAt": "2026-06-17T07:52:55.163Z",
+      "report": {
+        "ok": true,
+        "slug": "input-dynamic-text",
+        "message": "Input Dynamic Text QA Playwright run OK — 2026-06-04T09:58:36.648Z",
+        "suites": {
+          "accessibility": {
+            "suite": "accessibility",
+            "passed": 40,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "40 test(s) in Playwright report for accessibility.",
+              "Axe: 1 violation rule(s) reported."
+            ],
+            "errors": [],
+            "cases": [
+              {
+                "name": "[a11y] Full page WCAG 2.1 AA scan has no serious or critical issues (report saved)",
+                "status": "passed",
+                "durationMs": 3646
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Default band",
+                "status": "passed",
+                "durationMs": 3563
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Size (S · M · L) band",
+                "status": "passed",
+                "durationMs": 3873
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Content × end slots band",
+                "status": "passed",
+                "durationMs": 3670
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — States & behaviour band",
+                "status": "passed",
+                "durationMs": 3530
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Combination matrix band",
+                "status": "passed",
+                "durationMs": 3443
+              },
+              {
+                "name": "[a11y] Row \"Default\": WCAG 2.1 AA scan has no serious or critical issues",
+                "status": "passed",
+                "durationMs": 3410
+              },
+              {
+                "name": "[a11y] Row \"Size M\": WCAG 2.1 AA scan has no serious or critical issues",
+                "status": "passed",
+                "durationMs": 3501
+              },
+              {
+                "name": "[a11y] Row \"Slot Both\": WCAG 2.1 AA scan has no serious or critical issues",
+                "status": "passed",
+                "durationMs": 3480
+              },
+              {
+                "name": "[a11y] Row \"Slot Content\": WCAG 2.1 AA scan has no serious or critical issues",
+                "status": "passed",
+                "durationMs": 3666
+              },
+              {
+                "name": "[a11y] Row \"Slot End\": WCAG 2.1 AA scan has no serious or critical issues",
+                "status": "passed",
+                "durationMs": 2853
+              },
+              {
+                "name": "[a11y] Row \"Disabled\": WCAG 2.1 AA scan has no serious or critical issues",
+                "status": "passed",
+                "durationMs": 2845
+              },
+              {
+                "name": "[a11y] Row \"Aria Live Polite\": WCAG 2.1 AA scan has no serious or critical issues",
+                "status": "passed",
+                "durationMs": 2932
+              },
+              {
+                "name": "[a11y] Row \"End Aria Label\": WCAG 2.1 AA scan has no serious or critical issues",
+                "status": "passed",
+                "durationMs": 3332
+              },
+              {
+                "name": "[a11y] Row \"End Click\": WCAG 2.1 AA scan has no serious or critical issues",
+                "status": "passed",
+                "durationMs": 2997
+              },
+              {
+                "name": "[a11y] Row \"Combo M Both\": WCAG 2.1 AA scan has no serious or critical issues",
+                "status": "passed",
+                "durationMs": 2816
+              },
+              {
+                "name": "[a11y] Size S row is visible",
+                "status": "passed",
+                "durationMs": 2416
+              },
+              {
+                "name": "[a11y] Size M row is visible",
+                "status": "passed",
+                "durationMs": 3043
+              },
+              {
+                "name": "[a11y] Size L row is visible",
+                "status": "passed",
+                "durationMs": 2974
+              },
+              {
+                "name": "[a11y] Content and end preset \"both\" behaves as expected",
+                "status": "passed",
+                "durationMs": 2924
+              },
+              {
+                "name": "[a11y] Content and end preset \"content\" behaves as expected",
+                "status": "passed",
+                "durationMs": 2740
+              },
+              {
+                "name": "[a11y] Content and end preset \"end\" behaves as expected",
+                "status": "passed",
+                "durationMs": 2569
+              },
+              {
+                "name": "[a11y] Content and end preset \"none\" behaves as expected",
+                "status": "passed",
+                "durationMs": 2780
+              },
+              {
+                "name": "[a11y] Disabled row trailing button is disabled",
+                "status": "passed",
+                "durationMs": 2543
+              },
+              {
+                "name": "[a11y] Default trailing button has an accessible name from its label",
+                "status": "passed",
+                "durationMs": 2562
+              },
+              {
+                "name": "[a11y] endAriaLabel override exposes accessible name on trailing button",
+                "status": "passed",
+                "durationMs": 2638
+              },
+              {
+                "name": "[a11y] Polite aria-live region on content copy",
+                "status": "passed",
+                "durationMs": 2582
+              },
+              {
+                "name": "[a11y] ARIA validity rules — Test Scenarios story bands",
+                "status": "passed",
+                "durationMs": 2912
+              },
+              {
+                "name": "[a11y] Document has a non-empty lang attribute on the html element",
+                "status": "passed",
+                "durationMs": 2446
+              },
+              {
+                "name": "[a11y] Combination row \"Combo S Both\" is visible",
+                "status": "passed",
+                "durationMs": 2681
+              },
+              {
+                "name": "[a11y] Combination row \"Combo S Content\" is visible",
+                "status": "passed",
+                "durationMs": 2488
+              },
+              {
+                "name": "[a11y] Combination row \"Combo S End\" is visible",
+                "status": "passed",
+                "durationMs": 2580
+              },
+              {
+                "name": "[a11y] Combination row \"Combo M Both\" is visible",
+                "status": "passed",
+                "durationMs": 2448
+              },
+              {
+                "name": "[a11y] Combination row \"Combo M Content\" is visible",
+                "status": "passed",
+                "durationMs": 2799
+              },
+              {
+                "name": "[a11y] Combination row \"Combo M End\" is visible",
+                "status": "passed",
+                "durationMs": 2690
+              },
+              {
+                "name": "[a11y] Combination row \"Combo L Both\" is visible",
+                "status": "passed",
+                "durationMs": 2465
+              },
+              {
+                "name": "[a11y] Combination row \"Combo L Content\" is visible",
+                "status": "passed",
+                "durationMs": 2870
+              },
+              {
+                "name": "[a11y] Combination row \"Combo L End\" is visible",
+                "status": "passed",
+                "durationMs": 2812
+              },
+              {
+                "name": "[a11y] Empty slot preset does not mount a row root in the DOM",
+                "status": "passed",
+                "durationMs": 2773
+              },
+              {
+                "name": "[a11y] Reflow at 320px — story bands fit without horizontal scroll",
+                "status": "passed",
+                "durationMs": 4947
+              }
+            ],
+            "axe": {
+              "violations": [
+                {
+                  "id": "color-contrast",
+                  "impact": "serious",
+                  "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+                  "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/color-contrast?application=playwright",
+                  "nodes": 1
+                }
+              ]
+            }
+          },
+          "functional": {
+            "suite": "functional",
+            "passed": 102,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "102 test(s) in Playwright report for functional."
+            ],
+            "errors": [],
+            "cases": [
+              {
+                "name": "[fn] Page heading is visible",
+                "status": "passed",
+                "durationMs": 2406
+              },
+              {
+                "name": "[fn] Playground loads without console errors",
+                "status": "passed",
+                "durationMs": 4294
+              },
+              {
+                "name": "[fn] Default row shows counter text and helper button",
+                "status": "passed",
+                "durationMs": 2685
+              },
+              {
+                "name": "[fn] Every showcase row is visible without error text",
+                "status": "passed",
+                "durationMs": 2918
+              },
+              {
+                "name": "[fn] Every showcase section is visible",
+                "status": "passed",
+                "durationMs": 2588
+              },
+              {
+                "name": "[fn] Default row uses medium size",
+                "status": "passed",
+                "durationMs": 2448
+              },
+              {
+                "name": "[fn] Size S maps to data-size \"s\"",
+                "status": "passed",
+                "durationMs": 2655
+              },
+              {
+                "name": "[fn] Size M maps to data-size \"m\"",
+                "status": "passed",
+                "durationMs": 3016
+              },
+              {
+                "name": "[fn] Size L maps to data-size \"l\"",
+                "status": "passed",
+                "durationMs": 2512
+              },
+              {
+                "name": "[fn] Slot preset \"both\" shows the expected regions",
+                "status": "passed",
+                "durationMs": 2837
+              },
+              {
+                "name": "[fn] Slot preset \"content\" shows the expected regions",
+                "status": "passed",
+                "durationMs": 2877
+              },
+              {
+                "name": "[fn] Slot preset \"end\" shows the expected regions",
+                "status": "passed",
+                "durationMs": 2970
+              },
+              {
+                "name": "[fn] Slot preset \"none\" shows the expected regions",
+                "status": "passed",
+                "durationMs": 2709
+              },
+              {
+                "name": "[fn] Clicking the end button updates the live copy",
+                "status": "passed",
+                "durationMs": 2478
+              },
+              {
+                "name": "[fn] Default end button stays visible after click",
+                "status": "passed",
+                "durationMs": 2462
+              },
+              {
+                "name": "[fn] Disabled end button does not change content when clicked",
+                "status": "passed",
+                "durationMs": 2383
+              },
+              {
+                "name": "[fn] Clicking outside the row blurs the end button",
+                "status": "passed",
+                "durationMs": 2441
+              },
+              {
+                "name": "[fn] Tab reaches the trailing button on the default row",
+                "status": "passed",
+                "durationMs": 2468
+              },
+              {
+                "name": "[fn] Disabled end button is not focused when force-clicked",
+                "status": "passed",
+                "durationMs": 2313
+              },
+              {
+                "name": "[fn] Enter on the focused end button runs the click handler",
+                "status": "passed",
+                "durationMs": 3824
+              },
+              {
+                "name": "[fn] Space on the focused end button runs the click handler",
+                "status": "passed",
+                "durationMs": 4030
+              },
+              {
+                "name": "[fn] Tab can move focus away from the end button",
+                "status": "passed",
+                "durationMs": 2504
+              },
+              {
+                "name": "[fn] Clicking the end button focuses it",
+                "status": "passed",
+                "durationMs": 2432
+              },
+              {
+                "name": "[fn] Focused end button shows a visible focus ring",
+                "status": "passed",
+                "durationMs": 2311
+              },
+              {
+                "name": "[fn] Blur moves focus off the end button",
+                "status": "passed",
+                "durationMs": 2361
+              },
+              {
+                "name": "[fn] Default row is not marked data-disabled",
+                "status": "passed",
+                "durationMs": 2341
+              },
+              {
+                "name": "[fn] Disabled row sets data-disabled and disables the button",
+                "status": "passed",
+                "durationMs": 2470
+              },
+              {
+                "name": "[fn] Polite aria-live is set on the live region example",
+                "status": "passed",
+                "durationMs": 2795
+              },
+              {
+                "name": "[fn] Content-only slot shows counter without an end button",
+                "status": "passed",
+                "durationMs": 2645
+              },
+              {
+                "name": "[fn] End-only slot shows the button without inline content",
+                "status": "passed",
+                "durationMs": 2713
+              },
+              {
+                "name": "[fn] Both slots show content and end button together",
+                "status": "passed",
+                "durationMs": 2930
+              },
+              {
+                "name": "[fn] Empty content and end renders nothing for the none preset",
+                "status": "passed",
+                "durationMs": 2549
+              },
+              {
+                "name": "[fn] endAriaLabel overrides the visible button accessible name",
+                "status": "passed",
+                "durationMs": 3130
+              },
+              {
+                "name": "[fn] Default content text is non-empty",
+                "status": "passed",
+                "durationMs": 2553
+              },
+              {
+                "name": "[fn] Content stays within the row width",
+                "status": "passed",
+                "durationMs": 2697
+              },
+              {
+                "name": "[fn] End button has an accessible name",
+                "status": "passed",
+                "durationMs": 2369
+              },
+              {
+                "name": "[fn] Default section fits at a 320px wide viewport",
+                "status": "passed",
+                "durationMs": 4303
+              },
+              {
+                "name": "[fn] Default row is visible at a 1440px wide viewport",
+                "status": "passed",
+                "durationMs": 4242
+              },
+              {
+                "name": "[fn] Content and end button sit on one horizontal row",
+                "status": "passed",
+                "durationMs": 2415
+              },
+              {
+                "name": "[fn] Dark theme still renders the default row and samples",
+                "status": "passed",
+                "durationMs": 3196
+              },
+              {
+                "name": "[fn] Combination size s with both slots",
+                "status": "passed",
+                "durationMs": 4219
+              },
+              {
+                "name": "[fn] Combination size s with content slots",
+                "status": "passed",
+                "durationMs": 2754
+              },
+              {
+                "name": "[fn] Combination size s with end slots",
+                "status": "passed",
+                "durationMs": 2618
+              },
+              {
+                "name": "[fn] Combination size m with both slots",
+                "status": "passed",
+                "durationMs": 2670
+              },
+              {
+                "name": "[fn] Combination size m with content slots",
+                "status": "passed",
+                "durationMs": 2646
+              },
+              {
+                "name": "[fn] Combination size m with end slots",
+                "status": "passed",
+                "durationMs": 2753
+              },
+              {
+                "name": "[fn] Combination size l with both slots",
+                "status": "passed",
+                "durationMs": 2577
+              },
+              {
+                "name": "[fn] Combination size l with content slots",
+                "status": "passed",
+                "durationMs": 2610
+              },
+              {
+                "name": "[fn] Combination size l with end slots",
+                "status": "passed",
+                "durationMs": 2641
+              },
+              {
+                "name": "1.1 — Page loads without console errors; default row mounts",
+                "status": "passed",
+                "durationMs": 4452
+              },
+              {
+                "name": "1.2 — Every Test Scenarios `data-testid` is visible",
+                "status": "passed",
+                "durationMs": 3040
+              },
+              {
+                "name": "1.3 — Every `data-section` band is visible",
+                "status": "passed",
+                "durationMs": 2460
+              },
+              {
+                "name": "2.1 — Default row exposes data-size m with content and end button",
+                "status": "passed",
+                "durationMs": 3199
+              },
+              {
+                "name": "2.1 — Size S maps to data-size \"s\"",
+                "status": "passed",
+                "durationMs": 2381
+              },
+              {
+                "name": "2.1 — Size M maps to data-size \"m\"",
+                "status": "passed",
+                "durationMs": 2509
+              },
+              {
+                "name": "2.1 — Size L maps to data-size \"l\"",
+                "status": "passed",
+                "durationMs": 2448
+              },
+              {
+                "name": "2.3 — Appearance colour (N/A)",
+                "status": "passed",
+                "durationMs": 2445
+              },
+              {
+                "name": "3.1 — End button click increments onEndClick counter",
+                "status": "passed",
+                "durationMs": 2356
+              },
+              {
+                "name": "3.2 — Disabled end button does not change content on click",
+                "status": "passed",
+                "durationMs": 2414
+              },
+              {
+                "name": "3.3 — Readonly (N/A)",
+                "status": "passed",
+                "durationMs": 2272
+              },
+              {
+                "name": "3.4 — Click outside blurs focused end button",
+                "status": "passed",
+                "durationMs": 2400
+              },
+              {
+                "name": "4.1 — Tab reaches default row trailing button",
+                "status": "passed",
+                "durationMs": 4788
+              },
+              {
+                "name": "4.1 — Disabled trailing button is not focused after force click",
+                "status": "passed",
+                "durationMs": 3304
+              },
+              {
+                "name": "4.2 — Enter activates onEndClick handler",
+                "status": "passed",
+                "durationMs": 2445
+              },
+              {
+                "name": "4.3 — Space activates onEndClick handler",
+                "status": "passed",
+                "durationMs": 2724
+              },
+              {
+                "name": "4.4 — Arrow keys (N/A)",
+                "status": "passed",
+                "durationMs": 2546
+              },
+              {
+                "name": "4.5 — Home/End (N/A)",
+                "status": "passed",
+                "durationMs": 2703
+              },
+              {
+                "name": "4.6 — Escape (N/A)",
+                "status": "passed",
+                "durationMs": 2417
+              },
+              {
+                "name": "4.7 — Tab escapes end button without trap",
+                "status": "passed",
+                "durationMs": 2800
+              },
+              {
+                "name": "5.1 — Click focuses trailing button",
+                "status": "passed",
+                "durationMs": 2578
+              },
+              {
+                "name": "5.2 — Focused button shows visible focus ring",
+                "status": "passed",
+                "durationMs": 2939
+              },
+              {
+                "name": "5.3 — Tab order reaches end button after page chrome",
+                "status": "passed",
+                "durationMs": 2706
+              },
+              {
+                "name": "5.4 — Blur removes focus from end button",
+                "status": "passed",
+                "durationMs": 2644
+              },
+              {
+                "name": "5.5 — autoFocus (N/A)",
+                "status": "passed",
+                "durationMs": 2653
+              },
+              {
+                "name": "6.1 — Default row is enabled without data-disabled",
+                "status": "passed",
+                "durationMs": 2772
+              },
+              {
+                "name": "6.2 — Selected/checked (N/A)",
+                "status": "passed",
+                "durationMs": 2505
+              },
+              {
+                "name": "6.3 — Disabled row sets data-disabled and disables button",
+                "status": "passed",
+                "durationMs": 2404
+              },
+              {
+                "name": "6.4 — Readonly (N/A)",
+                "status": "passed",
+                "durationMs": 2345
+              },
+              {
+                "name": "6.5 — Error state (N/A)",
+                "status": "passed",
+                "durationMs": 2366
+              },
+              {
+                "name": "6.6 — Loading state (N/A)",
+                "status": "passed",
+                "durationMs": 2315
+              },
+              {
+                "name": "7.1 — content-only preset shows copy without end button",
+                "status": "passed",
+                "durationMs": 2301
+              },
+              {
+                "name": "7.2 — end-only preset shows button without content paragraph",
+                "status": "passed",
+                "durationMs": 2488
+              },
+              {
+                "name": "7.3 — both preset shows content and end together",
+                "status": "passed",
+                "durationMs": 2866
+              },
+              {
+                "name": "7.4 — Icon colour inheritance (N/A)",
+                "status": "passed",
+                "durationMs": 3583
+              },
+              {
+                "name": "8.x — Not a toggle component",
+                "status": "passed",
+                "durationMs": 2556
+              },
+              {
+                "name": "9.x — Not a native text input",
+                "status": "passed",
+                "durationMs": 2390
+              },
+              {
+                "name": "10.1 — none preset with empty content+end renders null (no testid in DOM)",
+                "status": "passed",
+                "durationMs": 2722
+              },
+              {
+                "name": "10.2 — endAriaLabel overrides default button accessible name",
+                "status": "passed",
+                "durationMs": 2411
+              },
+              {
+                "name": "10.3 — Loading overrides (N/A)",
+                "status": "passed",
+                "durationMs": 2315
+              },
+              {
+                "name": "11.1 — Default content copy is non-empty",
+                "status": "passed",
+                "durationMs": 2531
+              },
+              {
+                "name": "11.1 — aria-live polite is on content region",
+                "status": "passed",
+                "durationMs": 2419
+              },
+              {
+                "name": "11.2 — End button exposes accessible name from visible label",
+                "status": "passed",
+                "durationMs": 2476
+              },
+              {
+                "name": "11.3 — Progress value (N/A)",
+                "status": "passed",
+                "durationMs": 2532
+              },
+              {
+                "name": "12.1 — fullWidth (N/A)",
+                "status": "passed",
+                "durationMs": 2547
+              },
+              {
+                "name": "12.2 — At 320px viewport, story bands fit without horizontal scroll",
+                "status": "passed",
+                "durationMs": 5330
+              },
+              {
+                "name": "12.2b — Default row visible at 1440px viewport",
+                "status": "passed",
+                "durationMs": 4653
+              },
+              {
+                "name": "12.3 — Content and end button share one horizontal row",
+                "status": "passed",
+                "durationMs": 2442
+              },
+              {
+                "name": "13.1 — After dark theme, all scenario sections remain visible",
+                "status": "passed",
+                "durationMs": 4540
+              },
+              {
+                "name": "13.1 — Default row remains visible in dark mode",
+                "status": "passed",
+                "durationMs": 2583
+              },
+              {
+                "name": "Smoke — Page heading reads “Input Dynamic Text”",
+                "status": "passed",
+                "durationMs": 2484
+              },
+              {
+                "name": "Smoke — Default row visible with counter and helper button",
+                "status": "passed",
+                "durationMs": 3467
+              },
+              {
+                "name": "Smoke — Manifest testid count in showcase scope",
+                "status": "passed",
+                "durationMs": 3951
+              }
+            ]
+          },
+          "performance": {
+            "suite": "performance",
+            "passed": 0,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "Performance suite is not executed in Input Dynamic Text QA bundle."
+            ],
+            "errors": []
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+import React from 'react';
+import Svg, { Path, type SvgProps } from 'react-native-svg';
+export function IcFind(props: SvgProps) {
+  const fill = String(props.fill ?? '#000000');
+  return (
+    <Svg viewBox="0 0 24 24" fill="none" {...props}>
+      <Path
+            fill={fill}
+            d="M11 9c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2m5.5-7h-9c-1.66 0-3 1.34-3 3v14c0 1.66 1.34 3 3 3h9c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3m.21 14.71c-.2.2-.45.29-.71.29s-.51-.1-.71-.29l-2.27-2.27c-.59.35-1.28.57-2.02.57-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4c0 .74-.22 1.42-.57 2.02l2.27 2.27c.39.39.39 1.02 0 1.41z"
+          />
+    </Svg>
+  );
+}

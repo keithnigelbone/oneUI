@@ -1,0 +1,621 @@
+{
+  "ok": true,
+  "slug": "stepper",
+  "message": "stepper QA Playwright run OK — 2026-06-23T09:43:17.282Z",
+  "suites": {
+    "accessibility": {
+      "suite": "accessibility",
+      "passed": 47,
+      "failed": 0,
+      "skipped": 0,
+      "logs": [
+        "47 test(s) in Playwright report for accessibility.",
+        "Axe: scan completed — 0 violation rules reported."
+      ],
+      "errors": [],
+      "cases": [
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — zero serious/critical + HTML report",
+          "status": "passed",
+          "durationMs": 6065
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — Default band",
+          "status": "passed",
+          "durationMs": 4871,
+          "componentBand": "stepper-qa-default"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — Size (S · M · L) band",
+          "status": "passed",
+          "durationMs": 4547,
+          "componentBand": "stepper-qa-size"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — Attention (high · medium · low) band",
+          "status": "passed",
+          "durationMs": 4694,
+          "componentBand": "stepper-qa-attention"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — Appearance band",
+          "status": "passed",
+          "durationMs": 4920,
+          "componentBand": "stepper-qa-appearance"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — Accent band",
+          "status": "passed",
+          "durationMs": 3907,
+          "componentBand": "stepper-qa-accent"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — Condensed band",
+          "status": "passed",
+          "durationMs": 3657,
+          "componentBand": "stepper-qa-condensed"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — Disabled band",
+          "status": "passed",
+          "durationMs": 15433,
+          "componentBand": "stepper-qa-disabled"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — InputText (Figma row) band",
+          "status": "passed",
+          "durationMs": 4052,
+          "componentBand": "stepper-qa-input-text"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — Code only — start / end slots band",
+          "status": "passed",
+          "durationMs": 3290,
+          "componentBand": "stepper-qa-figma-code-slots"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — readOnly · error · required band",
+          "status": "passed",
+          "durationMs": 2876,
+          "componentBand": "stepper-qa-extra-states"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — Combination matrix band",
+          "status": "passed",
+          "durationMs": 12703,
+          "componentBand": "stepper-qa-combos"
+        },
+        {
+          "name": "[a11y] data-testid=\"stepper-default\" — zero serious/critical",
+          "status": "passed",
+          "durationMs": 3185
+        },
+        {
+          "name": "[a11y] data-testid=\"stepper-size-M\" — zero serious/critical",
+          "status": "passed",
+          "durationMs": 3159
+        },
+        {
+          "name": "[a11y] data-testid=\"stepper-attention-high\" — zero serious/critical",
+          "status": "passed",
+          "durationMs": 2303
+        },
+        {
+          "name": "[a11y] data-testid=\"stepper-appearance-primary\" — zero serious/critical",
+          "status": "passed",
+          "durationMs": 2573
+        },
+        {
+          "name": "[a11y] data-testid=\"stepper-accent-primary-h\" — zero serious/critical",
+          "status": "passed",
+          "durationMs": 2507
+        },
+        {
+          "name": "[a11y] data-testid=\"stepper-condensed-true\" — zero serious/critical",
+          "status": "passed",
+          "durationMs": 2440
+        },
+        {
+          "name": "[a11y] data-testid=\"stepper-disabled-true\" — zero serious/critical",
+          "status": "passed",
+          "durationMs": 2252
+        },
+        {
+          "name": "[a11y] data-testid=\"stepper-readonly\" — zero serious/critical",
+          "status": "passed",
+          "durationMs": 2278
+        },
+        {
+          "name": "[a11y] data-testid=\"stepper-error\" — zero serious/critical",
+          "status": "passed",
+          "durationMs": 2023
+        },
+        {
+          "name": "[a11y] data-testid=\"stepper-combo-0\" — zero serious/critical",
+          "status": "passed",
+          "durationMs": 2173
+        },
+        {
+          "name": "[a11y] Section 508 tag run — zero serious/critical",
+          "status": "passed",
+          "durationMs": 2386
+        },
+        {
+          "name": "[a11y] axe non-text-contrast rule — showcase bands (if rule exists)",
+          "status": "passed",
+          "durationMs": 1856
+        },
+        {
+          "name": "[a11y] axe label rule — showcase bands, zero serious/critical",
+          "status": "passed",
+          "durationMs": 2454
+        },
+        {
+          "name": "[a11y] ARIA validity rules — zero serious/critical",
+          "status": "passed",
+          "durationMs": 3406
+        },
+        {
+          "name": "[a11y] axe name rules (button / input-button / link) — showcase bands",
+          "status": "passed",
+          "durationMs": 3103
+        },
+        {
+          "name": "[a11y] scrollable regions focusable — zero serious/critical",
+          "status": "passed",
+          "durationMs": 3219
+        },
+        {
+          "name": "[a11y] images: if present, every <img> has alt attribute",
+          "status": "passed",
+          "durationMs": 2834
+        },
+        {
+          "name": "[a11y] DOM scan — SVG nodes inside showcase bands (label, hidden, role, or title)",
+          "status": "passed",
+          "durationMs": 3934
+        },
+        {
+          "name": "[a11y] page lang on <html>",
+          "status": "passed",
+          "durationMs": 3599
+        },
+        {
+          "name": "[a11y] Viewport 320px — horizontal overflow check per showcase band",
+          "status": "passed",
+          "durationMs": 6140
+        },
+        {
+          "name": "[a11y] 200% zoom — showcase steppers remain visible",
+          "status": "passed",
+          "durationMs": 4129
+        },
+        {
+          "name": "[a11y] Tab reaches a focusable control",
+          "status": "passed",
+          "durationMs": 5112
+        },
+        {
+          "name": "[a11y] no keyboard trap (Tab cycle advances)",
+          "status": "passed",
+          "durationMs": 4360
+        },
+        {
+          "name": "[a11y] focused element shows outline or box-shadow",
+          "status": "passed",
+          "durationMs": 3222
+        },
+        {
+          "name": "[a11y] focus order — Tab visits multiple distinct targets",
+          "status": "passed",
+          "durationMs": 2606
+        },
+        {
+          "name": "[a11y] skip link — first Tab target visible if present",
+          "status": "passed",
+          "durationMs": 2931
+        },
+        {
+          "name": "[a11y] Mode select activates with Enter when focused",
+          "status": "passed",
+          "durationMs": 3845
+        },
+        {
+          "name": "[a11y] Mode select activates with Space when focused",
+          "status": "passed",
+          "durationMs": 3805
+        },
+        {
+          "name": "[a11y] Accessible name readout — default stepper number field",
+          "status": "passed",
+          "durationMs": 3268
+        },
+        {
+          "name": "[a11y] Accessible name readout — stepper-size-M number field",
+          "status": "passed",
+          "durationMs": 3778
+        },
+        {
+          "name": "[a11y] Accessible name readout — every Stepper value field in showcase",
+          "status": "passed",
+          "durationMs": 4290
+        },
+        {
+          "name": "[a11y] DOM inspection — stepper-error field aria-invalid",
+          "status": "passed",
+          "durationMs": 3292
+        },
+        {
+          "name": "[a11y] Keyboard Arrow Up — default stepper value increase",
+          "status": "passed",
+          "durationMs": 3724
+        },
+        {
+          "name": "[a11y] Keyboard Arrow Down — default stepper value decrease",
+          "status": "passed",
+          "durationMs": 3602
+        },
+        {
+          "name": "[a11y] aria-live-region-content rule if available",
+          "status": "passed",
+          "durationMs": 3453
+        }
+      ],
+      "axe": {
+        "violations": []
+      }
+    },
+    "functional": {
+      "suite": "functional",
+      "passed": 66,
+      "failed": 0,
+      "skipped": 0,
+      "logs": [
+        "66 test(s) in Playwright report for functional."
+      ],
+      "errors": [],
+      "cases": [
+        {
+          "name": "[fn] 1.1 — no console errors on playground load",
+          "status": "passed",
+          "durationMs": 5172
+        },
+        {
+          "name": "[fn] 1.2 — every playground data-testid is visible",
+          "status": "passed",
+          "durationMs": 5350
+        },
+        {
+          "name": "[fn] 1.3 — every data-section is visible",
+          "status": "passed",
+          "durationMs": 3026
+        },
+        {
+          "name": "[fn] 2.1 — size rows set data-size on group",
+          "status": "passed",
+          "durationMs": 2857
+        },
+        {
+          "name": "[fn] 2.1 — attention rows set data-attention on group",
+          "status": "passed",
+          "durationMs": 3836
+        },
+        {
+          "name": "[fn] 2.1 — appearance primary sets data-appearance",
+          "status": "passed",
+          "durationMs": 1412
+        },
+        {
+          "name": "[fn] 2.1 — condensed true sets data-condensed on group",
+          "status": "passed",
+          "durationMs": 3211
+        },
+        {
+          "name": "[fn] 2.2 — Size scaling — S < M < L group height",
+          "status": "passed",
+          "durationMs": 3769
+        },
+        {
+          "name": "[fn] 3.1 — increment click changes value field",
+          "status": "passed",
+          "durationMs": 2719
+        },
+        {
+          "name": "[fn] 3.2 — disabled stepper value unchanged after increment click",
+          "status": "passed",
+          "durationMs": 2886
+        },
+        {
+          "name": "[fn] 3.3 — readOnly field value unchanged after typing attempt",
+          "status": "passed",
+          "durationMs": 3234
+        },
+        {
+          "name": "[fn] 3.4 — click outside removes focus from value field",
+          "status": "passed",
+          "durationMs": 3451
+        },
+        {
+          "name": "[fn] 4.1 — Tab reaches default value field",
+          "status": "passed",
+          "durationMs": 3262
+        },
+        {
+          "name": "[fn] 4.2 — Enter (N/A)",
+          "status": "passed",
+          "durationMs": 2466
+        },
+        {
+          "name": "[fn] 4.3 — Space (N/A)",
+          "status": "passed",
+          "durationMs": 3238
+        },
+        {
+          "name": "[fn] 4.4 — Arrow Up increases value on focused field",
+          "status": "passed",
+          "durationMs": 3078
+        },
+        {
+          "name": "[fn] 4.4 — Arrow Down decreases value on focused field",
+          "status": "passed",
+          "durationMs": 3275
+        },
+        {
+          "name": "[fn] 4.6 — Escape (N/A)",
+          "status": "passed",
+          "durationMs": 3015
+        },
+        {
+          "name": "[fn] 4.7 — Tab through page without keyboard trap",
+          "status": "passed",
+          "durationMs": 3085
+        },
+        {
+          "name": "[fn] 5.1 — click focuses value field",
+          "status": "passed",
+          "durationMs": 3383
+        },
+        {
+          "name": "[fn] 5.2 — focus ring visible on value field",
+          "status": "passed",
+          "durationMs": 3233
+        },
+        {
+          "name": "[fn] 5.5 — autoFocus (N/A)",
+          "status": "passed",
+          "durationMs": 3423
+        },
+        {
+          "name": "[fn] 6.1 — default stepper renders with no initial value",
+          "status": "passed",
+          "durationMs": 2534
+        },
+        {
+          "name": "[fn] 6.3 — disabled stepper buttons are disabled",
+          "status": "passed",
+          "durationMs": 2558
+        },
+        {
+          "name": "[fn] 6.4 — readOnly field exposes readOnly property",
+          "status": "passed",
+          "durationMs": 3395
+        },
+        {
+          "name": "[fn] 6.5 — error field exposes aria-invalid",
+          "status": "passed",
+          "durationMs": 3181
+        },
+        {
+          "name": "[fn] 6.5 — required field exposes the native required attribute",
+          "status": "passed",
+          "durationMs": 3325
+        },
+        {
+          "name": "[fn] 6.6 — Loading state (N/A)",
+          "status": "passed",
+          "durationMs": 2847
+        },
+        {
+          "name": "[fn] 7.1 — Figma start/end slots (N/A)",
+          "status": "passed",
+          "durationMs": 3225
+        },
+        {
+          "name": "[fn] 8.1 — Toggle (N/A)",
+          "status": "passed",
+          "durationMs": 3099
+        },
+        {
+          "name": "[fn] 9.1 — user can type numeric value into enabled field",
+          "status": "passed",
+          "durationMs": 3236
+        },
+        {
+          "name": "[fn] 9.1 — field can be cleared and refilled",
+          "status": "passed",
+          "durationMs": 3095
+        },
+        {
+          "name": "[fn] 9.2 — Backspace edits typed value",
+          "status": "passed",
+          "durationMs": 2986
+        },
+        {
+          "name": "[fn] 10.1 — accent prop visible at high attention (accent band)",
+          "status": "passed",
+          "durationMs": 3309
+        },
+        {
+          "name": "[fn] 10.2 — condensed true renders narrower group than condensed false",
+          "status": "passed",
+          "durationMs": 3133
+        },
+        {
+          "name": "[fn] 11.1 — input-aria-label cell exposes accessible name Quantity",
+          "status": "passed",
+          "durationMs": 3511
+        },
+        {
+          "name": "[fn] 11.2 — increment/decrement buttons have accessible names",
+          "status": "passed",
+          "durationMs": 2585
+        },
+        {
+          "name": "[fn] 12.1 — fullWidth (N/A)",
+          "status": "passed",
+          "durationMs": 2927
+        },
+        {
+          "name": "[fn] 12.2 — visible at 320px viewport",
+          "status": "passed",
+          "durationMs": 6025
+        },
+        {
+          "name": "[fn] 12.2 — visible at 1440px viewport",
+          "status": "passed",
+          "durationMs": 5702
+        },
+        {
+          "name": "[fn] 12.3 — horizontal stepper layout (increment/decrement beside field)",
+          "status": "passed",
+          "durationMs": 2874
+        },
+        {
+          "name": "[fn] Smoke — Page heading reads “Stepper”",
+          "status": "passed",
+          "durationMs": 2957
+        },
+        {
+          "name": "[fn] Smoke — Default stepper is visible",
+          "status": "passed",
+          "durationMs": 3147
+        },
+        {
+          "name": "[fn] Smoke — Size M stepper is visible",
+          "status": "passed",
+          "durationMs": 2532
+        },
+        {
+          "name": "[fn] shows Stepper page heading",
+          "status": "passed",
+          "durationMs": 3257
+        },
+        {
+          "name": "[fn] theme toggle updates label",
+          "status": "passed",
+          "durationMs": 9111
+        },
+        {
+          "name": "[fn] scenario tabs are present",
+          "status": "passed",
+          "durationMs": 2943
+        },
+        {
+          "name": "[fn] Default story stepper is visible",
+          "status": "passed",
+          "durationMs": 3210
+        },
+        {
+          "name": "[fn] Size band — S / M / L steppers visible",
+          "status": "passed",
+          "durationMs": 3011
+        },
+        {
+          "name": "[fn] Attention band — high, medium, low",
+          "status": "passed",
+          "durationMs": 3770
+        },
+        {
+          "name": "[fn] Appearance band — primary row visible",
+          "status": "passed",
+          "durationMs": 3169
+        },
+        {
+          "name": "[fn] Accent row — primary accent triplet visible",
+          "status": "passed",
+          "durationMs": 3321
+        },
+        {
+          "name": "[fn] condensed band — false vs true",
+          "status": "passed",
+          "durationMs": 3272
+        },
+        {
+          "name": "[fn] disabled band — false vs true",
+          "status": "passed",
+          "durationMs": 2957
+        },
+        {
+          "name": "[fn] InputText band — internal input + aria-label example",
+          "status": "passed",
+          "durationMs": 2467
+        },
+        {
+          "name": "[fn] Extra states — readOnly, error, required",
+          "status": "passed",
+          "durationMs": 2946
+        },
+        {
+          "name": "[fn] Increment on default increases field value",
+          "status": "passed",
+          "durationMs": 2918
+        },
+        {
+          "name": "[fn] Decrement on default decreases field value",
+          "status": "passed",
+          "durationMs": 1564
+        },
+        {
+          "name": "[fn] Repeated increment clicks increase by step each time",
+          "status": "passed",
+          "durationMs": 3483
+        },
+        {
+          "name": "[fn] Repeated decrement clicks decrease by step each time",
+          "status": "passed",
+          "durationMs": 3520
+        },
+        {
+          "name": "[fn] Increment then decrement on click returns to prior value",
+          "status": "passed",
+          "durationMs": 2902
+        },
+        {
+          "name": "[fn] disabled-false stepper — increment and decrement on click update value",
+          "status": "passed",
+          "durationMs": 2812
+        },
+        {
+          "name": "[fn] disabled true — increment control is disabled",
+          "status": "passed",
+          "durationMs": 3044
+        },
+        {
+          "name": "[fn] disabled true — decrement control is disabled",
+          "status": "passed",
+          "durationMs": 3367
+        },
+        {
+          "name": "[fn] readOnly — value field is read-only",
+          "status": "passed",
+          "durationMs": 2922
+        },
+        {
+          "name": "[fn] Combination matrix renders all combo rows",
+          "status": "passed",
+          "durationMs": 3333
+        }
+      ]
+    },
+    "performance": {
+      "suite": "performance",
+      "passed": 0,
+      "failed": 0,
+      "skipped": 0,
+      "logs": [
+        "Performance suite is not executed in apps/qa-playground stepper Playwright bundle."
+      ],
+      "errors": []
+    }
+  }
+}

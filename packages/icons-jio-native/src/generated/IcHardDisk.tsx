@@ -1,0 +1,13 @@
+import React from 'react';
+import Svg, { Path, type SvgProps } from 'react-native-svg';
+export function IcHardDisk(props: SvgProps) {
+  const fill = String(props.fill ?? '#000000');
+  return (
+    <Svg viewBox="0 0 24 24" fill="none" {...props}>
+      <Path
+            fill={fill}
+            d="M12 11.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3M17 2H7a3 3 0 0 0-3 3v14a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V5a3 3 0 0 0-3-3m-5 4a4 4 0 1 1-1.34 7.75h.05a1.004 1.004 0 1 0-1.42-1.42L9 12.6A4 4 0 0 1 12 6m6 13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1v-1a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1z"
+          />
+    </Svg>
+  );
+}

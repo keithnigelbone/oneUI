@@ -1,0 +1,30 @@
+import React, { forwardRef } from 'react';
+import type { IconComponentProps } from '../iconProps';
+
+export const IcCropPlanningStyle1 = forwardRef<SVGSVGElement, IconComponentProps>(function IcCropPlanningStyle1(
+  { size = 24, width, height, color = 'currentColor', className, style, ...props },
+  ref,
+) {
+  const dim = width ?? height ?? size;
+  return (
+    <svg
+      ref={ref}
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      width={width ?? dim}
+      height={height ?? dim}
+      color={color}
+      className={className}
+      style={style}
+      {...props}
+    >
+      <path
+            fill="currentColor"
+            d="M19.82 16.11a6 6 0 0 0-1.46.48l-.36.15v-2.33l2.71-2.7a1.004 1.004 0 0 0-1.42-1.42L18 11.59V9.41l1.71-1.7a1.004 1.004 0 1 0-1.42-1.42l-.29.3V4a1 1 0 0 0-2 0v2.59l-.29-.3a1.004 1.004 0 0 0-1.42 1.42L16 9.41v2.18l-1.29-1.3a1.004 1.004 0 0 0-1.42 1.42l2.71 2.7V17a3.8 3.8 0 0 1-1.35-.38A5.66 5.66 0 0 0 12 16a5.7 5.7 0 0 0-2.66.59A3.8 3.8 0 0 1 8 17v-2.59l1.71-1.7a1.004 1.004 0 1 0-1.42-1.42l-.29.3V9a1 1 0 0 0-2 0v2.59l-.29-.3a1.004 1.004 0 1 0-1.42 1.42L6 14.41v2.33l-.37-.15a6 6 0 0 0-1.45-.48 1 1 0 0 0-.82.21 1 1 0 0 0-.36.77V20a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-2.91a1 1 0 0 0-.36-.77 1 1 0 0 0-.82-.21"
+          />
+    </svg>
+  );
+});
+
+IcCropPlanningStyle1.displayName = 'IcCropPlanningStyle1';

@@ -1,0 +1,24 @@
+.specPreviewRoot {
+  width: 100%;
+  min-height: 100%;
+  height: 100%;
+  overflow: auto;
+  box-sizing: border-box;
+  container-type: inline-size;
+  background: var(--Surface-Fill-Default, var(--Surface-Main));
+  color: var(--Text-High);
+  font-family: var(--Typography-Font-Primary);
+}
+
+.specPreviewInner {
+  min-height: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.specPreviewViewport {
+  width: var(--_spec-design-width);
+  min-height: 100%;
+  transform: scale(calc(100cqw / var(--_spec-design-width)));
+  transform-origin: top left;
+}

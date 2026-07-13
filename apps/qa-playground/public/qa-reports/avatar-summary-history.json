@@ -1,0 +1,1720 @@
+{
+  "slug": "avatar",
+  "runs": [
+    {
+      "savedAt": "2026-06-23T08:59:45.406Z",
+      "report": {
+        "ok": true,
+        "slug": "avatar",
+        "message": "avatar QA Playwright run OK — 2026-06-23T08:37:41.336Z",
+        "suites": {
+          "accessibility": {
+            "suite": "accessibility",
+            "passed": 29,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "29 test(s) in Playwright report for accessibility.",
+              "Axe: scan completed — 0 violation rules reported."
+            ],
+            "errors": [],
+            "cases": [
+              {
+                "name": "All Avatar story bands meet WCAG 2.1 AA (axe tags) with HTML + JSON artefacts",
+                "status": "passed",
+                "durationMs": 4902
+              },
+              {
+                "name": "Story band \"avatar-qa-default\" has no serious/critical axe violations",
+                "status": "passed",
+                "durationMs": 4810
+              },
+              {
+                "name": "Story band \"avatar-qa-size\" has no serious/critical axe violations",
+                "status": "passed",
+                "durationMs": 4873
+              },
+              {
+                "name": "Story band \"avatar-qa-attention\" has no serious/critical axe violations",
+                "status": "passed",
+                "durationMs": 4779
+              },
+              {
+                "name": "Story band \"avatar-qa-appearance\" has no serious/critical axe violations",
+                "status": "passed",
+                "durationMs": 4806
+              },
+              {
+                "name": "Story band \"avatar-qa-content\" has no serious/critical axe violations",
+                "status": "passed",
+                "durationMs": 3375
+              },
+              {
+                "name": "Story band \"avatar-qa-accent\" has no serious/critical axe violations",
+                "status": "passed",
+                "durationMs": 3523
+              },
+              {
+                "name": "Story band \"avatar-qa-disabled\" has no serious/critical axe violations",
+                "status": "passed",
+                "durationMs": 3513
+              },
+              {
+                "name": "Story band \"avatar-qa-combos\" has no serious/critical axe violations",
+                "status": "passed",
+                "durationMs": 3619
+              },
+              {
+                "name": "Section 508 tag set reports no serious/critical issues in story bands",
+                "status": "passed",
+                "durationMs": 3947
+              },
+              {
+                "name": "ARIA validity rules pass in Avatar story bands",
+                "status": "passed",
+                "durationMs": 3353
+              },
+              {
+                "name": "Naming rules pass for buttons, images, and links in story bands",
+                "status": "passed",
+                "durationMs": 3626
+              },
+              {
+                "name": "Label rule passes in Avatar story bands",
+                "status": "passed",
+                "durationMs": 3791
+              },
+              {
+                "name": "Scrollable regions are keyboard-accessible when applicable",
+                "status": "passed",
+                "durationMs": 3840
+              },
+              {
+                "name": "Non-text contrast rule passes when supported by axe-core",
+                "status": "passed",
+                "durationMs": 3361
+              },
+              {
+                "name": "aria-live-region-content rule passes when supported",
+                "status": "passed",
+                "durationMs": 2393
+              },
+              {
+                "name": "Default Avatar exposes role img and accessible name",
+                "status": "passed",
+                "durationMs": 2804
+              },
+              {
+                "name": "Document has a valid lang attribute",
+                "status": "passed",
+                "durationMs": 2723
+              },
+              {
+                "name": "Every showcase avatar has a non-empty accessible name",
+                "status": "passed",
+                "durationMs": 4410
+              },
+              {
+                "name": "Decorative images inside avatars declare alt (may be empty)",
+                "status": "passed",
+                "durationMs": 3185
+              },
+              {
+                "name": "SVG icons inside avatars are decorative or named",
+                "status": "passed",
+                "durationMs": 3744
+              },
+              {
+                "name": "Disabled avatar row remains accessible (visual disabled only)",
+                "status": "passed",
+                "durationMs": 2838
+              },
+              {
+                "name": "Tab moves focus to an interactive control on the page",
+                "status": "passed",
+                "durationMs": 2911
+              },
+              {
+                "name": "Tab cycle visits multiple distinct targets (no keyboard trap)",
+                "status": "passed",
+                "durationMs": 3736
+              },
+              {
+                "name": "First tab stop shows a visible focus indicator",
+                "status": "passed",
+                "durationMs": 2565
+              },
+              {
+                "name": "Mode select activates with Enter when focused",
+                "status": "passed",
+                "durationMs": 5660
+              },
+              {
+                "name": "Mode select activates with Space when focused",
+                "status": "passed",
+                "durationMs": 5777
+              },
+              {
+                "name": "Story bands fit within 320px width without horizontal overflow",
+                "status": "passed",
+                "durationMs": 7452
+              },
+              {
+                "name": "Avatars remain visible at 200% browser zoom",
+                "status": "passed",
+                "durationMs": 5069
+              }
+            ],
+            "axe": {
+              "violations": []
+            }
+          },
+          "functional": {
+            "suite": "functional",
+            "passed": 30,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "30 test(s) in Playwright report for functional."
+            ],
+            "errors": [],
+            "cases": [
+              {
+                "name": "Visitor sees the Avatar playground and default profile image",
+                "status": "passed",
+                "durationMs": 4867
+              },
+              {
+                "name": "Visitor can switch light/dark theme from the page header",
+                "status": "passed",
+                "durationMs": 3880
+              },
+              {
+                "name": "Size band shows Figma scale including custom pixel size",
+                "status": "passed",
+                "durationMs": 3852
+              },
+              {
+                "name": "Attention band shows high, medium, and low emphasis",
+                "status": "passed",
+                "durationMs": 4289
+              },
+              {
+                "name": "Appearance band shows primary role and brand-bg extension row",
+                "status": "passed",
+                "durationMs": 4262
+              },
+              {
+                "name": "Content band shows image, icon, and text (initials) modes",
+                "status": "passed",
+                "durationMs": 4271
+              },
+              {
+                "name": "Accent stand-in band documents Figma accent via appearance roles",
+                "status": "passed",
+                "durationMs": 3578
+              },
+              {
+                "name": "Disabled band contrasts enabled vs disabled presentation",
+                "status": "passed",
+                "durationMs": 3606
+              },
+              {
+                "name": "Combination matrix renders all documented prop mixes",
+                "status": "passed",
+                "durationMs": 3511
+              },
+              {
+                "name": "Page loads cleanly and default Avatar matches showcase props",
+                "status": "passed",
+                "durationMs": 6720
+              },
+              {
+                "name": "Every playground data-testid renders without error text",
+                "status": "passed",
+                "durationMs": 5551
+              },
+              {
+                "name": "Every story band (data-section) is visible on the page",
+                "status": "passed",
+                "durationMs": 4397
+              },
+              {
+                "name": "Size prop maps Figma labels to code data-size values",
+                "status": "passed",
+                "durationMs": 4345
+              },
+              {
+                "name": "Attention and appearance props surface on the DOM",
+                "status": "passed",
+                "durationMs": 4437
+              },
+              {
+                "name": "Content prop maps image, icon, and text modes",
+                "status": "passed",
+                "durationMs": 3360
+              },
+              {
+                "name": "Avatar sizes grow progressively and stay circular",
+                "status": "passed",
+                "durationMs": 7183
+              },
+              {
+                "name": "Avatar is display-only and not activated by click",
+                "status": "passed",
+                "durationMs": 3794
+              },
+              {
+                "name": "Tab focus stays on page chrome, not Avatar instances",
+                "status": "passed",
+                "durationMs": 3932
+              },
+              {
+                "name": "Clicking Avatar does not move focus to the Avatar root",
+                "status": "passed",
+                "durationMs": 3314
+              },
+              {
+                "name": "Default state shows image content with expected tokens",
+                "status": "passed",
+                "durationMs": 2687
+              },
+              {
+                "name": "Avatar uses content prop instead of start/end slots",
+                "status": "passed",
+                "durationMs": 3486
+              },
+              {
+                "name": "Avatar does not support selection or toggle",
+                "status": "passed",
+                "durationMs": 3373
+              },
+              {
+                "name": "Avatar does not accept typed input",
+                "status": "passed",
+                "durationMs": 3561
+              },
+              {
+                "name": "Avatar has no loading/slot dependency rules",
+                "status": "passed",
+                "durationMs": 4289
+              },
+              {
+                "name": "Text mode shows initials derived from the alt name",
+                "status": "passed",
+                "durationMs": 4599
+              },
+              {
+                "name": "Icon mode uses a decorative SVG; image mode uses presentation img",
+                "status": "passed",
+                "durationMs": 4461
+              },
+              {
+                "name": "Playground fits narrow mobile width without horizontal scroll",
+                "status": "passed",
+                "durationMs": 6500
+              },
+              {
+                "name": "Playground remains usable on large desktop viewport",
+                "status": "passed",
+                "durationMs": 6189
+              },
+              {
+                "name": "Content band lays out image, icon, and text side by side",
+                "status": "passed",
+                "durationMs": 3154
+              },
+              {
+                "name": "All story bands and sample avatars remain visible in dark theme",
+                "status": "passed",
+                "durationMs": 2802
+              }
+            ]
+          },
+          "performance": {
+            "suite": "performance",
+            "passed": 0,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "Performance suite is not executed in apps/qa-playground avatar Playwright bundle."
+            ],
+            "errors": []
+          }
+        }
+      }
+    },
+    {
+      "savedAt": "2026-06-23T08:37:41.338Z",
+      "report": {
+        "ok": true,
+        "slug": "avatar",
+        "message": "avatar QA Playwright run OK — 2026-06-17T07:17:57.516Z",
+        "suites": {
+          "accessibility": {
+            "suite": "accessibility",
+            "passed": 29,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "29 test(s) in Playwright report for accessibility.",
+              "Axe: scan completed — 0 violation rules reported."
+            ],
+            "errors": [],
+            "cases": [
+              {
+                "name": "All Avatar story bands meet WCAG 2.1 AA (axe tags) with HTML + JSON artefacts",
+                "status": "passed",
+                "durationMs": 3825
+              },
+              {
+                "name": "Story band \"avatar-qa-default\" has no serious/critical axe violations",
+                "status": "passed",
+                "durationMs": 4193
+              },
+              {
+                "name": "Story band \"avatar-qa-size\" has no serious/critical axe violations",
+                "status": "passed",
+                "durationMs": 3935
+              },
+              {
+                "name": "Story band \"avatar-qa-attention\" has no serious/critical axe violations",
+                "status": "passed",
+                "durationMs": 3629
+              },
+              {
+                "name": "Story band \"avatar-qa-appearance\" has no serious/critical axe violations",
+                "status": "passed",
+                "durationMs": 4552
+              },
+              {
+                "name": "Story band \"avatar-qa-content\" has no serious/critical axe violations",
+                "status": "passed",
+                "durationMs": 2425
+              },
+              {
+                "name": "Story band \"avatar-qa-accent\" has no serious/critical axe violations",
+                "status": "passed",
+                "durationMs": 3826
+              },
+              {
+                "name": "Story band \"avatar-qa-disabled\" has no serious/critical axe violations",
+                "status": "passed",
+                "durationMs": 3821
+              },
+              {
+                "name": "Story band \"avatar-qa-combos\" has no serious/critical axe violations",
+                "status": "passed",
+                "durationMs": 3712
+              },
+              {
+                "name": "Section 508 tag set reports no serious/critical issues in story bands",
+                "status": "passed",
+                "durationMs": 3450
+              },
+              {
+                "name": "ARIA validity rules pass in Avatar story bands",
+                "status": "passed",
+                "durationMs": 2979
+              },
+              {
+                "name": "Naming rules pass for buttons, images, and links in story bands",
+                "status": "passed",
+                "durationMs": 3317
+              },
+              {
+                "name": "Label rule passes in Avatar story bands",
+                "status": "passed",
+                "durationMs": 3213
+              },
+              {
+                "name": "Scrollable regions are keyboard-accessible when applicable",
+                "status": "passed",
+                "durationMs": 3350
+              },
+              {
+                "name": "Non-text contrast rule passes when supported by axe-core",
+                "status": "passed",
+                "durationMs": 3239
+              },
+              {
+                "name": "aria-live-region-content rule passes when supported",
+                "status": "passed",
+                "durationMs": 2716
+              },
+              {
+                "name": "Default Avatar exposes role img and accessible name",
+                "status": "passed",
+                "durationMs": 2481
+              },
+              {
+                "name": "Document has a valid lang attribute",
+                "status": "passed",
+                "durationMs": 2689
+              },
+              {
+                "name": "Every showcase avatar has a non-empty accessible name",
+                "status": "passed",
+                "durationMs": 4287
+              },
+              {
+                "name": "Decorative images inside avatars declare alt (may be empty)",
+                "status": "passed",
+                "durationMs": 2999
+              },
+              {
+                "name": "SVG icons inside avatars are decorative or named",
+                "status": "passed",
+                "durationMs": 3432
+              },
+              {
+                "name": "Disabled avatar row remains accessible (visual disabled only)",
+                "status": "passed",
+                "durationMs": 2294
+              },
+              {
+                "name": "Tab moves focus to an interactive control on the page",
+                "status": "passed",
+                "durationMs": 2560
+              },
+              {
+                "name": "Tab cycle visits multiple distinct targets (no keyboard trap)",
+                "status": "passed",
+                "durationMs": 3223
+              },
+              {
+                "name": "First tab stop shows a visible focus indicator",
+                "status": "passed",
+                "durationMs": 3067
+              },
+              {
+                "name": "Mode select activates with Enter when focused",
+                "status": "passed",
+                "durationMs": 3690
+              },
+              {
+                "name": "Mode select activates with Space when focused",
+                "status": "passed",
+                "durationMs": 3673
+              },
+              {
+                "name": "Story bands fit within 320px width without horizontal overflow",
+                "status": "passed",
+                "durationMs": 5826
+              },
+              {
+                "name": "Avatars remain visible at 200% browser zoom",
+                "status": "passed",
+                "durationMs": 3341
+              }
+            ],
+            "axe": {
+              "violations": []
+            }
+          },
+          "functional": {
+            "suite": "functional",
+            "passed": 30,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "30 test(s) in Playwright report for functional."
+            ],
+            "errors": [],
+            "cases": [
+              {
+                "name": "Visitor sees the Avatar playground and default profile image",
+                "status": "passed",
+                "durationMs": 3445
+              },
+              {
+                "name": "Visitor can switch light/dark theme from the page header",
+                "status": "passed",
+                "durationMs": 4753
+              },
+              {
+                "name": "Size band shows Figma scale including custom pixel size",
+                "status": "passed",
+                "durationMs": 4154
+              },
+              {
+                "name": "Attention band shows high, medium, and low emphasis",
+                "status": "passed",
+                "durationMs": 3466
+              },
+              {
+                "name": "Appearance band shows primary role and brand-bg extension row",
+                "status": "passed",
+                "durationMs": 3226
+              },
+              {
+                "name": "Content band shows image, icon, and text (initials) modes",
+                "status": "passed",
+                "durationMs": 3127
+              },
+              {
+                "name": "Accent stand-in band documents Figma accent via appearance roles",
+                "status": "passed",
+                "durationMs": 3031
+              },
+              {
+                "name": "Disabled band contrasts enabled vs disabled presentation",
+                "status": "passed",
+                "durationMs": 3455
+              },
+              {
+                "name": "Combination matrix renders all documented prop mixes",
+                "status": "passed",
+                "durationMs": 3481
+              },
+              {
+                "name": "Page loads cleanly and default Avatar matches showcase props",
+                "status": "passed",
+                "durationMs": 5141
+              },
+              {
+                "name": "Every playground data-testid renders without error text",
+                "status": "passed",
+                "durationMs": 4396
+              },
+              {
+                "name": "Every story band (data-section) is visible on the page",
+                "status": "passed",
+                "durationMs": 3837
+              },
+              {
+                "name": "Size prop maps Figma labels to code data-size values",
+                "status": "passed",
+                "durationMs": 2994
+              },
+              {
+                "name": "Attention and appearance props surface on the DOM",
+                "status": "passed",
+                "durationMs": 2981
+              },
+              {
+                "name": "Content prop maps image, icon, and text modes",
+                "status": "passed",
+                "durationMs": 1863
+              },
+              {
+                "name": "Avatar sizes grow progressively and stay circular",
+                "status": "passed",
+                "durationMs": 2960
+              },
+              {
+                "name": "Avatar is display-only and not activated by click",
+                "status": "passed",
+                "durationMs": 3143
+              },
+              {
+                "name": "Tab focus stays on page chrome, not Avatar instances",
+                "status": "passed",
+                "durationMs": 3108
+              },
+              {
+                "name": "Clicking Avatar does not move focus to the Avatar root",
+                "status": "passed",
+                "durationMs": 3059
+              },
+              {
+                "name": "Default state shows image content with expected tokens",
+                "status": "passed",
+                "durationMs": 2694
+              },
+              {
+                "name": "Avatar uses content prop instead of start/end slots",
+                "status": "passed",
+                "durationMs": 2327
+              },
+              {
+                "name": "Avatar does not support selection or toggle",
+                "status": "passed",
+                "durationMs": 2616
+              },
+              {
+                "name": "Avatar does not accept typed input",
+                "status": "passed",
+                "durationMs": 2546
+              },
+              {
+                "name": "Avatar has no loading/slot dependency rules",
+                "status": "passed",
+                "durationMs": 2706
+              },
+              {
+                "name": "Text mode shows initials derived from the alt name",
+                "status": "passed",
+                "durationMs": 2896
+              },
+              {
+                "name": "Icon mode uses a decorative SVG; image mode uses presentation img",
+                "status": "passed",
+                "durationMs": 2589
+              },
+              {
+                "name": "Playground fits narrow mobile width without horizontal scroll",
+                "status": "passed",
+                "durationMs": 4152
+              },
+              {
+                "name": "Playground remains usable on large desktop viewport",
+                "status": "passed",
+                "durationMs": 3929
+              },
+              {
+                "name": "Content band lays out image, icon, and text side by side",
+                "status": "passed",
+                "durationMs": 2819
+              },
+              {
+                "name": "All story bands and sample avatars remain visible in dark theme",
+                "status": "passed",
+                "durationMs": 2913
+              }
+            ]
+          },
+          "performance": {
+            "suite": "performance",
+            "passed": 0,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "Performance suite is not executed in apps/qa-playground avatar Playwright bundle."
+            ],
+            "errors": []
+          }
+        }
+      }
+    },
+    {
+      "savedAt": "2026-06-17T07:17:57.518Z",
+      "report": {
+        "ok": true,
+        "slug": "avatar",
+        "message": "avatar QA Playwright run OK — 2026-06-04T11:19:18.554Z",
+        "suites": {
+          "accessibility": {
+            "suite": "accessibility",
+            "passed": 29,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "29 test(s) in Playwright report for accessibility.",
+              "Axe: scan completed — 0 violation rules reported."
+            ],
+            "errors": [],
+            "cases": [
+              {
+                "name": "All Avatar story bands meet WCAG 2.1 AA (axe tags) with HTML + JSON artefacts",
+                "status": "passed",
+                "durationMs": 5531
+              },
+              {
+                "name": "Story band \"avatar-qa-default\" has no serious/critical axe violations",
+                "status": "passed",
+                "durationMs": 5153
+              },
+              {
+                "name": "Story band \"avatar-qa-size\" has no serious/critical axe violations",
+                "status": "passed",
+                "durationMs": 5200
+              },
+              {
+                "name": "Story band \"avatar-qa-attention\" has no serious/critical axe violations",
+                "status": "passed",
+                "durationMs": 5189
+              },
+              {
+                "name": "Story band \"avatar-qa-appearance\" has no serious/critical axe violations",
+                "status": "passed",
+                "durationMs": 5241
+              },
+              {
+                "name": "Story band \"avatar-qa-content\" has no serious/critical axe violations",
+                "status": "passed",
+                "durationMs": 3975
+              },
+              {
+                "name": "Story band \"avatar-qa-accent\" has no serious/critical axe violations",
+                "status": "passed",
+                "durationMs": 3681
+              },
+              {
+                "name": "Story band \"avatar-qa-disabled\" has no serious/critical axe violations",
+                "status": "passed",
+                "durationMs": 3613
+              },
+              {
+                "name": "Story band \"avatar-qa-combos\" has no serious/critical axe violations",
+                "status": "passed",
+                "durationMs": 3892
+              },
+              {
+                "name": "Section 508 tag set reports no serious/critical issues in story bands",
+                "status": "passed",
+                "durationMs": 3852
+              },
+              {
+                "name": "ARIA validity rules pass in Avatar story bands",
+                "status": "passed",
+                "durationMs": 3228
+              },
+              {
+                "name": "Naming rules pass for buttons, images, and links in story bands",
+                "status": "passed",
+                "durationMs": 3119
+              },
+              {
+                "name": "Label rule passes in Avatar story bands",
+                "status": "passed",
+                "durationMs": 3442
+              },
+              {
+                "name": "Scrollable regions are keyboard-accessible when applicable",
+                "status": "passed",
+                "durationMs": 3191
+              },
+              {
+                "name": "Non-text contrast rule passes when supported by axe-core",
+                "status": "passed",
+                "durationMs": 2886
+              },
+              {
+                "name": "aria-live-region-content rule passes when supported",
+                "status": "passed",
+                "durationMs": 2911
+              },
+              {
+                "name": "Default Avatar exposes role img and accessible name",
+                "status": "passed",
+                "durationMs": 2952
+              },
+              {
+                "name": "Document has a valid lang attribute",
+                "status": "passed",
+                "durationMs": 3081
+              },
+              {
+                "name": "Every showcase avatar has a non-empty accessible name",
+                "status": "passed",
+                "durationMs": 4224
+              },
+              {
+                "name": "Decorative images inside avatars declare alt (may be empty)",
+                "status": "passed",
+                "durationMs": 3125
+              },
+              {
+                "name": "SVG icons inside avatars are decorative or named",
+                "status": "passed",
+                "durationMs": 3471
+              },
+              {
+                "name": "Disabled avatar row remains accessible (visual disabled only)",
+                "status": "passed",
+                "durationMs": 2559
+              },
+              {
+                "name": "Tab moves focus to an interactive control on the page",
+                "status": "passed",
+                "durationMs": 2825
+              },
+              {
+                "name": "Tab cycle visits multiple distinct targets (no keyboard trap)",
+                "status": "passed",
+                "durationMs": 3126
+              },
+              {
+                "name": "First tab stop shows a visible focus indicator",
+                "status": "passed",
+                "durationMs": 2572
+              },
+              {
+                "name": "Mode select activates with Enter when focused",
+                "status": "passed",
+                "durationMs": 2738
+              },
+              {
+                "name": "Mode select activates with Space when focused",
+                "status": "passed",
+                "durationMs": 2940
+              },
+              {
+                "name": "Story bands fit within 320px width without horizontal overflow",
+                "status": "passed",
+                "durationMs": 4873
+              },
+              {
+                "name": "Avatars remain visible at 200% browser zoom",
+                "status": "passed",
+                "durationMs": 3062
+              }
+            ],
+            "axe": {
+              "violations": []
+            }
+          },
+          "functional": {
+            "suite": "functional",
+            "passed": 30,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "30 test(s) in Playwright report for functional."
+            ],
+            "errors": [],
+            "cases": [
+              {
+                "name": "Visitor sees the Avatar playground and default profile image",
+                "status": "passed",
+                "durationMs": 2831
+              },
+              {
+                "name": "Visitor can switch light/dark theme from the page header",
+                "status": "passed",
+                "durationMs": 2983
+              },
+              {
+                "name": "Size band shows Figma scale including custom pixel size",
+                "status": "passed",
+                "durationMs": 2852
+              },
+              {
+                "name": "Attention band shows high, medium, and low emphasis",
+                "status": "passed",
+                "durationMs": 2884
+              },
+              {
+                "name": "Appearance band shows primary role and brand-bg extension row",
+                "status": "passed",
+                "durationMs": 2706
+              },
+              {
+                "name": "Content band shows image, icon, and text (initials) modes",
+                "status": "passed",
+                "durationMs": 2674
+              },
+              {
+                "name": "Accent stand-in band documents Figma accent via appearance roles",
+                "status": "passed",
+                "durationMs": 2809
+              },
+              {
+                "name": "Disabled band contrasts enabled vs disabled presentation",
+                "status": "passed",
+                "durationMs": 2850
+              },
+              {
+                "name": "Combination matrix renders all documented prop mixes",
+                "status": "passed",
+                "durationMs": 3017
+              },
+              {
+                "name": "Page loads cleanly and default Avatar matches showcase props",
+                "status": "passed",
+                "durationMs": 5131
+              },
+              {
+                "name": "Every playground data-testid renders without error text",
+                "status": "passed",
+                "durationMs": 4439
+              },
+              {
+                "name": "Every story band (data-section) is visible on the page",
+                "status": "passed",
+                "durationMs": 3545
+              },
+              {
+                "name": "Size prop maps Figma labels to code data-size values",
+                "status": "passed",
+                "durationMs": 3132
+              },
+              {
+                "name": "Attention and appearance props surface on the DOM",
+                "status": "passed",
+                "durationMs": 2983
+              },
+              {
+                "name": "Content prop maps image, icon, and text modes",
+                "status": "passed",
+                "durationMs": 2468
+              },
+              {
+                "name": "Avatar sizes grow progressively and stay circular",
+                "status": "passed",
+                "durationMs": 3206
+              },
+              {
+                "name": "Avatar is display-only and not activated by click",
+                "status": "passed",
+                "durationMs": 2931
+              },
+              {
+                "name": "Tab focus stays on page chrome, not Avatar instances",
+                "status": "passed",
+                "durationMs": 2828
+              },
+              {
+                "name": "Clicking Avatar does not move focus to the Avatar root",
+                "status": "passed",
+                "durationMs": 3121
+              },
+              {
+                "name": "Default state shows image content with expected tokens",
+                "status": "passed",
+                "durationMs": 2724
+              },
+              {
+                "name": "Avatar uses content prop instead of start/end slots",
+                "status": "passed",
+                "durationMs": 2673
+              },
+              {
+                "name": "Avatar does not support selection or toggle",
+                "status": "passed",
+                "durationMs": 2570
+              },
+              {
+                "name": "Avatar does not accept typed input",
+                "status": "passed",
+                "durationMs": 2745
+              },
+              {
+                "name": "Avatar has no loading/slot dependency rules",
+                "status": "passed",
+                "durationMs": 2697
+              },
+              {
+                "name": "Text mode shows initials derived from the alt name",
+                "status": "passed",
+                "durationMs": 2762
+              },
+              {
+                "name": "Icon mode uses a decorative SVG; image mode uses presentation img",
+                "status": "passed",
+                "durationMs": 2847
+              },
+              {
+                "name": "Playground fits narrow mobile width without horizontal scroll",
+                "status": "passed",
+                "durationMs": 4456
+              },
+              {
+                "name": "Playground remains usable on large desktop viewport",
+                "status": "passed",
+                "durationMs": 4164
+              },
+              {
+                "name": "Content band lays out image, icon, and text side by side",
+                "status": "passed",
+                "durationMs": 2843
+              },
+              {
+                "name": "All story bands and sample avatars remain visible in dark theme",
+                "status": "passed",
+                "durationMs": 2685
+              }
+            ]
+          },
+          "performance": {
+            "suite": "performance",
+            "passed": 0,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "Performance suite is not executed in apps/qa-playground avatar Playwright bundle."
+            ],
+            "errors": []
+          }
+        }
+      }
+    },
+    {
+      "savedAt": "2026-06-04T11:19:18.556Z",
+      "report": {
+        "ok": true,
+        "slug": "avatar",
+        "message": "avatar QA Playwright run OK — 2026-06-04T11:12:06.049Z",
+        "suites": {
+          "accessibility": {
+            "suite": "accessibility",
+            "passed": 29,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "29 test(s) in Playwright report for accessibility.",
+              "Axe: scan completed — 0 violation rules reported."
+            ],
+            "errors": [],
+            "cases": [
+              {
+                "name": "All Avatar story bands meet WCAG 2.1 AA (axe tags) with HTML + JSON artefacts",
+                "status": "passed",
+                "durationMs": 4997
+              },
+              {
+                "name": "Story band \"avatar-qa-default\" has no serious/critical axe violations",
+                "status": "passed",
+                "durationMs": 4640
+              },
+              {
+                "name": "Story band \"avatar-qa-size\" has no serious/critical axe violations",
+                "status": "passed",
+                "durationMs": 4735
+              },
+              {
+                "name": "Story band \"avatar-qa-attention\" has no serious/critical axe violations",
+                "status": "passed",
+                "durationMs": 4683
+              },
+              {
+                "name": "Story band \"avatar-qa-appearance\" has no serious/critical axe violations",
+                "status": "passed",
+                "durationMs": 4745
+              },
+              {
+                "name": "Story band \"avatar-qa-content\" has no serious/critical axe violations",
+                "status": "passed",
+                "durationMs": 3692
+              },
+              {
+                "name": "Story band \"avatar-qa-accent\" has no serious/critical axe violations",
+                "status": "passed",
+                "durationMs": 3610
+              },
+              {
+                "name": "Story band \"avatar-qa-disabled\" has no serious/critical axe violations",
+                "status": "passed",
+                "durationMs": 3851
+              },
+              {
+                "name": "Story band \"avatar-qa-combos\" has no serious/critical axe violations",
+                "status": "passed",
+                "durationMs": 4002
+              },
+              {
+                "name": "Section 508 tag set reports no serious/critical issues in story bands",
+                "status": "passed",
+                "durationMs": 3798
+              },
+              {
+                "name": "ARIA validity rules pass in Avatar story bands",
+                "status": "passed",
+                "durationMs": 3234
+              },
+              {
+                "name": "Naming rules pass for buttons, images, and links in story bands",
+                "status": "passed",
+                "durationMs": 3118
+              },
+              {
+                "name": "Label rule passes in Avatar story bands",
+                "status": "passed",
+                "durationMs": 3036
+              },
+              {
+                "name": "Scrollable regions are keyboard-accessible when applicable",
+                "status": "passed",
+                "durationMs": 3448
+              },
+              {
+                "name": "Non-text contrast rule passes when supported by axe-core",
+                "status": "passed",
+                "durationMs": 3246
+              },
+              {
+                "name": "aria-live-region-content rule passes when supported",
+                "status": "passed",
+                "durationMs": 2634
+              },
+              {
+                "name": "Default Avatar exposes role img and accessible name",
+                "status": "passed",
+                "durationMs": 2706
+              },
+              {
+                "name": "Document has a valid lang attribute",
+                "status": "passed",
+                "durationMs": 3287
+              },
+              {
+                "name": "Every showcase avatar has a non-empty accessible name",
+                "status": "passed",
+                "durationMs": 3961
+              },
+              {
+                "name": "Decorative images inside avatars declare alt (may be empty)",
+                "status": "passed",
+                "durationMs": 2859
+              },
+              {
+                "name": "SVG icons inside avatars are decorative or named",
+                "status": "passed",
+                "durationMs": 3547
+              },
+              {
+                "name": "Disabled avatar row remains accessible (visual disabled only)",
+                "status": "passed",
+                "durationMs": 2606
+              },
+              {
+                "name": "Tab moves focus to an interactive control on the page",
+                "status": "passed",
+                "durationMs": 2625
+              },
+              {
+                "name": "Tab cycle visits multiple distinct targets (no keyboard trap)",
+                "status": "passed",
+                "durationMs": 3255
+              },
+              {
+                "name": "First tab stop shows a visible focus indicator",
+                "status": "passed",
+                "durationMs": 2305
+              },
+              {
+                "name": "Mode select activates with Enter when focused",
+                "status": "passed",
+                "durationMs": 2618
+              },
+              {
+                "name": "Mode select activates with Space when focused",
+                "status": "passed",
+                "durationMs": 2761
+              },
+              {
+                "name": "Story bands fit within 320px width without horizontal overflow",
+                "status": "passed",
+                "durationMs": 5088
+              },
+              {
+                "name": "Avatars remain visible at 200% browser zoom",
+                "status": "passed",
+                "durationMs": 3178
+              }
+            ],
+            "axe": {
+              "violations": []
+            }
+          },
+          "functional": {
+            "suite": "functional",
+            "passed": 30,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "30 test(s) in Playwright report for functional."
+            ],
+            "errors": [],
+            "cases": [
+              {
+                "name": "Visitor sees the Avatar playground and default profile image",
+                "status": "passed",
+                "durationMs": 2987
+              },
+              {
+                "name": "Visitor can switch light/dark theme from the page header",
+                "status": "passed",
+                "durationMs": 3392
+              },
+              {
+                "name": "Size band shows Figma scale including custom pixel size",
+                "status": "passed",
+                "durationMs": 3100
+              },
+              {
+                "name": "Attention band shows high, medium, and low emphasis",
+                "status": "passed",
+                "durationMs": 2855
+              },
+              {
+                "name": "Appearance band shows primary role and brand-bg extension row",
+                "status": "passed",
+                "durationMs": 2862
+              },
+              {
+                "name": "Content band shows image, icon, and text (initials) modes",
+                "status": "passed",
+                "durationMs": 2649
+              },
+              {
+                "name": "Accent stand-in band documents Figma accent via appearance roles",
+                "status": "passed",
+                "durationMs": 2714
+              },
+              {
+                "name": "Disabled band contrasts enabled vs disabled presentation",
+                "status": "passed",
+                "durationMs": 2853
+              },
+              {
+                "name": "Combination matrix renders all documented prop mixes",
+                "status": "passed",
+                "durationMs": 2822
+              },
+              {
+                "name": "Page loads cleanly and default Avatar matches showcase props",
+                "status": "passed",
+                "durationMs": 4855
+              },
+              {
+                "name": "Every playground data-testid renders without error text",
+                "status": "passed",
+                "durationMs": 4288
+              },
+              {
+                "name": "Every story band (data-section) is visible on the page",
+                "status": "passed",
+                "durationMs": 3133
+              },
+              {
+                "name": "Size prop maps Figma labels to code data-size values",
+                "status": "passed",
+                "durationMs": 3218
+              },
+              {
+                "name": "Attention and appearance props surface on the DOM",
+                "status": "passed",
+                "durationMs": 2989
+              },
+              {
+                "name": "Content prop maps image, icon, and text modes",
+                "status": "passed",
+                "durationMs": 2322
+              },
+              {
+                "name": "Avatar sizes grow progressively and stay circular",
+                "status": "passed",
+                "durationMs": 3525
+              },
+              {
+                "name": "Avatar is display-only and not activated by click",
+                "status": "passed",
+                "durationMs": 3063
+              },
+              {
+                "name": "Tab focus stays on page chrome, not Avatar instances",
+                "status": "passed",
+                "durationMs": 3057
+              },
+              {
+                "name": "Clicking Avatar does not move focus to the Avatar root",
+                "status": "passed",
+                "durationMs": 3067
+              },
+              {
+                "name": "Default state shows image content with expected tokens",
+                "status": "passed",
+                "durationMs": 2707
+              },
+              {
+                "name": "Avatar uses content prop instead of start/end slots",
+                "status": "passed",
+                "durationMs": 2629
+              },
+              {
+                "name": "Avatar does not support selection or toggle",
+                "status": "passed",
+                "durationMs": 2617
+              },
+              {
+                "name": "Avatar does not accept typed input",
+                "status": "passed",
+                "durationMs": 2623
+              },
+              {
+                "name": "Avatar has no loading/slot dependency rules",
+                "status": "passed",
+                "durationMs": 2845
+              },
+              {
+                "name": "Text mode shows initials derived from the alt name",
+                "status": "passed",
+                "durationMs": 2434
+              },
+              {
+                "name": "Icon mode uses a decorative SVG; image mode uses presentation img",
+                "status": "passed",
+                "durationMs": 3045
+              },
+              {
+                "name": "Playground fits narrow mobile width without horizontal scroll",
+                "status": "passed",
+                "durationMs": 4453
+              },
+              {
+                "name": "Playground remains usable on large desktop viewport",
+                "status": "passed",
+                "durationMs": 4331
+              },
+              {
+                "name": "Content band lays out image, icon, and text side by side",
+                "status": "passed",
+                "durationMs": 3233
+              },
+              {
+                "name": "All story bands and sample avatars remain visible in dark theme",
+                "status": "passed",
+                "durationMs": 3355
+              }
+            ]
+          },
+          "performance": {
+            "suite": "performance",
+            "passed": 0,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "Performance suite is not executed in apps/qa-playground avatar Playwright bundle."
+            ],
+            "errors": []
+          }
+        }
+      }
+    },
+    {
+      "savedAt": "2026-06-04T11:12:06.050Z",
+      "report": {
+        "ok": true,
+        "slug": "avatar",
+        "message": "Avatar QA Playwright run OK — 2026-06-04T09:38:24.334Z",
+        "suites": {
+          "accessibility": {
+            "suite": "accessibility",
+            "passed": 29,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "29 test(s) in Playwright report for accessibility.",
+              "Axe: scan completed — 0 violation rules reported."
+            ],
+            "errors": [],
+            "cases": [
+              {
+                "name": "All Avatar story bands meet WCAG 2.1 AA (axe tags) with HTML + JSON artefacts",
+                "status": "passed",
+                "durationMs": 5404
+              },
+              {
+                "name": "Story band \"avatar-qa-default\" has no serious/critical axe violations",
+                "status": "passed",
+                "durationMs": 4470
+              },
+              {
+                "name": "Story band \"avatar-qa-size\" has no serious/critical axe violations",
+                "status": "passed",
+                "durationMs": 4812
+              },
+              {
+                "name": "Story band \"avatar-qa-attention\" has no serious/critical axe violations",
+                "status": "passed",
+                "durationMs": 4690
+              },
+              {
+                "name": "Story band \"avatar-qa-appearance\" has no serious/critical axe violations",
+                "status": "passed",
+                "durationMs": 4607
+              },
+              {
+                "name": "Story band \"avatar-qa-content\" has no serious/critical axe violations",
+                "status": "passed",
+                "durationMs": 3591
+              },
+              {
+                "name": "Story band \"avatar-qa-accent\" has no serious/critical axe violations",
+                "status": "passed",
+                "durationMs": 3618
+              },
+              {
+                "name": "Story band \"avatar-qa-disabled\" has no serious/critical axe violations",
+                "status": "passed",
+                "durationMs": 3776
+              },
+              {
+                "name": "Story band \"avatar-qa-combos\" has no serious/critical axe violations",
+                "status": "passed",
+                "durationMs": 4022
+              },
+              {
+                "name": "Section 508 tag set reports no serious/critical issues in story bands",
+                "status": "passed",
+                "durationMs": 3601
+              },
+              {
+                "name": "ARIA validity rules pass in Avatar story bands",
+                "status": "passed",
+                "durationMs": 3531
+              },
+              {
+                "name": "Naming rules pass for buttons, images, and links in story bands",
+                "status": "passed",
+                "durationMs": 3507
+              },
+              {
+                "name": "Label rule passes in Avatar story bands",
+                "status": "passed",
+                "durationMs": 3532
+              },
+              {
+                "name": "Scrollable regions are keyboard-accessible when applicable",
+                "status": "passed",
+                "durationMs": 3760
+              },
+              {
+                "name": "Non-text contrast rule passes when supported by axe-core",
+                "status": "passed",
+                "durationMs": 3447
+              },
+              {
+                "name": "aria-live-region-content rule passes when supported",
+                "status": "passed",
+                "durationMs": 2564
+              },
+              {
+                "name": "Default Avatar exposes role img and accessible name",
+                "status": "passed",
+                "durationMs": 2352
+              },
+              {
+                "name": "Document has a valid lang attribute",
+                "status": "passed",
+                "durationMs": 2445
+              },
+              {
+                "name": "Every showcase avatar has a non-empty accessible name",
+                "status": "passed",
+                "durationMs": 3886
+              },
+              {
+                "name": "Decorative images inside avatars declare alt (may be empty)",
+                "status": "passed",
+                "durationMs": 2625
+              },
+              {
+                "name": "SVG icons inside avatars are decorative or named",
+                "status": "passed",
+                "durationMs": 3139
+              },
+              {
+                "name": "Disabled avatar row remains accessible (visual disabled only)",
+                "status": "passed",
+                "durationMs": 2676
+              },
+              {
+                "name": "Tab moves focus to an interactive control on the page",
+                "status": "passed",
+                "durationMs": 2717
+              },
+              {
+                "name": "Tab cycle visits multiple distinct targets (no keyboard trap)",
+                "status": "passed",
+                "durationMs": 2717
+              },
+              {
+                "name": "First tab stop shows a visible focus indicator",
+                "status": "passed",
+                "durationMs": 2368
+              },
+              {
+                "name": "Mode select activates with Enter when focused",
+                "status": "passed",
+                "durationMs": 2635
+              },
+              {
+                "name": "Mode select activates with Space when focused",
+                "status": "passed",
+                "durationMs": 2751
+              },
+              {
+                "name": "Story bands fit within 320px width without horizontal overflow",
+                "status": "passed",
+                "durationMs": 4622
+              },
+              {
+                "name": "Avatars remain visible at 200% browser zoom",
+                "status": "passed",
+                "durationMs": 2978
+              }
+            ],
+            "axe": {
+              "violations": []
+            }
+          },
+          "functional": {
+            "suite": "functional",
+            "passed": 30,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "30 test(s) in Playwright report for functional."
+            ],
+            "errors": [],
+            "cases": [
+              {
+                "name": "Visitor sees the Avatar playground and default profile image",
+                "status": "passed",
+                "durationMs": 2988
+              },
+              {
+                "name": "Visitor can switch light/dark theme from the page header",
+                "status": "passed",
+                "durationMs": 3274
+              },
+              {
+                "name": "Size band shows Figma scale including custom pixel size",
+                "status": "passed",
+                "durationMs": 2998
+              },
+              {
+                "name": "Attention band shows high, medium, and low emphasis",
+                "status": "passed",
+                "durationMs": 2039
+              },
+              {
+                "name": "Appearance band shows primary role and brand-bg extension row",
+                "status": "passed",
+                "durationMs": 2143
+              },
+              {
+                "name": "Content band shows image, icon, and text (initials) modes",
+                "status": "passed",
+                "durationMs": 2381
+              },
+              {
+                "name": "Accent stand-in band documents Figma accent via appearance roles",
+                "status": "passed",
+                "durationMs": 2397
+              },
+              {
+                "name": "Disabled band contrasts enabled vs disabled presentation",
+                "status": "passed",
+                "durationMs": 2623
+              },
+              {
+                "name": "Combination matrix renders all documented prop mixes",
+                "status": "passed",
+                "durationMs": 2458
+              },
+              {
+                "name": "Page loads cleanly and default Avatar matches showcase props",
+                "status": "passed",
+                "durationMs": 4279
+              },
+              {
+                "name": "Every playground data-testid renders without error text",
+                "status": "passed",
+                "durationMs": 3914
+              },
+              {
+                "name": "Every story band (data-section) is visible on the page",
+                "status": "passed",
+                "durationMs": 3230
+              },
+              {
+                "name": "Size prop maps Figma labels to code data-size values",
+                "status": "passed",
+                "durationMs": 3106
+              },
+              {
+                "name": "Attention and appearance props surface on the DOM",
+                "status": "passed",
+                "durationMs": 2907
+              },
+              {
+                "name": "Content prop maps image, icon, and text modes",
+                "status": "passed",
+                "durationMs": 1556
+              },
+              {
+                "name": "Avatar sizes grow progressively and stay circular",
+                "status": "passed",
+                "durationMs": 2181
+              },
+              {
+                "name": "Avatar is display-only and not activated by click",
+                "status": "passed",
+                "durationMs": 1836
+              },
+              {
+                "name": "Tab focus stays on page chrome, not Avatar instances",
+                "status": "passed",
+                "durationMs": 2002
+              },
+              {
+                "name": "Clicking Avatar does not move focus to the Avatar root",
+                "status": "passed",
+                "durationMs": 2135
+              },
+              {
+                "name": "Default state shows image content with expected tokens",
+                "status": "passed",
+                "durationMs": 2475
+              },
+              {
+                "name": "Avatar uses content prop instead of start/end slots",
+                "status": "passed",
+                "durationMs": 2539
+              },
+              {
+                "name": "Avatar does not support selection or toggle",
+                "status": "passed",
+                "durationMs": 2441
+              },
+              {
+                "name": "Avatar does not accept typed input",
+                "status": "passed",
+                "durationMs": 2574
+              },
+              {
+                "name": "Avatar has no loading/slot dependency rules",
+                "status": "passed",
+                "durationMs": 2308
+              },
+              {
+                "name": "Text mode shows initials derived from the alt name",
+                "status": "passed",
+                "durationMs": 2459
+              },
+              {
+                "name": "Icon mode uses a decorative SVG; image mode uses presentation img",
+                "status": "passed",
+                "durationMs": 2513
+              },
+              {
+                "name": "Playground fits narrow mobile width without horizontal scroll",
+                "status": "passed",
+                "durationMs": 3973
+              },
+              {
+                "name": "Playground remains usable on large desktop viewport",
+                "status": "passed",
+                "durationMs": 3441
+              },
+              {
+                "name": "Content band lays out image, icon, and text side by side",
+                "status": "passed",
+                "durationMs": 2305
+              },
+              {
+                "name": "All story bands and sample avatars remain visible in dark theme",
+                "status": "passed",
+                "durationMs": 2375
+              }
+            ]
+          },
+          "performance": {
+            "suite": "performance",
+            "passed": 0,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "Performance suite is not executed in apps/qa-playground Avatar Playwright bundle."
+            ],
+            "errors": []
+          }
+        }
+      }
+    }
+  ]
+}

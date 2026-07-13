@@ -1,0 +1,253 @@
+/**
+ * SurfaceNewPreview.module.css
+ * Token-only values — no hardcoded colors, pixels, or fonts.
+ */
+
+/* ============================================================================
+   Surface strip — horizontal row of swatches (shared by surfaces + tokens)
+   ============================================================================ */
+
+.surfaceStrip {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-2-5);
+}
+
+.surfaceStepList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-2-5);
+}
+
+.surfaceStepRow {
+  display: grid;
+  grid-template-columns: minmax(var(--Dimension-f9), var(--Dimension-f12)) minmax(0, 1fr);
+  align-items: center;
+  gap: var(--Spacing-4);
+  padding: var(--Spacing-3) var(--Spacing-0);
+  border-bottom: var(--Stroke-M) solid var(--Border-Subtle);
+}
+
+.surfaceStepColor {
+  min-height: var(--Dimension-f8);
+  border-radius: var(--Shape-3-5);
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--Typography-Font-Code, monospace);
+  font-size: var(--Label-XS-FontSize);
+  font-weight: var(--Body-FontWeight-High);
+}
+
+.surfaceStepMeta {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--Spacing-4);
+  min-width: var(--Spacing-0);
+}
+
+.surfaceSwatch {
+  display: grid;
+  grid-template-columns: minmax(var(--Dimension-f9), var(--Dimension-f12)) minmax(0, 1fr);
+  align-items: center;
+  gap: var(--Spacing-4);
+  padding: var(--Spacing-3) var(--Spacing-0);
+  border-bottom: var(--Stroke-M) solid var(--Border-Subtle);
+}
+
+.swatchColor {
+  min-height: var(--Dimension-f8);
+  border-radius: var(--Shape-3-5);
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--Typography-Font-Code, monospace);
+  font-size: var(--Label-XS-FontSize);
+  font-weight: var(--Body-FontWeight-High);
+}
+
+.swatchName {
+  font-size: var(--Body-S-FontSize);
+  font-weight: var(--Body-FontWeight-Medium);
+  color: var(--Text-High);
+}
+
+.swatchHex {
+  font-size: var(--Label-XS-FontSize);
+  font-family: var(--Typography-Font-Code, monospace);
+  color: var(--Text-Medium);
+  text-align: center;
+  word-break: break-all;
+}
+
+/* ============================================================================
+   Stroke preview — renders strokes as actual borders
+   ============================================================================ */
+
+.strokeGrid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-2-5);
+}
+
+.strokeCard {
+  display: grid;
+  grid-template-columns: minmax(var(--Dimension-f9), var(--Dimension-f12)) minmax(0, 1fr);
+  align-items: center;
+  gap: var(--Spacing-4);
+  padding: var(--Spacing-3) var(--Spacing-0);
+  border-bottom: var(--Stroke-M) solid var(--Border-Subtle);
+}
+
+.strokePreviewBox {
+  width: 100%;
+  min-height: var(--Dimension-f8);
+  border-radius: var(--Shape-4);
+  border-width: var(--Stroke-XL);
+  border-style: solid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--Spacing-3-5);
+}
+
+.strokeInnerBox {
+  width: 60%;
+  min-height: var(--Dimension-f5);
+  border-radius: var(--Shape-3-5);
+  border-width: var(--Stroke-M);
+  border-style: solid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--Body-L-FontSize);
+  font-weight: var(--Body-FontWeight-Medium);
+}
+
+/* ============================================================================
+   Nesting demo — all surfaces stacking
+   ============================================================================ */
+
+.nestingContainer {
+  border-radius: var(--Shape-4-5);
+  padding: var(--Spacing-4);
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+}
+
+.nestingLevel {
+  border-radius: var(--Shape-4);
+  padding: var(--Spacing-3-5) var(--Spacing-4);
+  margin-top: var(--Spacing-3);
+}
+
+.nestingLabel {
+  font-size: var(--Body-S-FontSize);
+  font-weight: var(--Body-FontWeight-High);
+  margin-bottom: var(--Spacing-2);
+}
+
+.nestingMeta {
+  font-size: var(--Label-XS-FontSize);
+  font-weight: var(--Body-FontWeight-Low);
+  opacity: 0.6;
+  margin-left: var(--Spacing-3);
+  font-family: var(--Typography-Font-Code, monospace);
+}
+
+.nestingText {
+  font-size: var(--Body-S-FontSize);
+}
+
+/* ============================================================================
+   Component preview
+   ============================================================================ */
+
+.componentRow {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--Spacing-3-5);
+}
+
+/* INTENTIONAL-LITERAL: responsive breakpoint — layout breakpoints are not design tokens */
+@media (max-width: 900px) {
+  .componentRow {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.componentPreview {
+  border-radius: var(--Shape-4-5);
+  padding: var(--Spacing-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-3-5);
+}
+
+.componentLabel {
+  font-size: var(--Body-S-FontSize);
+  font-weight: var(--Body-FontWeight-High);
+}
+
+.componentButtons {
+  display: flex;
+  gap: var(--Spacing-3);
+  flex-wrap: wrap;
+}
+
+/* ============================================================================
+   Section header
+   ============================================================================ */
+
+/* Token section wrapper — extra top spacing to separate from surface strip */
+.tokenSection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-4);
+  padding-top: var(--Spacing-4);
+}
+
+.tokenTabsRow {
+  border-bottom: var(--Stroke-M) solid var(--Border-Subtle);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.tokenTabsRow::-webkit-scrollbar {
+  display: none;
+}
+
+.tokenTabsList {
+  width: max-content;
+  min-width: 100%;
+}
+
+.tokenPanel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-4);
+}
+
+.sectionHeader {
+  font-size: var(--Body-S-FontSize);
+  font-weight: var(--Body-FontWeight-High);
+  color: var(--Text-High);
+  margin: var(--Spacing-3-5) 0 var(--Spacing-3) 0;
+}
+
+/* Nesting controls bar */
+.nestingControls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--Spacing-3-5);
+}
+
+/* Stacked nesting — surfaces nested inside each other */
+.stackedNesting {
+  border-radius: var(--Shape-4-5);
+  padding: var(--Spacing-4);
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+}

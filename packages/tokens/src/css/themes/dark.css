@@ -1,0 +1,136 @@
+/**
+ * DARK THEME
+ * Clean dark mode with inverted lightness values
+ *
+ * Surface naming follows Rang De convention:
+ * - Default: Base/background (step 200)
+ * - Minimal: +1 step lighter (step 300)
+ * - Subtle: +2 steps lighter (step 400)
+ * - Bold: High contrast (step ~2200)
+ * - Elevated: Same as default + shadow
+ */
+
+@layer theme {
+[data-mode='dark'] {
+  /* Surface tokens (Rang De naming) */
+  --Surface-Default: oklch(12% 0 0);
+  --Surface-Minimal: oklch(18% 0 0);
+  --Surface-Subtle: oklch(22% 0 0);
+  --Surface-Bold: oklch(85% 0 0);
+  --Surface-Fill-Bold: oklch(85% 0 0);
+  --Surface-Elevated: oklch(12% 0 0);
+
+  /* Legacy aliases */
+  --Surface-Main: var(--Surface-Default);
+  --Surface-Ghost: var(--Surface-Minimal);
+
+  /* Text tokens - inverted for contrast on dark backgrounds */
+  --Text-High: oklch(95% 0 0);
+  --Text-Medium: oklch(70% 0 0);
+  --Text-Low: oklch(50% 0 0);
+  --Text-OnBold-High: oklch(12% 0 0);
+
+  /* Text on surface tokens (Rang De) - inverted for dark mode */
+  /* On Default/Minimal/Subtle/Elevated (dark surfaces) */
+  --Text-On-Default-High: oklch(95% 0 0);      /* Step 2500 at 100% */
+  --Text-On-Default-Medium: oklch(78% 0 0);    /* Step 2500 at ~78% blended */
+  --Text-On-Default-Low: oklch(68% 0 0);       /* Step 2500 at ~56% for 4.5:1 */
+  --Text-On-Minimal-High: var(--Text-On-Default-High);
+  --Text-On-Minimal-Medium: var(--Text-On-Default-Medium);
+  --Text-On-Minimal-Low: var(--Text-On-Default-Low);
+  --Text-On-Subtle-High: var(--Text-On-Default-High);
+  --Text-On-Subtle-Medium: var(--Text-On-Default-Medium);
+  --Text-On-Subtle-Low: var(--Text-On-Default-Low);
+  --Text-On-Elevated-High: var(--Text-On-Default-High);
+  --Text-On-Elevated-Medium: var(--Text-On-Default-Medium);
+  --Text-On-Elevated-Low: var(--Text-On-Default-Low);
+
+  /* On Bold surface (light surface in dark mode) */
+  --Text-On-Bold-High: oklch(15% 0 0);         /* Step 200 at 100% */
+  --Text-On-Bold-Medium: oklch(32% 0 0);       /* Blended midpoint */
+  --Text-On-Bold-Low: oklch(42% 0 0);          /* Minimum 4.5:1 */
+
+  /* Border tokens - inverted for dark backgrounds (neutral medium stroke / low text) */
+  --Border-Subtle: oklch(25% 0 0);
+  --Border-Default: oklch(45% 0 0);
+
+  /* Material tokens - Dark mode overrides */
+
+  /* Frosted backgrounds - inverted for dark mode */
+  --Material-Frosted-Background-UltraThin: rgba(0, 0, 0, 0.30);
+  --Material-Frosted-Background-Thin: rgba(0, 0, 0, 0.50);
+  --Material-Frosted-Background-Regular: rgba(0, 0, 0, 0.65);
+  --Material-Frosted-Background-Thick: rgba(0, 0, 0, 0.75);
+  --Material-Frosted-Background-UltraThick: rgba(0, 0, 0, 0.85);
+
+  /* Frosted border - lighter for dark mode visibility */
+  --Material-Frosted-Border: rgba(255, 255, 255, 0.10);
+
+  /* Frosted fallbacks - solid dark backgrounds */
+  --Material-Frosted-Fallback-UltraThin: rgba(0, 0, 0, 0.80);
+  --Material-Frosted-Fallback-Thin: rgba(0, 0, 0, 0.85);
+  --Material-Frosted-Fallback-Regular: rgba(0, 0, 0, 0.92);
+  --Material-Frosted-Fallback-Thick: rgba(0, 0, 0, 0.95);
+  --Material-Frosted-Fallback-UltraThick: rgba(0, 0, 0, 0.97);
+
+  /* Glass - use dark tint in dark mode */
+  --Material-Glass-Tint: var(--Material-Glass-Tint-Dark);
+  --Material-Glass-Border: var(--Material-Glass-Border-Dark);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-mode]) {
+    /* Surface tokens (Rang De naming) */
+    --Surface-Default: oklch(12% 0 0);
+    --Surface-Minimal: oklch(18% 0 0);
+    --Surface-Subtle: oklch(22% 0 0);
+    --Surface-Bold: oklch(85% 0 0);
+    --Surface-Elevated: oklch(12% 0 0);
+
+    /* Legacy aliases */
+    --Surface-Main: var(--Surface-Default);
+    --Surface-Ghost: var(--Surface-Minimal);
+
+    --Text-High: oklch(95% 0 0);
+    --Text-Medium: oklch(70% 0 0);
+    --Text-Low: oklch(50% 0 0);
+    --Text-OnBold-High: oklch(12% 0 0);
+
+    /* Text on surface tokens (Rang De) */
+    --Text-On-Default-High: oklch(95% 0 0);
+    --Text-On-Default-Medium: oklch(78% 0 0);
+    --Text-On-Default-Low: oklch(68% 0 0);
+    --Text-On-Minimal-High: var(--Text-On-Default-High);
+    --Text-On-Minimal-Medium: var(--Text-On-Default-Medium);
+    --Text-On-Minimal-Low: var(--Text-On-Default-Low);
+    --Text-On-Subtle-High: var(--Text-On-Default-High);
+    --Text-On-Subtle-Medium: var(--Text-On-Default-Medium);
+    --Text-On-Subtle-Low: var(--Text-On-Default-Low);
+    --Text-On-Elevated-High: var(--Text-On-Default-High);
+    --Text-On-Elevated-Medium: var(--Text-On-Default-Medium);
+    --Text-On-Elevated-Low: var(--Text-On-Default-Low);
+    --Text-On-Bold-High: oklch(15% 0 0);
+    --Text-On-Bold-Medium: oklch(32% 0 0);
+    --Text-On-Bold-Low: oklch(42% 0 0);
+
+    /* Border tokens - inverted for dark backgrounds (medium stroke level) */
+    --Border-Subtle: oklch(35% 0 0);
+    --Border-Default: oklch(95% 0 0);
+
+    /* Material tokens - Dark mode overrides */
+    --Material-Frosted-Background-UltraThin: rgba(0, 0, 0, 0.30);
+    --Material-Frosted-Background-Thin: rgba(0, 0, 0, 0.50);
+    --Material-Frosted-Background-Regular: rgba(0, 0, 0, 0.65);
+    --Material-Frosted-Background-Thick: rgba(0, 0, 0, 0.75);
+    --Material-Frosted-Background-UltraThick: rgba(0, 0, 0, 0.85);
+    --Material-Frosted-Border: rgba(255, 255, 255, 0.10);
+    --Material-Frosted-Fallback-UltraThin: rgba(0, 0, 0, 0.80);
+    --Material-Frosted-Fallback-Thin: rgba(0, 0, 0, 0.85);
+    --Material-Frosted-Fallback-Regular: rgba(0, 0, 0, 0.92);
+    --Material-Frosted-Fallback-Thick: rgba(0, 0, 0, 0.95);
+    --Material-Frosted-Fallback-UltraThick: rgba(0, 0, 0, 0.97);
+    --Material-Glass-Tint: var(--Material-Glass-Tint-Dark);
+    --Material-Glass-Border: var(--Material-Glass-Border-Dark);
+  }
+}
+} /* @layer theme */

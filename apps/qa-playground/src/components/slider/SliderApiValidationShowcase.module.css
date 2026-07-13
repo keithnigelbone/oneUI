@@ -1,0 +1,108 @@
+/**
+ * Slider Figma API ↔ `SliderProps` validation tab — token-only chrome.
+ */
+
+.page {
+  box-sizing: border-box;
+  padding: 0;
+  max-width: 100%;
+}
+
+.title {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Headline-L-FontSize);
+  line-height: var(--Headline-L-LineHeight);
+  font-weight: var(--Headline-L-FontWeight);
+  color: var(--Text-High);
+  margin: 0 0 var(--Spacing-3);
+}
+
+.metaLine {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  font-weight: var(--Body-FontWeight-Low);
+  color: var(--Text-Medium);
+  margin: 0 0 var(--Spacing-5);
+  overflow-wrap: anywhere;
+}
+
+.sectionTitle {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Title-M-FontSize);
+  line-height: var(--Title-M-LineHeight);
+  font-weight: var(--Title-M-FontWeight);
+  color: var(--Text-High);
+  margin: var(--Spacing-6) 0 var(--Spacing-3);
+}
+
+.sectionTitle:first-of-type {
+  margin-top: 0;
+}
+
+.tableWrap {
+  overflow: auto;
+  max-width: 100%;
+  border-radius: var(--Shape-L);
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+  background: var(--Surface-Minimal);
+  padding: var(--Spacing-4);
+  box-sizing: border-box;
+}
+
+.apiTable {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: var(--Spacing-80);
+  font-family: var(--Typography-Font-Primary);
+}
+
+.apiTable th,
+.apiTable td {
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+  padding: var(--Spacing-3) var(--Spacing-4);
+  vertical-align: top;
+  text-align: left;
+}
+
+.apiTable th {
+  font-size: var(--Label-S-FontSize);
+  line-height: var(--Label-S-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+  color: var(--Text-High);
+  background: var(--Surface-Default);
+}
+
+.apiTable td {
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  font-weight: var(--Body-FontWeight-Low);
+  color: var(--Text-Medium);
+}
+
+.apiTable code {
+  font-family: var(--Typography-Font-Code);
+  font-size: var(--Code-S-FontSize);
+  line-height: var(--Code-S-LineHeight);
+  color: var(--Text-High);
+}
+
+.cellDemo {
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+.matchOk {
+  color: var(--Positive-High);
+  font-weight: var(--Body-FontWeight-Medium);
+}
+
+.matchWarn {
+  color: var(--Warning-High);
+  font-weight: var(--Body-FontWeight-Medium);
+}
+
+.matchTodo {
+  color: var(--Text-Medium);
+  font-style: italic;
+}

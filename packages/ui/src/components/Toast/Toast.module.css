@@ -1,0 +1,137 @@
+/**
+ * Toast.module.css
+ * Token-only styling for Toast component
+ * Verified by: pnpm check:literals
+ */
+
+/* Viewport */
+.viewport {
+  position: fixed;
+  z-index: var(--Z-Index-Toast);
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-3-5);
+  padding: var(--Spacing-4-5);
+  max-width: var(--Toast-Max-Width, var(--Spacing-9));
+}
+
+.topCenter {
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  align-items: center;
+}
+
+.topRight {
+  top: 0;
+  right: 0;
+  align-items: flex-end;
+}
+
+.bottomCenter {
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  align-items: center;
+}
+
+.bottomRight {
+  bottom: 0;
+  right: 0;
+  align-items: flex-end;
+}
+
+/* Toast root */
+.toast {
+  box-sizing: border-box;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--Spacing-3-5);
+  padding: var(--Spacing-4);
+  border-radius: var(--Shape-4-5);
+  background-color: var(--Surface-Elevated);
+  color: var(--Text-High);
+  box-shadow: var(--Elevation-4);
+  outline: var(--Stroke-M) solid var(--Border-Subtle);
+  width: 100%;
+  transition: all var(--Motion-Duration-Expressive-Short) var(--Motion-Easing-Emphasized);
+}
+
+.toast[data-starting-style],
+.toast[data-ending-style] {
+  opacity: 0;
+  transform: translateY(var(--Motion-Distance-Medium));
+}
+
+/* Variants - left accent */
+.info {
+  border-left: var(--Stroke-2XL) solid var(--Surface-Bold);
+}
+
+.success {
+  border-left: var(--Stroke-2XL) solid var(--Status-Success);
+}
+
+.warning {
+  border-left: var(--Stroke-2XL) solid var(--Status-Warning);
+}
+
+.error {
+  border-left: var(--Stroke-2XL) solid var(--Status-Error);
+}
+
+/* Content */
+.content {
+  flex: 1;
+  min-width: 0;
+}
+
+.title {
+  font-size: var(--Body-M-FontSize);
+  font-weight: var(--Body-FontWeight-High);
+  line-height: var(--Typography-LineHeight-Normal);
+  color: var(--Text-High);
+  margin: 0;
+}
+
+.description {
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Typography-LineHeight-Normal);
+  color: var(--Text-Medium);
+  margin: var(--Spacing-2) 0 0;
+}
+
+/* Close button */
+.close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--Spacing-4-5);
+  height: var(--Spacing-4-5);
+  border: none;
+  border-radius: var(--Shape-4);
+  background-color: transparent;
+  color: var(--Text-Medium);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background-color var(--Motion-Duration-Discreet-Short) var(--Motion-Easing-Standard);
+}
+
+.close:hover {
+  background-color: var(--Surface-Minimal);
+}
+
+.close:focus {
+  outline: none;
+}
+
+.close:focus-visible {
+  box-shadow:
+    0 0 0 var(--Stroke-XL) var(--Surface-Halo-Gap, var(--Surface-Main)),
+    0 0 0 calc(var(--Stroke-XL) + var(--Focus-Outline-Width)) var(--Focus-Outline);
+}
+
+/* Action */
+.action {
+  margin-top: var(--Spacing-3);
+}

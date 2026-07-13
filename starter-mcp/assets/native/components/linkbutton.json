@@ -1,0 +1,305 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "LinkButton",
+  "generatedAt": "2026-07-09T13:07:37.414Z",
+  "machineReadable": true,
+  "status": "planned",
+  "intentAndPurpose": {
+    "intent": "Inline text link with button-family semantics. role=\"link\", no surface fill — colour + hover/pressed states resolve against the parent <Surface>. Four f-step sizes (6/8/10/12), optional start/end slots, optional underline. Use Button for a filled CTA."
+  },
+  "compositionRules": {
+    "requires": [
+      "children"
+    ],
+    "allows": [],
+    "forbids": [],
+    "childKind": "fixed-slots"
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "bold"
+      },
+      {
+        "name": "subtle"
+      },
+      {
+        "name": "ghost"
+      }
+    ]
+  },
+  "props": [
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "required": true,
+      "description": "Link label. String children become the accessible name."
+    },
+    {
+      "name": "variant",
+      "type": "'bold' | 'subtle' | 'ghost'",
+      "required": false,
+      "defaultValue": "bold",
+      "description": ""
+    },
+    {
+      "name": "attention",
+      "type": "'high' | 'medium' | 'low'",
+      "required": false,
+      "description": "Figma alias → variant (high→bold, medium→subtle, low→ghost)."
+    },
+    {
+      "name": "size",
+      "type": "6 | 8 | 10 | 12",
+      "required": false,
+      "defaultValue": "10",
+      "description": "f-step numeric size; t-shirt aliases (xs/s/m/l) canonicalise to these."
+    },
+    {
+      "name": "appearance",
+      "type": "'auto' | 'primary' | 'secondary' | 'neutral' | 'sparkle' | 'brand-bg' | 'positive' | 'negative' | 'warning' | 'informative'",
+      "required": false,
+      "defaultValue": "auto",
+      "description": "Multi-accent role resolved against the parent <Surface>."
+    },
+    {
+      "name": "start",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Leading slot — typically a JDS <Icon>."
+    },
+    {
+      "name": "end",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Trailing slot — typically a JDS <Icon>."
+    },
+    {
+      "name": "showUnderline",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "true",
+      "description": "Toggles the underline affordance."
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "loading",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": "Sets accessibilityState.busy."
+    },
+    {
+      "name": "onPress",
+      "type": "ReactNode",
+      "required": false,
+      "description": "RN press handler."
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "color",
+      "type": "string",
+      "required": false,
+      "description": "[error] Don't paint directly. Use `appearance` (role) + `variant`/`mode` and wrap in <Surface mode>; the brand cascade picks the right fill."
+    },
+    {
+      "name": "style",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Layout style only. Colour is driven by appearance + the parent <Surface>. — [warn] Don't paint the link. Use `appearance`; content + state tokens resolve against the surface."
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.kb.rn.LinkButton",
+    "type": "object",
+    "properties": {
+      "children": {
+        "description": "Link label. String children become the accessible name."
+      },
+      "variant": {
+        "enum": [
+          "bold",
+          "subtle",
+          "ghost"
+        ],
+        "default": "bold"
+      },
+      "attention": {
+        "enum": [
+          "high",
+          "medium",
+          "low"
+        ],
+        "description": "Figma alias → variant (high→bold, medium→subtle, low→ghost)."
+      },
+      "size": {
+        "enum": [
+          6,
+          8,
+          10,
+          12
+        ],
+        "default": 10,
+        "description": "f-step numeric size; t-shirt aliases (xs/s/m/l) canonicalise to these."
+      },
+      "appearance": {
+        "enum": [
+          "auto",
+          "primary",
+          "secondary",
+          "neutral",
+          "sparkle",
+          "brand-bg",
+          "positive",
+          "negative",
+          "warning",
+          "informative"
+        ],
+        "default": "auto",
+        "description": "Multi-accent role resolved against the parent <Surface>."
+      },
+      "start": {
+        "description": "Leading slot — typically a JDS <Icon>."
+      },
+      "end": {
+        "description": "Trailing slot — typically a JDS <Icon>."
+      },
+      "showUnderline": {
+        "type": "boolean",
+        "default": true,
+        "description": "Toggles the underline affordance."
+      },
+      "disabled": {
+        "type": "boolean",
+        "default": false
+      },
+      "loading": {
+        "type": "boolean",
+        "default": false,
+        "description": "Sets accessibilityState.busy."
+      },
+      "onPress": {
+        "description": "RN press handler."
+      },
+      "aria-label": {
+        "type": "string"
+      },
+      "color": {
+        "type": "string",
+        "not": {
+          "anyOf": [
+            {
+              "pattern": "^#"
+            },
+            {
+              "pattern": "^rgba?\\("
+            },
+            {
+              "pattern": "^hsla?\\("
+            },
+            {
+              "pattern": "^oklch\\("
+            },
+            {
+              "pattern": "^color-mix\\("
+            },
+            {
+              "enum": [
+                "transparent",
+                "inherit"
+              ]
+            }
+          ]
+        },
+        "x-jds-suggestion": "Don't paint directly. Use `appearance` (role) + `variant`/`mode` and wrap in <Surface mode>; the brand cascade picks the right fill.",
+        "x-jds-severity": "error"
+      },
+      "style": {
+        "description": "Layout style only. Colour is driven by appearance + the parent <Surface>.",
+        "x-jds-suggestion": "Don't paint the link. Use `appearance`; content + state tokens resolve against the surface.",
+        "x-jds-severity": "warn"
+      }
+    },
+    "required": [
+      "children"
+    ]
+  },
+  "tokens": {
+    "color": [
+      "primary",
+      "secondary",
+      "neutral",
+      "sparkle",
+      "brand-bg",
+      "positive",
+      "negative",
+      "warning",
+      "informative"
+    ],
+    "typography": [
+      "label.S",
+      "label.M",
+      "label.L"
+    ],
+    "motion": [
+      "motion.duration.discreet.short",
+      "motion.easing.transition"
+    ]
+  },
+  "a11y": {
+    "accessibilityRole": "link",
+    "accessibilityState": [
+      "disabled",
+      "busy"
+    ],
+    "accessibleNameSource": "children",
+    "minTouchTarget": 44,
+    "honorsBoldText": true,
+    "honorsScreenReader": true
+  },
+  "renderHints": {
+    "baseElement": "Pressable",
+    "animatedOn": [
+      "press"
+    ],
+    "honorsReduceMotion": true,
+    "readsFromSurfaceContext": true
+  },
+  "figma": {
+    "componentKey": "jds-link-button-v4",
+    "keyHistory": [],
+    "variantProperties": {
+      "Component": "LinkButton"
+    }
+  },
+  "codeSnippets": [
+    {
+      "id": "import-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { LinkButton } from '@oneui/ui-native';\n\n<LinkButton />"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "linkbutton",
+    "cta",
+    "link",
+    "action",
+    "interactive"
+  ],
+  "importPath": "@oneui/ui-native"
+}

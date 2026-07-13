@@ -1,0 +1,28 @@
+Keep only below sections:
+
+section1: image aspect ratios
+- mount the carousel with a few key Figma CarouselImage aspect ratios (1:1, 16:9, 3:4). One carousel per ratio, fill-width content.
+
+section2: content alignments
+- mount the carousel across the content-block alignments (startBottom, startMiddle, middleBottom, middleMiddle, middleTop). One slide each so the overlay placement is unambiguous.
+
+section3: content widths
+- mount the carousel with content widths fill, l, m and s on a startBottom alignment.
+
+section4: controls placement
+- mount the carousel with controls below the media and controls on the media (pagination + prev/next nav arrows).
+
+section5: peek vs full width
+- mount the inset carousel (fullWidth false → both-side peek) and the full-width carousel (fullWidth true → no peek).
+
+section6: selection rail
+- mount the carousel with a below-media (opaque) selection rail and an on-media (transparent) selection rail.
+
+section7: autoplay
+- mount an autoplaying, looping carousel with on-media pagination and a play/pause button.
+
+section8: badges
+- mount the carousel with a badge inside Slide.Content and a badge in Item.BadgeRow (start corner).
+
+section9: surface context
+- mount the carousel on default, subtle and bold surfaces to verify token remapping through <Surface>.

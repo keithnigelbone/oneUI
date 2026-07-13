@@ -1,0 +1,267 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Modal",
+  "generatedAt": "2026-07-09T13:07:37.424Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "A popup dialog that demands user attention and interaction."
+  },
+  "compositionRules": {
+    "requires": [],
+    "allows": [],
+    "forbids": [],
+    "childKind": "variadic"
+  },
+  "props": [
+    {
+      "name": "open",
+      "type": "boolean",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "defaultOpen",
+      "type": "boolean",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "dismissible",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "true",
+      "description": ""
+    },
+    {
+      "name": "size",
+      "type": "'s' | 'm' | 'l' | 'fullWidth'",
+      "required": false,
+      "defaultValue": "s",
+      "description": ""
+    },
+    {
+      "name": "header",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "true",
+      "description": ""
+    },
+    {
+      "name": "headerAlign",
+      "type": "'left' | 'center'",
+      "required": false,
+      "defaultValue": "left",
+      "description": ""
+    },
+    {
+      "name": "showTitle",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "true",
+      "description": ""
+    },
+    {
+      "name": "title",
+      "type": "string",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "showDescription",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "true",
+      "description": ""
+    },
+    {
+      "name": "description",
+      "type": "string",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "dividerTopVisibility",
+      "type": "'none' | 'onScroll' | 'always'",
+      "required": false,
+      "defaultValue": "none",
+      "description": ""
+    },
+    {
+      "name": "dividerTopScrollPosition",
+      "type": "'start' | 'middle' | 'end'",
+      "required": false,
+      "defaultValue": "middle",
+      "description": ""
+    },
+    {
+      "name": "dividerBottomVisibility",
+      "type": "'none' | 'onScroll' | 'always'",
+      "required": false,
+      "defaultValue": "none",
+      "description": ""
+    },
+    {
+      "name": "dividerBottomScrollPosition",
+      "type": "'start' | 'middle' | 'end'",
+      "required": false,
+      "defaultValue": "middle",
+      "description": ""
+    },
+    {
+      "name": "footer",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "true",
+      "description": ""
+    },
+    {
+      "name": "footerOrientation",
+      "type": "'horizontal' | 'vertical'",
+      "required": false,
+      "defaultValue": "horizontal",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.kb.rn.Modal",
+    "type": "object",
+    "properties": {
+      "open": {
+        "type": "boolean"
+      },
+      "defaultOpen": {
+        "type": "boolean"
+      },
+      "dismissible": {
+        "type": "boolean",
+        "default": true
+      },
+      "size": {
+        "enum": [
+          "s",
+          "m",
+          "l",
+          "fullWidth"
+        ],
+        "default": "s"
+      },
+      "header": {
+        "type": "boolean",
+        "default": true
+      },
+      "headerAlign": {
+        "enum": [
+          "left",
+          "center"
+        ],
+        "default": "left"
+      },
+      "showTitle": {
+        "type": "boolean",
+        "default": true
+      },
+      "title": {
+        "type": "string"
+      },
+      "showDescription": {
+        "type": "boolean",
+        "default": true
+      },
+      "description": {
+        "type": "string"
+      },
+      "dividerTopVisibility": {
+        "enum": [
+          "none",
+          "onScroll",
+          "always"
+        ],
+        "default": "none"
+      },
+      "dividerTopScrollPosition": {
+        "enum": [
+          "start",
+          "middle",
+          "end"
+        ],
+        "default": "middle"
+      },
+      "dividerBottomVisibility": {
+        "enum": [
+          "none",
+          "onScroll",
+          "always"
+        ],
+        "default": "none"
+      },
+      "dividerBottomScrollPosition": {
+        "enum": [
+          "start",
+          "middle",
+          "end"
+        ],
+        "default": "middle"
+      },
+      "footer": {
+        "type": "boolean",
+        "default": true
+      },
+      "footerOrientation": {
+        "enum": [
+          "horizontal",
+          "vertical"
+        ],
+        "default": "horizontal"
+      }
+    },
+    "required": []
+  },
+  "tokens": {
+    "color": [],
+    "surface": [
+      "default",
+      "elevated"
+    ]
+  },
+  "a11y": {
+    "accessibilityRole": "none",
+    "accessibleNameSource": "children",
+    "minTouchTarget": 44,
+    "honorsBoldText": true,
+    "honorsScreenReader": true
+  },
+  "renderHints": {
+    "baseElement": "View",
+    "animatedOn": [
+      "mount"
+    ],
+    "honorsReduceMotion": true,
+    "readsFromSurfaceContext": true
+  },
+  "figma": {
+    "componentKey": "jds-modal-v4",
+    "keyHistory": [],
+    "variantProperties": {
+      "Component": "Modal"
+    }
+  },
+  "codeSnippets": [
+    {
+      "id": "import-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { Modal } from '@oneui/ui-native';\n\n<Modal />"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "modal",
+    "overlay",
+    "dialog",
+    "popup"
+  ],
+  "importPath": "@oneui/ui-native"
+}

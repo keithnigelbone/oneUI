@@ -1,0 +1,151 @@
+/**
+ * ToneGuardCard.module.css
+ *
+ * Accordion-style inline card for tone-guard phase transitions. The
+ * header is a clickable button (toggles check list), the body is an
+ * expandable list of every check (passed + failed).
+ *
+ * INTENTIONAL-LITERAL: the row uses a 6px status dot and 14px checkmark
+ * icons — small visual-language affordances that sit below the smallest
+ * spacing token (--Spacing-1-5 = 6px would round up). The 14px matches
+ * the text x-height for inline alignment.
+ */
+
+.root {
+  display: flex;
+  flex-direction: column;
+  background: var(--Secondary-Subtle);
+  border-radius: var(--Shape-3-5);
+  margin-block: var(--Spacing-2);
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  overflow: hidden;
+}
+
+/* ── Header (clickable button) ──────────────────────────────────────────── */
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-2);
+  padding: var(--Spacing-3) var(--Spacing-3-5);
+  background: transparent;
+  border: none;
+  width: 100%;
+  text-align: left;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background-color var(--Motion-Duration-Discreet-Short);
+}
+
+.header:hover:not(:disabled) {
+  background: var(--Secondary-Stroke-Low);
+}
+
+.header:disabled {
+  cursor: default;
+}
+
+.statusDot {
+  flex-shrink: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: var(--Shape-Pill);
+}
+
+.statusDotChecking {
+  background: var(--Warning-Medium-Text);
+  animation: tonePulse 1.2s ease-in-out infinite;
+}
+
+.statusDotCorrected {
+  background: var(--Warning-Medium-Text);
+}
+
+.statusDotPassed {
+  background: var(--Positive-Medium-Text);
+}
+
+.label {
+  font-size: var(--Label-S-FontSize);
+  line-height: var(--Label-S-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+  color: var(--Secondary-Medium-Text);
+}
+
+.summary {
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  color: var(--Secondary-Low);
+}
+
+.score {
+  margin-left: auto;
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  color: var(--Secondary-Low);
+}
+
+.chevron {
+  color: var(--Secondary-Low);
+  transition: transform var(--Motion-Duration-Discreet-Short);
+}
+
+.chevronOpen {
+  color: var(--Secondary-Medium-Text);
+  transform: rotate(180deg);
+  transition: transform var(--Motion-Duration-Discreet-Short);
+}
+
+/* ── Expanded check list ────────────────────────────────────────────────── */
+
+.checkList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-1);
+  margin: 0;
+  padding: 0 var(--Spacing-3-5) var(--Spacing-3);
+  list-style: none;
+  border-top: var(--Stroke-S) solid var(--Secondary-Stroke-Low);
+  padding-top: var(--Spacing-3);
+}
+
+.check {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--Spacing-1-5);
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  color: var(--Secondary-Low);
+}
+
+/* INTENTIONAL-LITERAL: 14px is the optical width needed for a single-glyph
+   check/warning marker to align with the surrounding text x-height at
+   --Label-XS-FontSize. Not expressible via the spacing/dimension token scale. */
+.checkPassed::before {
+  content: '✓';
+  color: var(--Positive-Medium-Text);
+  font-weight: var(--Label-FontWeight-Medium);
+  flex-shrink: 0;
+  width: 14px;
+}
+
+.checkFailed::before {
+  content: '!';
+  color: var(--Warning-Medium-Text);
+  font-weight: var(--Label-FontWeight-Medium);
+  flex-shrink: 0;
+  width: 14px;
+}
+
+.checkName {
+  color: var(--Secondary-Medium-Text);
+}
+
+.checkDetails {
+  color: var(--Secondary-Low);
+}
+
+@keyframes tonePulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}

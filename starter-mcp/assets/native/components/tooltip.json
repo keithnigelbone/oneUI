@@ -1,0 +1,248 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Tooltip",
+  "generatedAt": "2026-07-09T13:07:37.425Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "A brief, contextual popup that displays when hovering or focusing an element."
+  },
+  "compositionRules": {
+    "requires": [
+      "content"
+    ],
+    "allows": [],
+    "forbids": [],
+    "childKind": "leaf"
+  },
+  "props": [
+    {
+      "name": "content",
+      "type": "ReactNode",
+      "required": true,
+      "description": "Tooltip content — text or ReactNode. Required; serves as the accessible label."
+    },
+    {
+      "name": "position",
+      "type": "'top' | 'topStart' | 'topEnd' | 'bottom' | 'bottomStart' | 'bottomEnd' | 'left' | 'leftStart' | 'leftEnd' | 'right' | 'rightStart' | 'rightEnd'",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "side",
+      "type": "'top' | 'bottom' | 'left' | 'right'",
+      "required": false,
+      "defaultValue": "top",
+      "description": ""
+    },
+    {
+      "name": "align",
+      "type": "'start' | 'center' | 'end'",
+      "required": false,
+      "defaultValue": "center",
+      "description": ""
+    },
+    {
+      "name": "trigger",
+      "type": "'hover' | 'click' | 'focus' | 'manual'",
+      "required": false,
+      "defaultValue": "hover",
+      "description": ""
+    },
+    {
+      "name": "open",
+      "type": "boolean",
+      "required": false,
+      "description": "Controlled open state."
+    },
+    {
+      "name": "defaultOpen",
+      "type": "boolean",
+      "required": false,
+      "description": "Uncontrolled initial open state."
+    },
+    {
+      "name": "onOpenChange",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Called with the next open state (boolean) when the tooltip opens/closes."
+    },
+    {
+      "name": "delay",
+      "type": "number",
+      "required": false,
+      "defaultValue": "200",
+      "description": ""
+    },
+    {
+      "name": "closeDelay",
+      "type": "number",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "arrow",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "true",
+      "description": ""
+    },
+    {
+      "name": "hoverable",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "true",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "subtle",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.kb.rn.Tooltip",
+    "type": "object",
+    "properties": {
+      "content": {
+        "description": "Tooltip content — text or ReactNode. Required; serves as the accessible label."
+      },
+      "position": {
+        "enum": [
+          "top",
+          "topStart",
+          "topEnd",
+          "bottom",
+          "bottomStart",
+          "bottomEnd",
+          "left",
+          "leftStart",
+          "leftEnd",
+          "right",
+          "rightStart",
+          "rightEnd"
+        ]
+      },
+      "side": {
+        "enum": [
+          "top",
+          "bottom",
+          "left",
+          "right"
+        ],
+        "default": "top"
+      },
+      "align": {
+        "enum": [
+          "start",
+          "center",
+          "end"
+        ],
+        "default": "center"
+      },
+      "trigger": {
+        "enum": [
+          "hover",
+          "click",
+          "focus",
+          "manual"
+        ],
+        "default": "hover"
+      },
+      "open": {
+        "type": "boolean",
+        "description": "Controlled open state."
+      },
+      "defaultOpen": {
+        "type": "boolean",
+        "description": "Uncontrolled initial open state."
+      },
+      "onOpenChange": {
+        "description": "Called with the next open state (boolean) when the tooltip opens/closes."
+      },
+      "delay": {
+        "type": "number",
+        "default": 200
+      },
+      "closeDelay": {
+        "type": "number"
+      },
+      "arrow": {
+        "type": "boolean",
+        "default": true
+      },
+      "hoverable": {
+        "type": "boolean",
+        "default": true
+      },
+      "disabled": {
+        "type": "boolean",
+        "default": false
+      },
+      "subtle": {
+        "type": "boolean",
+        "default": false
+      }
+    },
+    "required": [
+      "content"
+    ]
+  },
+  "tokens": {
+    "color": [
+      "neutral"
+    ],
+    "surface": [
+      "elevated"
+    ]
+  },
+  "a11y": {
+    "accessibilityRole": "button",
+    "accessibleNameSource": "children",
+    "minTouchTarget": 44,
+    "honorsBoldText": true,
+    "honorsScreenReader": true
+  },
+  "renderHints": {
+    "baseElement": "View",
+    "animatedOn": [
+      "mount"
+    ],
+    "honorsReduceMotion": true,
+    "readsFromSurfaceContext": true
+  },
+  "figma": {
+    "componentKey": "jds-tooltip-v4",
+    "keyHistory": [],
+    "variantProperties": {
+      "Component": "Tooltip"
+    }
+  },
+  "codeSnippets": [
+    {
+      "id": "import-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { Tooltip } from '@oneui/ui-native';\n\n<Tooltip />"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "tooltip",
+    "overlay",
+    "popup",
+    "hint"
+  ],
+  "importPath": "@oneui/ui-native"
+}

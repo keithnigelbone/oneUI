@@ -1,0 +1,24 @@
+/**
+ * InputFieldDefaultInfo — decorative info trigger.
+ * Suppresses IconButton's double halo and ghost hover fill so the row stays quiet;
+ * keyboard users still get a single 1px focus outline.
+ *
+ * Container size is driven from TS (`--_ib-size: var(--_ib-icon-size)`) so the
+ * control’s border box matches the painted icon — tooltip anchoring uses that box.
+ *
+ * Verified by: pnpm check:literals
+ */
+
+.infoTrigger:hover:not(:disabled) {
+  background-color: transparent !important;
+}
+
+.infoTrigger:active:not(:disabled) {
+  background-color: transparent !important;
+}
+
+.infoTrigger:focus-visible {
+  box-shadow: none !important;
+  outline: var(--Stroke-M) solid var(--Focus-Outline) !important;
+  outline-offset: var(--Spacing-0) !important;
+}

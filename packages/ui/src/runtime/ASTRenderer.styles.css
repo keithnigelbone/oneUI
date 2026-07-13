@@ -1,0 +1,28 @@
+/**
+ * ASTRenderer.styles.css
+ *
+ * Runtime-only styles for the AST fallback node. Plain global stylesheet
+ * (not a CSS Module) because the rules target data attributes directly —
+ * there is no component-local class to scope them to. Next.js / webpack
+ * rejects top-level :global(...) in .module.css under the pure-selector
+ * rule, so we ship this as a regular .css file imported once from
+ * ASTRenderer.tsx as a side-effect.
+ *
+ * Playgrounds that add `data-oneui-canvas` to the canvas frame get a
+ * visible "⚠ {type}" badge; elsewhere the fallback stays silent.
+ */
+
+[data-ast-unknown] {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--Spacing-1-5);
+  padding: var(--Spacing-1) var(--Spacing-2-5);
+  border: var(--Stroke-S) dashed var(--Warning-Stroke-Medium, var(--Border-Default));
+  border-radius: var(--Shape-3);
+  background: var(--Warning-Subtle, var(--Surface-Subtle));
+  color: var(--Warning-High, var(--Text-High));
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Label-XS-FontSize);
+  font-weight: var(--Label-FontWeight-Medium);
+  line-height: var(--Label-XS-LineHeight);
+}

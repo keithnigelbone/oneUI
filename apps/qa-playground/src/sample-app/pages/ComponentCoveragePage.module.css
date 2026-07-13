@@ -1,0 +1,97 @@
+.tableWrap {
+  overflow-x: auto;
+  border-radius: var(--Shape-4);
+  border: 1px solid var(--Border-Subtle, #e8e8e8);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.table th,
+.table td {
+  padding: 10px 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--Border-Subtle, #eee);
+  vertical-align: top;
+}
+
+.table th {
+  background: var(--Surface-Fill-Subtle, #f7f7f7);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.table tbody tr:hover {
+  background: color-mix(in srgb, var(--Primary-High, #141414) 3%, transparent);
+}
+
+.link {
+  color: var(--Primary-Tint-High, #0a2885);
+  text-decoration: underline;
+  font-size: 13px;
+}
+
+.muted {
+  margin-top: 4px;
+  margin-bottom: 12px;
+}
+
+.chipGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.summaryList {
+  margin: 8px 0 0;
+  padding-left: 18px;
+  line-height: 1.6;
+}
+
+.propPicker {
+  margin: 16px 0;
+}
+
+.propChip {
+  border: 1px solid var(--Border-Subtle, #dcdcdc);
+  background: var(--Surface-Fill-Default, #fff);
+  border-radius: var(--Shape-4, 8px);
+  padding: 6px 10px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.propChipActive {
+  border-color: var(--Primary-Tint-High, #0a2885);
+  background: color-mix(in srgb, var(--Primary-Tint-High, #0a2885) 8%, white);
+}
+
+.propDetail {
+  margin-top: 8px;
+}
+
+.propList {
+  margin: 12px 0;
+  padding-left: 0;
+  list-style: none;
+  line-height: 1.55;
+  font-size: 13px;
+}
+
+.propOk {
+  color: #1b7f3a;
+  margin-right: 6px;
+}
+
+.propNo {
+  color: #c0392b;
+  margin-right: 6px;
+}
+
+.propMissing {
+  color: var(--Primary-Medium-Text, #666);
+}

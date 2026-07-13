@@ -1,0 +1,27 @@
+{
+  "name": "OneUI Figma Bridge",
+  "id": "oneui-figma-bridge",
+  "api": "1.0.0",
+  "main": "code.js",
+  "ui": "ui.html",
+  "editorType": ["figma", "dev"],
+  "capabilities": ["inspect"],
+  "enablePrivatePluginApi": true,
+  "documentAccess": "dynamic-page",
+  "permissions": ["teamlibrary"],
+  "networkAccess": {
+    "allowedDomains": [
+      "ws://localhost:9333",
+      "ws://localhost:9334",
+      "ws://localhost:9335",
+      "ws://localhost:9336",
+      "ws://localhost:9337",
+      "ws://localhost:9338",
+      "ws://localhost:9339",
+      "ws://localhost:9340",
+      "ws://localhost:9341",
+      "ws://localhost:9342"
+    ],
+    "reasoning": "Connects to the locally-running OneUI MCP server over a WebSocket (port range 9333-9342 for multi-instance) to relay variable-mode resolution back to code generation. No external network access."
+  }
+}

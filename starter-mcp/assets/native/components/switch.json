@@ -1,0 +1,165 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Switch",
+  "generatedAt": "2026-07-09T13:07:37.424Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "A toggle switch for binary states."
+  },
+  "compositionRules": {
+    "requires": [],
+    "allows": [],
+    "forbids": [],
+    "childKind": "leaf"
+  },
+  "props": [
+    {
+      "name": "checked",
+      "type": "boolean",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "defaultChecked",
+      "type": "boolean",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "size",
+      "type": "'s' | 'm' | 'l'",
+      "required": false,
+      "defaultValue": "m",
+      "description": ""
+    },
+    {
+      "name": "appearance",
+      "type": "'primary' | 'secondary' | 'tertiary' | 'quaternary' | 'neutral' | 'sparkle' | 'brand-bg' | 'positive' | 'negative' | 'warning' | 'informative' | 'auto'",
+      "required": false,
+      "defaultValue": "auto",
+      "description": ""
+    },
+    {
+      "name": "accent",
+      "type": "'primary' | 'secondary' | 'sparkle'",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "readOnly",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.kb.rn.Switch",
+    "type": "object",
+    "properties": {
+      "checked": {
+        "type": "boolean"
+      },
+      "defaultChecked": {
+        "type": "boolean"
+      },
+      "size": {
+        "enum": [
+          "s",
+          "m",
+          "l"
+        ],
+        "default": "m"
+      },
+      "appearance": {
+        "enum": [
+          "primary",
+          "secondary",
+          "tertiary",
+          "quaternary",
+          "neutral",
+          "sparkle",
+          "brand-bg",
+          "positive",
+          "negative",
+          "warning",
+          "informative",
+          "auto"
+        ],
+        "default": "auto"
+      },
+      "accent": {
+        "enum": [
+          "primary",
+          "secondary",
+          "sparkle"
+        ]
+      },
+      "disabled": {
+        "type": "boolean",
+        "default": false
+      },
+      "readOnly": {
+        "type": "boolean",
+        "default": false
+      }
+    }
+  },
+  "tokens": {
+    "color": [
+      "primary",
+      "secondary",
+      "sparkle",
+      "neutral"
+    ],
+    "surface": []
+  },
+  "a11y": {
+    "accessibilityRole": "switch",
+    "accessibleNameSource": "children",
+    "minTouchTarget": 44,
+    "honorsBoldText": false,
+    "honorsScreenReader": true
+  },
+  "renderHints": {
+    "baseElement": "Pressable",
+    "animatedOn": [
+      "press"
+    ],
+    "honorsReduceMotion": true,
+    "readsFromSurfaceContext": true
+  },
+  "figma": {
+    "componentKey": "jds-switch-v4",
+    "keyHistory": [],
+    "variantProperties": {
+      "Component": "Switch"
+    }
+  },
+  "codeSnippets": [
+    {
+      "id": "import-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { Switch } from '@oneui/ui-native';\n\n<Switch />"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "switch",
+    "form",
+    "input",
+    "toggle"
+  ],
+  "importPath": "@oneui/ui-native"
+}

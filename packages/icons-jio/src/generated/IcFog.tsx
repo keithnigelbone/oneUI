@@ -1,0 +1,30 @@
+import React, { forwardRef } from 'react';
+import type { IconComponentProps } from '../iconProps';
+
+export const IcFog = forwardRef<SVGSVGElement, IconComponentProps>(function IcFog(
+  { size = 24, width, height, color = 'currentColor', className, style, ...props },
+  ref,
+) {
+  const dim = width ?? height ?? size;
+  return (
+    <svg
+      ref={ref}
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      width={width ?? dim}
+      height={height ?? dim}
+      color={color}
+      className={className}
+      style={style}
+      {...props}
+    >
+      <path
+            fill="currentColor"
+            d="M21 13H3c-.55 0-1 .45-1 1s.45 1 1 1h18c.55 0 1-.45 1-1s-.45-1-1-1m-5 4c0-.55-.45-1-1-1H4.5c-.55 0-1 .45-1 1s.45 1 1 1H15c.55 0 1-.45 1-1m3 2h-8c-.55 0-1 .45-1 1s.45 1 1 1h8c.55 0 1-.45 1-1s-.45-1-1-1m2.06-8c.58-.6.95-1.42.95-2.33 0-1.49-.97-2.73-2.3-3.16-.43-2-2.19-3.51-4.3-3.51-1.65 0-3.07.93-3.82 2.28-.19-.03-.38-.06-.58-.06-1.82 0-3.3 1.49-3.3 3.33-1.22 0-2.2.99-2.2 2.22 0 .45.14.87.36 1.22h15.19z"
+          />
+    </svg>
+  );
+});
+
+IcFog.displayName = 'IcFog';

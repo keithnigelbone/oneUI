@@ -1,0 +1,128 @@
+/**
+ * TouchSlider Figma validation — value × orientation × progressStyle matrix.
+ */
+
+.page {
+  padding: 0;
+  max-width: 100%;
+}
+
+.metaLine {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  font-weight: var(--Body-FontWeight-Low);
+  color: var(--Text-Medium);
+  margin: 0 0 var(--Spacing-4-5);
+  word-break: break-word;
+}
+
+.tableWrap {
+  overflow: auto;
+  max-width: 100%;
+}
+
+.gridTable {
+  border-collapse: collapse;
+  width: max-content;
+  max-width: 100%;
+  font-family: var(--Typography-Font-Primary);
+}
+
+.gridTable th,
+.gridTable td {
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+  padding: var(--Spacing-3-5);
+  vertical-align: middle;
+  text-align: center;
+}
+
+.figmaCaption {
+  caption-side: top;
+  text-align: left;
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Headline-M-FontSize);
+  line-height: var(--Headline-M-LineHeight);
+  font-weight: var(--Headline-M-FontWeight);
+  color: var(--Sparkle-High);
+  padding: 0 0 var(--Spacing-3-5);
+}
+
+.figmaCaptionMark {
+  color: var(--Sparkle-High);
+}
+
+.cell {
+  white-space: nowrap;
+  background: var(--Surface-Default);
+}
+
+.rowLabelRight {
+  text-align: left;
+  vertical-align: middle;
+  font-family: var(--Typography-Font-Code);
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Low);
+  color: var(--Text-Medium);
+  white-space: nowrap;
+  padding-inline-start: var(--Spacing-4);
+  min-width: var(--Spacing-28);
+  background: var(--Surface-Default);
+}
+
+.footerRow td {
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+}
+
+.footerCol {
+  font-family: var(--Typography-Font-Code);
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Low);
+  color: var(--Text-Medium);
+  text-align: center;
+  background: var(--Surface-Default);
+  padding-block: var(--Spacing-2-5);
+}
+
+.footerCorner {
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+  background: var(--Surface-Default);
+  min-width: var(--Spacing-20);
+}
+
+.trackWrapH {
+  width: 100%;
+  max-width: 138px;
+  margin-inline: auto;
+}
+
+/* Figma vertical spec 32×138 — min-height matches shipped token default (--Dimension-f14). */
+.trackWrapV {
+  min-height: var(--Dimension-f14);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-inline: auto;
+}
+
+.parityCallout {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  font-weight: var(--Body-FontWeight-Low);
+  color: var(--Text-Medium);
+  margin: 0 0 var(--Spacing-4-5);
+  padding: var(--Spacing-3-5) var(--Spacing-4);
+  border-radius: var(--Shape-M);
+  background: var(--Warning-Subtle, var(--Surface-Subtle));
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.parityCallout strong {
+  color: var(--Text-High);
+  font-weight: var(--Body-FontWeight-Medium);
+}

@@ -1,0 +1,506 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Image",
+  "generatedAt": "2026-01-01T00:00:00.000Z",
+  "machineReadable": true,
+  "intentAndPurpose": {
+    "intent": {
+      "value": "Display an image with aspect ratio presets, loading states, and optional interactive overlay.",
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "taskContexts": {
+      "value": [
+        "content-image",
+        "product-photo",
+        "thumbnail",
+        "hero-banner",
+        "gallery-item"
+      ],
+      "attribution": {
+        "source": "authored"
+      }
+    },
+    "sentiments": {
+      "value": [
+        "neutral"
+      ],
+      "attribution": {
+        "source": "authored"
+      }
+    }
+  },
+  "compositionRules": {
+    "requires": {
+      "value": [
+        "src (required)",
+        "alt text (required)"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "allows": {
+      "value": [
+        "aspect ratio preset",
+        "interactive mode with click handler",
+        "custom fallback on error"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "forbids": {
+      "value": [
+        "decorative images without alt=\"\"",
+        "interactive mode without aria-label"
+      ],
+      "attribution": {
+        "source": "authored"
+      }
+    }
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "static",
+        "useWhen": {
+          "value": [
+            "display-only image content"
+          ],
+          "attribution": {
+            "source": "inferred"
+          }
+        }
+      },
+      {
+        "name": "interactive",
+        "useWhen": {
+          "value": [
+            "clickable image with state layer and focus ring"
+          ],
+          "attribution": {
+            "source": "inferred"
+          }
+        }
+      }
+    ]
+  },
+  "relationshipsAndDependencies": {
+    "related": {
+      "value": [
+        "Avatar",
+        "Logo"
+      ],
+      "attribution": {
+        "source": "authored"
+      }
+    }
+  },
+  "contextSignals": {
+    "density": {
+      "value": [
+        "compact",
+        "default",
+        "open"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "modality": {
+      "value": [
+        "desktop",
+        "mobile"
+      ],
+      "attribution": {
+        "source": "authored"
+      }
+    },
+    "brand": {
+      "value": [
+        "theme-scope aware",
+        "recipe-driven"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "mode": {
+      "value": [
+        "light",
+        "dark"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "observabilityHooks": {
+    "track": {
+      "value": [
+        "click",
+        "impression"
+      ],
+      "attribution": {
+        "source": "authored"
+      }
+    },
+    "health": {
+      "value": [
+        "a11y_violations",
+        "image_load_failure_rate"
+      ],
+      "attribution": {
+        "source": "authored"
+      }
+    }
+  },
+  "props": [
+    {
+      "name": "alt",
+      "type": "string",
+      "required": true,
+      "description": "Accessible alt text (required)"
+    },
+    {
+      "name": "src",
+      "type": "string",
+      "required": true,
+      "description": "Image source URL (required)"
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": false,
+      "description": "Accessible label for interactive images"
+    },
+    {
+      "name": "aspectRatio",
+      "type": "ImageAspectRatio",
+      "required": false,
+      "description": "Aspect ratio preset. Default: 'auto'"
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "required": false,
+      "description": "Additional class name"
+    },
+    {
+      "name": "crossOrigin",
+      "type": "ImageCrossOrigin",
+      "required": false,
+      "description": "CORS mode for the image request"
+    },
+    {
+      "name": "decoding",
+      "type": "ImageDecoding",
+      "required": false,
+      "description": "Decode hint for the browser"
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "required": false,
+      "description": "Reduces opacity. Default: false"
+    },
+    {
+      "name": "draggable",
+      "type": "boolean",
+      "required": false,
+      "description": "Native drag behavior"
+    },
+    {
+      "name": "fallback",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Custom error fallback content (wins over `fallbackSrc`)"
+    },
+    {
+      "name": "fallbackSrc",
+      "type": "string",
+      "required": false,
+      "description": "Fallback image URL when `src` fails and `fallback` is not set"
+    },
+    {
+      "name": "fit",
+      "type": "ImageObjectFit",
+      "required": false,
+      "description": "Figma-aligned alias for `objectFit`. If both `fit` and `objectFit` are set, `fit` wins."
+    },
+    {
+      "name": "height",
+      "type": "string | number",
+      "required": false,
+      "description": "Container height"
+    },
+    {
+      "name": "interactive",
+      "type": "boolean",
+      "required": false,
+      "description": "When true: state layer overlay + focus ring + clickable. Default: false"
+    },
+    {
+      "name": "loading",
+      "type": "ImageLoadingStrategy",
+      "required": false,
+      "description": "Browser native loading strategy. Default: 'lazy'"
+    },
+    {
+      "name": "lottieAttributes",
+      "type": "ImageLottieAttributes",
+      "required": false,
+      "description": "Optional Lottie/host payload — web: `data-oneui-lottie` JSON on root"
+    },
+    {
+      "name": "objectFit",
+      "type": "ImageObjectFit",
+      "required": false,
+      "description": "CSS object-fit for the image. Default: 'cover'"
+    },
+    {
+      "name": "objectPosition",
+      "type": "string",
+      "required": false,
+      "description": "CSS object-position. Default: 'center'"
+    },
+    {
+      "name": "onClick",
+      "type": "() => void",
+      "required": false,
+      "description": "Web alias for onPress"
+    },
+    {
+      "name": "onError",
+      "type": "() => void",
+      "required": false,
+      "description": "Image error callback"
+    },
+    {
+      "name": "onLoad",
+      "type": "() => void",
+      "required": false,
+      "description": "Image loaded callback"
+    },
+    {
+      "name": "onPress",
+      "type": "() => void",
+      "required": false,
+      "description": "Click handler (interactive only)"
+    },
+    {
+      "name": "sizes",
+      "type": "string",
+      "required": false,
+      "description": "Hint for `srcSet` selection (HTML `sizes`)"
+    },
+    {
+      "name": "srcSet",
+      "type": "string",
+      "required": false,
+      "description": "Responsive image sources (HTML `srcSet`)"
+    },
+    {
+      "name": "style",
+      "type": "CSSProperties",
+      "required": false,
+      "description": "Inline styles"
+    },
+    {
+      "name": "testID",
+      "type": "string",
+      "required": false,
+      "description": "Test id — forwarded as `data-testid` on the web root element."
+    },
+    {
+      "name": "width",
+      "type": "string | number",
+      "required": false,
+      "description": "Container width"
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.docs.image",
+    "type": "object",
+    "properties": {
+      "alt": {
+        "type": "string",
+        "description": "Accessible alt text (required)"
+      },
+      "src": {
+        "type": "string",
+        "description": "Image source URL (required)"
+      },
+      "aria-label": {
+        "type": "string",
+        "description": "Accessible label for interactive images"
+      },
+      "aspectRatio": {
+        "enum": [
+          "auto",
+          "1:1",
+          "1:2",
+          "2:1",
+          "2:3",
+          "3:2",
+          "3:4",
+          "4:3",
+          "9:16",
+          "16:9",
+          "9:21",
+          "21:9"
+        ],
+        "description": "Aspect ratio preset. Default: 'auto'"
+      },
+      "className": {
+        "type": "string",
+        "description": "Additional class name"
+      },
+      "crossOrigin": {
+        "enum": [
+          "anonymous",
+          "use-credentials"
+        ],
+        "description": "CORS mode for the image request"
+      },
+      "decoding": {
+        "enum": [
+          "auto",
+          "sync",
+          "async"
+        ],
+        "description": "Decode hint for the browser"
+      },
+      "disabled": {
+        "type": "boolean",
+        "description": "Reduces opacity. Default: false"
+      },
+      "draggable": {
+        "type": "boolean",
+        "description": "Native drag behavior"
+      },
+      "fallback": {
+        "description": "Custom error fallback content (wins over `fallbackSrc`)"
+      },
+      "fallbackSrc": {
+        "type": "string",
+        "description": "Fallback image URL when `src` fails and `fallback` is not set"
+      },
+      "fit": {
+        "enum": [
+          "cover",
+          "contain",
+          "fill",
+          "none",
+          "scale-down",
+          "inherit",
+          "initial",
+          "revert",
+          "revert-layer",
+          "unset"
+        ],
+        "description": "Figma-aligned alias for `objectFit`. If both `fit` and `objectFit` are set, `fit` wins."
+      },
+      "height": {
+        "description": "Container height"
+      },
+      "interactive": {
+        "type": "boolean",
+        "description": "When true: state layer overlay + focus ring + clickable. Default: false"
+      },
+      "loading": {
+        "enum": [
+          "auto",
+          "lazy",
+          "eager"
+        ],
+        "description": "Browser native loading strategy. Default: 'lazy'"
+      },
+      "lottieAttributes": {
+        "description": "Optional Lottie/host payload — web: `data-oneui-lottie` JSON on root"
+      },
+      "objectFit": {
+        "enum": [
+          "cover",
+          "contain",
+          "fill",
+          "none",
+          "scale-down",
+          "inherit",
+          "initial",
+          "revert",
+          "revert-layer",
+          "unset"
+        ],
+        "description": "CSS object-fit for the image. Default: 'cover'"
+      },
+      "objectPosition": {
+        "type": "string",
+        "description": "CSS object-position. Default: 'center'"
+      },
+      "onClick": {
+        "description": "Web alias for onPress"
+      },
+      "onError": {
+        "description": "Image error callback"
+      },
+      "onLoad": {
+        "description": "Image loaded callback"
+      },
+      "onPress": {
+        "description": "Click handler (interactive only)"
+      },
+      "sizes": {
+        "type": "string",
+        "description": "Hint for `srcSet` selection (HTML `sizes`)"
+      },
+      "srcSet": {
+        "type": "string",
+        "description": "Responsive image sources (HTML `srcSet`)"
+      },
+      "style": {
+        "description": "Inline styles"
+      },
+      "testID": {
+        "type": "string",
+        "description": "Test id — forwarded as `data-testid` on the web root element."
+      },
+      "width": {
+        "description": "Container width"
+      }
+    },
+    "required": [
+      "alt",
+      "src"
+    ]
+  },
+  "codeSnippets": [
+    {
+      "id": "image-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { Image } from '@oneui/ui';\n\n<Image src=\"/photo.jpg\" alt=\"Product shot\" />"
+    },
+    {
+      "id": "image-aspect-ratio",
+      "title": "With Aspect Ratio",
+      "language": "tsx",
+      "code": "<Image src=\"/banner.jpg\" alt=\"Hero banner\" aspectRatio=\"16:9\" />"
+    },
+    {
+      "id": "image-recipe-decisions",
+      "title": "Recipe Decisions",
+      "language": "json",
+      "code": "{\n  \"component\": \"Image\",\n  \"decisions\": [\n    \"Shape\"\n  ]\n}"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "image"
+  ],
+  "generatedMarkdown": "# Image Machine-Readable Documentation\n\n_Generated from source metadata. Do not edit manually._\n\n## Intent and Purpose\n\n- **Intent**: Display an image with aspect ratio presets, loading states, and optional interactive overlay.\n- **Task contexts**: content-image, product-photo, thumbnail, hero-banner, gallery-item\n- **Sentiments**: neutral\n\n## Composition Rules\n\n- **Requires**: src (required), alt text (required)\n- **Allows**: aspect ratio preset, interactive mode with click handler, custom fallback on error\n- **Forbids**: decorative images without alt=\"\", interactive mode without aria-label\n\n## Variant Logic\n\n- **static**: use when display-only image content\n- **interactive**: use when clickable image with state layer and focus ring\n\n## Relationships and Dependencies\n\n- **Related**: Avatar, Logo\n- **Escalates to**: -\n- **Degrades to**: -\n- **Groups with**: -\n\n## Context Signals\n\n- **Density**: compact, default, open\n- **Modality**: desktop, mobile\n- **Brand**: theme-scope aware, recipe-driven\n- **Mode**: light, dark\n\n## Observability Hooks\n\n- **Track**: click, impression\n- **Health**: a11y_violations, image_load_failure_rate\n\n## Props\n\n| Prop | Type | Required | Default | Description |\n| --- | --- | --- | --- | --- |\n| `alt` | `string` | Yes | - | Accessible alt text (required) |\n| `src` | `string` | Yes | - | Image source URL (required) |\n| `aria-label` | `string` | No | - | Accessible label for interactive images |\n| `aspectRatio` | `ImageAspectRatio` | No | - | Aspect ratio preset. Default: 'auto' |\n| `className` | `string` | No | - | Additional class name |\n| `crossOrigin` | `ImageCrossOrigin` | No | - | CORS mode for the image request |\n| `decoding` | `ImageDecoding` | No | - | Decode hint for the browser |\n| `disabled` | `boolean` | No | - | Reduces opacity. Default: false |\n| `draggable` | `boolean` | No | - | Native drag behavior |\n| `fallback` | `ReactNode` | No | - | Custom error fallback content (wins over `fallbackSrc`) |\n| `fallbackSrc` | `string` | No | - | Fallback image URL when `src` fails and `fallback` is not set |\n| `fit` | `ImageObjectFit` | No | - | Figma-aligned alias for `objectFit`. If both `fit` and `objectFit` are set, `fit` wins. |\n| `height` | `string | number` | No | - | Container height |\n| `interactive` | `boolean` | No | - | When true: state layer overlay + focus ring + clickable. Default: false |\n| `loading` | `ImageLoadingStrategy` | No | - | Browser native loading strategy. Default: 'lazy' |\n| `lottieAttributes` | `ImageLottieAttributes` | No | - | Optional Lottie/host payload — web: `data-oneui-lottie` JSON on root |\n| `objectFit` | `ImageObjectFit` | No | - | CSS object-fit for the image. Default: 'cover' |\n| `objectPosition` | `string` | No | - | CSS object-position. Default: 'center' |\n| `onClick` | `() => void` | No | - | Web alias for onPress |\n| `onError` | `() => void` | No | - | Image error callback |\n| `onLoad` | `() => void` | No | - | Image loaded callback |\n| `onPress` | `() => void` | No | - | Click handler (interactive only) |\n| `sizes` | `string` | No | - | Hint for `srcSet` selection (HTML `sizes`) |\n| `srcSet` | `string` | No | - | Responsive image sources (HTML `srcSet`) |\n| `style` | `CSSProperties` | No | - | Inline styles |\n| `testID` | `string` | No | - | Test id — forwarded as `data-testid` on the web root element. |\n| `width` | `string | number` | No | - | Container width |\n\n## Slots\n\n| Slot | Types | Tokens |\n| --- | --- | --- |\n\n\n## Code Snippets\n\n### Basic Usage\n\n```tsx\nimport { Image } from '@oneui/ui';\n\n<Image src=\"/photo.jpg\" alt=\"Product shot\" />\n```\n\n### With Aspect Ratio\n\n```tsx\n<Image src=\"/banner.jpg\" alt=\"Hero banner\" aspectRatio=\"16:9\" />\n```\n\n### Recipe Decisions\n\n```json\n{\n  \"component\": \"Image\",\n  \"decisions\": [\n    \"Shape\"\n  ]\n}\n```\n"
+}

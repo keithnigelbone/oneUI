@@ -1,0 +1,550 @@
+/**
+ * Stepper.module.css
+ *
+ * CRITICAL: This file demonstrates the ZERO LITERALS rule
+ * ALL styling uses design tokens ONLY
+ *
+ * Architecture: Dual intermediate variable system (--_st-*)
+ * - Default = Primary role (both context AND fill)
+ * - Appearance classes remap ALL vars — fill follows appearance
+ * - Accent classes override ONLY fill vars — for explicit accent overrides
+ *
+ * Figma variable mapping:
+ *   Attention: High   → --{Role}-Bold fill, --{Role}-Bold-TintedA11y +/- icons, --{Role}-Bold-High value
+ *   Attention: Medium → --{Role}-Subtle fill, --{Role}-TintedA11y +/- icons, --{Role}-High value
+ *   Attention: Low    → transparent + --{Role}-Stroke-Medium border, --{Role}-High text/icons/value
+ *   Focus ring        → --Informative-Bold (always informative)
+ *   Disabled opacity  → --Disabled-Opacity
+ *   Shape             → --Shape-Pill (9999px)
+ *
+ * Size system: [data-size="s|m|l"] attribute selectors.
+ *   Figma spacings → f-step tokens (scale per-platform/breakpoint):
+ *     S: non-condensed = Spacing-7 (f4), condensed = Spacing-5 (f2)
+ *     M: non-condensed = Spacing-8 (f5), condensed = Spacing-7 (f4)
+ *     L: non-condensed = Spacing-10 (f7), condensed = Spacing-8 (f5)
+ *   Icon sizes: S = Spacing-4 (f0), M = Spacing-5 (f2), L = Spacing-6 (f3)
+ *   Input min-width: Spacing-5 (f2) — matches Figma min-w-[25px] at L
+ *
+ * Surface context: NO [data-surface] CSS needed — the brand CSS engine
+ * generates `[data-surface]` blocks in @layer brand that remap role tokens
+ * (--{Role}-Bold, --{Role}-Subtle, etc.) automatically. The intermediate
+ * vars (--_st-*) read from these role tokens and cascade correctly.
+ * Same pattern as Button (zero [data-surface] rules in Button.module.css).
+ *
+ * Verified by: pnpm check:literals
+ */
+
+/* ========================================
+   ROOT — NumberField.Root wrapper
+   ======================================== */
+
+.root {
+  display: inline-flex;
+  flex-direction: column;
+  /* Prevent cross-axis stretch when placed inside a flex/grid container.
+     inline-flex blockifies to flex as a flex item, causing the root to
+     stretch to the parent's cross-axis width. fit-content constrains
+     the root to its actual content (the pill-shaped group). */
+  width: fit-content;
+}
+
+/* ========================================
+   GROUP — the pill-shaped container (NumberField.Group)
+   ======================================== */
+
+.group {
+  /* === APPEARANCE role vars: HIGH attention (fill) === */
+  --_st-bold: var(--Stepper-roleBold, var(--Primary-Bold, var(--Surface-Bold)));
+  --_st-bold-high: var(--Stepper-roleBoldHigh, var(--Primary-Bold-TintedA11y, var(--Primary-Bold-High, var(--Text-OnBold-High))));
+  --_st-bold-value-high: var(--Stepper-roleBoldValueHigh, var(--Primary-Bold-High, var(--Text-OnBold-High)));
+  --_st-bold-hover: var(--Stepper-roleBoldHover, var(--Primary-Bold-Hover, var(--Surface-Bold-Hover)));
+  --_st-bold-pressed: var(--Stepper-roleBoldPressed, var(--Primary-Bold-Pressed, var(--Surface-Bold-Pressed)));
+
+  /* === APPEARANCE role vars: MEDIUM attention (subtle fill) === */
+  --_st-subtle: var(--Stepper-roleSubtle, var(--Primary-Subtle, var(--Surface-Subtle)));
+  --_st-subtle-hover: var(--Stepper-roleSubtleHover, var(--Primary-Subtle-Hover, var(--Surface-Subtle-Hover)));
+  --_st-subtle-pressed: var(--Stepper-roleSubtlePressed, var(--Primary-Subtle-Pressed, var(--Surface-Subtle-Pressed)));
+
+  /* === APPEARANCE role vars: LOW attention (ghost) === */
+  --_st-default-medium-stroke: var(--Stepper-roleStrokeMedium, var(--Primary-Stroke-Medium, var(--Border-Default)));
+  --_st-default-high: var(--Stepper-roleHigh, var(--Primary-High, var(--Text-High)));
+
+  /* === APPEARANCE role vars: MEDIUM attention text === */
+  --_st-default-accent-a11y: var(--Stepper-roleTintedA11y, var(--Primary-TintedA11y, var(--Primary-Tinted, var(--Surface-Bold))));
+
+  /* === LOW attention hover === */
+  --_st-default-hover: var(--Stepper-roleHover, var(--Primary-Hover, var(--Surface-Minimal)));
+  --_st-default-pressed: var(--Stepper-rolePressed, var(--Primary-Pressed, var(--Surface-Subtle)));
+
+  /* === SHAPE === */
+  border-radius: var(--Stepper-borderRadius, var(--Shape-Pill));
+
+  /* === BASE STYLES === */
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  transition: background-color var(--Motion-Duration-Discreet-Medium) var(--Motion-Easing-Standard),
+              border-color var(--Motion-Duration-Discreet-Medium) var(--Motion-Easing-Standard);
+}
+
+.group[data-direction="rtl"] {
+  flex-direction: row-reverse;
+}
+
+/* ========================================
+   ATTENTION: HIGH — Bold fill
+   ======================================== */
+
+.group[data-attention="high"] {
+  background-color: var(--_st-bold);
+  color: var(--_st-bold-high);
+  border: 0 solid transparent;
+}
+
+.group[data-attention="high"]:hover {
+  background-color: var(--_st-bold-hover);
+}
+
+.group[data-attention="high"]:active {
+  background-color: var(--_st-bold-pressed);
+}
+
+/* ========================================
+   ATTENTION: MEDIUM — Subtle fill
+   ======================================== */
+
+.group[data-attention="medium"] {
+  background-color: var(--_st-subtle);
+  color: var(--_st-default-accent-a11y);
+  border: 0 solid transparent;
+}
+
+.group[data-attention="medium"]:hover {
+  background-color: var(--_st-subtle-hover);
+}
+
+.group[data-attention="medium"]:active {
+  background-color: var(--_st-subtle-pressed);
+}
+
+/* ========================================
+   ATTENTION: LOW — transparent + border
+   ======================================== */
+
+.group[data-attention="low"] {
+  background-color: transparent;
+  color: var(--_st-default-high);
+  border: var(--Stroke-M) solid var(--_st-default-medium-stroke);
+}
+
+.group[data-attention="low"]:hover {
+  background-color: var(--_st-default-hover);
+}
+
+.group[data-attention="low"]:active {
+  background-color: var(--_st-default-pressed);
+}
+
+/* ========================================
+   APPEARANCE — remap all vars
+   Adding a new appearance = 1 new class with 13 remappings (incl. --_st-bold-value-high)
+   ======================================== */
+
+.appearancePrimary {
+  --_st-bold: var(--Primary-Bold, var(--Surface-Bold));
+  --_st-bold-high: var(--Primary-Bold-TintedA11y, var(--Primary-Bold-High, var(--Text-OnBold-High)));
+  --_st-bold-value-high: var(--Primary-Bold-High, var(--Text-OnBold-High));
+  --_st-bold-hover: var(--Primary-Bold-Hover, var(--Surface-Bold-Hover));
+  --_st-bold-pressed: var(--Primary-Bold-Pressed, var(--Surface-Bold-Pressed));
+  --_st-subtle: var(--Primary-Subtle, var(--Surface-Subtle));
+  --_st-subtle-hover: var(--Primary-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_st-subtle-pressed: var(--Primary-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+  --_st-default-medium-stroke: var(--Primary-Stroke-Medium, var(--Border-Default));
+  --_st-default-high: var(--Primary-High, var(--Text-High));
+  --_st-default-accent-a11y: var(--Primary-TintedA11y, var(--Primary-Tinted, var(--Surface-Bold)));
+  --_st-default-hover: var(--Primary-Hover, var(--Surface-Minimal));
+  --_st-default-pressed: var(--Primary-Pressed, var(--Surface-Subtle));
+}
+
+.appearanceNeutral {
+  --_st-bold: var(--Neutral-Bold, var(--Surface-Bold));
+  --_st-bold-high: var(--Neutral-Bold-TintedA11y, var(--Neutral-Bold-High, var(--Text-OnBold-High)));
+  --_st-bold-value-high: var(--Neutral-Bold-High, var(--Text-OnBold-High));
+  --_st-bold-hover: var(--Neutral-Bold-Hover, var(--Surface-Bold-Hover));
+  --_st-bold-pressed: var(--Neutral-Bold-Pressed, var(--Surface-Bold-Pressed));
+  --_st-subtle: var(--Neutral-Subtle, var(--Surface-Subtle));
+  --_st-subtle-hover: var(--Neutral-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_st-subtle-pressed: var(--Neutral-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+  --_st-default-medium-stroke: var(--Neutral-Stroke-Medium, var(--Border-Default));
+  --_st-default-high: var(--Neutral-High, var(--Text-High));
+  --_st-default-accent-a11y: var(--Neutral-TintedA11y, var(--Neutral-Tinted, var(--Surface-Bold)));
+  --_st-default-hover: var(--Neutral-Hover, var(--Surface-Minimal));
+  --_st-default-pressed: var(--Neutral-Pressed, var(--Surface-Subtle));
+}
+
+.appearanceSecondary {
+  --_st-bold: var(--Secondary-Bold, var(--Surface-Bold));
+  --_st-bold-high: var(--Secondary-Bold-TintedA11y, var(--Secondary-Bold-High, var(--Text-OnBold-High)));
+  --_st-bold-value-high: var(--Secondary-Bold-High, var(--Text-OnBold-High));
+  --_st-bold-hover: var(--Secondary-Bold-Hover, var(--Surface-Bold-Hover));
+  --_st-bold-pressed: var(--Secondary-Bold-Pressed, var(--Surface-Bold-Pressed));
+  --_st-subtle: var(--Secondary-Subtle, var(--Surface-Subtle));
+  --_st-subtle-hover: var(--Secondary-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_st-subtle-pressed: var(--Secondary-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+  --_st-default-medium-stroke: var(--Secondary-Stroke-Medium, var(--Border-Default));
+  --_st-default-high: var(--Secondary-High, var(--Text-High));
+  --_st-default-accent-a11y: var(--Secondary-TintedA11y, var(--Secondary-Tinted, var(--Surface-Bold)));
+  --_st-default-hover: var(--Secondary-Hover, var(--Surface-Minimal));
+  --_st-default-pressed: var(--Secondary-Pressed, var(--Surface-Subtle));
+}
+
+.appearanceSparkle {
+  --_st-bold: var(--Sparkle-Bold, var(--Surface-Bold));
+  --_st-bold-high: var(--Sparkle-Bold-TintedA11y, var(--Sparkle-Bold-High, var(--Text-OnBold-High)));
+  --_st-bold-value-high: var(--Sparkle-Bold-High, var(--Text-OnBold-High));
+  --_st-bold-hover: var(--Sparkle-Bold-Hover, var(--Surface-Bold-Hover));
+  --_st-bold-pressed: var(--Sparkle-Bold-Pressed, var(--Surface-Bold-Pressed));
+  --_st-subtle: var(--Sparkle-Subtle, var(--Surface-Subtle));
+  --_st-subtle-hover: var(--Sparkle-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_st-subtle-pressed: var(--Sparkle-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+  --_st-default-medium-stroke: var(--Sparkle-Stroke-Medium, var(--Border-Default));
+  --_st-default-high: var(--Sparkle-High, var(--Text-High));
+  --_st-default-accent-a11y: var(--Sparkle-TintedA11y, var(--Sparkle-Tinted, var(--Surface-Bold)));
+  --_st-default-hover: var(--Sparkle-Hover, var(--Surface-Minimal));
+  --_st-default-pressed: var(--Sparkle-Pressed, var(--Surface-Subtle));
+}
+
+.appearanceBrandBg {
+  --_st-bold: var(--Brand-Bg-Bold, var(--Surface-Bold));
+  --_st-bold-high: var(--Brand-Bg-Bold-TintedA11y, var(--Brand-Bg-Bold-High, var(--Text-OnBold-High)));
+  --_st-bold-value-high: var(--Brand-Bg-Bold-High, var(--Text-OnBold-High));
+  --_st-bold-hover: var(--Brand-Bg-Bold-Hover, var(--Surface-Bold-Hover));
+  --_st-bold-pressed: var(--Brand-Bg-Bold-Pressed, var(--Surface-Bold-Pressed));
+  --_st-subtle: var(--Brand-Bg-Subtle, var(--Surface-Subtle));
+  --_st-subtle-hover: var(--Brand-Bg-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_st-subtle-pressed: var(--Brand-Bg-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+  --_st-default-medium-stroke: var(--Brand-Bg-Stroke-Medium, var(--Border-Default));
+  --_st-default-high: var(--Brand-Bg-High, var(--Text-High));
+  --_st-default-accent-a11y: var(--Brand-Bg-TintedA11y, var(--Brand-Bg-Tinted, var(--Surface-Bold)));
+  --_st-default-hover: var(--Brand-Bg-Hover, var(--Surface-Minimal));
+  --_st-default-pressed: var(--Brand-Bg-Pressed, var(--Surface-Subtle));
+}
+
+.appearancePositive {
+  --_st-bold: var(--Positive-Bold, var(--Surface-Bold));
+  --_st-bold-high: var(--Positive-Bold-TintedA11y, var(--Positive-Bold-High, var(--Text-OnBold-High)));
+  --_st-bold-value-high: var(--Positive-Bold-High, var(--Text-OnBold-High));
+  --_st-bold-hover: var(--Positive-Bold-Hover, var(--Surface-Bold-Hover));
+  --_st-bold-pressed: var(--Positive-Bold-Pressed, var(--Surface-Bold-Pressed));
+  --_st-subtle: var(--Positive-Subtle, var(--Surface-Subtle));
+  --_st-subtle-hover: var(--Positive-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_st-subtle-pressed: var(--Positive-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+  --_st-default-medium-stroke: var(--Positive-Stroke-Medium, var(--Border-Default));
+  --_st-default-high: var(--Positive-High, var(--Text-High));
+  --_st-default-accent-a11y: var(--Positive-TintedA11y, var(--Positive-Tinted, var(--Surface-Bold)));
+  --_st-default-hover: var(--Positive-Hover, var(--Surface-Minimal));
+  --_st-default-pressed: var(--Positive-Pressed, var(--Surface-Subtle));
+}
+
+.appearanceNegative {
+  --_st-bold: var(--Negative-Bold, var(--Surface-Bold));
+  --_st-bold-high: var(--Negative-Bold-TintedA11y, var(--Negative-Bold-High, var(--Text-OnBold-High)));
+  --_st-bold-value-high: var(--Negative-Bold-High, var(--Text-OnBold-High));
+  --_st-bold-hover: var(--Negative-Bold-Hover, var(--Surface-Bold-Hover));
+  --_st-bold-pressed: var(--Negative-Bold-Pressed, var(--Surface-Bold-Pressed));
+  --_st-subtle: var(--Negative-Subtle, var(--Surface-Subtle));
+  --_st-subtle-hover: var(--Negative-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_st-subtle-pressed: var(--Negative-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+  --_st-default-medium-stroke: var(--Negative-Stroke-Medium, var(--Border-Default));
+  --_st-default-high: var(--Negative-High, var(--Text-High));
+  --_st-default-accent-a11y: var(--Negative-TintedA11y, var(--Negative-Tinted, var(--Surface-Bold)));
+  --_st-default-hover: var(--Negative-Hover, var(--Surface-Minimal));
+  --_st-default-pressed: var(--Negative-Pressed, var(--Surface-Subtle));
+}
+
+.appearanceWarning {
+  --_st-bold: var(--Warning-Bold, var(--Surface-Bold));
+  --_st-bold-high: var(--Warning-Bold-TintedA11y, var(--Warning-Bold-High, var(--Text-OnBold-High)));
+  --_st-bold-value-high: var(--Warning-Bold-High, var(--Text-OnBold-High));
+  --_st-bold-hover: var(--Warning-Bold-Hover, var(--Surface-Bold-Hover));
+  --_st-bold-pressed: var(--Warning-Bold-Pressed, var(--Surface-Bold-Pressed));
+  --_st-subtle: var(--Warning-Subtle, var(--Surface-Subtle));
+  --_st-subtle-hover: var(--Warning-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_st-subtle-pressed: var(--Warning-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+  --_st-default-medium-stroke: var(--Warning-Stroke-Medium, var(--Border-Default));
+  --_st-default-high: var(--Warning-High, var(--Text-High));
+  --_st-default-accent-a11y: var(--Warning-TintedA11y, var(--Warning-Tinted, var(--Surface-Bold)));
+  --_st-default-hover: var(--Warning-Hover, var(--Surface-Minimal));
+  --_st-default-pressed: var(--Warning-Pressed, var(--Surface-Subtle));
+}
+
+.appearanceInformative {
+  --_st-bold: var(--Informative-Bold, var(--Surface-Bold));
+  --_st-bold-high: var(--Informative-Bold-TintedA11y, var(--Informative-Bold-High, var(--Text-OnBold-High)));
+  --_st-bold-value-high: var(--Informative-Bold-High, var(--Text-OnBold-High));
+  --_st-bold-hover: var(--Informative-Bold-Hover, var(--Surface-Bold-Hover));
+  --_st-bold-pressed: var(--Informative-Bold-Pressed, var(--Surface-Bold-Pressed));
+  --_st-subtle: var(--Informative-Subtle, var(--Surface-Subtle));
+  --_st-subtle-hover: var(--Informative-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_st-subtle-pressed: var(--Informative-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+  --_st-default-medium-stroke: var(--Informative-Stroke-Medium, var(--Border-Default));
+  --_st-default-high: var(--Informative-High, var(--Text-High));
+  --_st-default-accent-a11y: var(--Informative-TintedA11y, var(--Informative-Tinted, var(--Surface-Bold)));
+  --_st-default-hover: var(--Informative-Hover, var(--Surface-Minimal));
+  --_st-default-pressed: var(--Informative-Pressed, var(--Surface-Subtle));
+}
+
+/* ========================================
+   ACCENT — override ONLY fill vars (high attention)
+   Applied only when accent prop is explicitly set.
+   ======================================== */
+
+.accentPrimary {
+  --_st-bold: var(--Primary-Bold, var(--Surface-Bold));
+  --_st-bold-high: var(--Primary-Bold-TintedA11y, var(--Primary-Bold-High, var(--Text-OnBold-High)));
+  --_st-bold-value-high: var(--Primary-Bold-High, var(--Text-OnBold-High));
+  --_st-bold-hover: var(--Primary-Bold-Hover, var(--Surface-Bold-Hover));
+  --_st-bold-pressed: var(--Primary-Bold-Pressed, var(--Surface-Bold-Pressed));
+}
+
+.accentSecondary {
+  --_st-bold: var(--Secondary-Bold, var(--Surface-Bold));
+  --_st-bold-high: var(--Secondary-Bold-TintedA11y, var(--Secondary-Bold-High, var(--Text-OnBold-High)));
+  --_st-bold-value-high: var(--Secondary-Bold-High, var(--Text-OnBold-High));
+  --_st-bold-hover: var(--Secondary-Bold-Hover, var(--Surface-Bold-Hover));
+  --_st-bold-pressed: var(--Secondary-Bold-Pressed, var(--Surface-Bold-Pressed));
+}
+
+.accentSparkle {
+  --_st-bold: var(--Sparkle-Bold, var(--Surface-Bold));
+  --_st-bold-high: var(--Sparkle-Bold-TintedA11y, var(--Sparkle-Bold-High, var(--Text-OnBold-High)));
+  --_st-bold-value-high: var(--Sparkle-Bold-High, var(--Text-OnBold-High));
+  --_st-bold-hover: var(--Sparkle-Bold-Hover, var(--Surface-Bold-Hover));
+  --_st-bold-pressed: var(--Sparkle-Bold-Pressed, var(--Surface-Bold-Pressed));
+}
+
+/* ========================================
+   SIZES — via [data-size] attribute selectors
+   Height uses Spacing tokens from Figma dimension variables (spacings/N).
+   Button is always a square matching the container height (Figma IconButton).
+   --_st-btn-size tracks height so buttons are square.
+
+   Figma dimensions/spacings → CSS tokens → f-steps:
+     Non-condensed: S = Spacing-7 (f4), M = Spacing-8 (f5), L = Spacing-10 (f7)
+     Condensed:     S = Spacing-5 (f2),  M = Spacing-7 (f4), L = Spacing-8 (f5)
+     Icons:         S = Spacing-4 (f0),   M = Spacing-5 (f2),  L = Spacing-6 (f3)
+     Input min-w:   Spacing-5 (f2) — all sizes
+
+   Verified at L/default: M non-condensed = f5 = 40px, btn = 40×40, input min = f2 = 25px
+   Total width = 40 + 25 + 40 = 105px ✓
+   ======================================== */
+
+.group[data-size="s"] {
+  --_st-btn-size: var(--Stepper-buttonSize-s, var(--Stepper-height-s, var(--Spacing-7)));
+  height: var(--_st-btn-size);
+  --_st-icon-size: var(--Stepper-iconSize-s, var(--Spacing-4));
+  --_st-input-w: var(--Stepper-inputWidth-s, var(--Spacing-6));
+}
+
+.group[data-size="m"] {
+  --_st-btn-size: var(--Stepper-buttonSize-m, var(--Stepper-height-m, var(--Spacing-8)));
+  height: var(--_st-btn-size);
+  --_st-icon-size: var(--Stepper-iconSize-m, var(--Spacing-5));
+  --_st-input-w: var(--Stepper-inputWidth-m, var(--Spacing-7));
+}
+
+.group[data-size="l"] {
+  --_st-btn-size: var(--Stepper-buttonSize-l, var(--Stepper-height-l, var(--Spacing-10)));
+  height: var(--_st-btn-size);
+  --_st-icon-size: var(--Stepper-iconSize-l, var(--Spacing-6));
+  --_st-input-w: var(--Stepper-inputWidth-l, var(--Spacing-7));
+}
+
+/* Condensed — reduce height, button size, AND input width together */
+.group[data-condensed][data-size="s"] {
+  --_st-btn-size: var(--Stepper-height-s-condensed, var(--Spacing-5));
+  height: var(--_st-btn-size);
+  --_st-input-w: var(--Stepper-inputWidth-s-condensed, var(--Spacing-5));
+}
+
+.group[data-condensed][data-size="m"] {
+  --_st-btn-size: var(--Stepper-height-m-condensed, var(--Spacing-7));
+  height: var(--_st-btn-size);
+  --_st-input-w: var(--Stepper-inputWidth-m-condensed, var(--Spacing-6));
+}
+
+.group[data-condensed][data-size="l"] {
+  --_st-btn-size: var(--Stepper-height-l-condensed, var(--Spacing-8));
+  height: var(--_st-btn-size);
+  --_st-input-w: var(--Stepper-inputWidth-l-condensed, var(--Spacing-7));
+}
+
+/* ========================================
+   BUTTONS — increment/decrement
+   ======================================== */
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  flex-shrink: 0;
+  /* Square button: width = height = container height (matches Figma IconButton) */
+  width: var(--_st-btn-size);
+  height: var(--_st-btn-size);
+  padding: 0;
+  outline: none;
+  transition: opacity var(--Motion-Duration-Discreet-Medium) var(--Motion-Easing-Standard);
+}
+
+.button:hover {
+  opacity: var(--Stepper-button-opacityHover, 0.8);
+}
+
+.button:active {
+  opacity: var(--Stepper-button-opacityPressed, 0.6);
+}
+
+.button:disabled {
+  cursor: not-allowed;
+  opacity: var(--Stepper-button-opacityDisabled, var(--Disabled-Opacity));
+}
+
+.button:focus {
+  outline: none;
+}
+
+.button:focus-visible {
+  box-shadow:
+    inset 0 0 0 var(--Stroke-XL) var(--Surface-Halo-Gap, var(--Surface-Main)),
+    inset 0 0 0 var(--Focus-Outline-Width) var(--Informative-Bold, var(--Focus-Outline));
+}
+
+/* Button icon sizing */
+.button svg {
+  display: block;
+  width: var(--_st-icon-size);
+  height: var(--_st-icon-size);
+  flex-shrink: 0;
+}
+
+/* ========================================
+   INPUT — centered value display
+   Figma Input wrapper: min-w-[25px] + shrink-0 + NO flex-grow.
+   Uses flex: 1 1 0 to stay compact for small values but grow for
+   larger numbers (e.g. "1200"). The inline-flex group container
+   hugs content, so flex-grow only activates when text overflows.
+   ======================================== */
+
+.input {
+  flex: 0 0 auto;
+  width: var(--_st-input-w);
+  min-width: var(--Stepper-inputMinWidth, var(--Spacing-5));
+  text-align: center;
+  border: none;
+  background: transparent;
+  color: inherit;
+  font-family: var(--Stepper-fontFamily, var(--Label-FontFamily, var(--Typography-Font-Primary, inherit)));
+  font-weight: var(--Stepper-fontWeight, var(--Label-FontWeight-High));
+  outline: none;
+  padding: 0;
+}
+
+/* Auto-size input to content so large values (e.g. "1200") aren't clipped.
+   field-sizing: content overrides the fixed width with content-driven sizing.
+   Unsupported browsers (Firefox) fall back to the fixed width above. */
+@supports (field-sizing: content) {
+  .input {
+    field-sizing: content;
+    width: auto;
+  }
+}
+
+/* Input typography per size */
+.group[data-size="s"] .input {
+  font-size: var(--Stepper-fontSize-s, var(--Label-S-FontSize));
+  line-height: var(--Stepper-lineHeight-s, var(--Label-S-LineHeight));
+}
+
+.group[data-size="m"] .input {
+  font-size: var(--Stepper-fontSize-m, var(--Label-M-FontSize));
+  line-height: var(--Stepper-lineHeight-m, var(--Label-M-LineHeight));
+}
+
+.group[data-size="l"] .input {
+  font-size: var(--Stepper-fontSize-l, var(--Label-L-FontSize));
+  line-height: var(--Stepper-lineHeight-l, var(--Label-L-LineHeight));
+}
+
+/* Value uses role High content; +/- icons keep group inherited colour (TintedA11y on medium/high). */
+.group[data-attention="medium"] .input {
+  color: var(--_st-default-high);
+}
+
+.group[data-attention="high"] .input {
+  color: var(--_st-bold-value-high);
+}
+
+/* ========================================
+   FOCUS RING — on the group container
+   Always Informative (per Figma spec), matching Slider's focus appearance:
+   inner Stroke-XL gap surface + outer Focus-Outline-Width informative halo.
+
+   `[data-force-state="focus"]` mirrors the pattern Slider's showcase uses —
+   lets documentation render a true focus preview without real keyboard focus.
+   ======================================== */
+
+.group:focus-within,
+.group[data-force-state="focus"] {
+  outline: none;
+  box-shadow:
+    0 0 0 var(--Stroke-XL) var(--Surface-Halo-Gap, var(--Surface-Main)),
+    0 0 0 calc(var(--Stroke-XL) + var(--Focus-Outline-Width)) var(--Informative-Bold, var(--Focus-Outline));
+}
+
+/* ========================================
+   READONLY — visually distinct from disabled
+   ======================================== */
+
+.group[data-readonly] {
+  cursor: default;
+  pointer-events: none;
+}
+
+.group[data-readonly] .button {
+  visibility: hidden;
+}
+
+/* ========================================
+   ERROR STATE — border highlight
+   ======================================== */
+
+.group[data-error] {
+  border-color: var(--Negative-Bold, var(--Negative-Bold));
+}
+
+.group[data-error][data-attention="low"] {
+  border-color: var(--Negative-Bold, var(--Negative-Bold));
+}
+
+/* ========================================
+   DISABLED — opacity reduction
+   ======================================== */
+
+.disabled {
+  opacity: var(--Disabled-Opacity);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/**
+ * ========================================
+ * IMPORTANT: NO LITERALS IN THIS FILE
+ * ========================================
+ *
+ * All values MUST come from --Token-Name variables
+ * defined in @oneui/tokens CSS files
+ */

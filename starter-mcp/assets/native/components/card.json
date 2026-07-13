@@ -1,0 +1,212 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Card",
+  "generatedAt": "2026-07-09T13:07:37.403Z",
+  "machineReadable": true,
+  "status": "alpha",
+  "intentAndPurpose": {
+    "intent": "Composite container. Combines a Surface boundary (the tinted fill), a Container (padding + shape), and a slot tree (header / media / body / footer / actions)."
+  },
+  "compositionRules": {
+    "requires": [],
+    "allows": [],
+    "forbids": [],
+    "childKind": "fixed-slots"
+  },
+  "props": [
+    {
+      "name": "mode",
+      "type": "'minimal' | 'subtle' | 'moderate' | 'bold' | 'elevated'",
+      "required": false,
+      "defaultValue": "subtle",
+      "description": ""
+    },
+    {
+      "name": "appearance",
+      "type": "'primary' | 'secondary' | 'tertiary' | 'quaternary' | 'neutral' | 'sparkle' | 'brand-bg'",
+      "required": false,
+      "defaultValue": "neutral",
+      "description": ""
+    },
+    {
+      "name": "shape",
+      "type": "'2XS' | 'XS' | 'S' | 'M' | 'L' | 'XL' | '2XL'",
+      "required": false,
+      "defaultValue": "L",
+      "description": ""
+    },
+    {
+      "name": "padding",
+      "type": "'XS' | 'S' | 'M' | 'L' | 'XL' | '2XL'",
+      "required": false,
+      "defaultValue": "L",
+      "description": ""
+    },
+    {
+      "name": "interactive",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": "When true, the whole card becomes a Pressable. Inserts focus halo."
+    },
+    {
+      "name": "decorativeStroke",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": "[warn] Tinted Card fills are their own boundary. Adding a stroke duplicates the cue. Only enable when fill contrast < 1.5:1 vs page."
+    },
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Card.Header / Card.Media / Card.Body / Card.Footer / Card.Actions in any order."
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.kb.rn.Card",
+    "type": "object",
+    "properties": {
+      "mode": {
+        "enum": [
+          "minimal",
+          "subtle",
+          "moderate",
+          "bold",
+          "elevated"
+        ],
+        "default": "subtle"
+      },
+      "appearance": {
+        "enum": [
+          "primary",
+          "secondary",
+          "tertiary",
+          "quaternary",
+          "neutral",
+          "sparkle",
+          "brand-bg"
+        ],
+        "default": "neutral"
+      },
+      "shape": {
+        "enum": [
+          "2XS",
+          "XS",
+          "S",
+          "M",
+          "L",
+          "XL",
+          "2XL"
+        ],
+        "default": "L"
+      },
+      "padding": {
+        "enum": [
+          "XS",
+          "S",
+          "M",
+          "L",
+          "XL",
+          "2XL"
+        ],
+        "default": "L"
+      },
+      "interactive": {
+        "type": "boolean",
+        "default": false,
+        "description": "When true, the whole card becomes a Pressable. Inserts focus halo."
+      },
+      "decorativeStroke": {
+        "type": "boolean",
+        "default": false,
+        "x-jds-suggestion": "Tinted Card fills are their own boundary. Adding a stroke duplicates the cue. Only enable when fill contrast < 1.5:1 vs page.",
+        "x-jds-severity": "warn"
+      },
+      "children": {
+        "description": "Card.Header / Card.Media / Card.Body / Card.Footer / Card.Actions in any order."
+      }
+    }
+  },
+  "tokens": {
+    "color": [
+      "primary",
+      "secondary",
+      "tertiary",
+      "quaternary",
+      "neutral",
+      "sparkle",
+      "brand-bg"
+    ],
+    "surface": [
+      "minimal",
+      "subtle",
+      "moderate",
+      "bold",
+      "elevated"
+    ],
+    "spacing": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL"
+    ],
+    "shape": [
+      "2XS",
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL"
+    ],
+    "elevation": [
+      0,
+      1,
+      2
+    ]
+  },
+  "a11y": {
+    "accessibilityRole": "none",
+    "accessibleNameSource": "children",
+    "minTouchTarget": 44,
+    "honorsBoldText": true,
+    "honorsScreenReader": true
+  },
+  "renderHints": {
+    "baseElement": "View",
+    "animatedOn": [
+      "press"
+    ],
+    "honorsReduceMotion": true,
+    "readsFromSurfaceContext": true
+  },
+  "figma": {
+    "componentKey": "jds-card-v4",
+    "keyHistory": [],
+    "variantProperties": {
+      "Component": "Card"
+    }
+  },
+  "codeSnippets": [
+    {
+      "id": "import-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { Card } from '@oneui/ui-native';\n\n<Card />"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "card",
+    "container",
+    "chassis",
+    "composition"
+  ],
+  "importPath": "@oneui/ui-native"
+}

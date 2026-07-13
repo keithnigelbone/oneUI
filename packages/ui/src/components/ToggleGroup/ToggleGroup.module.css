@@ -1,0 +1,134 @@
+/**
+ * ToggleGroup.module.css
+ * Token-only styling for ToggleGroup component
+ * Verified by: pnpm check:literals
+ */
+
+/* Group */
+.group {
+  display: inline-flex;
+  width: fit-content;
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+  border-radius: var(--ToggleGroup-borderRadius, var(--SelectableButton-borderRadius, var(--Button-borderRadius, var(--Shape-2))));
+  overflow: hidden;
+}
+
+.group.fullWidth {
+  width: 100%;
+}
+
+.group[data-disabled] {
+  opacity: var(--Disabled-Opacity);
+}
+
+/* Item */
+.item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--Spacing-1-5);
+  border: none;
+  border-right: var(--Stroke-M) solid var(--Border-Subtle);
+  background-color: transparent;
+  color: var(--Text-Medium);
+  cursor: pointer;
+  outline: none;
+  font-family: inherit;
+  transition: all var(--Motion-Duration-Discreet-Short) var(--Motion-Easing-Standard);
+}
+
+.fullWidth .item {
+  flex: 1;
+}
+
+.item:last-child {
+  border-right: none;
+}
+
+.item[data-pressed] {
+  background-color: var(--Primary-Bold, var(--Surface-Bold));
+  color: var(--Primary-Bold-High, var(--Text-OnBold-High));
+  font-weight: var(--Body-FontWeight-High);
+}
+
+.item:hover:not([data-disabled]) {
+  background-color: var(--Surface-Minimal);
+}
+
+.item[data-pressed]:hover:not([data-disabled]) {
+  background-color: var(--Primary-Bold, var(--Surface-Bold));
+  color: var(--Primary-Bold-High, var(--Text-OnBold-High));
+  opacity: 0.85;
+}
+
+.item[data-disabled] {
+  cursor: not-allowed;
+}
+
+.item:focus {
+  outline: none;
+}
+
+.item:focus-visible {
+  outline: var(--Focus-Outline-Width) solid var(--Focus-Outline);
+  outline-offset: calc(var(--Focus-Outline-Width) * -1);
+  z-index: 1;
+}
+
+/* ── Subtool variant: less prominent selected state ─── */
+
+.subtool {
+  border-color: transparent;
+  background-color: transparent;
+  border-radius: var(--ToggleGroup-borderRadius, var(--SelectableButton-borderRadius, var(--Button-borderRadius, var(--Shape-Pill))));
+  gap: var(--Spacing-1-5);
+}
+
+.subtool .item {
+  border-right-color: transparent;
+  border-radius: var(--ToggleGroup-borderRadius, var(--SelectableButton-borderRadius, var(--Button-borderRadius, var(--Shape-Pill))));
+  color: var(--Text-Low);
+}
+
+.subtool .item[data-pressed] {
+  background-color: var(--Primary-Subtle, var(--Surface-Subtle));
+  color: var(--Primary-TintedA11y, var(--Text-High));
+  font-weight: var(--Body-FontWeight-Medium);
+}
+
+.subtool .item:hover:not([data-disabled]) {
+  background-color: var(--Surface-Minimal);
+  color: var(--Text-Medium);
+  border-radius: var(--ToggleGroup-borderRadius, var(--SelectableButton-borderRadius, var(--Button-borderRadius, var(--Shape-Pill))));
+}
+
+.subtool .item[data-pressed]:hover:not([data-disabled]) {
+  background-color: var(--Primary-Subtle, var(--Surface-Subtle));
+  color: var(--Primary-TintedA11y, var(--Text-High));
+  opacity: 1;
+}
+
+/* Sizes */
+.compact .item {
+  padding: var(--Spacing-1-5) var(--Spacing-3);
+  font-size: var(--Body-XS-FontSize);
+  white-space: nowrap;
+}
+
+.small .item {
+  padding: var(--Spacing-2) var(--Spacing-4);
+  font-size: var(--Body-S-FontSize);
+  white-space: nowrap;
+}
+
+.medium .item {
+  padding: var(--Spacing-2-5) var(--Spacing-4-5);
+  font-size: var(--Body-M-FontSize);
+  white-space: nowrap;
+}
+
+.large .item {
+  padding: var(--Spacing-3) var(--Spacing-5);
+  font-size: var(--Body-L-FontSize);
+  white-space: nowrap;
+}

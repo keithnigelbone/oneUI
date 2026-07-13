@@ -1,0 +1,708 @@
+/**
+ * Checkbox.module.css
+ *
+ * CRITICAL: This file demonstrates the ZERO LITERALS rule
+ * ALL styling uses design tokens ONLY
+ *
+ * Architecture: intermediate variables (--_cb-*)
+ * - Appearance classes remap ALL context + fill tokens — checked fill follows `appearance`.
+ *
+ * Figma variable mapping:
+ *   Colour/surface          → --{Role}-Bold
+ *   Colour/on-Colour/tinted A11y → --{Role}-Bold-High
+ *   Colour/on-Colour/medium [stroke] → --{Role}-Stroke-Medium
+ *   Colour/on-Colour/high   → --{Role}-High
+ *   InteractionStates/focus ring → --Informative-Bold (always informative)
+ *   InteractionStates/state layer → hover/pressed token
+ *   Strokes/stroke M (1px)  → --Stroke-M
+ *   Disabled opacity         → --Disabled-Opacity
+ *
+ * Size system: [data-size="s|m|l"] attribute selectors.
+ *   S: box f0=Spacing-4 (16),  icon f-2=Spacing-3 (12), shape f-6=Shape-5XS (4)
+ *   M: box f2=Spacing-5 (20), icon f0=Spacing-4 (16),   shape f-5=Shape-4XS (6)
+ *   L: box f3=Spacing-6 (24), icon f1=Spacing-4-5 (18),  shape f-4=Shape-3XS (8)
+ *
+ * Verified by: pnpm check:literals
+ */
+
+/* ========================================
+   WRAPPER — label + checkbox + text
+   ======================================== */
+
+.wrapper {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.wrapper[data-size='s'] {
+  gap: var(--Spacing-1-5);
+}
+
+.wrapper[data-size='m'] {
+  gap: var(--Spacing-2);
+}
+
+.wrapper[data-size='l'] {
+  gap: var(--Spacing-2-5);
+}
+
+.wrapper:has(.textColumn) {
+  align-items: center;
+}
+
+.wrapper[data-disabled] {
+  cursor: not-allowed;
+}
+
+.wrapper[data-disabled]:not([data-readonly]) {
+  opacity: var(--Disabled-Opacity);
+}
+
+/* ========================================
+   CHECKBOX BOX — the interactive square
+   ======================================== */
+
+.checkbox {
+  /* === APPEARANCE role vars: context (border/hover) === */
+  --_cb-default-medium-stroke: var(
+    --Checkbox-roleStrokeMedium,
+    var(--Primary-Stroke-Medium, var(--Border-Default))
+  );
+  --_cb-default-hover: var(--Checkbox-roleHover, var(--Primary-Hover, var(--Surface-Minimal)));
+  --_cb-default-pressed: var(--Checkbox-rolePressed, var(--Primary-Pressed, var(--Surface-Subtle)));
+  --_cb-default-high: var(--Checkbox-roleHigh, var(--Primary-High, var(--Text-High)));
+
+  /* === APPEARANCE role vars: fill (checked state) === */
+  --_cb-bold: var(--Checkbox-roleBold, var(--Primary-Bold, var(--Surface-Bold)));
+  --_cb-bold-high: var(
+    --Checkbox-roleBoldHigh,
+    var(--Primary-Bold-TintedA11y, var(--Primary-Bold-High, var(--Text-OnBold-High)))
+  );
+  --_cb-bold-hover: var(
+    --Checkbox-roleBoldHover,
+    var(--Primary-Bold-Hover, var(--Surface-Bold-Hover))
+  );
+  --_cb-bold-pressed: var(
+    --Checkbox-roleBoldPressed,
+    var(--Primary-Bold-Pressed, var(--Surface-Bold-Pressed))
+  );
+
+  /* Unchecked-state stroke — neutral by default; surface-context-driven via
+     [data-unchecked-appearance="<role>"] overrides below. Same pattern as
+     Switch's unchecked track. Keeps the unchecked border from tinting with
+     the appearance prop while the checked fill still follows appearance. */
+  --_cb-unchecked-stroke: var(--Neutral-Stroke-Medium, var(--Border-Default));
+
+  /* === SHAPE === */
+  border-radius: var(--Checkbox-borderRadius, var(--Shape-1-5));
+
+  /* === BASE STYLES === */
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+  border: var(--Stroke-M) solid var(--_cb-unchecked-stroke);
+  background-color: transparent;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  outline: none;
+  /* Colours: uniform M (hover-in, hover-out, press-in, press-out — all M).
+     Transform: L by default — this is the "release" direction (touch-up). :active overrides it
+     to M below so press-down uses M while the same property's release falls back to L here. */
+  transition:
+    background-color var(--Motion-Duration-M) var(--Motion-Easing-Transition-Moderate),
+    border-color var(--Motion-Duration-M) var(--Motion-Easing-Transition-Moderate),
+    transform var(--Motion-Duration-L) var(--Motion-Easing-Transition-Moderate);
+}
+
+/* Press-down only: bump the transform transition to M. Colours stay at M. */
+.checkbox:active {
+  transition:
+    background-color var(--Motion-Duration-M) var(--Motion-Easing-Transition-Moderate),
+    border-color var(--Motion-Duration-M) var(--Motion-Easing-Transition-Moderate),
+    transform var(--Motion-Duration-M) var(--Motion-Easing-Transition-Moderate);
+}
+
+/* ========================================
+   APPEARANCE — remap ALL 8 vars (context + fill)
+   Adding a new appearance = 1 new class with 8 remappings
+   ======================================== */
+
+.appearancePrimary {
+  --_cb-default-medium-stroke: var(--Primary-Stroke-Medium, var(--Border-Default));
+  --_cb-default-hover: var(--Primary-Hover, var(--Surface-Minimal));
+  --_cb-default-pressed: var(--Primary-Pressed, var(--Surface-Subtle));
+  --_cb-default-high: var(--Primary-High, var(--Text-High));
+  --_cb-bold: var(--Primary-Bold, var(--Surface-Bold));
+  --_cb-bold-high: var(
+    --Primary-Bold-TintedA11y,
+    var(--Primary-Bold-High, var(--Text-OnBold-High))
+  );
+  --_cb-bold-hover: var(--Primary-Bold-Hover, var(--Surface-Bold-Hover));
+  --_cb-bold-pressed: var(--Primary-Bold-Pressed, var(--Surface-Bold-Pressed));
+}
+
+.appearanceNeutral {
+  --_cb-default-medium-stroke: var(--Neutral-Stroke-Medium, var(--Border-Default));
+  --_cb-default-hover: var(--Neutral-Hover, var(--Surface-Minimal));
+  --_cb-default-pressed: var(--Neutral-Pressed, var(--Surface-Subtle));
+  --_cb-default-high: var(--Neutral-High, var(--Text-High));
+  --_cb-bold: var(--Neutral-Bold, var(--Surface-Bold));
+  --_cb-bold-high: var(
+    --Neutral-Bold-TintedA11y,
+    var(--Neutral-Bold-High, var(--Text-OnBold-High))
+  );
+  --_cb-bold-hover: var(--Neutral-Bold-Hover, var(--Surface-Bold-Hover));
+  --_cb-bold-pressed: var(--Neutral-Bold-Pressed, var(--Surface-Bold-Pressed));
+}
+
+.appearanceSecondary {
+  --_cb-default-medium-stroke: var(--Secondary-Stroke-Medium, var(--Border-Default));
+  --_cb-default-hover: var(--Secondary-Hover, var(--Surface-Minimal));
+  --_cb-default-pressed: var(--Secondary-Pressed, var(--Surface-Subtle));
+  --_cb-default-high: var(--Secondary-High, var(--Text-High));
+  --_cb-bold: var(--Secondary-Bold, var(--Surface-Bold));
+  --_cb-bold-high: var(
+    --Secondary-Bold-TintedA11y,
+    var(--Secondary-Bold-High, var(--Text-OnBold-High))
+  );
+  --_cb-bold-hover: var(--Secondary-Bold-Hover, var(--Surface-Bold-Hover));
+  --_cb-bold-pressed: var(--Secondary-Bold-Pressed, var(--Surface-Bold-Pressed));
+}
+
+.appearanceSparkle {
+  --_cb-default-medium-stroke: var(--Sparkle-Stroke-Medium, var(--Border-Default));
+  --_cb-default-hover: var(--Sparkle-Hover, var(--Surface-Minimal));
+  --_cb-default-pressed: var(--Sparkle-Pressed, var(--Surface-Subtle));
+  --_cb-default-high: var(--Sparkle-High, var(--Text-High));
+  --_cb-bold: var(--Sparkle-Bold, var(--Surface-Bold));
+  --_cb-bold-high: var(
+    --Sparkle-Bold-TintedA11y,
+    var(--Sparkle-Bold-High, var(--Text-OnBold-High))
+  );
+  --_cb-bold-hover: var(--Sparkle-Bold-Hover, var(--Surface-Bold-Hover));
+  --_cb-bold-pressed: var(--Sparkle-Bold-Pressed, var(--Surface-Bold-Pressed));
+}
+
+.appearanceBrandBg {
+  --_cb-default-medium-stroke: var(--Brand-Bg-Stroke-Medium, var(--Border-Default));
+  --_cb-default-hover: var(--Brand-Bg-Hover, var(--Surface-Minimal));
+  --_cb-default-pressed: var(--Brand-Bg-Pressed, var(--Surface-Subtle));
+  --_cb-default-high: var(--Brand-Bg-High, var(--Text-High));
+  --_cb-bold: var(--Brand-Bg-Bold, var(--Surface-Bold));
+  --_cb-bold-high: var(
+    --Brand-Bg-Bold-TintedA11y,
+    var(--Brand-Bg-Bold-High, var(--Text-OnBold-High))
+  );
+  --_cb-bold-hover: var(--Brand-Bg-Bold-Hover, var(--Surface-Bold-Hover));
+  --_cb-bold-pressed: var(--Brand-Bg-Bold-Pressed, var(--Surface-Bold-Pressed));
+}
+
+.appearancePositive {
+  --_cb-default-medium-stroke: var(--Positive-Stroke-Medium, var(--Border-Default));
+  --_cb-default-hover: var(--Positive-Hover, var(--Surface-Minimal));
+  --_cb-default-pressed: var(--Positive-Pressed, var(--Surface-Subtle));
+  --_cb-default-high: var(--Positive-High, var(--Text-High));
+  --_cb-bold: var(--Positive-Bold, var(--Surface-Bold));
+  --_cb-bold-high: var(
+    --Positive-Bold-TintedA11y,
+    var(--Positive-Bold-High, var(--Text-OnBold-High))
+  );
+  --_cb-bold-hover: var(--Positive-Bold-Hover, var(--Surface-Bold-Hover));
+  --_cb-bold-pressed: var(--Positive-Bold-Pressed, var(--Surface-Bold-Pressed));
+}
+
+.appearanceNegative {
+  --_cb-default-medium-stroke: var(--Negative-Stroke-Medium, var(--Border-Default));
+  --_cb-default-hover: var(--Negative-Hover, var(--Surface-Minimal));
+  --_cb-default-pressed: var(--Negative-Pressed, var(--Surface-Subtle));
+  --_cb-default-high: var(--Negative-High, var(--Text-High));
+  --_cb-bold: var(--Negative-Bold, var(--Surface-Bold));
+  --_cb-bold-high: var(
+    --Negative-Bold-TintedA11y,
+    var(--Negative-Bold-High, var(--Text-OnBold-High))
+  );
+  --_cb-bold-hover: var(--Negative-Bold-Hover, var(--Surface-Bold-Hover));
+  --_cb-bold-pressed: var(--Negative-Bold-Pressed, var(--Surface-Bold-Pressed));
+}
+
+.appearanceWarning {
+  --_cb-default-medium-stroke: var(--Warning-Stroke-Medium, var(--Border-Default));
+  --_cb-default-hover: var(--Warning-Hover, var(--Surface-Minimal));
+  --_cb-default-pressed: var(--Warning-Pressed, var(--Surface-Subtle));
+  --_cb-default-high: var(--Warning-High, var(--Text-High));
+  --_cb-bold: var(--Warning-Bold, var(--Surface-Bold));
+  --_cb-bold-high: var(
+    --Warning-Bold-TintedA11y,
+    var(--Warning-Bold-High, var(--Text-OnBold-High))
+  );
+  --_cb-bold-hover: var(--Warning-Bold-Hover, var(--Surface-Bold-Hover));
+  --_cb-bold-pressed: var(--Warning-Bold-Pressed, var(--Surface-Bold-Pressed));
+}
+
+.appearanceInformative {
+  --_cb-default-medium-stroke: var(--Informative-Stroke-Medium, var(--Border-Default));
+  --_cb-default-hover: var(--Informative-Hover, var(--Surface-Minimal));
+  --_cb-default-pressed: var(--Informative-Pressed, var(--Surface-Subtle));
+  --_cb-default-high: var(--Informative-High, var(--Text-High));
+  --_cb-bold: var(--Informative-Bold, var(--Surface-Bold));
+  --_cb-bold-high: var(
+    --Informative-Bold-TintedA11y,
+    var(--Informative-Bold-High, var(--Text-OnBold-High))
+  );
+  --_cb-bold-hover: var(--Informative-Bold-Hover, var(--Surface-Bold-Hover));
+  --_cb-bold-pressed: var(--Informative-Bold-Pressed, var(--Surface-Bold-Pressed));
+}
+
+/* ========================================
+   UNCHECKED STROKE — surface-context-aware
+   Defaults to neutral on the bare page. Inside a tinted Surface, follows
+   the surface's resolved appearance (set on the control by Checkbox.tsx via
+   useSurfaceAppearance — same pattern as Switch unchecked track).
+   ======================================== */
+
+.checkbox[data-unchecked-appearance='primary'] {
+  --_cb-unchecked-stroke: var(--Primary-Stroke-Medium, var(--Border-Default));
+  --_cb-unchecked-hover: var(--Primary-Hover, var(--Surface-Minimal));
+  --_cb-unchecked-pressed: var(--Primary-Pressed, var(--Surface-Subtle));
+}
+.checkbox[data-unchecked-appearance='neutral'] {
+  --_cb-unchecked-stroke: var(--Neutral-Stroke-Medium, var(--Border-Default));
+  --_cb-unchecked-hover: var(--Neutral-Hover, var(--Surface-Minimal));
+  --_cb-unchecked-pressed: var(--Neutral-Pressed, var(--Surface-Subtle));
+}
+.checkbox[data-unchecked-appearance='secondary'] {
+  --_cb-unchecked-stroke: var(--Secondary-Stroke-Medium, var(--Border-Default));
+  --_cb-unchecked-hover: var(--Secondary-Hover, var(--Surface-Minimal));
+  --_cb-unchecked-pressed: var(--Secondary-Pressed, var(--Surface-Subtle));
+}
+.checkbox[data-unchecked-appearance='sparkle'] {
+  --_cb-unchecked-stroke: var(--Sparkle-Stroke-Medium, var(--Border-Default));
+  --_cb-unchecked-hover: var(--Sparkle-Hover, var(--Surface-Minimal));
+  --_cb-unchecked-pressed: var(--Sparkle-Pressed, var(--Surface-Subtle));
+}
+.checkbox[data-unchecked-appearance='brand-bg'] {
+  --_cb-unchecked-stroke: var(--Brand-Bg-Stroke-Medium, var(--Border-Default));
+  --_cb-unchecked-hover: var(--Brand-Bg-Hover, var(--Surface-Minimal));
+  --_cb-unchecked-pressed: var(--Brand-Bg-Pressed, var(--Surface-Subtle));
+}
+.checkbox[data-unchecked-appearance='positive'] {
+  --_cb-unchecked-stroke: var(--Positive-Stroke-Medium, var(--Border-Default));
+  --_cb-unchecked-hover: var(--Positive-Hover, var(--Surface-Minimal));
+  --_cb-unchecked-pressed: var(--Positive-Pressed, var(--Surface-Subtle));
+}
+.checkbox[data-unchecked-appearance='negative'] {
+  --_cb-unchecked-stroke: var(--Negative-Stroke-Medium, var(--Border-Default));
+  --_cb-unchecked-hover: var(--Negative-Hover, var(--Surface-Minimal));
+  --_cb-unchecked-pressed: var(--Negative-Pressed, var(--Surface-Subtle));
+}
+.checkbox[data-unchecked-appearance='warning'] {
+  --_cb-unchecked-stroke: var(--Warning-Stroke-Medium, var(--Border-Default));
+  --_cb-unchecked-hover: var(--Warning-Hover, var(--Surface-Minimal));
+  --_cb-unchecked-pressed: var(--Warning-Pressed, var(--Surface-Subtle));
+}
+.checkbox[data-unchecked-appearance='informative'] {
+  --_cb-unchecked-stroke: var(--Informative-Stroke-Medium, var(--Border-Default));
+  --_cb-unchecked-hover: var(--Informative-Hover, var(--Surface-Minimal));
+  --_cb-unchecked-pressed: var(--Informative-Pressed, var(--Surface-Subtle));
+}
+
+/* ========================================
+   CHECKED / INDETERMINATE — fill uses appearance role tokens (--_cb-bold*)
+   ======================================== */
+
+.checkbox[data-checked],
+.checkbox[data-indeterminate] {
+  background-color: var(--_cb-bold);
+  border-color: var(--_cb-bold);
+}
+
+/* ========================================
+   HOVER STATES
+   ======================================== */
+
+/* Unchecked = no role committed → neutral surface tints, regardless of appearance. */
+.checkbox[data-unchecked]:hover {
+  background-color: var(--_cb-unchecked-hover, var(--Neutral-Hover, var(--Surface-Minimal)));
+}
+
+.checkbox[data-checked]:hover,
+.checkbox[data-indeterminate]:hover {
+  background-color: var(--_cb-bold-hover);
+  border-color: var(--_cb-bold-hover);
+}
+
+/* ========================================
+   PRESSED STATES — scale up to 107%, surface tint to pressed colour.
+   Transform uses M on press (from .checkbox:active override) and L on release
+   (from .checkbox base). Colours use M in both directions.
+   ======================================== */
+
+.checkbox:active {
+  transform: scale(1.07);
+}
+
+.checkbox[data-unchecked]:active {
+  background-color: var(--_cb-unchecked-pressed, var(--Neutral-Pressed, var(--Surface-Subtle)));
+}
+
+.checkbox[data-checked]:active,
+.checkbox[data-indeterminate]:active {
+  background-color: var(--_cb-bold-pressed);
+  border-color: var(--_cb-bold-pressed);
+}
+
+/* Reduced motion: no scale press, no scale burst, no icon rotation. Opacity fades still
+   play. Token-remapped durations automatically switch to Subtle values inside this query. */
+@media (prefers-reduced-motion: reduce) {
+  .checkbox:active {
+    transform: none;
+  }
+  .indicator,
+  .checkbox[data-checked] .indicator,
+  .checkbox[data-indeterminate] .indicator {
+    transform: scale(1);
+  }
+  .iconCheck,
+  .iconRemove,
+  .checkbox[data-indeterminate] .iconCheck,
+  .checkbox[data-indeterminate] .iconRemove {
+    transform: rotate(0deg);
+  }
+}
+
+/* ========================================
+   FOCUS RING — always uses Informative token (per Figma spec)
+   Structure: 2px offset (Surface-Main) + 4px ring (Informative-Bold)
+   Matches Figma: InteractionStates/focus-ring-offset (spread 2) +
+                  InteractionStates/focus-ring (spread 4)
+   ======================================== */
+
+.checkbox:focus {
+  outline: none;
+}
+
+.checkbox:focus-visible,
+:global([data-force-state='focus']) .checkbox {
+  box-shadow:
+    0 0 0 var(--Stroke-XL) var(--Surface-Halo-Gap, var(--Surface-Main)),
+    0 0 0 calc(var(--Stroke-XL) + var(--Focus-Outline-Width))
+      var(--Informative-Bold, var(--Focus-Outline));
+}
+
+/* ========================================
+   INDICATOR (checkmark / indeterminate icon)
+   Uses brand-specific Icon component (semantic names: check, remove)
+   Icon color: Colour/on-Colour/tinted A11y → --{Role}-Bold-High
+
+   Unchecked rest = box-filling (scale 2) and invisible (opacity 0).
+   Checked rest   = icon-sized (scale 1) and visible (opacity 1).
+   Transitions handle both directions naturally. They do NOT fire on initial mount
+   (no value change yet), so unchecked checkboxes load silently — no flash.
+   Asymmetric fade timing is achieved by putting different transitions on each state:
+     - Rest state's transition (applies when LEAVING checked, i.e. uncheck): opacity gets
+       an L-offset delay so the icon stays fully visible while it scales out, then fades.
+     - Checked state's transition (applies when ENTERING checked, i.e. check): opacity
+       fades in immediately so the icon is visible as it scales down from box-size.
+   ======================================== */
+
+.indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--_cb-bold-high);
+  /* Burst scale = box-size / icon-size per size, so at peak the icon fills the box
+     exactly (no clipping). Per-size overrides set --_cb-burst-scale below. */
+  transform: scale(var(--_cb-burst-scale, 1.33));
+  opacity: 0;
+  transition:
+    transform var(--Motion-Duration-L) var(--Motion-Easing-Transition-Moderate),
+    opacity var(--Motion-Duration-M) var(--Motion-Easing-Transition-Moderate) var(--Motion-Offset-L);
+}
+
+.checkbox[data-checked] .indicator,
+.checkbox[data-indeterminate] .indicator {
+  transform: scale(1);
+  opacity: 1;
+  transition:
+    transform var(--Motion-Duration-L) var(--Motion-Easing-Transition-Moderate),
+    opacity var(--Motion-Duration-M) var(--Motion-Easing-Transition-Moderate);
+}
+
+/* Icon wrapper — sized by per-size selectors, Icon SVG fills container.
+   `position: relative` anchors the absolutely-positioned .iconCheck and
+   .iconRemove children that stack on top of each other for the crossfade
+   between determinate (check) and indeterminate (minus) states. */
+.indicatorIcon {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ========================================
+   DETERMINATE ↔ INDETERMINATE CROSSFADE
+
+   Both icons are always in the DOM, stacked on top of each other.
+   Per-state poses:
+     - Unchecked (default): both icons at rotate(0deg), opacity 0.
+       Whichever icon the next state needs simply fades in WITHOUT rotation
+       (parent .indicator handles the scale-burst). No "phantom rotation"
+       of the inactive icon during the unchecked ↔ checked or unchecked ↔
+       indeterminate path.
+     - Checked:
+         check  → rotate(0deg),  opacity 1
+         remove → rotate(-45deg), opacity 0   (rotated, hidden — primed for indeterminate)
+     - Indeterminate:
+         check  → rotate(45deg), opacity 0    (rotated, hidden — primed for back-to-checked)
+         remove → rotate(0deg),  opacity 1
+
+   Checked ↔ indeterminate is the only path where rotation is VISIBLE:
+     Checked → Indeterminate:
+       check  rotates 0deg → 45deg clockwise + fade out  (L / Transition Moderate)
+       remove rotates -45deg → 0deg clockwise + fade in  (L / Transition Moderate)
+     Indeterminate → Checked: same animations in reverse (counter-clockwise).
+   ======================================== */
+
+/* Transition durations are destination-driven (CSS reads the destination rule's timing):
+     - destination = unchecked     → transform S, opacity S
+     - destination = checked       → transform L, opacity S (rotation visible on ind → checked, fast fade)
+     - destination = indeterminate → transform L, opacity L (full L crossfade for checked → indeterminate) */
+.iconCheck,
+.iconRemove {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-origin: center;
+  transform: rotate(0deg);
+  opacity: 0;
+  transition:
+    transform var(--Motion-Duration-S) var(--Motion-Easing-Transition-Moderate),
+    opacity var(--Motion-Duration-S) var(--Motion-Easing-Transition-Moderate);
+}
+
+.checkbox[data-checked] .iconCheck {
+  transform: rotate(0deg);
+  opacity: 1;
+  /* Rotation L (visible on indeterminate → checked: 45° → 0°), opacity fade-in at S. */
+  transition:
+    transform var(--Motion-Duration-L) var(--Motion-Easing-Transition-Moderate),
+    opacity var(--Motion-Duration-S) var(--Motion-Easing-Transition-Moderate);
+}
+
+.checkbox[data-checked] .iconRemove {
+  transform: rotate(-45deg);
+  opacity: 0;
+  /* Rotation L so minus rotates 0° → -45° in lockstep with the tick. Fade-out S. */
+  transition:
+    transform var(--Motion-Duration-L) var(--Motion-Easing-Transition-Moderate),
+    opacity var(--Motion-Duration-S) var(--Motion-Easing-Transition-Moderate);
+}
+
+.checkbox[data-indeterminate] .iconCheck {
+  transform: rotate(45deg);
+  opacity: 0;
+  /* Rotation L (0° → 45° on checked → indeterminate), opacity crossfade L. */
+  transition:
+    transform var(--Motion-Duration-L) var(--Motion-Easing-Transition-Moderate),
+    opacity var(--Motion-Duration-L) var(--Motion-Easing-Transition-Moderate);
+}
+
+.checkbox[data-indeterminate] .iconRemove {
+  transform: rotate(0deg);
+  opacity: 1;
+  /* Rotation L so minus rotates -45° → 0° in lockstep with the tick. Crossfade L. */
+  transition:
+    transform var(--Motion-Duration-L) var(--Motion-Easing-Transition-Moderate),
+    opacity var(--Motion-Duration-L) var(--Motion-Easing-Transition-Moderate);
+}
+
+/* Icon component renders SVG — override its inline size to fill container */
+.indicatorIcon svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Icon component renders its own span with [data-size] width/height — override
+   to fill the parent .indicatorIcon. Specificity (0,2,1) beats Icon's
+   .root[data-size="N"] (0,2,0) without needing !important. */
+.checkbox .indicatorIcon > span {
+  width: 100%;
+  height: 100%;
+}
+
+/* ========================================
+   LABEL — text next to the checkbox
+   ======================================== */
+
+.label {
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Primary, inherit));
+  font-weight: var(--Body-FontWeight-Low);
+  color: var(--Neutral-High);
+  user-select: none;
+}
+
+.textColumn {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--Spacing-1);
+  min-width: 0;
+}
+
+.description {
+  margin: 0;
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Primary, inherit));
+  font-weight: var(--Body-FontWeight-Low);
+  color: var(--Text-Medium);
+  user-select: none;
+}
+
+.wrapper[data-size='s'] .description {
+  font-size: var(--Checkbox-descriptionFontSize-s, var(--Body-S-FontSize));
+  line-height: var(--Checkbox-descriptionLineHeight-s, var(--Body-S-LineHeight));
+}
+
+.wrapper[data-size='m'] .description {
+  font-size: var(--Checkbox-descriptionFontSize-m, var(--Body-S-FontSize));
+  line-height: var(--Checkbox-descriptionLineHeight-m, var(--Body-S-LineHeight));
+}
+
+.wrapper[data-size='l'] .description {
+  font-size: var(--Checkbox-descriptionFontSize-l, var(--Body-M-FontSize));
+  line-height: var(--Checkbox-descriptionLineHeight-l, var(--Body-M-LineHeight));
+}
+
+/* ========================================
+   SIZES — via [data-size] attribute selectors
+   Mapped from Figma Dimensions/Spacings and Dimensions/Shape
+   ======================================== */
+
+/* S: box = Spacings/4 (16), icon = Spacings/3 (12), shape = Shape/1 (4) → f-6 = Shape-5XS */
+.checkbox[data-size='s'] {
+  width: var(--Checkbox-boxSize-s, var(--Spacing-4));
+  height: var(--Checkbox-boxSize-s, var(--Spacing-4));
+  border-radius: var(--Checkbox-borderRadius-s, var(--Checkbox-borderRadius, var(--Shape-1)));
+}
+
+.checkbox[data-size='s'] .indicatorIcon {
+  width: var(--Checkbox-iconSize-s, var(--Spacing-3));
+  height: var(--Checkbox-iconSize-s, var(--Spacing-3));
+}
+
+/* Burst scale = box (16) / icon (12) = 1.333 — at peak, icon fills the box exactly. */
+.checkbox[data-size='s'] .indicator {
+  --_cb-burst-scale: 1.333;
+}
+
+/* M: box = Spacings/5 (f2=20), icon = Spacings/4 (f0=16), shape = Shape/1.5 (f-5=6) */
+.checkbox[data-size='m'] {
+  width: var(--Checkbox-boxSize-m, var(--Spacing-5));
+  height: var(--Checkbox-boxSize-m, var(--Spacing-5));
+  border-radius: var(--Checkbox-borderRadius-m, var(--Checkbox-borderRadius, var(--Shape-1-5)));
+}
+
+.checkbox[data-size='m'] .indicatorIcon {
+  width: var(--Checkbox-iconSize-m, var(--Spacing-4));
+  height: var(--Checkbox-iconSize-m, var(--Spacing-4));
+}
+
+/* Burst scale = box (20) / icon (16) = 1.25 — at peak, icon fills the box exactly. */
+.checkbox[data-size='m'] .indicator {
+  --_cb-burst-scale: 1.25;
+}
+
+/* L: box = Spacings/6 (f3=24), icon = Spacings/4.5 (f1=18), shape = Shape/2 (f-4=8) */
+.checkbox[data-size='l'] {
+  width: var(--Checkbox-boxSize-l, var(--Spacing-6));
+  height: var(--Checkbox-boxSize-l, var(--Spacing-6));
+  border-radius: var(--Checkbox-borderRadius-l, var(--Checkbox-borderRadius, var(--Shape-2)));
+}
+
+.checkbox[data-size='l'] .indicatorIcon {
+  width: var(--Checkbox-iconSize-l, var(--Spacing-4-5));
+  height: var(--Checkbox-iconSize-l, var(--Spacing-4-5));
+}
+
+/* Burst scale = box (24) / icon (18) = 1.333 — at peak, icon fills the box exactly. */
+.checkbox[data-size='l'] .indicator {
+  --_cb-burst-scale: 1.333;
+}
+
+/* Label typography per size
+   Font size + weight from Body role (readable), line height from Label role (compact).
+   Body line heights (f3=24, f4=28) are too spacious for checkbox labels.
+   Label line heights (f0=16, f1=18) match the checkbox box height for clean alignment. */
+.wrapper[data-size='s'] .label {
+  font-size: var(--Checkbox-labelFontSize-s, var(--Body-S-FontSize));
+  line-height: var(--Checkbox-labelLineHeight-s, var(--Label-S-LineHeight));
+}
+
+.wrapper[data-size='m'] .label {
+  font-size: var(--Checkbox-labelFontSize-m, var(--Body-M-FontSize));
+  line-height: var(--Checkbox-labelLineHeight-m, var(--Label-M-LineHeight));
+}
+
+.wrapper[data-size='l'] .label {
+  font-size: var(--Checkbox-labelFontSize-l, var(--Body-L-FontSize));
+  line-height: var(--Checkbox-labelLineHeight-l, var(--Label-L-LineHeight));
+}
+
+/* ========================================
+   READONLY — visually distinct from disabled
+   Colour/on-Colour/high → --{Role}-High
+   Readonly checked: solid dark fill (not brand color)
+   Readonly unchecked: solid dark border (not brand color)
+   No hover/focus/pressed states
+   ======================================== */
+
+.checkbox[data-readonly] {
+  cursor: default;
+  pointer-events: none;
+}
+
+.checkbox[data-readonly][data-checked],
+.checkbox[data-readonly][data-indeterminate] {
+  background-color: var(--_cb-default-high);
+  border-color: var(--_cb-default-high);
+}
+
+.checkbox[data-readonly][data-checked] .indicator,
+.checkbox[data-readonly][data-indeterminate] .indicator {
+  /* The readonly fill uses content-high, so the glyph must use the current
+     surface color, not an on-bold token that can flip light in dark mode. */
+  color: var(--Surface-Halo-Gap, var(--Surface-Main));
+}
+
+.checkbox[data-readonly][data-unchecked] {
+  border-color: var(--_cb-default-high);
+}
+
+.wrapper[data-readonly] {
+  cursor: default;
+}
+
+/* ========================================
+   DISABLED (not readonly) — opacity reduction
+   ======================================== */
+
+.checkbox[data-disabled]:not([data-readonly]) {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/**
+ * ========================================
+ * IMPORTANT: NO LITERALS IN THIS FILE
+ * ========================================
+ *
+ * All values MUST come from --Token-Name variables
+ * defined in @oneui/tokens CSS files
+ */

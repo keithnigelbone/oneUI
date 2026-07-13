@@ -1,0 +1,46 @@
+name: ui_flutter
+description: >
+  One UI Flutter component library — mirrors @oneui/ui-native.
+  Ship with bundled Jio brand, CDN prefetch, or Convex (Studio only).
+version: 0.1.0-alpha.1
+repository: https://github.com/jio/oneui-studio
+issue_tracker: https://github.com/jio/oneui-studio/issues
+homepage: https://github.com/jio/oneui-studio/tree/main/packages/ui_flutter
+
+environment:
+  sdk: '>=3.5.0 <4.0.0'
+  flutter: '>=3.24.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_svg: ^2.0.10+1
+  google_fonts: ^6.2.1
+  http: ^1.2.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+executables:
+  oneui_prefetch: oneui_prefetch
+  oneui_sync_brands: oneui_sync_brands
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/jio-icons-data.json
+    - assets/jio-logo.svg
+    - assets/jiomart-logo.svg
+    - assets/brand_data/default_jio_light_mobile_default.json
+    - assets/brand_data/default_jio_dark_mobile_default.json
+    - assets/brand_data/cdn/
+  fonts:
+    # Family string must match `jiotype-var` in `packages/shared/src/data/fonts.ts`
+    # and `TextStyle.fontFamily` from native typography payloads.
+    - family: JioType Variable
+      fonts:
+        - asset: fonts/JioTypeVar.ttf
+        - asset: fonts/JioTypeVar-Italic.ttf
+          style: italic

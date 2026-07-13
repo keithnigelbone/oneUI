@@ -1,0 +1,415 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Input",
+  "generatedAt": "2026-04-12T00:00:00.000Z",
+  "machineReadable": true,
+  "intentAndPurpose": {
+    "intent": {
+      "value": "Capture free-form text from the user with clear label, state feedback, and slot-based composition.",
+      "attribution": { "source": "inferred" }
+    },
+    "taskContexts": {
+      "value": [
+        "form-entry",
+        "search",
+        "inline-edit",
+        "settings"
+      ],
+      "attribution": { "source": "inferred" }
+    },
+    "sentiments": {
+      "value": [
+        "neutral",
+        "informative",
+        "positive",
+        "negative"
+      ],
+      "attribution": { "source": "inferred" }
+    }
+  },
+  "compositionRules": {
+    "requires": {
+      "value": [
+        "label or aria-label for accessibility",
+        "input element inside container"
+      ],
+      "attribution": { "source": "inferred" }
+    },
+    "allows": {
+      "value": [
+        "start slot (icon, avatar, chip group)",
+        "start2 slot (prefix text, currency)",
+        "end2 slot (suffix text, unit)",
+        "end slot (icon button, clear button)",
+        "InputFeedback for validation messages",
+        "InputHelper for character count and helper actions"
+      ],
+      "attribution": { "source": "inferred" }
+    },
+    "forbids": {
+      "value": [
+        "interactive controls inside start2 or end2 text slots",
+        "nesting Input inside another Input"
+      ],
+      "attribution": { "source": "inferred" }
+    }
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "default (outlined)",
+        "useWhen": {
+          "value": ["standard form fields", "search bars", "settings inputs"],
+          "attribution": { "source": "inferred" }
+        },
+        "pairWith": {
+          "value": ["InputFeedback for validation", "InputHelper for hints"],
+          "attribution": { "source": "inferred" }
+        },
+        "avoid": {
+          "value": ["dense list rows — use inline-edit pattern instead"],
+          "attribution": { "source": "inferred" }
+        }
+      },
+      {
+        "name": "pill shape",
+        "useWhen": {
+          "value": ["search bars", "hero inputs", "brand-defining moments"],
+          "attribution": { "source": "inferred" }
+        },
+        "pairWith": {
+          "value": ["search icon in start slot", "clear button in end slot"],
+          "attribution": { "source": "inferred" }
+        },
+        "avoid": {
+          "value": ["dense form grids — default shape is more compact"],
+          "attribution": { "source": "inferred" }
+        }
+      }
+    ]
+  },
+  "relationshipsAndDependencies": {
+    "related": {
+      "value": ["Select", "NumberField", "Textarea", "InputFeedback", "InputHelper"],
+      "attribution": { "source": "inferred" }
+    },
+    "escalatesTo": {
+      "value": ["Dialog with form", "Drawer with form"],
+      "attribution": { "source": "inferred" }
+    },
+    "degradesTo": {
+      "value": ["plain text display"],
+      "attribution": { "source": "inferred" }
+    },
+    "groupsWith": {
+      "value": ["Button (submit)", "InputFeedback", "InputHelper", "InputField"],
+      "attribution": { "source": "inferred" }
+    }
+  },
+  "contextSignals": {
+    "density": {
+      "value": ["compact", "default", "open"],
+      "attribution": { "source": "inferred" }
+    },
+    "modality": {
+      "value": ["desktop", "mobile", "web"],
+      "attribution": { "source": "inferred" }
+    },
+    "brand": {
+      "value": ["shape recipe-driven", "corner radius per brand"],
+      "attribution": { "source": "inferred" }
+    },
+    "mode": {
+      "value": ["light", "dark", "surface-context"],
+      "attribution": { "source": "inferred" }
+    }
+  },
+  "observabilityHooks": {
+    "track": {
+      "value": ["focus", "blur", "change", "submit"],
+      "attribution": { "source": "inferred" }
+    },
+    "health": {
+      "value": ["validation_error_rate", "empty_submission_rate", "a11y_violations"],
+      "attribution": { "source": "inferred" }
+    }
+  },
+  "props": [
+    {
+      "name": "label",
+      "type": "string",
+      "required": false,
+      "description": "Label text rendered above the input. Recommended for all form fields."
+    },
+    {
+      "name": "size",
+      "type": "6 | 8 | 10 | 12 | 'xs' | 's' | 'm' | 'l'",
+      "required": false,
+      "defaultValue": "10",
+      "description": "Input size — f-step number or t-shirt alias. 6=XS, 8=S, 10=M (default), 12=L."
+    },
+    {
+      "name": "appearance",
+      "type": "'auto' | 'primary' | 'secondary' | 'neutral' | 'sparkle' | 'positive' | 'negative' | 'warning' | 'informative'",
+      "required": false,
+      "defaultValue": "auto",
+      "description": "Multi-accent appearance role. 'auto' resolves to 'secondary'. Use role-specific appearances for contextual feedback."
+    },
+    {
+      "name": "shape",
+      "type": "'default' | 'pill'",
+      "required": false,
+      "defaultValue": "default",
+      "description": "Corner radius shape. 'pill' applies full rounding — use for search bars and hero inputs."
+    },
+    {
+      "name": "placeholder",
+      "type": "string",
+      "required": false,
+      "description": "Placeholder text shown when the input is empty."
+    },
+    {
+      "name": "value",
+      "type": "string",
+      "required": false,
+      "description": "Controlled value. Use with onChange for controlled inputs."
+    },
+    {
+      "name": "defaultValue",
+      "type": "string",
+      "required": false,
+      "description": "Default value for uncontrolled usage."
+    },
+    {
+      "name": "onChange",
+      "type": "(value: string) => void",
+      "required": false,
+      "description": "Called with the new value string whenever the input changes."
+    },
+    {
+      "name": "start",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Leading content slot — Icon, IconButton, Avatar, Image, ChipGroup, or custom node."
+    },
+    {
+      "name": "start2",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Second leading content slot — Text prefix (e.g. currency symbol, country code)."
+    },
+    {
+      "name": "end",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Trailing content slot — IconButton (clear, reveal password), Icon, Button, or custom node."
+    },
+    {
+      "name": "end2",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Second trailing content slot — Text suffix (e.g. unit, domain), Icon, or IconButton."
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "required": false,
+      "description": "Disables the input. Applies disabled opacity and blocks interaction."
+    },
+    {
+      "name": "readOnly",
+      "type": "boolean",
+      "required": false,
+      "description": "Makes the input read-only. User can select/copy but not type."
+    },
+    {
+      "name": "required",
+      "type": "boolean",
+      "required": false,
+      "description": "Marks the field as required. Appends '*' to the label."
+    },
+    {
+      "name": "invalid",
+      "type": "boolean",
+      "required": false,
+      "description": "Applies the error border color. Typically controlled by validation state."
+    },
+    {
+      "name": "error",
+      "type": "string",
+      "required": false,
+      "description": "Shorthand for showing an InputFeedback with variant='negative'. Overridden by the feedback prop."
+    },
+    {
+      "name": "feedback",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Rich feedback content — overrides the error prop. Use InputFeedback for full control."
+    },
+    {
+      "name": "dynamicText",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Dynamic text rendered in InputHelper below the input (character count, hints)."
+    },
+    {
+      "name": "helperButton",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Helper action rendered on the right side of InputHelper (link, button)."
+    },
+    {
+      "name": "description",
+      "type": "string",
+      "required": false,
+      "description": "Descriptive text rendered below the label."
+    },
+    {
+      "name": "infoIcon",
+      "type": "boolean",
+      "required": false,
+      "description": "Shows an info icon next to the label."
+    },
+    {
+      "name": "fullWidth",
+      "type": "boolean",
+      "required": false,
+      "description": "Stretches the field to fill its container width."
+    },
+    {
+      "name": "type",
+      "type": "string",
+      "required": false,
+      "defaultValue": "text",
+      "description": "HTML input type attribute: text, email, password, number, tel, url, search."
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "required": false,
+      "description": "Field name for form submission."
+    },
+    {
+      "name": "id",
+      "type": "string",
+      "required": false,
+      "description": "HTML id for the input element. Auto-generated if not provided."
+    },
+    {
+      "name": "autoComplete",
+      "type": "string",
+      "required": false,
+      "description": "HTML autocomplete attribute."
+    },
+    {
+      "name": "autoFocus",
+      "type": "boolean",
+      "required": false,
+      "description": "Autofocuses the input on mount."
+    },
+    {
+      "name": "validationMode",
+      "type": "'onBlur' | 'onChange'",
+      "required": false,
+      "description": "When to run the validate function. Default: 'onBlur'."
+    },
+    {
+      "name": "validate",
+      "type": "(value: unknown) => string | string[] | null",
+      "required": false,
+      "description": "Custom validation function. Return a string (or string[]) for error, null for valid."
+    },
+    {
+      "name": "onKeyDown",
+      "type": "(e: KeyboardEvent<HTMLInputElement>) => void",
+      "required": false,
+      "description": "Keydown event handler."
+    },
+    {
+      "name": "onBlur",
+      "type": "(e: FocusEvent<HTMLInputElement>) => void",
+      "required": false,
+      "description": "Blur event handler."
+    },
+    {
+      "name": "onFocus",
+      "type": "(e: FocusEvent<HTMLInputElement>) => void",
+      "required": false,
+      "description": "Focus event handler."
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "required": false,
+      "description": "Additional class name applied to the field root."
+    },
+    {
+      "name": "style",
+      "type": "CSSProperties",
+      "required": false,
+      "description": "Inline styles applied to the field root."
+    }
+  ],
+  "slots": [
+    {
+      "name": "start",
+      "types": ["icon", "iconButton", "avatar", "image", "chipGroup", "custom"],
+      "tokens": ["iconSize"]
+    },
+    {
+      "name": "start2",
+      "types": ["text"],
+      "tokens": []
+    },
+    {
+      "name": "end",
+      "types": ["iconButton", "icon", "button", "custom"],
+      "tokens": ["iconSize"]
+    },
+    {
+      "name": "end2",
+      "types": ["text", "icon", "iconButton"],
+      "tokens": []
+    }
+  ],
+  "codeSnippets": [
+    {
+      "id": "basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { InputField } from '@oneui/ui/components/Input';\n\n<InputField\n  label=\"Email\"\n  placeholder=\"you@example.com\"\n  type=\"email\"\n/>"
+    },
+    {
+      "id": "controlled",
+      "title": "Controlled",
+      "language": "tsx",
+      "code": "const [value, setValue] = useState('');\n\n<InputField\n  label=\"Search\"\n  value={value}\n  onChange={setValue}\n  placeholder=\"Type to search…\"\n/>"
+    },
+    {
+      "id": "with-slots",
+      "title": "With Slots",
+      "language": "tsx",
+      "code": "import { InputField } from '@oneui/ui/components/Input';\nimport { Icon } from '@oneui/ui/components/Icon';\n\n<InputField\n  label=\"Amount\"\n  start={<Icon name=\"currency-dollar\" />}\n  start2=\"USD\"\n  end2=\".00\"\n  end={<Icon name=\"calculator\" />}\n  placeholder=\"0\"\n/>"
+    },
+    {
+      "id": "with-validation",
+      "title": "With Validation",
+      "language": "tsx",
+      "code": "<InputField\n  label=\"Password\"\n  type=\"password\"\n  required\n  validate={(v) => (v as string).length < 8 ? 'Minimum 8 characters' : null}\n  validationMode=\"onBlur\"\n  dynamicText={`${value.length}/32`}\n  helperButton={<a href=\"/forgot\">Forgot?</a>}\n/>"
+    },
+    {
+      "id": "appearances",
+      "title": "Appearance Roles",
+      "language": "tsx",
+      "code": "// Semantic color roles for contextual feedback\n<InputField appearance=\"positive\" label=\"Username\" />\n<InputField appearance=\"negative\" label=\"Password\" error=\"Invalid credentials\" />\n<InputField appearance=\"warning\" label=\"Phone\" />\n<InputField appearance=\"informative\" label=\"Search\" />"
+    },
+    {
+      "id": "recipe-decisions",
+      "title": "Recipe Decisions",
+      "language": "json",
+      "code": "{\n  \"component\": \"Input\",\n  \"decisions\": [\n    \"Shape\"\n  ]\n}"
+    }
+  ],
+  "tags": ["machine-readable", "generated", "input", "form"],
+  "generatedMarkdown": "# Input Machine-Readable Documentation\n\n_Generated from source metadata. Do not edit manually._\n\n## Intent and Purpose\n\n- **Intent**: Capture free-form text from the user with clear label, state feedback, and slot-based composition.\n- **Task contexts**: form-entry, search, inline-edit, settings\n- **Sentiments**: neutral, informative, positive, negative\n\n## Composition Rules\n\n- **Requires**: label or aria-label for accessibility, input element inside container\n- **Allows**: start slot (icon, avatar, chip group), start2 slot (prefix text, currency), end2 slot (suffix text, unit), end slot (icon button, clear button), InputFeedback for validation messages, InputHelper for character count and helper actions\n- **Forbids**: interactive controls inside start2 or end2 text slots, nesting Input inside another Input\n\n## Variant Logic\n\n- **default (outlined)**: use when standard form fields, search bars, settings inputs; pair with InputFeedback for validation, InputHelper for hints\n- **pill shape**: use when search bars, hero inputs, brand-defining moments; pair with search icon in start slot, clear button in end slot\n\n## Relationships and Dependencies\n\n- **Related**: Select, NumberField, Textarea, InputFeedback, InputHelper\n- **Escalates to**: Dialog with form, Drawer with form\n- **Degrades to**: plain text display\n- **Groups with**: Button (submit), InputFeedback, InputHelper, InputField\n\n## Context Signals\n\n- **Density**: compact, default, open\n- **Modality**: desktop, mobile, web\n- **Brand**: shape recipe-driven, corner radius per brand\n- **Mode**: light, dark, surface-context\n\n## Observability Hooks\n\n- **Track**: focus, blur, change, submit\n- **Health**: validation_error_rate, empty_submission_rate, a11y_violations\n\n## Props\n\n| Prop | Type | Required | Default | Description |\n| --- | --- | --- | --- | --- |\n| `label` | `string` | No | - | Label text rendered above the input. |\n| `size` | `6 \\| 8 \\| 10 \\| 12 \\| 'xs' \\| 's' \\| 'm' \\| 'l'` | No | 10 | Input size — f-step number or t-shirt alias. |\n| `appearance` | `InputAppearance` | No | auto | Multi-accent appearance role. |\n| `shape` | `'default' \\| 'pill'` | No | default | Corner radius shape. |\n| `placeholder` | `string` | No | - | Placeholder text. |\n| `value` | `string` | No | - | Controlled value. |\n| `defaultValue` | `string` | No | - | Default value (uncontrolled). |\n| `onChange` | `(value: string) => void` | No | - | Called on every change. |\n| `start` | `ReactNode` | No | - | Leading slot — icon, avatar, chip group. |\n| `start2` | `ReactNode` | No | - | Leading text slot — prefix, currency symbol. |\n| `end` | `ReactNode` | No | - | Trailing slot — icon button, clear, reveal. |\n| `end2` | `ReactNode` | No | - | Trailing text slot — suffix, unit. |\n| `disabled` | `boolean` | No | - | Disables the input. |\n| `readOnly` | `boolean` | No | - | Read-only mode. |\n| `required` | `boolean` | No | - | Marks field as required, appends '*' to label. |\n| `invalid` | `boolean` | No | - | Applies error border. |\n| `error` | `string` | No | - | Shorthand negative feedback message. |\n| `feedback` | `ReactNode` | No | - | Rich feedback — overrides error. |\n| `dynamicText` | `ReactNode` | No | - | Helper area left text (character count). |\n| `helperButton` | `ReactNode` | No | - | Helper area right action. |\n| `description` | `string` | No | - | Description below label. |\n| `infoIcon` | `boolean` | No | - | Shows info icon beside label. |\n| `fullWidth` | `boolean` | No | - | Stretch to container width. |\n| `type` | `string` | No | text | HTML input type. |\n| `name` | `string` | No | - | Field name for forms. |\n| `validationMode` | `'onBlur' \\| 'onChange'` | No | onBlur | When to run validate. |\n| `validate` | `(value: unknown) => string \\| string[] \\| null` | No | - | Custom validation function. |\n| `className` | `string` | No | - | Additional class name. |\n| `style` | `CSSProperties` | No | - | Inline styles. |\n\n## Slots\n\n| Slot | Types | Tokens |\n| --- | --- | --- |\n| `start` | icon, iconButton, avatar, image, chipGroup, custom | `iconSize` |\n| `start2` | text | - |\n| `end` | iconButton, icon, button, custom | `iconSize` |\n| `end2` | text, icon, iconButton | - |\n\n## Recipe Decisions\n\n- **Shape** (cornerRadius)\n\n## Code Snippets\n\n### Basic Usage\n\n```tsx\nimport { InputField } from '@oneui/ui/components/Input';\n\n<InputField\n  label=\"Email\"\n  placeholder=\"you@example.com\"\n  type=\"email\"\n/>\n```\n\n### Controlled\n\n```tsx\nconst [value, setValue] = useState('');\n\n<InputField\n  label=\"Search\"\n  value={value}\n  onChange={setValue}\n  placeholder=\"Type to search…\"\n/>\n```\n\n### With Slots\n\n```tsx\nimport { InputField } from '@oneui/ui/components/Input';\nimport { Icon } from '@oneui/ui/components/Icon';\n\n<InputField\n  label=\"Amount\"\n  start={<Icon name=\"currency-dollar\" />}\n  start2=\"USD\"\n  end2=\".00\"\n  end={<Icon name=\"calculator\" />}\n  placeholder=\"0\"\n/>\n```\n\n### With Validation\n\n```tsx\n<InputField\n  label=\"Password\"\n  type=\"password\"\n  required\n  validate={(v) => (v as string).length < 8 ? 'Minimum 8 characters' : null}\n  validationMode=\"onBlur\"\n  dynamicText={`${value.length}/32`}\n  helperButton={<a href=\"/forgot\">Forgot?</a>}\n/>\n```\n\n### Appearance Roles\n\n```tsx\n<InputField appearance=\"positive\" label=\"Username\" />\n<InputField appearance=\"negative\" label=\"Password\" error=\"Invalid credentials\" />\n<InputField appearance=\"warning\" label=\"Phone\" />\n<InputField appearance=\"informative\" label=\"Search\" />\n```\n"
+}

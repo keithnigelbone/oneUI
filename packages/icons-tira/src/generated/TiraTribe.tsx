@@ -1,0 +1,27 @@
+import React, { forwardRef } from 'react';
+import type { IconComponentProps } from '../iconProps';
+
+export const TiraTribe = forwardRef<SVGSVGElement, IconComponentProps>(function TiraTribe(
+  { size = 24, width, height, color = 'currentColor', className, style, ...props },
+  ref,
+) {
+  const dim = width ?? height ?? size;
+  return (
+    <svg
+      ref={ref}
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      width={width ?? dim}
+      height={height ?? dim}
+      color={color}
+      className={className}
+      style={style}
+      {...props}
+    >
+      <path d="M5.76855 7.61914H13.4492V9.23047H5.76855V15.8545C5.76855 18.2295 7.08759 19.3661 9.11914 19.3662C11.1252 19.3662 12.4707 18.2586 12.4707 15.8545V15.5664H14.1846V15.8545C14.1846 19.2857 12.1269 21 9.11621 21C6.08628 20.9968 4 19.2827 4 15.8516V3H5.76855V7.61914ZM20.498 9.48438C20.9154 9.50516 21.3078 9.68989 21.5889 9.99902C21.87 10.3082 22.017 10.7163 21.998 11.1338C21.998 12.1543 20.9515 13.3119 20.0947 14.0889C19.4664 14.6586 18.5305 14.6588 17.9023 14.0889C17.0455 13.3114 15.9991 12.1527 15.999 11.1338C15.9801 10.7163 16.1271 10.3082 16.4082 9.99902C16.6893 9.6899 17.0817 9.50516 17.499 9.48438C17.9161 9.50526 18.3079 9.69007 18.5889 9.99902C18.87 10.3082 19.017 10.7163 18.998 11.1338C18.9791 10.7163 19.1271 10.3082 19.4082 9.99902C19.6892 9.69007 20.0809 9.50525 20.498 9.48438Z" fill="currentColor"/>
+    </svg>
+  );
+});
+
+TiraTribe.displayName = 'TiraTribe';

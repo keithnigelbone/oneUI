@@ -1,0 +1,210 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "PaginationDots",
+  "generatedAt": "2026-01-01T00:00:00.000Z",
+  "machineReadable": true,
+  "intentAndPurpose": {
+    "intent": "Windowed pagination indicator for carousels and multi-page content. Shows a fixed window of dots that scroll with the active index. Edge dots shrink to signal more content on either side. Supports loop (infinite) and non-loop (end-grow) modes. Fully accessible: roving tabindex, keyboard nav, aria-selected.",
+    "taskContexts": [
+      "pagination",
+      "carousel",
+      "indicator",
+      "navigation",
+      "dots"
+    ],
+    "sentiments": [
+      "neutral"
+    ]
+  },
+  "compositionRules": {
+    "requires": [],
+    "allows": [],
+    "forbids": []
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "non-loop",
+        "useWhen": [
+          "Non-loop"
+        ]
+      },
+      {
+        "name": "loop",
+        "useWhen": [
+          "Loop"
+        ]
+      }
+    ]
+  },
+  "relationshipsAndDependencies": {
+    "related": []
+  },
+  "contextSignals": {
+    "density": [
+      "compact",
+      "default",
+      "open"
+    ],
+    "modality": [
+      "desktop",
+      "mobile"
+    ],
+    "brand": [
+      "theme-scope aware",
+      "recipe-driven"
+    ],
+    "mode": [
+      "light",
+      "dark",
+      "surface-context"
+    ]
+  },
+  "observabilityHooks": {
+    "track": [],
+    "health": [
+      "a11y_violations"
+    ]
+  },
+  "props": [
+    {
+      "name": "count",
+      "type": "number",
+      "required": true,
+      "description": "Total number of pages / items. Required."
+    },
+    {
+      "name": "activeIndex",
+      "type": "number",
+      "required": false,
+      "description": "Controlled active index."
+    },
+    {
+      "name": "appearance",
+      "type": "PaginationDotsAppearance",
+      "required": false,
+      "description": "Multi-accent appearance role. `auto` resolves to `primary`. Default: `primary`."
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": false,
+      "description": "Accessible label for the tablist root."
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "required": false,
+      "description": "Additional class name applied to the root."
+    },
+    {
+      "name": "defaultActiveIndex",
+      "type": "number",
+      "required": false,
+      "description": "Default active index when uncontrolled."
+    },
+    {
+      "name": "loop",
+      "type": "boolean",
+      "required": false,
+      "description": "Loop mode. `true` = infinite windowed scroll, window always centered on active, last → 0 wraps seamlessly. `false` = finite sequence, window clamps at the edges, last dot grows full size when the user approaches the end. Default: `false`."
+    },
+    {
+      "name": "onActiveIndexChange",
+      "type": "(index: number) => void",
+      "required": false,
+      "description": "Fires when the active index changes (via click, keyboard, or controlled update)."
+    },
+    {
+      "name": "readOnly",
+      "type": "boolean",
+      "required": false,
+      "description": "When true, disables all interaction (clicks, keyboard) and renders as a read-only live-region indicator (`role=\"status\"`, `aria-live=\"polite\"`). Use for components that purely mirror a parent carousel's state."
+    },
+    {
+      "name": "style",
+      "type": "CSSProperties",
+      "required": false,
+      "description": "Inline styles applied to the root."
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.docs.pagination-dots",
+    "type": "object",
+    "properties": {
+      "count": {
+        "type": "number",
+        "description": "Total number of pages / items. Required."
+      },
+      "activeIndex": {
+        "type": "number",
+        "description": "Controlled active index."
+      },
+      "appearance": {
+        "enum": [
+          "auto",
+          "primary",
+          "secondary",
+          "neutral",
+          "sparkle",
+          "brand-bg",
+          "positive",
+          "negative",
+          "warning",
+          "informative"
+        ],
+        "description": "Multi-accent appearance role. `auto` resolves to `primary`. Default: `primary`."
+      },
+      "aria-label": {
+        "type": "string",
+        "description": "Accessible label for the tablist root."
+      },
+      "className": {
+        "type": "string",
+        "description": "Additional class name applied to the root."
+      },
+      "defaultActiveIndex": {
+        "type": "number",
+        "description": "Default active index when uncontrolled."
+      },
+      "loop": {
+        "type": "boolean",
+        "description": "Loop mode. `true` = infinite windowed scroll, window always centered on active, last → 0 wraps seamlessly. `false` = finite sequence, window clamps at the edges, last dot grows full size when the user approaches the end. Default: `false`."
+      },
+      "onActiveIndexChange": {
+        "description": "Fires when the active index changes (via click, keyboard, or controlled update)."
+      },
+      "readOnly": {
+        "type": "boolean",
+        "description": "When true, disables all interaction (clicks, keyboard) and renders as a read-only live-region indicator (`role=\"status\"`, `aria-live=\"polite\"`). Use for components that purely mirror a parent carousel's state."
+      },
+      "style": {
+        "description": "Inline styles applied to the root."
+      }
+    },
+    "required": [
+      "count"
+    ]
+  },
+  "codeSnippets": [
+    {
+      "id": "pagination-dots-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { PaginationDots } from '@oneui/ui';\n\n<PaginationDots />"
+    },
+    {
+      "id": "pagination-dots-recipe-decisions",
+      "title": "Recipe Decisions",
+      "language": "json",
+      "code": "{\n  \"component\": \"PaginationDots\",\n  \"decisions\": [\n    \"Shape\"\n  ]\n}"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "pagination-dots"
+  ],
+  "importPath": "@jds4/oneui-react"
+}

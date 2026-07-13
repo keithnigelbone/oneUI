@@ -1,0 +1,36 @@
+{
+  "eval_id": 0,
+  "run_type": "without_skill",
+  "expectations": [
+    {
+      "text": "uses-intermediate-variables",
+      "passed": true,
+      "evidence": "CSS uses --_chip-* intermediate variables (13 total) on .chip root, following the same pattern as Button/Avatar"
+    },
+    {
+      "text": "maps-to-role-tokens-with-fallbacks",
+      "passed": true,
+      "evidence": "All intermediates map to --Primary-* with legacy fallbacks: e.g. --_chip-fg-bold: var(--Primary-FG-Bold, var(--Surface-Bold))"
+    },
+    {
+      "text": "three-variant-styles",
+      "passed": true,
+      "evidence": ".filled, .tinted, .outlined variants all correctly consume intermediates with appropriate token usage"
+    },
+    {
+      "text": "appearance-role-classes",
+      "passed": true,
+      "evidence": ".appearanceNeutral and .appearanceNegative classes remap all 13 intermediate variables"
+    },
+    {
+      "text": "explains-automatic-adaptation",
+      "passed": true,
+      "evidence": "Explanation covers intermediate variable pattern, CSS cascade, bold inversion, and per-variant behavior table"
+    },
+    {
+      "text": "no-hardcoded-colors",
+      "passed": true,
+      "evidence": "Header states 'ALL styling uses design tokens ONLY' and all values use var() references. One instance of literal 'normal' for letter-spacing which is acceptable."
+    }
+  ]
+}

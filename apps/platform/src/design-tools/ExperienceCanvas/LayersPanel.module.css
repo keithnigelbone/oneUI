@@ -1,0 +1,108 @@
+/**
+ * LayersPanel.module.css
+ * Wider, more readable layers panel.
+ */
+
+/* INTENTIONAL-LITERAL: panel offset + dimensions are fixed canvas chrome, no matching f-step tokens */
+.panel {
+  position: absolute;
+  bottom: var(--Spacing-14);
+  right: var(--Spacing-3-5);
+  width: 260px;
+  max-height: 360px;
+  background: var(--Surface-Elevated);
+  border-radius: var(--Shape-4);
+  box-shadow: var(--Elevation-1);
+  outline: var(--Stroke-M) solid var(--Neutral-Stroke-Low);
+  z-index: 300;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.header {
+  font-size: var(--Body-S-FontSize);
+  font-weight: var(--Body-FontWeight-Medium);
+  color: var(--Text-High);
+  padding: var(--Spacing-3) var(--Spacing-4);
+  border-bottom: var(--Stroke-M) solid var(--Neutral-Stroke-Low);
+  flex-shrink: 0;
+}
+
+.empty {
+  padding: var(--Spacing-4-5);
+  color: var(--Text-Low);
+  font-size: var(--Body-S-FontSize);
+  text-align: center;
+}
+
+.list {
+  overflow-y: auto;
+  scrollbar-width: thin;
+  flex: 1;
+  padding: var(--Spacing-2) 0;
+}
+
+.layerItem {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-3);
+  padding: var(--Spacing-2) var(--Spacing-4);
+  width: 100%;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  font-size: var(--Body-S-FontSize);
+  font-weight: var(--Body-FontWeight-Low);
+  color: var(--Text-Medium);
+  transition: background-color var(--Motion-Duration-Discreet-Short);
+  min-height: var(--Spacing-7);
+}
+
+.layerItem:hover {
+  background: var(--Neutral-Subtle);
+}
+
+.layerItem[data-selected] {
+  background: var(--Neutral-Subtle);
+  color: var(--Text-High);
+  font-weight: var(--Body-FontWeight-Medium);
+}
+
+.layerItem[data-nested] {
+  padding-left: var(--Spacing-6);
+  font-size: var(--Label-XS-FontSize);
+}
+
+.layerIcon {
+  font-size: var(--Label-XS-FontSize);
+  color: var(--Text-Low);
+  flex-shrink: 0;
+  width: var(--Spacing-4);
+  text-align: center;
+}
+
+.layerItem[data-type="frame"] .layerIcon {
+  color: var(--Neutral-Tinted);
+}
+
+.layerName {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.layerCount {
+  font-size: var(--Label-XS-FontSize);
+  color: var(--Text-Low);
+  background: var(--Neutral-Minimal);
+  padding: var(--Spacing-0-5) var(--Spacing-2);
+  border-radius: var(--Shape-0-5);
+}
+
+.layerChildren {
+  border-left: var(--Stroke-M) solid var(--Neutral-Stroke-Low);
+  margin-left: var(--Spacing-4-5);
+}

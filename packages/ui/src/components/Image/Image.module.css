@@ -1,0 +1,134 @@
+/**
+ * Image.module.css
+ *
+ * Token-only styles for the Image component.
+ * Interactive mode uses ::after pseudo-element for state layer overlay.
+ * Focus ring uses outline (consistent with Link, IconButton, Collapsible).
+ *
+ * Verified by: pnpm check:literals
+ */
+
+.root {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  border-radius: var(--Image-borderRadius, var(--Shape-0));
+  transition: border-radius var(--Motion-Duration-Discreet-Medium) var(--Motion-Easing-Standard);
+}
+
+/* ========================================
+   IMAGE ELEMENT
+   ======================================== */
+
+.image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: var(--Image-objectFit, cover);
+  object-position: var(--Image-objectPosition, center);
+}
+
+/* ========================================
+   ASPECT RATIOS — via data attribute selectors
+   ======================================== */
+
+.root[data-aspect-ratio="1:1"] { aspect-ratio: 1 / 1; }
+.root[data-aspect-ratio="1:2"] { aspect-ratio: 1 / 2; }
+.root[data-aspect-ratio="2:1"] { aspect-ratio: 2 / 1; }
+.root[data-aspect-ratio="2:3"] { aspect-ratio: 2 / 3; }
+.root[data-aspect-ratio="3:2"] { aspect-ratio: 3 / 2; }
+.root[data-aspect-ratio="3:4"] { aspect-ratio: 3 / 4; }
+.root[data-aspect-ratio="4:3"] { aspect-ratio: 4 / 3; }
+.root[data-aspect-ratio="9:16"] { aspect-ratio: 9 / 16; }
+.root[data-aspect-ratio="16:9"] { aspect-ratio: 16 / 9; }
+.root[data-aspect-ratio="9:21"] { aspect-ratio: 9 / 21; }
+.root[data-aspect-ratio="21:9"] { aspect-ratio: 21 / 9; }
+
+/* ========================================
+   INTERACTIVE — button reset + state layer
+   ======================================== */
+
+.interactive {
+  border: none;
+  padding: 0;
+  margin: 0;
+  background: none;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+  text-align: inherit;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+/* State layer overlay via ::after */
+.interactive::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: transparent;
+  transition: background-color var(--Motion-Duration-Discreet-Medium) var(--Motion-Easing-Standard);
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+.interactive:hover::after {
+  background-color: var(--Image-stateLayerHover, var(--Neutral-Hover));
+}
+
+.interactive:active::after {
+  background-color: var(--Image-stateLayerPressed, var(--Neutral-Pressed));
+}
+
+.interactive:focus {
+  outline: none;
+}
+
+.interactive:focus-visible {
+  box-shadow:
+    0 0 0 var(--Stroke-XL) var(--Surface-Halo-Gap, var(--Surface-Main)),
+    0 0 0 calc(var(--Stroke-XL) + var(--Focus-Outline-Width)) var(--Focus-Outline);
+}
+
+/* ========================================
+   DISABLED
+   ======================================== */
+
+.disabled {
+  opacity: var(--Image-disabledOpacity, var(--Disabled-Opacity));
+  pointer-events: none;
+}
+
+/* ========================================
+   FALLBACK — centered placeholder
+   ======================================== */
+
+.fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  min-height: var(--Spacing-10);
+  background-color: var(--Image-fallbackBackground, var(--Neutral-Minimal));
+  color: var(--Image-fallbackColor, var(--Text-Low));
+}
+
+.fallback svg {
+  width: var(--Spacing-8);
+  height: var(--Spacing-8);
+}
+
+.fallbackImg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+
+/**
+ * ========================================
+ * IMPORTANT: NO LITERALS IN THIS FILE
+ * ========================================
+ */

@@ -1,0 +1,535 @@
+{
+  "ok": true,
+  "slug": "chip",
+  "message": "chip QA Playwright run OK — 2026-06-23T09:08:12.093Z",
+  "suites": {
+    "accessibility": {
+      "suite": "accessibility",
+      "passed": 19,
+      "failed": 0,
+      "skipped": 0,
+      "logs": [
+        "19 test(s) in Playwright report for accessibility.",
+        "Axe: scan completed — 0 violation rules reported."
+      ],
+      "errors": [],
+      "cases": [
+        {
+          "name": "Accessibility — Story bands: WCAG 2.1 AA tags, axe JSON artefact, and HTML report",
+          "status": "passed",
+          "durationMs": 5645
+        },
+        {
+          "name": "Accessibility — Section “chip-qa-default”: WCAG 2.1 AA tags, zero serious or critical",
+          "status": "passed",
+          "durationMs": 5462
+        },
+        {
+          "name": "Accessibility — Section “chip-qa-size”: WCAG 2.1 AA tags, zero serious or critical",
+          "status": "passed",
+          "durationMs": 5065
+        },
+        {
+          "name": "Accessibility — Section “chip-qa-selected”: WCAG 2.1 AA tags, zero serious or critical",
+          "status": "passed",
+          "durationMs": 5519
+        },
+        {
+          "name": "Accessibility — Section “chip-qa-attention”: WCAG 2.1 AA tags, zero serious or critical",
+          "status": "passed",
+          "durationMs": 4978
+        },
+        {
+          "name": "Accessibility — Section “chip-qa-appearance”: WCAG 2.1 AA tags, zero serious or critical",
+          "status": "passed",
+          "durationMs": 3904
+        },
+        {
+          "name": "Accessibility — Section “chip-qa-disabled”: WCAG 2.1 AA tags, zero serious or critical",
+          "status": "passed",
+          "durationMs": 3807
+        },
+        {
+          "name": "Accessibility — Section “chip-qa-start”: WCAG 2.1 AA tags, zero serious or critical",
+          "status": "passed",
+          "durationMs": 3811
+        },
+        {
+          "name": "Accessibility — Section “chip-qa-end”: WCAG 2.1 AA tags, zero serious or critical",
+          "status": "passed",
+          "durationMs": 4126
+        },
+        {
+          "name": "Accessibility — Section “chip-qa-slots-combo”: WCAG 2.1 AA tags, zero serious or critical",
+          "status": "passed",
+          "durationMs": 4094
+        },
+        {
+          "name": "Accessibility — Section “chip-qa-extra”: WCAG 2.1 AA tags, zero serious or critical",
+          "status": "passed",
+          "durationMs": 3749
+        },
+        {
+          "name": "Accessibility — Section “chip-qa-events”: WCAG 2.1 AA tags, zero serious or critical",
+          "status": "passed",
+          "durationMs": 3737
+        },
+        {
+          "name": "Accessibility — Section “chip-qa-combos”: WCAG 2.1 AA tags, zero serious or critical",
+          "status": "passed",
+          "durationMs": 4520
+        },
+        {
+          "name": "Accessibility — ARIA validity rules: zero serious or critical",
+          "status": "passed",
+          "durationMs": 4386
+        },
+        {
+          "name": "Accessibility — Default chip: role button, aria-pressed, Space toggles",
+          "status": "passed",
+          "durationMs": 3981
+        },
+        {
+          "name": "Accessibility — Disabled selected chip: aria-disabled and stays pressed on Space",
+          "status": "passed",
+          "durationMs": 3733
+        },
+        {
+          "name": "Accessibility — Tab moves focus to a real element",
+          "status": "passed",
+          "durationMs": 3814
+        },
+        {
+          "name": "Accessibility — Reflow at 320px: each section fits without horizontal scroll",
+          "status": "passed",
+          "durationMs": 6719
+        },
+        {
+          "name": "Accessibility — Figma Validation tab: WCAG tags on matrix root",
+          "status": "passed",
+          "durationMs": 5475
+        }
+      ],
+      "axe": {
+        "violations": []
+      }
+    },
+    "functional": {
+      "suite": "functional",
+      "passed": 79,
+      "failed": 0,
+      "skipped": 0,
+      "logs": [
+        "79 test(s) in Playwright report for functional."
+      ],
+      "errors": [],
+      "cases": [
+        {
+          "name": "[fn] default chip starts selected",
+          "status": "passed",
+          "durationMs": 3591
+        },
+        {
+          "name": "[fn] size M × selected true — visible + data-size attr",
+          "status": "passed",
+          "durationMs": 3747
+        },
+        {
+          "name": "[fn] size S × selected true — visible + data-size attr",
+          "status": "passed",
+          "durationMs": 3793
+        },
+        {
+          "name": "[fn] size L × selected true — visible + data-size attr",
+          "status": "passed",
+          "durationMs": 3504
+        },
+        {
+          "name": "[fn] size M × selected false — visible + data-size attr",
+          "status": "passed",
+          "durationMs": 19351
+        },
+        {
+          "name": "[fn] size S × selected false — visible + data-size attr",
+          "status": "passed",
+          "durationMs": 3689
+        },
+        {
+          "name": "[fn] size L × selected false — visible + data-size attr",
+          "status": "passed",
+          "durationMs": 3739
+        },
+        {
+          "name": "[fn] selected true — aria-pressed=\"true\"",
+          "status": "passed",
+          "durationMs": 3933
+        },
+        {
+          "name": "[fn] selected false — aria-pressed=\"false\"",
+          "status": "passed",
+          "durationMs": 3692
+        },
+        {
+          "name": "[fn] chip toggles selected on click (uncontrolled)",
+          "status": "passed",
+          "durationMs": 3686
+        },
+        {
+          "name": "[fn] attention high — visible, aria-pressed true, data-variant=\"bold\"",
+          "status": "passed",
+          "durationMs": 3915
+        },
+        {
+          "name": "[fn] attention medium — visible, aria-pressed true, data-variant=\"subtle\"",
+          "status": "passed",
+          "durationMs": 3958
+        },
+        {
+          "name": "[fn] attention low — visible, aria-pressed true, data-variant=\"ghost\"",
+          "status": "passed",
+          "durationMs": 3669
+        },
+        {
+          "name": "[fn] appearance \"auto\" — visible, aria-pressed true, data-appearance attr",
+          "status": "passed",
+          "durationMs": 2807
+        },
+        {
+          "name": "[fn] appearance \"neutral\" — visible, aria-pressed true, data-appearance attr",
+          "status": "passed",
+          "durationMs": 3072
+        },
+        {
+          "name": "[fn] appearance \"primary\" — visible, aria-pressed true, data-appearance attr",
+          "status": "passed",
+          "durationMs": 2975
+        },
+        {
+          "name": "[fn] appearance \"secondary\" — visible, aria-pressed true, data-appearance attr",
+          "status": "passed",
+          "durationMs": 2927
+        },
+        {
+          "name": "[fn] appearance \"sparkle\" — visible, aria-pressed true, data-appearance attr",
+          "status": "passed",
+          "durationMs": 2868
+        },
+        {
+          "name": "[fn] appearance \"brand-bg\" — visible, aria-pressed true, data-appearance attr",
+          "status": "passed",
+          "durationMs": 2807
+        },
+        {
+          "name": "[fn] appearance \"negative\" — visible, aria-pressed true, data-appearance attr",
+          "status": "passed",
+          "durationMs": 2722
+        },
+        {
+          "name": "[fn] appearance \"positive\" — visible, aria-pressed true, data-appearance attr",
+          "status": "passed",
+          "durationMs": 2740
+        },
+        {
+          "name": "[fn] appearance \"warning\" — visible, aria-pressed true, data-appearance attr",
+          "status": "passed",
+          "durationMs": 2725
+        },
+        {
+          "name": "[fn] appearance \"informative\" — visible, aria-pressed true, data-appearance attr",
+          "status": "passed",
+          "durationMs": 2874
+        },
+        {
+          "name": "[fn] disabled false — chip is enabled and can toggle",
+          "status": "passed",
+          "durationMs": 2844
+        },
+        {
+          "name": "[fn] disabled true + selected — aria-pressed true, is disabled, stays pressed on click",
+          "status": "passed",
+          "durationMs": 2798
+        },
+        {
+          "name": "[fn] disabled true + unselected — aria-pressed false, is disabled, stays unpressed on click",
+          "status": "passed",
+          "durationMs": 2581
+        },
+        {
+          "name": "[fn] start=\"none\" — chip visible",
+          "status": "passed",
+          "durationMs": 2862
+        },
+        {
+          "name": "[fn] start=\"icon\" — chip visible",
+          "status": "passed",
+          "durationMs": 3258
+        },
+        {
+          "name": "[fn] start=\"avatar\" — chip visible",
+          "status": "passed",
+          "durationMs": 3107
+        },
+        {
+          "name": "[fn] start=\"counter\" — chip visible",
+          "status": "passed",
+          "durationMs": 3133
+        },
+        {
+          "name": "[fn] start=\"indicator\" — chip visible",
+          "status": "passed",
+          "durationMs": 3463
+        },
+        {
+          "name": "[fn] start=none — chip has no start slot child",
+          "status": "passed",
+          "durationMs": 3511
+        },
+        {
+          "name": "[fn] start=Icon — chip has start slot content",
+          "status": "passed",
+          "durationMs": 3874
+        },
+        {
+          "name": "[fn] end=\"none\" — chip visible",
+          "status": "passed",
+          "durationMs": 3967
+        },
+        {
+          "name": "[fn] end=\"icon\" — chip visible",
+          "status": "passed",
+          "durationMs": 4146
+        },
+        {
+          "name": "[fn] end=\"avatar\" — chip visible",
+          "status": "passed",
+          "durationMs": 4021
+        },
+        {
+          "name": "[fn] end=\"counter\" — chip visible",
+          "status": "passed",
+          "durationMs": 3910
+        },
+        {
+          "name": "[fn] end=\"indicator\" — chip visible",
+          "status": "passed",
+          "durationMs": 3662
+        },
+        {
+          "name": "[fn] end=none — chip has no end slot child",
+          "status": "passed",
+          "durationMs": 3658
+        },
+        {
+          "name": "[fn] combo 0: S secondary high selected",
+          "status": "passed",
+          "durationMs": 3624
+        },
+        {
+          "name": "[fn] combo 1: M primary medium unselected",
+          "status": "passed",
+          "durationMs": 3462
+        },
+        {
+          "name": "[fn] combo 2: L sparkle low selected",
+          "status": "passed",
+          "durationMs": 3491
+        },
+        {
+          "name": "[fn] combo 3: M auto high selected",
+          "status": "passed",
+          "durationMs": 3277
+        },
+        {
+          "name": "[fn] combo 4: M warning high disabled selected",
+          "status": "passed",
+          "durationMs": 3408
+        },
+        {
+          "name": "[fn] combo 5: M positive low start Icon",
+          "status": "passed",
+          "durationMs": 3325
+        },
+        {
+          "name": "[fn] combo 6: M informative high end IndicatorBadge",
+          "status": "passed",
+          "durationMs": 3506
+        },
+        {
+          "name": "[fn] combo 7: M negative medium Avatar+CounterBadge",
+          "status": "passed",
+          "durationMs": 3624
+        },
+        {
+          "name": "[fn] click → selectedChange emitted with selected=true",
+          "status": "passed",
+          "durationMs": 6209
+        },
+        {
+          "name": "[fn] second click → selectedChange emitted with selected=false",
+          "status": "passed",
+          "durationMs": 6275
+        },
+        {
+          "name": "[fn] Space key → selectedChange emitted, aria-pressed flips",
+          "status": "passed",
+          "durationMs": 5822
+        },
+        {
+          "name": "[fn] disabled chip → no selectedChange on click",
+          "status": "passed",
+          "durationMs": 5625
+        },
+        {
+          "name": "[fn] Figma Validation tab — grid renders all attention × slot rows",
+          "status": "passed",
+          "durationMs": 4042
+        },
+        {
+          "name": "1.1 — Page loads without console errors; default chip wrapper mounts",
+          "status": "passed",
+          "durationMs": 5123
+        },
+        {
+          "name": "1.2 — Every Test Scenarios `data-testid` is visible",
+          "status": "passed",
+          "durationMs": 5543
+        },
+        {
+          "name": "1.3 — Every `data-section` band is visible",
+          "status": "passed",
+          "durationMs": 4359
+        },
+        {
+          "name": "1.4 — Default chip exposes resolved size M and secondary appearance",
+          "status": "passed",
+          "durationMs": 3286
+        },
+        {
+          "name": "2.2 — Size S / M / L bounding boxes scale progressively (selected true row)",
+          "status": "passed",
+          "durationMs": 3152
+        },
+        {
+          "name": "2.1 — `variant=\"bold\"` overrides attention to data-variant bold",
+          "status": "passed",
+          "durationMs": 2798
+        },
+        {
+          "name": "3.4 — Clicking page heading blurs the focused chip",
+          "status": "passed",
+          "durationMs": 3116
+        },
+        {
+          "name": "3.3 — Chip has no readonly mode",
+          "status": "passed",
+          "durationMs": 3563
+        },
+        {
+          "name": "4.1 — Tab reaches an interactive element on the page",
+          "status": "passed",
+          "durationMs": 3370
+        },
+        {
+          "name": "4.7 — Repeated Tab visits multiple distinct focus targets (no trap)",
+          "status": "passed",
+          "durationMs": 4268
+        },
+        {
+          "name": "4.4 — Arrow keys N/A for standalone Chip",
+          "status": "passed",
+          "durationMs": 4026
+        },
+        {
+          "name": "5.1 — Click moves focus to the event probe chip",
+          "status": "passed",
+          "durationMs": 4064
+        },
+        {
+          "name": "5.2 — Focused chip shows visible focus ring (computed)",
+          "status": "passed",
+          "durationMs": 3518
+        },
+        {
+          "name": "5.5 — Chip has no autoFocus prop in showcase",
+          "status": "passed",
+          "durationMs": 3349
+        },
+        {
+          "name": "6.5 — Error state is not part of Chip API",
+          "status": "passed",
+          "durationMs": 2775
+        },
+        {
+          "name": "6.6 — Loading state is not part of Chip API",
+          "status": "passed",
+          "durationMs": 3276
+        },
+        {
+          "name": "7.3 — Icon + IndicatorBadge combo row renders both slots",
+          "status": "passed",
+          "durationMs": 3399
+        },
+        {
+          "name": "8.2 — Single-select is N/A for standalone Chip",
+          "status": "passed",
+          "durationMs": 3174
+        },
+        {
+          "name": "9.x — Chip is not a text input",
+          "status": "passed",
+          "durationMs": 3171
+        },
+        {
+          "name": "11.1 — Default chip exposes accessible name “Label”",
+          "status": "passed",
+          "durationMs": 3384
+        },
+        {
+          "name": "12.2 — At 320px viewport, scenario bands fit without horizontal scroll",
+          "status": "passed",
+          "durationMs": 5643
+        },
+        {
+          "name": "12.2b — Default chip visible at 1440px viewport",
+          "status": "passed",
+          "durationMs": 5108
+        },
+        {
+          "name": "12.1 — fullWidth is not a Chip prop",
+          "status": "passed",
+          "durationMs": 3467
+        },
+        {
+          "name": "13.1 — After dark theme, all scenario sections remain visible",
+          "status": "passed",
+          "durationMs": 6295
+        },
+        {
+          "name": "13.1 — Primary appearance chip stays visible in dark mode",
+          "status": "passed",
+          "durationMs": 5003
+        },
+        {
+          "name": "Smoke — Page heading reads “Chip”",
+          "status": "passed",
+          "durationMs": 2531
+        },
+        {
+          "name": "Smoke — Test Scenarios tab is active with default chip visible",
+          "status": "passed",
+          "durationMs": 1658
+        }
+      ]
+    },
+    "performance": {
+      "suite": "performance",
+      "passed": 0,
+      "failed": 0,
+      "skipped": 0,
+      "logs": [
+        "Performance suite is not executed in apps/qa-playground chip Playwright bundle."
+      ],
+      "errors": []
+    }
+  }
+}

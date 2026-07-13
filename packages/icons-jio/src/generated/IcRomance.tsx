@@ -1,0 +1,30 @@
+import React, { forwardRef } from 'react';
+import type { IconComponentProps } from '../iconProps';
+
+export const IcRomance = forwardRef<SVGSVGElement, IconComponentProps>(function IcRomance(
+  { size = 24, width, height, color = 'currentColor', className, style, ...props },
+  ref,
+) {
+  const dim = width ?? height ?? size;
+  return (
+    <svg
+      ref={ref}
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      width={width ?? dim}
+      height={height ?? dim}
+      color={color}
+      className={className}
+      style={style}
+      {...props}
+    >
+      <path
+            fill="currentColor"
+            d="M15.7 8.5a4.4 4.4 0 0 1 1.8.39 4.4 4.4 0 0 1 1.8-.39q.308.008.61.06A5.33 5.33 0 0 0 14.6 4 5.6 5.6 0 0 0 11 5.46 5.6 5.6 0 0 0 7.4 4 5.36 5.36 0 0 0 2 9.44C2 12.81 4.63 15.87 9.16 20l.49.45a2 2 0 0 0 2.7 0l.49-.44c.43-.39.83-.78 1.23-1.15-1.72-1.68-3.07-3.45-3.07-5.64a4.66 4.66 0 0 1 4.7-4.72m3.6 2a2.82 2.82 0 0 0-1.8.73 2.84 2.84 0 0 0-1.8-.73 2.69 2.69 0 0 0-2.7 2.72c0 1.68 1.31 3.21 3.58 5.29l.24.22a1 1 0 0 0 1.35 0l.25-.22C20.69 16.43 22 14.9 22 13.22a2.69 2.69 0 0 0-2.7-2.72"
+          />
+    </svg>
+  );
+});
+
+IcRomance.displayName = 'IcRomance';

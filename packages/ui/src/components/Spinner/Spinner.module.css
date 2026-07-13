@@ -1,0 +1,171 @@
+/**
+ * Spinner.module.css
+ *
+ * CRITICAL: ZERO LITERALS — all styling via design tokens.
+ *
+ * The Spinner always draws three arcs from three DIFFERENT accent roles
+ * (primary + secondary + sparkle) — not three tonal steps of one role.
+ * Each arc consumes role-level V4 `--{Role}-Bold` tokens so it adapts
+ * automatically inside `[data-surface="fg-bold"]` and bg-bold contexts.
+ *
+ * Verified by: pnpm check:literals
+ */
+
+.root {
+  /* ========================================
+     ROLE-BASED ARC COLORS (three distinct roles)
+     Arc ordering matches the Figma SVG (node 2314:1386) exactly:
+       arc1 = Sparkle             — "leading" arc (top-right, green in Jio)
+       arc2 = Secondary           — middle arc (bottom-right, orange in Jio)
+       arc3 = Primary             — trailing arc (bottom-left, purple in Jio)
+     Override per-brand via --Spinner-arcColor{1,2,3}.
+     ======================================== */
+  --_spinner-arc-1: var(--Spinner-arcColor1, var(--Sparkle-Bold, var(--Surface-Bold)));
+  --_spinner-arc-2: var(--Spinner-arcColor2, var(--Secondary-Bold, var(--Surface-Bold)));
+  --_spinner-arc-3: var(--Spinner-arcColor3, var(--Primary-Bold, var(--Surface-Bold)));
+
+  /* Layout */
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+
+/* ========================================
+   SIZES — via [data-size] attribute selectors.
+   Matches CircularProgressIndicator's mapping (same Figma source).
+   ======================================== */
+
+.root[data-size="2XS"] {
+  width: var(--Spinner-size-2XS, var(--Spacing-2));
+  height: var(--Spinner-size-2XS, var(--Spacing-2));
+}
+
+.root[data-size="XS"] {
+  width: var(--Spinner-size-XS, var(--Spacing-3));
+  height: var(--Spinner-size-XS, var(--Spacing-3));
+}
+
+.root[data-size="S"] {
+  width: var(--Spinner-size-S, var(--Spacing-4));
+  height: var(--Spinner-size-S, var(--Spacing-4));
+}
+
+.root[data-size="M"] {
+  width: var(--Spinner-size-M, var(--Spacing-5));
+  height: var(--Spinner-size-M, var(--Spacing-5));
+}
+
+.root[data-size="L"] {
+  width: var(--Spinner-size-L, var(--Spacing-6));
+  height: var(--Spinner-size-L, var(--Spacing-6));
+}
+
+.root[data-size="XL"] {
+  width: var(--Spinner-size-XL, var(--Spacing-8));
+  height: var(--Spinner-size-XL, var(--Spacing-8));
+}
+
+.root[data-size="2XL"] {
+  width: var(--Spinner-size-2XL, var(--Spacing-10));
+  height: var(--Spinner-size-2XL, var(--Spacing-10));
+}
+
+.root[data-size="3XL"] {
+  width: var(--Spinner-size-3XL, var(--Spacing-12));
+  height: var(--Spinner-size-3XL, var(--Spacing-12));
+}
+
+.root[data-size="4XL"] {
+  width: var(--Spinner-size-4XL, var(--Spacing-14));
+  height: var(--Spinner-size-4XL, var(--Spacing-14));
+}
+
+.root[data-size="5XL"] {
+  width: var(--Spinner-size-5XL, var(--Spacing-16));
+  height: var(--Spinner-size-5XL, var(--Spacing-16));
+}
+
+/* ========================================
+   SVG ELEMENTS
+   ======================================== */
+
+.svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.arc {
+  fill: none;
+  transform-origin: 50px 50px;
+  stroke-dasharray: 15 85;
+  stroke-dashoffset: 0;
+}
+
+/* ========================================
+   ARC COLORS + INDEPENDENT TRIM-PATH ANIMATIONS
+   Three full circles, each with its own keyframes.
+   AE trim-path Start/End → stroke-dasharray (length) + stroke-dashoffset (position).
+   Per-stroke rotation offset creates the fanning/converging effect.
+   1500ms timeline, linear easing, infinite loop.
+   ======================================== */
+
+.arc1 {
+  stroke: var(--_spinner-arc-1);
+  animation: spinnerTrimSparkle 1500ms linear infinite;
+}
+
+.arc2 {
+  stroke: var(--_spinner-arc-2);
+  animation: spinnerTrimSecondary 1500ms linear infinite;
+}
+
+.arc3 {
+  stroke: var(--_spinner-arc-3);
+  animation: spinnerTrimPrimary 1500ms linear infinite;
+}
+
+/* Primary — 0ms, 250ms, 667ms, 1000ms, 1500ms */
+@keyframes spinnerTrimPrimary {
+  0%       { stroke-dasharray: 15 85;     stroke-dashoffset: 0;     transform: rotate(0deg); }
+  16.667%  { stroke-dasharray: 50 50;     stroke-dashoffset: 0;     transform: rotate(90deg); }
+  44.467%  { stroke-dasharray: 42.5 57.5; stroke-dashoffset: -42.5; transform: rotate(180deg); }
+  66.667%  { stroke-dasharray: 15 85;     stroke-dashoffset: -85;   transform: rotate(270deg); }
+  100%     { stroke-dasharray: 15 85;     stroke-dashoffset: 0;     transform: rotate(720deg); }
+}
+
+/* Secondary — 0ms, 250ms, 667ms, 1000ms, 1500ms */
+@keyframes spinnerTrimSecondary {
+  0%       { stroke-dasharray: 15 85;     stroke-dashoffset: 0;     transform: rotate(0deg); }
+  16.667%  { stroke-dasharray: 50 50;     stroke-dashoffset: 0;     transform: rotate(60deg); }
+  44.467%  { stroke-dasharray: 42.5 57.5; stroke-dashoffset: -42.5; transform: rotate(60deg); }
+  66.667%  { stroke-dasharray: 15 85;     stroke-dashoffset: -85;   transform: rotate(220deg); }
+  100%     { stroke-dasharray: 15 85;     stroke-dashoffset: 0;     transform: rotate(720deg); }
+}
+
+/* Sparkle — 0ms, 250ms, 667ms, 1000ms, 1500ms */
+@keyframes spinnerTrimSparkle {
+  0%       { stroke-dasharray: 15 85;     stroke-dashoffset: 0;     transform: rotate(0deg); }
+  16.667%  { stroke-dasharray: 50 50;     stroke-dashoffset: 0;     transform: rotate(45deg); }
+  44.467%  { stroke-dasharray: 42.5 57.5; stroke-dashoffset: -42.5; transform: rotate(-40deg); }
+  66.667%  { stroke-dasharray: 15 85;     stroke-dashoffset: -85;   transform: rotate(190deg); }
+  100%     { stroke-dasharray: 15 85;     stroke-dashoffset: 0;     transform: rotate(720deg); }
+}
+
+/* ========================================
+   REDUCED MOTION — collapse animation but keep aria-busy semantics.
+   ======================================== */
+@media (prefers-reduced-motion: reduce) {
+  .arc1, .arc2, .arc3 {
+    animation: none;
+  }
+}
+
+/**
+ * ========================================
+ * IMPORTANT: NO LITERALS IN THIS FILE
+ * ========================================
+ */

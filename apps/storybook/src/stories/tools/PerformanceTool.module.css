@@ -1,0 +1,523 @@
+/**
+ * PerformanceTool.module.css
+ *
+ * Token-only styling for the performance harness. No literals.
+ */
+
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-5);
+  max-width: 1400px;
+  padding: var(--Spacing-6);
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-3-5);
+}
+
+.title {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Display-S-FontSize);
+  line-height: var(--Display-S-LineHeight);
+  font-weight: var(--Display-S-FontWeight);
+  color: var(--Text-High);
+  margin: 0;
+}
+
+.description {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Body-M-FontSize);
+  line-height: var(--Body-M-LineHeight);
+  font-weight: var(--Body-FontWeight-Low);
+  color: var(--Text-Medium);
+  margin: 0;
+  max-width: 720px;
+}
+
+.warningBanner {
+  padding: var(--Spacing-3-5) var(--Spacing-4);
+  border-radius: var(--Shape-3);
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  font-weight: var(--Body-FontWeight-Low);
+  color: var(--Warning-High);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Controls panel                                                             */
+/* -------------------------------------------------------------------------- */
+
+.controlsPanel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-4);
+  padding: var(--Spacing-4) var(--Spacing-4-5);
+  border-radius: var(--Shape-4);
+}
+
+.controlsRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: var(--Spacing-4);
+}
+
+.fieldGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-2);
+  min-width: 0;
+}
+
+.fieldLabel {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+  color: var(--Text-Low);
+}
+
+.componentGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--Spacing-3) var(--Spacing-5);
+}
+
+.hintText {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  font-weight: var(--Body-FontWeight-Low);
+  color: var(--Text-Medium);
+  margin: 0;
+}
+
+.pickerLayout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(var(--Spacing-5XL), var(--Spacing-15XL));
+  gap: var(--Spacing-4) var(--Spacing-5);
+  align-items: start;
+}
+
+.pickerMain {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-3);
+  min-width: 0;
+}
+
+.familyList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-3);
+}
+
+.familyCard {
+  padding: var(--Spacing-3) var(--Spacing-4);
+  border-radius: var(--Shape-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-3);
+}
+
+.familyTitleRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--Spacing-3);
+}
+
+.familyTitle {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Title-S-FontSize);
+  line-height: var(--Title-S-LineHeight);
+  font-weight: var(--Title-S-FontWeight);
+  color: var(--Text-High);
+}
+
+.familyCheckboxRow {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-2);
+}
+
+.selectionAside {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-3);
+  padding: var(--Spacing-4);
+  border-radius: var(--Shape-3);
+  background: var(--Surface-Fill-Subtle);
+  position: sticky;
+  top: var(--Spacing-3);
+}
+
+.asideTitle {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Title-S-FontSize);
+  line-height: var(--Title-S-LineHeight);
+  font-weight: var(--Title-S-FontWeight);
+  color: var(--Text-High);
+}
+
+.asideLabel {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Label-S-FontSize);
+  line-height: var(--Label-S-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+  color: var(--Text-Medium);
+}
+
+.asideSection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-2);
+}
+
+.selectedList {
+  margin: 0;
+  padding-left: var(--Spacing-4);
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Label-S-FontSize);
+  line-height: var(--Label-S-LineHeight);
+  font-weight: var(--Label-FontWeight-Low);
+  color: var(--Text-High);
+}
+
+.candidateList {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--Spacing-1);
+}
+
+.chartToolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: var(--Spacing-4);
+}
+
+.chartHeadRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--Spacing-4);
+  flex-shrink: 0;
+}
+
+.chartHeadActions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: var(--Spacing-3);
+}
+
+.chartSectionFullscreen {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  max-width: none;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: var(--Spacing-4);
+  box-sizing: border-box;
+  background: var(--Surface-Fill-Default);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.chartSectionFullscreen .chartToolbar {
+  flex-shrink: 0;
+}
+
+.chartMeasure {
+  width: 100%;
+  min-height: 360px;
+  display: flex;
+  flex-direction: column;
+}
+
+.chartSectionFullscreen .chartMeasure {
+  flex: 1;
+  min-height: 0;
+}
+
+.chartLegendCheckboxRow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--Spacing-2);
+}
+
+.chartLegendLabel {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Label-S-FontSize);
+  line-height: var(--Label-S-LineHeight);
+  font-weight: var(--Label-FontWeight-Low);
+  color: var(--Text-High);
+}
+
+.chartLegendSwatchMuted {
+  opacity: 0.35;
+}
+
+.chartLegendSwatchBand {
+  opacity: 0.4;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Preview                                                                    */
+/* -------------------------------------------------------------------------- */
+
+.previewSection,
+.chartSection,
+.tableSection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-3);
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--Spacing-3);
+}
+
+.sectionTitle {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Title-M-FontSize);
+  line-height: var(--Title-M-LineHeight);
+  font-weight: var(--Title-M-FontWeight);
+  color: var(--Text-High);
+  margin: 0;
+}
+
+.sectionMeta {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Label-S-FontSize);
+  line-height: var(--Label-S-LineHeight);
+  font-weight: var(--Label-FontWeight-Low);
+  color: var(--Text-Medium);
+  font-variant-numeric: tabular-nums;
+}
+
+.previewContainer {
+  /* contain: strict isolates the test subtree from outer layout/paint —
+     we want to actually see what's being measured rather than hiding it offscreen. */
+  contain: strict;
+  height: 240px;
+  overflow: auto;
+  border-radius: var(--Shape-4);
+  padding: var(--Spacing-3);
+  background: var(--Surface-Fill-Subtle);
+}
+
+.previewInner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--Spacing-2);
+  align-items: center;
+}
+
+.previewSurface {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--Spacing-2);
+  padding: var(--Spacing-3);
+  border-radius: var(--Shape-3);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Table                                                                      */
+/* -------------------------------------------------------------------------- */
+
+.tableScroll {
+  max-height: 480px;
+  overflow: auto;
+  border-radius: var(--Shape-3);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  font-weight: var(--Body-FontWeight-Low);
+  color: var(--Text-High);
+}
+
+.table thead th {
+  position: sticky;
+  top: 0;
+  text-align: left;
+  padding: var(--Spacing-2-5) var(--Spacing-3);
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Label-S-FontSize);
+  line-height: var(--Label-S-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+  color: var(--Text-Medium);
+  background: var(--Surface-Fill-Subtle);
+  border-bottom: var(--Stroke-XS) solid var(--Border-Subtle, var(--Primary-Stroke-Low));
+}
+
+.table tbody td {
+  padding: var(--Spacing-2) var(--Spacing-3);
+  font-variant-numeric: tabular-nums;
+  border-bottom: var(--Stroke-XS) solid var(--Primary-Stroke-Low);
+}
+
+.table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Chart                                                                      */
+/* -------------------------------------------------------------------------- */
+
+.chartWrap {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-2);
+  flex: 1;
+  min-height: 0;
+  min-width: 0;
+}
+
+.chartWrap[data-legend-position='right'] {
+  flex-direction: row;
+  align-items: stretch;
+  gap: var(--Spacing-4);
+}
+
+.chartPlotSlot {
+  position: relative;
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+}
+
+.chartPlotSlot > svg {
+  display: block;
+}
+
+.chartWrap[data-legend-position='right'] .chartLegend {
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: flex-start;
+  align-items: flex-start;
+  gap: var(--Spacing-2);
+  flex: 0 0 220px;
+  min-width: 180px;
+  max-width: 280px;
+  max-height: 100%;
+  overflow-y: auto;
+  padding-right: var(--Spacing-2);
+}
+
+.chartSvg {
+  background: var(--Surface-Fill-Subtle);
+  border-radius: var(--Shape-3);
+}
+
+.chartGridLine {
+  stroke: var(--Primary-Stroke-Low);
+  stroke-width: 1;
+  stroke-dasharray: 2 3;
+}
+
+.chartAxis {
+  stroke: var(--Primary-Stroke-Medium, var(--Primary-Stroke-Low));
+  stroke-width: 1;
+  fill: none;
+}
+
+.chartTickLabel {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Label-XS-FontSize);
+  fill: var(--Text-Low);
+}
+
+.chartAxisLabel {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Label-S-FontSize);
+  font-weight: var(--Label-FontWeight-Medium);
+  fill: var(--Text-Medium);
+}
+
+.chartHoverLine {
+  stroke: var(--Text-Medium);
+  stroke-width: 1;
+  stroke-dasharray: 3 3;
+}
+
+.chartLegend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--Spacing-3);
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Label-S-FontSize);
+  line-height: var(--Label-S-LineHeight);
+  font-weight: var(--Label-FontWeight-Low);
+  color: var(--Text-Medium);
+}
+
+.chartLegendItem {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--Spacing-2);
+}
+
+.chartLegendSwatch {
+  display: inline-block;
+  width: var(--Dimension-f0);
+  height: var(--Dimension-f0);
+  border-radius: var(--Shape-Pill);
+}
+
+.chartTooltip {
+  position: absolute;
+  pointer-events: none;
+  padding: var(--Spacing-2) var(--Spacing-3);
+  background: var(--Surface-Fill-Elevated, var(--Surface-Fill-Default));
+  border: var(--Stroke-XS) solid var(--Primary-Stroke-Low);
+  border-radius: var(--Shape-2);
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  color: var(--Text-High);
+  min-width: 160px;
+  box-shadow: var(--Elevation-2, none);
+  z-index: 2;
+}
+
+.chartTooltipTitle {
+  font-weight: var(--Label-FontWeight-Medium);
+  margin-bottom: var(--Spacing-1);
+  color: var(--Text-Medium);
+}
+
+.chartTooltipRow {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-2);
+}
+
+.chartTooltipLabel {
+  flex: 1;
+}
+
+.chartTooltipValue {
+  font-variant-numeric: tabular-nums;
+  font-weight: var(--Label-FontWeight-Medium);
+}

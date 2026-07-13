@@ -1,0 +1,287 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Checkbox",
+  "generatedAt": "2026-01-01T00:00:00.000Z",
+  "machineReadable": true,
+  "intentAndPurpose": {
+    "intent": "Binary selection control for forms and settings with tri-state (indeterminate) support.",
+    "taskContexts": [
+      "form-field",
+      "settings-toggle",
+      "multi-select-list",
+      "bulk-selection"
+    ],
+    "sentiments": [
+      "neutral",
+      "positive"
+    ]
+  },
+  "compositionRules": {
+    "requires": [
+      "label or aria-label"
+    ],
+    "allows": [
+      "indeterminate state",
+      "read-only mode"
+    ],
+    "forbids": [
+      "use as a toggle for non-boolean values"
+    ]
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "default",
+        "useWhen": [
+          "standard form checkbox"
+        ]
+      },
+      {
+        "name": "indeterminate",
+        "useWhen": [
+          "parent of partially-selected group"
+        ]
+      },
+      {
+        "name": "readOnly",
+        "useWhen": [
+          "display-only state, value visible but not editable"
+        ]
+      }
+    ]
+  },
+  "relationshipsAndDependencies": {
+    "related": [
+      "Switch",
+      "Radio",
+      "CheckboxGroup"
+    ],
+    "groupsWith": [
+      "CheckboxGroup",
+      "FormField"
+    ]
+  },
+  "contextSignals": {
+    "density": [
+      "compact",
+      "default",
+      "open"
+    ],
+    "modality": [
+      "desktop",
+      "mobile"
+    ],
+    "brand": [
+      "theme-scope aware",
+      "appearance + accent dual-role"
+    ],
+    "mode": [
+      "light",
+      "dark",
+      "surface-context"
+    ]
+  },
+  "observabilityHooks": {
+    "track": [
+      "check",
+      "uncheck",
+      "indeterminate_set"
+    ],
+    "health": [
+      "a11y_violations",
+      "override_frequency"
+    ]
+  },
+  "props": [
+    {
+      "name": "accent",
+      "type": "CheckboxAccent",
+      "required": false,
+      "description": "accent property"
+    },
+    {
+      "name": "appearance",
+      "type": "CheckboxAppearance",
+      "required": false,
+      "description": "Appearance role — border, hover, and checked fill. `auto` → secondary stack."
+    },
+    {
+      "name": "aria-describedby",
+      "type": "string",
+      "required": false,
+      "description": "For composite fields — links to `Field.Description` etc."
+    },
+    {
+      "name": "aria-invalid",
+      "type": "boolean | 'true' | 'false'",
+      "required": false,
+      "description": "Invalid state for form validation (exposed on the checkbox control)."
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": false,
+      "description": "For `labelWrapper=\"div\"` — required accessible name when there is no inner label text"
+    },
+    {
+      "name": "checked",
+      "type": "boolean",
+      "required": false,
+      "description": "Whether the checkbox is checked (controlled)"
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "required": false,
+      "description": "Additional class name"
+    },
+    {
+      "name": "data-testid",
+      "type": "string",
+      "required": false,
+      "description": "Test automation id — forwarded to the checkbox control (`BaseCheckbox.Root`)."
+    },
+    {
+      "name": "defaultChecked",
+      "type": "boolean",
+      "required": false,
+      "description": "Default checked state (uncontrolled)"
+    },
+    {
+      "name": "description",
+      "type": "string",
+      "required": false,
+      "description": "Supplementary copy below the label row when using the integrated stack (mirrors `Input.description`)."
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "required": false,
+      "description": "Whether the checkbox is disabled"
+    },
+    {
+      "name": "errorHighlight",
+      "type": "boolean",
+      "required": false,
+      "description": "Invalid chrome on the wrapper (mirrors `Input.errorHighlight`)."
+    },
+    {
+      "name": "id",
+      "type": "string",
+      "required": false,
+      "description": "HTML id attribute"
+    },
+    {
+      "name": "indeterminate",
+      "type": "boolean",
+      "required": false,
+      "description": "Whether the checkbox is in indeterminate state"
+    },
+    {
+      "name": "label",
+      "type": "string",
+      "required": false,
+      "description": "Visible label beside the control (string)."
+    },
+    {
+      "name": "labelAssociation",
+      "type": "'native' | 'field'",
+      "required": false,
+      "description": "How string label / description associate with the control (mirrors `Input`). - `native`: outer `<label>` (default) or `labelWrapper=\"div\"` + plain description `<p>`. - `field`: `Field.Label` / `Field.Description` — use only under `Field.Root` (e.g. `CheckboxField`)."
+    },
+    {
+      "name": "labelSuffixInside",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Rendered after label text inside the label element (e.g. required asterisk)."
+    },
+    {
+      "name": "labelTrailing",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Rendered after the label element on the same row (e.g. info control)."
+    },
+    {
+      "name": "labelWrapper",
+      "type": "'label' | 'div'",
+      "required": false,
+      "defaultValue": "label",
+      "description": "Outer wrapper element. Use `'div'` inside `CheckboxField` (with `Field.Label`) so the visible label is not nested inside a second `<label>`."
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "required": false,
+      "description": "Field name for form submission"
+    },
+    {
+      "name": "onCheckedChange",
+      "type": "(checked: boolean) => void",
+      "required": false,
+      "description": "Change handler"
+    },
+    {
+      "name": "readOnly",
+      "type": "boolean",
+      "required": false,
+      "description": "Whether the checkbox is read-only (visually distinct from disabled)"
+    },
+    {
+      "name": "required",
+      "type": "boolean",
+      "required": false,
+      "description": "HTML required — form validation when unchecked"
+    },
+    {
+      "name": "size",
+      "type": "CheckboxSize",
+      "required": false,
+      "description": "Size preset. Default: 'm'"
+    },
+    {
+      "name": "style",
+      "type": "CSSProperties",
+      "required": false,
+      "description": "Inline styles"
+    },
+    {
+      "name": "supplementaryDescribedById",
+      "type": "string",
+      "required": false,
+      "description": "When `labelAssociation=\"field\"`, merged onto the control `aria-describedby` for auxiliary copy outside `Field.Description` (e.g. `CheckboxField` helper row)."
+    },
+    {
+      "name": "value",
+      "type": "string",
+      "required": false,
+      "description": "Value used when inside a CheckboxGroup"
+    }
+  ],
+  "slots": [],
+  "codeSnippets": [
+    {
+      "id": "checkbox-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { Checkbox } from '@oneui/ui';\n\n<Checkbox label=\"Accept terms\" />"
+    },
+    {
+      "id": "checkbox-controlled",
+      "title": "Controlled",
+      "language": "tsx",
+      "code": "<Checkbox checked={isChecked} onCheckedChange={setIsChecked} label=\"Option\" />"
+    },
+    {
+      "id": "checkbox-recipe-decisions",
+      "title": "Recipe Decisions",
+      "language": "json",
+      "code": "{\n  \"component\": \"Checkbox\",\n  \"decisions\": [\n    \"Shape\"\n  ]\n}"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "checkbox"
+  ],
+  "importPath": "@jds4/oneui-react"
+}

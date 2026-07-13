@@ -1,0 +1,28 @@
+{
+  "name": "@oneui/experience-builder-registry",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "sideEffects": false,
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@oneui/experience-builder-core": "workspace:*",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@oneui/shared": "workspace:*",
+    "@oneui/ui": "workspace:*",
+    "@types/node": "^22.10.5",
+    "typescript": "^5.7.2",
+    "vitest": "^4.1.5"
+  }
+}

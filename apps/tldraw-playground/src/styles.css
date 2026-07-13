@@ -1,0 +1,165 @@
+/* One UI token bootstrap — MUST precede @tailwind so the token files' native
+ * `@layer base` shares this file's `@tailwind base` context (Tailwind v3 errors
+ * otherwise). Order mirrors apps/qa-playground/src/index.css. */
+@import '@oneui/tokens/css/layers';
+@import '@oneui/tokens/css/dimensions/scale';
+@import '@oneui/tokens/css/dimensions/grid';
+@import '@oneui/tokens/css/typography';
+@import '@oneui/tokens/css';
+@import '@oneui/tokens/css/semantic';
+@import '@oneui/tokens/css/light';
+@import '@oneui/tokens/css/dark';
+@import '@oneui/tokens/css/density/compact';
+@import '@oneui/tokens/css/density/open';
+@import '@oneui/tokens/css/materials';
+/* @oneui/ui base reset (its own @import of tokens resolves via node_modules). */
+@import '../../../packages/ui/src/styles/global.css';
+
+/* NOTE: Tailwind base/components/utilities are NOT here — they're precompiled to
+ * chrome-tailwind.generated.css (imported in main.tsx before this file) so
+ * Tailwind never processes the One UI `@layer` token CSS above. */
+
+:root {
+  /* Design tokens — single source of truth, exportable as tailwind preset later */
+  --ui-bg: 250 250 252;
+  --ui-surface: 255 255 255;
+  --ui-fg: 17 24 39;
+  --ui-muted: 107 114 128;
+  --ui-border: 229 231 235;
+  --ui-brand: 59 130 246;
+  --ui-brand-fg: 255 255 255;
+  --ui-danger: 239 68 68;
+  --ui-danger-fg: 255 255 255;
+  --ui-radius: 8px;
+  --ui-font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+/* ─── Editor chrome design system ───────────────────────────────────────────
+   The product UI (header, panels, palette, banners) is a fixed monochrome
+   system — deliberately NOT the user's theme tokens, so colorful designs on
+   the canvas pop against a neutral frame. Tuned to read like a Vercel/Geist
+   property: hairline borders, near-black ink, a single black accent. */
+:root {
+  --chrome-font: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --chrome-mono: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  --chrome-bg: #ffffff;
+  --chrome-ink: #0a0a0a;
+  --chrome-muted: #8f8f8f;
+  --chrome-line: #ebebeb;
+  --chrome-line-strong: #d4d4d4;
+  --chrome-hover: #f5f5f5;
+  --chrome-canvas: #fafafa;
+}
+
+/* Make the chrome font + antialiasing inherit across all product UI. The
+   designed content inside shapes keeps the themeable --ui-font-sans. */
+.chrome-root {
+  font-family: var(--chrome-font);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: -0.006em;
+}
+
+.font-mono-chrome {
+  font-family: var(--chrome-mono);
+}
+
+/* Rendered components inside shapes should not capture pointer events at the
+   root level — tldraw handles selection/dragging. Specific interactive
+   sub-elements opt back in via .ui-interactive. */
+.ui-shape-root {
+  pointer-events: none;
+  user-select: none;
+  width: 100%;
+  height: 100%;
+}
+
+.ui-shape-root .ui-interactive {
+  pointer-events: auto;
+}
+
+/* When a shape is being edited (double-click), enable all pointer events */
+[data-editing='true'] .ui-shape-root {
+  pointer-events: auto;
+  user-select: text;
+}
+
+/* Editor chrome — fixed colors, NOT the user's theme. Theme tokens are only
+   for the designed content (canvas shapes, exported components). */
+.ui-inspector {
+  background: var(--chrome-bg);
+  color: var(--chrome-ink);
+  border-left: 1px solid var(--chrome-line);
+  font-family: var(--chrome-font);
+}
+
+.ui-library {
+  background: var(--chrome-bg);
+  color: var(--chrome-ink);
+  border-right: 1px solid var(--chrome-line);
+  font-family: var(--chrome-font);
+}
+
+/* Thin, restrained scrollbars inside the panels — the default chunky ones
+   read as "raw app", not "product". */
+.ui-inspector::-webkit-scrollbar,
+.ui-library::-webkit-scrollbar,
+.chrome-scroll::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+.ui-inspector::-webkit-scrollbar-thumb,
+.ui-library::-webkit-scrollbar-thumb,
+.chrome-scroll::-webkit-scrollbar-thumb {
+  background: #e0e0e0;
+  border-radius: 999px;
+  border: 2px solid var(--chrome-bg);
+}
+.ui-inspector::-webkit-scrollbar-thumb:hover,
+.ui-library::-webkit-scrollbar-thumb:hover,
+.chrome-scroll::-webkit-scrollbar-thumb:hover {
+  background: #cfcfcf;
+}
+
+/* ─── De-tldraw the canvas ───────────────────────────────────────────────────
+   Strip the whiteboard tells: recolor selection/focus to the monochrome
+   accent, give the surface a faint Geist-style dot grid, hide the watermark,
+   and quiet the remaining native UI (zoom control) into a hairline chip. */
+.tl-container {
+  --color-selected: #0a0a0a;
+  --color-selected-contrast: #ffffff;
+  --color-focus: #0a0a0a;
+  --color-laser: #0a0a0a;
+  font-family: var(--chrome-font);
+}
+
+.tl-background {
+  background-color: var(--chrome-canvas) !important;
+  background-image: radial-gradient(circle, #e3e3e3 1px, transparent 1.4px) !important;
+  background-size: 22px 22px !important;
+}
+
+/* Founder build (tldraw.com) — drop the watermark for a clean product frame. */
+.tl-watermark_SEE-LICENSE,
+.tlui-debug-panel {
+  display: none !important;
+}
+
+/* Native zoom/navigation control → quiet monochrome chip flush to the corner. */
+.tlui-navigation-panel .tlui-button {
+  color: var(--chrome-ink);
+}
+.tlui-navigation-panel__content {
+  border: 1px solid var(--chrome-line);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}

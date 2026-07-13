@@ -1,0 +1,215 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Carousel",
+  "generatedAt": "2026-01-01T00:00:00.000Z",
+  "machineReadable": true,
+  "intentAndPurpose": {
+    "intent": {
+      "value": "Multi-brand carousel micropattern. Wraps Embla Carousel under a compound API (Root / Viewport / Track / Slide / Controls / IndicatorList / Prev/Next/PlayButton). Slides are layered compositions: image + scrim + content (badge / headline / body / button group) + corner slots. Surface-context-aware so content remaps tokens on tinted or dark slides.",
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "taskContexts": {
+      "value": [],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "sentiments": {
+      "value": [
+        "neutral"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "compositionRules": {
+    "requires": {
+      "value": [],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "allows": {
+      "value": [
+        "image",
+        "content",
+        "cornerStart",
+        "cornerEnd",
+        "controls"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "forbids": {
+      "value": [],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "below",
+        "useWhen": {
+          "value": [
+            "Controls below"
+          ],
+          "attribution": {
+            "source": "inferred"
+          }
+        }
+      },
+      {
+        "name": "onMedia",
+        "useWhen": {
+          "value": [
+            "Controls on media"
+          ],
+          "attribution": {
+            "source": "inferred"
+          }
+        }
+      }
+    ]
+  },
+  "relationshipsAndDependencies": {
+    "related": {
+      "value": [],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "contextSignals": {
+    "density": {
+      "value": [
+        "compact",
+        "default",
+        "open"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "modality": {
+      "value": [
+        "desktop",
+        "mobile"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "brand": {
+      "value": [
+        "theme-scope aware",
+        "recipe-driven"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "mode": {
+      "value": [
+        "light",
+        "dark",
+        "surface-context"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "observabilityHooks": {
+    "track": {
+      "value": [],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "health": {
+      "value": [
+        "a11y_violations"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "props": [],
+  "slots": [
+    {
+      "name": "image",
+      "types": [
+        "image",
+        "video"
+      ],
+      "tokens": [
+        "slideRadius"
+      ]
+    },
+    {
+      "name": "content",
+      "types": [
+        "headline",
+        "body",
+        "badge",
+        "buttonGroup"
+      ],
+      "tokens": [
+        "contentPaddingBlockStart",
+        "contentPaddingBlockEnd",
+        "contentPaddingInline",
+        "contentGap",
+        "contentOuterGap"
+      ]
+    },
+    {
+      "name": "cornerStart",
+      "types": [
+        "badge",
+        "iconButton",
+        "custom"
+      ],
+      "tokens": [
+        "cornerPadding"
+      ]
+    },
+    {
+      "name": "cornerEnd",
+      "types": [
+        "badge",
+        "iconButton",
+        "playButton",
+        "custom"
+      ],
+      "tokens": [
+        "cornerPadding"
+      ]
+    }
+  ],
+  "propsSchema": {
+    "$id": "jds.docs.carousel",
+    "type": "object",
+    "properties": {}
+  },
+  "codeSnippets": [
+    {
+      "id": "carousel-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { Carousel } from '@oneui/ui';\n\n<Carousel />"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "carousel"
+  ],
+  "generatedMarkdown": "# Carousel Machine-Readable Documentation\n\n_Generated from source metadata. Do not edit manually._\n\n## Intent and Purpose\n\n- **Intent**: Multi-brand carousel micropattern. Wraps Embla Carousel under a compound API (Root / Viewport / Track / Slide / Controls / IndicatorList / Prev/Next/PlayButton). Slides are layered compositions: image + scrim + content (badge / headline / body / button group) + corner slots. Surface-context-aware so content remaps tokens on tinted or dark slides.\n- **Task contexts**: \n- **Sentiments**: neutral\n\n## Composition Rules\n\n- **Requires**: \n- **Allows**: image, content, cornerStart, cornerEnd, controls\n- **Forbids**: \n\n## Variant Logic\n\n- **below**: use when Controls below\n- **onMedia**: use when Controls on media\n\n## Relationships and Dependencies\n\n- **Related**: \n- **Escalates to**: -\n- **Degrades to**: -\n- **Groups with**: -\n\n## Context Signals\n\n- **Density**: compact, default, open\n- **Modality**: desktop, mobile\n- **Brand**: theme-scope aware, recipe-driven\n- **Mode**: light, dark, surface-context\n\n## Observability Hooks\n\n- **Track**: \n- **Health**: a11y_violations\n\n## Props\n\n| Prop | Type | Required | Default | Description |\n| --- | --- | --- | --- | --- |\n\n\n## Slots\n\n| Slot | Types | Tokens |\n| --- | --- | --- |\n| `image` | image, video | `slideRadius` |\n| `content` | headline, body, badge, buttonGroup | `contentPaddingBlockStart`, `contentPaddingBlockEnd`, `contentPaddingInline`, `contentGap`, `contentOuterGap` |\n| `cornerStart` | badge, iconButton, custom | `cornerPadding` |\n| `cornerEnd` | badge, iconButton, playButton, custom | `cornerPadding` |\n\n## Code Snippets\n\n### Basic Usage\n\n```tsx\nimport { Carousel } from '@oneui/ui';\n\n<Carousel />\n```\n"
+}

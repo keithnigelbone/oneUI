@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Figma Selection Render — StateLayer / IconButton xl</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      gap: 2rem;
+      padding: 2rem;
+      background: #1a1a1a;
+      font-family: system-ui, sans-serif;
+      color: #eee;
+    }
+    .panel { text-align: center; }
+    .label { font-size: 12px; opacity: 0.7; margin-bottom: 12px; }
+    /* Parent component variant from Figma node 2455:22419 */
+    .icon-button {
+      width: 120px;
+      height: 48px;
+      border-radius: 9999px; /* shape=1:1 pill */
+      background: rgb(76, 49, 203); /* Primary-Bold approx from Figma stroke tokens */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 20px; /* StateLayer paddingLeft/Right */
+      position: relative;
+      overflow: hidden;
+    }
+    /* Selected node: StateLayer 2455:22420 — opacity-0 hover overlay */
+    .state-layer {
+      position: absolute;
+      inset: 0;
+      background: rgba(128, 128, 128, 0); /* fill opacity 0 */
+      pointer-events: none;
+    }
+    .icon {
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .icon svg {
+      width: 24px;
+      height: 23px;
+      fill: #fff; /* Vector fill rgb(1,1,1) */
+    }
+    .meta {
+      max-width: 480px;
+      font-size: 13px;
+      line-height: 1.5;
+      text-align: left;
+      background: #2a2a2a;
+      padding: 1rem 1.25rem;
+      border-radius: 8px;
+    }
+    code { color: #9cf; }
+  </style>
+</head>
+<body>
+  <div class="panel">
+    <div class="label">Rendered from Figma Console selection (node 2455:22420 + parent 2455:22419)</div>
+    <div class="icon-button" aria-label="IconButton xl high condensed contained fullWidth">
+      <div class="state-layer" aria-hidden="true"></div>
+      <div class="icon" aria-hidden="true">
+        <!-- ic_favorite vector approx -->
+        <svg viewBox="0 0 24 23" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+  <div class="meta">
+    <strong>Selection:</strong> <code>StateLayer</code> (FRAME 120×48)<br />
+    <strong>Parent:</strong> IconButton variant — xl · high · 1:1 · condensed · contained · fullWidth<br />
+    <strong>Children:</strong> Loading (hidden, opacity 0) + Icon instance (32×32, ic_favorite)<br />
+    <strong>Source file:</strong> ❖ OneUI Components → ↳ Buttons
+  </div>
+</body>
+</html>

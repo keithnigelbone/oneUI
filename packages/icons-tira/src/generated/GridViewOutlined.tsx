@@ -1,0 +1,30 @@
+import React, { forwardRef } from 'react';
+import type { IconComponentProps } from '../iconProps';
+
+export const GridViewOutlined = forwardRef<SVGSVGElement, IconComponentProps>(function GridViewOutlined(
+  { size = 24, width, height, color = 'currentColor', className, style, ...props },
+  ref,
+) {
+  const dim = width ?? height ?? size;
+  return (
+    <svg
+      ref={ref}
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      width={width ?? dim}
+      height={height ?? dim}
+      color={color}
+      className={className}
+      style={style}
+      {...props}
+    >
+      <path fillRule="evenodd" clipRule="evenodd" d="M2 5C2 3.34315 3.34315 2 5 2H8C9.65685 2 11 3.34315 11 5V8C11 9.65685 9.65685 11 8 11H5C3.34315 11 2 9.65685 2 8V5ZM5 3.2H8C8.99411 3.2 9.8 4.00589 9.8 5V8C9.8 8.99411 8.99411 9.8 8 9.8H5C4.00589 9.8 3.2 8.99411 3.2 8V5C3.2 4.00589 4.00589 3.2 5 3.2Z" fill="currentColor"/>
+      <path fillRule="evenodd" clipRule="evenodd" d="M2 16C2 14.3431 3.34315 13 5 13H8C9.65685 13 11 14.3431 11 16V19C11 20.6569 9.65685 22 8 22H5C3.34315 22 2 20.6569 2 19V16ZM5 14.2H8C8.99411 14.2 9.8 15.0059 9.8 16V19C9.8 19.9941 8.99411 20.8 8 20.8H5C4.00589 20.8 3.2 19.9941 3.2 19V16C3.2 15.0059 4.00589 14.2 5 14.2Z" fill="currentColor"/>
+      <path fillRule="evenodd" clipRule="evenodd" d="M16 2C14.3431 2 13 3.34315 13 5V8C13 9.65685 14.3431 11 16 11H19C20.6569 11 22 9.65685 22 8V5C22 3.34315 20.6569 2 19 2H16ZM19 3.2H16C15.0059 3.2 14.2 4.00589 14.2 5V8C14.2 8.99411 15.0059 9.8 16 9.8H19C19.9941 9.8 20.8 8.99411 20.8 8V5C20.8 4.00589 19.9941 3.2 19 3.2Z" fill="currentColor"/>
+      <path fillRule="evenodd" clipRule="evenodd" d="M13 16C13 14.3431 14.3431 13 16 13H19C20.6569 13 22 14.3431 22 16V19C22 20.6569 20.6569 22 19 22H16C14.3431 22 13 20.6569 13 19V16ZM16 14.2H19C19.9941 14.2 20.8 15.0059 20.8 16V19C20.8 19.9941 19.9941 20.8 19 20.8H16C15.0059 20.8 14.2 19.9941 14.2 19V16C14.2 15.0059 15.0059 14.2 16 14.2Z" fill="currentColor"/>
+    </svg>
+  );
+});
+
+GridViewOutlined.displayName = 'GridViewOutlined';

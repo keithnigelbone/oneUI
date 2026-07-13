@@ -1,0 +1,60 @@
+/**
+ * DensityConfigTable.module.css
+ * Endpoint groups each render as a labelled 3-column field grid that
+ * matches PlatformDetailEditor's DIN parameter layout. Both sections of
+ * the expanded platform body share one form anatomy.
+ */
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-4-5);
+}
+
+.endpoint {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-3);
+}
+
+.endpointHeading {
+  margin: 0;
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+  color: var(--Text-Low);
+}
+
+.fieldGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--Spacing-4-5);
+}
+
+/* INTENTIONAL-LITERAL: responsive breakpoint — layout breakpoints are not design tokens */
+@media (max-width: 640px) {
+  .fieldGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-2);
+  min-width: 0;
+}
+
+.fieldLabel {
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+  color: var(--Text-Medium);
+}
+
+.fieldAffix {
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  color: var(--Text-Low);
+  font-variant-numeric: tabular-nums;
+}

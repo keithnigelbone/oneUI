@@ -1,0 +1,13 @@
+import React from 'react';
+import Svg, { Path, type SvgProps } from 'react-native-svg';
+export function IcPeriodProblems(props: SvgProps) {
+  const fill = String(props.fill ?? '#000000');
+  return (
+    <Svg viewBox="0 0 24 24" fill="none" {...props}>
+      <Path
+            fill={fill}
+            d="M14.62 16.4a5.47 5.47 0 0 1 0-7.77l.63-.63H6V6a1 1 0 0 1 1-1h1.28a2 2 0 0 0 .72.73A2 2 0 0 0 10 6h4a2 2 0 0 0 1-.27 2 2 0 0 0 .72-.73H17a1 1 0 0 1 1 1 2.7 2.7 0 0 1 .5 0 3 3 0 0 1 1.5.41V6a3 3 0 0 0-3-3h-1.28a2 2 0 0 0-.72-.73A2 2 0 0 0 14 2h-4a2 2 0 0 0-1 .27 2 2 0 0 0-.72.73H7a3 3 0 0 0-3 3v13a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-1.23a5.3 5.3 0 0 1-1.5.23 5.45 5.45 0 0 1-3.88-1.6M21 10.05l-1.79-1.76a1 1 0 0 0-1.42 0L16 10.05A3.48 3.48 0 0 0 16 15a3.51 3.51 0 0 0 5 0 3.4 3.4 0 0 0 1-2.46 3.46 3.46 0 0 0-1-2.49"
+          />
+    </Svg>
+  );
+}

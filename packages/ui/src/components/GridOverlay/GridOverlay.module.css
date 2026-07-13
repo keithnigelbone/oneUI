@@ -1,0 +1,55 @@
+/**
+ * GridOverlay — fixed diagnostic overlay showing live columns and gutters.
+ *
+ * Uses the same --Grid-* tokens as Grid/Container so platform, density, and
+ * brand overrides are reflected automatically.
+ */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483647;
+  pointer-events: none;
+  display: flex;
+  justify-content: center;
+}
+
+.inner {
+  width: 100%;
+  max-width: var(--Grid-MaxWidth);
+  padding-inline: var(--Grid-Margin);
+  box-sizing: border-box;
+}
+
+.grid {
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(var(--Grid-Columns), 1fr);
+  gap: var(--Grid-Gutter);
+  background: none;
+}
+
+.grid > * {
+  /* Force one child per column via grid track generation */
+}
+
+/*
+ * Column stripes are drawn via a repeating linear gradient rather than DOM
+ * nodes so the count always matches --Grid-Columns without JS.
+ *
+ * INTENTIONAL-LITERAL: hot-pink rgba(255,0,128) is the universal convention
+ * for developer grid-guide overlays. There is no design-system token for a
+ * debug diagnostic colour; this component ships only in dev/Storybook mode.
+ */
+.grid {
+  background-image: repeating-linear-gradient(
+    to right,
+    rgba(255, 0, 128, var(--_overlay-opacity, 0.12)) 0,
+    rgba(255, 0, 128, var(--_overlay-opacity, 0.12))
+      calc((100% - (var(--Grid-Columns) - 1) * var(--Grid-Gutter)) / var(--Grid-Columns)),
+    transparent
+      calc((100% - (var(--Grid-Columns) - 1) * var(--Grid-Gutter)) / var(--Grid-Columns)),
+    transparent
+      calc(((100% - (var(--Grid-Columns) - 1) * var(--Grid-Gutter)) / var(--Grid-Columns)) + var(--Grid-Gutter))
+  );
+}

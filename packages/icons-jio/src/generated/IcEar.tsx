@@ -1,0 +1,30 @@
+import React, { forwardRef } from 'react';
+import type { IconComponentProps } from '../iconProps';
+
+export const IcEar = forwardRef<SVGSVGElement, IconComponentProps>(function IcEar(
+  { size = 24, width, height, color = 'currentColor', className, style, ...props },
+  ref,
+) {
+  const dim = width ?? height ?? size;
+  return (
+    <svg
+      ref={ref}
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      width={width ?? dim}
+      height={height ?? dim}
+      color={color}
+      className={className}
+      style={style}
+      {...props}
+    >
+      <path
+            fill="currentColor"
+            d="M13 2c-4.42 0-8 3.58-8 8v7c0 2.76 2.24 5 5 5 2.5 0 4.56-1.84 4.92-4.24 3.49-.86 6.08-4 6.08-7.76 0-4.42-3.58-8-8-8m-3 18c-.55 0-1-.45-1-1s.45-1 1-1 1-.45 1-1 .45-1 1-1 1 .45 1 1c0 1.65-1.35 3-3 3m7.24-5.76c-.2.2-.45.29-.71.29s-.51-.1-.71-.29a.996.996 0 0 1 0-1.41c.76-.76 1.17-1.76 1.17-2.83 0-2.21-1.79-4-4-4a4.01 4.01 0 0 0-3.92 3.21c1.12.44 1.92 1.52 1.92 2.79 0 1.65-1.35 3-3 3-.55 0-1-.45-1-1s.45-1 1-1 1-.45 1-1-.45-1-1-1-1-.45-1-1c0-3.31 2.69-6 6-6s6 2.69 6 6c0 1.6-.62 3.11-1.76 4.24z"
+          />
+    </svg>
+  );
+});
+
+IcEar.displayName = 'IcEar';

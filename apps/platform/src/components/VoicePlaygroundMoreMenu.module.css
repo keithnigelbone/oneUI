@@ -1,0 +1,107 @@
+/**
+ * VoicePlaygroundMoreMenu.module.css
+ *
+ * Subtle kebab + popover for Voice-playground-specific settings.
+ * Trigger matches the TopBar's ghost button style; popover opens
+ * downward from the TopBar. Token-only; zero literals.
+ */
+
+.container {
+  position: relative;
+}
+
+.trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--Component-Height-IconButton-S, 32px);
+  height: var(--Component-Height-IconButton-S, 32px);
+  padding: 0;
+  border-radius: var(--Shape-4);
+  background-color: transparent;
+  border: none;
+  color: var(--Text-Medium);
+  cursor: pointer;
+  transition:
+    background-color var(--Motion-Duration-Discreet-Short) var(--Motion-Easing-Standard),
+    color var(--Motion-Duration-Discreet-Short) var(--Motion-Easing-Standard);
+}
+
+.trigger:hover,
+.trigger[aria-expanded='true'] {
+  background-color: var(--Surface-Ghost);
+  color: var(--Text-High);
+}
+
+.trigger:focus-visible {
+  outline: var(--Focus-Outline-Width) solid var(--Focus-Outline);
+  outline-offset: var(--Focus-Outline-Offset, var(--Stroke-XL));
+}
+
+/* Popover — anchored right, opens below the trigger. */
+
+.popover {
+  position: absolute;
+  top: calc(100% + var(--Spacing-3));
+  right: 0;
+  min-width: 240px;
+  padding: var(--Spacing-2);
+  background-color: var(--Surface-Main);
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+  border-radius: var(--Shape-4);
+  box-shadow: var(--Elevation-2);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  /* Tightened vertical rhythm — rows sit close without touching. */
+  gap: var(--Spacing-1);
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--Spacing-4);
+  padding: var(--Spacing-2) var(--Spacing-2-5);
+  font-family: var(--Label-FontFamily, var(--Typography-Font-Text));
+}
+
+.label {
+  font-size: var(--Label-S-FontSize);
+  line-height: var(--Label-S-LineHeight);
+  font-weight: var(--Body-FontWeight-Low);
+  color: var(--Text-Medium);
+}
+
+/*
+ * Custom-styled native select. `appearance: none` strips the OS pill/
+ * field look; we redraw the chevron via a background image so the
+ * control reads as a rectangular dropdown (sharp corners, thin border)
+ * instead of a rounded form field.
+ */
+.select {
+  font-family: var(--Label-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Label-S-FontSize);
+  line-height: var(--Label-S-LineHeight);
+  color: var(--Text-High);
+  background-color: var(--Surface-Main);
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+  border-radius: var(--Shape-2);
+  padding: var(--Spacing-1) calc(var(--Spacing-4) + var(--Spacing-2-5)) var(--Spacing-1) var(--Spacing-2-5);
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6' fill='none' stroke='%23666' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><polyline points='1 1 5 5 9 1'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right var(--Spacing-2-5) center;
+  transition: border-color var(--Motion-Duration-Discreet-Short) var(--Motion-Easing-Standard);
+}
+
+.select:hover {
+  border-color: var(--Border-Default);
+}
+
+.select:focus-visible {
+  outline: var(--Focus-Outline-Width) solid var(--Focus-Outline);
+  outline-offset: var(--Focus-Outline-Offset, var(--Stroke-XL));
+}

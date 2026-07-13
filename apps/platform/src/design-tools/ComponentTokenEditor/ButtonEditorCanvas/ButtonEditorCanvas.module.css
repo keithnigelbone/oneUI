@@ -1,0 +1,134 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--Spacing-3);
+  width: min(1080px, 72vw);
+  min-width: 0;
+  /* Fill the canvas vertically so the lock can anchor to a genuine bottom
+     rather than floating just under the matrix. */
+  min-height: 85vh;
+  padding: var(--Spacing-3-5);
+  position: relative;
+  box-sizing: border-box;
+}
+
+.matrixScroll {
+  width: 100%;
+  min-width: 0;
+  padding: var(--Spacing-4) var(--Spacing-4-5);
+  background: transparent;
+  box-sizing: border-box;
+}
+
+.matrix {
+  display: grid;
+  column-gap: var(--Spacing-4);
+  row-gap: var(--Spacing-8);
+  align-items: center;
+  width: 100%;
+}
+
+.colHeader {
+  font-family: var(--Label-FontFamily, var(--Typography-Font-Text));
+  color: var(--Text-Medium);
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+  text-align: center;
+  padding: var(--Spacing-2) 0;
+}
+
+.rowHeader {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-0-5);
+  font-family: var(--Label-FontFamily, var(--Typography-Font-Text));
+  padding-right: var(--Spacing-3-5);
+}
+
+.rowLabel {
+  color: var(--Text-High);
+  font-size: var(--Label-M-FontSize);
+  line-height: var(--Label-M-LineHeight);
+  font-weight: var(--Label-FontWeight-High);
+}
+
+.rowSub {
+  color: var(--Text-Low);
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Low);
+}
+
+.cell {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--Dimension-f11, 64px);
+  padding: var(--Spacing-3);
+  border-radius: var(--Shape-2);
+  border: var(--Stroke-S) solid transparent;
+  cursor: pointer;
+  transition:
+    background-color var(--Motion-Duration-Discreet-Short) var(--Motion-Easing-Standard),
+    border-color var(--Motion-Duration-Discreet-Short) var(--Motion-Easing-Standard);
+  outline: none;
+}
+
+.cell[data-locked]:not([data-selected]) {
+  cursor: default;
+}
+
+.cell:hover:not([data-locked]) {
+  background: var(--Surface-Subtle);
+}
+
+.cell[data-selected] {
+  background: var(--Primary-Subtle, var(--Surface-Subtle));
+  border-color: var(--Primary-Tinted, var(--Focus-Outline));
+}
+
+.cell:focus-visible {
+  border-color: var(--Focus-Outline);
+  box-shadow: 0 0 0 var(--Stroke-S) var(--Focus-Outline);
+}
+
+.cellInner {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+/* Floating selection pill — anchored to bottom of selected cell */
+.selectionPill {
+  position: absolute;
+  left: 50%;
+  bottom: calc(-1 * var(--Spacing-2));
+  transform: translate(-50%, 50%);
+  padding: var(--Spacing-1) var(--Spacing-3);
+  border-radius: var(--Shape-Pill);
+  background-color: var(--Surface-Elevated);
+  box-shadow: var(--Elevation-2);
+  outline: var(--Stroke-S) solid var(--Border-Subtle);
+  outline-offset: calc(var(--Stroke-S) * -1);
+  color: var(--Text-High);
+  font-family: var(--Label-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Floating lock button — anchored to genuine bottom of canvas */
+.floatingLock {
+  position: absolute;
+  left: 50%;
+  bottom: var(--Spacing-6);
+  transform: translateX(-50%);
+  z-index: 2;
+}

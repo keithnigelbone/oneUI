@@ -1,0 +1,461 @@
+/**
+ * CircularProgressIndicator.module.css
+ *
+ * CRITICAL: This file demonstrates the ZERO LITERALS rule
+ * ALL styling uses design tokens ONLY
+ *
+ * Architecture: Role-agnostic intermediate variables (--_*)
+ * - Default = Primary role
+ * - Appearance classes remap --_* to other roles
+ * - Size selectors set dimensions from spacing tokens
+ *
+ * Verified by: pnpm check:literals
+ */
+
+/* Base UI Progress.Root wrapper — shrink-to-fit so the wrapper is the same
+   square box as the inner sized `.root` div. Without this, Progress.Root
+   renders as a default block, picking up parent width and baseline-aligned
+   line-height that diverges from the inner box and produces visible
+   misalignment when CPI sits inside another sized container (e.g.
+   SingleTextButton's circular hit area). `line-height: 0` removes the
+   inline-formatting baseline gap that otherwise adds ~1.6px to the height. */
+.progressRoot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  height: fit-content;
+  line-height: 0;
+}
+
+.root {
+  /* ========================================
+     INTERMEDIATE VARIABLES — default = Primary role
+     These are remapped by appearance classes
+     ======================================== */
+  --_indicator-color: var(--CircularProgressIndicator-indicatorColor, var(--Primary-Bold, var(--Surface-Bold)));
+  /* Track rail. NEUTRAL gray on the bare page, but it must TINT to match a tinted
+     surface when nested inside one (same as the Slider rail / Switch unchecked
+     track). A --Neutral-* token is STATIC — the engine never remaps it inside
+     [data-surface] blocks — so neutral alone stays gray everywhere. We therefore
+     keep two rails: --_track-rail (the active one, neutral by default) and
+     --_track-role (the appearance role's Subtle, which DOES remap per surface).
+     The [data-surface] block below swaps the active rail to the role rail so the
+     track embraces the surface. A brand can still pin it via
+     --CircularProgressIndicator-trackColor (it always wins, even on surfaces). */
+  --_track-role: var(--Primary-Subtle, var(--Neutral-Subtle));
+  --_track-rail: var(--Neutral-Subtle, var(--Surface-Subtle));
+  --_track-color: var(--CircularProgressIndicator-trackColor, var(--_track-rail));
+  --_text-color: var(--CircularProgressIndicator-textColor, var(--Primary-TintedA11y, var(--Text-High)));
+
+  /* ========================================
+     BASE STYLES
+     ======================================== */
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+
+/* ========================================
+   APPEARANCE — role-agnostic intermediate variable remapping
+   Adding a new appearance = 1 new class with 3 remappings
+   ======================================== */
+
+/* Appearance drives the arc + centre text, and the role rail (--_track-role)
+   used when the indicator sits on a tinted surface. On the bare page the track
+   stays the neutral rail from `.root`; the [data-surface] block below swaps to
+   this role rail so the track tints to match the surface. */
+.appearanceNeutral {
+  --_indicator-color: var(--CircularProgressIndicator-indicatorColor, var(--Neutral-Bold, var(--Surface-Bold)));
+  --_track-role: var(--Neutral-Subtle, var(--Surface-Subtle));
+  --_text-color: var(--CircularProgressIndicator-textColor, var(--Neutral-TintedA11y, var(--Text-High)));
+}
+
+.appearanceSecondary {
+  --_indicator-color: var(--CircularProgressIndicator-indicatorColor, var(--Secondary-Bold, var(--Surface-Bold)));
+  --_track-role: var(--Secondary-Subtle, var(--Neutral-Subtle));
+  --_text-color: var(--CircularProgressIndicator-textColor, var(--Secondary-TintedA11y, var(--Text-High)));
+}
+
+.appearanceSparkle {
+  --_indicator-color: var(--CircularProgressIndicator-indicatorColor, var(--Sparkle-Bold, var(--Surface-Bold)));
+  --_track-role: var(--Sparkle-Subtle, var(--Neutral-Subtle));
+  --_text-color: var(--CircularProgressIndicator-textColor, var(--Sparkle-TintedA11y, var(--Text-High)));
+}
+
+.appearanceBrandBg {
+  --_indicator-color: var(--CircularProgressIndicator-indicatorColor, var(--Brand-Bg-Bold, var(--Surface-Bold)));
+  --_track-role: var(--Brand-Bg-Subtle, var(--Neutral-Subtle));
+  --_text-color: var(--CircularProgressIndicator-textColor, var(--Brand-Bg-TintedA11y, var(--Text-High)));
+}
+
+.appearancePositive {
+  --_indicator-color: var(--CircularProgressIndicator-indicatorColor, var(--Positive-Bold, var(--Surface-Bold)));
+  --_track-role: var(--Positive-Subtle, var(--Neutral-Subtle));
+  --_text-color: var(--CircularProgressIndicator-textColor, var(--Positive-TintedA11y, var(--Text-High)));
+}
+
+.appearanceNegative {
+  --_indicator-color: var(--CircularProgressIndicator-indicatorColor, var(--Negative-Bold, var(--Surface-Bold)));
+  --_track-role: var(--Negative-Subtle, var(--Neutral-Subtle));
+  --_text-color: var(--CircularProgressIndicator-textColor, var(--Negative-TintedA11y, var(--Text-High)));
+}
+
+.appearanceWarning {
+  --_indicator-color: var(--CircularProgressIndicator-indicatorColor, var(--Warning-Bold, var(--Surface-Bold)));
+  --_track-role: var(--Warning-Subtle, var(--Neutral-Subtle));
+  --_text-color: var(--CircularProgressIndicator-textColor, var(--Warning-TintedA11y, var(--Text-High)));
+}
+
+.appearanceInformative {
+  --_indicator-color: var(--CircularProgressIndicator-indicatorColor, var(--Informative-Bold, var(--Surface-Bold)));
+  --_track-role: var(--Informative-Subtle, var(--Neutral-Subtle));
+  --_text-color: var(--CircularProgressIndicator-textColor, var(--Informative-TintedA11y, var(--Text-High)));
+}
+
+/* ========================================
+   SURFACE CONTEXT — track tints to the surface
+   On a tinted surface the neutral rail is swapped for the appearance role's
+   Subtle, which the engine remaps per [data-surface] step (a --Neutral-* token
+   is static and never remaps, so it would otherwise stay gray). Mirrors the
+   Slider rail + Switch unchecked-track behaviour. An explicit
+   --CircularProgressIndicator-trackColor still wins (it's --_track-color's
+   first arg, untouched here). default/ghost keep the neutral page rail.
+   ======================================== */
+[data-surface="minimal"] .root,
+[data-surface="subtle"] .root,
+[data-surface="moderate"] .root,
+[data-surface="bold"] .root,
+[data-surface="elevated"] .root {
+  --_track-rail: var(--_track-role, var(--Neutral-Subtle));
+}
+
+/* ========================================
+   SIZES — via data-size attribute selectors
+   Maps to spacing dimension tokens (verified against scale.css + primitives.css)
+   Figma reference: spacings/N → N * 4px at S default density
+   ======================================== */
+
+.root[data-size="2XS"] {
+  width: var(--CircularProgressIndicator-size-2XS, var(--Spacing-2));
+  height: var(--CircularProgressIndicator-size-2XS, var(--Spacing-2));
+}
+
+.root[data-size="XS"] {
+  width: var(--CircularProgressIndicator-size-XS, var(--Spacing-3));
+  height: var(--CircularProgressIndicator-size-XS, var(--Spacing-3));
+}
+
+.root[data-size="S"] {
+  width: var(--CircularProgressIndicator-size-S, var(--Spacing-4));
+  height: var(--CircularProgressIndicator-size-S, var(--Spacing-4));
+}
+
+.root[data-size="M"] {
+  width: var(--CircularProgressIndicator-size-M, var(--Spacing-5));
+  height: var(--CircularProgressIndicator-size-M, var(--Spacing-5));
+}
+
+.root[data-size="L"] {
+  width: var(--CircularProgressIndicator-size-L, var(--Spacing-6));
+  height: var(--CircularProgressIndicator-size-L, var(--Spacing-6));
+}
+
+.root[data-size="XL"] {
+  width: var(--CircularProgressIndicator-size-XL, var(--Spacing-8));
+  height: var(--CircularProgressIndicator-size-XL, var(--Spacing-8));
+}
+
+.root[data-size="2XL"] {
+  width: var(--CircularProgressIndicator-size-2XL, var(--Spacing-10));
+  height: var(--CircularProgressIndicator-size-2XL, var(--Spacing-10));
+}
+
+.root[data-size="3XL"] {
+  width: var(--CircularProgressIndicator-size-3XL, var(--Spacing-12));
+  height: var(--CircularProgressIndicator-size-3XL, var(--Spacing-12));
+}
+
+.root[data-size="4XL"] {
+  width: var(--CircularProgressIndicator-size-4XL, var(--Spacing-14));
+  height: var(--CircularProgressIndicator-size-4XL, var(--Spacing-14));
+}
+
+.root[data-size="5XL"] {
+  width: var(--CircularProgressIndicator-size-5XL, var(--Spacing-16));
+  height: var(--CircularProgressIndicator-size-5XL, var(--Spacing-16));
+}
+
+/* ========================================
+   SVG ELEMENT STYLES
+   ======================================== */
+
+.svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.track {
+  fill: none;
+  stroke: var(--_track-color);
+}
+
+.indicator {
+  fill: none;
+  /* Stroke is painted by the inline SVG gradient `url(#…)` (see component); the
+     gradient's stops default to var(--_indicator-color), so a non-metal arc is a
+     solid role/surface colour and a metal becomes the foundation gradient. Do NOT
+     set `stroke` here — a CSS rule outranks the element's `stroke="url(#…)"`
+     presentation attribute and would defeat the metallic gradient. */
+  stroke-linecap: round;
+  /* Determinate value transitions.
+     Default — 3XL Transition easing: smooth eased animation for value JUMPS
+     (e.g. one-shot 0 → 75%).
+     For CONTINUOUS tracking (rapid updates from a real loading source),
+     consumer overrides --CircularProgressIndicator-valueTransitionDuration to 0s
+     so each update lands instantly; the cumulative motion reads as linear.
+     Indeterminate disables this below with `transition: none`. */
+  transition:
+    stroke-dashoffset
+    var(--CircularProgressIndicator-valueTransitionDuration, var(--Motion-Duration-3XL))
+    var(--CircularProgressIndicator-valueTransitionEasing, var(--Motion-Easing-Transition-Moderate));
+}
+
+/* ========================================
+   INDETERMINATE ANIMATION
+   Mirrors the After Effects composition: Trim Paths (Start + End) and Rotation
+   are three independent animation tracks, each with its own timeline + easing.
+
+   Tracks:
+   1. Start length (head): 2 → 100 over 0–1150ms, Transition easing, then held.
+   2. End length (tail):   held at 0 until 650ms, then 0 → 98 to 1500ms, Transition easing.
+   3. Rotation:            0 → 1080° over 6000ms (= 4 × trim cycle), Linear.
+
+   `@property` registers head and tail as <number> so they interpolate
+   smoothly. stroke-dasharray and stroke-dashoffset are derived via calc(),
+   keeping the two trim tracks fully independent — the way AE handles them.
+   ======================================== */
+
+@property --cpi-indeterminate-head {
+  syntax: '<number>';
+  inherits: false;
+  initial-value: 2;
+}
+
+@property --cpi-indeterminate-tail {
+  syntax: '<number>';
+  inherits: false;
+  initial-value: 0;
+}
+
+.root[data-variant="indeterminate"] .svg {
+  animation: cpi-indeterminate-rotate var(--CircularProgressIndicator-rotateDuration, 6000ms) linear infinite;
+  transform-origin: center;
+}
+
+.root[data-variant="indeterminate"] .indicator {
+  animation:
+    cpi-indeterminate-head var(--CircularProgressIndicator-trimDuration, 1500ms) var(--Motion-Easing-Transition-Moderate) infinite,
+    cpi-indeterminate-tail var(--CircularProgressIndicator-trimDuration, 1500ms) var(--Motion-Easing-Transition-Moderate) infinite;
+  stroke-dasharray:
+    calc(var(--cpi-indeterminate-head, 2) - var(--cpi-indeterminate-tail, 0))
+    calc(100 - (var(--cpi-indeterminate-head, 2) - var(--cpi-indeterminate-tail, 0)));
+  stroke-dashoffset: calc(var(--cpi-indeterminate-tail, 0) * -1);
+  transition: none;
+}
+
+@keyframes cpi-indeterminate-rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(1080deg); }
+}
+
+/* Start length: 2 → 100 over 0–1150ms (76.667% of the 1500ms cycle), then
+   continues to 102 by 1500ms. The "102" is the AE comp's "100, held" extended
+   modularly (102 ≡ 2 mod 100) so the next cycle's head=2 starts at the same
+   visual position — seamless loop. */
+@keyframes cpi-indeterminate-head {
+  0%      { --cpi-indeterminate-head: 2; }
+  76.667% { --cpi-indeterminate-head: 100; }
+  100%    { --cpi-indeterminate-head: 102; }
+}
+
+/* End length: held at 0 until 650ms (43.333%), then 0 → 100 to 1500ms.
+   The "100" is the AE comp's "98" extended modularly (100 ≡ 0 mod 100) so the
+   next cycle's tail=0 starts at the same visual position — seamless loop. */
+@keyframes cpi-indeterminate-tail {
+  0%      { --cpi-indeterminate-tail: 0; }
+  43.333% { --cpi-indeterminate-tail: 0; }
+  100%    { --cpi-indeterminate-tail: 100; }
+}
+
+/* ========================================
+   ENTRY + EXIT ANIMATIONS — opt-in via `animate` prop + `show` controlled visibility.
+
+   Entry: stroke widens 0 → natural, scale 0.93 → 1.   XL duration, Transition easing.
+   Exit:  same in reverse.                            XL duration, Transition easing.
+
+   Triggered by data-animate="true" combined with the phase data attribute the
+   component sets from React state (entering / visible / exiting / hidden).
+   ======================================== */
+
+/* Container scales in/out. */
+.root[data-animate="true"][data-phase="entering"] {
+  animation: cpi-enter var(--Motion-Duration-XL) var(--Motion-Easing-Transition-Moderate) backwards;
+}
+.root[data-animate="true"][data-phase="exiting"] {
+  animation: cpi-exit var(--Motion-Duration-XL) var(--Motion-Easing-Transition-Moderate) forwards;
+}
+
+/* Track always picks up the stroke entry/exit. */
+.root[data-animate="true"][data-phase="entering"] .track {
+  animation: cpi-enter-stroke var(--Motion-Duration-XL) var(--Motion-Easing-Transition-Moderate) backwards;
+}
+.root[data-animate="true"][data-phase="exiting"] .track {
+  animation: cpi-exit-stroke var(--Motion-Duration-XL) var(--Motion-Easing-Transition-Moderate) forwards;
+}
+
+/* Determinate indicator: only the entry/exit stroke animation. */
+.root[data-animate="true"][data-phase="entering"][data-variant="determinate"] .indicator {
+  animation: cpi-enter-stroke var(--Motion-Duration-XL) var(--Motion-Easing-Transition-Moderate) backwards;
+}
+.root[data-animate="true"][data-phase="exiting"][data-variant="determinate"] .indicator {
+  animation: cpi-exit-stroke var(--Motion-Duration-XL) var(--Motion-Easing-Transition-Moderate) forwards;
+}
+
+/* Indeterminate indicator: combine entry/exit stroke with the trim animations. */
+.root[data-animate="true"][data-phase="entering"][data-variant="indeterminate"] .indicator {
+  animation:
+    cpi-indeterminate-head var(--CircularProgressIndicator-trimDuration, 1500ms) var(--Motion-Easing-Transition-Moderate) infinite,
+    cpi-indeterminate-tail var(--CircularProgressIndicator-trimDuration, 1500ms) var(--Motion-Easing-Transition-Moderate) infinite,
+    cpi-enter-stroke var(--Motion-Duration-XL) var(--Motion-Easing-Transition-Moderate) backwards;
+}
+.root[data-animate="true"][data-phase="exiting"][data-variant="indeterminate"] .indicator {
+  animation:
+    cpi-indeterminate-head var(--CircularProgressIndicator-trimDuration, 1500ms) var(--Motion-Easing-Transition-Moderate) infinite,
+    cpi-indeterminate-tail var(--CircularProgressIndicator-trimDuration, 1500ms) var(--Motion-Easing-Transition-Moderate) infinite,
+    cpi-exit-stroke var(--Motion-Duration-XL) var(--Motion-Easing-Transition-Moderate) forwards;
+}
+
+/* Center content (label or icon) also fades on entry/exit. The scale comes
+   from the `.root` keyframe above — children of a scaled element scale with
+   it visually, so we only need to add the opacity layer here. */
+.root[data-animate="true"][data-phase="entering"] .label,
+.root[data-animate="true"][data-phase="entering"] .icon {
+  animation: cpi-enter-content var(--Motion-Duration-XL) var(--Motion-Easing-Transition-Moderate) backwards;
+}
+.root[data-animate="true"][data-phase="exiting"] .label,
+.root[data-animate="true"][data-phase="exiting"] .icon {
+  animation: cpi-exit-content var(--Motion-Duration-XL) var(--Motion-Easing-Transition-Moderate) forwards;
+}
+
+/* Explicit from + to on the transform keyframes — interpolating from a
+   scale() to the implicit `none` is unreliable in some engines and can drop
+   the animation entirely. Stroke keyframes can stay implicit because the
+   computed end-state comes from the inline attribute (size-dependent). */
+@keyframes cpi-enter {
+  from { transform: scale(0.93); }
+  to   { transform: scale(1); }
+}
+@keyframes cpi-exit {
+  from { transform: scale(1); }
+  to   { transform: scale(0.93); }
+}
+@keyframes cpi-enter-stroke {
+  from { stroke-width: 0; }
+}
+@keyframes cpi-exit-stroke {
+  to { stroke-width: 0; }
+}
+@keyframes cpi-enter-content {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes cpi-exit-content {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
+
+/* ========================================
+   CENTER CONTENT — label (auto-percentage) + icon
+   ======================================== */
+
+.label,
+.icon {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.label {
+  font-family: var(--CircularProgressIndicator-fontFamily, var(--Label-FontFamily, var(--Typography-Font-Primary, inherit)));
+  font-weight: var(--CircularProgressIndicator-fontWeight, var(--Label-FontWeight-Medium));
+  color: var(--_text-color);
+  white-space: nowrap;
+}
+
+.icon {
+  color: var(--_text-color);
+}
+
+/* Figma centre-icon box — 6px at XS/S, 4px at 2XS (no Icon `1.5` preset). */
+.root[data-size="2XS"] .icon > * {
+  width: var(--CircularProgressIndicator-iconSize-2XS, var(--Spacing-1));
+  height: var(--CircularProgressIndicator-iconSize-2XS, var(--Spacing-1));
+}
+
+.root[data-size="XS"] .icon > *,
+.root[data-size="S"] .icon > * {
+  width: var(--CircularProgressIndicator-iconSize-XS, var(--Spacing-1-5));
+  height: var(--CircularProgressIndicator-iconSize-XS, var(--Spacing-1-5));
+}
+
+/* ========================================
+   LABEL FONT SIZE — L+ only (pairs with CPI_SIZE_TO_LABEL_SIZE)
+   ======================================== */
+
+.root[data-size="L"] .label {
+  font-size: var(--CircularProgressIndicator-fontSize-L, var(--Label-3XS-FontSize));
+  line-height: var(--CircularProgressIndicator-lineHeight-L, var(--Label-3XS-LineHeight));
+}
+
+.root[data-size="XL"] .label {
+  font-size: var(--CircularProgressIndicator-fontSize-XL, var(--Label-2XS-FontSize));
+  line-height: var(--CircularProgressIndicator-lineHeight-XL, var(--Label-2XS-LineHeight));
+}
+
+.root[data-size="2XL"] .label {
+  font-size: var(--CircularProgressIndicator-fontSize-2XL, var(--Label-XS-FontSize));
+  line-height: var(--CircularProgressIndicator-lineHeight-2XL, var(--Label-XS-LineHeight));
+}
+
+.root[data-size="3XL"] .label {
+  font-size: var(--CircularProgressIndicator-fontSize-3XL, var(--Label-S-FontSize));
+  line-height: var(--CircularProgressIndicator-lineHeight-3XL, var(--Label-S-LineHeight));
+}
+
+.root[data-size="4XL"] .label {
+  font-size: var(--CircularProgressIndicator-fontSize-4XL, var(--Label-S-FontSize));
+  line-height: var(--CircularProgressIndicator-lineHeight-4XL, var(--Label-S-LineHeight));
+}
+
+.root[data-size="5XL"] .label {
+  font-size: var(--CircularProgressIndicator-fontSize-5XL, var(--Label-M-FontSize));
+  line-height: var(--CircularProgressIndicator-lineHeight-5XL, var(--Label-M-LineHeight));
+}
+
+/**
+ * ========================================
+ * IMPORTANT: NO LITERALS IN THIS FILE
+ * ========================================
+ *
+ * All values MUST come from --Token-Name variables
+ * defined in @oneui/tokens CSS files
+ */

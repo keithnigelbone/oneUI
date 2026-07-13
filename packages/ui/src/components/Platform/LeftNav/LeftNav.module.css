@@ -1,0 +1,125 @@
+/**
+ * LeftNav.module.css
+ *
+ * Navigation rail layout only.
+ * Button styles (hover, focus, active, icon sizing) are handled
+ * by <IconButton> — no duplication here.
+ */
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: var(--Shell-LeftNav-Width, var(--Dimension-f10));
+  background-color: var(--Surface-Main);
+  padding: var(--Spacing-1) 0 var(--Spacing-4);
+}
+
+/* Focus mode: hide nav items + utilities, logo stays anchored.
+   Sidebar width is unchanged so the logo never shifts. */
+.nav[data-focus-mode="true"] .items,
+.nav[data-focus-mode="true"] .utilities {
+  display: none;
+}
+
+/* Logo */
+
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--Component-Height-TopBar);
+  padding: 0;
+}
+
+.logo svg,
+.logo img {
+  width: var(--Dimension-f5);
+  height: var(--Dimension-f5);
+}
+
+/* Main navigation items */
+
+.items {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--Spacing-1-5);
+  padding: 0 var(--Spacing-3-5);
+  flex: 1;
+  margin-top: var(--Spacing-4-5);
+}
+
+/* Subtle divider between nav sections — edge to edge.
+   Layout-only wrapper; the actual stroke comes from <Divider attention="low" />. */
+.sectionDivider {
+  align-self: stretch;
+  margin: var(--Spacing-1-5) calc(-1 * var(--Spacing-3-5));
+}
+
+/* Divider above bottom utilities — spans the nav rail edge to edge.
+   Pushed to the bottom via margin-top:auto so utilities stick to the bottom.
+   NOTE: No negative horizontal margin here — unlike .sectionDivider (which
+   sits inside .items and needs to cancel its Spacing-3-5 inner padding), this
+   wrapper is a direct child of .nav, which has no horizontal padding. Adding
+   a negative margin would push the stroke past the rail's right edge and
+   overlap the Shell's vertical divider / main content. */
+.utilitiesDivider {
+  align-self: stretch;
+  margin: 0;
+  margin-top: auto;
+}
+
+/* Bottom utilities section */
+
+.utilities {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--Spacing-3);
+  padding: var(--Spacing-4) var(--Spacing-3-5) 0;
+}
+
+/* Avatar — kept as raw button (not an icon button, it's an avatar) */
+
+.avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--Dimension-f6);
+  height: var(--Dimension-f6);
+  border-radius: var(--Shape-Pill);
+  background-color: var(--Primary-Bold, var(--Surface-Bold));
+  color: var(--Primary-Bold-High, var(--Text-OnBold-High));
+  cursor: pointer;
+  border: none;
+  overflow: hidden;
+  margin-top: var(--Spacing-3);
+  transition: opacity var(--Motion-Duration-Discreet-Short) var(--Motion-Easing-Standard);
+}
+
+.avatar:hover {
+  opacity: 0.9;
+}
+
+.avatar:focus {
+  outline: none;
+}
+
+.avatar:focus-visible {
+  outline: var(--Focus-Outline-Width) solid var(--Focus-Outline);
+  outline-offset: 2px;
+}
+
+.avatarImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.avatarInitials {
+  font-size: var(--Body-S-FontSize);
+  font-weight: var(--Body-FontWeight-High);
+  font-family: var(--Label-FontFamily, var(--Typography-Font-Text));
+}

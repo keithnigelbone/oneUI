@@ -1,0 +1,56 @@
+{
+  "name": "@oneui/icons-jio",
+  "version": "0.1.0-alpha.10",
+  "private": false,
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "files": [
+    "dist",
+    "src/generated",
+    "src/catalog.json",
+    "src/aliases.json",
+    "scripts"
+  ],
+  "sideEffects": [
+    "./src/register.ts",
+    "./dist/register.mjs",
+    "./dist/register.cjs"
+  ],
+  "exports": {
+    ".": "./src/index.ts",
+    "./register": "./src/register.ts"
+  },
+  "publishConfig": {
+    "main": "./dist/index.cjs",
+    "module": "./dist/index.mjs",
+    "types": "./dist/index.d.ts",
+    "exports": {
+      ".": {
+        "types": "./dist/index.d.ts",
+        "import": "./dist/index.mjs",
+        "require": "./dist/index.cjs"
+      },
+      "./register": {
+        "types": "./dist/register.d.ts",
+        "import": "./dist/register.mjs",
+        "require": "./dist/register.cjs"
+      }
+    }
+  },
+  "scripts": {
+    "generate": "node scripts/generate.mjs",
+    "build": "pnpm run generate && tsup",
+    "typecheck": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0 || ^19.0.0"
+  },
+  "devDependencies": {
+    "@oneui/shared": "workspace:*",
+    "@types/react": "^19.2.0",
+    "react": "^19.2.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.7.2"
+  }
+}

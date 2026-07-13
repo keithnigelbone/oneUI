@@ -1,0 +1,37 @@
+{
+  "name": "@oneui/button-figma-validation",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node ../../node_modules/vite/bin/vite.js",
+    "build": "node ../../node_modules/vite/bin/vite.js build",
+    "test:parity": "node ../../node_modules/playwright/cli.js test --config playwright.config.ts",
+    "test:applitools": "node ../../node_modules/tsx/dist/cli.mjs scripts/write-applitools-brand-cases.mts && node ../../node_modules/playwright/cli.js test --config playwright.applitools.config.ts",
+    "test:applitools:one": "node ../../node_modules/tsx/dist/cli.mjs scripts/write-applitools-brand-cases.mts && node ../../node_modules/playwright/cli.js test --config playwright.applitools.config.ts --grep \"\\\\[fixture\\\\] Button \\\\| bold / high / default / c=0 in=0 fw=0 s=0 e=0\"",
+    "test:applitools:update": "env APPLITOOLS_BATCH_ACCEPT_NEW=true pnpm run test:applitools",
+    "build:figma-grid-fixture": "node ../../node_modules/tsx/dist/cli.mjs scripts/build-button-figma-grid-fixture.mts",
+    "generate:figma-parity-fixture": "node ../../node_modules/tsx/dist/cli.mjs scripts/generate-button-figma-parity-fixture.mts",
+    "typecheck": "node ../../node_modules/typescript/bin/tsc --noEmit"
+  },
+  "dependencies": {
+    "@oneui/convex": "workspace:*",
+    "@oneui/shared": "workspace:*",
+    "@oneui/tokens": "workspace:*",
+    "@oneui/ui": "workspace:*",
+    "convex": "^1.39.1",
+    "react": "^19.2.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@applitools/eyes-playwright": "^1.47.2",
+    "@axe-core/playwright": "^4.11.3",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@vitejs/plugin-react": "^4.7.0",
+    "playwright": "1.59.1",
+    "tsx": "^4.19.2",
+    "typescript": "^5.9.3",
+    "vite": "^6.4.1"
+  }
+}

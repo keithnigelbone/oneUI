@@ -1,0 +1,156 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "HeaderNative",
+  "generatedAt": "2026-07-09T13:07:37.431Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "App-shell header micropattern. Root renders a PrimaryNav chrome row (homeBar/contextBar/searchBar) and an optional SecondaryNav row of HeaderItem tabs, plus an optional bottom divider. `expanded` switches to a two-row layout with a Headline/L title on row two."
+  },
+  "compositionRules": {
+    "requires": [
+      "children"
+    ],
+    "allows": [],
+    "forbids": [],
+    "childKind": "fixed-slots"
+  },
+  "props": [
+    {
+      "name": "expanded",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": "Two-row expanded layout (chrome row + Headline/L title row)."
+    },
+    {
+      "name": "secondaryNav",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": "Render the SecondaryNav HeaderItem tab row below PrimaryNav."
+    },
+    {
+      "name": "divider",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": "Show a hairline divider below the header (after SecondaryNav when present)."
+    },
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "required": true,
+      "description": "HeaderNative.PrimaryNav (required) followed by optional HeaderNative.SecondaryNav."
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "aria-labelledby",
+      "type": "string",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "accessibilityHint",
+      "type": "string",
+      "required": false,
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.kb.rn.HeaderNative",
+    "type": "object",
+    "required": [
+      "children"
+    ],
+    "properties": {
+      "expanded": {
+        "type": "boolean",
+        "default": false,
+        "description": "Two-row expanded layout (chrome row + Headline/L title row)."
+      },
+      "secondaryNav": {
+        "type": "boolean",
+        "default": false,
+        "description": "Render the SecondaryNav HeaderItem tab row below PrimaryNav."
+      },
+      "divider": {
+        "type": "boolean",
+        "default": false,
+        "description": "Show a hairline divider below the header (after SecondaryNav when present)."
+      },
+      "children": {
+        "description": "HeaderNative.PrimaryNav (required) followed by optional HeaderNative.SecondaryNav."
+      },
+      "aria-label": {
+        "type": "string"
+      },
+      "aria-labelledby": {
+        "type": "string"
+      },
+      "accessibilityHint": {
+        "type": "string"
+      }
+    }
+  },
+  "tokens": {
+    "color": [
+      "neutral",
+      "primary"
+    ],
+    "surface": [
+      "default",
+      "bold"
+    ],
+    "typography": [
+      "title.M",
+      "headline.L",
+      "label.XS"
+    ]
+  },
+  "a11y": {
+    "accessibilityRole": "header",
+    "accessibleNameSource": "aria-label",
+    "minTouchTarget": 44,
+    "honorsBoldText": true,
+    "honorsScreenReader": true
+  },
+  "renderHints": {
+    "baseElement": "View",
+    "animatedOn": [],
+    "honorsReduceMotion": false,
+    "readsFromSurfaceContext": true
+  },
+  "figma": {
+    "componentKey": "jds-header-native-v1",
+    "keyHistory": [],
+    "variantProperties": {
+      "Component": "HeaderNative"
+    }
+  },
+  "codeSnippets": [
+    {
+      "id": "import-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { HeaderNative } from '@oneui/ui-native';\n\n<HeaderNative />"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "headernative",
+    "navigation",
+    "header",
+    "app-shell",
+    "compound",
+    "surface-aware"
+  ],
+  "importPath": "@oneui/ui-native"
+}

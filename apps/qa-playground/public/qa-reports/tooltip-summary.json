@@ -1,0 +1,915 @@
+{
+  "ok": false,
+  "slug": "tooltip",
+  "message": "tooltip QA Playwright run had failures — 2026-06-30T07:29:33.100Z",
+  "suites": {
+    "accessibility": {
+      "suite": "accessibility",
+      "passed": 79,
+      "failed": 0,
+      "skipped": 0,
+      "logs": [
+        "79 test(s) in Playwright report for accessibility.",
+        "Axe: scan completed — 0 violation rules reported."
+      ],
+      "errors": [],
+      "cases": [
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — zero serious/critical + HTML report",
+          "status": "passed",
+          "durationMs": 5607
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — tip / arrow: true (default) band",
+          "status": "passed",
+          "durationMs": 4633,
+          "componentBand": "tooltip-figma-tip-true"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — tip / arrow: false band",
+          "status": "passed",
+          "durationMs": 4645,
+          "componentBand": "tooltip-figma-tip-false"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — disable / disabled: false band",
+          "status": "passed",
+          "durationMs": 5013,
+          "componentBand": "tooltip-figma-disabled-false"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — disable / disabled: true band",
+          "status": "passed",
+          "durationMs": 4680,
+          "componentBand": "tooltip-figma-disabled-true"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — trigger: hover (default) band",
+          "status": "passed",
+          "durationMs": 3536,
+          "componentBand": "tooltip-trigger-hover"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — trigger: click band",
+          "status": "passed",
+          "durationMs": 3142,
+          "componentBand": "tooltip-trigger-click"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — trigger: focus band",
+          "status": "passed",
+          "durationMs": 3267,
+          "componentBand": "tooltip-trigger-focus"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — open + trigger: manual band",
+          "status": "passed",
+          "durationMs": 3609,
+          "componentBand": "tooltip-controlled-manual"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — defaultOpen: true band",
+          "status": "passed",
+          "durationMs": 3275,
+          "componentBand": "tooltip-default-open"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — side + align (low-level positioning API) band",
+          "status": "passed",
+          "durationMs": 2594,
+          "componentBand": "tooltip-side-align"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — sideOffset: 32px gap from trigger band",
+          "status": "passed",
+          "durationMs": 3422,
+          "componentBand": "tooltip-sideOffset"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — delay: 800ms before show band",
+          "status": "passed",
+          "durationMs": 3386,
+          "componentBand": "tooltip-delay"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — closeDelay: 800ms before hide band",
+          "status": "passed",
+          "durationMs": 3227,
+          "componentBand": "tooltip-closeDelay"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — hoverable: false band",
+          "status": "passed",
+          "durationMs": 3546,
+          "componentBand": "tooltip-hoverable-false"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — zIndex: 9999 band",
+          "status": "passed",
+          "durationMs": 2490,
+          "componentBand": "tooltip-zIndex"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — maxWidth: 120 band",
+          "status": "passed",
+          "durationMs": 3012,
+          "componentBand": "tooltip-maxWidth"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — Registry scenario grid band",
+          "status": "passed",
+          "durationMs": 3130,
+          "componentBand": "tooltip-registry-scenarios"
+        },
+        {
+          "name": "[a11y] data-testid=\"tt-figma-tip-true\" — zero serious/critical",
+          "status": "passed",
+          "durationMs": 3866
+        },
+        {
+          "name": "[a11y] data-testid=\"tt-figma-tip-false\" — zero serious/critical",
+          "status": "passed",
+          "durationMs": 3598
+        },
+        {
+          "name": "[a11y] data-testid=\"tt-figma-disabled-false-trigger\" — zero serious/critical",
+          "status": "passed",
+          "durationMs": 3488
+        },
+        {
+          "name": "[a11y] data-testid=\"tt-figma-trigger-click\" — zero serious/critical",
+          "status": "passed",
+          "durationMs": 2899
+        },
+        {
+          "name": "[a11y] data-testid=\"tt-figma-default-open\" — zero serious/critical",
+          "status": "passed",
+          "durationMs": 3020
+        },
+        {
+          "name": "[a11y] data-testid=\"tt-maxWidth-anchor\" — zero serious/critical",
+          "status": "passed",
+          "durationMs": 3602
+        },
+        {
+          "name": "[a11y] data-testid=\"tt-figma-manual-anchor\" — zero serious/critical",
+          "status": "passed",
+          "durationMs": 3410
+        },
+        {
+          "name": "[a11y] Figma Validation tab — grid cells only (excludes horizontal scroll chrome)",
+          "status": "passed",
+          "durationMs": 3779
+        },
+        {
+          "name": "[a11y] data-section=\"tooltip-figma-tip-true\" — WCAG tags, zero serious/critical",
+          "status": "passed",
+          "durationMs": 3417
+        },
+        {
+          "name": "[a11y] data-section=\"tooltip-figma-tip-false\" — WCAG tags, zero serious/critical",
+          "status": "passed",
+          "durationMs": 3309
+        },
+        {
+          "name": "[a11y] data-section=\"tooltip-figma-disabled-false\" — WCAG tags, zero serious/critical",
+          "status": "passed",
+          "durationMs": 3240
+        },
+        {
+          "name": "[a11y] data-section=\"tooltip-figma-disabled-true\" — WCAG tags, zero serious/critical",
+          "status": "passed",
+          "durationMs": 3532
+        },
+        {
+          "name": "[a11y] data-section=\"tooltip-trigger-hover\" — WCAG tags, zero serious/critical",
+          "status": "passed",
+          "durationMs": 3625
+        },
+        {
+          "name": "[a11y] data-section=\"tooltip-trigger-click\" — WCAG tags, zero serious/critical",
+          "status": "passed",
+          "durationMs": 3368
+        },
+        {
+          "name": "[a11y] data-section=\"tooltip-trigger-focus\" — WCAG tags, zero serious/critical",
+          "status": "passed",
+          "durationMs": 3511
+        },
+        {
+          "name": "[a11y] data-section=\"tooltip-controlled-manual\" — WCAG tags, zero serious/critical",
+          "status": "passed",
+          "durationMs": 3013
+        },
+        {
+          "name": "[a11y] data-section=\"tooltip-default-open\" — WCAG tags, zero serious/critical",
+          "status": "passed",
+          "durationMs": 3237
+        },
+        {
+          "name": "[a11y] data-section=\"tooltip-side-align\" — WCAG tags, zero serious/critical",
+          "status": "passed",
+          "durationMs": 3532
+        },
+        {
+          "name": "[a11y] data-section=\"tooltip-sideOffset\" — WCAG tags, zero serious/critical",
+          "status": "passed",
+          "durationMs": 3339
+        },
+        {
+          "name": "[a11y] data-section=\"tooltip-delay\" — WCAG tags, zero serious/critical",
+          "status": "passed",
+          "durationMs": 3257
+        },
+        {
+          "name": "[a11y] data-section=\"tooltip-closeDelay\" — WCAG tags, zero serious/critical",
+          "status": "passed",
+          "durationMs": 3127
+        },
+        {
+          "name": "[a11y] data-section=\"tooltip-hoverable-false\" — WCAG tags, zero serious/critical",
+          "status": "passed",
+          "durationMs": 2958
+        },
+        {
+          "name": "[a11y] data-section=\"tooltip-zIndex\" — WCAG tags, zero serious/critical",
+          "status": "passed",
+          "durationMs": 3248
+        },
+        {
+          "name": "[a11y] data-section=\"tooltip-maxWidth\" — WCAG tags, zero serious/critical",
+          "status": "passed",
+          "durationMs": 3626
+        },
+        {
+          "name": "[a11y] data-section=\"tooltip-registry-scenarios\" — WCAG tags, zero serious/critical",
+          "status": "passed",
+          "durationMs": 3635
+        },
+        {
+          "name": "[a11y] Showcase \"tt-figma-tip-true\": WCAG 2.1 AA scan has no serious or critical issues",
+          "status": "passed",
+          "durationMs": 3427
+        },
+        {
+          "name": "[a11y] Showcase \"tt-figma-tip-false\": WCAG 2.1 AA scan has no serious or critical issues",
+          "status": "passed",
+          "durationMs": 3188
+        },
+        {
+          "name": "[a11y] Showcase \"tt-figma-disabled-false-trigger\": WCAG 2.1 AA scan has no serious or critical issues",
+          "status": "passed",
+          "durationMs": 2859
+        },
+        {
+          "name": "[a11y] Showcase \"tt-figma-disabled-true-trigger\": WCAG 2.1 AA scan has no serious or critical issues",
+          "status": "passed",
+          "durationMs": 3225
+        },
+        {
+          "name": "[a11y] Showcase \"tt-figma-trigger-hover\": WCAG 2.1 AA scan has no serious or critical issues",
+          "status": "passed",
+          "durationMs": 3414
+        },
+        {
+          "name": "[a11y] Showcase \"tt-figma-trigger-click\": WCAG 2.1 AA scan has no serious or critical issues",
+          "status": "passed",
+          "durationMs": 3220
+        },
+        {
+          "name": "[a11y] Showcase \"tt-figma-trigger-focus\": WCAG 2.1 AA scan has no serious or critical issues",
+          "status": "passed",
+          "durationMs": 3338
+        },
+        {
+          "name": "[a11y] Showcase \"tt-figma-manual-anchor\": WCAG 2.1 AA scan has no serious or critical issues",
+          "status": "passed",
+          "durationMs": 2865
+        },
+        {
+          "name": "[a11y] Showcase \"tt-figma-manual-toggle\": WCAG 2.1 AA scan has no serious or critical issues",
+          "status": "passed",
+          "durationMs": 2980
+        },
+        {
+          "name": "[a11y] Showcase \"tt-figma-default-open\": WCAG 2.1 AA scan has no serious or critical issues",
+          "status": "passed",
+          "durationMs": 3213
+        },
+        {
+          "name": "[a11y] Showcase \"tt-side-align-anchor\": WCAG 2.1 AA scan has no serious or critical issues",
+          "status": "passed",
+          "durationMs": 3370
+        },
+        {
+          "name": "[a11y] Showcase \"tt-sideOffset-anchor\": WCAG 2.1 AA scan has no serious or critical issues",
+          "status": "passed",
+          "durationMs": 3265
+        },
+        {
+          "name": "[a11y] Showcase \"tt-delay-trigger\": WCAG 2.1 AA scan has no serious or critical issues",
+          "status": "passed",
+          "durationMs": 3540
+        },
+        {
+          "name": "[a11y] Showcase \"tt-closeDelay-trigger\": WCAG 2.1 AA scan has no serious or critical issues",
+          "status": "passed",
+          "durationMs": 3664
+        },
+        {
+          "name": "[a11y] Showcase \"tt-hoverable-false-wrap\": WCAG 2.1 AA scan has no serious or critical issues",
+          "status": "passed",
+          "durationMs": 3746
+        },
+        {
+          "name": "[a11y] Showcase \"tt-hoverable-false-trigger\": WCAG 2.1 AA scan has no serious or critical issues",
+          "status": "passed",
+          "durationMs": 3523
+        },
+        {
+          "name": "[a11y] Showcase \"tt-zIndex-anchor\": WCAG 2.1 AA scan has no serious or critical issues",
+          "status": "passed",
+          "durationMs": 3355
+        },
+        {
+          "name": "[a11y] Showcase \"tt-maxWidth-anchor\": WCAG 2.1 AA scan has no serious or critical issues",
+          "status": "passed",
+          "durationMs": 3014
+        },
+        {
+          "name": "[a11y] Open tooltip exposes role=tooltip with accessible name",
+          "status": "passed",
+          "durationMs": 2438
+        },
+        {
+          "name": "[a11y] Tab reaches a focusable trigger with visible focus",
+          "status": "passed",
+          "durationMs": 2692
+        },
+        {
+          "name": "[a11y] no keyboard trap (Tab cycle advances)",
+          "status": "passed",
+          "durationMs": 2803
+        },
+        {
+          "name": "[a11y] Viewport 320px — horizontal overflow check per showcase band",
+          "status": "passed",
+          "durationMs": 3747
+        },
+        {
+          "name": "[a11y] page lang on <html>",
+          "status": "passed",
+          "durationMs": 2756
+        },
+        {
+          "name": "[a11y] Full page WCAG 2.1 AA scan has no serious or critical issues (report saved)",
+          "status": "passed",
+          "durationMs": 3296
+        },
+        {
+          "name": "[a11y] Figma grid cell \"tt-figma-val-pos-bottom\" — zero serious/critical",
+          "status": "passed",
+          "durationMs": 2886
+        },
+        {
+          "name": "[a11y] Figma grid cell \"tt-figma-val-pos-bottomStart\" — zero serious/critical",
+          "status": "passed",
+          "durationMs": 3120
+        },
+        {
+          "name": "[a11y] Figma grid cell \"tt-figma-val-pos-bottomEnd\" — zero serious/critical",
+          "status": "passed",
+          "durationMs": 3387
+        },
+        {
+          "name": "[a11y] Figma grid cell \"tt-figma-val-pos-top\" — zero serious/critical",
+          "status": "passed",
+          "durationMs": 3446
+        },
+        {
+          "name": "[a11y] Figma grid cell \"tt-figma-val-pos-topStart\" — zero serious/critical",
+          "status": "passed",
+          "durationMs": 3166
+        },
+        {
+          "name": "[a11y] Figma grid cell \"tt-figma-val-pos-topEnd\" — zero serious/critical",
+          "status": "passed",
+          "durationMs": 3174
+        },
+        {
+          "name": "[a11y] Figma grid cell \"tt-figma-val-pos-left\" — zero serious/critical",
+          "status": "passed",
+          "durationMs": 2965
+        },
+        {
+          "name": "[a11y] Figma grid cell \"tt-figma-val-pos-leftStart\" — zero serious/critical",
+          "status": "passed",
+          "durationMs": 3164
+        },
+        {
+          "name": "[a11y] Figma grid cell \"tt-figma-val-pos-leftEnd\" — zero serious/critical",
+          "status": "passed",
+          "durationMs": 3472
+        },
+        {
+          "name": "[a11y] Figma grid cell \"tt-figma-val-pos-right\" — zero serious/critical",
+          "status": "passed",
+          "durationMs": 3636
+        },
+        {
+          "name": "[a11y] Figma grid cell \"tt-figma-val-pos-rightStart\" — zero serious/critical",
+          "status": "passed",
+          "durationMs": 3430
+        },
+        {
+          "name": "[a11y] Figma grid cell \"tt-figma-val-pos-rightEnd\" — zero serious/critical",
+          "status": "passed",
+          "durationMs": 3440
+        }
+      ],
+      "axe": {
+        "violations": []
+      }
+    },
+    "functional": {
+      "suite": "functional",
+      "passed": 90,
+      "failed": 1,
+      "skipped": 0,
+      "logs": [
+        "91 test(s) in Playwright report for functional."
+      ],
+      "errors": [
+        "[fn] showcase · band · arrow=false: Test timeout of 30000ms exceeded."
+      ],
+      "cases": [
+        {
+          "name": "[fn] API · every public Tooltip prop has QA band or Figma grid coverage",
+          "status": "passed",
+          "durationMs": 2891
+        },
+        {
+          "name": "[fn] API · each showcase band documents valid registry props",
+          "status": "passed",
+          "durationMs": 2805
+        },
+        {
+          "name": "[fn] API · runtime default snapshot (Tooltip.tsx destructuring)",
+          "status": "passed",
+          "durationMs": 2605
+        },
+        {
+          "name": "[fn] behavior · defaults · arrow=true open tooltip includes SVG tip",
+          "status": "passed",
+          "durationMs": 3210
+        },
+        {
+          "name": "[fn] behavior · defaults · trigger=hover opens on pointerenter",
+          "status": "passed",
+          "durationMs": 8465
+        },
+        {
+          "name": "[fn] 1.1 — no console errors on playground load",
+          "status": "passed",
+          "durationMs": 6883
+        },
+        {
+          "name": "[fn] 1.2 — every playground data-testid is visible",
+          "status": "passed",
+          "durationMs": 6236
+        },
+        {
+          "name": "[fn] 1.3 — every data-section is visible",
+          "status": "passed",
+          "durationMs": 3995
+        },
+        {
+          "name": "[fn] 2.1 — defaultOpen tooltip is visible on load",
+          "status": "passed",
+          "durationMs": 3991
+        },
+        {
+          "name": "[fn] 2.2 — size scaling — N/A (Tooltip has no size prop)",
+          "status": "passed",
+          "durationMs": 3463
+        },
+        {
+          "name": "[fn] 2.3 — appearance colour — N/A (Tooltip has no appearance prop)",
+          "status": "passed",
+          "durationMs": 6007
+        },
+        {
+          "name": "[fn] 3.4 — Escape closes click-triggered tooltip",
+          "status": "passed",
+          "durationMs": 6635
+        },
+        {
+          "name": "[fn] 3.4 — click outside closes click-triggered tooltip",
+          "status": "passed",
+          "durationMs": 6885
+        },
+        {
+          "name": "[fn] 4.6 — Escape dismisses open click tooltip",
+          "status": "passed",
+          "durationMs": 6680
+        },
+        {
+          "name": "[fn] 4.7 — Tab moves focus through triggers without trap",
+          "status": "passed",
+          "durationMs": 6459
+        },
+        {
+          "name": "[fn] 5.1 — focus trigger opens focus-mode tooltip",
+          "status": "passed",
+          "durationMs": 12041
+        },
+        {
+          "name": "[fn] 6.4 — readonly — N/A (Tooltip has no readOnly prop)",
+          "status": "passed",
+          "durationMs": 3689
+        },
+        {
+          "name": "[fn] 7.x — slots — N/A (Tooltip has no start/end slots)",
+          "status": "passed",
+          "durationMs": 3732
+        },
+        {
+          "name": "[fn] 8.x — N/A (Tooltip is not a selection control)",
+          "status": "passed",
+          "durationMs": 3624
+        },
+        {
+          "name": "[fn] 9.x — N/A (Tooltip is not an input)",
+          "status": "passed",
+          "durationMs": 3878
+        },
+        {
+          "name": "[fn] 11.1 — open tooltip text content is non-empty",
+          "status": "passed",
+          "durationMs": 2509
+        },
+        {
+          "name": "[fn] 11.2 — arrow=true renders SVG tip inside bubble",
+          "status": "passed",
+          "durationMs": 2764
+        },
+        {
+          "name": "[fn] 12.1 — fullWidth — N/A (Tooltip has no fullWidth prop)",
+          "status": "passed",
+          "durationMs": 2669
+        },
+        {
+          "name": "[fn] 12.2 — component visible at 320px and 1440px viewports",
+          "status": "passed",
+          "durationMs": 3001
+        },
+        {
+          "name": "[fn] 12.3 — orientation — N/A (Tooltip uses position side, not layout orientation)",
+          "status": "passed",
+          "durationMs": 2237
+        },
+        {
+          "name": "[fn] smoke — default open tooltip band renders",
+          "status": "passed",
+          "durationMs": 2797
+        },
+        {
+          "name": "[fn] smoke — theme toggle updates label",
+          "status": "passed",
+          "durationMs": 3087
+        },
+        {
+          "name": "[fn] smoke — figma grid mounts on validation tab",
+          "status": "passed",
+          "durationMs": 2909
+        },
+        {
+          "name": "[fn] page · Tooltip heading visible",
+          "status": "passed",
+          "durationMs": 3024
+        },
+        {
+          "name": "[fn] page · scenario and report tabs present",
+          "status": "passed",
+          "durationMs": 3387
+        },
+        {
+          "name": "[fn] showcase · band · arrow=true (default)",
+          "status": "passed",
+          "durationMs": 4278
+        },
+        {
+          "name": "[fn] showcase · band · arrow=false",
+          "status": "failed",
+          "durationMs": 40470,
+          "error": "Test timeout of 30000ms exceeded."
+        },
+        {
+          "name": "[fn] showcase · band · disabled=false",
+          "status": "passed",
+          "durationMs": 7077
+        },
+        {
+          "name": "[fn] showcase · band · disabled=true",
+          "status": "passed",
+          "durationMs": 7260
+        },
+        {
+          "name": "[fn] showcase · band · trigger=hover (default)",
+          "status": "passed",
+          "durationMs": 8258
+        },
+        {
+          "name": "[fn] showcase · band · trigger=click",
+          "status": "passed",
+          "durationMs": 8596
+        },
+        {
+          "name": "[fn] showcase · band · trigger=focus",
+          "status": "passed",
+          "durationMs": 7163
+        },
+        {
+          "name": "[fn] showcase · band · open + onOpenChange + trigger=manual",
+          "status": "passed",
+          "durationMs": 7025
+        },
+        {
+          "name": "[fn] showcase · band · defaultOpen=true",
+          "status": "passed",
+          "durationMs": 5746
+        },
+        {
+          "name": "[fn] showcase · band · side + align",
+          "status": "passed",
+          "durationMs": 4275
+        },
+        {
+          "name": "[fn] showcase · band · sideOffset=32",
+          "status": "passed",
+          "durationMs": 2768
+        },
+        {
+          "name": "[fn] showcase · band · delay=800ms",
+          "status": "passed",
+          "durationMs": 3121
+        },
+        {
+          "name": "[fn] showcase · band · closeDelay=800ms",
+          "status": "passed",
+          "durationMs": 3547
+        },
+        {
+          "name": "[fn] showcase · band · hoverable=false",
+          "status": "passed",
+          "durationMs": 4201
+        },
+        {
+          "name": "[fn] showcase · band · zIndex=9999",
+          "status": "passed",
+          "durationMs": 3870
+        },
+        {
+          "name": "[fn] showcase · band · maxWidth=120",
+          "status": "passed",
+          "durationMs": 4072
+        },
+        {
+          "name": "[fn] showcase · band · registry scenario grid",
+          "status": "passed",
+          "durationMs": 3965
+        },
+        {
+          "name": "[fn] showcase · arrow=true (default) · control visible",
+          "status": "passed",
+          "durationMs": 3375
+        },
+        {
+          "name": "[fn] showcase · arrow=false · control visible",
+          "status": "passed",
+          "durationMs": 3055
+        },
+        {
+          "name": "[fn] showcase · disabled=false · control visible",
+          "status": "passed",
+          "durationMs": 2420
+        },
+        {
+          "name": "[fn] showcase · disabled=true · control visible",
+          "status": "passed",
+          "durationMs": 2456
+        },
+        {
+          "name": "[fn] showcase · trigger=hover (default) · control visible",
+          "status": "passed",
+          "durationMs": 2678
+        },
+        {
+          "name": "[fn] showcase · trigger=click · control visible",
+          "status": "passed",
+          "durationMs": 2822
+        },
+        {
+          "name": "[fn] showcase · trigger=focus · control visible",
+          "status": "passed",
+          "durationMs": 2737
+        },
+        {
+          "name": "[fn] showcase · open + trigger=manual (anchor) · control visible",
+          "status": "passed",
+          "durationMs": 2248
+        },
+        {
+          "name": "[fn] showcase · open + trigger=manual (toggle) · control visible",
+          "status": "passed",
+          "durationMs": 2611
+        },
+        {
+          "name": "[fn] showcase · defaultOpen=true · control visible",
+          "status": "passed",
+          "durationMs": 3312
+        },
+        {
+          "name": "[fn] showcase · side=right align=start · control visible",
+          "status": "passed",
+          "durationMs": 3291
+        },
+        {
+          "name": "[fn] showcase · sideOffset=32 · control visible",
+          "status": "passed",
+          "durationMs": 3749
+        },
+        {
+          "name": "[fn] showcase · delay=800ms · control visible",
+          "status": "passed",
+          "durationMs": 4661
+        },
+        {
+          "name": "[fn] showcase · closeDelay=800ms · control visible",
+          "status": "passed",
+          "durationMs": 3873
+        },
+        {
+          "name": "[fn] showcase · hoverable=false (trigger) · control visible",
+          "status": "passed",
+          "durationMs": 4012
+        },
+        {
+          "name": "[fn] showcase · hoverable=false (band wrap) · control visible",
+          "status": "passed",
+          "durationMs": 3366
+        },
+        {
+          "name": "[fn] showcase · zIndex=9999 · control visible",
+          "status": "passed",
+          "durationMs": 2879
+        },
+        {
+          "name": "[fn] showcase · maxWidth=120 · control visible",
+          "status": "passed",
+          "durationMs": 2897
+        },
+        {
+          "name": "[fn] behavior · arrow=false · open tooltip has no arrow svg",
+          "status": "passed",
+          "durationMs": 2816
+        },
+        {
+          "name": "[fn] behavior · disabled=true · hover does not open tooltip",
+          "status": "passed",
+          "durationMs": 6027
+        },
+        {
+          "name": "[fn] behavior · trigger=click · toggles open on click",
+          "status": "passed",
+          "durationMs": 2209
+        },
+        {
+          "name": "[fn] behavior · trigger=focus · opens on keyboard Tab focus",
+          "status": "passed",
+          "durationMs": 2392
+        },
+        {
+          "name": "[fn] behavior · open + trigger=manual · external toggle controls tooltip",
+          "status": "passed",
+          "durationMs": 1797
+        },
+        {
+          "name": "[fn] behavior · defaultOpen=true · tooltip visible on load",
+          "status": "passed",
+          "durationMs": 1620
+        },
+        {
+          "name": "[fn] behavior · side=right align=start · positioner data-side=right",
+          "status": "passed",
+          "durationMs": 1453
+        },
+        {
+          "name": "[fn] behavior · sideOffset=32 · tooltip visible with custom gap",
+          "status": "passed",
+          "durationMs": 1567
+        },
+        {
+          "name": "[fn] behavior · delay=800ms · hidden before delay elapses, visible after",
+          "status": "passed",
+          "durationMs": 3944
+        },
+        {
+          "name": "[fn] behavior · closeDelay=800ms · stays open right after pointerleave",
+          "status": "passed",
+          "durationMs": 4417
+        },
+        {
+          "name": "[fn] behavior · hoverable=false · closes when pointer leaves trigger",
+          "status": "passed",
+          "durationMs": 3049
+        },
+        {
+          "name": "[fn] behavior · zIndex=9999 · positioner inline z-index",
+          "status": "passed",
+          "durationMs": 3224
+        },
+        {
+          "name": "[fn] behavior · maxWidth=120 · popup sets --Tooltip-maxWidth",
+          "status": "passed",
+          "durationMs": 3685
+        },
+        {
+          "name": "[fn] figma · validation tab mounts 4×3 position grid",
+          "status": "passed",
+          "durationMs": 2789
+        },
+        {
+          "name": "[fn] figma · grid cell · position=bottom · trigger open",
+          "status": "passed",
+          "durationMs": 2907
+        },
+        {
+          "name": "[fn] figma · grid cell · position=bottomStart · trigger open",
+          "status": "passed",
+          "durationMs": 2909
+        },
+        {
+          "name": "[fn] figma · grid cell · position=bottomEnd · trigger open",
+          "status": "passed",
+          "durationMs": 3209
+        },
+        {
+          "name": "[fn] figma · grid cell · position=top · trigger open",
+          "status": "passed",
+          "durationMs": 3255
+        },
+        {
+          "name": "[fn] figma · grid cell · position=topStart · trigger open",
+          "status": "passed",
+          "durationMs": 3804
+        },
+        {
+          "name": "[fn] figma · grid cell · position=topEnd · trigger open",
+          "status": "passed",
+          "durationMs": 3909
+        },
+        {
+          "name": "[fn] figma · grid cell · position=left · trigger open",
+          "status": "passed",
+          "durationMs": 3976
+        },
+        {
+          "name": "[fn] figma · grid cell · position=leftStart · trigger open",
+          "status": "passed",
+          "durationMs": 3920
+        },
+        {
+          "name": "[fn] figma · grid cell · position=leftEnd · trigger open",
+          "status": "passed",
+          "durationMs": 3178
+        },
+        {
+          "name": "[fn] figma · grid cell · position=right · trigger open",
+          "status": "passed",
+          "durationMs": 3690
+        },
+        {
+          "name": "[fn] figma · grid cell · position=rightStart · trigger open",
+          "status": "passed",
+          "durationMs": 3520
+        },
+        {
+          "name": "[fn] figma · grid cell · position=rightEnd · trigger open",
+          "status": "passed",
+          "durationMs": 4150
+        }
+      ]
+    },
+    "performance": {
+      "suite": "performance",
+      "passed": 0,
+      "failed": 0,
+      "skipped": 0,
+      "logs": [
+        "Performance suite is not executed in apps/qa-playground tooltip Playwright bundle."
+      ],
+      "errors": []
+    }
+  }
+}

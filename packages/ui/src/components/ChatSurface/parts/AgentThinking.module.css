@@ -1,0 +1,87 @@
+.root {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--Spacing-2-5);
+  padding: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--Primary-High);
+}
+
+/* ── Rotating status text ──────────────────────────────────────────────── */
+
+.statusTrack {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--Body-S-LineHeight);
+  color: var(--Primary-Medium-Text);
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  font-weight: var(--Body-FontWeight-Low);
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.statusText {
+  display: inline-block;
+  /*
+   * Loading-text best practice: keep a readable base color and move a narrow
+   * highlight band through the glyphs. The motion implies active work without
+   * making the whole line flash or lose contrast.
+   */
+  background: linear-gradient(
+    100deg,
+    var(--Primary-Medium-Text) 0%,
+    var(--Primary-Medium-Text) 38%,
+    var(--Primary-High) 50%,
+    var(--Primary-Medium-Text) 62%,
+    var(--Primary-Medium-Text) 100%
+  );
+  background-size: 250% 100%;
+  background-position: 120% 0;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  animation-name: agentThinkingStatusIn, agentThinkingStatusShimmer;
+  animation-duration:
+    var(--Motion-Duration-M),
+    calc(var(--Motion-Duration-3XL) * 2);
+  animation-timing-function:
+    var(--Motion-Easing-Transition-Moderate),
+    linear;
+  animation-iteration-count: 1, infinite;
+}
+
+@keyframes agentThinkingStatusIn {
+  from {
+    opacity: 0;
+    transform: translateY(var(--Spacing-2));
+    filter: blur(var(--Stroke-S));
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes agentThinkingStatusShimmer {
+  from {
+    background-position: 120% 0;
+  }
+  to {
+    background-position: -120% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .statusText {
+    animation: none;
+    background: none;
+    color: var(--Primary-Medium-Text);
+    -webkit-text-fill-color: currentColor;
+  }
+}

@@ -1,0 +1,51 @@
+# Switch — Figma API + native combination rules
+#
+# Figma API (design + code)
+#   size            s | m | l              → size?: SwitchSize  (default 'm')
+#   checked         true | false           → checked?: boolean  (controlled)
+#   defaultChecked  true | false           → defaultChecked?: boolean (uncontrolled)
+#   appearance      auto | primary | secondary | neutral | sparkle |
+#                   brand-bg | positive | negative | warning | informative
+#                                          → appearance?: SwitchAppearance
+#   accent          primary | secondary | sparkle
+#                                          → accent?: SwitchAccent  (overrides checked fill)
+#   readOnly        true | false           → readOnly?: boolean
+#   disabled        true | false           → disabled?: boolean
+#   children        string                 → children?: string  (label text)
+#   aria-label      string                 → 'aria-label'?: string (when no label)
+#
+# Behaviour notes
+#   - Unchecked track = neutral subtle regardless of appearance
+#   - Checked fill = appearance role (auto → secondary)
+#   - accent overrides only the checked fill colour; appearance context is kept
+#   - readOnly: collapses both states to neutral; ignores appearance + accent
+#   - disabled: dims (opacity) + non-interactive; keeps appearance colours
+#   - readOnly is visually distinct from disabled (no opacity reduction)
+
+section1: All appearances
+- mount Switch with each appearance: auto, primary, secondary, neutral, sparkle,
+  brand-bg, positive, negative, warning, informative
+- each shown with checked=true so the fill colour is visible
+
+section2: Sizes × checked
+- mount Switch with sizes S, M, L each at checked=true and checked=false
+- use default appearance (auto)
+
+section3: Checked / unchecked
+- mount Switch with checked=true and checked=false side by side (default size M)
+
+section4: ReadOnly × checked
+- mount Switch with readOnly=true, checked=true and checked=false
+- must render neutral track/thumb in both states (no appearance colour)
+
+section5: Disabled × checked
+- mount Switch with disabled=true, checked=true and checked=false
+- opacity reduction must be visible; appearance colours are retained
+
+section6: Accent × checked
+- mount Switch for each accent (primary, secondary, sparkle) at checked=true
+- contrast with no-accent (appearance=auto) at checked=true
+
+section7: With label
+- mount Switch with a children string label, checked=true and checked=false
+- sizes S, M, L each with a label

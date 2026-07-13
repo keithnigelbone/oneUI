@@ -1,0 +1,59 @@
+.toolbarCard {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin: 0 var(--Spacing-4-5) var(--Spacing-4);
+  padding: var(--Spacing-3-5) var(--Spacing-4);
+  border-radius: var(--Shape-M);
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+  background: var(--Surface-Elevated);
+  box-shadow: var(--Elevation-1);
+  font-family: var(--Typography-Font-Primary);
+}
+
+.toolbarRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: 0;
+  width: 100%;
+}
+
+.toolbarRow + .toolbarRow {
+  border-top: var(--Stroke-M) solid var(--Border-Subtle);
+}
+
+.checkboxRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--Spacing-3) var(--Spacing-5);
+  width: 100%;
+  padding: var(--Spacing-3) var(--Spacing-3-5);
+  box-sizing: border-box;
+}
+
+.checkboxItem {
+  flex: 0 1 auto;
+}
+
+.textRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: 0;
+  width: 100%;
+}
+
+.heading {
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+  color: var(--Text-High);
+  padding: var(--Spacing-2-5) var(--Spacing-3-5) var(--Spacing-1);
+  flex: 1 1 100%;
+}
+
+.selectTrigger {
+  min-width: 0;
+}

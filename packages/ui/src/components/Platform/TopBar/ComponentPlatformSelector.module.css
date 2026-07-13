@@ -1,0 +1,28 @@
+/**
+ * ComponentPlatformSelector.module.css
+ *
+ * TopBar adaptation of the DS Select primitive. The interaction model,
+ * popup, keyboard handling, and option semantics come from <Select>; this
+ * file only scopes platform-chrome sizing and token aliases.
+ */
+
+.container {
+  position: relative;
+}
+
+.trigger {
+  --Select-borderWidth: var(--Stroke-None);
+  --Select-borderColor: transparent;
+  --Select-backgroundColor: transparent;
+  --Select-hoverBackgroundColor: var(--Surface-Ghost);
+  --Select-textColor: var(--Text-Low);
+  --Select-hoverTextColor: var(--Text-High);
+  --Select-borderRadius: var(--Button-borderRadius, var(--SelectableButton-borderRadius, var(--Shape-Pill)));
+  --Select-popupBorderRadius: var(--Shape-4-5);
+  width: auto;
+  min-height: auto;
+  padding: var(--Spacing-2) var(--Spacing-3-5);
+  padding-right: var(--Spacing-2);
+  font-size: var(--Body-M-FontSize);
+  font-weight: var(--Body-FontWeight-Medium);
+}

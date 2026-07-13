@@ -1,0 +1,75 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "CarouselRail",
+  "generatedAt": "2026-07-09T13:07:37.427Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "Carousel scroll track. Composes CarouselItem slides only."
+  },
+  "compositionRules": {
+    "requires": [
+      "children"
+    ],
+    "allows": [],
+    "forbids": [],
+    "childKind": "fixed-slots"
+  },
+  "props": [
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "required": true,
+      "description": "CarouselItem elements."
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.kb.rn.CarouselRail",
+    "type": "object",
+    "required": [
+      "children"
+    ],
+    "properties": {
+      "children": {
+        "description": "CarouselItem elements."
+      }
+    }
+  },
+  "tokens": {
+    "spacing": []
+  },
+  "a11y": {
+    "accessibilityRole": "none",
+    "accessibleNameSource": "children",
+    "minTouchTarget": 44,
+    "honorsBoldText": false,
+    "honorsScreenReader": true
+  },
+  "renderHints": {
+    "baseElement": "View",
+    "animatedOn": [],
+    "honorsReduceMotion": true,
+    "readsFromSurfaceContext": false
+  },
+  "figma": {
+    "componentKey": "jds-carousel-rail-v1",
+    "keyHistory": []
+  },
+  "codeSnippets": [
+    {
+      "id": "import-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { CarouselRail } from '@oneui/ui-native';\n\n<CarouselRail />"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "carouselrail",
+    "carousel",
+    "compound"
+  ],
+  "importPath": "@oneui/ui-native"
+}

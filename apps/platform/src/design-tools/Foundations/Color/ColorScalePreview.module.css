@@ -1,0 +1,118 @@
+/**
+ * ColorScalePreview.module.css
+ * Token-only styling for color scale preview
+ */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-2-5);
+}
+
+.compact {
+  gap: 0;
+}
+
+.step {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-3-5);
+  padding: var(--Spacing-3) var(--Spacing-3-5);
+  border-radius: var(--Shape-3-5);
+  transition-duration: var(--Motion-Duration-Discreet-Short);
+}
+
+.step:hover {
+  background-color: var(--Surface-Subtle);
+}
+
+.compact .step {
+  padding: var(--Spacing-2) var(--Spacing-3);
+}
+
+.stepHighlight {
+  background-color: var(--Surface-Subtle);
+}
+
+.swatch {
+  width: var(--Spacing-4-5);
+  height: var(--Spacing-4-5);
+  border-radius: var(--Shape-3);
+  border: 1px solid var(--Border-Subtle);
+  flex-shrink: 0;
+}
+
+.compact .swatch {
+  width: var(--Spacing-4);
+  height: var(--Spacing-4);
+}
+
+.stepLabel {
+  min-width: var(--Spacing-7);
+  font-size: var(--Body-S-FontSize);
+  font-weight: var(--Body-FontWeight-Medium);
+  color: var(--Text-Medium);
+  font-variant-numeric: tabular-nums;
+}
+
+.compact .stepLabel {
+  font-size: var(--Label-XS-FontSize);
+  min-width: var(--Spacing-6);
+}
+
+.value {
+  flex: 1;
+  font-size: var(--Body-S-FontSize);
+  font-family: monospace;
+  color: var(--Text-High);
+}
+
+.compact .value {
+  font-size: var(--Label-XS-FontSize);
+}
+
+.badge {
+  font-size: var(--Label-XS-FontSize);
+  color: var(--Text-Medium);
+  padding: var(--Spacing-1) var(--Spacing-2);
+  background-color: var(--Surface-Subtle);
+  border-radius: var(--Shape-3);
+}
+
+/* Horizontal strip variant */
+.strip {
+  display: flex;
+  gap: 0;
+  border-radius: var(--Shape-4);
+  overflow: hidden;
+}
+
+.stripItem {
+  flex: 1;
+  height: var(--Spacing-7);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding-bottom: var(--Spacing-2-5);
+  cursor: pointer;
+  transition-duration: var(--Motion-Duration-Discreet-Short);
+}
+
+.stripItem:hover {
+  transform: scaleY(1.1);
+  transform-origin: bottom;
+}
+
+.stripLabel {
+  font-size: var(--Label-3XS-FontSize);
+  color: var(--Text-OnBold-High);
+  font-weight: var(--Body-FontWeight-Medium);
+  text-shadow: var(--Text-Shadow-Medium);
+}
+
+/* Dark text for light steps */
+.stripLabelDark {
+  color: var(--Text-High);
+  text-shadow: none;
+}

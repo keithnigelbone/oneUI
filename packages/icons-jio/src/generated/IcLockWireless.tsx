@@ -1,0 +1,38 @@
+import React, { forwardRef } from 'react';
+import type { IconComponentProps } from '../iconProps';
+
+export const IcLockWireless = forwardRef<SVGSVGElement, IconComponentProps>(function IcLockWireless(
+  { size = 24, width, height, color = 'currentColor', className, style, ...props },
+  ref,
+) {
+  const dim = width ?? height ?? size;
+  return (
+    <svg
+      ref={ref}
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      width={width ?? dim}
+      height={height ?? dim}
+      color={color}
+      className={className}
+      style={style}
+      {...props}
+    >
+      <path
+            fill="currentColor"
+            d="M15.648 12.125h-.66v-.66a2.633 2.633 0 0 0-4.488-1.86c-.49.491-.77 1.16-.77 1.86v.66h-.659c-.52 0-1.03.21-1.4.58s-.579.87-.579 1.399v5.917c0 .52.21 1.03.58 1.4S8.542 22 9.07 22h6.577c.52 0 1.03-.21 1.399-.58.37-.37.58-.87.58-1.399v-5.917c0-.52-.21-1.03-.58-1.4s-.87-.58-1.4-.58m-2.36 5.537a1.31 1.31 0 0 1-1.658.17c-.22-.14-.39-.35-.48-.59a1.319 1.319 0 0 1 1.72-1.719c.239.09.449.27.589.48a1.309 1.309 0 0 1-.17 1.66m-2.248-5.537v-.66c0-.35.14-.68.39-.93s.58-.39.93-.39.679.14.929.39.39.58.39.93v.66z"
+          />
+          <path
+            fill="currentColor"
+            d="M7.952 9.446c.37.19.83.05 1.03-.32.679-1.279 1.948-2.069 3.417-2.069 1.47 0 2.689.81 3.359 2.12.13.26.4.41.68.41.12 0 .24-.03.35-.08.369-.19.519-.65.329-1.02a5.33 5.33 0 0 0-4.798-2.939c-1.939 0-3.738 1.1-4.677 2.879-.2.37-.05.83.32 1.03z"
+          />
+          <path
+            fill="currentColor"
+            d="M20.066 6.428A8.81 8.81 0 0 0 12.439 2h-.16a8.8 8.8 0 0 0-7.626 4.428c-.21.36-.08.83.28 1.04.37.21.83.08 1.04-.28a7.29 7.29 0 0 1 6.306-3.669h.16a7.29 7.29 0 0 1 6.307 3.668c.14.25.4.38.66.38.13 0 .26-.03.38-.1.36-.21.49-.67.28-1.04"
+          />
+    </svg>
+  );
+});
+
+IcLockWireless.displayName = 'IcLockWireless';

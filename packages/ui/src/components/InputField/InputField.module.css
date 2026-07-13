@@ -1,0 +1,125 @@
+/**
+ * InputField.module.css
+ *
+ * Top-level aggregator layout for InputField.
+ * Stacks: label stack → Input → InputFeedback → InputDynamicText (optional).
+ *
+ * Figma: `.DNA/InputField` (4298:6330) — vertical stack gap `dimensions/spacings/1,5` → `--Spacing-1-5`.
+ *
+ * Verified by: pnpm check:literals
+ */
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--InputField-gap, var(--Spacing-1-5));
+  width: 100%;
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+/* ========================================
+   FEEDBACK SLOT — reserved row height so entrance motion
+   does not reflow the input or dynamic text (translate only).
+   ======================================== */
+
+.feedbackSlot {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+  min-height: var(--InputField-feedbackSlot-minHeight-10, var(--Body-XS-LineHeight));
+}
+
+.feedbackSlot[data-size='8'] {
+  min-height: var(--InputField-feedbackSlot-minHeight-8, var(--Body-XS-LineHeight));
+}
+
+.feedbackSlot[data-size='12'] {
+  min-height: var(--InputField-feedbackSlot-minHeight-12, var(--Body-S-LineHeight));
+}
+
+@keyframes inputFeedbackEnter {
+  from {
+    opacity: 0;
+    transform: translateY(var(--Spacing-Negative-2));
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes inputFeedbackExit {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(var(--Spacing-Negative-2));
+  }
+}
+
+@keyframes inputFeedbackEnterReduced {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes inputFeedbackExitReduced {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+/* Feedback enter / exit — driven by data-exiting on the slot (InputField.tsx). */
+.feedbackSlot:not([data-exiting]) [data-oneui-input-feedback] {
+  animation: inputFeedbackEnter var(--Motion-Duration-L) var(--Motion-Easing-Entrance-Moderate) both;
+}
+
+.feedbackSlot[data-exiting] [data-oneui-input-feedback] {
+  animation: inputFeedbackExit var(--Motion-Duration-M) var(--Motion-Easing-Exit-Moderate) both;
+}
+
+/* Reduced motion: opacity only — no translate (position). Subtle durations remap at :root. */
+@media (prefers-reduced-motion: reduce) {
+  .feedbackSlot:not([data-exiting]) [data-oneui-input-feedback] {
+    animation: inputFeedbackEnterReduced var(--Motion-Duration-L) var(--Motion-Easing-Entrance-Moderate) both;
+    transform: none;
+  }
+
+  .feedbackSlot[data-exiting] [data-oneui-input-feedback] {
+    animation: inputFeedbackExitReduced var(--Motion-Duration-M) var(--Motion-Easing-Exit-Moderate) both;
+    transform: none;
+  }
+}
+
+/* ========================================
+   LABEL AREA
+   ======================================== */
+
+.labelArea {
+  display: flex;
+  flex-direction: column;
+  gap: var(--InputField-labelGap, var(--Spacing-0-5));
+}
+
+.labelRow {
+  display: flex;
+  align-items: center;
+  gap: var(--InputField-labelIconGap, var(--Spacing-0-5));
+}

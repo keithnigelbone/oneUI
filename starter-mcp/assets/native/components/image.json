@@ -1,0 +1,277 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Image",
+  "generatedAt": "2026-07-09T13:07:37.416Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "Responsive image with aspect-ratio presets, fit modes, and an optional interactive (tappable, state-layer) mode. `src` + `alt` required; alt is the accessible name. `fit` wins over `objectFit`. Falls back to `fallback` node or `fallbackSrc` on error."
+  },
+  "compositionRules": {
+    "requires": [
+      "src",
+      "alt"
+    ],
+    "allows": [],
+    "forbids": [],
+    "childKind": "leaf"
+  },
+  "props": [
+    {
+      "name": "src",
+      "type": "string",
+      "required": true,
+      "description": "Image source URL (required)."
+    },
+    {
+      "name": "alt",
+      "type": "string",
+      "required": true,
+      "description": "Accessible alt text (required) — used as accessibilityLabel."
+    },
+    {
+      "name": "aspectRatio",
+      "type": "'auto' | '1:1' | '1:2' | '2:1' | '2:3' | '3:2' | '3:4' | '4:3' | '9:16' | '16:9' | '9:21' | '21:9'",
+      "required": false,
+      "defaultValue": "auto",
+      "description": ""
+    },
+    {
+      "name": "interactive",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": "State-layer overlay + tappable wrapper; actionable → role=\"button\"."
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "fit",
+      "type": "'cover' | 'contain' | 'fill' | 'none'",
+      "required": false,
+      "description": "Figma alias for objectFit — wins when both are set."
+    },
+    {
+      "name": "objectFit",
+      "type": "'cover' | 'contain' | 'fill' | 'none'",
+      "required": false,
+      "defaultValue": "cover",
+      "description": ""
+    },
+    {
+      "name": "objectPosition",
+      "type": "string",
+      "required": false,
+      "description": "Accepted for web parity; currently a no-op on native."
+    },
+    {
+      "name": "loading",
+      "type": "'auto' | 'lazy' | 'eager'",
+      "required": false,
+      "description": "No-op on native (RN images are eager)."
+    },
+    {
+      "name": "width",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Container width — number (px) or string (%/dim)."
+    },
+    {
+      "name": "height",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Container height — number (px) or string (%/dim)."
+    },
+    {
+      "name": "onPress",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Press handler (interactive only)."
+    },
+    {
+      "name": "onLoad",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Image-loaded callback."
+    },
+    {
+      "name": "onError",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Image-error callback."
+    },
+    {
+      "name": "fallback",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Custom error fallback node (wins over fallbackSrc)."
+    },
+    {
+      "name": "fallbackSrc",
+      "type": "string",
+      "required": false,
+      "description": "Fallback image URL when src fails and no `fallback` is set."
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": false,
+      "description": "Overrides the accessible name (defaults to `alt`)."
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.kb.rn.Image",
+    "type": "object",
+    "properties": {
+      "src": {
+        "type": "string",
+        "description": "Image source URL (required)."
+      },
+      "alt": {
+        "type": "string",
+        "description": "Accessible alt text (required) — used as accessibilityLabel."
+      },
+      "aspectRatio": {
+        "enum": [
+          "auto",
+          "1:1",
+          "1:2",
+          "2:1",
+          "2:3",
+          "3:2",
+          "3:4",
+          "4:3",
+          "9:16",
+          "16:9",
+          "9:21",
+          "21:9"
+        ],
+        "default": "auto"
+      },
+      "interactive": {
+        "type": "boolean",
+        "default": false,
+        "description": "State-layer overlay + tappable wrapper; actionable → role=\"button\"."
+      },
+      "disabled": {
+        "type": "boolean",
+        "default": false
+      },
+      "fit": {
+        "enum": [
+          "cover",
+          "contain",
+          "fill",
+          "none"
+        ],
+        "description": "Figma alias for objectFit — wins when both are set."
+      },
+      "objectFit": {
+        "enum": [
+          "cover",
+          "contain",
+          "fill",
+          "none"
+        ],
+        "default": "cover"
+      },
+      "objectPosition": {
+        "type": "string",
+        "description": "Accepted for web parity; currently a no-op on native."
+      },
+      "loading": {
+        "enum": [
+          "auto",
+          "lazy",
+          "eager"
+        ],
+        "description": "No-op on native (RN images are eager)."
+      },
+      "width": {
+        "description": "Container width — number (px) or string (%/dim)."
+      },
+      "height": {
+        "description": "Container height — number (px) or string (%/dim)."
+      },
+      "onPress": {
+        "description": "Press handler (interactive only)."
+      },
+      "onLoad": {
+        "description": "Image-loaded callback."
+      },
+      "onError": {
+        "description": "Image-error callback."
+      },
+      "fallback": {
+        "description": "Custom error fallback node (wins over fallbackSrc)."
+      },
+      "fallbackSrc": {
+        "type": "string",
+        "description": "Fallback image URL when src fails and no `fallback` is set."
+      },
+      "aria-label": {
+        "type": "string",
+        "description": "Overrides the accessible name (defaults to `alt`)."
+      }
+    },
+    "required": [
+      "src",
+      "alt"
+    ]
+  },
+  "tokens": {
+    "color": [
+      "neutral"
+    ],
+    "surface": [
+      "minimal"
+    ]
+  },
+  "a11y": {
+    "accessibilityRole": "image",
+    "accessibilityState": [
+      "disabled"
+    ],
+    "accessibleNameSource": "aria-label",
+    "minTouchTarget": 44,
+    "honorsBoldText": false,
+    "honorsScreenReader": true
+  },
+  "renderHints": {
+    "baseElement": "Image",
+    "animatedOn": [],
+    "honorsReduceMotion": false,
+    "readsFromSurfaceContext": true
+  },
+  "figma": {
+    "componentKey": "jds-image-v4",
+    "keyHistory": [],
+    "variantProperties": {
+      "Component": "Image"
+    }
+  },
+  "codeSnippets": [
+    {
+      "id": "import-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { Image } from '@oneui/ui-native';\n\n<Image />"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "image",
+    "display",
+    "media",
+    "image",
+    "surface-aware"
+  ],
+  "importPath": "@oneui/ui-native"
+}

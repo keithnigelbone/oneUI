@@ -1,0 +1,103 @@
+/**
+ * SliderActiveTrack.module.css
+ *
+ * Indicator fill — the filled portion of the track.
+ * Base UI positions it absolutely via left/right (horizontal) or top/bottom
+ * (vertical) based on the current values. We pin the remaining two sides so
+ * the indicator always spans the full track thickness (matches Figma node
+ * 5723:7601 ActiveTrackContinuousInside where the fill is same height as
+ * the rail).
+ */
+
+.indicator {
+  border-radius: var(--Slider-trackBorderRadius, var(--Shape-Pill));
+  background-color: var(--_slider-fill);
+  transition: background-color var(--Motion-Duration-XS) var(--Motion-Easing-Transition-Moderate);
+}
+
+/* Horizontal: pin top + bottom so fill is 100% of track height */
+:global([data-orientation="horizontal"]) .indicator {
+  top: 0;
+  bottom: 0;
+  height: 100%;
+}
+
+/* Vertical: pin left + right so fill is 100% of track width */
+:global([data-orientation="vertical"]) .indicator {
+  left: 0;
+  right: 0;
+  width: 100%;
+}
+
+/*
+ * inside knob — extend fill so knob dots appear inside the pill caps.
+ *
+ * Base UI sets indicator position:relative + inset-inline-start:N% + width:W%.
+ * The pill cap tip lands exactly on the dot center, so dots appear at the fill
+ * boundary. A ::before pseudo-element with negative offsets creates ONE wider
+ * pill — this avoids the figure-8 artefact that box-shadow produces when the
+ * two knobs are very close (box-shadow duplicates the full pill at each offset,
+ * causing two overlapping circles).
+ *
+ * Single (no [data-range]): extend right only — left edge is at the track
+ *   start so no extension is needed there.
+ * Range ([data-range]): extend both sides — both edges are at thumb positions.
+ */
+
+/* ---- horizontal ---- */
+:global([data-knob-style="inside"]:not([data-range])[data-orientation="horizontal"]) .indicator::before {
+  --_r: calc(var(--Slider-trackHeight-inside, var(--Spacing-3)) / 2);
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: calc(var(--_r) * -1);
+  background-color: var(--_slider-fill);
+  border-radius: inherit;
+  transition: inherit;
+  pointer-events: none;
+}
+
+:global([data-knob-style="inside"][data-range][data-orientation="horizontal"]) .indicator::before {
+  --_r: calc(var(--Slider-trackHeight-inside, var(--Spacing-3)) / 2);
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(var(--_r) * -1);
+  right: calc(var(--_r) * -1);
+  background-color: var(--_slider-fill);
+  border-radius: inherit;
+  transition: inherit;
+  pointer-events: none;
+}
+
+/* ---- vertical ---- */
+:global([data-knob-style="inside"]:not([data-range])[data-orientation="vertical"]) .indicator::before {
+  --_r: calc(var(--Slider-trackHeight-inside, var(--Spacing-3)) / 2);
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: calc(var(--_r) * -1);
+  background-color: var(--_slider-fill);
+  border-radius: inherit;
+  transition: inherit;
+  pointer-events: none;
+}
+
+:global([data-knob-style="inside"][data-range][data-orientation="vertical"]) .indicator::before {
+  --_r: calc(var(--Slider-trackHeight-inside, var(--Spacing-3)) / 2);
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(var(--_r) * -1);
+  bottom: calc(var(--_r) * -1);
+  background-color: var(--_slider-fill);
+  border-radius: inherit;
+  transition: inherit;
+  pointer-events: none;
+}

@@ -1,0 +1,37 @@
+/**
+ * Global styles
+ * Minimal CSS reset and foundational styles
+ */
+
+@import '@oneui/tokens/css';
+@import '@oneui/tokens/css/semantic';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--Typography-Font-Primary, system-ui, -apple-system, sans-serif);
+  /* Prevent body-level scrolling - let containers handle scrolling */
+  overflow: hidden;
+  height: 100%;
+}
+
+body {
+  background-color: var(--Surface-Default);
+  color: var(--Text-High);
+  line-height: 1.5;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+}

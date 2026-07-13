@@ -1,0 +1,251 @@
+/**
+ * canvas.module.css
+ *
+ * Full-bleed canvas page — takes 100% of available space.
+ * No secondary nav, no padding constraints.
+ */
+
+.page {
+  display: flex;
+  flex-direction: column;
+  height: calc(100% + var(--Spacing-6) * 2);
+  max-width: none !important;
+  margin: calc(-1 * var(--Spacing-6));
+  overflow: hidden;
+}
+
+.errorBanner {
+  padding: var(--Spacing-1-5) var(--Spacing-4);
+  background: var(--Negative-Subtle);
+  color: var(--Negative-High);
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  flex-shrink: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.canvasContainer {
+  flex: 1;
+  position: relative;
+  min-height: 0;
+}
+
+/* tldraw fills this absolutely */
+.canvasContainer > div:first-child {
+  position: absolute;
+  inset: 0;
+}
+
+/* Breakpoint bar removed — resize controls are now in Frame Actions panel */
+
+/* ── Floating bottom-right toolbar (pill shape) ────── */
+
+.floatingActions {
+  position: absolute;
+  bottom: var(--Spacing-4);
+  right: var(--Spacing-4);
+  display: flex;
+  gap: var(--Spacing-1-5);
+  align-items: center;
+  z-index: 400;
+  background: var(--Surface-Elevated);
+  border-radius: var(--Shape-Pill);
+  padding: var(--Spacing-1) var(--Spacing-2);
+  box-shadow: var(--Elevation-1);
+  outline: var(--Stroke-M) solid var(--Neutral-Stroke-Low);
+}
+
+/* Force neutral appearance on Select triggers inside toolbar */
+.floatingActions :global(.trigger),
+.floatingActions :global([class*="trigger"]) {
+  border-color: var(--Neutral-Stroke-Low) !important;
+  background-color: var(--Neutral-Minimal) !important;
+}
+
+.floatingActions :global(.trigger):hover,
+.floatingActions :global([class*="trigger"]):hover {
+  background-color: var(--Neutral-Subtle) !important;
+}
+
+
+.saveNameInput {
+  height: var(--Spacing-5);
+  width: 100px;
+  padding: 0 var(--Spacing-3);
+  font-size: var(--Label-2XS-FontSize);
+  background: var(--Neutral-Minimal);
+  border: var(--Stroke-M) solid var(--Neutral-Stroke-Low);
+  border-radius: var(--Shape-2);
+  color: var(--Text-High);
+  outline: none;
+}
+
+.saveNameInput:focus {
+  border-color: var(--Neutral-Tinted);
+}
+
+.saveNameInput::placeholder {
+  color: var(--Text-Low);
+}
+
+/* ── Sliding panels (code + saved) ─────────────────── */
+
+.codePanel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 360px;
+  background: var(--Surface-Elevated);
+  border-left: var(--Stroke-M) solid var(--Border-Subtle);
+  box-shadow: var(--Elevation-1);
+  display: flex;
+  flex-direction: column;
+  z-index: 350;
+}
+
+.codePanelHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--Spacing-3) var(--Spacing-4);
+  border-bottom: var(--Stroke-M) solid var(--Border-Subtle);
+  flex-shrink: 0;
+}
+
+.codePanelTitle {
+  font-size: var(--Label-M-FontSize);
+  font-weight: var(--Label-FontWeight-High);
+  color: var(--Text-High);
+}
+
+.codePanelActions {
+  display: flex;
+  gap: var(--Spacing-1-5);
+  align-items: center;
+}
+
+/* Code panel actions use ToggleGroup + IconButton — no custom button CSS needed */
+
+.codePanelBody {
+  flex: 1;
+  overflow: auto;
+  padding: var(--Spacing-3-5) var(--Spacing-4);
+  scrollbar-width: thin;
+}
+
+.codeBlock {
+  font-family: var(--Typography-Font-Code, 'JetBrains Mono', monospace);
+  font-size: var(--Code-S-FontSize);
+  line-height: var(--Code-S-LineHeight);
+  color: var(--Text-High);
+  white-space: pre;
+  margin: 0;
+  tab-size: 2;
+}
+
+.codeEmpty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: var(--Text-Low);
+  font-size: var(--Body-S-FontSize);
+}
+
+/* ── Saved compositions list ───────────────────────── */
+
+.savedList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-3);
+}
+
+.savedItem {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-1-5);
+  padding: var(--Spacing-3);
+  background: var(--Neutral-Minimal, var(--Surface-Minimal));
+  border-radius: var(--Shape-3-5);
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+}
+
+.savedItemHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--Spacing-3);
+}
+
+.savedItemName {
+  font-size: var(--Label-S-FontSize);
+  font-weight: var(--Label-FontWeight-Medium);
+  color: var(--Text-High);
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.savedItemDate {
+  font-size: var(--Label-3XS-FontSize, 9px);
+  color: var(--Text-Low);
+  flex-shrink: 0;
+}
+
+.savedItemCode {
+  font-family: var(--Typography-Font-Code, monospace);
+  font-size: var(--Code-XS-FontSize, 10px);
+  color: var(--Text-Low);
+  line-height: 1.3;
+  max-height: 48px;
+  overflow: hidden;
+  margin: 0;
+  white-space: pre;
+}
+
+.savedItemActions {
+  display: flex;
+  gap: var(--Spacing-2);
+  padding-top: var(--Spacing-1-5);
+}
+
+/* Saved item actions use Button + IconButton components — no custom button CSS needed */
+
+/* ── Status bar — bottom-left ──────────────────────── */
+
+.statusBar {
+  position: absolute;
+  bottom: var(--Spacing-2);
+  left: 220px;
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-2);
+  padding: var(--Spacing-1) var(--Spacing-3);
+  background: var(--Surface-Elevated);
+  border-radius: var(--Shape-3-5);
+  box-shadow: var(--Elevation-1);
+  z-index: 300;
+}
+
+.statusItem {
+  font-size: var(--Label-3XS-FontSize);
+  color: var(--Text-Low);
+  font-weight: var(--Label-FontWeight-Medium);
+}
+
+.statusItemError {
+  font-size: var(--Label-3XS-FontSize);
+  color: var(--Negative-Tinted);
+  font-weight: var(--Label-FontWeight-Medium);
+}
+
+.statusDot {
+  width: var(--Spacing-1);
+  height: var(--Spacing-1);
+  border-radius: var(--Shape-Pill);
+  background: var(--Border-Subtle);
+}

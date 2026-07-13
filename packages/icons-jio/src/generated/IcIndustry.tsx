@@ -1,0 +1,30 @@
+import React, { forwardRef } from 'react';
+import type { IconComponentProps } from '../iconProps';
+
+export const IcIndustry = forwardRef<SVGSVGElement, IconComponentProps>(function IcIndustry(
+  { size = 24, width, height, color = 'currentColor', className, style, ...props },
+  ref,
+) {
+  const dim = width ?? height ?? size;
+  return (
+    <svg
+      ref={ref}
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      width={width ?? dim}
+      height={height ?? dim}
+      color={color}
+      className={className}
+      style={style}
+      {...props}
+    >
+      <path
+            fill="currentColor"
+            d="M5 6a1 1 0 0 1-.71-1.71 3.67 3.67 0 0 1 4-.76c1 .25 1.48.34 2-.24a1.003 1.003 0 1 1 1.42 1.42 3.67 3.67 0 0 1-4 .76c-1-.25-1.48-.34-2 .24A1 1 0 0 1 5 6M20.55 10.17a1 1 0 0 0-.94-.09L16 11.63V11a1 1 0 0 0-1.39-.92L11 11.63V11a1 1 0 0 0-1.39-.92L7 11.2V8a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v11a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-8a1 1 0 0 0-.45-.83M9 16.5a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5zm4 0a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5zm4 0a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"
+          />
+    </svg>
+  );
+});
+
+IcIndustry.displayName = 'IcIndustry';

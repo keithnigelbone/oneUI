@@ -1,0 +1,259 @@
+/**
+ * Tooltip.module.css
+ * Token-only styling for Tooltip component
+ *
+ * INTENTIONAL-LITERAL: the Figma spec hex / px values referenced below are
+ * documentation only — the actual CSS beneath uses token references. The
+ * literal-check scanner otherwise flags hex strings inside docblock comments.
+ *
+ * Figma spec: Near-black bg (#0c0d10), Body S Medium typography,
+ * Shape-4XS (6px) radius, Spacing-1-5/XS (6px/12px) padding.
+ * Uses Surface-Bold + Text-OnBold-High (legacy theme tokens defined in
+ * [data-mode] CSS) so data-mode="light" on the popup always forces
+ * the dark tooltip appearance regardless of the page theme.
+ *
+ * Arrow pattern follows Base UI's official CSS Modules example exactly.
+ * Verified by: pnpm check:literals
+ */
+
+/* Trigger wrapper — transparent layout wrapper so Base UI's event
+   handlers reach the DOM even when children don't spread rest props.
+   `width: fit-content` keeps the span the same size as its child so the
+   popup is anchored to the visible trigger, not the parent layout box.
+   Without it, `display: inline-flex` still stretches to fill a CSS Grid
+   cell (default `justify-items: stretch`), and the popup lands at the
+   cell edge instead of next to the trigger. */
+.trigger {
+  display: inline-flex;
+  width: fit-content;
+  border: none;
+  padding: 0;
+  margin: 0;
+  background: none;
+  font: inherit;
+  color: inherit;
+  cursor: inherit;
+  text-align: inherit;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+/* Positioner */
+.positioner {
+  z-index: var(--Z-Index-Tooltip);
+}
+
+/* Keep positioner in layout when closed so the popup's CSS is computed
+   from initial page load (instead of racing layout against animation on
+   first hover). Visibility comes from the popup's own opacity / transform
+   when closed (data-closed / [data-starting-style] etc.). */
+.positioner[hidden] {
+  display: block !important;
+}
+
+/* Popup — Base UI standard pattern: CSS transitions paired with
+   `[data-starting-style]` / `[data-ending-style]`. Base UI applies an inline
+   `transition: none` during the brief 'starting' frame so the popup snaps to
+   the starting-style values; when that frame ends, both the inline override
+   and `[data-starting-style]` are removed in the same paint, and the browser
+   fires the property-change transitions. The same mechanism drives exit when
+   `[data-ending-style]` is applied.
+
+   We tried keyframe animations earlier; on focus-triggered opens the
+   keyframe's frame-0 capture races with React's synchronous state updates
+   and the entrance gets clipped. Transitions don't have that problem
+   because they're triggered by computed-value changes, not animation-name. */
+.popup {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--Tooltip-borderRadius, var(--Shape-1-5));
+  background-color: var(--Tooltip-backgroundColor, var(--Surface-Bold));
+  color: var(--Tooltip-textColor, var(--Text-OnBold-High));
+  padding: var(--Spacing-1-5) var(--Spacing-3);
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Primary, inherit));
+  font-size: var(--Body-S-FontSize);
+  font-weight: var(--Body-FontWeight-Medium);
+  line-height: var(--Body-S-LineHeight);
+  font-optical-sizing: var(--Tooltip-fontOpticalSizing, var(--Body-FontOpticalSizing, auto));
+  font-variation-settings: var(--Tooltip-fontVariationSettings, var(--Body-OpszVariation, normal));
+  white-space: nowrap;
+  box-shadow: var(--Elevation-2);
+  max-width: var(--Tooltip-maxWidth);
+  transform-origin: var(--transform-origin);
+
+  /* Natural (open) state values — what the popup transitions TO on entrance
+     and AWAY FROM on exit. */
+  opacity: 1;
+  transform: translate(0, 0);
+
+  /* Entrance: M duration, Entrance Moderate easing (default). */
+  transition: opacity var(--Motion-Duration-M) var(--Motion-Easing-Entrance-Moderate),
+    transform var(--Motion-Duration-M) var(--Motion-Easing-Entrance-Moderate);
+}
+
+/* Hide the popup completely when fully closed (mounted but not in any
+   transition phase). */
+.popup[data-closed]:not([data-starting-style]):not([data-ending-style]) {
+  opacity: 0;
+}
+
+/* Starting / ending values per side. Same values for both — the entrance
+   transitions FROM these to natural, the exit transitions TO these from
+   natural. */
+.popup[data-side='top'][data-starting-style],
+.popup[data-side='top'][data-ending-style] {
+  opacity: 0;
+  transform: translateY(5px);
+}
+
+.popup[data-side='bottom'][data-starting-style],
+.popup[data-side='bottom'][data-ending-style] {
+  opacity: 0;
+  transform: translateY(-5px);
+}
+
+.popup[data-side='left'][data-starting-style],
+.popup[data-side='left'][data-ending-style] {
+  opacity: 0;
+  transform: translateX(5px);
+}
+
+.popup[data-side='right'][data-starting-style],
+.popup[data-side='right'][data-ending-style] {
+  opacity: 0;
+  transform: translateX(-5px);
+}
+
+/* Exit uses Exit Moderate easing. */
+.popup[data-ending-style] {
+  transition-timing-function: var(--Motion-Easing-Exit-Moderate);
+}
+
+/* Adjacent-tooltip "instant" mode (FloatingDelayGroup behavior). */
+.popup[data-instant] {
+  transition: none !important;
+}
+
+/* Subtle motion (Motion Foundations a11y level): only opacity animates.
+   Faster Subtle-L duration, Subtle entrance/exit easings, transform held at
+   none so the popup doesn't slide. Activated via the `subtle` prop or
+   automatically when the OS reports `prefers-reduced-motion: reduce`.
+
+   Variable remap is scoped to the popup, so descendants (including .arrow)
+   inherit the subtle duration/easing automatically. */
+.popup[data-motion='subtle'] {
+  --Motion-Duration-M: var(--Motion-Duration-Subtle-M);
+  --Motion-Easing-Entrance-Moderate: var(--Motion-Easing-Entrance-Subtle);
+  --Motion-Easing-Exit-Moderate: var(--Motion-Easing-Exit-Subtle);
+}
+
+/* Suppress the side-specific transform in subtle mode — higher specificity
+   than the per-side starting/ending rules so it wins. Opacity still
+   animates 0 → 1 (entrance) and 1 → 0 (exit). */
+.popup[data-motion='subtle'][data-side='top'][data-starting-style],
+.popup[data-motion='subtle'][data-side='top'][data-ending-style],
+.popup[data-motion='subtle'][data-side='bottom'][data-starting-style],
+.popup[data-motion='subtle'][data-side='bottom'][data-ending-style],
+.popup[data-motion='subtle'][data-side='left'][data-starting-style],
+.popup[data-motion='subtle'][data-side='left'][data-ending-style],
+.popup[data-motion='subtle'][data-side='right'][data-starting-style],
+.popup[data-motion='subtle'][data-side='right'][data-ending-style] {
+  transform: none;
+}
+
+/* Arrow has no translate in subtle mode — it appears with the popup (opacity only). */
+.popup[data-motion='subtle'] .arrow {
+  translate: 0 0;
+}
+
+/* OS-level reduced motion → same path. Tooltip becomes opacity-only without
+   needing the prop. (Token-layer media query already swaps durations/easings
+   globally; this block handles the transform-suppression that the Tooltip
+   adds on top of the side-specific starting/ending rules, and also forces
+   the arrow's translate to 0 since the inline `--tip-translate` written
+   from React is still the side-specific retracted value when the prop
+   isn't set.) */
+@media (prefers-reduced-motion: reduce) {
+  .popup[data-side='top'][data-starting-style],
+  .popup[data-side='top'][data-ending-style],
+  .popup[data-side='bottom'][data-starting-style],
+  .popup[data-side='bottom'][data-ending-style],
+  .popup[data-side='left'][data-starting-style],
+  .popup[data-side='left'][data-ending-style],
+  .popup[data-side='right'][data-starting-style],
+  .popup[data-side='right'][data-ending-style] {
+    transform: none;
+  }
+  .arrow {
+    translate: 0 0;
+  }
+}
+
+/* When maxWidth is set, allow line breaks inside the bounded width (default .popup is nowrap). */
+.popupMultiline {
+  white-space: normal;
+  overflow-wrap: break-word;
+}
+
+/* Arrow — four pre-oriented SVGs (one per side) live inside the arrow element;
+   CSS shows only the SVG matching [data-side]. No CSS `rotate:` — orientation
+   is baked into each SVG via the path's own `transform` attribute.
+
+   Retracted translate is delivered via the `--tip-translate` CSS custom
+   property, set inline on the Arrow element from React in Tooltip.tsx. This
+   sidesteps a race: the previous approach used `.arrow[data-side='bottom']
+   { translate: 0 11px }`, which depends on Base UI's `data-side` attribute
+   being applied to the DOM node. On the very first hover after page load,
+   `data-side` could lag one paint behind the popup's `data-open`, so the
+   arrow's `translate` momentarily resolved from a different rule (or the
+   default `0 0`), animating from the wrong starting position. An inline
+   `style` is committed in the same React render the `side` prop is read,
+   so `var(--tip-translate)` always resolves to the variant's correct
+   retracted value — first hover included. */
+.arrow {
+  display: flex;
+  translate: var(--tip-translate, 0 0);
+  transition: translate var(--Motion-Duration-L) var(--Motion-Easing-Entrance-Moderate);
+}
+
+/* Per-side anchoring only — the retracted translate is set inline via
+   `--tip-translate` in Tooltip.tsx, not via the attribute selector.
+   Offset matches the Figma 6px tip protrusion exactly (SVG is 6px tall,
+   anchored fully outside the popup; no overlap / seam-hider). */
+.arrow[data-side='top']    { bottom: -6px; }
+.arrow[data-side='bottom'] { top: -6px; }
+.arrow[data-side='left']   { right: -6px; }
+.arrow[data-side='right']  { left: -6px; }
+
+/* Open without any transition phase = NATURAL position. Higher specificity
+   than `.arrow` so this wins; transition fires from the inline-set
+   `--tip-translate` value to `0 0`. */
+.popup[data-open]:not([data-starting-style]):not([data-ending-style]) .arrow {
+  translate: 0 0;
+}
+
+/* Exit uses M duration + Exit Moderate easing. */
+.popup[data-ending-style] .arrow {
+  transition: translate var(--Motion-Duration-M) var(--Motion-Easing-Exit-Moderate);
+}
+
+/* One SVG per side; CSS shows only the matching one. */
+.arrowSvgTop,
+.arrowSvgBottom,
+.arrowSvgLeft,
+.arrowSvgRight {
+  display: none;
+}
+
+.arrow[data-side='top'] .arrowSvgTop,
+.arrow[data-side='bottom'] .arrowSvgBottom,
+.arrow[data-side='left'] .arrowSvgLeft,
+.arrow[data-side='right'] .arrowSvgRight {
+  display: block;
+}
+
+/* Arrow SVG fill — matches the tooltip background */
+.arrowFill {
+  fill: var(--Tooltip-backgroundColor, var(--Surface-Bold));
+}

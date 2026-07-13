@@ -1,0 +1,83 @@
+/**
+ * TemplateLibrary.module.css
+ * Token-only styling for the template library sidebar.
+ */
+
+/* INTENTIONAL-LITERAL: 48px offsets below tldraw toolbar chrome; width/max-height are fixed panel dimensions */
+.library {
+  position: absolute;
+  top: 48px;
+  left: var(--Spacing-3-5);
+  width: 200px;
+  max-height: calc(100% - 110px);
+  overflow-y: auto;
+  background: var(--Surface-Elevated);
+  border-radius: var(--Shape-4);
+  box-shadow: var(--Elevation-3);
+  outline: var(--Stroke-M) solid var(--Border-Subtle);
+  z-index: 300;
+  scrollbar-width: thin;
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  font-size: var(--Label-M-FontSize, var(--Typography-Size-S));
+  font-weight: var(--Label-FontWeight-High, 700);
+  color: var(--Text-High);
+  padding: var(--Spacing-3) var(--Spacing-3-5);
+  border-bottom: var(--Stroke-M) solid var(--Border-Subtle);
+  background: var(--Surface-Elevated);
+  z-index: 1;
+}
+
+.section {
+  padding: var(--Spacing-2) var(--Spacing-3);
+}
+
+.sectionTitle {
+  font-size: var(--Label-2XS-FontSize, var(--Typography-Size-3XS));
+  font-weight: var(--Label-FontWeight-High, 700);
+  color: var(--Text-Low);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: var(--Spacing-2) var(--Spacing-2);
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-1-5);
+  width: 100%;
+  padding: var(--Spacing-2) var(--Spacing-3);
+  background: transparent;
+  border: var(--Stroke-M) solid transparent;
+  border-radius: var(--Shape-2-5);
+  cursor: pointer;
+  text-align: left;
+  transition: background-color var(--Motion-Duration-Discreet-Short) var(--Motion-Easing-Standard);
+}
+
+.card:hover {
+  background: var(--Primary-Subtle, var(--Surface-Subtle));
+  border-color: var(--Border-Subtle);
+}
+
+.cardName {
+  font-size: var(--Label-XS-FontSize, var(--Typography-Size-2XS));
+  font-weight: var(--Label-FontWeight-Medium, 500);
+  color: var(--Text-High);
+}
+
+.cardPreview {
+  font-family: var(--Typography-Font-Code, monospace);
+  font-size: var(--Code-XS-FontSize, 10px);
+  color: var(--Text-Low);
+  white-space: pre;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  /* INTENTIONAL-LITERAL: max-height clamps card preview text, no f-step equivalent */
+  max-height: 36px;
+  margin: 0;
+  line-height: 1.3;
+}

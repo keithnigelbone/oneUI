@@ -1,0 +1,49 @@
+/**
+ * Progress.module.css
+ * Token-only styling for Progress component
+ * Verified by: pnpm check:literals
+ */
+
+/* Track */
+.track {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--Shape-Pill);
+  background-color: var(--Surface-Subtle);
+}
+
+/* Indicator */
+.indicator {
+  background-color: var(--Surface-Bold);
+  border-radius: var(--Shape-Pill);
+  height: 100%;
+  transition: width var(--Motion-Duration-Expressive-Short) var(--Motion-Easing-Emphasized);
+}
+
+/* Indeterminate animation */
+.indicator[data-state='indeterminate'] {
+  width: var(--Progress-Indeterminate-Width, 40%);
+  animation: indeterminate var(--Motion-Duration-Expressive-Long) var(--Motion-Easing-Standard) infinite;
+}
+
+@keyframes indeterminate {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(250%);
+  }
+}
+
+/* Sizes */
+.small .track {
+  height: var(--Spacing-1);
+}
+
+.medium .track {
+  height: var(--Spacing-2);
+}
+
+.large .track {
+  height: var(--Spacing-3);
+}

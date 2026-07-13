@@ -1,0 +1,800 @@
+/**
+ * SegmentedControl.module.css
+ *
+ * Item role vars + appearance classes live on .group (cascade to items).
+ * Track role uses data-track-appearance on .group.
+ * Unselected item hover/pressed follow track role + track emphasis:
+ *   high   → Subtle on Minimal track
+ *   medium/low → Minimal on Ghost track (no heavy grey on bare page)
+ *
+ * Track emphasis:
+ *   high   → minimal surface fill
+ *   medium → ghost fill + stroke-medium border
+ *   low    → ghost fill, no border; larger segment padding (Figma)
+ *
+ * Item attention (selected):
+ *   high   → bold fill + on-bold text + elevation
+ *   medium → subtle fill + tinted-a11y text (resolved appearance role)
+ *   low    → subtle fill + tinted-a11y text (auto/neutral: parent Surface ?? neutral)
+ *
+ * Verified by: pnpm check:literals
+ */
+
+/* ============================================================
+   TRACK (ToggleGroup root)
+   ============================================================ */
+
+.group {
+  /* Track surface tokens — default neutral; remapped by data-track-appearance */
+  --_sc-track-minimal: var(--Neutral-Minimal, var(--Surface-Minimal));
+  --_sc-track-ghost: var(--Neutral-Ghost, var(--Surface-Ghost));
+  --_sc-track-stroke-medium: var(--Neutral-Stroke-Medium, var(--Neutral-Stroke-Low, var(--Surface-Bold)));
+  --_sc-track-stroke-medium-on-bold: var(--Neutral-Stroke-Low, var(--Neutral-Stroke-Medium, var(--Surface-Bold)));
+  /* Unselected segment interaction — remapped per track emphasis below */
+  --_sc-track-subtle: var(--Neutral-Subtle, var(--Surface-Subtle));
+  --_sc-track-subtle-pressed: var(--Neutral-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+  --_sc-track-ghost-pressed: var(--Neutral-Pressed, var(--Surface-Minimal));
+  --_sc-track-text-high: var(--Neutral-High, var(--Text-High));
+  --_sc-track-tinted-a11y: var(--Neutral-TintedA11y, var(--Neutral-Tinted, var(--Surface-Bold)));
+  --_sc-track-hover: var(--_sc-track-minimal);
+  --_sc-track-pressed: var(--_sc-track-ghost-pressed);
+
+  /* Item role tokens — live on the group so appearance classes cascade to every item.
+     (Defining these on .item would reset each segment to Primary and break inherit.) */
+  --_sc-bold: var(--SegmentedControl-roleBold, var(--Primary-Bold, var(--Surface-Bold)));
+  --_sc-bold-high: var(
+    --SegmentedControl-roleBoldHigh,
+    var(--Primary-Bold-TintedA11y, var(--Primary-Bold-High, var(--Text-OnBold-High)))
+  );
+  --_sc-bold-hover: var(--SegmentedControl-roleBoldHover, var(--Primary-Bold-Hover, var(--Surface-Bold-Hover)));
+  --_sc-bold-pressed: var(--SegmentedControl-roleBoldPressed, var(--Primary-Bold-Pressed, var(--Surface-Bold-Pressed)));
+  --_sc-material-fill: var(--SegmentedControl-roleMaterialFill, var(--Primary-Material-Fill));
+  --_sc-material-text: var(--SegmentedControl-roleMaterialText, var(--Primary-Material-Text));
+  --_sc-subtle: var(--SegmentedControl-roleSubtle, var(--Primary-Subtle, var(--Surface-Subtle)));
+  --_sc-subtle-hover: var(--SegmentedControl-roleSubtleHover, var(--Primary-Subtle-Hover, var(--Surface-Subtle-Hover)));
+  --_sc-subtle-pressed: var(--SegmentedControl-roleSubtlePressed, var(--Primary-Subtle-Pressed, var(--Surface-Subtle-Pressed)));
+  --_sc-default-accent-a11y: var(
+    --SegmentedControl-roleTintedA11y,
+    var(--Primary-TintedA11y, var(--Primary-Tinted, var(--Surface-Bold)))
+  );
+  --_sc-default-high: var(--SegmentedControl-roleHigh, var(--Primary-High, var(--Text-High)));
+  --_sc-default-hover: var(--SegmentedControl-roleHover, var(--Primary-Hover, var(--Surface-Minimal)));
+
+  /* Low-attention selected segment — remapped by data-selected-appearance (parent ?? neutral) */
+  --_sc-low-subtle: var(--Neutral-Subtle, var(--Surface-Subtle));
+  --_sc-low-subtle-hover: var(--Neutral-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_sc-low-subtle-pressed: var(--Neutral-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+  --_sc-low-accent-a11y: var(--Neutral-TintedA11y, var(--Neutral-Tinted, var(--Surface-Bold)));
+
+  /* Item dimensions — M + high/medium default; see size × track-emphasis block below */
+  --_sc-item-min-height: var(--Spacing-8);
+  --_sc-item-padding-block: var(--Spacing-0-5);
+  --_sc-item-padding-inline: var(--Spacing-3);
+
+  display: inline-flex;
+  align-items: stretch;
+  box-sizing: border-box;
+  padding: var(--SegmentedControl-trackPadding, var(--Spacing-1));
+  gap: var(--SegmentedControl-trackGap, var(--Spacing-0));
+  border: var(--Stroke-M) solid transparent;
+  background-color: var(--SegmentedControl-trackBackground-high, var(--_sc-track-minimal));
+  border-radius: var(--SegmentedControl-trackRadiusPill, var(--Shape-Pill));
+}
+
+/* Hug-content: track always wraps segments — never shrink bg below item intrinsic width */
+.group:not([data-equal-width]) {
+  width: max-content;
+  min-width: min-content;
+  max-width: max-content;
+}
+
+.group[data-track-emphasis='medium'] {
+  background-color: var(--SegmentedControl-trackBackground-medium, var(--_sc-track-ghost));
+  border-color: var(--SegmentedControl-trackBorder-medium, var(--_sc-track-stroke-medium));
+}
+
+.group[data-track-emphasis='high'] {
+  --_sc-track-hover: var(--_sc-track-subtle);
+  --_sc-track-pressed: var(--_sc-track-subtle-pressed);
+}
+
+/* Ghost track on bold parents — prefer Stroke-Low for visible hairline contrast */
+[data-surface='bold'] .group[data-track-emphasis='medium'] {
+  border-color: var(
+    --SegmentedControl-trackBorder-medium,
+    var(--_sc-track-stroke-medium-on-bold, var(--_sc-track-stroke-medium))
+  );
+}
+
+.group[data-track-emphasis='low'] {
+  background-color: var(--SegmentedControl-trackBackground-low, var(--_sc-track-ghost));
+  border-color: transparent;
+}
+
+.group[data-shape='rectangular'] {
+  border-radius: var(--SegmentedControl-trackRadiusRectangular, var(--Shape-2));
+}
+
+.group[data-equal-width]:not([data-type='icon']) {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+}
+
+/* Icon type — fixed square cells; track always hugs segment row (never 100% stretch) */
+.group[data-type='icon'][data-equal-width] {
+  width: max-content;
+  min-width: min-content;
+  max-width: max-content;
+}
+
+.group[data-type='icon'] .item[data-icon-only] {
+  flex: 0 0 auto;
+}
+
+.group[data-type='icon'][data-equal-width] .item[data-icon-only] {
+  flex: 0 0 var(--SegmentedControl-iconItemSize, var(--_sc-icon-item-size));
+  min-width: var(--SegmentedControl-iconItemSize, var(--_sc-icon-item-size));
+}
+
+.group[data-disabled] {
+  opacity: var(--Disabled-Opacity);
+  pointer-events: none;
+}
+
+/* Item padding/min-height — Figma size × trackEmphasis (high/medium share values) */
+.group[data-size='s'] {
+  --_sc-item-min-height: var(--Spacing-6);
+  --_sc-item-padding-block: var(--Spacing-0-5);
+  --_sc-item-padding-inline: var(--Spacing-2-5);
+}
+
+.group[data-size='m'] {
+  --_sc-item-min-height: var(--Spacing-8);
+  --_sc-item-padding-block: var(--Spacing-0-5);
+  --_sc-item-padding-inline: var(--Spacing-3);
+}
+
+.group[data-size='l'] {
+  --_sc-item-min-height: var(--Spacing-10);
+  --_sc-item-padding-block: var(--Spacing-1);
+  --_sc-item-padding-inline: var(--Spacing-6);
+}
+
+.group[data-track-emphasis='low'][data-size='s'] {
+  --_sc-item-min-height: var(--Spacing-8);
+  --_sc-item-padding-block: var(--Spacing-0-5);
+  --_sc-item-padding-inline: var(--Spacing-3);
+}
+
+.group[data-track-emphasis='low'][data-size='m'] {
+  --_sc-item-min-height: var(--Spacing-10);
+  --_sc-item-padding-block: var(--Spacing-1);
+  --_sc-item-padding-inline: var(--Spacing-4);
+}
+
+.group[data-track-emphasis='low'][data-size='l'] {
+  --_sc-item-min-height: var(--Spacing-12);
+  --_sc-item-padding-block: var(--Spacing-2);
+  --_sc-item-padding-inline: var(--Spacing-6);
+}
+
+/* Icon-only segment box — Figma: fixed square width, zero padding (size × track emphasis) */
+.group[data-type='icon'][data-size='s'] {
+  --_sc-icon-item-size: var(--Spacing-6);
+}
+
+.group[data-type='icon'][data-track-emphasis='low'][data-size='s'] {
+  --_sc-icon-item-size: var(--Spacing-8);
+}
+
+.group[data-type='icon'][data-size='m'] {
+  --_sc-icon-item-size: var(--Spacing-8);
+}
+
+.group[data-type='icon'][data-track-emphasis='low'][data-size='m'] {
+  --_sc-icon-item-size: var(--Spacing-10);
+}
+
+.group[data-type='icon'][data-size='l'] {
+  --_sc-icon-item-size: var(--Spacing-10);
+}
+
+.group[data-type='icon'][data-track-emphasis='low'][data-size='l'] {
+  --_sc-icon-item-size: var(--Spacing-12);
+}
+
+/* Track role: parent Surface appearance when inside [data-surface], neutral on page */
+.group[data-track-appearance='primary'] {
+  --_sc-track-minimal: var(--Primary-Minimal, var(--Surface-Minimal));
+  --_sc-track-ghost: var(--Primary-Ghost, var(--Surface-Ghost));
+  --_sc-track-stroke-medium: var(--Primary-Stroke-Medium, var(--Primary-Stroke-Low, var(--Surface-Bold)));
+  --_sc-track-stroke-medium-on-bold: var(--Primary-Stroke-Low, var(--Primary-Stroke-Medium, var(--Surface-Bold)));
+  --_sc-track-subtle: var(--Primary-Subtle, var(--Surface-Subtle));
+  --_sc-track-subtle-pressed: var(--Primary-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+  --_sc-track-ghost-pressed: var(--Primary-Pressed, var(--Surface-Minimal));
+  --_sc-track-text-high: var(--Primary-High, var(--Text-High));
+  --_sc-track-tinted-a11y: var(--Primary-TintedA11y, var(--Primary-Tinted, var(--Surface-Bold)));
+}
+
+.group[data-track-appearance='neutral'] {
+  --_sc-track-minimal: var(--Neutral-Minimal, var(--Surface-Minimal));
+  --_sc-track-ghost: var(--Neutral-Ghost, var(--Surface-Ghost));
+  --_sc-track-stroke-medium: var(--Neutral-Stroke-Medium, var(--Neutral-Stroke-Low, var(--Surface-Bold)));
+  --_sc-track-stroke-medium-on-bold: var(--Neutral-Stroke-Low, var(--Neutral-Stroke-Medium, var(--Surface-Bold)));
+  --_sc-track-subtle: var(--Neutral-Subtle, var(--Surface-Subtle));
+  --_sc-track-subtle-pressed: var(--Neutral-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+  --_sc-track-ghost-pressed: var(--Neutral-Pressed, var(--Surface-Minimal));
+  --_sc-track-text-high: var(--Neutral-High, var(--Text-High));
+  --_sc-track-tinted-a11y: var(--Neutral-TintedA11y, var(--Neutral-Tinted, var(--Surface-Bold)));
+}
+
+.group[data-track-appearance='secondary'] {
+  --_sc-track-minimal: var(--Secondary-Minimal, var(--Surface-Minimal));
+  --_sc-track-ghost: var(--Secondary-Ghost, var(--Surface-Ghost));
+  --_sc-track-stroke-medium: var(--Secondary-Stroke-Medium, var(--Secondary-Stroke-Low, var(--Surface-Bold)));
+  --_sc-track-stroke-medium-on-bold: var(--Secondary-Stroke-Low, var(--Secondary-Stroke-Medium, var(--Surface-Bold)));
+  --_sc-track-subtle: var(--Secondary-Subtle, var(--Surface-Subtle));
+  --_sc-track-subtle-pressed: var(--Secondary-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+  --_sc-track-ghost-pressed: var(--Secondary-Pressed, var(--Surface-Minimal));
+  --_sc-track-text-high: var(--Secondary-High, var(--Text-High));
+  --_sc-track-tinted-a11y: var(--Secondary-TintedA11y, var(--Secondary-Tinted, var(--Surface-Bold)));
+}
+
+.group[data-track-appearance='sparkle'] {
+  --_sc-track-minimal: var(--Sparkle-Minimal, var(--Surface-Minimal));
+  --_sc-track-ghost: var(--Sparkle-Ghost, var(--Surface-Ghost));
+  --_sc-track-stroke-medium: var(--Sparkle-Stroke-Medium, var(--Sparkle-Stroke-Low, var(--Surface-Bold)));
+  --_sc-track-stroke-medium-on-bold: var(--Sparkle-Stroke-Low, var(--Sparkle-Stroke-Medium, var(--Surface-Bold)));
+  --_sc-track-subtle: var(--Sparkle-Subtle, var(--Surface-Subtle));
+  --_sc-track-subtle-pressed: var(--Sparkle-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+  --_sc-track-ghost-pressed: var(--Sparkle-Pressed, var(--Surface-Minimal));
+  --_sc-track-text-high: var(--Sparkle-High, var(--Text-High));
+  --_sc-track-tinted-a11y: var(--Sparkle-TintedA11y, var(--Sparkle-Tinted, var(--Surface-Bold)));
+}
+
+.group[data-track-appearance='brand-bg'] {
+  --_sc-track-minimal: var(--Brand-Bg-Minimal, var(--Surface-Minimal));
+  --_sc-track-ghost: var(--Brand-Bg-Ghost, var(--Surface-Ghost));
+  --_sc-track-stroke-medium: var(--Brand-Bg-Stroke-Medium, var(--Brand-Bg-Stroke-Low, var(--Surface-Bold)));
+  --_sc-track-stroke-medium-on-bold: var(--Brand-Bg-Stroke-Low, var(--Brand-Bg-Stroke-Medium, var(--Surface-Bold)));
+  --_sc-track-subtle: var(--Brand-Bg-Subtle, var(--Surface-Subtle));
+  --_sc-track-subtle-pressed: var(--Brand-Bg-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+  --_sc-track-ghost-pressed: var(--Brand-Bg-Pressed, var(--Surface-Minimal));
+  --_sc-track-text-high: var(--Brand-Bg-High, var(--Text-High));
+  --_sc-track-tinted-a11y: var(--Brand-Bg-TintedA11y, var(--Brand-Bg-Tinted, var(--Surface-Bold)));
+}
+
+.group[data-track-appearance='positive'] {
+  --_sc-track-minimal: var(--Positive-Minimal, var(--Surface-Minimal));
+  --_sc-track-ghost: var(--Positive-Ghost, var(--Surface-Ghost));
+  --_sc-track-stroke-medium: var(--Positive-Stroke-Medium, var(--Positive-Stroke-Low, var(--Surface-Bold)));
+  --_sc-track-stroke-medium-on-bold: var(--Positive-Stroke-Low, var(--Positive-Stroke-Medium, var(--Surface-Bold)));
+  --_sc-track-subtle: var(--Positive-Subtle, var(--Surface-Subtle));
+  --_sc-track-subtle-pressed: var(--Positive-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+  --_sc-track-ghost-pressed: var(--Positive-Pressed, var(--Surface-Minimal));
+  --_sc-track-text-high: var(--Positive-High, var(--Text-High));
+  --_sc-track-tinted-a11y: var(--Positive-TintedA11y, var(--Positive-Tinted, var(--Surface-Bold)));
+}
+
+.group[data-track-appearance='negative'] {
+  --_sc-track-minimal: var(--Negative-Minimal, var(--Surface-Minimal));
+  --_sc-track-ghost: var(--Negative-Ghost, var(--Surface-Ghost));
+  --_sc-track-stroke-medium: var(--Negative-Stroke-Medium, var(--Negative-Stroke-Low, var(--Surface-Bold)));
+  --_sc-track-stroke-medium-on-bold: var(--Negative-Stroke-Low, var(--Negative-Stroke-Medium, var(--Surface-Bold)));
+  --_sc-track-subtle: var(--Negative-Subtle, var(--Surface-Subtle));
+  --_sc-track-subtle-pressed: var(--Negative-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+  --_sc-track-ghost-pressed: var(--Negative-Pressed, var(--Surface-Minimal));
+  --_sc-track-text-high: var(--Negative-High, var(--Text-High));
+  --_sc-track-tinted-a11y: var(--Negative-TintedA11y, var(--Negative-Tinted, var(--Surface-Bold)));
+}
+
+.group[data-track-appearance='warning'] {
+  --_sc-track-minimal: var(--Warning-Minimal, var(--Surface-Minimal));
+  --_sc-track-ghost: var(--Warning-Ghost, var(--Surface-Ghost));
+  --_sc-track-stroke-medium: var(--Warning-Stroke-Medium, var(--Warning-Stroke-Low, var(--Surface-Bold)));
+  --_sc-track-stroke-medium-on-bold: var(--Warning-Stroke-Low, var(--Warning-Stroke-Medium, var(--Surface-Bold)));
+  --_sc-track-subtle: var(--Warning-Subtle, var(--Surface-Subtle));
+  --_sc-track-subtle-pressed: var(--Warning-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+  --_sc-track-ghost-pressed: var(--Warning-Pressed, var(--Surface-Minimal));
+  --_sc-track-text-high: var(--Warning-High, var(--Text-High));
+  --_sc-track-tinted-a11y: var(--Warning-TintedA11y, var(--Warning-Tinted, var(--Surface-Bold)));
+}
+
+.group[data-track-appearance='informative'] {
+  --_sc-track-minimal: var(--Informative-Minimal, var(--Surface-Minimal));
+  --_sc-track-ghost: var(--Informative-Ghost, var(--Surface-Ghost));
+  --_sc-track-stroke-medium: var(--Informative-Stroke-Medium, var(--Informative-Stroke-Low, var(--Surface-Bold)));
+  --_sc-track-stroke-medium-on-bold: var(--Informative-Stroke-Low, var(--Informative-Stroke-Medium, var(--Surface-Bold)));
+  --_sc-track-subtle: var(--Informative-Subtle, var(--Surface-Subtle));
+  --_sc-track-subtle-pressed: var(--Informative-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+  --_sc-track-ghost-pressed: var(--Informative-Pressed, var(--Surface-Minimal));
+  --_sc-track-text-high: var(--Informative-High, var(--Text-High));
+  --_sc-track-tinted-a11y: var(--Informative-TintedA11y, var(--Informative-Tinted, var(--Surface-Bold)));
+}
+
+/* Low-attention selected segment role — mirrors track (parent Surface ?? neutral) */
+.group[data-selected-appearance='primary'] {
+  --_sc-low-subtle: var(--Primary-Subtle, var(--Surface-Subtle));
+  --_sc-low-subtle-hover: var(--Primary-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_sc-low-subtle-pressed: var(--Primary-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+  --_sc-low-accent-a11y: var(--Primary-TintedA11y, var(--Primary-Tinted, var(--Surface-Bold)));
+}
+
+.group[data-selected-appearance='neutral'] {
+  --_sc-low-subtle: var(--Neutral-Subtle, var(--Surface-Subtle));
+  --_sc-low-subtle-hover: var(--Neutral-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_sc-low-subtle-pressed: var(--Neutral-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+  --_sc-low-accent-a11y: var(--Neutral-TintedA11y, var(--Neutral-Tinted, var(--Surface-Bold)));
+}
+
+.group[data-selected-appearance='secondary'] {
+  --_sc-low-subtle: var(--Secondary-Subtle, var(--Surface-Subtle));
+  --_sc-low-subtle-hover: var(--Secondary-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_sc-low-subtle-pressed: var(--Secondary-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+  --_sc-low-accent-a11y: var(--Secondary-TintedA11y, var(--Secondary-Tinted, var(--Surface-Bold)));
+}
+
+.group[data-selected-appearance='sparkle'] {
+  --_sc-low-subtle: var(--Sparkle-Subtle, var(--Surface-Subtle));
+  --_sc-low-subtle-hover: var(--Sparkle-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_sc-low-subtle-pressed: var(--Sparkle-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+  --_sc-low-accent-a11y: var(--Sparkle-TintedA11y, var(--Sparkle-Tinted, var(--Surface-Bold)));
+}
+
+.group[data-selected-appearance='brand-bg'] {
+  --_sc-low-subtle: var(--Brand-Bg-Subtle, var(--Surface-Subtle));
+  --_sc-low-subtle-hover: var(--Brand-Bg-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_sc-low-subtle-pressed: var(--Brand-Bg-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+  --_sc-low-accent-a11y: var(--Brand-Bg-TintedA11y, var(--Brand-Bg-Tinted, var(--Surface-Bold)));
+}
+
+.group[data-selected-appearance='positive'] {
+  --_sc-low-subtle: var(--Positive-Subtle, var(--Surface-Subtle));
+  --_sc-low-subtle-hover: var(--Positive-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_sc-low-subtle-pressed: var(--Positive-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+  --_sc-low-accent-a11y: var(--Positive-TintedA11y, var(--Positive-Tinted, var(--Surface-Bold)));
+}
+
+.group[data-selected-appearance='negative'] {
+  --_sc-low-subtle: var(--Negative-Subtle, var(--Surface-Subtle));
+  --_sc-low-subtle-hover: var(--Negative-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_sc-low-subtle-pressed: var(--Negative-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+  --_sc-low-accent-a11y: var(--Negative-TintedA11y, var(--Negative-Tinted, var(--Surface-Bold)));
+}
+
+.group[data-selected-appearance='warning'] {
+  --_sc-low-subtle: var(--Warning-Subtle, var(--Surface-Subtle));
+  --_sc-low-subtle-hover: var(--Warning-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_sc-low-subtle-pressed: var(--Warning-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+  --_sc-low-accent-a11y: var(--Warning-TintedA11y, var(--Warning-Tinted, var(--Surface-Bold)));
+}
+
+.group[data-selected-appearance='informative'] {
+  --_sc-low-subtle: var(--Informative-Subtle, var(--Surface-Subtle));
+  --_sc-low-subtle-hover: var(--Informative-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_sc-low-subtle-pressed: var(--Informative-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+  --_sc-low-accent-a11y: var(--Informative-TintedA11y, var(--Informative-Tinted, var(--Surface-Bold)));
+}
+
+/* ============================================================
+   ITEM (Toggle)
+   ============================================================ */
+
+.item {
+  position: relative;
+  display: inline-flex;
+  flex: 0 1 auto;
+  align-items: stretch;
+  justify-content: center;
+  margin: var(--Spacing-0);
+  padding: var(--Spacing-0);
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  overflow: clip;
+  font-family: var(--Typography-Font-Primary);
+  border-radius: var(--SegmentedControl-itemRadiusPill, var(--Shape-Pill));
+  transition:
+    color var(--Motion-Duration-Discreet-Short) var(--Motion-Easing-Standard),
+    background-color var(--Motion-Duration-Discreet-Short) var(--Motion-Easing-Standard),
+    box-shadow var(--Motion-Duration-Discreet-Short) var(--Motion-Easing-Standard);
+}
+
+.group[data-shape='rectangular'] .item {
+  border-radius: var(--SegmentedControl-itemRadiusRectangular, var(--Shape-2));
+}
+
+.group[data-equal-width]:not([data-type='icon']) .item {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.item[data-disabled] {
+  opacity: var(--Disabled-Opacity);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.stateLayer {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: inherit;
+  color: var(--SegmentedControl-itemText-unselected, var(--_sc-track-text-high, var(--Text-High)));
+  background-color: transparent;
+  transition:
+    color var(--Motion-Duration-Discreet-Short) var(--Motion-Easing-Standard),
+    background-color var(--Motion-Duration-Discreet-Short) var(--Motion-Easing-Standard),
+    box-shadow var(--Motion-Duration-Discreet-Short) var(--Motion-Easing-Standard);
+}
+
+.contentWrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--SegmentedControl-itemGap-s, var(--Spacing-1));
+}
+
+.item[data-size='m'] .contentWrapper {
+  gap: var(--SegmentedControl-itemGap-m, var(--Spacing-1-5));
+}
+
+.item[data-size='l'] .contentWrapper {
+  gap: var(--SegmentedControl-itemGap-l, var(--Spacing-2));
+}
+
+.label {
+  font-weight: var(--Label-FontWeight-High);
+  white-space: nowrap;
+}
+
+.start,
+.end {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.item[data-size='s'] .stateLayer {
+  min-height: var(--SegmentedControl-itemMinHeight-s, var(--_sc-item-min-height));
+  padding-block: var(--SegmentedControl-itemPaddingVertical-s, var(--_sc-item-padding-block));
+  padding-inline: var(--SegmentedControl-itemPaddingHorizontal-s, var(--_sc-item-padding-inline));
+}
+
+.item[data-size='s'] .label {
+  font-size: var(--Label-S-FontSize);
+  line-height: var(--Label-S-LineHeight);
+}
+
+.item[data-size='m'] .stateLayer {
+  min-height: var(--SegmentedControl-itemMinHeight-m, var(--_sc-item-min-height));
+  padding-block: var(--SegmentedControl-itemPaddingVertical-m, var(--_sc-item-padding-block));
+  padding-inline: var(--SegmentedControl-itemPaddingHorizontal-m, var(--_sc-item-padding-inline));
+}
+
+.item[data-size='m'] .label {
+  font-size: var(--Label-M-FontSize);
+  line-height: var(--Label-M-LineHeight);
+}
+
+.item[data-size='l'] .stateLayer {
+  min-height: var(--SegmentedControl-itemMinHeight-l, var(--_sc-item-min-height));
+  padding-block: var(--SegmentedControl-itemPaddingVertical-l, var(--_sc-item-padding-block));
+  padding-inline: var(--SegmentedControl-itemPaddingHorizontal-l, var(--_sc-item-padding-inline));
+}
+
+.item[data-size='l'] .label {
+  font-size: var(--Label-L-FontSize);
+  line-height: var(--Label-L-LineHeight);
+}
+
+/* Icon-only — zero padding; fixed square box (see --_sc-icon-item-size on .group[data-type='icon']) */
+.group[data-type='icon'] .item[data-icon-only] .stateLayer {
+  padding: var(--Spacing-0);
+  min-height: var(--SegmentedControl-iconItemSize, var(--_sc-icon-item-size));
+}
+
+.group[data-type='icon']:not([data-equal-width]) .item[data-icon-only] .stateLayer {
+  width: var(--SegmentedControl-iconItemSize, var(--_sc-icon-item-size));
+  min-width: var(--SegmentedControl-iconItemSize, var(--_sc-icon-item-size));
+  height: var(--SegmentedControl-iconItemSize, var(--_sc-icon-item-size));
+}
+
+.group[data-type='icon'][data-equal-width] .item[data-icon-only] .stateLayer {
+  width: 100%;
+  height: var(--SegmentedControl-iconItemSize, var(--_sc-icon-item-size));
+}
+
+.item[data-size='s'] .start svg,
+.item[data-size='s'] .end svg {
+  display: block;
+  width: var(--SegmentedControl-iconSize-s, var(--Spacing-4));
+  height: var(--SegmentedControl-iconSize-s, var(--Spacing-4));
+}
+
+.item[data-size='m'] .start svg,
+.item[data-size='m'] .end svg {
+  display: block;
+  width: var(--SegmentedControl-iconSize-m, var(--Spacing-5));
+  height: var(--SegmentedControl-iconSize-m, var(--Spacing-5));
+}
+
+.item[data-size='l'] .start svg,
+.item[data-size='l'] .end svg {
+  display: block;
+  width: var(--SegmentedControl-iconSize-l, var(--Spacing-6));
+  height: var(--SegmentedControl-iconSize-l, var(--Spacing-6));
+}
+
+/* ============================================================
+   UNSELECTED + HOVER / PRESSED
+   Track role + emphasis. High = Subtle on Minimal; medium/low = Minimal on Ghost.
+   ============================================================ */
+
+.item:not([data-pressed]):hover:not([data-disabled]) .stateLayer {
+  background-color: var(--SegmentedControl-itemBackground-hover, var(--_sc-track-hover));
+  color: var(--SegmentedControl-itemText-hover, var(--_sc-track-text-high, var(--Text-High)));
+}
+
+.item:not([data-pressed]):active:not([data-disabled]) .stateLayer {
+  background-color: var(--SegmentedControl-itemBackground-pressed, var(--_sc-track-pressed));
+  color: var(--SegmentedControl-itemText-pressed, var(--_sc-track-text-high, var(--Text-High)));
+}
+
+/* ============================================================
+   SELECTED — attention-driven
+   ============================================================ */
+
+.group[data-attention='high'] .item[data-pressed] .stateLayer {
+  background: var(
+    --SegmentedControl-itemBackground-selected-high,
+    var(--_sc-material-fill, var(--_sc-bold))
+  );
+  color: var(--SegmentedControl-itemText-selected-high, var(--_sc-material-text, var(--_sc-bold-high)));
+  box-shadow: var(--SegmentedControl-itemElevation-selected-high, var(--Elevation-1));
+}
+
+.group[data-attention='high'] .item[data-pressed]:hover:not([data-disabled]) .stateLayer {
+  background: var(--SegmentedControl-itemBackground-selected-high-hover, var(--_sc-bold-hover));
+  color: var(--SegmentedControl-itemText-selected-high, var(--_sc-material-text, var(--_sc-bold-high)));
+}
+
+.group[data-attention='high'] .item[data-pressed]:active:not([data-disabled]) .stateLayer {
+  background: var(--SegmentedControl-itemBackground-selected-high-pressed, var(--_sc-bold-pressed));
+  color: var(--SegmentedControl-itemText-selected-high, var(--_sc-material-text, var(--_sc-bold-high)));
+}
+
+.group[data-attention='medium'] .item[data-pressed] .stateLayer {
+  background-color: var(--SegmentedControl-itemBackground-selected-subtle, var(--_sc-subtle));
+  color: var(--SegmentedControl-itemText-selected-subtle, var(--_sc-default-accent-a11y));
+  box-shadow: none;
+}
+
+.group[data-attention='low'] .item[data-pressed] .stateLayer {
+  background-color: var(--SegmentedControl-itemBackground-selected-subtle, var(--_sc-low-subtle));
+  color: var(--SegmentedControl-itemText-selected-subtle, var(--_sc-low-accent-a11y));
+  box-shadow: none;
+}
+
+.group[data-attention='medium'] .item[data-pressed]:hover:not([data-disabled]) .stateLayer {
+  background-color: var(--SegmentedControl-itemBackground-selected-subtle-hover, var(--_sc-subtle-hover));
+}
+
+.group[data-attention='medium'] .item[data-pressed]:active:not([data-disabled]) .stateLayer {
+  background-color: var(--SegmentedControl-itemBackground-selected-subtle-pressed, var(--_sc-subtle-pressed));
+}
+
+.group[data-attention='low'] .item[data-pressed]:hover:not([data-disabled]) .stateLayer {
+  background-color: var(--SegmentedControl-itemBackground-selected-subtle-hover, var(--_sc-low-subtle-hover));
+}
+
+.group[data-attention='low'] .item[data-pressed]:active:not([data-disabled]) .stateLayer {
+  background-color: var(--SegmentedControl-itemBackground-selected-subtle-pressed, var(--_sc-low-subtle-pressed));
+}
+
+/* ============================================================
+   FOCUS HALO
+   ============================================================ */
+
+.item:focus {
+  outline: none;
+}
+
+.item:focus-visible .stateLayer {
+  box-shadow:
+    0 0 0 var(--Stroke-XL) var(--Surface-Halo-Gap, var(--Surface-Main)),
+    0 0 0 calc(var(--Stroke-XL) + var(--Focus-Outline-Width)) var(--Focus-Outline);
+}
+
+.group[data-attention='high'] .item[data-pressed]:focus-visible .stateLayer {
+  box-shadow:
+    var(--SegmentedControl-itemElevation-selected-high, var(--Elevation-1)),
+    0 0 0 var(--Stroke-XL) var(--Surface-Halo-Gap, var(--Surface-Main)),
+    0 0 0 calc(var(--Stroke-XL) + var(--Focus-Outline-Width)) var(--Focus-Outline);
+}
+
+/* ============================================================
+   SLOT COLOUR PROPAGATION
+   Unselected: pin role bold tokens so CounterBadge reads track-level bold.
+   Selected: slot spans publish data-surface + data-surface-step so the engine
+   re-steps --Primary-Bold for bold-on-bold CounterBadge contrast. Same-role
+   badges skip data-context-boundary; cross-role badges keep the shield.
+   ============================================================ */
+
+.item .start,
+.item .end {
+  --Primary-TintedA11y: var(--_sc-track-tinted-a11y, var(--_sc-default-accent-a11y));
+  --Neutral-High: var(--_sc-track-text-high, var(--Text-High));
+  --Text-High: var(--_sc-track-text-high, var(--Text-High));
+}
+
+.item:not([data-pressed]) .start,
+.item:not([data-pressed]) .end {
+  color: inherit;
+}
+
+.group[data-attention='high'] .item[data-pressed] .start,
+.group[data-attention='high'] .item[data-pressed] .end {
+  --Neutral-High: var(--_sc-bold-high);
+  --Text-High: var(--_sc-bold-high);
+  --Primary-Bold-High: var(--_sc-bold-high);
+}
+
+.group[data-attention='medium'] .item[data-pressed] .start,
+.group[data-attention='medium'] .item[data-pressed] .end {
+  --Neutral-High: var(--_sc-default-accent-a11y);
+  --Text-High: var(--_sc-default-accent-a11y);
+}
+
+.group[data-attention='low'] .item[data-pressed] .start,
+.group[data-attention='low'] .item[data-pressed] .end {
+  --Neutral-High: var(--_sc-low-accent-a11y);
+  --Text-High: var(--_sc-low-accent-a11y);
+}
+
+.contextBoundary {
+  display: contents;
+}
+
+/* ============================================================
+   ITEM APPEARANCE — role remapping (active segment colours)
+   ============================================================ */
+
+.appearancePrimary {
+  --_sc-bold: var(--Primary-Bold, var(--Surface-Bold));
+  --_sc-bold-high: var(--Primary-Bold-TintedA11y, var(--Primary-Bold-High, var(--Text-OnBold-High)));
+  --_sc-bold-hover: var(--Primary-Bold-Hover, var(--Surface-Bold-Hover));
+  --_sc-bold-pressed: var(--Primary-Bold-Pressed, var(--Surface-Bold-Pressed));
+  --_sc-material-fill: var(--Primary-Material-Fill);
+  --_sc-material-text: var(--Primary-Material-Text);
+  --_sc-subtle: var(--Primary-Subtle, var(--Surface-Subtle));
+  --_sc-subtle-hover: var(--Primary-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_sc-subtle-pressed: var(--Primary-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+  --_sc-default-accent-a11y: var(--Primary-TintedA11y, var(--Primary-Tinted, var(--Surface-Bold)));
+  --_sc-default-high: var(--Primary-High, var(--Text-High));
+  --_sc-default-hover: var(--Primary-Hover, var(--Surface-Minimal));
+}
+
+.appearanceNeutral {
+  --_sc-bold: var(--Neutral-Bold, var(--Surface-Bold));
+  --_sc-bold-high: var(--Neutral-Bold-TintedA11y, var(--Neutral-Bold-High, var(--Text-OnBold-High)));
+  --_sc-bold-hover: var(--Neutral-Bold-Hover, var(--Surface-Bold-Hover));
+  --_sc-bold-pressed: var(--Neutral-Bold-Pressed, var(--Surface-Bold-Pressed));
+  --_sc-material-fill: var(--Neutral-Material-Fill);
+  --_sc-material-text: var(--Neutral-Material-Text);
+  --_sc-subtle: var(--Neutral-Subtle, var(--Surface-Subtle));
+  --_sc-subtle-hover: var(--Neutral-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_sc-subtle-pressed: var(--Neutral-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+  --_sc-default-accent-a11y: var(--Neutral-TintedA11y, var(--Neutral-Tinted, var(--Surface-Bold)));
+  --_sc-default-high: var(--Neutral-High, var(--Text-High));
+  --_sc-default-hover: var(--Neutral-Hover, var(--Surface-Minimal));
+}
+
+.appearanceSecondary {
+  --_sc-bold: var(--Secondary-Bold, var(--Surface-Bold));
+  --_sc-bold-high: var(--Secondary-Bold-TintedA11y, var(--Secondary-Bold-High, var(--Text-OnBold-High)));
+  --_sc-bold-hover: var(--Secondary-Bold-Hover, var(--Surface-Bold-Hover));
+  --_sc-bold-pressed: var(--Secondary-Bold-Pressed, var(--Surface-Bold-Pressed));
+  --_sc-material-fill: var(--Secondary-Material-Fill);
+  --_sc-material-text: var(--Secondary-Material-Text);
+  --_sc-subtle: var(--Secondary-Subtle, var(--Surface-Subtle));
+  --_sc-subtle-hover: var(--Secondary-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_sc-subtle-pressed: var(--Secondary-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+  --_sc-default-accent-a11y: var(--Secondary-TintedA11y, var(--Secondary-Tinted, var(--Surface-Bold)));
+  --_sc-default-high: var(--Secondary-High, var(--Text-High));
+  --_sc-default-hover: var(--Secondary-Hover, var(--Surface-Minimal));
+}
+
+.appearanceSparkle {
+  --_sc-bold: var(--Sparkle-Bold, var(--Surface-Bold));
+  --_sc-bold-high: var(--Sparkle-Bold-TintedA11y, var(--Sparkle-Bold-High, var(--Text-OnBold-High)));
+  --_sc-bold-hover: var(--Sparkle-Bold-Hover, var(--Surface-Bold-Hover));
+  --_sc-bold-pressed: var(--Sparkle-Bold-Pressed, var(--Surface-Bold-Pressed));
+  --_sc-material-fill: var(--Sparkle-Material-Fill);
+  --_sc-material-text: var(--Sparkle-Material-Text);
+  --_sc-subtle: var(--Sparkle-Subtle, var(--Surface-Subtle));
+  --_sc-subtle-hover: var(--Sparkle-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_sc-subtle-pressed: var(--Sparkle-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+  --_sc-default-accent-a11y: var(--Sparkle-TintedA11y, var(--Sparkle-Tinted, var(--Surface-Bold)));
+  --_sc-default-high: var(--Sparkle-High, var(--Text-High));
+  --_sc-default-hover: var(--Sparkle-Hover, var(--Surface-Minimal));
+}
+
+.appearanceBrandBg {
+  --_sc-bold: var(--Brand-Bg-Bold, var(--Surface-Bold));
+  --_sc-bold-high: var(--Brand-Bg-Bold-TintedA11y, var(--Brand-Bg-Bold-High, var(--Text-OnBold-High)));
+  --_sc-bold-hover: var(--Brand-Bg-Bold-Hover, var(--Surface-Bold-Hover));
+  --_sc-bold-pressed: var(--Brand-Bg-Bold-Pressed, var(--Surface-Bold-Pressed));
+  --_sc-material-fill: var(--Brand-Bg-Material-Fill);
+  --_sc-material-text: var(--Brand-Bg-Material-Text);
+  --_sc-subtle: var(--Brand-Bg-Subtle, var(--Surface-Subtle));
+  --_sc-subtle-hover: var(--Brand-Bg-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_sc-subtle-pressed: var(--Brand-Bg-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+  --_sc-default-accent-a11y: var(--Brand-Bg-TintedA11y, var(--Brand-Bg-Tinted, var(--Surface-Bold)));
+  --_sc-default-high: var(--Brand-Bg-High, var(--Text-High));
+  --_sc-default-hover: var(--Brand-Bg-Hover, var(--Surface-Minimal));
+}
+
+.appearancePositive {
+  --_sc-bold: var(--Positive-Bold, var(--Surface-Bold));
+  --_sc-bold-high: var(--Positive-Bold-TintedA11y, var(--Positive-Bold-High, var(--Text-OnBold-High)));
+  --_sc-bold-hover: var(--Positive-Bold-Hover, var(--Surface-Bold-Hover));
+  --_sc-bold-pressed: var(--Positive-Bold-Pressed, var(--Surface-Bold-Pressed));
+  --_sc-material-fill: var(--Positive-Material-Fill);
+  --_sc-material-text: var(--Positive-Material-Text);
+  --_sc-subtle: var(--Positive-Subtle, var(--Surface-Subtle));
+  --_sc-subtle-hover: var(--Positive-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_sc-subtle-pressed: var(--Positive-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+  --_sc-default-accent-a11y: var(--Positive-TintedA11y, var(--Positive-Tinted, var(--Surface-Bold)));
+  --_sc-default-high: var(--Positive-High, var(--Text-High));
+  --_sc-default-hover: var(--Positive-Hover, var(--Surface-Minimal));
+}
+
+.appearanceNegative {
+  --_sc-bold: var(--Negative-Bold, var(--Surface-Bold));
+  --_sc-bold-high: var(--Negative-Bold-TintedA11y, var(--Negative-Bold-High, var(--Text-OnBold-High)));
+  --_sc-bold-hover: var(--Negative-Bold-Hover, var(--Surface-Bold-Hover));
+  --_sc-bold-pressed: var(--Negative-Bold-Pressed, var(--Surface-Bold-Pressed));
+  --_sc-material-fill: var(--Negative-Material-Fill);
+  --_sc-material-text: var(--Negative-Material-Text);
+  --_sc-subtle: var(--Negative-Subtle, var(--Surface-Subtle));
+  --_sc-subtle-hover: var(--Negative-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_sc-subtle-pressed: var(--Negative-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+  --_sc-default-accent-a11y: var(--Negative-TintedA11y, var(--Negative-Tinted, var(--Surface-Bold)));
+  --_sc-default-high: var(--Negative-High, var(--Text-High));
+  --_sc-default-hover: var(--Negative-Hover, var(--Surface-Minimal));
+}
+
+.appearanceWarning {
+  --_sc-bold: var(--Warning-Bold, var(--Surface-Bold));
+  --_sc-bold-high: var(--Warning-Bold-TintedA11y, var(--Warning-Bold-High, var(--Text-OnBold-High)));
+  --_sc-bold-hover: var(--Warning-Bold-Hover, var(--Surface-Bold-Hover));
+  --_sc-bold-pressed: var(--Warning-Bold-Pressed, var(--Surface-Bold-Pressed));
+  --_sc-material-fill: var(--Warning-Material-Fill);
+  --_sc-material-text: var(--Warning-Material-Text);
+  --_sc-subtle: var(--Warning-Subtle, var(--Surface-Subtle));
+  --_sc-subtle-hover: var(--Warning-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_sc-subtle-pressed: var(--Warning-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+  --_sc-default-accent-a11y: var(--Warning-TintedA11y, var(--Warning-Tinted, var(--Surface-Bold)));
+  --_sc-default-high: var(--Warning-High, var(--Text-High));
+  --_sc-default-hover: var(--Warning-Hover, var(--Surface-Minimal));
+}
+
+.appearanceInformative {
+  --_sc-bold: var(--Informative-Bold, var(--Surface-Bold));
+  --_sc-bold-high: var(--Informative-Bold-TintedA11y, var(--Informative-Bold-High, var(--Text-OnBold-High)));
+  --_sc-bold-hover: var(--Informative-Bold-Hover, var(--Surface-Bold-Hover));
+  --_sc-bold-pressed: var(--Informative-Bold-Pressed, var(--Surface-Bold-Pressed));
+  --_sc-material-fill: var(--Informative-Material-Fill);
+  --_sc-material-text: var(--Informative-Material-Text);
+  --_sc-subtle: var(--Informative-Subtle, var(--Surface-Subtle));
+  --_sc-subtle-hover: var(--Informative-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_sc-subtle-pressed: var(--Informative-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+  --_sc-default-accent-a11y: var(--Informative-TintedA11y, var(--Informative-Tinted, var(--Surface-Bold)));
+  --_sc-default-high: var(--Informative-High, var(--Text-High));
+  --_sc-default-hover: var(--Informative-Hover, var(--Surface-Minimal));
+}

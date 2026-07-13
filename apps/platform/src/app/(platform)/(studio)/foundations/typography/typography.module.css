@@ -1,0 +1,403 @@
+/**
+ * typography.module.css
+ * Page-specific layout for the Typography Foundation page.
+ */
+
+.mainTabsRow {
+  margin-left: calc(-1 * var(--Spacing-2-5));
+  border-bottom: var(--Stroke-M) solid var(--Border-Subtle);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.mainTabsRow::-webkit-scrollbar {
+  display: none;
+}
+
+.mainTabsList {
+  width: max-content;
+  min-width: 100%;
+}
+
+.tabPanelStack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-4-5);
+  margin-top: calc(-1 * var(--Spacing-4-5));
+}
+
+.tabPanelStack > section {
+  border: none;
+  border-radius: var(--Spacing-0);
+  background: transparent;
+}
+
+.tabPanelStack > section > div:first-child {
+  align-items: flex-start;
+  gap: var(--Spacing-5);
+  padding: var(--Spacing-6) var(--Spacing-0) var(--Spacing-4);
+  border-radius: var(--Spacing-0);
+  background: transparent;
+}
+
+.tabPanelStack > section > div:first-child > div:first-child {
+  flex: 1 1 var(--Dimension-f16);
+  min-width: 0;
+}
+
+.tabPanelStack > section > div:first-child > div:last-child {
+  flex: 0 1 auto;
+}
+
+.tabPanelStack > section > div:first-child:has(.metricControls) {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.tabPanelStack > section > div:first-child:has(.metricControls) > div:last-child {
+  width: 100%;
+}
+
+.tabPanelStack > section > div:last-child {
+  padding: var(--Spacing-4) var(--Spacing-0) var(--Spacing-0);
+  border-radius: var(--Spacing-0);
+  background: transparent;
+}
+
+.metricControls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--Spacing-3) var(--Spacing-5);
+  width: 100%;
+  padding-top: var(--Spacing-3);
+}
+
+.metricControlGroup {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-3);
+}
+
+.metricControlLabel {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+  color: var(--Text-Low);
+}
+
+.minimalCard.minimalCard {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-radius: var(--Spacing-0);
+}
+
+.minimalCardHeader.minimalCardHeader {
+  padding-left: var(--Spacing-0);
+  padding-right: var(--Spacing-0);
+  border-radius: var(--Spacing-0);
+}
+
+.minimalCardContent.minimalCardContent {
+  padding-left: var(--Spacing-0);
+  padding-right: var(--Spacing-0);
+  border-radius: var(--Spacing-0);
+}
+
+.scriptCardHeader.scriptCardHeader {
+  border-bottom: none;
+}
+
+.scriptCardContent.scriptCardContent {
+  padding-top: 0;
+}
+
+.scriptPageWide {
+  max-width: none;
+}
+
+.scriptToolbar {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--Spacing-4);
+  margin-bottom: var(--Spacing-5);
+}
+
+.scriptPresetControl {
+  inline-size: min(100%, var(--Dimension-f16));
+  min-width: 0;
+}
+
+.scriptToolbarActions {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-4);
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.scriptEditBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--Spacing-4);
+  margin-bottom: var(--Spacing-4);
+  padding-block: var(--Spacing-3);
+  border-top: var(--Stroke-M) solid var(--Neutral-Stroke-Low);
+  border-bottom: var(--Stroke-M) solid var(--Neutral-Stroke-Low);
+}
+
+.scriptAccordionList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-0);
+}
+
+.scriptAccordion {
+  border: none;
+  border-bottom: var(--Stroke-S) solid var(--Neutral-Stroke-Low);
+  border-radius: var(--Spacing-0);
+  background: transparent;
+}
+
+.scriptAccordion:first-child {
+  border-top: var(--Stroke-M) solid var(--Neutral-Stroke-Low);
+}
+
+.scriptAccordion:last-child {
+  border-bottom: var(--Stroke-M) solid var(--Neutral-Stroke-Low);
+}
+
+.scriptAccordion:first-child,
+.scriptAccordion:last-child,
+.scriptAccordion:first-child:last-child {
+  border-radius: var(--Spacing-0);
+}
+
+.scriptAccordion:first-child:last-child {
+  border-block: var(--Stroke-M) solid var(--Neutral-Stroke-Low);
+}
+
+.scriptSummary {
+  display: grid;
+  grid-template-columns: minmax(0, var(--Dimension-f14)) minmax(var(--Dimension-f12), 1fr) auto auto;
+  gap: var(--Spacing-4);
+  align-items: center;
+  width: 100%;
+  min-block-size: var(--Dimension-f11);
+  padding: var(--Spacing-4) var(--Spacing-0);
+  cursor: pointer;
+  text-align: left;
+}
+
+.scriptSummary :global(svg:first-child) {
+  order: 10;
+  justify-self: end;
+  box-sizing: content-box;
+  width: var(--Spacing-4);
+  height: var(--Spacing-4);
+  padding: var(--Spacing-2);
+  border-radius: var(--Shape-2);
+  background-color: var(--Surface-Minimal);
+  box-shadow: inset 0 0 0 var(--Stroke-S) var(--Border-Subtle);
+  color: var(--Text-Low);
+  transition:
+    background-color var(--Motion-Duration-Discreet-Short),
+    color var(--Motion-Duration-Discreet-Short),
+    box-shadow var(--Motion-Duration-Discreet-Short);
+}
+
+.scriptSummary:hover :global(svg:first-child),
+.scriptSummary:focus-visible :global(svg:first-child) {
+  background-color: var(--Primary-Subtle);
+  box-shadow: inset 0 0 0 var(--Stroke-M) var(--Primary-Stroke-Low);
+  color: var(--Primary-TintedA11y);
+}
+
+.scriptSummary[data-panel-open] {
+  border-bottom: var(--Stroke-M) solid var(--Neutral-Stroke-Low);
+}
+
+.scriptSelectCell {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.scriptSummary:has(.scriptSelectCell) {
+  grid-template-columns: auto minmax(0, var(--Dimension-f14)) minmax(var(--Dimension-f12), 1fr) auto auto;
+}
+
+.scriptSummaryMain,
+.scriptIdentityBlock,
+.scriptField,
+.scriptPreviewSample,
+.scriptPreviewMeta {
+  display: grid;
+  gap: var(--Spacing-2);
+}
+
+.scriptSummaryTitle,
+.scriptFieldValue,
+.scriptPreviewTitle {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Label-S-FontSize);
+  line-height: var(--Label-S-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+  color: var(--Text-High);
+}
+
+.scriptPreviewTitle {
+  display: block;
+  font-size: var(--Title-S-FontSize);
+  line-height: var(--Title-S-LineHeight);
+  font-weight: var(--Title-S-FontWeight);
+  margin-bottom: var(--Spacing-2);
+}
+
+.scriptSummaryMeta,
+.scriptHelpText,
+.scriptFieldLabel {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Low);
+  color: var(--Text-Low);
+}
+
+.scriptFieldLabel {
+  font-weight: var(--Label-FontWeight-Medium);
+  text-transform: uppercase;
+}
+
+.scriptHelpText {
+  display: block;
+  color: var(--Text-Medium);
+}
+
+.scriptSummaryFont {
+  min-width: 0;
+  max-inline-size: var(--Dimension-f16);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: var(--Body-M-FontSize);
+  line-height: var(--Body-M-LineHeight);
+  font-weight: var(--Body-FontWeight-Low);
+  color: var(--Text-Medium);
+}
+
+.scriptSummaryBadges,
+.scriptPreviewBadges {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: var(--Spacing-2);
+}
+
+.scriptPanel {
+  display: grid;
+  gap: var(--Spacing-5);
+  padding: var(--Spacing-5) var(--Spacing-0);
+}
+
+.scriptPanelShell > div {
+  padding: var(--Spacing-0);
+}
+
+.scriptConfigGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(var(--Dimension-f13), 1fr));
+  gap: var(--Spacing-4);
+  align-items: start;
+}
+
+.scriptCustomGrid {
+  display: grid;
+  grid-template-columns: minmax(var(--Dimension-f13), 1fr) minmax(var(--Dimension-f13), 1fr) auto;
+  gap: var(--Spacing-4);
+  align-items: end;
+  padding-top: var(--Spacing-4);
+  border-top: var(--Stroke-M) solid var(--Neutral-Stroke-Low);
+}
+
+.scriptCustomLineHeight {
+  display: grid;
+  grid-template-columns:
+    minmax(var(--Dimension-f9), var(--Dimension-f11))
+    minmax(var(--Dimension-f12), 1fr)
+    minmax(var(--Dimension-f9), var(--Dimension-f11))
+    minmax(var(--Dimension-f13), 1.3fr);
+  gap: var(--Spacing-3) var(--Spacing-4);
+  align-items: center;
+  padding-top: var(--Spacing-4);
+  border-top: var(--Stroke-M) solid var(--Neutral-Stroke-Low);
+}
+
+.scriptCustomLineHeight .scriptHelpText {
+  grid-column: 1 / -1;
+}
+
+.scriptTokenText {
+  font-family: var(--Typography-Font-Code);
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Low);
+  color: var(--Text-Low);
+  overflow-wrap: anywhere;
+}
+
+.scriptPreviewSection {
+  display: grid;
+  gap: var(--Spacing-4);
+  padding-top: var(--Spacing-5);
+  border-top: var(--Stroke-M) solid var(--Neutral-Stroke-Low);
+}
+
+.scriptPreviewHeader {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: var(--Spacing-4);
+  align-items: start;
+}
+
+.scriptPreviewRows {
+  display: grid;
+  gap: var(--Spacing-4);
+}
+
+.scriptPreviewRow {
+  display: grid;
+  grid-template-columns: minmax(var(--Dimension-f13), var(--Dimension-f16)) minmax(0, 1fr);
+  gap: var(--Spacing-4);
+  align-items: start;
+  padding-block: var(--Spacing-4);
+}
+
+.scriptPreviewSamples {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(var(--Dimension-f16), 1fr));
+  gap: var(--Spacing-4);
+  align-items: start;
+}
+
+.scriptPreviewText {
+  display: -webkit-box;
+  inline-size: 100%;
+  overflow: hidden;
+  overflow-wrap: break-word;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  font-weight: var(--Body-FontWeight-Low);
+  color: var(--Text-High);
+}
+
+.scriptPreviewSample:first-child .scriptPreviewText {
+  color: var(--Text-Medium);
+}

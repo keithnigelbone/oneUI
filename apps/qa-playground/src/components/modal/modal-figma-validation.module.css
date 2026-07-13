@@ -1,0 +1,329 @@
+/**
+ * Modal Figma validation — Viewport-window layout.
+ *
+ * One "browser window" card per platform (360 / 768 / 1024 / 1448 / 1920).
+ * Each card has:
+ *   - A macOS-style frame header showing the platform label.
+ *   - A horizontally-scrollable viewport body (--Surface-Default background)
+ *     containing all 4 modal variants (S, M, L, FullWidth) side-by-side.
+ *   - Annotations (size / header / footer / dividers) directly below each modal.
+ *
+ * FullWidth modal width = platform dp for that row, so it grows visually
+ * from card to card (360 → 1920).  S / M / L keep their fixed token widths.
+ */
+
+/* ─── Page ─────────────────────────────────────────────────── */
+
+.page {
+  max-width: 100%;
+  padding: 0;
+}
+
+.metaLine {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  font-weight: var(--Body-FontWeight-Low);
+  color: var(--Text-Medium);
+  margin: 0 0 var(--Spacing-4-5);
+}
+
+.figmaCaption {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Headline-M-FontSize);
+  line-height: var(--Headline-M-LineHeight);
+  font-weight: var(--Headline-M-FontWeight);
+  color: var(--Text-High);
+  margin: 0 0 var(--Spacing-6);
+}
+
+.figmaCaptionMark {
+  color: var(--Primary-TintedA11y);
+}
+
+/* ─── Viewport cards stack ──────────────────────────────────── */
+
+.viewportStack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-8);
+}
+
+/* ─── Individual viewport card ──────────────────────────────── */
+
+.viewportCard {
+  border: 1px solid var(--Border-Subtle);
+  border-radius: var(--Shape-4);
+  overflow: hidden;
+  box-shadow: var(--Elevation-1);
+}
+
+/* ─── Frame header (browser chrome) ─────────────────────────── */
+
+.frameHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-3);
+  padding: var(--Spacing-3) var(--Spacing-4);
+  background-color: var(--Surface-Subtle);
+  border-bottom: 1px solid var(--Border-Subtle);
+}
+
+/* macOS-style traffic-light dots */
+.frameDots {
+  display: flex;
+  gap: var(--Spacing-1-5);
+  flex-shrink: 0;
+}
+
+.frameDot {
+  width: var(--Spacing-3);
+  height: var(--Spacing-3);
+  border-radius: var(--Shape-Pill);
+  background-color: var(--Neutral-Stroke-Medium);
+  flex-shrink: 0;
+}
+
+/* Fake "address bar" */
+.frameAddressBar {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--Spacing-2);
+}
+
+.framePlatformKey {
+  font-family: var(--Typography-Font-Code);
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Low);
+  color: var(--Text-Low);
+}
+
+.framePlatformValue {
+  font-family: var(--Typography-Font-Code);
+  font-size: var(--Label-S-FontSize);
+  line-height: var(--Label-S-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+  color: var(--Text-Medium);
+}
+
+.frameDividerDot {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Label-XS-FontSize);
+  color: var(--Text-Low);
+}
+
+/* Width badge on the right */
+.frameWidthBadge {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-1);
+  padding: var(--Spacing-1) var(--Spacing-2-5);
+  border-radius: var(--Shape-Pill);
+  background-color: var(--Primary-Subtle);
+}
+
+.frameWidthBadgeIcon {
+  font-size: var(--Label-XS-FontSize);
+  color: var(--Primary-TintedA11y);
+  line-height: 1;
+}
+
+.frameWidthBadgeText {
+  font-family: var(--Typography-Font-Code);
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+  color: var(--Primary-TintedA11y);
+  white-space: nowrap;
+}
+
+/* ─── Viewport body ─────────────────────────────────────────── */
+
+.viewportBody {
+  overflow-x: auto;
+  background-color: var(--Surface-Default);
+  padding: var(--Spacing-9) var(--Spacing-6);
+
+  /* modals side-by-side; FullWidth will be wide → body scrolls */
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: var(--Spacing-6);
+}
+
+/* Keyboard access for the horizontally scrollable region (WCAG 2.1.1) */
+.viewportBody:focus-visible {
+  outline: var(--Focus-Outline-Width) solid var(--Focus-Outline);
+  outline-offset: calc(-1 * var(--Focus-Outline-Width));
+}
+
+/* ─── Individual modal column ───────────────────────────────── */
+
+.modalColumn {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--Spacing-4);
+}
+
+/*
+ * Size classes — applied to the CARD inside each .modalColumn.
+ *
+ * S / M / L render at their natural token widths regardless of platform.
+ * This lets you compare sizes across all viewports (the cards never change).
+ *
+ * FullWidth fills 100% of its column, which has width: platformPx set via a
+ * style prop → it grows from 360 to 1920 dp, making the viewport-wise
+ * variation immediately visible.
+ */
+
+.sizeS {
+  width: var(--Modal-width-S, var(--Dialog-Height-Medium));
+}
+
+.sizeM {
+  width: var(--Modal-width-M, var(--Dialog-Height-Large));
+}
+
+/* INTENTIONAL-LITERAL: product spec 600 px, no token yet */
+.sizeL {
+  width: var(--Modal-width-L, 600px);
+}
+
+/* FullWidth: always fills the platform-width column */
+.sizeFullWidth {
+  width: 100%;
+}
+
+/* ─── Modal preview card ─────────────────────────────────────── */
+
+.previewCard {
+  box-sizing: border-box;
+  width: 100%; /* fills .modalColumn (which has explicit or auto width) */
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--Modal-borderRadius, var(--Shape-4));
+  background-color: var(--Modal-backgroundColor, var(--Surface-Elevated));
+  box-shadow: var(--Elevation-3);
+  overflow: hidden;
+}
+
+.previewHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--Spacing-3);
+  padding: var(--Spacing-4) var(--Spacing-4) var(--Spacing-3);
+  flex-shrink: 0;
+}
+
+.previewTitle {
+  flex: 1;
+  min-width: 0;
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Title-M-FontSize);
+  font-weight: var(--Title-M-FontWeight);
+  line-height: var(--Title-M-LineHeight);
+  color: var(--Text-High);
+  margin: 0;
+}
+
+.previewCloseBtn {
+  flex-shrink: 0;
+  width: var(--Spacing-5);
+  height: var(--Spacing-5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--Shape-Pill);
+  color: var(--Text-Medium);
+  font-size: var(--Label-S-FontSize);
+  font-family: var(--Typography-Font-Primary);
+  line-height: 1;
+}
+
+.previewDivider {
+  height: 1px;
+  background-color: var(--Neutral-Stroke-Medium);
+  flex-shrink: 0;
+}
+
+.previewBody {
+  flex: 1 1 auto;
+  padding: var(--Spacing-4);
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  font-weight: var(--Body-FontWeight-Low);
+  color: var(--Text-Medium);
+}
+
+.previewFooter {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--Spacing-3);
+  padding: var(--Spacing-3) var(--Spacing-4) var(--Spacing-4);
+  flex-shrink: 0;
+}
+
+.previewBtnLow {
+  all: unset;
+  box-sizing: border-box;
+  cursor: default;
+  display: inline-flex;
+  align-items: center;
+  padding: var(--Spacing-2) var(--Spacing-4);
+  border-radius: var(--Shape-Pill);
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Label-S-FontSize);
+  line-height: var(--Label-S-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+  color: var(--Primary-TintedA11y);
+  white-space: nowrap;
+}
+
+.previewBtnHigh {
+  all: unset;
+  box-sizing: border-box;
+  cursor: default;
+  display: inline-flex;
+  align-items: center;
+  padding: var(--Spacing-2) var(--Spacing-4);
+  border-radius: var(--Shape-Pill);
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Label-S-FontSize);
+  line-height: var(--Label-S-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+  background: var(--Primary-Bold);
+  color: var(--Primary-Bold-High);
+  white-space: nowrap;
+}
+
+/* ─── Annotations below each modal card ─────────────────────── */
+
+.annotations {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-1);
+}
+
+.annotationLine {
+  font-family: var(--Typography-Font-Code);
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Low);
+  color: var(--Text-Low);
+  white-space: nowrap;
+}
+
+.annotationLineBold {
+  font-weight: var(--Label-FontWeight-Medium);
+  color: var(--Text-Medium);
+}

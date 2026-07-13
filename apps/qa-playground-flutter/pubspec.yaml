@@ -1,0 +1,36 @@
+name: qa_playground_flutter
+description: >
+  OneUI Flutter QA playground — browsable catalog + flutter_test suites for
+  @oneui/ui_flutter components. Owned by the testing team.
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: '>=3.5.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_web_plugins:
+    sdk: flutter
+  path: ^1.9.0
+  ui_flutter:
+    path: ../../packages/ui_flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  integration_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - web/qa-reports/
+    - web/qa-reports/components/
+    # Branded Convex fixtures bundled so widget tests + integration_test (on
+    # device) can render through the same resolveDesignSystemForBrand pipeline
+    # the live web app uses, without making HTTP calls at test time.
+    # Regenerate via:  pnpm sync:jio-theme-snapshot
+    - assets/qa-fixtures/jio/

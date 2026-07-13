@@ -1,0 +1,164 @@
+.tabsToolbar {
+  display: flex;
+  align-items: flex-end;
+  border-bottom: var(--Stroke-M) solid var(--Border-Subtle);
+  min-width: var(--Spacing-0);
+}
+
+.tabsScroller {
+  flex: 1 1 auto;
+  min-width: var(--Spacing-0);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.tabsScroller::-webkit-scrollbar {
+  display: none;
+}
+
+.tabsList {
+  width: max-content;
+  min-width: 100%;
+  --Tabs-gap: var(--Spacing-4);
+}
+
+.firstTab[role='tab'][data-orientation='horizontal'][data-size='m'] > span {
+  padding-left: var(--Spacing-0);
+}
+
+.tabsList:has(.firstTab[data-active]) > [data-activation-direction] {
+  width: var(--active-tab-width);
+  translate: var(--active-tab-left) var(--Spacing-0);
+}
+
+.toolbarControls {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  gap: var(--Spacing-3);
+  flex-wrap: wrap;
+}
+
+.toolbarControl {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-2);
+}
+
+.toolbarLabel {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+  color: var(--Text-Low);
+}
+
+.sizeSelect,
+.strokeSelect {
+  min-width: var(--Dimension-f12);
+}
+
+.browseHeader {
+  align-items: flex-start;
+  gap: var(--Spacing-4);
+  border-bottom: none;
+}
+
+.selectorHeader {
+  border-bottom: none;
+}
+
+.iconSetGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(var(--Spacing-0), 1fr));
+  gap: var(--Spacing-4);
+}
+
+.browserSkeleton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--Dimension-f16);
+  background-color: var(--Surface-Subtle);
+  border-radius: var(--Shape-4);
+  color: var(--Text-Low);
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  font-weight: var(--Body-FontWeight-Low);
+}
+
+.detailsList {
+  display: flex;
+  flex-direction: column;
+}
+
+.detailsRow {
+  display: grid;
+  grid-template-columns:
+    minmax(var(--Dimension-f13), 1fr) minmax(var(--Dimension-f12), 1fr) minmax(
+      var(--Dimension-f12),
+      1fr
+    )
+    minmax(var(--Dimension-f12), 1fr);
+  align-items: center;
+  gap: var(--Spacing-4);
+  padding: var(--Spacing-3) var(--Spacing-0);
+  border-bottom: var(--Stroke-M) solid var(--Border-Subtle);
+}
+
+.detailsHeader {
+  color: var(--Text-Low);
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+}
+
+.detailsName {
+  color: var(--Text-High);
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  font-weight: var(--Body-FontWeight-Medium);
+}
+
+.detailsCell {
+  color: var(--Text-Medium);
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  font-weight: var(--Body-FontWeight-Low);
+}
+
+.saveIndicator {
+  position: fixed;
+  bottom: var(--Spacing-4-5);
+  right: var(--Spacing-4-5);
+  padding: var(--Spacing-3-5) var(--Spacing-4);
+  background-color: var(--Surface-Bold);
+  color: var(--Text-OnBold-High);
+  border-radius: var(--Shape-Pill);
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Low);
+}
+
+@media (max-width: 768px) {
+  .iconSetGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .toolbarControls {
+    justify-content: flex-start;
+  }
+
+  .browseHeader {
+    flex-wrap: wrap;
+  }
+
+  .detailsRow {
+    grid-template-columns: minmax(var(--Dimension-f13), 1fr) minmax(var(--Dimension-f12), 1fr);
+  }
+}

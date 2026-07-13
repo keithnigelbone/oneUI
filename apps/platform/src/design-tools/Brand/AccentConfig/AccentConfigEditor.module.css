@@ -1,0 +1,182 @@
+/**
+ * AccentConfigEditor.module.css
+ * Table-based layout for the multi-accent configuration editor
+ * Dividers extend edge-to-edge within FoundationCard (content padding = Spacing-4-5)
+ *
+ * All role sections (Accent, Neutral, Semantic) share the same 4-column grid
+ * for visual consistency: Role | Scale | Base Step | Preview.
+ */
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ─── Section Title ────────────────────────────────────────────────── */
+
+.sectionTitle {
+  font-size: var(--Label-XS-FontSize);
+  font-weight: var(--Body-FontWeight-High);
+  color: var(--Text-High);
+  text-transform: lowercase;
+  letter-spacing: 0.02em;
+  margin-bottom: var(--Spacing-4);
+}
+
+/* ─── Section Block ────────────────────────────────────────────────── */
+
+.section {
+  padding: var(--Spacing-4-5) 0;
+}
+
+.section:first-child {
+  padding-top: 0;
+}
+
+.section:last-child {
+  padding-bottom: 0;
+}
+
+/* ─── Full-Width Divider (edge-to-edge) ────────────────────────────── */
+
+.divider {
+  height: var(--Stroke-M);
+  background-color: var(--Border-Subtle);
+  margin-left: calc(-1 * var(--Spacing-4-5));
+  margin-right: calc(-1 * var(--Spacing-4-5));
+}
+
+/* ─── Accent Count Section ─────────────────────────────────────────── */
+
+.accentCountRow {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-4);
+}
+
+/* ─── Grid Layout ──────────────────────────────────────────────────── */
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: var(--Spacing-3-5);
+  align-items: stretch;
+}
+
+/* Background section: 3-column (V4: light/dark only, no dim) */
+.grid3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: var(--Spacing-3-5);
+  align-items: start;
+}
+
+.gridHeader {
+  font-size: var(--Label-XS-FontSize);
+  font-weight: var(--Body-FontWeight-Medium);
+  color: var(--Text-High);
+  padding-bottom: var(--Spacing-2-5);
+}
+
+.gridRow {
+  display: contents;
+}
+
+.gridCell {
+  padding: var(--Spacing-2-5) 0;
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+
+/* Row dividers within the grid (full width across all 4 columns) */
+.gridRowDivider {
+  grid-column: 1 / -1;
+  height: var(--Stroke-M);
+  background-color: var(--Border-Subtle);
+  align-self: auto;
+}
+
+/* ─── Accent Role Badge ────────────────────────────────────────────── */
+
+.accentRoleBadge {
+  display: inline-block;
+  font-size: var(--Label-XS-FontSize);
+  font-weight: var(--Body-FontWeight-High);
+  color: var(--Surface-Default);
+  background-color: var(--Text-High);
+  padding: var(--Spacing-2) var(--Spacing-3-5);
+  border-radius: var(--Shape-Pill);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+/* ─── Hint Text ────────────────────────────────────────────────────── */
+
+.hintText {
+  font-size: var(--Label-2XS-FontSize);
+  color: var(--Text-Low);
+}
+
+/* ─── Swatch Preview Strip ─────────────────────────────────────────── */
+
+.swatchRow {
+  display: flex;
+  flex: 1;
+  min-height: 100%;
+}
+
+.swatchSegment {
+  flex: 1;
+}
+
+.materialSwatch {
+  display: flex;
+  min-height: var(--Touch-Target-Min);
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--Shape-4);
+  color: var(--material-text);
+  background: var(--material-fill);
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Label-S-FontSize);
+  font-weight: var(--Label-FontWeight-Medium);
+  line-height: var(--Label-S-LineHeight);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.swatchContainer {
+  width: 100%;
+  min-height: var(--Touch-Target-Min);
+  border-radius: var(--Shape-4);
+  outline: var(--Stroke-M) solid var(--Border-Subtle);
+  overflow: hidden;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Wrapper around swatch + labels — stretches to fill the grid cell */
+.swatchWrapper {
+  width: 100%;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* ─── Swatch Labels ────────────────────────────────────────────────── */
+
+.swatchLabels {
+  display: none;
+  margin-top: var(--Spacing-2);
+}
+
+.swatchLabel {
+  flex: 1;
+  font-size: var(--Label-3XS-FontSize);
+  color: var(--Text-Low);
+  text-align: center;
+}

@@ -1,0 +1,115 @@
+/**
+ * RecipePanel.module.css
+ *
+ * Compact styles for recipe decision controls.
+ * Toggle selectors now use ToggleGroup component (consistent with foundation pages).
+ * Token-only styling (zero literals).
+ */
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-3-5);
+  /* Match CollapsibleSection header/content padding so the recipe block
+     aligns with every other section in the editor panel. */
+  padding: var(--Spacing-3-5) var(--Spacing-4) var(--Spacing-3);
+}
+
+/* Decision list */
+.decisions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-3);
+}
+
+.familyHeader,
+.familySummary,
+.resetCard,
+.overrideOverview,
+.inheritanceStatus {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-1-5);
+}
+
+.familyHeader {
+  padding-bottom: var(--Spacing-0);
+}
+
+.familySummary,
+.resetCard,
+.overrideOverview,
+.inheritanceStatus {
+  padding: var(--Spacing-2-5);
+  border-radius: var(--Shape-3);
+  background-color: var(--Surface-Minimal);
+}
+
+.familyTitle {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Label-S-FontSize);
+  line-height: var(--Label-S-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+  color: var(--Text-High);
+}
+
+.familyDescription {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  font-weight: var(--Body-FontWeight-Low);
+  color: var(--Text-Medium);
+}
+
+.inheritanceStatus[data-overridden="true"] {
+  background-color: var(--Warning-Minimal);
+}
+
+.overrideOverview {
+  background-color: var(--Negative-Minimal);
+}
+
+.overrideOverview[data-has-hidden="true"] {
+  background-color: var(--Warning-Minimal);
+}
+
+.statusActions {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: var(--Spacing-1-5);
+}
+
+/* Single decision group */
+.decisionGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-2);
+}
+
+.decisionLabelRow,
+.titleWithIndicator {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--Spacing-1-5);
+}
+
+.decisionLabel {
+  font-size: var(--Label-XS-FontSize);
+  font-weight: var(--Body-FontWeight-Medium);
+  color: var(--Text-High);
+  text-transform: lowercase;
+}
+
+.overrideMarker {
+  width: var(--Spacing-0-5);
+  height: var(--Spacing-0-5);
+  border-radius: var(--Shape-Pill);
+  background-color: var(--Negative-Bold);
+  flex-shrink: 0;
+}
+
+/* Text case label (larger weight for preview effect) */
+.caseLabel {
+  font-weight: var(--Body-FontWeight-High);
+  letter-spacing: 0.02em;
+}

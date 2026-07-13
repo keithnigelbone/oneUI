@@ -1,0 +1,164 @@
+/**
+ * FieldLabelStack.module.css
+ *
+ * Shared label / description stack for **Input**, **InputField**, **Checkbox**, **Radio**,
+ * **CheckboxField**, **RadioField** (Figma `.DNA/InputLabel` sizing — S / M / L).
+ * Vertical stack: label row (optional asterisk + optional info) + optional description.
+ *
+ * Verified by: pnpm check:literals
+ */
+
+.root {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--InputLabel-stackGap, var(--Spacing-1));
+  width: 100%;
+}
+
+.labelRow {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--InputLabel-labelIconGap, var(--Spacing-1));
+  max-width: 100%;
+  width: 100%;
+}
+
+.labelTrailing {
+  display: flex;
+  flex: 0 0 auto;
+  align-self: center;
+  width: fit-content;
+  max-width: 100%;
+  height: fit-content;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.label {
+  margin: 0;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  flex: 0 1 auto;
+  min-width: 0;
+  font-family: var(--InputLabel-labelFontFamily, var(--Label-FontFamily, var(--Typography-Font-Primary, inherit)));
+  font-weight: var(--InputLabel-labelFontWeight, var(--Label-FontWeight-Medium));
+  font-optical-sizing: var(--InputLabel-fontOpticalSizing, var(--Label-FontOpticalSizing, auto));
+  font-variation-settings: var(--InputLabel-fontVariationSettings, var(--Label-OpszVariation, normal));
+  color: var(--InputLabel-labelColor, var(--Text-High));
+  cursor: default;
+}
+
+.root[data-size='s'] .label {
+  font-size: var(--InputLabel-labelFontSize-s, var(--Label-XS-FontSize));
+  line-height: var(--InputLabel-labelLineHeight-s, var(--Label-XS-LineHeight));
+  min-height: var(--InputLabel-labelMinHeight-s, var(--Spacing-4));
+}
+
+.root[data-size='m'] .label {
+  font-size: var(--InputLabel-labelFontSize-m, var(--Label-S-FontSize));
+  line-height: var(--InputLabel-labelLineHeight-m, var(--Label-S-LineHeight));
+  min-height: var(--InputLabel-labelMinHeight-m, var(--Spacing-5));
+}
+
+.root[data-size='l'] .label {
+  font-size: var(--InputLabel-labelFontSize-l, var(--Label-M-FontSize));
+  line-height: var(--InputLabel-labelLineHeight-l, var(--Label-M-LineHeight));
+  min-height: var(--InputLabel-labelMinHeight-l, var(--Spacing-6));
+}
+
+.root[data-disabled] .label {
+  color: var(--InputLabel-labelColorDisabled, var(--Text-Low));
+}
+
+.asterisk {
+  color: var(--InputLabel-asteriskColor, var(--Negative-Bold, var(--Surface-Bold)));
+}
+
+.description {
+  margin: 0;
+  width: 100%;
+  font-family: var(--InputLabel-descriptionFontFamily, var(--Body-FontFamily, var(--Typography-Font-Primary, inherit)));
+  font-weight: var(--InputLabel-descriptionFontWeight, var(--Body-FontWeight-Low));
+  font-optical-sizing: var(--InputLabel-descriptionFontOpticalSizing, var(--Body-FontOpticalSizing, auto));
+  font-variation-settings: var(--InputLabel-descriptionFontVariationSettings, var(--Body-OpszVariation, normal));
+  color: var(--InputLabel-descriptionColor, var(--Text-High));
+}
+
+.root[data-size='s'] .description {
+  font-size: var(--InputLabel-descriptionFontSize-s, var(--Body-XS-FontSize));
+  line-height: var(--InputLabel-descriptionLineHeight-s, var(--Body-XS-LineHeight));
+}
+
+.root[data-size='m'] .description {
+  font-size: var(--InputLabel-descriptionFontSize-m, var(--Body-S-FontSize));
+  line-height: var(--InputLabel-descriptionLineHeight-m, var(--Body-S-LineHeight));
+}
+
+.root[data-size='l'] .description {
+  font-size: var(--InputLabel-descriptionFontSize-l, var(--Body-M-FontSize));
+  line-height: var(--InputLabel-descriptionLineHeight-l, var(--Body-M-LineHeight));
+}
+
+.root[data-disabled] .description {
+  color: var(--InputLabel-descriptionColorDisabled, var(--Text-Low));
+}
+
+.infoButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  min-width: var(--InputLabel-infoHitMin, var(--Spacing-6));
+  min-height: var(--InputLabel-infoHitMin, var(--Spacing-6));
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--InputLabel-infoIconColor, var(--Neutral-Medium-Text));
+  cursor: pointer;
+  border-radius: var(--InputLabel-infoButtonRadius, var(--Shape-Pill));
+}
+
+.infoButton:disabled {
+  cursor: not-allowed;
+  color: var(--InputLabel-infoIconColorDisabled, var(--Text-Low));
+}
+
+.infoButton:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 var(--Stroke-XL) var(--Surface-Halo-Gap, var(--Surface-Main)),
+    0 0 0 var(--Focus-Outline-Width) var(--Focus-Outline);
+}
+
+.infoIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.root[data-size='s'] .infoIcon {
+  width: var(--InputLabel-infoIconSize-s, var(--Spacing-3));
+  height: var(--InputLabel-infoIconSize-s, var(--Spacing-3));
+}
+
+.root[data-size='m'] .infoIcon {
+  width: var(--InputLabel-infoIconSize-m, var(--Spacing-4));
+  height: var(--InputLabel-infoIconSize-m, var(--Spacing-4));
+}
+
+.root[data-size='l'] .infoIcon {
+  width: var(--InputLabel-infoIconSize-l, var(--Spacing-5));
+  height: var(--InputLabel-infoIconSize-l, var(--Spacing-5));
+}
+
+.infoIconSvg {
+  width: 100%;
+  height: 100%;
+}

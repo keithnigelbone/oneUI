@@ -1,0 +1,1381 @@
+/**
+ * Button.module.css
+ *
+ * CRITICAL: This file demonstrates the ZERO LITERALS rule
+ * ALL styling uses design tokens ONLY
+ *
+ * Architecture: Role-agnostic intermediate variables (--_btn-*)
+ * - Default = Primary role
+ * - Appearance classes remap --_btn-* to other roles (Neutral, Secondary, Sparkle)
+ * - Variant selectors consume --_btn-* without duplication
+ *
+ * Size system: F-step based via [data-size="N"] attribute selectors.
+ * Typography: Label role tokens (not generic Typography-Size).
+ *
+ * Verified by: pnpm check:literals
+ */
+
+.button {
+  /* ========================================
+     INTERMEDIATE VARIABLES — default = Primary role
+     New token names (--Primary-Bold, etc.) with V4 fallbacks for transition.
+     Remapped by .appearanceNeutral, .appearanceSecondary, etc.
+     ======================================== */
+  --_btn-bold: var(--Button-roleBold, var(--Primary-Bold, var(--Surface-Bold)));
+  /* Prefer tinted over achromatic so brand identity persists on bold fills. */
+  --_btn-bold-high: var(
+    --Button-roleBoldHigh,
+    var(--Primary-Bold-TintedA11y, var(--Primary-Bold-High, var(--Text-OnBold-High)))
+  );
+  --_btn-bold-hover: var(
+    --Button-roleBoldHover,
+    var(--Primary-Bold-Hover, var(--Surface-Bold-Hover))
+  );
+  --_btn-bold-pressed: var(
+    --Button-roleBoldPressed,
+    var(--Primary-Bold-Pressed, var(--Surface-Bold-Pressed))
+  );
+  /* Metallic material assignment — the brand engine emits --{Role}-Material-Fill /
+     --{Role}-Material-Text only when the role has an ACTIVE metal assigned.
+     When absent these intermediates resolve to the guaranteed-invalid value and
+     every consumer falls back to the standard bold chain (zero visual change). */
+  --_btn-material-fill: var(--Button-roleMaterialFill, var(--Primary-Material-Fill));
+  --_btn-material-text: var(--Button-roleMaterialText, var(--Primary-Material-Text));
+  --_btn-material-stroke: var(--Button-roleMaterialStroke, var(--Primary-Material-Stroke));
+  --_btn-subtle: var(--Button-roleSubtle, var(--Primary-Subtle, var(--Surface-Subtle)));
+  --_btn-subtle-hover: var(
+    --Button-roleSubtleHover,
+    var(--Primary-Subtle-Hover, var(--Surface-Subtle-Hover))
+  );
+  --_btn-subtle-pressed: var(
+    --Button-roleSubtlePressed,
+    var(--Primary-Subtle-Pressed, var(--Surface-Subtle-Pressed))
+  );
+  --_btn-default-high: var(--Button-roleHigh, var(--Primary-High, var(--Text-High)));
+  --_btn-default-accent: var(--Button-roleTinted, var(--Primary-Tinted, var(--Surface-Bold)));
+  --_btn-default-accent-a11y: var(
+    --Button-roleTintedA11y,
+    var(--Primary-TintedA11y, var(--Surface-Bold))
+  );
+  --_btn-default-low-stroke: var(
+    --Button-roleStrokeLow,
+    var(--Primary-Stroke-Low, var(--Surface-Bold))
+  );
+  --_btn-default-hover: var(--Button-roleHover, var(--Primary-Hover, var(--Surface-Minimal)));
+  --_btn-default-pressed: var(--Button-rolePressed, var(--Primary-Pressed, var(--Surface-Subtle)));
+
+  /* ========================================
+     SHAPE — overridable via --Button-borderRadius
+     Per-side radius is overridden to 0 by the ornament system on edges
+     where an SVG decoration is attached, so the ornament meets a straight edge.
+     ======================================== */
+  --_btn-radius: var(--Button-borderRadius, var(--Shape-Pill));
+  border-top-left-radius: var(--Button-ornament-radius-left, var(--_btn-radius));
+  border-bottom-left-radius: var(--Button-ornament-radius-left, var(--_btn-radius));
+  border-top-right-radius: var(--Button-ornament-radius-right, var(--_btn-radius));
+  border-bottom-right-radius: var(--Button-ornament-radius-right, var(--_btn-radius));
+
+  /* ========================================
+     SURFACE & TEXT — consumed from intermediate vars
+     --_btn-bg tracks the resolved background paint for ornament fill sync
+     ======================================== */
+  --_btn-bg: var(--Button-backgroundColor, var(--_btn-material-fill, var(--_btn-bold)));
+  --_btn-stroke-image: var(--Button-strokeImage, var(--_btn-material-stroke, none));
+  background: var(--_btn-bg);
+  color: var(--Button-textColor, var(--_btn-material-text, var(--_btn-bold-high)));
+
+  /* ========================================
+     SPACING — intermediate vars overridden by size selectors.
+     ======================================== */
+  --_btn-pad-v: var(--Button-paddingVertical, var(--Spacing-1));
+  --_btn-pad-h: var(--Button-paddingHorizontal, var(--Spacing-5));
+  padding-top: var(--_btn-pad-v);
+  padding-bottom: var(--_btn-pad-v);
+  padding-left: var(--Button-paddingHorizontalStart, var(--_btn-pad-h));
+  padding-right: var(--Button-paddingHorizontalEnd, var(--_btn-pad-h));
+
+  /* ========================================
+     ORNAMENT MARGIN — reserves layout space for absolutely-positioned ornaments.
+     Without this, adjacent elements overlap the ornaments because absolute
+     positioning is out-of-flow. When no ornament is active, resolves to 0px.
+     ======================================== */
+  margin-left: var(--Button-ornament-width-left, 0px);
+  margin-right: var(--Button-ornament-width-right, 0px);
+
+  /* ========================================
+     MOTION
+     ======================================== */
+  /* Tap scale from Convex motion foundations — overridable per brand */
+  --_tap-scale: var(--Motion-Tap-Scale-Default, 3);
+  /* Tap interaction from Convex motion foundations:
+     Surface colour + Scale: Duration-M, Transition-Moderate easing (press & release) */
+  transition:
+    background var(--Motion-Duration-M) var(--Motion-Easing-Transition-Moderate),
+    color var(--Motion-Duration-M) var(--Motion-Easing-Transition-Moderate),
+    border-color var(--Motion-Duration-M) var(--Motion-Easing-Transition-Moderate),
+    box-shadow var(--Motion-Duration-M) var(--Motion-Easing-Transition-Moderate),
+    transform var(--Motion-Duration-M) var(--Motion-Easing-Transition-Moderate),
+    opacity var(--Motion-Duration-M) var(--Motion-Easing-Transition-Moderate);
+
+  /* ========================================
+     BASE STYLES — Typography uses Label role tokens
+     ======================================== */
+  /* Typography — Label role tokens as fallbacks ensure correct sizing even
+     without brand CSS injection (Storybook, tests, bare renders). */
+  font-family: var(
+    --Button-fontFamily,
+    var(--Label-FontFamily, var(--Typography-Font-Primary, inherit))
+  );
+  font-size: var(--Button-fontSize, var(--Label-M-FontSize));
+  font-weight: var(--Button-fontWeight, var(--Label-FontWeight-High));
+  line-height: var(--Button-lineHeight, var(--Label-M-LineHeight));
+  text-transform: var(--Button-textTransform, none);
+  letter-spacing: var(--Button-letterSpacing, normal);
+  font-optical-sizing: var(--Button-fontOpticalSizing, var(--Label-FontOpticalSizing, auto));
+  font-variation-settings: var(--Button-fontVariationSettings, var(--Label-OpszVariation, normal));
+  cursor: pointer;
+  border: none;
+  box-sizing: border-box;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  --_btn-min-h: var(--Button-minHeight, var(--Spacing-10));
+  min-height: var(--_btn-min-h);
+  min-width: var(--Touch-Target-Min);
+  white-space: nowrap;
+  clip-path: var(--Button-cssDecorationClipPath, none);
+}
+
+.bold.button[data-has-decoration] {
+  background: transparent !important;
+}
+
+.button::before {
+  content: '';
+  position: absolute;
+  inset: var(--Spacing-0);
+  box-sizing: border-box;
+  pointer-events: none;
+  border-radius: inherit;
+  padding: var(--_btn-bw, var(--Spacing-0));
+  background: var(--_btn-stroke-image, none);
+  -webkit-mask:
+    linear-gradient(currentColor 0 0) content-box,
+    linear-gradient(currentColor 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(currentColor 0 0) content-box,
+    linear-gradient(currentColor 0 0);
+  mask-composite: exclude;
+}
+
+.button::after {
+  content: '';
+  position: absolute;
+  inset: var(--Spacing-0);
+  box-sizing: border-box;
+  pointer-events: none;
+  border-radius: inherit;
+  clip-path: var(--Button-cssDecorationClipPath, none);
+  border-style: var(
+    --Button-cssDecorationStrokeStyle-active,
+    var(--Button-cssDecorationStrokeStyle, solid)
+  );
+  border-color: var(
+    --Button-cssDecorationColor-active,
+    var(--Button-cssDecorationColor, currentColor)
+  );
+  border-width: var(
+      --Button-cssDecorationInsetStrokeWidth-active,
+      var(--Button-cssDecorationInsetStrokeWidth, var(--Spacing-0))
+    )
+    var(
+      --Button-cssDecorationInsetStrokeWidth-active,
+      var(--Button-cssDecorationInsetStrokeWidth, var(--Spacing-0))
+    )
+    var(
+      --Button-cssDecorationInsetStrokeWidth-active,
+      var(
+        --Button-cssDecorationInsetStrokeWidth,
+        var(
+          --Button-cssDecorationUnderlineWidth-active,
+          var(--Button-cssDecorationUnderlineWidth, var(--Spacing-0))
+        )
+      )
+    )
+    var(
+      --Button-cssDecorationInsetStrokeWidth-active,
+      var(--Button-cssDecorationInsetStrokeWidth, var(--Spacing-0))
+    );
+}
+
+/* ========================================
+   APPEARANCE — role-agnostic intermediate variable remapping
+   Adding a new appearance = 1 new class with 15 remappings
+   (13 role tokens + 2 optional --{Role}-Material-* assignment hooks)
+   ======================================== */
+
+.appearancePrimary {
+  --_btn-bold: var(--Primary-Bold, var(--Surface-Bold));
+  --_btn-bold-high: var(
+    --Primary-Bold-TintedA11y,
+    var(--Primary-Bold-High, var(--Text-OnBold-High))
+  );
+  --_btn-bold-hover: var(--Primary-Bold-Hover, var(--Surface-Bold-Hover));
+  --_btn-bold-pressed: var(--Primary-Bold-Pressed, var(--Surface-Bold-Pressed));
+  --_btn-material-fill: var(--Primary-Material-Fill);
+  --_btn-material-text: var(--Primary-Material-Text);
+  --_btn-material-stroke: var(--Primary-Material-Stroke);
+  --_btn-subtle: var(--Primary-Subtle, var(--Surface-Subtle));
+  --_btn-subtle-hover: var(--Primary-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_btn-subtle-pressed: var(--Primary-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+  --_btn-default-high: var(--Primary-High, var(--Text-High));
+  --_btn-default-accent: var(--Primary-Tinted, var(--Surface-Bold));
+  --_btn-default-accent-a11y: var(--Primary-TintedA11y, var(--Surface-Bold));
+  --_btn-default-low-stroke: var(--Primary-Stroke-Low, var(--Surface-Bold));
+  --_btn-default-hover: var(--Primary-Hover, var(--Surface-Minimal));
+  --_btn-default-pressed: var(--Primary-Pressed, var(--Surface-Subtle));
+}
+
+.appearanceNeutral {
+  --_btn-bold: var(--Neutral-Bold, var(--Surface-Bold));
+  --_btn-bold-high: var(
+    --Neutral-Bold-TintedA11y,
+    var(--Neutral-Bold-High, var(--Text-OnBold-High))
+  );
+  --_btn-bold-hover: var(--Neutral-Bold-Hover, var(--Surface-Bold-Hover));
+  --_btn-bold-pressed: var(--Neutral-Bold-Pressed, var(--Surface-Bold-Pressed));
+  --_btn-material-fill: var(--Neutral-Material-Fill);
+  --_btn-material-text: var(--Neutral-Material-Text);
+  --_btn-material-stroke: var(--Neutral-Material-Stroke);
+  --_btn-subtle: var(--Neutral-Subtle, var(--Surface-Subtle));
+  --_btn-subtle-hover: var(--Neutral-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_btn-subtle-pressed: var(--Neutral-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+  --_btn-default-high: var(--Neutral-High, var(--Text-High));
+  --_btn-default-accent: var(--Neutral-Tinted, var(--Surface-Bold));
+  --_btn-default-accent-a11y: var(--Neutral-TintedA11y, var(--Surface-Bold));
+  --_btn-default-low-stroke: var(--Neutral-Stroke-Low, var(--Surface-Bold));
+  --_btn-default-hover: var(--Neutral-Hover, var(--Surface-Minimal));
+  --_btn-default-pressed: var(--Neutral-Pressed, var(--Surface-Subtle));
+}
+
+.appearanceSecondary {
+  --_btn-bold: var(--Secondary-Bold, var(--Surface-Bold));
+  --_btn-bold-high: var(
+    --Secondary-Bold-TintedA11y,
+    var(--Secondary-Bold-High, var(--Text-OnBold-High))
+  );
+  --_btn-bold-hover: var(--Secondary-Bold-Hover, var(--Surface-Bold-Hover));
+  --_btn-bold-pressed: var(--Secondary-Bold-Pressed, var(--Surface-Bold-Pressed));
+  --_btn-material-fill: var(--Secondary-Material-Fill);
+  --_btn-material-text: var(--Secondary-Material-Text);
+  --_btn-material-stroke: var(--Secondary-Material-Stroke);
+  --_btn-subtle: var(--Secondary-Subtle, var(--Surface-Subtle));
+  --_btn-subtle-hover: var(--Secondary-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_btn-subtle-pressed: var(--Secondary-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+  --_btn-default-high: var(--Secondary-High, var(--Text-High));
+  --_btn-default-accent: var(--Secondary-Tinted, var(--Surface-Bold));
+  --_btn-default-accent-a11y: var(--Secondary-TintedA11y, var(--Surface-Bold));
+  --_btn-default-low-stroke: var(--Secondary-Stroke-Low, var(--Surface-Bold));
+  --_btn-default-hover: var(--Secondary-Hover, var(--Surface-Minimal));
+  --_btn-default-pressed: var(--Secondary-Pressed, var(--Surface-Subtle));
+}
+
+.appearanceSparkle {
+  --_btn-bold: var(--Sparkle-Bold, var(--Surface-Bold));
+  --_btn-bold-high: var(
+    --Sparkle-Bold-TintedA11y,
+    var(--Sparkle-Bold-High, var(--Text-OnBold-High))
+  );
+  --_btn-bold-hover: var(--Sparkle-Bold-Hover, var(--Surface-Bold-Hover));
+  --_btn-bold-pressed: var(--Sparkle-Bold-Pressed, var(--Surface-Bold-Pressed));
+  --_btn-material-fill: var(--Sparkle-Material-Fill);
+  --_btn-material-text: var(--Sparkle-Material-Text);
+  --_btn-material-stroke: var(--Sparkle-Material-Stroke);
+  --_btn-subtle: var(--Sparkle-Subtle, var(--Surface-Subtle));
+  --_btn-subtle-hover: var(--Sparkle-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_btn-subtle-pressed: var(--Sparkle-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+  --_btn-default-high: var(--Sparkle-High, var(--Text-High));
+  --_btn-default-accent: var(--Sparkle-Tinted, var(--Surface-Bold));
+  --_btn-default-accent-a11y: var(--Sparkle-TintedA11y, var(--Surface-Bold));
+  --_btn-default-low-stroke: var(--Sparkle-Stroke-Low, var(--Surface-Bold));
+  --_btn-default-hover: var(--Sparkle-Hover, var(--Surface-Minimal));
+  --_btn-default-pressed: var(--Sparkle-Pressed, var(--Surface-Subtle));
+}
+
+.appearanceBrandBg {
+  --_btn-bold: var(--Brand-Bg-Bold, var(--Surface-Bold));
+  --_btn-bold-high: var(
+    --Brand-Bg-Bold-TintedA11y,
+    var(--Brand-Bg-Bold-High, var(--Text-OnBold-High))
+  );
+  --_btn-bold-hover: var(--Brand-Bg-Bold-Hover, var(--Surface-Bold-Hover));
+  --_btn-bold-pressed: var(--Brand-Bg-Bold-Pressed, var(--Surface-Bold-Pressed));
+  --_btn-material-fill: var(--Brand-Bg-Material-Fill);
+  --_btn-material-text: var(--Brand-Bg-Material-Text);
+  --_btn-material-stroke: var(--Brand-Bg-Material-Stroke);
+  --_btn-subtle: var(--Brand-Bg-Subtle, var(--Surface-Subtle));
+  --_btn-subtle-hover: var(--Brand-Bg-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_btn-subtle-pressed: var(--Brand-Bg-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+  --_btn-default-high: var(--Brand-Bg-High, var(--Text-High));
+  --_btn-default-accent: var(--Brand-Bg-Tinted, var(--Surface-Bold));
+  --_btn-default-accent-a11y: var(--Brand-Bg-TintedA11y, var(--Surface-Bold));
+  --_btn-default-low-stroke: var(--Brand-Bg-Stroke-Low, var(--Surface-Bold));
+  --_btn-default-hover: var(--Brand-Bg-Hover, var(--Surface-Minimal));
+  --_btn-default-pressed: var(--Brand-Bg-Pressed, var(--Surface-Subtle));
+}
+
+.appearancePositive {
+  --_btn-bold: var(--Positive-Bold, var(--Surface-Bold));
+  --_btn-bold-high: var(
+    --Positive-Bold-TintedA11y,
+    var(--Positive-Bold-High, var(--Text-OnBold-High))
+  );
+  --_btn-bold-hover: var(--Positive-Bold-Hover, var(--Surface-Bold-Hover));
+  --_btn-bold-pressed: var(--Positive-Bold-Pressed, var(--Surface-Bold-Pressed));
+  --_btn-material-fill: var(--Positive-Material-Fill);
+  --_btn-material-text: var(--Positive-Material-Text);
+  --_btn-material-stroke: var(--Positive-Material-Stroke);
+  --_btn-subtle: var(--Positive-Subtle, var(--Surface-Subtle));
+  --_btn-subtle-hover: var(--Positive-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_btn-subtle-pressed: var(--Positive-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+  --_btn-default-high: var(--Positive-High, var(--Text-High));
+  --_btn-default-accent: var(--Positive-Tinted, var(--Surface-Bold));
+  --_btn-default-accent-a11y: var(--Positive-TintedA11y, var(--Surface-Bold));
+  --_btn-default-low-stroke: var(--Positive-Stroke-Low, var(--Surface-Bold));
+  --_btn-default-hover: var(--Positive-Hover, var(--Surface-Minimal));
+  --_btn-default-pressed: var(--Positive-Pressed, var(--Surface-Subtle));
+}
+
+.appearanceNegative {
+  --_btn-bold: var(--Negative-Bold, var(--Surface-Bold));
+  --_btn-bold-high: var(
+    --Negative-Bold-TintedA11y,
+    var(--Negative-Bold-High, var(--Text-OnBold-High))
+  );
+  --_btn-bold-hover: var(--Negative-Bold-Hover, var(--Surface-Bold-Hover));
+  --_btn-bold-pressed: var(--Negative-Bold-Pressed, var(--Surface-Bold-Pressed));
+  --_btn-material-fill: var(--Negative-Material-Fill);
+  --_btn-material-text: var(--Negative-Material-Text);
+  --_btn-material-stroke: var(--Negative-Material-Stroke);
+  --_btn-subtle: var(--Negative-Subtle, var(--Surface-Subtle));
+  --_btn-subtle-hover: var(--Negative-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_btn-subtle-pressed: var(--Negative-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+  --_btn-default-high: var(--Negative-High, var(--Text-High));
+  --_btn-default-accent: var(--Negative-Tinted, var(--Surface-Bold));
+  --_btn-default-accent-a11y: var(--Negative-TintedA11y, var(--Surface-Bold));
+  --_btn-default-low-stroke: var(--Negative-Stroke-Low, var(--Surface-Bold));
+  --_btn-default-hover: var(--Negative-Hover, var(--Surface-Minimal));
+  --_btn-default-pressed: var(--Negative-Pressed, var(--Surface-Subtle));
+}
+
+.appearanceWarning {
+  --_btn-bold: var(--Warning-Bold, var(--Surface-Bold));
+  --_btn-bold-high: var(
+    --Warning-Bold-TintedA11y,
+    var(--Warning-Bold-High, var(--Text-OnBold-High))
+  );
+  --_btn-bold-hover: var(--Warning-Bold-Hover, var(--Surface-Bold-Hover));
+  --_btn-bold-pressed: var(--Warning-Bold-Pressed, var(--Surface-Bold-Pressed));
+  --_btn-material-fill: var(--Warning-Material-Fill);
+  --_btn-material-text: var(--Warning-Material-Text);
+  --_btn-material-stroke: var(--Warning-Material-Stroke);
+  --_btn-subtle: var(--Warning-Subtle, var(--Surface-Subtle));
+  --_btn-subtle-hover: var(--Warning-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_btn-subtle-pressed: var(--Warning-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+  --_btn-default-high: var(--Warning-High, var(--Text-High));
+  --_btn-default-accent: var(--Warning-Tinted, var(--Surface-Bold));
+  --_btn-default-accent-a11y: var(--Warning-TintedA11y, var(--Surface-Bold));
+  --_btn-default-low-stroke: var(--Warning-Stroke-Low, var(--Surface-Bold));
+  --_btn-default-hover: var(--Warning-Hover, var(--Surface-Minimal));
+  --_btn-default-pressed: var(--Warning-Pressed, var(--Surface-Subtle));
+}
+
+.appearanceInformative {
+  --_btn-bold: var(--Informative-Bold, var(--Surface-Bold));
+  --_btn-bold-high: var(
+    --Informative-Bold-TintedA11y,
+    var(--Informative-Bold-High, var(--Text-OnBold-High))
+  );
+  --_btn-bold-hover: var(--Informative-Bold-Hover, var(--Surface-Bold-Hover));
+  --_btn-bold-pressed: var(--Informative-Bold-Pressed, var(--Surface-Bold-Pressed));
+  --_btn-material-fill: var(--Informative-Material-Fill);
+  --_btn-material-text: var(--Informative-Material-Text);
+  --_btn-material-stroke: var(--Informative-Material-Stroke);
+  --_btn-subtle: var(--Informative-Subtle, var(--Surface-Subtle));
+  --_btn-subtle-hover: var(--Informative-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_btn-subtle-pressed: var(--Informative-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+  --_btn-default-high: var(--Informative-High, var(--Text-High));
+  --_btn-default-accent: var(--Informative-Tinted, var(--Surface-Bold));
+  --_btn-default-accent-a11y: var(--Informative-TintedA11y, var(--Surface-Bold));
+  --_btn-default-low-stroke: var(--Informative-Stroke-Low, var(--Surface-Bold));
+  --_btn-default-hover: var(--Informative-Hover, var(--Surface-Minimal));
+  --_btn-default-pressed: var(--Informative-Pressed, var(--Surface-Subtle));
+}
+
+/* Explicit appearance beats brand attention-level roles.
+   Brand CSS can emit per-variant role slots (--Button-role{Slot}-{variant},
+   e.g. "Medium attention actions use Neutral") on the Button element. The
+   variant chains below consult those slots before the appearance
+   intermediates — but an explicit appearance prop is a deliberate
+   per-instance choice, so appearance classes pin every per-variant slot back
+   to their own (unlayered CSS beats @layer brand). */
+.appearancePrimary,
+.appearanceNeutral,
+.appearanceSecondary,
+.appearanceSparkle,
+.appearanceBrandBg,
+.appearancePositive,
+.appearanceNegative,
+.appearanceWarning,
+.appearanceInformative {
+  --Button-roleBold-bold: var(--_btn-bold);
+  --Button-roleBoldHigh-bold: var(--_btn-bold-high);
+  --Button-roleBoldHover-bold: var(--_btn-bold-hover);
+  --Button-roleBoldPressed-bold: var(--_btn-bold-pressed);
+  --Button-roleBold-subtle: var(--_btn-bold);
+  --Button-roleBoldHigh-subtle: var(--_btn-bold-high);
+  --Button-roleBoldHover-subtle: var(--_btn-bold-hover);
+  --Button-roleBoldPressed-subtle: var(--_btn-bold-pressed);
+  --Button-roleBold-ghost: var(--_btn-bold);
+  --Button-roleBoldHigh-ghost: var(--_btn-bold-high);
+  --Button-roleBoldHover-ghost: var(--_btn-bold-hover);
+  --Button-roleBoldPressed-ghost: var(--_btn-bold-pressed);
+  --Button-roleSubtle-bold: var(--_btn-subtle);
+  --Button-roleSubtleHover-bold: var(--_btn-subtle-hover);
+  --Button-roleSubtlePressed-bold: var(--_btn-subtle-pressed);
+  --Button-roleSubtle-subtle: var(--_btn-subtle);
+  --Button-roleSubtleHover-subtle: var(--_btn-subtle-hover);
+  --Button-roleSubtlePressed-subtle: var(--_btn-subtle-pressed);
+  --Button-roleSubtle-ghost: var(--_btn-subtle);
+  --Button-roleSubtleHover-ghost: var(--_btn-subtle-hover);
+  --Button-roleSubtlePressed-ghost: var(--_btn-subtle-pressed);
+  --Button-roleTintedA11y-bold: var(--_btn-default-accent-a11y);
+  --Button-roleTintedA11y-subtle: var(--_btn-default-accent-a11y);
+  --Button-roleTintedA11y-ghost: var(--_btn-default-accent-a11y);
+  --Button-roleHover-bold: var(--_btn-default-hover);
+  --Button-roleHover-subtle: var(--_btn-default-hover);
+  --Button-roleHover-ghost: var(--_btn-default-hover);
+  --Button-rolePressed-bold: var(--_btn-default-pressed);
+  --Button-rolePressed-subtle: var(--_btn-default-pressed);
+  --Button-rolePressed-ghost: var(--_btn-default-pressed);
+}
+
+/* ========================================
+   VARIANTS — consume intermediate vars, zero duplication
+   ======================================== */
+
+.bold {
+  --_btn-bw: var(--Button-borderWidth-bold, 0px);
+  --_btn-bc: var(--Button-borderColor-bold, transparent);
+  --_btn-solid-bc: var(--Button-solidStrokeColor-bold, var(--_btn-bc));
+  --_btn-bg: var(--Button-backgroundColor-bold, var(--_btn-material-fill, var(--Button-roleBold-bold, var(--_btn-bold))));
+  --_btn-stroke-image: var(--Button-strokeImage-bold, var(--Button-strokeImage, var(--_btn-material-stroke, none)));
+  --Button-cssDecorationColor-active: var(
+    --Button-cssDecorationColor-bold,
+    var(--Button-cssDecorationColor, currentColor)
+  );
+  --Button-cssDecorationInsetStrokeWidth-active: var(
+    --Button-cssDecorationInsetStrokeWidth-bold,
+    var(--Button-cssDecorationInsetStrokeWidth, var(--Spacing-0))
+  );
+  --Button-cssDecorationStrokeStyle-active: var(
+    --Button-cssDecorationStrokeStyle-bold,
+    var(--Button-cssDecorationStrokeStyle, solid)
+  );
+  --Button-cssDecorationUnderlineWidth-active: var(
+    --Button-cssDecorationUnderlineWidth-bold,
+    var(--Button-cssDecorationUnderlineWidth, var(--Spacing-0))
+  );
+  background: var(--_btn-bg);
+  color: var(--Button-textColor-bold, var(--_btn-material-text, var(--Button-roleBoldHigh-bold, var(--_btn-bold-high))));
+  border: 0 solid transparent;
+  box-shadow: inset 0 0 0 var(--_btn-bw) var(--_btn-solid-bc);
+}
+
+.subtle {
+  --_btn-bw: var(--Button-borderWidth-subtle, 0px);
+  --_btn-bc: var(--Button-borderColor-subtle, transparent);
+  --_btn-solid-bc: var(--Button-solidStrokeColor-subtle, var(--_btn-bc));
+  --_btn-bg: var(--Button-backgroundColor-subtle, var(--Button-roleSubtle-subtle, var(--_btn-subtle)));
+  --_btn-stroke-image: var(--Button-strokeImage-subtle, var(--Button-strokeImage, var(--_btn-material-stroke, none)));
+  --Button-cssDecorationColor-active: var(
+    --Button-cssDecorationColor-subtle,
+    var(--Button-cssDecorationColor, currentColor)
+  );
+  --Button-cssDecorationInsetStrokeWidth-active: var(
+    --Button-cssDecorationInsetStrokeWidth-subtle,
+    var(--Button-cssDecorationInsetStrokeWidth, var(--Spacing-0))
+  );
+  --Button-cssDecorationStrokeStyle-active: var(
+    --Button-cssDecorationStrokeStyle-subtle,
+    var(--Button-cssDecorationStrokeStyle, solid)
+  );
+  --Button-cssDecorationUnderlineWidth-active: var(
+    --Button-cssDecorationUnderlineWidth-subtle,
+    var(--Button-cssDecorationUnderlineWidth, var(--Spacing-0))
+  );
+  background: var(--_btn-bg);
+  color: var(--Button-textColor-subtle, var(--Button-roleTintedA11y-subtle, var(--_btn-default-accent-a11y)));
+  border: 0 solid transparent;
+  box-shadow: inset 0 0 0 var(--_btn-bw) var(--_btn-solid-bc);
+}
+
+.ghost {
+  --_btn-bw: var(--Button-borderWidth-ghost, 0px);
+  --_btn-bc: var(--Button-borderColor-ghost, transparent);
+  --_btn-solid-bc: var(--Button-solidStrokeColor-ghost, var(--_btn-bc));
+  --_btn-bg: var(--Button-backgroundColor-ghost, transparent);
+  --_btn-stroke-image: var(--Button-strokeImage-ghost, var(--Button-strokeImage, var(--_btn-material-stroke, none)));
+  --Button-cssDecorationColor-active: transparent;
+  --Button-cssDecorationInsetStrokeWidth-active: var(--Spacing-0);
+  --Button-cssDecorationStrokeStyle-active: solid;
+  --Button-cssDecorationUnderlineWidth-active: var(--Spacing-0);
+  --Button-cssDecorationClipPath: none;
+  background: var(--_btn-bg);
+  color: var(--Button-textColor-ghost, var(--Button-roleTintedA11y-ghost, var(--_btn-default-accent-a11y)));
+  border: 0 solid transparent;
+  box-shadow: inset 0 0 0 var(--_btn-bw) var(--_btn-solid-bc);
+  border-left-width: var(--Spacing-0);
+  border-right-width: var(--Spacing-0);
+}
+
+/* ========================================
+   SIZES — F-step based via data-size attribute selectors
+   Each size maps to a consistent set of dimension tokens.
+   ======================================== */
+
+/* Size selectors read size-specific vars injected by the tool (source of truth).
+   Fallback chain: --Button-prop-N → --Button-prop (base) → safe pixel default.
+   The tool/Convex drives all Figma-aligned associations via @layer brand injection. */
+
+.button[data-size='6'] {
+  --_btn-min-h: var(--Button-minHeight-6, var(--Button-minHeight, var(--Spacing-6)));
+  --_btn-pad-v: var(--Button-paddingVertical-6, var(--Button-paddingVertical, var(--Spacing-0-5)));
+  --_btn-pad-h: var(
+    --Button-paddingHorizontal-6,
+    var(--Button-paddingHorizontal, var(--Spacing-3))
+  );
+  /* No self-reference in the fallback: referencing the property being declared
+     is a custom-property cycle (invalid-at-computed-value). Falling straight
+     through to --_btn-pad-h is render-identical because the padding-left/right
+     consumers also fall back to --_btn-pad-h. */
+  --Button-paddingHorizontalStart: var(--Button-paddingHorizontalStart-6, var(--_btn-pad-h));
+  --Button-paddingHorizontalEnd: var(--Button-paddingHorizontalEnd-6, var(--_btn-pad-h));
+  font-size: var(--Button-fontSize-6, var(--Button-fontSize, var(--Label-XS-FontSize)));
+  line-height: var(--Button-lineHeight-6, var(--Button-lineHeight, var(--Label-XS-LineHeight)));
+  --Button-iconSize: var(--Button-iconSize-6, var(--Button-iconSize, var(--Spacing-3)));
+  --Button-iconSizeStart: var(
+    --Button-iconSizeStart-6,
+    var(--Button-iconSizeStart, var(--Button-iconSize))
+  );
+  --Button-iconSizeEnd: var(
+    --Button-iconSizeEnd-6,
+    var(--Button-iconSizeEnd, var(--Button-iconSize))
+  );
+}
+
+.button[data-size='8'] {
+  --_btn-min-h: var(--Button-minHeight-8, var(--Button-minHeight, var(--Spacing-8)));
+  --_btn-pad-v: var(--Button-paddingVertical-8, var(--Button-paddingVertical, var(--Spacing-0-5)));
+  --_btn-pad-h: var(
+    --Button-paddingHorizontal-8,
+    var(--Button-paddingHorizontal, var(--Spacing-4))
+  );
+  --Button-paddingHorizontalStart: var(--Button-paddingHorizontalStart-8, var(--_btn-pad-h));
+  --Button-paddingHorizontalEnd: var(--Button-paddingHorizontalEnd-8, var(--_btn-pad-h));
+  font-size: var(--Button-fontSize-8, var(--Button-fontSize, var(--Label-S-FontSize)));
+  line-height: var(--Button-lineHeight-8, var(--Button-lineHeight, var(--Label-S-LineHeight)));
+  --Button-iconSize: var(--Button-iconSize-8, var(--Button-iconSize, var(--Spacing-4)));
+  --Button-iconSizeStart: var(
+    --Button-iconSizeStart-8,
+    var(--Button-iconSizeStart, var(--Button-iconSize))
+  );
+  --Button-iconSizeEnd: var(
+    --Button-iconSizeEnd-8,
+    var(--Button-iconSizeEnd, var(--Button-iconSize))
+  );
+}
+
+.button[data-size='10'] {
+  --_btn-min-h: var(--Button-minHeight-10, var(--Button-minHeight, var(--Spacing-10)));
+  --_btn-pad-v: var(--Button-paddingVertical-10, var(--Button-paddingVertical, var(--Spacing-1)));
+  --_btn-pad-h: var(
+    --Button-paddingHorizontal-10,
+    var(--Button-paddingHorizontal, var(--Spacing-5))
+  );
+  --Button-paddingHorizontalStart: var(--Button-paddingHorizontalStart-10, var(--_btn-pad-h));
+  --Button-paddingHorizontalEnd: var(--Button-paddingHorizontalEnd-10, var(--_btn-pad-h));
+  font-size: var(--Button-fontSize-10, var(--Button-fontSize, var(--Label-M-FontSize)));
+  line-height: var(--Button-lineHeight-10, var(--Button-lineHeight, var(--Label-M-LineHeight)));
+  --Button-iconSize: var(--Button-iconSize-10, var(--Button-iconSize, var(--Spacing-5)));
+  --Button-iconSizeStart: var(
+    --Button-iconSizeStart-10,
+    var(--Button-iconSizeStart, var(--Button-iconSize))
+  );
+  --Button-iconSizeEnd: var(
+    --Button-iconSizeEnd-10,
+    var(--Button-iconSizeEnd, var(--Button-iconSize))
+  );
+}
+
+.button[data-size='12'] {
+  --_btn-min-h: var(--Button-minHeight-12, var(--Button-minHeight, var(--Spacing-12)));
+  --_btn-pad-v: var(--Button-paddingVertical-12, var(--Button-paddingVertical, var(--Spacing-2)));
+  --_btn-pad-h: var(
+    --Button-paddingHorizontal-12,
+    var(--Button-paddingHorizontal, var(--Spacing-6))
+  );
+  --Button-paddingHorizontalStart: var(--Button-paddingHorizontalStart-12, var(--_btn-pad-h));
+  --Button-paddingHorizontalEnd: var(--Button-paddingHorizontalEnd-12, var(--_btn-pad-h));
+  font-size: var(--Button-fontSize-12, var(--Button-fontSize, var(--Label-L-FontSize)));
+  line-height: var(--Button-lineHeight-12, var(--Button-lineHeight, var(--Label-L-LineHeight)));
+  --Button-iconSize: var(--Button-iconSize-12, var(--Button-iconSize, var(--Spacing-6)));
+  --Button-iconSizeStart: var(
+    --Button-iconSizeStart-12,
+    var(--Button-iconSizeStart, var(--Button-iconSize))
+  );
+  --Button-iconSizeEnd: var(
+    --Button-iconSizeEnd-12,
+    var(--Button-iconSizeEnd, var(--Button-iconSize))
+  );
+}
+
+/* ========================================
+   CONDENSED MODE — reduces height + horizontal padding, same typography
+   ======================================== */
+
+/* Condensed mode re-assigns the size-scoped Start/End vars directly. Just
+   overriding --_btn-pad-h is not enough: the non-condensed selector above
+   already wrote --Button-paddingHorizontalStart as
+   var(--Button-paddingHorizontalStart-{size}, ... , --_btn-pad-h), and the
+   -{size} suffix is populated by manifest defaults, so the fallback to
+   --_btn-pad-h never fires. By re-writing --Button-paddingHorizontalStart/End
+   here (cascade: condensed selector comes after, same specificity — last
+   wins) the condensed widths actually take effect. --_btn-pad-v is also
+   shrunk so both axes contract together. */
+
+/* NOTE: condensed min-heights MUST stay monotonic across sizes
+   (XS < S < M < L). The previous scale (XS=XL=25px, S=L=22.5px) made
+   S smaller than XS — that's the "condensed is making the opposite"
+   bug. Scale now: XS→L (22.5), S→XL (25), M→2XL (30), L→4XL (40),
+   strictly increasing and roughly 65–75% of the default scale. */
+
+/* IMPORTANT — condensed brand-override variable names:
+   The first var() reference in each declaration is the brand-override hook.
+   These names MUST match what the component-token manifest emits for the
+   `condensedMinHeight` / `condensedPaddingHorizontal` token families:
+     manifest token  →  expanded CSS var
+     condensedMinHeight (sizes)            →  --Button-condensedMinHeight-{size}
+     condensedPaddingHorizontal (sizes)    →  --Button-condensedPaddingHorizontal-{size}
+   Drift between these names and the manifest silently disables every
+   brand-level customisation of condensed sizing. There are no fallbacks
+   to the regular --Button-minHeight / --Button-paddingHorizontal base
+   defaults — those are populated with the *default* scale by the same
+   manifest pipeline, so chaining through them collapses condensed sizes
+   back to their non-condensed counterparts (the bug fixed in this file). */
+
+.button[data-condensed][data-size='6'] {
+  --_btn-min-h: var(--Button-condensedMinHeight-6, var(--Spacing-4-5));
+  --_btn-pad-h: var(--Button-condensedPaddingHorizontal-6, var(--Spacing-2));
+  --_btn-pad-v: var(--Button-condensedPaddingVertical-6, var(--Spacing-0-5));
+  --Button-paddingHorizontalStart: var(
+    --Button-condensedPaddingHorizontalStart-6,
+    var(--_btn-pad-h)
+  );
+  --Button-paddingHorizontalEnd: var(--Button-condensedPaddingHorizontalEnd-6, var(--_btn-pad-h));
+}
+
+.button[data-condensed][data-size='8'] {
+  --_btn-min-h: var(--Button-condensedMinHeight-8, var(--Spacing-5));
+  --_btn-pad-h: var(--Button-condensedPaddingHorizontal-8, var(--Spacing-2-5));
+  --_btn-pad-v: var(--Button-condensedPaddingVertical-8, var(--Spacing-0-5));
+  --Button-paddingHorizontalStart: var(
+    --Button-condensedPaddingHorizontalStart-8,
+    var(--_btn-pad-h)
+  );
+  --Button-paddingHorizontalEnd: var(--Button-condensedPaddingHorizontalEnd-8, var(--_btn-pad-h));
+}
+
+.button[data-condensed][data-size='10'] {
+  --_btn-min-h: var(--Button-condensedMinHeight-10, var(--Spacing-6));
+  --_btn-pad-h: var(--Button-condensedPaddingHorizontal-10, var(--Spacing-3));
+  --_btn-pad-v: var(--Button-condensedPaddingVertical-10, var(--Spacing-0-5));
+  --Button-paddingHorizontalStart: var(
+    --Button-condensedPaddingHorizontalStart-10,
+    var(--_btn-pad-h)
+  );
+  --Button-paddingHorizontalEnd: var(--Button-condensedPaddingHorizontalEnd-10, var(--_btn-pad-h));
+}
+
+.button[data-condensed][data-size='12'] {
+  --_btn-min-h: var(--Button-condensedMinHeight-12, var(--Spacing-8));
+  --_btn-pad-h: var(--Button-condensedPaddingHorizontal-12, var(--Spacing-3-5));
+  --_btn-pad-v: var(--Button-condensedPaddingVertical-12, var(--Spacing-1));
+  --Button-paddingHorizontalStart: var(
+    --Button-condensedPaddingHorizontalStart-12,
+    var(--_btn-pad-h)
+  );
+  --Button-paddingHorizontalEnd: var(--Button-condensedPaddingHorizontalEnd-12, var(--_btn-pad-h));
+}
+
+/* ========================================
+   PLATFORM-SCOPED CONTEXT
+   When inside [data-Breakpoint] (e.g. ContentBlock artboard, Storybook
+   preview, editor canvas), re-declare each size's tokens so they resolve
+   against the container's platform/density dimension scale.
+
+   Fallback chain for every property (mirrors the non-platform-scoped
+   selectors): per-size override → base override → Spacing or Label token.
+   Reading --Button-fontSize without the size suffix here would collapse
+   S/M/L to a single brand-injected base and make every size render the
+   same — that regression shipped in 1103c59, this block fixes it.
+   ======================================== */
+
+[data-Breakpoint] .button[data-size='6'] {
+  --_btn-min-h: var(--Button-minHeight-6, var(--Button-minHeight, var(--Spacing-6)));
+  --_btn-pad-v: var(--Button-paddingVertical-6, var(--Button-paddingVertical, var(--Spacing-0-5)));
+  --_btn-pad-h: var(
+    --Button-paddingHorizontal-6,
+    var(--Button-paddingHorizontal, var(--Spacing-3))
+  );
+  /* No self-reference in the fallback: referencing the property being declared
+     is a custom-property cycle (invalid-at-computed-value). Falling straight
+     through to --_btn-pad-h is render-identical because the padding-left/right
+     consumers also fall back to --_btn-pad-h. */
+  --Button-paddingHorizontalStart: var(--Button-paddingHorizontalStart-6, var(--_btn-pad-h));
+  --Button-paddingHorizontalEnd: var(--Button-paddingHorizontalEnd-6, var(--_btn-pad-h));
+  font-size: var(--Button-fontSize-6, var(--Button-fontSize, var(--Label-XS-FontSize)));
+  line-height: var(--Button-lineHeight-6, var(--Button-lineHeight, var(--Label-XS-LineHeight)));
+  --Button-iconSize: var(--Button-iconSize-6, var(--Button-iconSize, var(--Spacing-3)));
+}
+
+[data-Breakpoint] .button[data-size='8'] {
+  --_btn-min-h: var(--Button-minHeight-8, var(--Button-minHeight, var(--Spacing-8)));
+  --_btn-pad-v: var(--Button-paddingVertical-8, var(--Button-paddingVertical, var(--Spacing-0-5)));
+  --_btn-pad-h: var(
+    --Button-paddingHorizontal-8,
+    var(--Button-paddingHorizontal, var(--Spacing-4))
+  );
+  --Button-paddingHorizontalStart: var(--Button-paddingHorizontalStart-8, var(--_btn-pad-h));
+  --Button-paddingHorizontalEnd: var(--Button-paddingHorizontalEnd-8, var(--_btn-pad-h));
+  font-size: var(--Button-fontSize-8, var(--Button-fontSize, var(--Label-S-FontSize)));
+  line-height: var(--Button-lineHeight-8, var(--Button-lineHeight, var(--Label-S-LineHeight)));
+  --Button-iconSize: var(--Button-iconSize-8, var(--Button-iconSize, var(--Spacing-4)));
+}
+
+[data-Breakpoint] .button[data-size='10'] {
+  --_btn-min-h: var(--Button-minHeight-10, var(--Button-minHeight, var(--Spacing-10)));
+  --_btn-pad-v: var(--Button-paddingVertical-10, var(--Button-paddingVertical, var(--Spacing-1)));
+  --_btn-pad-h: var(
+    --Button-paddingHorizontal-10,
+    var(--Button-paddingHorizontal, var(--Spacing-5))
+  );
+  --Button-paddingHorizontalStart: var(--Button-paddingHorizontalStart-10, var(--_btn-pad-h));
+  --Button-paddingHorizontalEnd: var(--Button-paddingHorizontalEnd-10, var(--_btn-pad-h));
+  font-size: var(--Button-fontSize-10, var(--Button-fontSize, var(--Label-M-FontSize)));
+  line-height: var(--Button-lineHeight-10, var(--Button-lineHeight, var(--Label-M-LineHeight)));
+  --Button-iconSize: var(--Button-iconSize-10, var(--Button-iconSize, var(--Spacing-5)));
+}
+
+[data-Breakpoint] .button[data-size='12'] {
+  --_btn-min-h: var(--Button-minHeight-12, var(--Button-minHeight, var(--Spacing-12)));
+  --_btn-pad-v: var(--Button-paddingVertical-12, var(--Button-paddingVertical, var(--Spacing-2)));
+  --_btn-pad-h: var(
+    --Button-paddingHorizontal-12,
+    var(--Button-paddingHorizontal, var(--Spacing-6))
+  );
+  --Button-paddingHorizontalStart: var(--Button-paddingHorizontalStart-12, var(--_btn-pad-h));
+  --Button-paddingHorizontalEnd: var(--Button-paddingHorizontalEnd-12, var(--_btn-pad-h));
+  font-size: var(--Button-fontSize-12, var(--Button-fontSize, var(--Label-L-FontSize)));
+  line-height: var(--Button-lineHeight-12, var(--Button-lineHeight, var(--Label-L-LineHeight)));
+  --Button-iconSize: var(--Button-iconSize-12, var(--Button-iconSize, var(--Spacing-6)));
+}
+
+/* IMPORTANT: do NOT add a fallback to --Button-minHeight /
+   --Button-paddingHorizontal / --Button-paddingVertical here. Those
+   un-suffixed base vars are populated by the brand/editor manifest
+   pipeline with the *regular* defaults, so chaining through them
+   silently resolves condensed sizes back to the default scale and
+   makes condensed buttons render larger than their default counterparts.
+   Fall through directly to the per-size literal Spacing-* token.
+   Brand-override hook names (first var()) MUST mirror the condensed
+   token families emitted by the manifest — see the corresponding
+   non-platform-scoped block above for the contract. */
+
+[data-Breakpoint] .button[data-condensed][data-size='6'] {
+  --_btn-min-h: var(--Button-condensedMinHeight-6, var(--Spacing-4-5));
+  --_btn-pad-h: var(--Button-condensedPaddingHorizontal-6, var(--Spacing-2));
+  --_btn-pad-v: var(--Button-condensedPaddingVertical-6, var(--Spacing-0-5));
+  --Button-paddingHorizontalStart: var(
+    --Button-condensedPaddingHorizontalStart-6,
+    var(--_btn-pad-h)
+  );
+  --Button-paddingHorizontalEnd: var(--Button-condensedPaddingHorizontalEnd-6, var(--_btn-pad-h));
+}
+
+[data-Breakpoint] .button[data-condensed][data-size='8'] {
+  --_btn-min-h: var(--Button-condensedMinHeight-8, var(--Spacing-5));
+  --_btn-pad-h: var(--Button-condensedPaddingHorizontal-8, var(--Spacing-2-5));
+  --_btn-pad-v: var(--Button-condensedPaddingVertical-8, var(--Spacing-0-5));
+  --Button-paddingHorizontalStart: var(
+    --Button-condensedPaddingHorizontalStart-8,
+    var(--_btn-pad-h)
+  );
+  --Button-paddingHorizontalEnd: var(--Button-condensedPaddingHorizontalEnd-8, var(--_btn-pad-h));
+}
+
+[data-Breakpoint] .button[data-condensed][data-size='10'] {
+  --_btn-min-h: var(--Button-condensedMinHeight-10, var(--Spacing-6));
+  --_btn-pad-h: var(--Button-condensedPaddingHorizontal-10, var(--Spacing-3));
+  --_btn-pad-v: var(--Button-condensedPaddingVertical-10, var(--Spacing-0-5));
+  --Button-paddingHorizontalStart: var(
+    --Button-condensedPaddingHorizontalStart-10,
+    var(--_btn-pad-h)
+  );
+  --Button-paddingHorizontalEnd: var(--Button-condensedPaddingHorizontalEnd-10, var(--_btn-pad-h));
+}
+
+[data-Breakpoint] .button[data-condensed][data-size='12'] {
+  --_btn-min-h: var(--Button-condensedMinHeight-12, var(--Spacing-8));
+  --_btn-pad-h: var(--Button-condensedPaddingHorizontal-12, var(--Spacing-3-5));
+  --_btn-pad-v: var(--Button-condensedPaddingVertical-12, var(--Spacing-1));
+  --Button-paddingHorizontalStart: var(
+    --Button-condensedPaddingHorizontalStart-12,
+    var(--_btn-pad-h)
+  );
+  --Button-paddingHorizontalEnd: var(--Button-condensedPaddingHorizontalEnd-12, var(--_btn-pad-h));
+}
+
+/* ========================================
+   SLOT-AWARE PADDING — reduced padding when start/end icons are present
+   Uses :has() selector for CSS-only slot detection
+   ======================================== */
+
+.button[data-size='6']:has(> .start),
+.button[data-size='6']:has(> .spinner) {
+  --Button-paddingHorizontalStart: var(--Button-paddingHorizontalStart-6-slot, var(--Spacing-2));
+}
+.button[data-size='6']:has(> .end) {
+  --Button-paddingHorizontalEnd: var(--Button-paddingHorizontalEnd-6-slot, var(--Spacing-2));
+}
+
+.button[data-size='8']:has(> .start),
+.button[data-size='8']:has(> .spinner) {
+  --Button-paddingHorizontalStart: var(--Button-paddingHorizontalStart-8-slot, var(--Spacing-3));
+}
+.button[data-size='8']:has(> .end) {
+  --Button-paddingHorizontalEnd: var(--Button-paddingHorizontalEnd-8-slot, var(--Spacing-3));
+}
+
+.button[data-size='10']:has(> .start),
+.button[data-size='10']:has(> .spinner) {
+  --Button-paddingHorizontalStart: var(--Button-paddingHorizontalStart-10-slot, var(--Spacing-4));
+}
+.button[data-size='10']:has(> .end) {
+  --Button-paddingHorizontalEnd: var(--Button-paddingHorizontalEnd-10-slot, var(--Spacing-4));
+}
+
+.button[data-size='12']:has(> .start),
+.button[data-size='12']:has(> .spinner) {
+  --Button-paddingHorizontalStart: var(--Button-paddingHorizontalStart-12-slot, var(--Spacing-5));
+}
+.button[data-size='12']:has(> .end) {
+  --Button-paddingHorizontalEnd: var(--Button-paddingHorizontalEnd-12-slot, var(--Spacing-5));
+}
+
+/* ========================================
+   PER-SIZE SLOT GAP — S uses tighter gap than M/L
+   ======================================== */
+
+.button[data-size='6'] .start {
+  margin-right: var(
+    --Button-iconGapStart-6,
+    var(--Button-iconGapStart, var(--Button-iconGap, var(--Spacing-1)))
+  );
+}
+.button[data-size='6'] .end {
+  margin-left: var(
+    --Button-iconGapEnd-6,
+    var(--Button-iconGapEnd, var(--Button-iconGap, var(--Spacing-1)))
+  );
+}
+.button[data-size='6'] .spinner {
+  margin-right: var(
+    --Button-iconGapStart-6,
+    var(--Button-iconGapStart, var(--Button-iconGap, var(--Spacing-1)))
+  );
+}
+
+.button[data-size='8'] .start {
+  margin-right: var(
+    --Button-iconGapStart-8,
+    var(--Button-iconGapStart, var(--Button-iconGap, var(--Spacing-1)))
+  );
+}
+.button[data-size='8'] .end {
+  margin-left: var(
+    --Button-iconGapEnd-8,
+    var(--Button-iconGapEnd, var(--Button-iconGap, var(--Spacing-1)))
+  );
+}
+.button[data-size='8'] .spinner {
+  margin-right: var(
+    --Button-iconGapStart-8,
+    var(--Button-iconGapStart, var(--Button-iconGap, var(--Spacing-1)))
+  );
+}
+
+.button[data-size='10'] .start {
+  margin-right: var(
+    --Button-iconGapStart-10,
+    var(--Button-iconGapStart, var(--Button-iconGap, var(--Spacing-1-5)))
+  );
+}
+.button[data-size='10'] .end {
+  margin-left: var(
+    --Button-iconGapEnd-10,
+    var(--Button-iconGapEnd, var(--Button-iconGap, var(--Spacing-1-5)))
+  );
+}
+.button[data-size='10'] .spinner {
+  margin-right: var(
+    --Button-iconGapStart-10,
+    var(--Button-iconGapStart, var(--Button-iconGap, var(--Spacing-1-5)))
+  );
+}
+
+.button[data-size='12'] .start {
+  margin-right: var(
+    --Button-iconGapStart-12,
+    var(--Button-iconGapStart, var(--Button-iconGap, var(--Spacing-1-5)))
+  );
+}
+.button[data-size='12'] .end {
+  margin-left: var(
+    --Button-iconGapEnd-12,
+    var(--Button-iconGapEnd, var(--Button-iconGap, var(--Spacing-1-5)))
+  );
+}
+.button[data-size='12'] .spinner {
+  margin-right: var(
+    --Button-iconGapStart-12,
+    var(--Button-iconGapStart, var(--Button-iconGap, var(--Spacing-1-5)))
+  );
+}
+
+/* ========================================
+   FULL WIDTH
+   ======================================== */
+
+.fullWidth {
+  /* Subtract ornament margins so the button + ornaments fit within the parent.
+     When no decoration, ornament widths are 0px so this equals 100%. */
+  width: calc(
+    100% - var(--Button-ornament-width-left, 0px) - var(--Button-ornament-width-right, 0px)
+  );
+  /* Tap: Scale Down 1% for full-width (from Convex motion foundations) */
+  --_tap-scale: var(--Motion-Tap-Scale-FullWidth, 1);
+}
+
+/* ========================================
+   STATES
+   ======================================== */
+
+.disabled {
+  opacity: var(--Disabled-Opacity);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.loading {
+  pointer-events: none;
+}
+
+/* Loading state per Figma spec: show ONLY the spinner; visually hide start /
+   label / end slots while preserving the button's original dimensions.
+   Using opacity:0 (not visibility:hidden or display:none) keeps each slot's
+   box in the layout — so the button doesn't reflow when loading toggles — AND
+   keeps the label in the accessibility tree, so screen readers continue to
+   announce the button's name while it is loading. (visibility:hidden would
+   remove the label from the a11y tree, leaving the button unnamed.) */
+.loading .start,
+.loading .label,
+.loading .end {
+  opacity: 0;
+}
+
+.spinner {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: inherit;
+  margin-right: var(--Button-iconGapStart, var(--Button-iconGap, var(--Spacing-1-5)));
+  /* Force CPI indicator to follow button text colour; hide track ring */
+  --CircularProgressIndicator-indicatorColor: currentColor;
+  --CircularProgressIndicator-trackColor: transparent;
+}
+
+/* When loading, center the spinner over the hidden content. .button already
+   has position: relative, so absolute positioning anchors to its box. */
+.loading .spinner {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+}
+
+/* Hover states — consume intermediate vars, update paint channels for ornament sync */
+.bold:hover:not(.disabled),
+:global([data-force-state='hover']) .bold:not(.disabled) {
+  /* Material fill stays stable across states — hover feedback comes from the
+     tap-scale / decoration channels, not a flat-colour swap over the gradient. */
+  --_btn-bg: var(--Button-backgroundColor-bold-hover, var(--_btn-material-fill, var(--Button-roleBoldHover-bold, var(--_btn-bold-hover))));
+  --_btn-bw: var(--Button-borderWidth-bold-hover, var(--Button-borderWidth-bold, 0px));
+  --_btn-bc: var(--Button-borderColor-bold-hover, var(--Button-borderColor-bold, transparent));
+  --_btn-solid-bc: var(
+    --Button-solidStrokeColor-bold-hover,
+    var(--Button-solidStrokeColor-bold, var(--_btn-bc))
+  );
+  --_btn-stroke-image: var(
+    --Button-strokeImage-bold-hover,
+    var(--Button-strokeImage-bold, var(--Button-strokeImage, var(--_btn-material-stroke, none)))
+  );
+  --Button-cssDecorationColor-active: var(
+    --Button-cssDecorationColor-bold-hover,
+    var(--Button-cssDecorationColor-bold, var(--Button-cssDecorationColor, currentColor))
+  );
+  --Button-cssDecorationInsetStrokeWidth-active: var(
+    --Button-cssDecorationInsetStrokeWidth-bold-hover,
+    var(
+      --Button-cssDecorationInsetStrokeWidth-bold,
+      var(--Button-cssDecorationInsetStrokeWidth, var(--Spacing-0))
+    )
+  );
+  --Button-cssDecorationUnderlineWidth-active: var(
+    --Button-cssDecorationUnderlineWidth-bold-hover,
+    var(
+      --Button-cssDecorationUnderlineWidth-bold,
+      var(--Button-cssDecorationUnderlineWidth, var(--Spacing-0))
+    )
+  );
+  background: var(--_btn-bg);
+  color: var(--Button-textColor-bold-hover, var(--Button-textColor-bold, var(--_btn-material-text, var(--Button-roleBoldHigh-bold, var(--_btn-bold-high)))));
+}
+
+.subtle:hover:not(.disabled),
+:global([data-force-state='hover']) .subtle:not(.disabled) {
+  --_btn-bg: var(--Button-backgroundColor-subtle-hover, var(--Button-roleSubtleHover-subtle, var(--_btn-subtle-hover)));
+  --_btn-bw: var(--Button-borderWidth-subtle-hover, var(--Button-borderWidth-subtle, 0px));
+  --_btn-bc: var(--Button-borderColor-subtle-hover, var(--Button-borderColor-subtle, transparent));
+  --_btn-solid-bc: var(
+    --Button-solidStrokeColor-subtle-hover,
+    var(--Button-solidStrokeColor-subtle, var(--_btn-bc))
+  );
+  --_btn-stroke-image: var(
+    --Button-strokeImage-subtle-hover,
+    var(--Button-strokeImage-subtle, var(--Button-strokeImage, var(--_btn-material-stroke, none)))
+  );
+  --Button-cssDecorationColor-active: var(
+    --Button-cssDecorationColor-subtle-hover,
+    var(--Button-cssDecorationColor-subtle, var(--Button-cssDecorationColor, currentColor))
+  );
+  --Button-cssDecorationInsetStrokeWidth-active: var(
+    --Button-cssDecorationInsetStrokeWidth-subtle-hover,
+    var(
+      --Button-cssDecorationInsetStrokeWidth-subtle,
+      var(--Button-cssDecorationInsetStrokeWidth, var(--Spacing-0))
+    )
+  );
+  --Button-cssDecorationUnderlineWidth-active: var(
+    --Button-cssDecorationUnderlineWidth-subtle-hover,
+    var(
+      --Button-cssDecorationUnderlineWidth-subtle,
+      var(--Button-cssDecorationUnderlineWidth, var(--Spacing-0))
+    )
+  );
+  background: var(--_btn-bg);
+  color: var(
+    --Button-textColor-subtle-hover,
+    var(--Button-textColor-subtle, var(--Button-roleTintedA11y-subtle, var(--_btn-default-accent-a11y)))
+  );
+}
+
+.ghost:hover:not(.disabled),
+:global([data-force-state='hover']) .ghost:not(.disabled) {
+  --_btn-bg: var(--Button-backgroundColor-ghost-hover, var(--Button-roleHover-ghost, var(--_btn-default-hover)));
+  --_btn-bw: var(--Button-borderWidth-ghost-hover, var(--Button-borderWidth-ghost, 0px));
+  --_btn-bc: var(--Button-borderColor-ghost-hover, var(--Button-borderColor-ghost, transparent));
+  --_btn-solid-bc: var(
+    --Button-solidStrokeColor-ghost-hover,
+    var(--Button-solidStrokeColor-ghost, var(--_btn-bc))
+  );
+  --_btn-stroke-image: var(
+    --Button-strokeImage-ghost-hover,
+    var(--Button-strokeImage-ghost, var(--Button-strokeImage, var(--_btn-material-stroke, none)))
+  );
+  background: var(--_btn-bg);
+  color: var(
+    --Button-textColor-ghost-hover,
+    var(--Button-textColor-ghost, var(--Button-roleTintedA11y-ghost, var(--_btn-default-accent-a11y)))
+  );
+}
+
+/* Pressed states — consume intermediate vars, update paint channels for ornament sync */
+.bold:active:not(.disabled),
+:global([data-force-state='pressed']) .bold:not(.disabled) {
+  --_btn-bg: var(--Button-backgroundColor-bold-pressed, var(--_btn-material-fill, var(--Button-roleBoldPressed-bold, var(--_btn-bold-pressed))));
+  --_btn-bw: var(--Button-borderWidth-bold-pressed, var(--Button-borderWidth-bold, 0px));
+  --_btn-bc: var(--Button-borderColor-bold-pressed, var(--Button-borderColor-bold, transparent));
+  --_btn-solid-bc: var(
+    --Button-solidStrokeColor-bold-pressed,
+    var(--Button-solidStrokeColor-bold, var(--_btn-bc))
+  );
+  --_btn-stroke-image: var(
+    --Button-strokeImage-bold-pressed,
+    var(--Button-strokeImage-bold, var(--Button-strokeImage, var(--_btn-material-stroke, none)))
+  );
+  --Button-cssDecorationColor-active: var(
+    --Button-cssDecorationColor-bold-pressed,
+    var(--Button-cssDecorationColor-bold, var(--Button-cssDecorationColor, currentColor))
+  );
+  --Button-cssDecorationInsetStrokeWidth-active: var(
+    --Button-cssDecorationInsetStrokeWidth-bold-pressed,
+    var(
+      --Button-cssDecorationInsetStrokeWidth-bold,
+      var(--Button-cssDecorationInsetStrokeWidth, var(--Spacing-0))
+    )
+  );
+  --Button-cssDecorationUnderlineWidth-active: var(
+    --Button-cssDecorationUnderlineWidth-bold-pressed,
+    var(
+      --Button-cssDecorationUnderlineWidth-bold,
+      var(--Button-cssDecorationUnderlineWidth, var(--Spacing-0))
+    )
+  );
+  background: var(--_btn-bg);
+  color: var(--Button-textColor-bold-pressed, var(--Button-textColor-bold, var(--_btn-material-text, var(--Button-roleBoldHigh-bold, var(--_btn-bold-high)))));
+}
+
+.subtle:active:not(.disabled),
+:global([data-force-state='pressed']) .subtle:not(.disabled) {
+  --_btn-bg: var(--Button-backgroundColor-subtle-pressed, var(--Button-roleSubtlePressed-subtle, var(--_btn-subtle-pressed)));
+  --_btn-bw: var(--Button-borderWidth-subtle-pressed, var(--Button-borderWidth-subtle, 0px));
+  --_btn-bc: var(--Button-borderColor-subtle-pressed, var(--Button-borderColor-subtle, transparent));
+  --_btn-solid-bc: var(
+    --Button-solidStrokeColor-subtle-pressed,
+    var(--Button-solidStrokeColor-subtle, var(--_btn-bc))
+  );
+  --_btn-stroke-image: var(
+    --Button-strokeImage-subtle-pressed,
+    var(--Button-strokeImage-subtle, var(--Button-strokeImage, var(--_btn-material-stroke, none)))
+  );
+  --Button-cssDecorationColor-active: var(
+    --Button-cssDecorationColor-subtle-pressed,
+    var(--Button-cssDecorationColor-subtle, var(--Button-cssDecorationColor, currentColor))
+  );
+  --Button-cssDecorationInsetStrokeWidth-active: var(
+    --Button-cssDecorationInsetStrokeWidth-subtle-pressed,
+    var(
+      --Button-cssDecorationInsetStrokeWidth-subtle,
+      var(--Button-cssDecorationInsetStrokeWidth, var(--Spacing-0))
+    )
+  );
+  --Button-cssDecorationUnderlineWidth-active: var(
+    --Button-cssDecorationUnderlineWidth-subtle-pressed,
+    var(
+      --Button-cssDecorationUnderlineWidth-subtle,
+      var(--Button-cssDecorationUnderlineWidth, var(--Spacing-0))
+    )
+  );
+  background: var(--_btn-bg);
+  color: var(
+    --Button-textColor-subtle-pressed,
+    var(--Button-textColor-subtle, var(--Button-roleTintedA11y-subtle, var(--_btn-default-accent-a11y)))
+  );
+}
+
+.ghost:active:not(.disabled),
+:global([data-force-state='pressed']) .ghost:not(.disabled) {
+  --_btn-bg: var(--Button-backgroundColor-ghost-pressed, var(--Button-rolePressed-ghost, var(--_btn-default-pressed)));
+  --_btn-bw: var(--Button-borderWidth-ghost-pressed, var(--Button-borderWidth-ghost, 0px));
+  --_btn-bc: var(--Button-borderColor-ghost-pressed, var(--Button-borderColor-ghost, transparent));
+  --_btn-solid-bc: var(
+    --Button-solidStrokeColor-ghost-pressed,
+    var(--Button-solidStrokeColor-ghost, var(--_btn-bc))
+  );
+  --_btn-stroke-image: var(
+    --Button-strokeImage-ghost-pressed,
+    var(--Button-strokeImage-ghost, var(--Button-strokeImage, var(--_btn-material-stroke, none)))
+  );
+  background: var(--_btn-bg);
+  color: var(
+    --Button-textColor-ghost-pressed,
+    var(--Button-textColor-ghost, var(--Button-roleTintedA11y-ghost, var(--_btn-default-accent-a11y)))
+  );
+}
+
+/* Tap Scale Down — from Convex motion foundations
+   XS: 7%, S/M/L/XL: 3% (default), Full-width: 1%
+   Duration-M + Transition-Moderate easing on transform */
+.button[data-size='6'] {
+  --_tap-scale: var(--Motion-Tap-Scale-XS, 7);
+}
+.button:active:not(.disabled),
+:global([data-force-state='pressed']) .button:not(.disabled) {
+  transform: scale(calc(1 - var(--_tap-scale) / 100));
+}
+
+/* Reduced motion: no scale */
+@media (prefers-reduced-motion: reduce) {
+  .button:active:not(.disabled),
+  :global([data-force-state='pressed']) .button:not(.disabled) {
+    transform: none;
+  }
+}
+
+.button:focus {
+  outline: none;
+}
+
+.button:focus-visible,
+:global([data-force-state='focus']) .button {
+  box-shadow:
+    inset 0 0 0 var(--_btn-bw, 0px) var(--_btn-bc, transparent),
+    0 0 0 var(--Stroke-XL) var(--Surface-Halo-Gap, var(--Surface-Main)),
+    0 0 0 calc(var(--Stroke-XL) + var(--Focus-Outline-Width)) var(--Focus-Outline);
+}
+
+/* ========================================
+   SLOTS — start/end content areas (icons, avatars, badges, etc.)
+   ======================================== */
+
+.label {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+}
+
+.start {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: var(--Button-iconGapStart, var(--Button-iconGap, var(--Spacing-1-5)));
+  flex-shrink: 0;
+  /* Slot Icons read --Icon-color before role tokens; mirror the button label colour
+     (bold-high / tinted-a11y / ghost accent) including hover + pressed states. */
+  color: inherit;
+  --Icon-color: currentColor;
+}
+
+.start > svg {
+  display: block;
+  width: var(--Button-iconSizeStart, var(--Button-iconSize, var(--Spacing-4)));
+  height: var(--Button-iconSizeStart, var(--Button-iconSize, var(--Spacing-4)));
+}
+
+.end {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: var(--Button-iconGapEnd, var(--Button-iconGap, var(--Spacing-1-5)));
+  flex-shrink: 0;
+  color: inherit;
+  --Icon-color: currentColor;
+}
+
+.end > svg {
+  display: block;
+  width: var(--Button-iconSizeEnd, var(--Button-iconSize, var(--Spacing-4)));
+  height: var(--Button-iconSizeEnd, var(--Button-iconSize, var(--Spacing-4)));
+}
+
+/* ========================================
+   ORNAMENT — inline SVG overlays adjacent to the button box.
+
+   Layout strategy: The button uses margin-left/margin-right to reserve
+   space in the parent flow for absolutely-positioned ornaments. This
+   ensures adjacent elements don't overlap the ornaments AND the button's
+   total occupied width (box + margins) includes the ornament area.
+
+   Uses data-attribute selectors scoped under .button to avoid
+   CSS Module class resolution issues in Storybook/Vite HMR.
+   ======================================== */
+
+/* Allow ornaments to protrude beyond the button rectangle */
+.button[data-has-decoration] {
+  overflow: visible;
+}
+
+/* Ornament wrapper extends to the full border-box height (not padding-box).
+   For ghost variant, the button has a visible border, so the padding-box is
+   shorter than the border-box. Negative offsets account for this difference.
+   Overlap by Stroke-S (0.5px) eliminates any subpixel anti-aliasing seam. */
+.button > [data-ornament] {
+  position: absolute;
+  top: calc(-1 * var(--_btn-bw, 0px));
+  bottom: calc(-1 * var(--_btn-bw, 0px));
+  pointer-events: auto;
+  z-index: 0;
+}
+
+.button > [data-ornament='left'] {
+  right: calc(100% - var(--Stroke-S));
+}
+
+.button > [data-ornament='right'] {
+  left: calc(100% - var(--Stroke-S));
+}
+
+.button > [data-ornament] svg {
+  display: block;
+  height: 100%;
+  width: auto;
+}
+
+/* Fill path — tracks button background-color at every state via --_btn-bg.
+   stroke: none prevents anti-aliased edge artifacts on transparent ghost fills.
+   Transition keeps ornament fill in sync with button background on hover/active. */
+.button [data-ornament-fill] {
+  fill: var(--_btn-bg);
+  stroke: none;
+  transition-property: fill;
+  transition-duration: var(--Button-transitionDuration, var(--Motion-Duration-M));
+  transition-timing-function: var(
+    --Button-transitionEasing,
+    var(--Motion-Easing-Transition-Moderate)
+  );
+}
+
+/* Stroke path (ghost variant only) — outer curve of the ornament.
+   vector-effect: non-scaling-stroke renders the stroke in screen pixels after
+   the SVG viewport transform, so it matches the CSS border width exactly even
+   with preserveAspectRatio="none" (non-uniform scaling).
+   stroke-linecap: butt prevents round dots at the junction corners.
+   shape-rendering: geometricPrecision produces crisper strokes that better
+   match the visual weight of CSS borders. */
+.button [data-ornament-stroke] {
+  fill: none;
+  stroke: var(--Button-borderColor-ghost, var(--_btn-default-low-stroke));
+  stroke-width: var(--Button-borderWidth-ghost, var(--Stroke-M));
+  stroke-linecap: square;
+  stroke-linejoin: round;
+  shape-rendering: geometricPrecision;
+  vector-effect: non-scaling-stroke;
+}
+
+/**
+ * ========================================
+ * IMPORTANT: NO LITERALS IN THIS FILE
+ * ========================================
+ *
+ * All values MUST come from --Token-Name variables
+ * defined in @oneui/tokens CSS files
+ */

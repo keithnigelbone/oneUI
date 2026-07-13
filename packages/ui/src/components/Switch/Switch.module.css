@@ -1,0 +1,590 @@
+/**
+ * Switch.module.css
+ *
+ * CRITICAL: This file demonstrates the ZERO LITERALS rule
+ * ALL styling uses design tokens ONLY
+ *
+ * Architecture: Dual intermediate variable system (--_sw-*)
+ * - Checked fill uses data-checked-appearance (prop → parent Surface → secondary)
+ * - Unchecked fill uses data-unchecked-appearance (parent Surface → neutral)
+ * - ReadOnly forces both state roles to neutral
+ * - Appearance classes remap checked/readOnly vars; unchecked is overridden by state role attrs
+ * - Accent classes override ONLY fill vars — for explicit accent overrides
+ *
+ * Figma variable mapping:
+ *   Colour/surface (unchecked track) → --Neutral-Moderate on the bare page;
+ *     inside `<Surface appearance="...">` it uses the nearest Surface role's Moderate.
+ *     Moderate has no hover/pressed tokens in the system, so the track's
+ *     hover/press reuse the role's Subtle-Hover / Subtle-Pressed (nearest solid
+ *     darkened surface states).
+ *   Colour/surface (checked track)   → --{Role}-Bold
+ *   Colour/surface (unchecked knob)  → --Surface-Default (always white)
+ *   Colour/on-Colour/tinted A11y     → --{Role}-Bold-TintedA11y (checked knob on-colour)
+ *   Colour/on-Colour/high            → --{Role}-High (readonly)
+ *   InteractionStates/focus ring      → --Informative-Bold (always informative)
+ *   Disabled opacity                  → --Disabled-Opacity
+ *
+ * Figma structure: Track → StateLayer (padding) → Knob
+ * Our structure:   Track (padding) → Knob (flattened — no StateLayer element)
+ *
+ * Size system: [data-size="s|m|l"] attribute selectors.
+ *   S: track f4 (28) wide, knob f-2 (12), padding f-7 (2), travel f-2 (12)
+ *   M: track f6 (36) wide, knob f0 (16), padding f-7 (2), travel f0 (16)
+ *   L: track f7 (40) wide, knob f2 (20), padding f-7 (2), travel f0 (16)
+ *   Height = auto (2 × padding + knob)
+ *
+ * Verified by: pnpm check:literals
+ */
+
+/* ========================================
+   WRAPPER — label + switch + text
+   ======================================== */
+
+.wrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--Spacing-3);
+  cursor: pointer;
+}
+
+.wrapper[data-disabled] {
+  cursor: not-allowed;
+}
+
+.wrapper[data-disabled]:not([data-readonly]) {
+  opacity: var(--Disabled-Opacity);
+}
+
+/* ========================================
+   SWITCH TRACK — the pill-shaped container
+   ======================================== */
+
+.switch {
+  /* === Unchecked track base: Neutral Moderate surface on the bare page (no [data-surface] ancestor).
+         Var name kept `--_sw-moderate` for continuity; it resolves to the role's Moderate emphasis.
+         Moderate has no dedicated hover/pressed token, so the Subtle interaction states are reused below. === */
+  --_sw-moderate: var(--Neutral-Moderate, var(--Surface-Moderate));
+  --_sw-moderate-hover: var(--Switch-roleSubtleHover, var(--Neutral-Subtle-Hover, var(--Surface-Subtle-Hover)));
+  --_sw-moderate-pressed: var(--Switch-roleSubtlePressed, var(--Neutral-Subtle-Pressed, var(--Surface-Subtle-Pressed)));
+  /* === APPEARANCE role vars: context (readonly) === */
+  --_sw-default-high: var(--Switch-roleHigh, var(--Secondary-High, var(--Text-High)));
+
+  /* === APPEARANCE role vars: fill (checked state) === */
+  --_sw-bold: var(--Switch-roleBold, var(--Secondary-Bold, var(--Surface-Bold)));
+  --_sw-bold-high: var(--Switch-roleBoldHigh, var(--Secondary-Bold-TintedA11y, var(--Secondary-Bold-High, var(--Text-OnBold-High))));
+  --_sw-bold-hover: var(--Switch-roleBoldHover, var(--Secondary-Bold-Hover, var(--Surface-Bold-Hover)));
+  --_sw-bold-pressed: var(--Switch-roleBoldPressed, var(--Secondary-Bold-Pressed, var(--Surface-Bold-Pressed)));
+  --_sw-thumb-scale: 1;
+  --_sw-thumb-press-scale: var(--Switch-thumbPressScale, 1.07);
+  --_sw-thumb-translate-x: var(--Spacing-0);
+  --_sw-thumb-fill: var(--Surface-Default);
+
+  /* === MOTION — overridable via --Switch-motionDuration / --Switch-motionEasing === */
+  --_sw-duration: var(--Switch-motionDuration, var(--Motion-Duration-L));
+  --_sw-press-duration: var(--Switch-pressMotionDuration, var(--Motion-Duration-M));
+  --_sw-easing: var(--Switch-motionEasing, var(--Motion-Easing-Transition-Moderate));
+
+  /* === SHAPE === */
+  border-radius: var(--Switch-borderRadius, var(--Switch-thumbBorderRadius, var(--Shape-Pill)));
+
+  /* === BASE STYLES === */
+  box-sizing: border-box;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  padding: var(--Switch-padding, var(--Spacing-0-5));
+  border: 0;
+  overflow: clip;
+  cursor: pointer;
+  outline: none;
+  transition: background-color var(--_sw-duration) var(--_sw-easing);
+}
+
+/* ========================================
+   APPEARANCE — unchecked `--_sw-moderate` + readonly context + checked fill
+   Adding a new appearance = 1 new class with 8 custom-property remappings.
+   ======================================== */
+
+.appearancePrimary {
+  --_sw-moderate: var(--Primary-Moderate, var(--Surface-Moderate));
+  --_sw-moderate-hover: var(--Primary-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_sw-moderate-pressed: var(--Primary-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+  --_sw-default-high: var(--Primary-High, var(--Text-High));
+  --_sw-bold: var(--Primary-Bold, var(--Surface-Bold));
+  --_sw-bold-high: var(--Primary-Bold-TintedA11y, var(--Primary-Bold-High, var(--Text-OnBold-High)));
+  --_sw-bold-hover: var(--Primary-Bold-Hover, var(--Surface-Bold-Hover));
+  --_sw-bold-pressed: var(--Primary-Bold-Pressed, var(--Surface-Bold-Pressed));
+}
+
+.appearanceNeutral {
+  --_sw-moderate: var(--Neutral-Moderate, var(--Surface-Moderate));
+  --_sw-moderate-hover: var(--Neutral-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_sw-moderate-pressed: var(--Neutral-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+  --_sw-default-high: var(--Neutral-High, var(--Text-High));
+  --_sw-bold: var(--Neutral-Bold, var(--Surface-Bold));
+  --_sw-bold-high: var(--Neutral-Bold-TintedA11y, var(--Neutral-Bold-High, var(--Text-OnBold-High)));
+  --_sw-bold-hover: var(--Neutral-Bold-Hover, var(--Surface-Bold-Hover));
+  --_sw-bold-pressed: var(--Neutral-Bold-Pressed, var(--Surface-Bold-Pressed));
+}
+
+.appearanceSecondary {
+  --_sw-moderate: var(--Secondary-Moderate, var(--Surface-Moderate));
+  --_sw-moderate-hover: var(--Secondary-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_sw-moderate-pressed: var(--Secondary-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+  --_sw-default-high: var(--Secondary-High, var(--Text-High));
+  --_sw-bold: var(--Secondary-Bold, var(--Surface-Bold));
+  --_sw-bold-high: var(--Secondary-Bold-TintedA11y, var(--Secondary-Bold-High, var(--Text-OnBold-High)));
+  --_sw-bold-hover: var(--Secondary-Bold-Hover, var(--Surface-Bold-Hover));
+  --_sw-bold-pressed: var(--Secondary-Bold-Pressed, var(--Surface-Bold-Pressed));
+}
+
+.appearanceSparkle {
+  --_sw-moderate: var(--Sparkle-Moderate, var(--Surface-Moderate));
+  --_sw-moderate-hover: var(--Sparkle-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_sw-moderate-pressed: var(--Sparkle-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+  --_sw-default-high: var(--Sparkle-High, var(--Text-High));
+  --_sw-bold: var(--Sparkle-Bold, var(--Surface-Bold));
+  --_sw-bold-high: var(--Sparkle-Bold-TintedA11y, var(--Sparkle-Bold-High, var(--Text-OnBold-High)));
+  --_sw-bold-hover: var(--Sparkle-Bold-Hover, var(--Surface-Bold-Hover));
+  --_sw-bold-pressed: var(--Sparkle-Bold-Pressed, var(--Surface-Bold-Pressed));
+}
+
+.appearanceBrandBg {
+  --_sw-moderate: var(--Brand-Bg-Moderate, var(--Surface-Moderate));
+  --_sw-moderate-hover: var(--Brand-Bg-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_sw-moderate-pressed: var(--Brand-Bg-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+  --_sw-default-high: var(--Brand-Bg-High, var(--Text-High));
+  --_sw-bold: var(--Brand-Bg-Bold, var(--Surface-Bold));
+  --_sw-bold-high: var(--Brand-Bg-Bold-TintedA11y, var(--Brand-Bg-Bold-High, var(--Text-OnBold-High)));
+  --_sw-bold-hover: var(--Brand-Bg-Bold-Hover, var(--Surface-Bold-Hover));
+  --_sw-bold-pressed: var(--Brand-Bg-Bold-Pressed, var(--Surface-Bold-Pressed));
+}
+
+.appearancePositive {
+  --_sw-moderate: var(--Positive-Moderate, var(--Surface-Moderate));
+  --_sw-moderate-hover: var(--Positive-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_sw-moderate-pressed: var(--Positive-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+  --_sw-default-high: var(--Positive-High, var(--Text-High));
+  --_sw-bold: var(--Positive-Bold, var(--Surface-Bold));
+  --_sw-bold-high: var(--Positive-Bold-TintedA11y, var(--Positive-Bold-High, var(--Text-OnBold-High)));
+  --_sw-bold-hover: var(--Positive-Bold-Hover, var(--Surface-Bold-Hover));
+  --_sw-bold-pressed: var(--Positive-Bold-Pressed, var(--Surface-Bold-Pressed));
+}
+
+.appearanceNegative {
+  --_sw-moderate: var(--Negative-Moderate, var(--Surface-Moderate));
+  --_sw-moderate-hover: var(--Negative-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_sw-moderate-pressed: var(--Negative-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+  --_sw-default-high: var(--Negative-High, var(--Text-High));
+  --_sw-bold: var(--Negative-Bold, var(--Surface-Bold));
+  --_sw-bold-high: var(--Negative-Bold-TintedA11y, var(--Negative-Bold-High, var(--Text-OnBold-High)));
+  --_sw-bold-hover: var(--Negative-Bold-Hover, var(--Surface-Bold-Hover));
+  --_sw-bold-pressed: var(--Negative-Bold-Pressed, var(--Surface-Bold-Pressed));
+}
+
+.appearanceWarning {
+  --_sw-moderate: var(--Warning-Moderate, var(--Surface-Moderate));
+  --_sw-moderate-hover: var(--Warning-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_sw-moderate-pressed: var(--Warning-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+  --_sw-default-high: var(--Warning-High, var(--Text-High));
+  --_sw-bold: var(--Warning-Bold, var(--Surface-Bold));
+  --_sw-bold-high: var(--Warning-Bold-TintedA11y, var(--Warning-Bold-High, var(--Text-OnBold-High)));
+  --_sw-bold-hover: var(--Warning-Bold-Hover, var(--Surface-Bold-Hover));
+  --_sw-bold-pressed: var(--Warning-Bold-Pressed, var(--Surface-Bold-Pressed));
+}
+
+.appearanceInformative {
+  --_sw-moderate: var(--Informative-Moderate, var(--Surface-Moderate));
+  --_sw-moderate-hover: var(--Informative-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_sw-moderate-pressed: var(--Informative-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+  --_sw-default-high: var(--Informative-High, var(--Text-High));
+  --_sw-bold: var(--Informative-Bold, var(--Surface-Bold));
+  --_sw-bold-high: var(--Informative-Bold-TintedA11y, var(--Informative-Bold-High, var(--Text-OnBold-High)));
+  --_sw-bold-hover: var(--Informative-Bold-Hover, var(--Surface-Bold-Hover));
+  --_sw-bold-pressed: var(--Informative-Bold-Pressed, var(--Surface-Bold-Pressed));
+}
+
+/* Unchecked state role: parent Surface appearance when present, neutral otherwise.
+   This intentionally ignores the Switch's own appearance prop. */
+.switch[data-unchecked-appearance="primary"] {
+  --_sw-moderate: var(--Primary-Moderate, var(--Surface-Moderate));
+  --_sw-moderate-hover: var(--Primary-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_sw-moderate-pressed: var(--Primary-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+}
+
+.switch[data-unchecked-appearance="neutral"] {
+  --_sw-moderate: var(--Neutral-Moderate, var(--Surface-Moderate));
+  --_sw-moderate-hover: var(--Neutral-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_sw-moderate-pressed: var(--Neutral-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+}
+
+.switch[data-unchecked-appearance="secondary"] {
+  --_sw-moderate: var(--Secondary-Moderate, var(--Surface-Moderate));
+  --_sw-moderate-hover: var(--Secondary-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_sw-moderate-pressed: var(--Secondary-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+}
+
+.switch[data-unchecked-appearance="sparkle"] {
+  --_sw-moderate: var(--Sparkle-Moderate, var(--Surface-Moderate));
+  --_sw-moderate-hover: var(--Sparkle-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_sw-moderate-pressed: var(--Sparkle-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+}
+
+.switch[data-unchecked-appearance="brand-bg"] {
+  --_sw-moderate: var(--Brand-Bg-Moderate, var(--Surface-Moderate));
+  --_sw-moderate-hover: var(--Brand-Bg-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_sw-moderate-pressed: var(--Brand-Bg-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+}
+
+.switch[data-unchecked-appearance="positive"] {
+  --_sw-moderate: var(--Positive-Moderate, var(--Surface-Moderate));
+  --_sw-moderate-hover: var(--Positive-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_sw-moderate-pressed: var(--Positive-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+}
+
+.switch[data-unchecked-appearance="negative"] {
+  --_sw-moderate: var(--Negative-Moderate, var(--Surface-Moderate));
+  --_sw-moderate-hover: var(--Negative-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_sw-moderate-pressed: var(--Negative-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+}
+
+.switch[data-unchecked-appearance="warning"] {
+  --_sw-moderate: var(--Warning-Moderate, var(--Surface-Moderate));
+  --_sw-moderate-hover: var(--Warning-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_sw-moderate-pressed: var(--Warning-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+}
+
+.switch[data-unchecked-appearance="informative"] {
+  --_sw-moderate: var(--Informative-Moderate, var(--Surface-Moderate));
+  --_sw-moderate-hover: var(--Informative-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_sw-moderate-pressed: var(--Informative-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+}
+
+/* Unchecked track — uses `--_sw-moderate` from base, appearance class, or rule above. */
+.switch[data-unchecked] {
+  background-color: var(--_sw-moderate);
+}
+
+/* Checked: accent Bold fill, no border */
+.switch[data-checked] {
+  background-color: var(--_sw-bold);
+}
+
+/* ========================================
+   ACCENT — override ONLY fill vars
+   Applied only when accent prop is explicitly set.
+   When accent is not set, fill follows appearance.
+   ======================================== */
+
+.accentPrimary {
+  --_sw-bold: var(--Primary-Bold, var(--Surface-Bold));
+  --_sw-bold-high: var(--Primary-Bold-TintedA11y, var(--Primary-Bold-High, var(--Text-OnBold-High)));
+  --_sw-bold-hover: var(--Primary-Bold-Hover, var(--Surface-Bold-Hover));
+  --_sw-bold-pressed: var(--Primary-Bold-Pressed, var(--Surface-Bold-Pressed));
+}
+
+.accentSecondary {
+  --_sw-bold: var(--Secondary-Bold, var(--Surface-Bold));
+  --_sw-bold-high: var(--Secondary-Bold-TintedA11y, var(--Secondary-Bold-High, var(--Text-OnBold-High)));
+  --_sw-bold-hover: var(--Secondary-Bold-Hover, var(--Surface-Bold-Hover));
+  --_sw-bold-pressed: var(--Secondary-Bold-Pressed, var(--Surface-Bold-Pressed));
+}
+
+.accentSparkle {
+  --_sw-bold: var(--Sparkle-Bold, var(--Surface-Bold));
+  --_sw-bold-high: var(--Sparkle-Bold-TintedA11y, var(--Sparkle-Bold-High, var(--Text-OnBold-High)));
+  --_sw-bold-hover: var(--Sparkle-Bold-Hover, var(--Surface-Bold-Hover));
+  --_sw-bold-pressed: var(--Sparkle-Bold-Pressed, var(--Surface-Bold-Pressed));
+}
+
+/* ========================================
+   HOVER / PRESSED STATES
+   Track only — surface Moderate fill (unchecked) or Bold fill (checked) colour tokens.
+   Knob fill is locked below so it never inherits track hover/pressed.
+   ======================================== */
+
+.switch:not([data-readonly]):hover[data-unchecked] {
+  background-color: var(--_sw-moderate-hover);
+}
+
+.switch:not([data-readonly]):active[data-unchecked] {
+  background-color: var(--_sw-moderate-pressed);
+}
+
+.switch:not([data-readonly]):hover[data-checked] {
+  background-color: var(--_sw-bold-hover);
+}
+
+.switch:not([data-readonly]):active[data-checked] {
+  background-color: var(--_sw-bold-pressed);
+}
+
+.switch:not([data-readonly]):active .thumb {
+  --_sw-thumb-scale: var(--_sw-thumb-press-scale);
+}
+
+.switch:not([data-readonly]):hover[data-unchecked] .thumb,
+.switch:not([data-readonly]):active[data-unchecked] .thumb {
+  --_sw-thumb-fill: var(--Surface-Default);
+}
+
+.switch:not([data-readonly]):hover[data-checked] .thumb,
+.switch:not([data-readonly]):active[data-checked] .thumb {
+  --_sw-thumb-fill: var(--_sw-bold-high);
+}
+
+/* ========================================
+   FOCUS RING — always uses Informative token (per Figma spec)
+   Structure: 2px offset (Surface-Main) + 4px ring (Informative-Bold)
+   Matches Figma: InteractionStates/focus-ring-offset (spread 2) +
+                  InteractionStates/focus-ring (spread 4)
+   ======================================== */
+
+.switch:focus {
+  outline: none;
+}
+
+.switch:focus-visible,
+:global([data-force-state="focus"]) .switch {
+  box-shadow:
+    0 0 0 var(--Stroke-XL) var(--Surface-Halo-Gap, var(--Surface-Main)),
+    0 0 0 calc(var(--Stroke-XL) + var(--Focus-Outline-Width)) var(--Informative-Bold, var(--Focus-Outline));
+}
+
+/* ========================================
+   THUMB (KNOB) — the sliding indicator
+   ======================================== */
+
+.thumb {
+  display: block;
+  position: relative;
+  flex-shrink: 0;
+  border-radius: var(
+    --Switch-thumbBorderRadius,
+    max(
+      var(--Spacing-0),
+      calc(var(--Switch-borderRadius, var(--Shape-Pill)) - var(--Switch-padding, var(--Spacing-0-5)))
+    )
+  );
+  align-self: center;
+  transform-origin: center center;
+  transition:
+    transform var(--_sw-duration) var(--_sw-easing),
+    background-color var(--_sw-duration) var(--_sw-easing);
+  transform: translateX(var(--_sw-thumb-translate-x));
+}
+
+.thumb::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background-color: var(--_sw-thumb-fill);
+  box-shadow: var(--Switch-knobElevation, none);
+  transform-origin: center center;
+  transition:
+    scale var(--_sw-press-duration) var(--_sw-easing),
+    background-color var(--_sw-duration) var(--_sw-easing);
+  scale: var(--_sw-thumb-scale);
+}
+
+/* Unchecked knob: always white (Colour/surface = --Surface-Default) */
+.switch[data-unchecked] .thumb {
+  --_sw-thumb-fill: var(--Surface-Default);
+}
+
+/* Checked knob: on-colour (Colour/on-Colour/tinted A11y = --{Role}-Bold-High) */
+.switch[data-checked] .thumb {
+  --_sw-thumb-fill: var(--_sw-bold-high);
+}
+
+/* ========================================
+   LABEL — text next to the switch
+   ======================================== */
+
+.label {
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Primary, inherit));
+  font-weight: var(--Body-FontWeight-Low);
+  color: var(--Neutral-High);
+  user-select: none;
+}
+
+/* ========================================
+   SIZES — via [data-size] attribute selectors
+   Width is explicit, height is auto (padding + knob).
+   Mapped from Figma Dimensions/Spacings variables.
+
+   Figma Spacings → Token → f-step → S/default px:
+     Spacings/0.5 → Spacing-0-5 → f-7 → 2px  (padding)
+     Spacings/3   → Spacing-3  → f-2 → 12px (knob S)
+     Spacings/4   → Spacing-4   → f0  → 16px (knob M)
+     Spacings/5   → Spacing-5  → f2  → 20px (knob L)
+     Spacings/7   → Spacing-7 → f4  → 28px (track S)
+     Spacings/9   → Spacing-9 → f6  → 36px (track M)
+     Spacings/10  → Spacing-10 → f7  → 40px (track L)
+   ======================================== */
+
+/* S: track f4 (28) wide, knob f-2 (12), travel = 28-12-4 = 12 = f-2 */
+.switch[data-size="s"] {
+  width: var(--Switch-trackWidth-s, var(--Spacing-7));
+}
+
+.switch[data-size="s"] .thumb {
+  width: var(--Switch-knobSize-s, var(--Spacing-3));
+  height: var(--Switch-knobSize-s, var(--Spacing-3));
+}
+
+.switch[data-size="s"][data-checked] .thumb {
+  --_sw-thumb-translate-x: var(--Switch-travel-s, var(--Spacing-3));
+}
+
+/* M: track f6 (36) wide, knob f0 (16), travel = 36-16-4 = 16 = f0 */
+.switch[data-size="m"] {
+  width: var(--Switch-trackWidth-m, var(--Spacing-9));
+}
+
+.switch[data-size="m"] .thumb {
+  width: var(--Switch-knobSize-m, var(--Spacing-4));
+  height: var(--Switch-knobSize-m, var(--Spacing-4));
+}
+
+.switch[data-size="m"][data-checked] .thumb {
+  --_sw-thumb-translate-x: var(--Switch-travel-m, var(--Spacing-4));
+}
+
+/* L: track f7 (40) wide, knob f2 (20), travel = 40-20-4 = 16 = f0 */
+.switch[data-size="l"] {
+  width: var(--Switch-trackWidth-l, var(--Spacing-10));
+}
+
+.switch[data-size="l"] .thumb {
+  width: var(--Switch-knobSize-l, var(--Spacing-5));
+  height: var(--Switch-knobSize-l, var(--Spacing-5));
+}
+
+.switch[data-size="l"][data-checked] .thumb {
+  --_sw-thumb-translate-x: var(--Switch-travel-l, var(--Spacing-4));
+}
+
+/* Label typography per size
+   Font size + weight from Body role, line height from Label role (compact alignment) */
+.wrapper[data-size="s"] .label {
+  font-size: var(--Switch-labelFontSize-s, var(--Body-S-FontSize));
+  line-height: var(--Switch-labelLineHeight-s, var(--Label-S-LineHeight));
+}
+
+.wrapper[data-size="m"] .label {
+  font-size: var(--Switch-labelFontSize-m, var(--Body-M-FontSize));
+  line-height: var(--Switch-labelLineHeight-m, var(--Label-M-LineHeight));
+}
+
+.wrapper[data-size="l"] .label {
+  font-size: var(--Switch-labelFontSize-l, var(--Body-L-FontSize));
+  line-height: var(--Switch-labelLineHeight-l, var(--Label-L-LineHeight));
+}
+
+/* ========================================
+   READONLY — both checked and unchecked use neutral role.
+   Unchecked: transparent track + neutral outline + smaller neutral knob.
+   Checked: neutral Bold track + neutral Bold-High thumb.
+   No hover/focus/pressed states
+   ======================================== */
+
+.switch[data-readonly][data-unchecked][data-appearance="primary"] {
+  --_sw-readonly-ink: var(--Primary-Bold, var(--Primary-TintedA11y, var(--Primary-High, var(--Text-High))));
+}
+
+.switch[data-readonly][data-unchecked][data-appearance="secondary"] {
+  --_sw-readonly-ink: var(--Secondary-Bold, var(--Secondary-TintedA11y, var(--Secondary-High, var(--Text-High))));
+}
+
+.switch[data-readonly][data-unchecked][data-appearance="neutral"] {
+  --_sw-readonly-ink: var(--Neutral-Bold, var(--Neutral-TintedA11y, var(--Neutral-High, var(--Text-High))));
+}
+
+.switch[data-readonly][data-unchecked][data-appearance="sparkle"] {
+  --_sw-readonly-ink: var(--Sparkle-Bold, var(--Sparkle-TintedA11y, var(--Sparkle-High, var(--Text-High))));
+}
+
+.switch[data-readonly][data-unchecked][data-appearance="brand-bg"] {
+  --_sw-readonly-ink: var(--Brand-Bg-Bold, var(--Brand-Bg-TintedA11y, var(--Brand-Bg-High, var(--Text-High))));
+}
+
+.switch[data-readonly][data-unchecked][data-appearance="positive"] {
+  --_sw-readonly-ink: var(--Positive-Bold, var(--Positive-TintedA11y, var(--Positive-High, var(--Text-High))));
+}
+
+.switch[data-readonly][data-unchecked][data-appearance="negative"] {
+  --_sw-readonly-ink: var(--Negative-Bold, var(--Negative-TintedA11y, var(--Negative-High, var(--Text-High))));
+}
+
+.switch[data-readonly][data-unchecked][data-appearance="warning"] {
+  --_sw-readonly-ink: var(--Warning-Bold, var(--Warning-TintedA11y, var(--Warning-High, var(--Text-High))));
+}
+
+.switch[data-readonly][data-unchecked][data-appearance="informative"] {
+  --_sw-readonly-ink: var(--Informative-Bold, var(--Informative-TintedA11y, var(--Informative-High, var(--Text-High))));
+}
+
+.switch[data-readonly] {
+  cursor: default;
+  pointer-events: none;
+}
+
+/* Readonly unchecked: neutral outline (ref); role Bold smaller knob */
+.switch[data-readonly][data-unchecked] {
+  background-color: transparent;
+  border: var(--Stroke-M) solid var(--Text-High, var(--Neutral-High, var(--Border-Subtle)));
+  padding: var(--Spacing-1);
+}
+
+/* Readonly unchecked knob: role Bold dot + no shadow.
+   Paint via --_sw-thumb-fill (the .thumb::before channel) — setting
+   background-color on .thumb itself is hidden behind the opaque ::before,
+   which is why the knob previously always rendered Surface-Default (white).
+   --{Role}-Bold remaps inside [data-surface] ancestors, so the dot adapts
+   (dark on light surfaces, light on dark) instead of staying white. */
+.switch[data-readonly][data-unchecked] .thumb {
+  --_sw-thumb-fill: var(--_sw-readonly-ink, var(--_sw-default-high));
+  box-shadow: none;
+}
+
+/* Readonly unchecked knob: 2 f-steps smaller than interactive
+   S: Spacings/2 (8) = Spacing-2, M: Spacings/3 (12) = Spacing-3, L: Spacings/4 (16) = Spacing-4 */
+.switch[data-readonly][data-unchecked][data-size="s"] .thumb {
+  width: var(--Spacing-2);
+  height: var(--Spacing-2);
+}
+
+.switch[data-readonly][data-unchecked][data-size="m"] .thumb {
+  width: var(--Spacing-3);
+  height: var(--Spacing-3);
+}
+
+.switch[data-readonly][data-unchecked][data-size="l"] .thumb {
+  width: var(--Spacing-4);
+  height: var(--Spacing-4);
+}
+
+.wrapper[data-readonly] {
+  cursor: default;
+}
+
+/* ========================================
+   DISABLED (not readonly) — opacity reduction
+   ======================================== */
+
+.switch[data-disabled]:not([data-readonly]) {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/**
+ * ========================================
+ * IMPORTANT: NO LITERALS IN THIS FILE
+ * ========================================
+ *
+ * All values MUST come from --Token-Name variables
+ * defined in @oneui/tokens CSS files
+ */

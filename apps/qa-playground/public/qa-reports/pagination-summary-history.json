@@ -1,0 +1,2220 @@
+{
+  "slug": "pagination",
+  "runs": [
+    {
+      "savedAt": "2026-06-23T09:31:18.867Z",
+      "report": {
+        "ok": true,
+        "slug": "pagination",
+        "message": "pagination QA Playwright run OK — 2026-06-17T08:03:15.549Z",
+        "suites": {
+          "accessibility": {
+            "suite": "accessibility",
+            "passed": 25,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "25 test(s) in Playwright report for accessibility.",
+              "Axe: scan completed — 0 violation rules reported."
+            ],
+            "errors": [],
+            "cases": [
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — zero serious/critical + HTML report",
+                "status": "passed",
+                "durationMs": 6977
+              },
+              {
+                "name": "[a11y] data-section=\"pagination-qa-default\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 4151
+              },
+              {
+                "name": "[a11y] data-section=\"pagination-qa-size\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 4232
+              },
+              {
+                "name": "[a11y] data-section=\"pagination-qa-attention\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 4251
+              },
+              {
+                "name": "[a11y] data-section=\"pagination-qa-first-last\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 4281
+              },
+              {
+                "name": "[a11y] data-section=\"pagination-qa-matrix\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 4387
+              },
+              {
+                "name": "[a11y] data-section=\"pagination-qa-code-only\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 4026
+              },
+              {
+                "name": "[a11y] data-section=\"pagination-qa-e2e\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 3996
+              },
+              {
+                "name": "[a11y] data-section=\"pagination-qa-realtime\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 4118
+              },
+              {
+                "name": "[a11y] data-section=\"pagination-qa-combos\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 2658
+              },
+              {
+                "name": "[a11y] Default nav has accessible landmark label",
+                "status": "passed",
+                "durationMs": 2318
+              },
+              {
+                "name": "[a11y] selected page exposes aria-current=\"page\"",
+                "status": "passed",
+                "durationMs": 2509
+              },
+              {
+                "name": "[a11y] navigation buttons have accessible names",
+                "status": "passed",
+                "durationMs": 3012
+              },
+              {
+                "name": "[a11y] numbered page buttons have Go to page N names",
+                "status": "passed",
+                "durationMs": 3123
+              },
+              {
+                "name": "[a11y] Polite live region announces page changes",
+                "status": "passed",
+                "durationMs": 2785
+              },
+              {
+                "name": "[a11y] disabled previous on first page",
+                "status": "passed",
+                "durationMs": 9919
+              },
+              {
+                "name": "[a11y] disabled next on last page",
+                "status": "passed",
+                "durationMs": 5552
+              },
+              {
+                "name": "[a11y] tab order reaches multiple distinct targets",
+                "status": "passed",
+                "durationMs": 7127
+              },
+              {
+                "name": "[a11y] keyboard-only — ArrowRight changes page from focused chip",
+                "status": "passed",
+                "durationMs": 12495
+              },
+              {
+                "name": "[a11y] focus visible on Tab",
+                "status": "passed",
+                "durationMs": 11651
+              },
+              {
+                "name": "[a11y] disabled pagination — page buttons are disabled",
+                "status": "passed",
+                "durationMs": 5816
+              },
+              {
+                "name": "[a11y] ARIA validity rules — Pagination story bands",
+                "status": "passed",
+                "durationMs": 5178
+              },
+              {
+                "name": "[a11y] axe button-name rule — Pagination story bands",
+                "status": "passed",
+                "durationMs": 4817
+              },
+              {
+                "name": "[a11y] Reflow at 320px — default pagination remains operable",
+                "status": "passed",
+                "durationMs": 4482
+              },
+              {
+                "name": "[a11y] page lang on <html>",
+                "status": "passed",
+                "durationMs": 2580
+              }
+            ],
+            "axe": {
+              "violations": []
+            }
+          },
+          "functional": {
+            "suite": "functional",
+            "passed": 76,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "76 test(s) in Playwright report for functional."
+            ],
+            "errors": [],
+            "cases": [
+              {
+                "name": "[fn] shows Pagination page heading",
+                "status": "passed",
+                "durationMs": 2519
+              },
+              {
+                "name": "[fn] scenario tabs are present",
+                "status": "passed",
+                "durationMs": 2581
+              },
+              {
+                "name": "[fn] pagination renders correctly — default nav landmark",
+                "status": "passed",
+                "durationMs": 2738
+              },
+              {
+                "name": "[fn] default selected page is 5",
+                "status": "passed",
+                "durationMs": 2832
+              },
+              {
+                "name": "[fn] clicking next advances the active page",
+                "status": "passed",
+                "durationMs": 3004
+              },
+              {
+                "name": "[fn] clicking previous moves back",
+                "status": "passed",
+                "durationMs": 3114
+              },
+              {
+                "name": "[fn] first and last jump buttons when showFirstLast",
+                "status": "passed",
+                "durationMs": 5365
+              },
+              {
+                "name": "[fn] direct page number click navigates",
+                "status": "passed",
+                "durationMs": 6882
+              },
+              {
+                "name": "[fn] previous disabled on first page",
+                "status": "passed",
+                "durationMs": 7645
+              },
+              {
+                "name": "[fn] next disabled on last page",
+                "status": "passed",
+                "durationMs": 7649
+              },
+              {
+                "name": "[fn] controlled pagination updates caption",
+                "status": "passed",
+                "durationMs": 7821
+              },
+              {
+                "name": "[fn] disabled pagination — controls not actionable",
+                "status": "passed",
+                "durationMs": 4455
+              },
+              {
+                "name": "[fn] ellipsis renders for large page count",
+                "status": "passed",
+                "durationMs": 3123
+              },
+              {
+                "name": "[fn] siblingCount widens visible window",
+                "status": "passed",
+                "durationMs": 2724
+              },
+              {
+                "name": "[fn] boundaryCount keeps first and last pages in window",
+                "status": "passed",
+                "durationMs": 2817
+              },
+              {
+                "name": "[fn] showPrevNext false hides arrow buttons",
+                "status": "passed",
+                "durationMs": 3216
+              },
+              {
+                "name": "[fn] size variations S / M / L visible",
+                "status": "passed",
+                "durationMs": 3235
+              },
+              {
+                "name": "[fn] attention variants high / medium / low visible",
+                "status": "passed",
+                "durationMs": 3282
+              },
+              {
+                "name": "[fn] appearance positive row renders",
+                "status": "passed",
+                "durationMs": 2997
+              },
+              {
+                "name": "[fn] icon nav buttons render with accessible names",
+                "status": "passed",
+                "durationMs": 2747
+              },
+              {
+                "name": "[fn] large page count does not break layout in band",
+                "status": "passed",
+                "durationMs": 2993
+              },
+              {
+                "name": "[fn] combination matrix renders all rows",
+                "status": "passed",
+                "durationMs": 2921
+              },
+              {
+                "name": "[fn] Tab reaches focusable controls in navigator",
+                "status": "passed",
+                "durationMs": 2550
+              },
+              {
+                "name": "[fn] roving tabindex — only current page is tabbable",
+                "status": "passed",
+                "durationMs": 2802
+              },
+              {
+                "name": "[fn] ArrowRight on focused page advances selection",
+                "status": "passed",
+                "durationMs": 3089
+              },
+              {
+                "name": "[fn] ArrowLeft on focused page moves back",
+                "status": "passed",
+                "durationMs": 3390
+              },
+              {
+                "name": "[fn] Home and End jump to first and last page",
+                "status": "passed",
+                "durationMs": 4626
+              },
+              {
+                "name": "[fn] Enter activates focused page button",
+                "status": "passed",
+                "durationMs": 8149
+              },
+              {
+                "name": "[fn] Space activates next nav IconButton when focused",
+                "status": "passed",
+                "durationMs": 5680
+              },
+              {
+                "name": "[fn] focus indicator visible after Tab",
+                "status": "passed",
+                "durationMs": 6094
+              },
+              {
+                "name": "1.1 — Page loads without console errors; default navigator mounts",
+                "status": "passed",
+                "durationMs": 6606
+              },
+              {
+                "name": "1.2 — Every showcase `data-testid` is visible on Test Scenarios",
+                "status": "passed",
+                "durationMs": 5238
+              },
+              {
+                "name": "1.3 — Every `data-section` band is visible",
+                "status": "passed",
+                "durationMs": 2629
+              },
+              {
+                "name": "2.1 — Default props — page 5 selected, prev/next enabled",
+                "status": "passed",
+                "durationMs": 2470
+              },
+              {
+                "name": "2.1 — Each size S / M / L exposes data-size on root",
+                "status": "passed",
+                "durationMs": 2742
+              },
+              {
+                "name": "2.1 — showFirstLast false hides first/last jump buttons",
+                "status": "passed",
+                "durationMs": 2487
+              },
+              {
+                "name": "2.1 — showPrevNext false hides arrow buttons",
+                "status": "passed",
+                "durationMs": 2701
+              },
+              {
+                "name": "3.1 — Click next advances aria-current page",
+                "status": "passed",
+                "durationMs": 2831
+              },
+              {
+                "name": "3.1 — Direct page click updates selection",
+                "status": "passed",
+                "durationMs": 2860
+              },
+              {
+                "name": "3.2 — Disabled pagination — click does not change page",
+                "status": "passed",
+                "durationMs": 2606
+              },
+              {
+                "name": "3.3 — Readonly (N/A)",
+                "status": "passed",
+                "durationMs": 2462
+              },
+              {
+                "name": "3.4 — Click outside removes focus from page chip",
+                "status": "passed",
+                "durationMs": 2716
+              },
+              {
+                "name": "4.1 — Tab reaches focusable controls in page",
+                "status": "passed",
+                "durationMs": 2634
+              },
+              {
+                "name": "4.1 — Disabled pagination controls are not enabled for activation",
+                "status": "passed",
+                "durationMs": 2864
+              },
+              {
+                "name": "4.2 — Enter activates focused page button",
+                "status": "passed",
+                "durationMs": 2809
+              },
+              {
+                "name": "4.3 — Space on focused next button advances page",
+                "status": "passed",
+                "durationMs": 4526
+              },
+              {
+                "name": "4.4 — ArrowRight / ArrowLeft move selection on focused chip",
+                "status": "passed",
+                "durationMs": 5954
+              },
+              {
+                "name": "4.5 — Home and End jump to first and last page",
+                "status": "passed",
+                "durationMs": 6457
+              },
+              {
+                "name": "4.6 — Escape (N/A)",
+                "status": "passed",
+                "durationMs": 6438
+              },
+              {
+                "name": "4.7 — Tab cycle escapes pagination without trap",
+                "status": "passed",
+                "durationMs": 6791
+              },
+              {
+                "name": "5.1 — Click focuses interactive page chip",
+                "status": "passed",
+                "durationMs": 4126
+              },
+              {
+                "name": "5.2 — Focus indicator visible after Tab",
+                "status": "passed",
+                "durationMs": 2965
+              },
+              {
+                "name": "5.3 — Roving tabindex — exactly one page chip has tabindex 0",
+                "status": "passed",
+                "durationMs": 2954
+              },
+              {
+                "name": "5.4 — Blur removes focus from page chip",
+                "status": "passed",
+                "durationMs": 3144
+              },
+              {
+                "name": "5.5 — autoFocus (N/A)",
+                "status": "passed",
+                "durationMs": 2771
+              },
+              {
+                "name": "6.1 — Default state — page 5 of 10 with live region",
+                "status": "passed",
+                "durationMs": 2754
+              },
+              {
+                "name": "6.2 — Selected page exposes aria-current=\"page\"",
+                "status": "passed",
+                "durationMs": 2548
+              },
+              {
+                "name": "6.3 — Disabled state — controls disabled and not actionable",
+                "status": "passed",
+                "durationMs": 2497
+              },
+              {
+                "name": "6.4 — Readonly / error / loading (N/A)",
+                "status": "passed",
+                "durationMs": 3255
+              },
+              {
+                "name": "7.x — Pagination has no start/end icon slots",
+                "status": "passed",
+                "durationMs": 4017
+              },
+              {
+                "name": "8.2 — Single select — only one page has aria-current at a time",
+                "status": "passed",
+                "durationMs": 2821
+              },
+              {
+                "name": "8.1 — Toggle (N/A)",
+                "status": "passed",
+                "durationMs": 2601
+              },
+              {
+                "name": "9.x — Not a text input",
+                "status": "passed",
+                "durationMs": 1935
+              },
+              {
+                "name": "10.2 — showFirstLast true exposes first/last jump buttons",
+                "status": "passed",
+                "durationMs": 2512
+              },
+              {
+                "name": "10.2 — siblingCount 2 widens visible page window vs default",
+                "status": "passed",
+                "durationMs": 2562
+              },
+              {
+                "name": "11.1 — Controlled caption reflects page state",
+                "status": "passed",
+                "durationMs": 2786
+              },
+              {
+                "name": "11.1 — Nav buttons expose accessible names",
+                "status": "passed",
+                "durationMs": 2788
+              },
+              {
+                "name": "11.2 — Ellipsis markers render for large windows",
+                "status": "passed",
+                "durationMs": 2645
+              },
+              {
+                "name": "12.1 — fullWidth (N/A)",
+                "status": "passed",
+                "durationMs": 2892
+              },
+              {
+                "name": "12.2 — At 320px viewport default pagination remains visible",
+                "status": "passed",
+                "durationMs": 4566
+              },
+              {
+                "name": "12.2b — At 1440px all scenario sections remain visible",
+                "status": "passed",
+                "durationMs": 9402
+              },
+              {
+                "name": "12.3 — Horizontal navigator — page chips laid out in a row",
+                "status": "passed",
+                "durationMs": 2820
+              },
+              {
+                "name": "13.1 — After dark theme, all scenario sections remain visible",
+                "status": "passed",
+                "durationMs": 3915
+              },
+              {
+                "name": "13.1 — Default pagination operable in dark mode",
+                "status": "passed",
+                "durationMs": 6235
+              },
+              {
+                "name": "Smoke — Page heading reads “Pagination”",
+                "status": "passed",
+                "durationMs": 6297
+              },
+              {
+                "name": "Smoke — Default navigator landmark is visible",
+                "status": "passed",
+                "durationMs": 5329
+              }
+            ]
+          },
+          "performance": {
+            "suite": "performance",
+            "passed": 0,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "Performance suite is not executed in apps/qa-playground pagination Playwright bundle."
+            ],
+            "errors": []
+          }
+        }
+      }
+    },
+    {
+      "savedAt": "2026-06-17T08:03:15.553Z",
+      "report": {
+        "ok": false,
+        "slug": "pagination",
+        "message": "pagination QA Playwright run had failures — 2026-06-04T10:01:51.022Z",
+        "suites": {
+          "accessibility": {
+            "suite": "accessibility",
+            "passed": 25,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "25 test(s) in Playwright report for accessibility.",
+              "Axe: scan completed — 0 violation rules reported."
+            ],
+            "errors": [],
+            "cases": [
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — zero serious/critical + HTML report",
+                "status": "passed",
+                "durationMs": 8870
+              },
+              {
+                "name": "[a11y] data-section=\"pagination-qa-default\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 4341
+              },
+              {
+                "name": "[a11y] data-section=\"pagination-qa-size\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 5340
+              },
+              {
+                "name": "[a11y] data-section=\"pagination-qa-attention\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 5123
+              },
+              {
+                "name": "[a11y] data-section=\"pagination-qa-first-last\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 4449
+              },
+              {
+                "name": "[a11y] data-section=\"pagination-qa-matrix\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 4573
+              },
+              {
+                "name": "[a11y] data-section=\"pagination-qa-code-only\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 4679
+              },
+              {
+                "name": "[a11y] data-section=\"pagination-qa-e2e\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 4482
+              },
+              {
+                "name": "[a11y] data-section=\"pagination-qa-realtime\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 4686
+              },
+              {
+                "name": "[a11y] data-section=\"pagination-qa-combos\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 3679
+              },
+              {
+                "name": "[a11y] Default nav has accessible landmark label",
+                "status": "passed",
+                "durationMs": 3367
+              },
+              {
+                "name": "[a11y] selected page exposes aria-current=\"page\"",
+                "status": "passed",
+                "durationMs": 3131
+              },
+              {
+                "name": "[a11y] navigation buttons have accessible names",
+                "status": "passed",
+                "durationMs": 3017
+              },
+              {
+                "name": "[a11y] numbered page buttons have Go to page N names",
+                "status": "passed",
+                "durationMs": 3004
+              },
+              {
+                "name": "[a11y] Polite live region announces page changes",
+                "status": "passed",
+                "durationMs": 3034
+              },
+              {
+                "name": "[a11y] disabled previous on first page",
+                "status": "passed",
+                "durationMs": 3059
+              },
+              {
+                "name": "[a11y] disabled next on last page",
+                "status": "passed",
+                "durationMs": 3122
+              },
+              {
+                "name": "[a11y] tab order reaches multiple distinct targets",
+                "status": "passed",
+                "durationMs": 3461
+              },
+              {
+                "name": "[a11y] keyboard-only — ArrowRight changes page from focused chip",
+                "status": "passed",
+                "durationMs": 3145
+              },
+              {
+                "name": "[a11y] focus visible on Tab",
+                "status": "passed",
+                "durationMs": 2719
+              },
+              {
+                "name": "[a11y] disabled pagination — page buttons are disabled",
+                "status": "passed",
+                "durationMs": 2548
+              },
+              {
+                "name": "[a11y] ARIA validity rules — Pagination story bands",
+                "status": "passed",
+                "durationMs": 4260
+              },
+              {
+                "name": "[a11y] axe button-name rule — Pagination story bands",
+                "status": "passed",
+                "durationMs": 3902
+              },
+              {
+                "name": "[a11y] Reflow at 320px — default pagination remains operable",
+                "status": "passed",
+                "durationMs": 5001
+              },
+              {
+                "name": "[a11y] page lang on <html>",
+                "status": "passed",
+                "durationMs": 2667
+              }
+            ],
+            "axe": {
+              "violations": []
+            }
+          },
+          "functional": {
+            "suite": "functional",
+            "passed": 75,
+            "failed": 1,
+            "skipped": 0,
+            "logs": [
+              "76 test(s) in Playwright report for functional."
+            ],
+            "errors": [
+              "13.1 — After dark theme, all scenario sections remain visible: Error: locator.scrollIntoViewIfNeeded: Element is not attached to the DOM"
+            ],
+            "cases": [
+              {
+                "name": "[fn] shows Pagination page heading",
+                "status": "passed",
+                "durationMs": 2612
+              },
+              {
+                "name": "[fn] scenario tabs are present",
+                "status": "passed",
+                "durationMs": 3111
+              },
+              {
+                "name": "[fn] pagination renders correctly — default nav landmark",
+                "status": "passed",
+                "durationMs": 3593
+              },
+              {
+                "name": "[fn] default selected page is 5",
+                "status": "passed",
+                "durationMs": 3691
+              },
+              {
+                "name": "[fn] clicking next advances the active page",
+                "status": "passed",
+                "durationMs": 3586
+              },
+              {
+                "name": "[fn] clicking previous moves back",
+                "status": "passed",
+                "durationMs": 3405
+              },
+              {
+                "name": "[fn] first and last jump buttons when showFirstLast",
+                "status": "passed",
+                "durationMs": 3399
+              },
+              {
+                "name": "[fn] direct page number click navigates",
+                "status": "passed",
+                "durationMs": 3667
+              },
+              {
+                "name": "[fn] previous disabled on first page",
+                "status": "passed",
+                "durationMs": 3277
+              },
+              {
+                "name": "[fn] next disabled on last page",
+                "status": "passed",
+                "durationMs": 3337
+              },
+              {
+                "name": "[fn] controlled pagination updates caption",
+                "status": "passed",
+                "durationMs": 3422
+              },
+              {
+                "name": "[fn] disabled pagination — controls not actionable",
+                "status": "passed",
+                "durationMs": 3209
+              },
+              {
+                "name": "[fn] ellipsis renders for large page count",
+                "status": "passed",
+                "durationMs": 3149
+              },
+              {
+                "name": "[fn] siblingCount widens visible window",
+                "status": "passed",
+                "durationMs": 3282
+              },
+              {
+                "name": "[fn] boundaryCount keeps first and last pages in window",
+                "status": "passed",
+                "durationMs": 3264
+              },
+              {
+                "name": "[fn] showPrevNext false hides arrow buttons",
+                "status": "passed",
+                "durationMs": 3195
+              },
+              {
+                "name": "[fn] size variations S / M / L visible",
+                "status": "passed",
+                "durationMs": 2567
+              },
+              {
+                "name": "[fn] attention variants high / medium / low visible",
+                "status": "passed",
+                "durationMs": 2863
+              },
+              {
+                "name": "[fn] appearance positive row renders",
+                "status": "passed",
+                "durationMs": 3077
+              },
+              {
+                "name": "[fn] icon nav buttons render with accessible names",
+                "status": "passed",
+                "durationMs": 3037
+              },
+              {
+                "name": "[fn] large page count does not break layout in band",
+                "status": "passed",
+                "durationMs": 3168
+              },
+              {
+                "name": "[fn] combination matrix renders all rows",
+                "status": "passed",
+                "durationMs": 2965
+              },
+              {
+                "name": "[fn] Tab reaches focusable controls in navigator",
+                "status": "passed",
+                "durationMs": 2961
+              },
+              {
+                "name": "[fn] roving tabindex — only current page is tabbable",
+                "status": "passed",
+                "durationMs": 2825
+              },
+              {
+                "name": "[fn] ArrowRight on focused page advances selection",
+                "status": "passed",
+                "durationMs": 3053
+              },
+              {
+                "name": "[fn] ArrowLeft on focused page moves back",
+                "status": "passed",
+                "durationMs": 2891
+              },
+              {
+                "name": "[fn] Home and End jump to first and last page",
+                "status": "passed",
+                "durationMs": 2618
+              },
+              {
+                "name": "[fn] Enter activates focused page button",
+                "status": "passed",
+                "durationMs": 2764
+              },
+              {
+                "name": "[fn] Space activates next nav IconButton when focused",
+                "status": "passed",
+                "durationMs": 2810
+              },
+              {
+                "name": "[fn] focus indicator visible after Tab",
+                "status": "passed",
+                "durationMs": 2848
+              },
+              {
+                "name": "1.1 — Page loads without console errors; default navigator mounts",
+                "status": "passed",
+                "durationMs": 5163
+              },
+              {
+                "name": "1.2 — Every showcase `data-testid` is visible on Test Scenarios",
+                "status": "passed",
+                "durationMs": 4396
+              },
+              {
+                "name": "1.3 — Every `data-section` band is visible",
+                "status": "passed",
+                "durationMs": 3218
+              },
+              {
+                "name": "2.1 — Default props — page 5 selected, prev/next enabled",
+                "status": "passed",
+                "durationMs": 2757
+              },
+              {
+                "name": "2.1 — Each size S / M / L exposes data-size on root",
+                "status": "passed",
+                "durationMs": 2978
+              },
+              {
+                "name": "2.1 — showFirstLast false hides first/last jump buttons",
+                "status": "passed",
+                "durationMs": 2677
+              },
+              {
+                "name": "2.1 — showPrevNext false hides arrow buttons",
+                "status": "passed",
+                "durationMs": 2765
+              },
+              {
+                "name": "3.1 — Click next advances aria-current page",
+                "status": "passed",
+                "durationMs": 3050
+              },
+              {
+                "name": "3.1 — Direct page click updates selection",
+                "status": "passed",
+                "durationMs": 2840
+              },
+              {
+                "name": "3.2 — Disabled pagination — click does not change page",
+                "status": "passed",
+                "durationMs": 2896
+              },
+              {
+                "name": "3.3 — Readonly (N/A)",
+                "status": "passed",
+                "durationMs": 2346
+              },
+              {
+                "name": "3.4 — Click outside removes focus from page chip",
+                "status": "passed",
+                "durationMs": 2639
+              },
+              {
+                "name": "4.1 — Tab reaches focusable controls in page",
+                "status": "passed",
+                "durationMs": 3033
+              },
+              {
+                "name": "4.1 — Disabled pagination controls are not enabled for activation",
+                "status": "passed",
+                "durationMs": 3000
+              },
+              {
+                "name": "4.2 — Enter activates focused page button",
+                "status": "passed",
+                "durationMs": 2855
+              },
+              {
+                "name": "4.3 — Space on focused next button advances page",
+                "status": "passed",
+                "durationMs": 2912
+              },
+              {
+                "name": "4.4 — ArrowRight / ArrowLeft move selection on focused chip",
+                "status": "passed",
+                "durationMs": 3461
+              },
+              {
+                "name": "4.5 — Home and End jump to first and last page",
+                "status": "passed",
+                "durationMs": 3029
+              },
+              {
+                "name": "4.6 — Escape (N/A)",
+                "status": "passed",
+                "durationMs": 3079
+              },
+              {
+                "name": "4.7 — Tab cycle escapes pagination without trap",
+                "status": "passed",
+                "durationMs": 3380
+              },
+              {
+                "name": "5.1 — Click focuses interactive page chip",
+                "status": "passed",
+                "durationMs": 2773
+              },
+              {
+                "name": "5.2 — Focus indicator visible after Tab",
+                "status": "passed",
+                "durationMs": 2598
+              },
+              {
+                "name": "5.3 — Roving tabindex — exactly one page chip has tabindex 0",
+                "status": "passed",
+                "durationMs": 2728
+              },
+              {
+                "name": "5.4 — Blur removes focus from page chip",
+                "status": "passed",
+                "durationMs": 2784
+              },
+              {
+                "name": "5.5 — autoFocus (N/A)",
+                "status": "passed",
+                "durationMs": 2748
+              },
+              {
+                "name": "6.1 — Default state — page 5 of 10 with live region",
+                "status": "passed",
+                "durationMs": 2431
+              },
+              {
+                "name": "6.2 — Selected page exposes aria-current=\"page\"",
+                "status": "passed",
+                "durationMs": 2681
+              },
+              {
+                "name": "6.3 — Disabled state — controls disabled and not actionable",
+                "status": "passed",
+                "durationMs": 3028
+              },
+              {
+                "name": "6.4 — Readonly / error / loading (N/A)",
+                "status": "passed",
+                "durationMs": 2987
+              },
+              {
+                "name": "7.x — Pagination has no start/end icon slots",
+                "status": "passed",
+                "durationMs": 2959
+              },
+              {
+                "name": "8.2 — Single select — only one page has aria-current at a time",
+                "status": "passed",
+                "durationMs": 2893
+              },
+              {
+                "name": "8.1 — Toggle (N/A)",
+                "status": "passed",
+                "durationMs": 3042
+              },
+              {
+                "name": "9.x — Not a text input",
+                "status": "passed",
+                "durationMs": 2868
+              },
+              {
+                "name": "10.2 — showFirstLast true exposes first/last jump buttons",
+                "status": "passed",
+                "durationMs": 2880
+              },
+              {
+                "name": "10.2 — siblingCount 2 widens visible page window vs default",
+                "status": "passed",
+                "durationMs": 2982
+              },
+              {
+                "name": "11.1 — Controlled caption reflects page state",
+                "status": "passed",
+                "durationMs": 2939
+              },
+              {
+                "name": "11.1 — Nav buttons expose accessible names",
+                "status": "passed",
+                "durationMs": 2965
+              },
+              {
+                "name": "11.2 — Ellipsis markers render for large windows",
+                "status": "passed",
+                "durationMs": 3115
+              },
+              {
+                "name": "12.1 — fullWidth (N/A)",
+                "status": "passed",
+                "durationMs": 2996
+              },
+              {
+                "name": "12.2 — At 320px viewport default pagination remains visible",
+                "status": "passed",
+                "durationMs": 5602
+              },
+              {
+                "name": "12.2b — At 1440px all scenario sections remain visible",
+                "status": "passed",
+                "durationMs": 5539
+              },
+              {
+                "name": "12.3 — Horizontal navigator — page chips laid out in a row",
+                "status": "passed",
+                "durationMs": 3080
+              },
+              {
+                "name": "13.1 — After dark theme, all scenario sections remain visible",
+                "status": "failed",
+                "durationMs": 4250,
+                "error": "Error: locator.scrollIntoViewIfNeeded: Element is not attached to the DOM"
+              },
+              {
+                "name": "13.1 — Default pagination operable in dark mode",
+                "status": "passed",
+                "durationMs": 3515
+              },
+              {
+                "name": "Smoke — Page heading reads “Pagination”",
+                "status": "passed",
+                "durationMs": 2135
+              },
+              {
+                "name": "Smoke — Default navigator landmark is visible",
+                "status": "passed",
+                "durationMs": 1734
+              }
+            ]
+          },
+          "performance": {
+            "suite": "performance",
+            "passed": 0,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "Performance suite is not executed in apps/qa-playground pagination Playwright bundle."
+            ],
+            "errors": []
+          }
+        }
+      }
+    },
+    {
+      "savedAt": "2026-06-04T10:01:51.024Z",
+      "report": {
+        "ok": true,
+        "slug": "pagination",
+        "message": "pagination QA Playwright run OK — 2026-06-04T08:50:15.053Z",
+        "suites": {
+          "accessibility": {
+            "suite": "accessibility",
+            "passed": 25,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "25 test(s) in Playwright report for accessibility.",
+              "Axe: scan completed — 0 violation rules reported."
+            ],
+            "errors": [],
+            "cases": [
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — zero serious/critical + HTML report",
+                "status": "passed",
+                "durationMs": 7102
+              },
+              {
+                "name": "[a11y] data-section=\"pagination-qa-default\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 4426
+              },
+              {
+                "name": "[a11y] data-section=\"pagination-qa-size\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 4125
+              },
+              {
+                "name": "[a11y] data-section=\"pagination-qa-attention\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 4588
+              },
+              {
+                "name": "[a11y] data-section=\"pagination-qa-first-last\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 4482
+              },
+              {
+                "name": "[a11y] data-section=\"pagination-qa-matrix\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 3843
+              },
+              {
+                "name": "[a11y] data-section=\"pagination-qa-code-only\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 3742
+              },
+              {
+                "name": "[a11y] data-section=\"pagination-qa-e2e\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 4035
+              },
+              {
+                "name": "[a11y] data-section=\"pagination-qa-realtime\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 4151
+              },
+              {
+                "name": "[a11y] data-section=\"pagination-qa-combos\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 2862
+              },
+              {
+                "name": "[a11y] Default nav has accessible landmark label",
+                "status": "passed",
+                "durationMs": 2863
+              },
+              {
+                "name": "[a11y] selected page exposes aria-current=\"page\"",
+                "status": "passed",
+                "durationMs": 2849
+              },
+              {
+                "name": "[a11y] navigation buttons have accessible names",
+                "status": "passed",
+                "durationMs": 3273
+              },
+              {
+                "name": "[a11y] numbered page buttons have Go to page N names",
+                "status": "passed",
+                "durationMs": 3150
+              },
+              {
+                "name": "[a11y] Polite live region announces page changes",
+                "status": "passed",
+                "durationMs": 3185
+              },
+              {
+                "name": "[a11y] disabled previous on first page",
+                "status": "passed",
+                "durationMs": 3109
+              },
+              {
+                "name": "[a11y] disabled next on last page",
+                "status": "passed",
+                "durationMs": 2978
+              },
+              {
+                "name": "[a11y] tab order reaches multiple distinct targets",
+                "status": "passed",
+                "durationMs": 3186
+              },
+              {
+                "name": "[a11y] keyboard-only — ArrowRight changes page from focused chip",
+                "status": "passed",
+                "durationMs": 3207
+              },
+              {
+                "name": "[a11y] focus visible on Tab",
+                "status": "passed",
+                "durationMs": 2766
+              },
+              {
+                "name": "[a11y] disabled pagination — page buttons are disabled",
+                "status": "passed",
+                "durationMs": 2968
+              },
+              {
+                "name": "[a11y] ARIA validity rules — Pagination story bands",
+                "status": "passed",
+                "durationMs": 4692
+              },
+              {
+                "name": "[a11y] axe button-name rule — Pagination story bands",
+                "status": "passed",
+                "durationMs": 4695
+              },
+              {
+                "name": "[a11y] Reflow at 320px — default pagination remains operable",
+                "status": "passed",
+                "durationMs": 5620
+              },
+              {
+                "name": "[a11y] page lang on <html>",
+                "status": "passed",
+                "durationMs": 2944
+              }
+            ],
+            "axe": {
+              "violations": []
+            }
+          },
+          "functional": {
+            "suite": "functional",
+            "passed": 76,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "76 test(s) in Playwright report for functional."
+            ],
+            "errors": [],
+            "cases": [
+              {
+                "name": "[fn] shows Pagination page heading",
+                "status": "passed",
+                "durationMs": 2867
+              },
+              {
+                "name": "[fn] scenario tabs are present",
+                "status": "passed",
+                "durationMs": 3087
+              },
+              {
+                "name": "[fn] pagination renders correctly — default nav landmark",
+                "status": "passed",
+                "durationMs": 3701
+              },
+              {
+                "name": "[fn] default selected page is 5",
+                "status": "passed",
+                "durationMs": 3186
+              },
+              {
+                "name": "[fn] clicking next advances the active page",
+                "status": "passed",
+                "durationMs": 3504
+              },
+              {
+                "name": "[fn] clicking previous moves back",
+                "status": "passed",
+                "durationMs": 3302
+              },
+              {
+                "name": "[fn] first and last jump buttons when showFirstLast",
+                "status": "passed",
+                "durationMs": 3769
+              },
+              {
+                "name": "[fn] direct page number click navigates",
+                "status": "passed",
+                "durationMs": 3370
+              },
+              {
+                "name": "[fn] previous disabled on first page",
+                "status": "passed",
+                "durationMs": 3175
+              },
+              {
+                "name": "[fn] next disabled on last page",
+                "status": "passed",
+                "durationMs": 3258
+              },
+              {
+                "name": "[fn] controlled pagination updates caption",
+                "status": "passed",
+                "durationMs": 3085
+              },
+              {
+                "name": "[fn] disabled pagination — controls not actionable",
+                "status": "passed",
+                "durationMs": 3247
+              },
+              {
+                "name": "[fn] ellipsis renders for large page count",
+                "status": "passed",
+                "durationMs": 3006
+              },
+              {
+                "name": "[fn] siblingCount widens visible window",
+                "status": "passed",
+                "durationMs": 3042
+              },
+              {
+                "name": "[fn] boundaryCount keeps first and last pages in window",
+                "status": "passed",
+                "durationMs": 3106
+              },
+              {
+                "name": "[fn] showPrevNext false hides arrow buttons",
+                "status": "passed",
+                "durationMs": 2843
+              },
+              {
+                "name": "[fn] size variations S / M / L visible",
+                "status": "passed",
+                "durationMs": 2873
+              },
+              {
+                "name": "[fn] attention variants high / medium / low visible",
+                "status": "passed",
+                "durationMs": 2920
+              },
+              {
+                "name": "[fn] appearance positive row renders",
+                "status": "passed",
+                "durationMs": 3327
+              },
+              {
+                "name": "[fn] icon nav buttons render with accessible names",
+                "status": "passed",
+                "durationMs": 2875
+              },
+              {
+                "name": "[fn] large page count does not break layout in band",
+                "status": "passed",
+                "durationMs": 2829
+              },
+              {
+                "name": "[fn] combination matrix renders all rows",
+                "status": "passed",
+                "durationMs": 2903
+              },
+              {
+                "name": "[fn] Tab reaches focusable controls in navigator",
+                "status": "passed",
+                "durationMs": 3070
+              },
+              {
+                "name": "[fn] roving tabindex — only current page is tabbable",
+                "status": "passed",
+                "durationMs": 3235
+              },
+              {
+                "name": "[fn] ArrowRight on focused page advances selection",
+                "status": "passed",
+                "durationMs": 3159
+              },
+              {
+                "name": "[fn] ArrowLeft on focused page moves back",
+                "status": "passed",
+                "durationMs": 3040
+              },
+              {
+                "name": "[fn] Home and End jump to first and last page",
+                "status": "passed",
+                "durationMs": 3337
+              },
+              {
+                "name": "[fn] Enter activates focused page button",
+                "status": "passed",
+                "durationMs": 3126
+              },
+              {
+                "name": "[fn] Space activates next nav IconButton when focused",
+                "status": "passed",
+                "durationMs": 3231
+              },
+              {
+                "name": "[fn] focus indicator visible after Tab",
+                "status": "passed",
+                "durationMs": 3425
+              },
+              {
+                "name": "1.1 — Page loads without console errors; default navigator mounts",
+                "status": "passed",
+                "durationMs": 5721
+              },
+              {
+                "name": "1.2 — Every showcase `data-testid` is visible on Test Scenarios",
+                "status": "passed",
+                "durationMs": 4788
+              },
+              {
+                "name": "1.3 — Every `data-section` band is visible",
+                "status": "passed",
+                "durationMs": 3669
+              },
+              {
+                "name": "2.1 — Default props — page 5 selected, prev/next enabled",
+                "status": "passed",
+                "durationMs": 3136
+              },
+              {
+                "name": "2.1 — Each size S / M / L exposes data-size on root",
+                "status": "passed",
+                "durationMs": 3320
+              },
+              {
+                "name": "2.1 — showFirstLast false hides first/last jump buttons",
+                "status": "passed",
+                "durationMs": 2195
+              },
+              {
+                "name": "2.1 — showPrevNext false hides arrow buttons",
+                "status": "passed",
+                "durationMs": 2609
+              },
+              {
+                "name": "3.1 — Click next advances aria-current page",
+                "status": "passed",
+                "durationMs": 2939
+              },
+              {
+                "name": "3.1 — Direct page click updates selection",
+                "status": "passed",
+                "durationMs": 2852
+              },
+              {
+                "name": "3.2 — Disabled pagination — click does not change page",
+                "status": "passed",
+                "durationMs": 2826
+              },
+              {
+                "name": "3.3 — Readonly (N/A)",
+                "status": "passed",
+                "durationMs": 2633
+              },
+              {
+                "name": "3.4 — Click outside removes focus from page chip",
+                "status": "passed",
+                "durationMs": 2763
+              },
+              {
+                "name": "4.1 — Tab reaches focusable controls in page",
+                "status": "passed",
+                "durationMs": 2811
+              },
+              {
+                "name": "4.1 — Disabled pagination controls are not enabled for activation",
+                "status": "passed",
+                "durationMs": 2688
+              },
+              {
+                "name": "4.2 — Enter activates focused page button",
+                "status": "passed",
+                "durationMs": 2810
+              },
+              {
+                "name": "4.3 — Space on focused next button advances page",
+                "status": "passed",
+                "durationMs": 2632
+              },
+              {
+                "name": "4.4 — ArrowRight / ArrowLeft move selection on focused chip",
+                "status": "passed",
+                "durationMs": 2795
+              },
+              {
+                "name": "4.5 — Home and End jump to first and last page",
+                "status": "passed",
+                "durationMs": 3032
+              },
+              {
+                "name": "4.6 — Escape (N/A)",
+                "status": "passed",
+                "durationMs": 2975
+              },
+              {
+                "name": "4.7 — Tab cycle escapes pagination without trap",
+                "status": "passed",
+                "durationMs": 3687
+              },
+              {
+                "name": "5.1 — Click focuses interactive page chip",
+                "status": "passed",
+                "durationMs": 3178
+              },
+              {
+                "name": "5.2 — Focus indicator visible after Tab",
+                "status": "passed",
+                "durationMs": 3132
+              },
+              {
+                "name": "5.3 — Roving tabindex — exactly one page chip has tabindex 0",
+                "status": "passed",
+                "durationMs": 2931
+              },
+              {
+                "name": "5.4 — Blur removes focus from page chip",
+                "status": "passed",
+                "durationMs": 3207
+              },
+              {
+                "name": "5.5 — autoFocus (N/A)",
+                "status": "passed",
+                "durationMs": 3145
+              },
+              {
+                "name": "6.1 — Default state — page 5 of 10 with live region",
+                "status": "passed",
+                "durationMs": 3139
+              },
+              {
+                "name": "6.2 — Selected page exposes aria-current=\"page\"",
+                "status": "passed",
+                "durationMs": 3012
+              },
+              {
+                "name": "6.3 — Disabled state — controls disabled and not actionable",
+                "status": "passed",
+                "durationMs": 2773
+              },
+              {
+                "name": "6.4 — Readonly / error / loading (N/A)",
+                "status": "passed",
+                "durationMs": 2949
+              },
+              {
+                "name": "7.x — Pagination has no start/end icon slots",
+                "status": "passed",
+                "durationMs": 2932
+              },
+              {
+                "name": "8.2 — Single select — only one page has aria-current at a time",
+                "status": "passed",
+                "durationMs": 3181
+              },
+              {
+                "name": "8.1 — Toggle (N/A)",
+                "status": "passed",
+                "durationMs": 2877
+              },
+              {
+                "name": "9.x — Not a text input",
+                "status": "passed",
+                "durationMs": 3015
+              },
+              {
+                "name": "10.2 — showFirstLast true exposes first/last jump buttons",
+                "status": "passed",
+                "durationMs": 2722
+              },
+              {
+                "name": "10.2 — siblingCount 2 widens visible page window vs default",
+                "status": "passed",
+                "durationMs": 3065
+              },
+              {
+                "name": "11.1 — Controlled caption reflects page state",
+                "status": "passed",
+                "durationMs": 2921
+              },
+              {
+                "name": "11.1 — Nav buttons expose accessible names",
+                "status": "passed",
+                "durationMs": 2997
+              },
+              {
+                "name": "11.2 — Ellipsis markers render for large windows",
+                "status": "passed",
+                "durationMs": 2711
+              },
+              {
+                "name": "12.1 — fullWidth (N/A)",
+                "status": "passed",
+                "durationMs": 2839
+              },
+              {
+                "name": "12.2 — At 320px viewport default pagination remains visible",
+                "status": "passed",
+                "durationMs": 5495
+              },
+              {
+                "name": "12.2b — At 1440px all scenario sections remain visible",
+                "status": "passed",
+                "durationMs": 5733
+              },
+              {
+                "name": "12.3 — Horizontal navigator — page chips laid out in a row",
+                "status": "passed",
+                "durationMs": 3265
+              },
+              {
+                "name": "13.1 — After dark theme, all scenario sections remain visible",
+                "status": "passed",
+                "durationMs": 4848
+              },
+              {
+                "name": "13.1 — Default pagination operable in dark mode",
+                "status": "passed",
+                "durationMs": 4295
+              },
+              {
+                "name": "Smoke — Page heading reads “Pagination”",
+                "status": "passed",
+                "durationMs": 2538
+              },
+              {
+                "name": "Smoke — Default navigator landmark is visible",
+                "status": "passed",
+                "durationMs": 1600
+              }
+            ]
+          },
+          "performance": {
+            "suite": "performance",
+            "passed": 0,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "Performance suite is not executed in apps/qa-playground pagination Playwright bundle."
+            ],
+            "errors": []
+          }
+        }
+      }
+    },
+    {
+      "savedAt": "2026-06-04T08:50:15.054Z",
+      "report": {
+        "ok": true,
+        "slug": "pagination",
+        "message": "pagination QA Playwright run OK — 2026-05-29T12:55:09.022Z",
+        "suites": {
+          "accessibility": {
+            "suite": "accessibility",
+            "passed": 25,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "25 test(s) in Playwright report for accessibility.",
+              "Axe: scan completed — 0 violation rules reported."
+            ],
+            "errors": [],
+            "cases": [
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — zero serious/critical + HTML report",
+                "status": "passed",
+                "durationMs": 7273
+              },
+              {
+                "name": "[a11y] data-section=\"pagination-qa-default\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 3410
+              },
+              {
+                "name": "[a11y] data-section=\"pagination-qa-size\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 3922
+              },
+              {
+                "name": "[a11y] data-section=\"pagination-qa-attention\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 4070
+              },
+              {
+                "name": "[a11y] data-section=\"pagination-qa-first-last\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 3593
+              },
+              {
+                "name": "[a11y] data-section=\"pagination-qa-matrix\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 3694
+              },
+              {
+                "name": "[a11y] data-section=\"pagination-qa-code-only\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 3482
+              },
+              {
+                "name": "[a11y] data-section=\"pagination-qa-e2e\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 4153
+              },
+              {
+                "name": "[a11y] data-section=\"pagination-qa-realtime\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 3909
+              },
+              {
+                "name": "[a11y] data-section=\"pagination-qa-combos\" — zero serious/critical",
+                "status": "passed",
+                "durationMs": 4713
+              },
+              {
+                "name": "[a11y] Default nav has accessible landmark label",
+                "status": "passed",
+                "durationMs": 4027
+              },
+              {
+                "name": "[a11y] selected page exposes aria-current=\"page\"",
+                "status": "passed",
+                "durationMs": 4016
+              },
+              {
+                "name": "[a11y] navigation buttons have accessible names",
+                "status": "passed",
+                "durationMs": 3722
+              },
+              {
+                "name": "[a11y] numbered page buttons have Go to page N names",
+                "status": "passed",
+                "durationMs": 3930
+              },
+              {
+                "name": "[a11y] Polite live region announces page changes",
+                "status": "passed",
+                "durationMs": 2415
+              },
+              {
+                "name": "[a11y] disabled previous on first page",
+                "status": "passed",
+                "durationMs": 2630
+              },
+              {
+                "name": "[a11y] disabled next on last page",
+                "status": "passed",
+                "durationMs": 3203
+              },
+              {
+                "name": "[a11y] tab order reaches multiple distinct targets",
+                "status": "passed",
+                "durationMs": 16167
+              },
+              {
+                "name": "[a11y] keyboard-only — ArrowRight changes page from focused chip",
+                "status": "passed",
+                "durationMs": 4285
+              },
+              {
+                "name": "[a11y] focus visible on Tab",
+                "status": "passed",
+                "durationMs": 4700
+              },
+              {
+                "name": "[a11y] disabled pagination — page buttons are disabled",
+                "status": "passed",
+                "durationMs": 5050
+              },
+              {
+                "name": "[a11y] ARIA validity rules — Pagination story bands",
+                "status": "passed",
+                "durationMs": 6094
+              },
+              {
+                "name": "[a11y] axe button-name rule — Pagination story bands",
+                "status": "passed",
+                "durationMs": 4801
+              },
+              {
+                "name": "[a11y] Reflow at 320px — default pagination remains operable",
+                "status": "passed",
+                "durationMs": 5217
+              },
+              {
+                "name": "[a11y] page lang on <html>",
+                "status": "passed",
+                "durationMs": 2583
+              }
+            ],
+            "axe": {
+              "violations": []
+            }
+          },
+          "functional": {
+            "suite": "functional",
+            "passed": 76,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "76 test(s) in Playwright report for functional."
+            ],
+            "errors": [],
+            "cases": [
+              {
+                "name": "[fn] shows Pagination page heading",
+                "status": "passed",
+                "durationMs": 2466
+              },
+              {
+                "name": "[fn] scenario tabs are present",
+                "status": "passed",
+                "durationMs": 2406
+              },
+              {
+                "name": "[fn] pagination renders correctly — default nav landmark",
+                "status": "passed",
+                "durationMs": 2389
+              },
+              {
+                "name": "[fn] default selected page is 5",
+                "status": "passed",
+                "durationMs": 2435
+              },
+              {
+                "name": "[fn] clicking next advances the active page",
+                "status": "passed",
+                "durationMs": 2446
+              },
+              {
+                "name": "[fn] clicking previous moves back",
+                "status": "passed",
+                "durationMs": 2538
+              },
+              {
+                "name": "[fn] first and last jump buttons when showFirstLast",
+                "status": "passed",
+                "durationMs": 2392
+              },
+              {
+                "name": "[fn] direct page number click navigates",
+                "status": "passed",
+                "durationMs": 2037
+              },
+              {
+                "name": "[fn] previous disabled on first page",
+                "status": "passed",
+                "durationMs": 3087
+              },
+              {
+                "name": "[fn] next disabled on last page",
+                "status": "passed",
+                "durationMs": 2285
+              },
+              {
+                "name": "[fn] controlled pagination updates caption",
+                "status": "passed",
+                "durationMs": 2127
+              },
+              {
+                "name": "[fn] disabled pagination — controls not actionable",
+                "status": "passed",
+                "durationMs": 2433
+              },
+              {
+                "name": "[fn] ellipsis renders for large page count",
+                "status": "passed",
+                "durationMs": 2392
+              },
+              {
+                "name": "[fn] siblingCount widens visible window",
+                "status": "passed",
+                "durationMs": 2932
+              },
+              {
+                "name": "[fn] boundaryCount keeps first and last pages in window",
+                "status": "passed",
+                "durationMs": 2829
+              },
+              {
+                "name": "[fn] showPrevNext false hides arrow buttons",
+                "status": "passed",
+                "durationMs": 2859
+              },
+              {
+                "name": "[fn] size variations S / M / L visible",
+                "status": "passed",
+                "durationMs": 2763
+              },
+              {
+                "name": "[fn] attention variants high / medium / low visible",
+                "status": "passed",
+                "durationMs": 3027
+              },
+              {
+                "name": "[fn] appearance positive row renders",
+                "status": "passed",
+                "durationMs": 2848
+              },
+              {
+                "name": "[fn] icon nav buttons render with accessible names",
+                "status": "passed",
+                "durationMs": 2685
+              },
+              {
+                "name": "[fn] large page count does not break layout in band",
+                "status": "passed",
+                "durationMs": 2590
+              },
+              {
+                "name": "[fn] combination matrix renders all rows",
+                "status": "passed",
+                "durationMs": 2198
+              },
+              {
+                "name": "[fn] Tab reaches focusable controls in navigator",
+                "status": "passed",
+                "durationMs": 2183
+              },
+              {
+                "name": "[fn] roving tabindex — only current page is tabbable",
+                "status": "passed",
+                "durationMs": 2388
+              },
+              {
+                "name": "[fn] ArrowRight on focused page advances selection",
+                "status": "passed",
+                "durationMs": 2330
+              },
+              {
+                "name": "[fn] ArrowLeft on focused page moves back",
+                "status": "passed",
+                "durationMs": 2712
+              },
+              {
+                "name": "[fn] Home and End jump to first and last page",
+                "status": "passed",
+                "durationMs": 2625
+              },
+              {
+                "name": "[fn] Enter activates focused page button",
+                "status": "passed",
+                "durationMs": 2455
+              },
+              {
+                "name": "[fn] Space activates next nav IconButton when focused",
+                "status": "passed",
+                "durationMs": 2816
+              },
+              {
+                "name": "[fn] focus indicator visible after Tab",
+                "status": "passed",
+                "durationMs": 2929
+              },
+              {
+                "name": "1.1 — Page loads without console errors; default navigator mounts",
+                "status": "passed",
+                "durationMs": 4543
+              },
+              {
+                "name": "1.2 — Every showcase `data-testid` is visible on Test Scenarios",
+                "status": "passed",
+                "durationMs": 4537
+              },
+              {
+                "name": "1.3 — Every `data-section` band is visible",
+                "status": "passed",
+                "durationMs": 2830
+              },
+              {
+                "name": "2.1 — Default props — page 5 selected, prev/next enabled",
+                "status": "passed",
+                "durationMs": 2334
+              },
+              {
+                "name": "2.1 — Each size S / M / L exposes data-size on root",
+                "status": "passed",
+                "durationMs": 2627
+              },
+              {
+                "name": "2.1 — showFirstLast false hides first/last jump buttons",
+                "status": "passed",
+                "durationMs": 2226
+              },
+              {
+                "name": "2.1 — showPrevNext false hides arrow buttons",
+                "status": "passed",
+                "durationMs": 3060
+              },
+              {
+                "name": "3.1 — Click next advances aria-current page",
+                "status": "passed",
+                "durationMs": 3082
+              },
+              {
+                "name": "3.1 — Direct page click updates selection",
+                "status": "passed",
+                "durationMs": 3765
+              },
+              {
+                "name": "3.2 — Disabled pagination — click does not change page",
+                "status": "passed",
+                "durationMs": 4191
+              },
+              {
+                "name": "3.3 — Readonly (N/A)",
+                "status": "passed",
+                "durationMs": 4263
+              },
+              {
+                "name": "3.4 — Click outside removes focus from page chip",
+                "status": "passed",
+                "durationMs": 3592
+              },
+              {
+                "name": "4.1 — Tab reaches focusable controls in page",
+                "status": "passed",
+                "durationMs": 3843
+              },
+              {
+                "name": "4.1 — Disabled pagination controls are not enabled for activation",
+                "status": "passed",
+                "durationMs": 3285
+              },
+              {
+                "name": "4.2 — Enter activates focused page button",
+                "status": "passed",
+                "durationMs": 3191
+              },
+              {
+                "name": "4.3 — Space on focused next button advances page",
+                "status": "passed",
+                "durationMs": 3009
+              },
+              {
+                "name": "4.4 — ArrowRight / ArrowLeft move selection on focused chip",
+                "status": "passed",
+                "durationMs": 3191
+              },
+              {
+                "name": "4.5 — Home and End jump to first and last page",
+                "status": "passed",
+                "durationMs": 3014
+              },
+              {
+                "name": "4.6 — Escape (N/A)",
+                "status": "passed",
+                "durationMs": 2993
+              },
+              {
+                "name": "4.7 — Tab cycle escapes pagination without trap",
+                "status": "passed",
+                "durationMs": 3758
+              },
+              {
+                "name": "5.1 — Click focuses interactive page chip",
+                "status": "passed",
+                "durationMs": 3102
+              },
+              {
+                "name": "5.2 — Focus indicator visible after Tab",
+                "status": "passed",
+                "durationMs": 2957
+              },
+              {
+                "name": "5.3 — Roving tabindex — exactly one page chip has tabindex 0",
+                "status": "passed",
+                "durationMs": 3754
+              },
+              {
+                "name": "5.4 — Blur removes focus from page chip",
+                "status": "passed",
+                "durationMs": 3510
+              },
+              {
+                "name": "5.5 — autoFocus (N/A)",
+                "status": "passed",
+                "durationMs": 3729
+              },
+              {
+                "name": "6.1 — Default state — page 5 of 10 with live region",
+                "status": "passed",
+                "durationMs": 3618
+              },
+              {
+                "name": "6.2 — Selected page exposes aria-current=\"page\"",
+                "status": "passed",
+                "durationMs": 3722
+              },
+              {
+                "name": "6.3 — Disabled state — controls disabled and not actionable",
+                "status": "passed",
+                "durationMs": 3343
+              },
+              {
+                "name": "6.4 — Readonly / error / loading (N/A)",
+                "status": "passed",
+                "durationMs": 3203
+              },
+              {
+                "name": "7.x — Pagination has no start/end icon slots",
+                "status": "passed",
+                "durationMs": 5014
+              },
+              {
+                "name": "8.2 — Single select — only one page has aria-current at a time",
+                "status": "passed",
+                "durationMs": 5655
+              },
+              {
+                "name": "8.1 — Toggle (N/A)",
+                "status": "passed",
+                "durationMs": 5357
+              },
+              {
+                "name": "9.x — Not a text input",
+                "status": "passed",
+                "durationMs": 5782
+              },
+              {
+                "name": "10.2 — showFirstLast true exposes first/last jump buttons",
+                "status": "passed",
+                "durationMs": 5882
+              },
+              {
+                "name": "10.2 — siblingCount 2 widens visible page window vs default",
+                "status": "passed",
+                "durationMs": 3634
+              },
+              {
+                "name": "11.1 — Controlled caption reflects page state",
+                "status": "passed",
+                "durationMs": 2960
+              },
+              {
+                "name": "11.1 — Nav buttons expose accessible names",
+                "status": "passed",
+                "durationMs": 2785
+              },
+              {
+                "name": "11.2 — Ellipsis markers render for large windows",
+                "status": "passed",
+                "durationMs": 2789
+              },
+              {
+                "name": "12.1 — fullWidth (N/A)",
+                "status": "passed",
+                "durationMs": 3809
+              },
+              {
+                "name": "12.2 — At 320px viewport default pagination remains visible",
+                "status": "passed",
+                "durationMs": 6361
+              },
+              {
+                "name": "12.2b — At 1440px all scenario sections remain visible",
+                "status": "passed",
+                "durationMs": 6643
+              },
+              {
+                "name": "12.3 — Horizontal navigator — page chips laid out in a row",
+                "status": "passed",
+                "durationMs": 4173
+              },
+              {
+                "name": "13.1 — After dark theme, all scenario sections remain visible",
+                "status": "passed",
+                "durationMs": 4938
+              },
+              {
+                "name": "13.1 — Default pagination operable in dark mode",
+                "status": "passed",
+                "durationMs": 3579
+              },
+              {
+                "name": "Smoke — Page heading reads “Pagination”",
+                "status": "passed",
+                "durationMs": 2978
+              },
+              {
+                "name": "Smoke — Default navigator landmark is visible",
+                "status": "passed",
+                "durationMs": 1781
+              }
+            ]
+          },
+          "performance": {
+            "suite": "performance",
+            "passed": 0,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "Performance suite is not executed in apps/qa-playground pagination Playwright bundle."
+            ],
+            "errors": []
+          }
+        }
+      }
+    }
+  ]
+}

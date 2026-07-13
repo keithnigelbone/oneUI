@@ -1,0 +1,26 @@
+{
+  "eval_id": 2,
+  "run_type": "with_skill",
+  "expectations": [
+    {
+      "text": "lists-on-colour-tokens",
+      "passed": true,
+      "evidence": "Lists all 9 on-colour tokens: High, Medium-Text, Low-Text, Medium-Stroke, Low-Stroke, Accent, Accent-A11y, Hover, Pressed plus the surface fill = 10 tokens per role"
+    },
+    {
+      "text": "mentions-on-subtle-context",
+      "passed": true,
+      "evidence": "Clearly states 'bg-subtle uses the on-subtle on-colour context' and shows comparison table of on-subtle vs on-default parameters"
+    },
+    {
+      "text": "explains-differences-from-default",
+      "passed": true,
+      "evidence": "Explains stroke offset +10 vs +8, asymmetric Accent-A11y computation, BG-Subtle fill remapping to state-layer tint, no bold inversion"
+    },
+    {
+      "text": "uses-correct-token-names",
+      "passed": true,
+      "evidence": "Uses correct naming: --Primary-BG-Subtle-High, --Primary-BG-Subtle-Medium-Text, etc. Full token list provided in correct format"
+    }
+  ]
+}

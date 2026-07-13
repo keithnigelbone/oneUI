@@ -1,0 +1,174 @@
+/**
+ * PlatformSelector.module.css
+ *
+ * Styles for the platform selector dropdown
+ * Uses token-only values for consistent theming
+ */
+
+.container {
+  position: relative;
+}
+
+.trigger {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-3);
+  padding: var(--Spacing-2) var(--Spacing-3-5);
+  border-radius: var(--Button-borderRadius, var(--Shape-4));
+  background-color: transparent;
+  border: none;
+  color: var(--Text-High);
+  cursor: pointer;
+  transition: background-color var(--Motion-Duration-Discreet-Short) var(--Motion-Easing-Standard);
+  font-family: var(--Label-FontFamily, var(--Typography-Font-Text));
+}
+
+.trigger:hover {
+  background-color: var(--Surface-Ghost);
+}
+
+.trigger:focus {
+  outline: none;
+}
+
+.trigger:focus-visible {
+  outline: var(--Focus-Outline-Width) solid var(--Focus-Outline);
+  outline-offset: var(--Focus-Outline-Offset, var(--Stroke-XL));
+}
+
+.platformIcon {
+  color: var(--Text-Medium);
+  flex-shrink: 0;
+}
+
+.platformName {
+  font-size: var(--Body-M-FontSize);
+  font-weight: var(--Body-FontWeight-Medium);
+  white-space: nowrap;
+}
+
+.chevron {
+  color: var(--Text-Medium);
+  flex-shrink: 0;
+  transition: transform var(--Motion-Duration-Discreet-Short) var(--Motion-Easing-Standard);
+}
+
+.chevron[data-open="true"] {
+  transform: rotate(180deg);
+}
+
+/* Dropdown */
+
+/* INTENTIONAL-LITERAL: panel min/max widths are product design choices —
+   sized to fit the longest platform label + a density indicator without
+   wrapping. These arbitrary panel dimensions are not in the spacing /
+   dimension token scale by design. */
+.dropdown {
+  position: absolute;
+  top: calc(100% + var(--Spacing-3));
+  right: 0;
+  min-width: 280px;
+  max-width: 360px;
+  background-color: var(--Surface-Main);
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+  border-radius: var(--Shape-4);
+  box-shadow: var(--Elevation-2);
+  z-index: 1000;
+  overflow: hidden;
+}
+
+/* Platform list */
+
+.platformList {
+  padding: var(--Spacing-3) 0;
+}
+
+.platformOption {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--Spacing-3-5);
+  width: 100%;
+  padding: var(--Spacing-3-5);
+  background-color: transparent;
+  border: none;
+  color: var(--Text-High);
+  cursor: pointer;
+  text-align: left;
+  font-family: var(--Label-FontFamily, var(--Typography-Font-Text));
+  transition: background-color var(--Motion-Duration-Discreet-Short) var(--Motion-Easing-Standard);
+}
+
+.platformOption:hover {
+  background-color: var(--Surface-Ghost);
+}
+
+.platformOption[data-selected="true"] {
+  background-color: var(--Surface-Minimal);
+}
+
+.platformOption:focus {
+  outline: none;
+}
+
+.platformOption:focus-visible {
+  outline: var(--Focus-Outline-Width) solid var(--Focus-Outline);
+  outline-offset: calc(-1 * var(--Focus-Outline-Offset, var(--Stroke-XL)));
+}
+
+.optionIcon {
+  color: var(--Text-Medium);
+  flex-shrink: 0;
+  margin-top: var(--Stroke-XL);
+}
+
+.platformOption[data-selected="true"] .optionIcon {
+  color: var(--Primary-Bold, var(--Surface-Bold));
+}
+
+.optionContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-2);
+  min-width: 0;
+}
+
+.optionName {
+  font-size: var(--Body-M-FontSize);
+  font-weight: var(--Body-FontWeight-Medium);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.optionDescription {
+  font-size: var(--Body-S-FontSize);
+  color: var(--Text-Medium);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.optionMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--Spacing-3);
+  margin-top: var(--Stroke-XL);
+}
+
+.metaItem {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--Spacing-2) var(--Spacing-2-5);
+  background-color: var(--Surface-Subtle);
+  border-radius: var(--Shape-3-5);
+  font-size: var(--Body-XS-FontSize);
+  color: var(--Text-Medium);
+  font-family: var(--Typography-Font-Mono, monospace);
+}
+
+.checkIcon {
+  color: var(--Primary-Bold, var(--Surface-Bold));
+  flex-shrink: 0;
+  margin-top: var(--Stroke-XL);
+}

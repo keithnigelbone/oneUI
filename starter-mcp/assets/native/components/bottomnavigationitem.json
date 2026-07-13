@@ -1,0 +1,193 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "BottomNavigationItem",
+  "generatedAt": "2026-07-09T13:07:37.404Z",
+  "machineReadable": true,
+  "status": "beta",
+  "intentAndPurpose": {
+    "intent": "Single tab inside a BottomNavigation. Required icon glyph + optional label; optional activeIcon (swapped in when selected) and Badge for unread/notification counts."
+  },
+  "compositionRules": {
+    "requires": [
+      "icon"
+    ],
+    "allows": [],
+    "forbids": [],
+    "childKind": "fixed-slots"
+  },
+  "props": [
+    {
+      "name": "id",
+      "type": "string",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "label",
+      "type": "string",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "active",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "badge",
+      "type": "string",
+      "required": false,
+      "description": "Optional badge content (count or text)."
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "icon",
+      "type": "ReactNode",
+      "required": true,
+      "description": "Required glyph — a semantic icon name, ReactElement, or JDS icon component reference (e.g. `icon={IcHome}`)."
+    },
+    {
+      "name": "activeIcon",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Optional glyph swapped in when the item is active (same value shape as `icon`)."
+    },
+    {
+      "name": "value",
+      "type": "string",
+      "required": false,
+      "description": "Selection value — matched against the parent BottomNavigation's `value`."
+    },
+    {
+      "name": "appearance",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Forwarded from the parent BottomNavigation context; not usually set per-item."
+    },
+    {
+      "name": "labelType",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Label visibility policy, forwarded from the parent BottomNavigation context."
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.kb.rn.BottomNavigationItem",
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string"
+      },
+      "label": {
+        "type": "string"
+      },
+      "active": {
+        "type": "boolean",
+        "default": false
+      },
+      "badge": {
+        "type": "string",
+        "description": "Optional badge content (count or text)."
+      },
+      "disabled": {
+        "type": "boolean",
+        "default": false
+      },
+      "icon": {
+        "description": "Required glyph — a semantic icon name, ReactElement, or JDS icon component reference (e.g. `icon={IcHome}`)."
+      },
+      "activeIcon": {
+        "description": "Optional glyph swapped in when the item is active (same value shape as `icon`)."
+      },
+      "value": {
+        "type": "string",
+        "description": "Selection value — matched against the parent BottomNavigation's `value`."
+      },
+      "appearance": {
+        "description": "Forwarded from the parent BottomNavigation context; not usually set per-item."
+      },
+      "labelType": {
+        "description": "Label visibility policy, forwarded from the parent BottomNavigation context."
+      }
+    },
+    "required": [
+      "icon"
+    ]
+  },
+  "tokens": {
+    "color": [
+      "neutral",
+      "primary"
+    ],
+    "surface": [
+      "ghost",
+      "subtle"
+    ],
+    "typography": [
+      "label.XS",
+      "label.S"
+    ],
+    "spacing": [
+      "3XS",
+      "2XS",
+      "XS",
+      "S"
+    ],
+    "motion": [
+      "motion.duration.discreet.short"
+    ]
+  },
+  "a11y": {
+    "accessibilityRole": "tab",
+    "accessibilityState": [
+      "selected",
+      "disabled"
+    ],
+    "accessibleNameSource": "children",
+    "minTouchTarget": 44,
+    "honorsBoldText": true,
+    "honorsScreenReader": true
+  },
+  "renderHints": {
+    "baseElement": "Pressable",
+    "animatedOn": [
+      "press"
+    ],
+    "honorsReduceMotion": true,
+    "readsFromSurfaceContext": true
+  },
+  "figma": {
+    "componentKey": "jds-bottomnav-item-v4",
+    "keyHistory": [
+      "jds-tabbar-item-v4"
+    ],
+    "variantProperties": {
+      "Component": "BottomNavigationItem"
+    }
+  },
+  "codeSnippets": [
+    {
+      "id": "import-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { BottomNavigationItem } from '@oneui/ui-native';\n\n<BottomNavigationItem />"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "bottomnavigationitem",
+    "navigation",
+    "chassis"
+  ],
+  "importPath": "@oneui/ui-native"
+}

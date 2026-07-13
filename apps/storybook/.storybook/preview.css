@@ -1,0 +1,170 @@
+/**
+ * STORYBOOK PREVIEW STYLES
+ * Utility classes for component stories
+ */
+
+/* Transition suppression: matches useStyleInjection's data-brand-switching attribute */
+[data-brand-switching],
+[data-brand-switching] * {
+  transition: none !important;
+}
+
+/* Base wrapper inherits font from tokens */
+.story-wrapper {
+  font-family: var(--Typography-Font-Primary);
+  font-feature-settings: var(--Typography-Features-Primary);
+  letter-spacing: var(--Body-LetterSpacing, 0);
+  color: var(--Text-High);
+}
+
+/* Loading guard: when a brand is selected, hide the story wrapper until
+   brand CSS has been injected (signalled by data-brand-ready on <html>).
+   Stories without a brand selection render immediately with base tokens.
+   The animation fallback ensures stories become visible after 3s even if
+   brand CSS injection fails (e.g., Convex network error). */
+.story-wrapper-loading {
+  opacity: 0;
+  transition: opacity 0.15s ease;
+  animation: brand-ready-fallback 3s forwards;
+}
+@keyframes brand-ready-fallback {
+  0%, 90% { opacity: 0; }
+  100% { opacity: 1; }
+}
+[data-brand-ready] .story-wrapper-loading {
+  opacity: 1;
+  animation: none;
+}
+
+/* Grid layout for multiple items */
+.story-grid {
+  display: grid;
+  gap: var(--Spacing-4-5);
+}
+
+/* Row layout for side-by-side items */
+.story-row {
+  display: flex;
+  gap: var(--Spacing-4);
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* Column layout for stacked items */
+.story-column {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-4);
+}
+
+/* Theme comparison cards */
+.theme-card {
+  padding: var(--Spacing-4-5);
+  border-radius: var(--Shape-4-5);
+  min-width: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-4);
+  background: var(--Surface-Main);
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+}
+
+/* Mode-specific overrides use token vars — theme CSS files
+   (light.css, dark.css) set --Surface-Default and --Text-High
+   when data-mode matches, so no hardcoded oklch needed. */
+.theme-card[data-mode='light'],
+.theme-card[data-mode='dark'] {
+  background: var(--Surface-Default);
+  color: var(--Text-High);
+}
+
+/* Brand comparison cards */
+.brand-card {
+  padding: var(--Spacing-4-5);
+  border-radius: var(--Shape-4-5);
+  min-width: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-4);
+  background: var(--Surface-Subtle);
+}
+
+/* Density comparison cards */
+.density-card {
+  padding: var(--Spacing-4-5);
+  border-radius: var(--Shape-4-5);
+  min-width: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-4);
+}
+
+/* Labels for comparison cards */
+.theme-card > span:first-child,
+.brand-card > span:first-child,
+.density-card > span:first-child {
+  font-size: var(--Typography-Size-S);
+  font-weight: var(--Typography-Weight-Semibold);
+  text-transform: uppercase;
+  letter-spacing: var(--Typography-LetterSpacing-Wide);
+  color: var(--Text-Medium);
+}
+
+/* Viewport simulation for responsive stories */
+.viewport-mobile {
+  width: 375px;
+  max-width: 100%;
+}
+
+.viewport-tablet {
+  width: 768px;
+  max-width: 100%;
+}
+
+.viewport-desktop {
+  width: 1440px;
+  max-width: 100%;
+}
+
+/* Spacing utilities */
+.p-m { padding: var(--Spacing-4); }
+.p-l { padding: var(--Spacing-4-5); }
+.gap-s { gap: var(--Spacing-3-5); }
+.gap-m { gap: var(--Spacing-4); }
+.gap-l { gap: var(--Spacing-4-5); }
+
+/* State preview helpers */
+.state-label {
+  font-size: var(--Typography-Size-XS);
+  color: var(--Text-Low);
+  text-transform: uppercase;
+  letter-spacing: var(--Typography-LetterSpacing-Wider);
+}
+
+/* Center content in canvas */
+.story-centered {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+}
+
+/* Full width container */
+.story-full-width {
+  width: 100%;
+  max-width: 600px;
+}
+
+/* =========================================
+   PLATFORM SCOPE — Story wrapper
+   The decorator sets data-Breakpoint, data-6-Density, and data-density
+   on <html> (matching the platform app's PlatformContext.tsx pattern).
+   This lets scale.css attribute selectors resolve --Dimension-f* at :root,
+   and primitives.css / typography.css aliases cascade correctly.
+
+   Resolved px overrides are also set as inline styles on <html> for
+   belt-and-suspenders reliability.
+
+   The .platform-scope div retains data-density for any component CSS
+   that reads the attribute directly (e.g., compact.css component overrides).
+   ========================================= */

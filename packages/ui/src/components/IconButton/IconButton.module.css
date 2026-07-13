@@ -1,0 +1,788 @@
+/**
+ * IconButton.module.css
+ *
+ * CRITICAL: This file demonstrates the ZERO LITERALS rule
+ * ALL styling uses design tokens ONLY
+ *
+ * Architecture: Role-agnostic intermediate variables (--_ib-*)
+ * - Default = Primary role
+ * - Appearance classes remap --_ib-* to other roles
+ * - Variant selectors consume --_ib-* without duplication
+ *
+ * Size system: 6 sizes via [data-size="N"] attribute selectors.
+ *
+ * Verified by: pnpm check:literals
+ */
+
+.iconButton {
+  /* ========================================
+     INTERMEDIATE VARIABLES — default = Primary role
+     ======================================== */
+  --_ib-bold: var(--IconButton-roleBold, var(--Primary-Bold, var(--Surface-Bold)));
+  --_ib-bold-high: var(--IconButton-roleBoldHigh, var(--Primary-Bold-TintedA11y, var(--Primary-Bold-High, var(--Text-OnBold-High))));
+  --_ib-bold-hover: var(--IconButton-roleBoldHover, var(--Primary-Bold-Hover, var(--Surface-Bold-Hover)));
+  --_ib-bold-pressed: var(--IconButton-roleBoldPressed, var(--Primary-Bold-Pressed, var(--Surface-Bold-Pressed)));
+  --_ib-bold-hover-layer: var(--IconButton-stateLayer-bold-hover, var(--Primary-Bold-Hover-Layer, var(--Surface-Bold-Hover-Layer, transparent)));
+  --_ib-bold-pressed-layer: var(--IconButton-stateLayer-bold-pressed, var(--Primary-Bold-Pressed-Layer, var(--Surface-Bold-Pressed-Layer, transparent)));
+  --_ib-subtle: var(--IconButton-roleSubtle, var(--Primary-Subtle, var(--Surface-Subtle)));
+  --_ib-subtle-hover: var(--IconButton-roleSubtleHover, var(--Primary-Subtle-Hover, var(--Surface-Subtle-Hover)));
+  --_ib-subtle-pressed: var(--IconButton-roleSubtlePressed, var(--Primary-Subtle-Pressed, var(--Surface-Subtle-Pressed)));
+  --_ib-subtle-hover-layer: var(--IconButton-stateLayer-subtle-hover, var(--Primary-Subtle-Hover-Layer, var(--Surface-Subtle-Hover-Layer, transparent)));
+  --_ib-subtle-pressed-layer: var(--IconButton-stateLayer-subtle-pressed, var(--Primary-Subtle-Pressed-Layer, var(--Surface-Subtle-Pressed-Layer, transparent)));
+  --_ib-default-accent-a11y: var(--IconButton-roleTintedA11y, var(--Primary-TintedA11y, var(--Primary-Tinted, var(--Surface-Bold))));
+  --_ib-default-high: var(--IconButton-roleHigh, var(--Primary-High, var(--Text-High)));
+  --_ib-default-low-text: var(--IconButton-roleLow, var(--Primary-Low, var(--Text-Low)));
+  --_ib-default-low-stroke: var(--IconButton-roleStrokeLow, var(--Primary-Stroke-Low, var(--Surface-Bold)));
+  --_ib-default-hover: var(--IconButton-roleHover, var(--Primary-Hover, var(--Surface-Minimal)));
+  --_ib-default-pressed: var(--IconButton-rolePressed, var(--Primary-Pressed, var(--Surface-Subtle)));
+  --_ib-default-hover-layer: var(--IconButton-stateLayer-hover, var(--Primary-Hover-Layer, var(--Surface-Minimal-Hover-Layer, transparent)));
+  --_ib-default-pressed-layer: var(--IconButton-stateLayer-pressed, var(--Primary-Pressed-Layer, var(--Surface-Minimal-Pressed-Layer, transparent)));
+  --_ib-state-layer: transparent;
+
+  /* ========================================
+     SHAPE — overridable via --IconButton-borderRadius
+     ======================================== */
+  border-radius: var(--IconButton-borderRadius, var(--Shape-Pill));
+
+  /* ========================================
+     SURFACE & TEXT — consumed from intermediate vars
+     ======================================== */
+  --_ib-bg: var(--IconButton-backgroundColor, var(--_ib-bold));
+  background-color: var(--_ib-bg);
+  color: var(--IconButton-iconColor, var(--_ib-bold-high));
+
+  /* ========================================
+     LAYOUT — square by default, supports 3:2
+     ======================================== */
+  aspect-ratio: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  /* ========================================
+     SIZE — default M (f7 = 50px at the L breakpoint, 1920px reference)
+     Visual size follows Figma spec exactly.
+     Touch target compliance handled by size selection, not CSS enforcement.
+     ======================================== */
+  --_ib-size: var(--IconButton-containerSize, var(--Spacing-10));
+  width: var(--_ib-size);
+
+  /* ========================================
+     MOTION — Tap interaction from Convex motion foundations
+     Scale Up pattern: Duration-M, Transition-Moderate (press & release)
+     ======================================== */
+  --_tap-scale: var(--Motion-Tap-Scale-Up, 7);
+  --_tap-direction: 1; /* 1 = scale up, -1 = scale down */
+  transition:
+    background-color var(--Motion-Duration-M) var(--Motion-Easing-Transition-Moderate),
+    color var(--Motion-Duration-M) var(--Motion-Easing-Transition-Moderate),
+    border-color var(--Motion-Duration-M) var(--Motion-Easing-Transition-Moderate),
+    box-shadow var(--Motion-Duration-M) var(--Motion-Easing-Transition-Moderate),
+    transform var(--Motion-Duration-M) var(--Motion-Easing-Transition-Moderate),
+    opacity var(--Motion-Duration-M) var(--Motion-Easing-Transition-Moderate);
+
+  /* ========================================
+     BASE STYLES
+     ======================================== */
+  border: none;
+  cursor: pointer;
+  position: relative;
+  padding: 0;
+  clip-path: var(--IconButton-cssDecorationClipPath, none);
+}
+
+.iconButton::before {
+  content: '';
+  position: absolute;
+  inset: var(--Spacing-0);
+  box-sizing: border-box;
+  pointer-events: none;
+  border-radius: inherit;
+  clip-path: var(--IconButton-cssDecorationClipPath, none);
+  background-color: var(--_ib-state-layer);
+  transition: background-color var(--Motion-Duration-M) var(--Motion-Easing-Transition-Moderate);
+}
+
+.iconButton::after {
+  content: '';
+  position: absolute;
+  inset: var(--Spacing-0);
+  box-sizing: border-box;
+  pointer-events: none;
+  border-radius: inherit;
+  clip-path: var(--IconButton-cssDecorationClipPath, none);
+  border-style: var(--IconButton-cssDecorationStrokeStyle-active, var(--IconButton-cssDecorationStrokeStyle, solid));
+  border-color: var(--IconButton-cssDecorationColor-active, var(--IconButton-cssDecorationColor, currentColor));
+  border-width:
+    var(--IconButton-cssDecorationInsetStrokeWidth-active, var(--IconButton-cssDecorationInsetStrokeWidth, var(--Spacing-0)))
+    var(--IconButton-cssDecorationInsetStrokeWidth-active, var(--IconButton-cssDecorationInsetStrokeWidth, var(--Spacing-0)))
+    var(--IconButton-cssDecorationInsetStrokeWidth-active, var(--IconButton-cssDecorationInsetStrokeWidth, var(--IconButton-cssDecorationUnderlineWidth-active, var(--IconButton-cssDecorationUnderlineWidth, var(--Spacing-0)))))
+    var(--IconButton-cssDecorationInsetStrokeWidth-active, var(--IconButton-cssDecorationInsetStrokeWidth, var(--Spacing-0)));
+}
+
+/* ========================================
+   MATERIAL STROKE — gradient border ring (mask trick; respects border-radius).
+   Dedicated child element so it never collides with the ::before state layer or
+   the ::after decoration. Invisible unless --_ib-stroke-image is set (default none).
+
+   Radius: this is a real child element (Button draws the same ring with ::before,
+   which inherits .button's radius directly). `border-radius: inherit` on a child
+   resolves against its DOM parent, so it would square off if Base UI ever nests
+   the button content — read the SAME radius token the root .iconButton uses so
+   the ring always traces the button outline. Thickness comes from --_ib-bw,
+   which the editor/brand engine raises to a visible Stroke width when a material
+   stroke is applied (mirrors Button's --_btn-bw).
+   ======================================== */
+.materialStroke {
+  position: absolute;
+  inset: var(--Spacing-0);
+  box-sizing: border-box;
+  pointer-events: none;
+  border-radius: var(--IconButton-borderRadius, var(--Shape-Pill));
+  padding: var(--_ib-bw, var(--Spacing-0));
+  background: var(--_ib-stroke-image, none);
+  -webkit-mask:
+    linear-gradient(currentColor 0 0) content-box,
+    linear-gradient(currentColor 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(currentColor 0 0) content-box,
+    linear-gradient(currentColor 0 0);
+  mask-composite: exclude;
+}
+
+/* ========================================
+   APPEARANCE — role-agnostic intermediate variable remapping
+   ======================================== */
+
+.appearancePrimary {
+  --_ib-bold: var(--Primary-Bold, var(--Surface-Bold));
+  --_ib-bold-high: var(--Primary-Bold-TintedA11y, var(--Primary-Bold-High, var(--Text-OnBold-High)));
+  --_ib-bold-hover: var(--Primary-Bold-Hover, var(--Surface-Bold-Hover));
+  --_ib-bold-pressed: var(--Primary-Bold-Pressed, var(--Surface-Bold-Pressed));
+  --_ib-bold-hover-layer: var(--Primary-Bold-Hover-Layer, var(--Surface-Bold-Hover-Layer, transparent));
+  --_ib-bold-pressed-layer: var(--Primary-Bold-Pressed-Layer, var(--Surface-Bold-Pressed-Layer, transparent));
+  --_ib-subtle: var(--Primary-Subtle, var(--Surface-Subtle));
+  --_ib-subtle-hover: var(--Primary-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_ib-subtle-pressed: var(--Primary-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+  --_ib-subtle-hover-layer: var(--Primary-Subtle-Hover-Layer, var(--Surface-Subtle-Hover-Layer, transparent));
+  --_ib-subtle-pressed-layer: var(--Primary-Subtle-Pressed-Layer, var(--Surface-Subtle-Pressed-Layer, transparent));
+  --_ib-default-accent-a11y: var(--Primary-TintedA11y, var(--Primary-Tinted, var(--Surface-Bold)));
+  --_ib-default-high: var(--Primary-High, var(--Text-High));
+  --_ib-default-low-text: var(--Primary-Low, var(--Text-Low));
+  --_ib-default-low-stroke: var(--Primary-Stroke-Low, var(--Surface-Bold));
+  --_ib-default-hover: var(--Primary-Hover, var(--Surface-Minimal));
+  --_ib-default-pressed: var(--Primary-Pressed, var(--Surface-Subtle));
+  --_ib-default-hover-layer: var(--Primary-Hover-Layer, var(--Surface-Minimal-Hover-Layer, transparent));
+  --_ib-default-pressed-layer: var(--Primary-Pressed-Layer, var(--Surface-Minimal-Pressed-Layer, transparent));
+}
+
+.appearanceNeutral {
+  --_ib-bold: var(--Neutral-Bold, var(--Surface-Bold));
+  --_ib-bold-high: var(--Neutral-Bold-TintedA11y, var(--Neutral-Bold-High, var(--Text-OnBold-High)));
+  --_ib-bold-hover: var(--Neutral-Bold-Hover, var(--Surface-Bold-Hover));
+  --_ib-bold-pressed: var(--Neutral-Bold-Pressed, var(--Surface-Bold-Pressed));
+  --_ib-bold-hover-layer: var(--Neutral-Bold-Hover-Layer, var(--Surface-Bold-Hover-Layer, transparent));
+  --_ib-bold-pressed-layer: var(--Neutral-Bold-Pressed-Layer, var(--Surface-Bold-Pressed-Layer, transparent));
+  --_ib-subtle: var(--Neutral-Subtle, var(--Surface-Subtle));
+  --_ib-subtle-hover: var(--Neutral-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_ib-subtle-pressed: var(--Neutral-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+  --_ib-subtle-hover-layer: var(--Neutral-Subtle-Hover-Layer, var(--Surface-Subtle-Hover-Layer, transparent));
+  --_ib-subtle-pressed-layer: var(--Neutral-Subtle-Pressed-Layer, var(--Surface-Subtle-Pressed-Layer, transparent));
+  --_ib-default-accent-a11y: var(--Neutral-TintedA11y, var(--Neutral-Tinted, var(--Surface-Bold)));
+  --_ib-default-high: var(--Neutral-High, var(--Text-High));
+  --_ib-default-low-text: var(--Neutral-Low, var(--Text-Low));
+  --_ib-default-low-stroke: var(--Neutral-Stroke-Low, var(--Surface-Bold));
+  --_ib-default-hover: var(--Neutral-Hover, var(--Surface-Minimal));
+  --_ib-default-pressed: var(--Neutral-Pressed, var(--Surface-Subtle));
+  --_ib-default-hover-layer: var(--Neutral-Hover-Layer, var(--Surface-Minimal-Hover-Layer, transparent));
+  --_ib-default-pressed-layer: var(--Neutral-Pressed-Layer, var(--Surface-Minimal-Pressed-Layer, transparent));
+}
+
+.appearanceSecondary {
+  --_ib-bold: var(--Secondary-Bold, var(--Surface-Bold));
+  --_ib-bold-high: var(--Secondary-Bold-TintedA11y, var(--Secondary-Bold-High, var(--Text-OnBold-High)));
+  --_ib-bold-hover: var(--Secondary-Bold-Hover, var(--Surface-Bold-Hover));
+  --_ib-bold-pressed: var(--Secondary-Bold-Pressed, var(--Surface-Bold-Pressed));
+  --_ib-bold-hover-layer: var(--Secondary-Bold-Hover-Layer, var(--Surface-Bold-Hover-Layer, transparent));
+  --_ib-bold-pressed-layer: var(--Secondary-Bold-Pressed-Layer, var(--Surface-Bold-Pressed-Layer, transparent));
+  --_ib-subtle: var(--Secondary-Subtle, var(--Surface-Subtle));
+  --_ib-subtle-hover: var(--Secondary-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_ib-subtle-pressed: var(--Secondary-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+  --_ib-subtle-hover-layer: var(--Secondary-Subtle-Hover-Layer, var(--Surface-Subtle-Hover-Layer, transparent));
+  --_ib-subtle-pressed-layer: var(--Secondary-Subtle-Pressed-Layer, var(--Surface-Subtle-Pressed-Layer, transparent));
+  --_ib-default-accent-a11y: var(--Secondary-TintedA11y, var(--Secondary-Tinted, var(--Surface-Bold)));
+  --_ib-default-high: var(--Secondary-High, var(--Text-High));
+  --_ib-default-low-text: var(--Secondary-Low, var(--Text-Low));
+  --_ib-default-low-stroke: var(--Secondary-Stroke-Low, var(--Surface-Bold));
+  --_ib-default-hover: var(--Secondary-Hover, var(--Surface-Minimal));
+  --_ib-default-pressed: var(--Secondary-Pressed, var(--Surface-Subtle));
+  --_ib-default-hover-layer: var(--Secondary-Hover-Layer, var(--Surface-Minimal-Hover-Layer, transparent));
+  --_ib-default-pressed-layer: var(--Secondary-Pressed-Layer, var(--Surface-Minimal-Pressed-Layer, transparent));
+}
+
+.appearanceSparkle {
+  --_ib-bold: var(--Sparkle-Bold, var(--Surface-Bold));
+  --_ib-bold-high: var(--Sparkle-Bold-TintedA11y, var(--Sparkle-Bold-High, var(--Text-OnBold-High)));
+  --_ib-bold-hover: var(--Sparkle-Bold-Hover, var(--Surface-Bold-Hover));
+  --_ib-bold-pressed: var(--Sparkle-Bold-Pressed, var(--Surface-Bold-Pressed));
+  --_ib-bold-hover-layer: var(--Sparkle-Bold-Hover-Layer, var(--Surface-Bold-Hover-Layer, transparent));
+  --_ib-bold-pressed-layer: var(--Sparkle-Bold-Pressed-Layer, var(--Surface-Bold-Pressed-Layer, transparent));
+  --_ib-subtle: var(--Sparkle-Subtle, var(--Surface-Subtle));
+  --_ib-subtle-hover: var(--Sparkle-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_ib-subtle-pressed: var(--Sparkle-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+  --_ib-subtle-hover-layer: var(--Sparkle-Subtle-Hover-Layer, var(--Surface-Subtle-Hover-Layer, transparent));
+  --_ib-subtle-pressed-layer: var(--Sparkle-Subtle-Pressed-Layer, var(--Surface-Subtle-Pressed-Layer, transparent));
+  --_ib-default-accent-a11y: var(--Sparkle-TintedA11y, var(--Sparkle-Tinted, var(--Surface-Bold)));
+  --_ib-default-high: var(--Sparkle-High, var(--Text-High));
+  --_ib-default-low-text: var(--Sparkle-Low, var(--Text-Low));
+  --_ib-default-low-stroke: var(--Sparkle-Stroke-Low, var(--Surface-Bold));
+  --_ib-default-hover: var(--Sparkle-Hover, var(--Surface-Minimal));
+  --_ib-default-pressed: var(--Sparkle-Pressed, var(--Surface-Subtle));
+  --_ib-default-hover-layer: var(--Sparkle-Hover-Layer, var(--Surface-Minimal-Hover-Layer, transparent));
+  --_ib-default-pressed-layer: var(--Sparkle-Pressed-Layer, var(--Surface-Minimal-Pressed-Layer, transparent));
+}
+
+.appearanceBrandBg {
+  --_ib-bold: var(--Brand-Bg-Bold, var(--Surface-Bold));
+  --_ib-bold-high: var(--Brand-Bg-Bold-TintedA11y, var(--Brand-Bg-Bold-High, var(--Text-OnBold-High)));
+  --_ib-bold-hover: var(--Brand-Bg-Bold-Hover, var(--Surface-Bold-Hover));
+  --_ib-bold-pressed: var(--Brand-Bg-Bold-Pressed, var(--Surface-Bold-Pressed));
+  --_ib-bold-hover-layer: var(--Brand-Bg-Bold-Hover-Layer, var(--Surface-Bold-Hover-Layer, transparent));
+  --_ib-bold-pressed-layer: var(--Brand-Bg-Bold-Pressed-Layer, var(--Surface-Bold-Pressed-Layer, transparent));
+  --_ib-subtle: var(--Brand-Bg-Subtle, var(--Surface-Subtle));
+  --_ib-subtle-hover: var(--Brand-Bg-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_ib-subtle-pressed: var(--Brand-Bg-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+  --_ib-subtle-hover-layer: var(--Brand-Bg-Subtle-Hover-Layer, var(--Surface-Subtle-Hover-Layer, transparent));
+  --_ib-subtle-pressed-layer: var(--Brand-Bg-Subtle-Pressed-Layer, var(--Surface-Subtle-Pressed-Layer, transparent));
+  --_ib-default-accent-a11y: var(--Brand-Bg-TintedA11y, var(--Brand-Bg-Tinted, var(--Surface-Bold)));
+  --_ib-default-high: var(--Brand-Bg-High, var(--Text-High));
+  --_ib-default-low-text: var(--Brand-Bg-Low, var(--Text-Low));
+  --_ib-default-low-stroke: var(--Brand-Bg-Stroke-Low, var(--Surface-Bold));
+  --_ib-default-hover: var(--Brand-Bg-Hover, var(--Surface-Minimal));
+  --_ib-default-pressed: var(--Brand-Bg-Pressed, var(--Surface-Subtle));
+  --_ib-default-hover-layer: var(--Brand-Bg-Hover-Layer, var(--Surface-Minimal-Hover-Layer, transparent));
+  --_ib-default-pressed-layer: var(--Brand-Bg-Pressed-Layer, var(--Surface-Minimal-Pressed-Layer, transparent));
+}
+
+.appearancePositive {
+  --_ib-bold: var(--Positive-Bold, var(--Surface-Bold));
+  --_ib-bold-high: var(--Positive-Bold-TintedA11y, var(--Positive-Bold-High, var(--Text-OnBold-High)));
+  --_ib-bold-hover: var(--Positive-Bold-Hover, var(--Surface-Bold-Hover));
+  --_ib-bold-pressed: var(--Positive-Bold-Pressed, var(--Surface-Bold-Pressed));
+  --_ib-bold-hover-layer: var(--Positive-Bold-Hover-Layer, var(--Surface-Bold-Hover-Layer, transparent));
+  --_ib-bold-pressed-layer: var(--Positive-Bold-Pressed-Layer, var(--Surface-Bold-Pressed-Layer, transparent));
+  --_ib-subtle: var(--Positive-Subtle, var(--Surface-Subtle));
+  --_ib-subtle-hover: var(--Positive-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_ib-subtle-pressed: var(--Positive-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+  --_ib-subtle-hover-layer: var(--Positive-Subtle-Hover-Layer, var(--Surface-Subtle-Hover-Layer, transparent));
+  --_ib-subtle-pressed-layer: var(--Positive-Subtle-Pressed-Layer, var(--Surface-Subtle-Pressed-Layer, transparent));
+  --_ib-default-accent-a11y: var(--Positive-TintedA11y, var(--Positive-Tinted, var(--Surface-Bold)));
+  --_ib-default-high: var(--Positive-High, var(--Text-High));
+  --_ib-default-low-text: var(--Positive-Low, var(--Text-Low));
+  --_ib-default-low-stroke: var(--Positive-Stroke-Low, var(--Surface-Bold));
+  --_ib-default-hover: var(--Positive-Hover, var(--Surface-Minimal));
+  --_ib-default-pressed: var(--Positive-Pressed, var(--Surface-Subtle));
+  --_ib-default-hover-layer: var(--Positive-Hover-Layer, var(--Surface-Minimal-Hover-Layer, transparent));
+  --_ib-default-pressed-layer: var(--Positive-Pressed-Layer, var(--Surface-Minimal-Pressed-Layer, transparent));
+}
+
+.appearanceNegative {
+  --_ib-bold: var(--Negative-Bold, var(--Surface-Bold));
+  --_ib-bold-high: var(--Negative-Bold-TintedA11y, var(--Negative-Bold-High, var(--Text-OnBold-High)));
+  --_ib-bold-hover: var(--Negative-Bold-Hover, var(--Surface-Bold-Hover));
+  --_ib-bold-pressed: var(--Negative-Bold-Pressed, var(--Surface-Bold-Pressed));
+  --_ib-bold-hover-layer: var(--Negative-Bold-Hover-Layer, var(--Surface-Bold-Hover-Layer, transparent));
+  --_ib-bold-pressed-layer: var(--Negative-Bold-Pressed-Layer, var(--Surface-Bold-Pressed-Layer, transparent));
+  --_ib-subtle: var(--Negative-Subtle, var(--Surface-Subtle));
+  --_ib-subtle-hover: var(--Negative-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_ib-subtle-pressed: var(--Negative-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+  --_ib-subtle-hover-layer: var(--Negative-Subtle-Hover-Layer, var(--Surface-Subtle-Hover-Layer, transparent));
+  --_ib-subtle-pressed-layer: var(--Negative-Subtle-Pressed-Layer, var(--Surface-Subtle-Pressed-Layer, transparent));
+  --_ib-default-accent-a11y: var(--Negative-TintedA11y, var(--Negative-Tinted, var(--Surface-Bold)));
+  --_ib-default-high: var(--Negative-High, var(--Text-High));
+  --_ib-default-low-text: var(--Negative-Low, var(--Text-Low));
+  --_ib-default-low-stroke: var(--Negative-Stroke-Low, var(--Surface-Bold));
+  --_ib-default-hover: var(--Negative-Hover, var(--Surface-Minimal));
+  --_ib-default-pressed: var(--Negative-Pressed, var(--Surface-Subtle));
+  --_ib-default-hover-layer: var(--Negative-Hover-Layer, var(--Surface-Minimal-Hover-Layer, transparent));
+  --_ib-default-pressed-layer: var(--Negative-Pressed-Layer, var(--Surface-Minimal-Pressed-Layer, transparent));
+}
+
+.appearanceWarning {
+  --_ib-bold: var(--Warning-Bold, var(--Surface-Bold));
+  --_ib-bold-high: var(--Warning-Bold-TintedA11y, var(--Warning-Bold-High, var(--Text-OnBold-High)));
+  --_ib-bold-hover: var(--Warning-Bold-Hover, var(--Surface-Bold-Hover));
+  --_ib-bold-pressed: var(--Warning-Bold-Pressed, var(--Surface-Bold-Pressed));
+  --_ib-bold-hover-layer: var(--Warning-Bold-Hover-Layer, var(--Surface-Bold-Hover-Layer, transparent));
+  --_ib-bold-pressed-layer: var(--Warning-Bold-Pressed-Layer, var(--Surface-Bold-Pressed-Layer, transparent));
+  --_ib-subtle: var(--Warning-Subtle, var(--Surface-Subtle));
+  --_ib-subtle-hover: var(--Warning-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_ib-subtle-pressed: var(--Warning-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+  --_ib-subtle-hover-layer: var(--Warning-Subtle-Hover-Layer, var(--Surface-Subtle-Hover-Layer, transparent));
+  --_ib-subtle-pressed-layer: var(--Warning-Subtle-Pressed-Layer, var(--Surface-Subtle-Pressed-Layer, transparent));
+  --_ib-default-accent-a11y: var(--Warning-TintedA11y, var(--Warning-Tinted, var(--Surface-Bold)));
+  --_ib-default-high: var(--Warning-High, var(--Text-High));
+  --_ib-default-low-text: var(--Warning-Low, var(--Text-Low));
+  --_ib-default-low-stroke: var(--Warning-Stroke-Low, var(--Surface-Bold));
+  --_ib-default-hover: var(--Warning-Hover, var(--Surface-Minimal));
+  --_ib-default-pressed: var(--Warning-Pressed, var(--Surface-Subtle));
+  --_ib-default-hover-layer: var(--Warning-Hover-Layer, var(--Surface-Minimal-Hover-Layer, transparent));
+  --_ib-default-pressed-layer: var(--Warning-Pressed-Layer, var(--Surface-Minimal-Pressed-Layer, transparent));
+}
+
+.appearanceInformative {
+  --_ib-bold: var(--Informative-Bold, var(--Surface-Bold));
+  --_ib-bold-high: var(--Informative-Bold-TintedA11y, var(--Informative-Bold-High, var(--Text-OnBold-High)));
+  --_ib-bold-hover: var(--Informative-Bold-Hover, var(--Surface-Bold-Hover));
+  --_ib-bold-pressed: var(--Informative-Bold-Pressed, var(--Surface-Bold-Pressed));
+  --_ib-bold-hover-layer: var(--Informative-Bold-Hover-Layer, var(--Surface-Bold-Hover-Layer, transparent));
+  --_ib-bold-pressed-layer: var(--Informative-Bold-Pressed-Layer, var(--Surface-Bold-Pressed-Layer, transparent));
+  --_ib-subtle: var(--Informative-Subtle, var(--Surface-Subtle));
+  --_ib-subtle-hover: var(--Informative-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_ib-subtle-pressed: var(--Informative-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+  --_ib-subtle-hover-layer: var(--Informative-Subtle-Hover-Layer, var(--Surface-Subtle-Hover-Layer, transparent));
+  --_ib-subtle-pressed-layer: var(--Informative-Subtle-Pressed-Layer, var(--Surface-Subtle-Pressed-Layer, transparent));
+  --_ib-default-accent-a11y: var(--Informative-TintedA11y, var(--Informative-Tinted, var(--Surface-Bold)));
+  --_ib-default-high: var(--Informative-High, var(--Text-High));
+  --_ib-default-low-text: var(--Informative-Low, var(--Text-Low));
+  --_ib-default-low-stroke: var(--Informative-Stroke-Low, var(--Surface-Bold));
+  --_ib-default-hover: var(--Informative-Hover, var(--Surface-Minimal));
+  --_ib-default-pressed: var(--Informative-Pressed, var(--Surface-Subtle));
+  --_ib-default-hover-layer: var(--Informative-Hover-Layer, var(--Surface-Minimal-Hover-Layer, transparent));
+  --_ib-default-pressed-layer: var(--Informative-Pressed-Layer, var(--Surface-Minimal-Pressed-Layer, transparent));
+}
+
+
+/* Explicit appearance beats brand attention-level roles (mirrors Button).
+   Appearance classes pin every per-variant role slot back to their own
+   intermediates so brand-level per-level roles only affect default-role
+   icon buttons (unlayered CSS beats @layer brand). */
+.appearancePrimary,
+.appearanceNeutral,
+.appearanceSecondary,
+.appearanceSparkle,
+.appearanceBrandBg,
+.appearancePositive,
+.appearanceNegative,
+.appearanceWarning,
+.appearanceInformative {
+  --IconButton-roleBold-bold: var(--_ib-bold);
+  --IconButton-roleBoldHigh-bold: var(--_ib-bold-high);
+  --IconButton-roleBoldHover-bold: var(--_ib-bold-hover);
+  --IconButton-roleBoldPressed-bold: var(--_ib-bold-pressed);
+  --IconButton-roleBold-subtle: var(--_ib-bold);
+  --IconButton-roleBoldHigh-subtle: var(--_ib-bold-high);
+  --IconButton-roleBoldHover-subtle: var(--_ib-bold-hover);
+  --IconButton-roleBoldPressed-subtle: var(--_ib-bold-pressed);
+  --IconButton-roleBold-ghost: var(--_ib-bold);
+  --IconButton-roleBoldHigh-ghost: var(--_ib-bold-high);
+  --IconButton-roleBoldHover-ghost: var(--_ib-bold-hover);
+  --IconButton-roleBoldPressed-ghost: var(--_ib-bold-pressed);
+  --IconButton-roleSubtle-bold: var(--_ib-subtle);
+  --IconButton-roleSubtleHover-bold: var(--_ib-subtle-hover);
+  --IconButton-roleSubtlePressed-bold: var(--_ib-subtle-pressed);
+  --IconButton-roleSubtle-subtle: var(--_ib-subtle);
+  --IconButton-roleSubtleHover-subtle: var(--_ib-subtle-hover);
+  --IconButton-roleSubtlePressed-subtle: var(--_ib-subtle-pressed);
+  --IconButton-roleSubtle-ghost: var(--_ib-subtle);
+  --IconButton-roleSubtleHover-ghost: var(--_ib-subtle-hover);
+  --IconButton-roleSubtlePressed-ghost: var(--_ib-subtle-pressed);
+  --IconButton-roleTintedA11y-bold: var(--_ib-default-accent-a11y);
+  --IconButton-roleTintedA11y-subtle: var(--_ib-default-accent-a11y);
+  --IconButton-roleTintedA11y-ghost: var(--_ib-default-accent-a11y);
+  --IconButton-roleHover-bold: var(--_ib-default-hover);
+  --IconButton-roleHover-subtle: var(--_ib-default-hover);
+  --IconButton-roleHover-ghost: var(--_ib-default-hover);
+  --IconButton-rolePressed-bold: var(--_ib-default-pressed);
+  --IconButton-rolePressed-subtle: var(--_ib-default-pressed);
+  --IconButton-rolePressed-ghost: var(--_ib-default-pressed);
+}
+
+/* ========================================
+   VARIANTS — consume intermediate vars, zero duplication
+   ======================================== */
+
+.bold {
+  --_ib-bw: var(--IconButton-borderWidth-bold, 0px);
+  --_ib-bc: var(--IconButton-borderColor-bold, transparent);
+  --_ib-bg: var(--IconButton-backgroundColor-bold, var(--IconButton-roleBold-bold, var(--_ib-bold)));
+  --IconButton-cssDecorationColor-active: var(--IconButton-cssDecorationColor-bold, var(--IconButton-cssDecorationColor, currentColor));
+  --IconButton-cssDecorationInsetStrokeWidth-active: var(--IconButton-cssDecorationInsetStrokeWidth-bold, var(--IconButton-cssDecorationInsetStrokeWidth, var(--Spacing-0)));
+  --IconButton-cssDecorationStrokeStyle-active: var(--IconButton-cssDecorationStrokeStyle-bold, var(--IconButton-cssDecorationStrokeStyle, solid));
+  --IconButton-cssDecorationUnderlineWidth-active: var(--IconButton-cssDecorationUnderlineWidth-bold, var(--IconButton-cssDecorationUnderlineWidth, var(--Spacing-0)));
+  background: var(--_ib-bg);
+  color: var(--IconButton-iconColor-bold, var(--_ib-material-text, var(--IconButton-roleBoldHigh-bold, var(--_ib-bold-high))));
+  /* Zero-width border (like Button): a real transparent border of --_ib-bw would
+     shrink the padding box, and the absolutely-positioned .materialStroke ring +
+     ::before state layer are sized to that padding box — pushing the gradient ring
+     INWARD and leaving a fill-coloured rim outside it. The visible stroke is the
+     inset box-shadow below; thickness comes from --_ib-bw via the ring's padding. */
+  border: 0 solid transparent;
+  box-shadow: inset 0 0 0 var(--_ib-bw) var(--_ib-solid-bc);
+}
+
+.subtle {
+  --_ib-bw: var(--IconButton-borderWidth-subtle, 0px);
+  --_ib-bc: var(--IconButton-borderColor-subtle, transparent);
+  --_ib-bg: var(--IconButton-backgroundColor-subtle, var(--IconButton-roleSubtle-subtle, var(--_ib-subtle)));
+  --IconButton-cssDecorationColor-active: var(--IconButton-cssDecorationColor-subtle, var(--IconButton-cssDecorationColor, currentColor));
+  --IconButton-cssDecorationInsetStrokeWidth-active: var(--IconButton-cssDecorationInsetStrokeWidth-subtle, var(--IconButton-cssDecorationInsetStrokeWidth, var(--Spacing-0)));
+  --IconButton-cssDecorationStrokeStyle-active: var(--IconButton-cssDecorationStrokeStyle-subtle, var(--IconButton-cssDecorationStrokeStyle, solid));
+  --IconButton-cssDecorationUnderlineWidth-active: var(--IconButton-cssDecorationUnderlineWidth-subtle, var(--IconButton-cssDecorationUnderlineWidth, var(--Spacing-0)));
+  background-color: var(--_ib-bg);
+  color: var(--IconButton-iconColor-subtle, var(--IconButton-roleTintedA11y-subtle, var(--_ib-default-accent-a11y)));
+  /* Zero-width border (like Button): a real transparent border of --_ib-bw would
+     shrink the padding box, and the absolutely-positioned .materialStroke ring +
+     ::before state layer are sized to that padding box — pushing the gradient ring
+     INWARD and leaving a fill-coloured rim outside it. The visible stroke is the
+     inset box-shadow below; thickness comes from --_ib-bw via the ring's padding. */
+  border: 0 solid transparent;
+  box-shadow: inset 0 0 0 var(--_ib-bw) var(--_ib-solid-bc);
+}
+
+.ghost {
+  --_ib-bw: var(--IconButton-borderWidth-ghost, 0px);
+  --_ib-bc: var(--IconButton-borderColor-ghost, var(--_ib-default-low-stroke));
+  --_ib-bg: var(--IconButton-backgroundColor-ghost, transparent);
+  --IconButton-cssDecorationColor-active: var(--IconButton-cssDecorationColor-ghost, var(--IconButton-cssDecorationColor, currentColor));
+  --IconButton-cssDecorationInsetStrokeWidth-active: var(--IconButton-cssDecorationInsetStrokeWidth-ghost, var(--IconButton-cssDecorationInsetStrokeWidth, var(--Spacing-0)));
+  --IconButton-cssDecorationStrokeStyle-active: var(--IconButton-cssDecorationStrokeStyle-ghost, var(--IconButton-cssDecorationStrokeStyle, solid));
+  --IconButton-cssDecorationUnderlineWidth-active: var(--IconButton-cssDecorationUnderlineWidth-ghost, var(--IconButton-cssDecorationUnderlineWidth, var(--Spacing-0)));
+  background-color: var(--_ib-bg);
+  color: var(--IconButton-iconColor-ghost, var(--IconButton-roleTintedA11y-ghost, var(--_ib-default-accent-a11y)));
+  /* Zero-width border (like Button): a real transparent border of --_ib-bw would
+     shrink the padding box, and the absolutely-positioned .materialStroke ring +
+     ::before state layer are sized to that padding box — pushing the gradient ring
+     INWARD and leaving a fill-coloured rim outside it. The visible stroke is the
+     inset box-shadow below; thickness comes from --_ib-bw via the ring's padding. */
+  border: 0 solid transparent;
+  box-shadow: inset 0 0 0 var(--_ib-bw) var(--_ib-solid-bc);
+}
+
+/* ========================================
+   UNCONTAINED — icon only (Figma contained=false)
+   Container hugs icon; no chip fill or state-layer wrapper.
+   Icon colour by attention: high→tintedA11y, medium→high, low→low.
+   ======================================== */
+
+.iconButton[data-contained="false"] {
+  --_ib-bw: 0px;
+  --_ib-bc: transparent;
+  --_ib-bg: transparent;
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+  width: auto;
+  height: auto;
+  aspect-ratio: auto;
+  padding: 0;
+}
+
+.iconButton[data-contained="false"]::before {
+  display: none;
+}
+
+.iconButton[data-contained="false"] .icon svg {
+  width: var(--_ib-icon-size, var(--Spacing-5));
+  height: var(--_ib-icon-size, var(--Spacing-5));
+}
+
+.iconButton[data-contained="false"].bold {
+  color: var(--IconButton-iconColor-uncontained-high, var(--_ib-default-accent-a11y));
+}
+
+.iconButton[data-contained="false"].subtle {
+  color: var(--IconButton-iconColor-uncontained-medium, var(--_ib-default-high, var(--Primary-High, var(--Text-High))));
+}
+
+.iconButton[data-contained="false"].ghost {
+  color: var(--IconButton-iconColor-uncontained-low, var(--_ib-default-low-text, var(--Primary-Low, var(--Text-Low))));
+}
+
+.iconButton[data-contained="false"]:hover:not(.disabled) {
+  background-color: transparent;
+}
+
+.iconButton[data-contained="false"].bold:hover:not(.disabled) {
+  color: var(--IconButton-iconColor-uncontained-high-hover, var(--_ib-default-accent-a11y));
+}
+
+.iconButton[data-contained="false"].subtle:hover:not(.disabled) {
+  color: var(--IconButton-iconColor-uncontained-medium-hover, var(--_ib-default-high, var(--Primary-High, var(--Text-High))));
+}
+
+.iconButton[data-contained="false"].ghost:hover:not(.disabled) {
+  color: var(--IconButton-iconColor-uncontained-low-hover, var(--_ib-default-low-text, var(--Primary-Low, var(--Text-Low))));
+}
+
+.iconButton[data-contained="false"]:active:not(.disabled) {
+  background-color: transparent;
+}
+
+/* ========================================
+   SIZES — 6 sizes via data-size attribute selectors
+   2XS(4), XS(6), S(8), M(10), L(12), XL(14)
+   ======================================== */
+
+/* Container sizes verified against Figma (L breakpoint, 1920px reference, default density):
+   2XS=25px(f2), XS=30px(f3), S=40px(f5), M=50px(f7), L=60px(f8), XL=70px(f9)
+   Icon = exactly half the container (confirmed: XS icon=15px from Figma Spacings/3) */
+
+.iconButton[data-size="4"] {
+  --_ib-size: var(--IconButton-containerSize-4, var(--Spacing-5));
+  --_ib-icon-size: var(--IconButton-iconSize-4, var(--Spacing-2-5));
+}
+
+.iconButton[data-size="6"] {
+  --_ib-size: var(--IconButton-containerSize-6, var(--Spacing-6));
+  --_ib-icon-size: var(--IconButton-iconSize-6, var(--Spacing-3));
+}
+
+.iconButton[data-size="8"] {
+  --_ib-size: var(--IconButton-containerSize-8, var(--Spacing-8));
+  --_ib-icon-size: var(--IconButton-iconSize-8, var(--Spacing-4));
+}
+
+.iconButton[data-size="10"] {
+  --_ib-size: var(--IconButton-containerSize-10, var(--Spacing-10));
+  --_ib-icon-size: var(--IconButton-iconSize-10, var(--Spacing-5));
+}
+
+.iconButton[data-size="12"] {
+  --_ib-size: var(--IconButton-containerSize-12, var(--Spacing-12));
+  --_ib-icon-size: var(--IconButton-iconSize-12, var(--Spacing-6));
+}
+
+.iconButton[data-size="14"] {
+  --_ib-size: var(--IconButton-containerSize-14, var(--Spacing-14));
+  --_ib-icon-size: var(--IconButton-iconSize-14, var(--Spacing-7));
+}
+
+/* Uncontained — container hugs icon (Figma dimensions/spacings/*) */
+.iconButton[data-contained="false"][data-size="4"],
+.iconButton[data-contained="false"][data-size="6"] {
+  --_ib-size: var(--IconButton-uncontainedIconSize-4, var(--Spacing-3));
+  --_ib-icon-size: var(--IconButton-uncontainedIconSize-4, var(--Spacing-3));
+}
+
+.iconButton[data-contained="false"][data-size="8"] {
+  --_ib-size: var(--IconButton-uncontainedIconSize-8, var(--Spacing-4));
+  --_ib-icon-size: var(--IconButton-uncontainedIconSize-8, var(--Spacing-4));
+}
+
+.iconButton[data-contained="false"][data-size="10"] {
+  --_ib-size: var(--IconButton-uncontainedIconSize-10, var(--Spacing-5));
+  --_ib-icon-size: var(--IconButton-uncontainedIconSize-10, var(--Spacing-5));
+}
+
+.iconButton[data-contained="false"][data-size="12"] {
+  --_ib-size: var(--IconButton-uncontainedIconSize-12, var(--Spacing-6));
+  --_ib-icon-size: var(--IconButton-uncontainedIconSize-12, var(--Spacing-6));
+}
+
+.iconButton[data-contained="false"][data-size="14"] {
+  --_ib-size: var(--IconButton-uncontainedIconSize-14, var(--Spacing-8));
+  --_ib-icon-size: var(--IconButton-uncontainedIconSize-14, var(--Spacing-8));
+}
+
+/* ========================================
+   CONDENSED MODE — reduces container size, same icon size
+   ======================================== */
+
+.iconButton[data-condensed][data-size="4"] {
+  --_ib-size: var(--IconButton-containerSize-4-condensed, var(--Spacing-4));
+}
+
+.iconButton[data-condensed][data-size="6"] {
+  --_ib-size: var(--IconButton-containerSize-6-condensed, var(--Spacing-4-5));
+}
+
+.iconButton[data-condensed][data-size="8"] {
+  --_ib-size: var(--IconButton-containerSize-8-condensed, var(--Spacing-6));
+}
+
+.iconButton[data-condensed][data-size="10"] {
+  --_ib-size: var(--IconButton-containerSize-10-condensed, var(--Spacing-8));
+}
+
+.iconButton[data-condensed][data-size="12"] {
+  --_ib-size: var(--IconButton-containerSize-12-condensed, var(--Spacing-10));
+}
+
+.iconButton[data-condensed][data-size="14"] {
+  --_ib-size: var(--IconButton-containerSize-14-condensed, var(--Spacing-12));
+}
+
+/* ========================================
+   LAYOUT — 3:2 (wide rectangle)
+   ======================================== */
+
+.iconButton[data-layout="3:2"] {
+  aspect-ratio: auto;
+  width: calc(var(--_ib-size) * 1.5);
+  height: var(--_ib-size);
+  /* Wide shape: Scale Down tap (from Convex motion foundations) */
+  --_tap-scale: var(--Motion-Tap-Scale-Default, 3);
+  --_tap-direction: -1;
+}
+
+/* ========================================
+   FULL WIDTH
+   ======================================== */
+
+.fullWidth {
+  width: 100%;
+  height: var(--_ib-size);
+  aspect-ratio: auto;
+  /* Tap: Scale Down 1% for full-width (from Convex motion foundations) */
+  --_tap-scale: var(--Motion-Tap-Scale-FullWidth, 1);
+  --_tap-direction: -1;
+}
+
+/* ========================================
+   ICON SIZING — SVGs inside the button
+   ======================================== */
+
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.icon svg {
+  display: block;
+  width: var(--_ib-icon-size, var(--Spacing-5));
+  height: var(--_ib-icon-size, var(--Spacing-5));
+}
+
+/* ========================================
+   STATES
+   ======================================== */
+
+.disabled {
+  opacity: var(--Disabled-Opacity);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.loading {
+  opacity: var(--Loading-Opacity, var(--Disabled-Opacity));
+  pointer-events: none;
+}
+
+/* Hover states — paint plugin-style state layer over the existing fill. */
+.bold:hover:not(.disabled) {
+  --_ib-state-layer: var(--IconButton-stateLayer-bold-hover, var(--_ib-bold-hover-layer));
+  background-color: var(--IconButton-backgroundColor-bold-hover, var(--_ib-bg));
+}
+
+.subtle:hover:not(.disabled) {
+  --_ib-state-layer: var(--IconButton-stateLayer-subtle-hover, var(--_ib-subtle-hover-layer));
+  background-color: var(--IconButton-backgroundColor-subtle-hover, var(--_ib-bg));
+}
+
+.ghost:hover:not(.disabled) {
+  --_ib-state-layer: var(--IconButton-stateLayer-ghost-hover, var(--_ib-default-hover-layer));
+  background-color: var(--IconButton-backgroundColor-ghost-hover, var(--_ib-bg));
+}
+
+/* Pressed states — stronger state layer, keeping base fill stable. */
+.bold:active:not(.disabled) {
+  --_ib-state-layer: var(--IconButton-stateLayer-bold-pressed, var(--_ib-bold-pressed-layer));
+  background-color: var(--IconButton-backgroundColor-bold-pressed, var(--_ib-bg));
+}
+
+.subtle:active:not(.disabled) {
+  --_ib-state-layer: var(--IconButton-stateLayer-subtle-pressed, var(--_ib-subtle-pressed-layer));
+  background-color: var(--IconButton-backgroundColor-subtle-pressed, var(--_ib-bg));
+}
+
+.ghost:active:not(.disabled) {
+  --_ib-state-layer: var(--IconButton-stateLayer-ghost-pressed, var(--_ib-default-pressed-layer));
+  background-color: var(--IconButton-backgroundColor-ghost-pressed, var(--_ib-bg));
+}
+
+/* Tap Scale — from Convex motion foundations
+   Default: Scale Up 7% for XS controls
+   Condensed: Scale Down 3% (S/M/L/XL pattern)
+   Full-width: Scale Down 1% */
+.iconButton:active:not(.disabled) {
+  transform: scale(calc(1 + var(--_tap-direction) * var(--_tap-scale) / 100));
+}
+
+/* Reduced motion: no scale */
+@media (prefers-reduced-motion: reduce) {
+  .iconButton:active:not(.disabled) {
+    transform: none;
+  }
+}
+
+/* Focus ring — double box-shadow (inner white + outer brand) per Figma */
+.iconButton:focus {
+  outline: none;
+}
+
+.iconButton:focus-visible,
+:global([data-force-state="focus"]) .iconButton {
+  box-shadow:
+    inset 0 0 0 var(--_ib-bw, 0px) var(--_ib-bc, transparent),
+    0 0 0 var(--Stroke-XL) var(--Surface-Halo-Gap, var(--Surface-Main)),
+    0 0 0 calc(var(--Stroke-XL) + var(--Focus-Outline-Width)) var(--Focus-Outline);
+}
+
+/* ========================================
+   FORCED STATES — mirror :hover / :active so the advanced editor can render a
+   Rest / Hover / Pressed state grid without real pointer interaction (same
+   mechanism as Button.module.css). The wrapper sets [data-force-state].
+   ======================================== */
+:global([data-force-state='hover']) .bold:not(.disabled) {
+  --_ib-state-layer: var(--IconButton-stateLayer-bold-hover, var(--_ib-bold-hover-layer));
+  background: var(--IconButton-backgroundColor-bold-hover, var(--_ib-bg));
+}
+
+:global([data-force-state='hover']) .subtle:not(.disabled) {
+  --_ib-state-layer: var(--IconButton-stateLayer-subtle-hover, var(--_ib-subtle-hover-layer));
+  background-color: var(--IconButton-backgroundColor-subtle-hover, var(--_ib-bg));
+}
+
+:global([data-force-state='hover']) .ghost:not(.disabled) {
+  --_ib-state-layer: var(--IconButton-stateLayer-ghost-hover, var(--_ib-default-hover-layer));
+  background-color: var(--IconButton-backgroundColor-ghost-hover, var(--_ib-bg));
+}
+
+:global([data-force-state='pressed']) .bold:not(.disabled) {
+  --_ib-state-layer: var(--IconButton-stateLayer-bold-pressed, var(--_ib-bold-pressed-layer));
+  background: var(--IconButton-backgroundColor-bold-pressed, var(--_ib-bg));
+}
+
+:global([data-force-state='pressed']) .subtle:not(.disabled) {
+  --_ib-state-layer: var(--IconButton-stateLayer-subtle-pressed, var(--_ib-subtle-pressed-layer));
+  background-color: var(--IconButton-backgroundColor-subtle-pressed, var(--_ib-bg));
+}
+
+:global([data-force-state='pressed']) .ghost:not(.disabled) {
+  --_ib-state-layer: var(--IconButton-stateLayer-ghost-pressed, var(--_ib-default-pressed-layer));
+  background-color: var(--IconButton-backgroundColor-ghost-pressed, var(--_ib-bg));
+}
+
+/* ========================================
+   LOADING SPINNER
+   ======================================== */
+
+.spinner {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: inherit;
+  --CircularProgressIndicator-indicatorColor: currentColor;
+  --CircularProgressIndicator-trackColor: transparent;
+}
+
+/**
+ * ========================================
+ * IMPORTANT: NO LITERALS IN THIS FILE
+ * ========================================
+ */

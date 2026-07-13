@@ -1,0 +1,94 @@
+/*
+ * VersionTimelinePanel.module.css
+ *
+ * Token-only styling for the per-card version-timeline panel (VER-02 / LAB-02).
+ * The panel is a `bg-subtle` Surface (UI-SPEC Color § Secondary) — the Surface
+ * component owns the fill + token remapping, so this module only lays out the
+ * version chain and types the rows with role-explicit V2 tokens + matching
+ * line-heights + `font-family: var(--Typography-Font-Primary)` (CLAUDE.md
+ * typography rule). Mirrors RunInspectorPanel.module.css.
+ */
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  /* 320px = 2 × --Spacing-40 (160px) — token-composed width (LAB-02). */
+  width: calc(var(--Spacing-40) * 2);
+  height: 100%;
+  box-sizing: border-box;
+  padding: var(--Spacing-6);
+  border-radius: var(--Shape-5);
+  overflow-y: auto;
+}
+
+.panelTitle {
+  margin: 0 0 var(--Spacing-4) 0;
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Title-M-FontSize);
+  font-weight: var(--Title-M-FontWeight);
+  line-height: var(--Title-M-LineHeight);
+  color: var(--Text-High);
+}
+
+.emptyState {
+  margin: 0;
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Body-S-FontSize);
+  font-weight: var(--Body-FontWeight-Low);
+  line-height: var(--Body-S-LineHeight);
+  color: var(--Text-Medium);
+}
+
+.timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-3);
+}
+
+.row {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-1);
+  padding: var(--Spacing-3);
+  border-radius: var(--Shape-3);
+}
+
+.rowMain {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--Spacing-2);
+}
+
+.rowLabel {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Label-S-FontSize);
+  font-weight: var(--Label-FontWeight-Medium);
+  line-height: var(--Label-S-LineHeight);
+  color: var(--Text-High);
+}
+
+.rowMeta {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-2);
+}
+
+.rowScore {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Label-XS-FontSize);
+  font-weight: var(--Label-FontWeight-Low);
+  line-height: var(--Label-XS-LineHeight);
+  color: var(--Text-Medium);
+}
+
+.rowTime {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Label-XS-FontSize);
+  font-weight: var(--Label-FontWeight-Low);
+  line-height: var(--Label-XS-LineHeight);
+  color: var(--Text-Medium);
+}

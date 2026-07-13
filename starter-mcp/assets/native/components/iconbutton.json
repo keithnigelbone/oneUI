@@ -1,0 +1,360 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "IconButton",
+  "generatedAt": "2026-07-09T13:07:37.412Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "Icon-only call-to-action sharing the Button family state model. Three variants (bold / subtle / ghost), 9 appearances + auto, six f-step sizes (4/6/8/10/12/14). `aria-label` is mandatory — it is the sole accessible name. Adapts on coloured surfaces via the parent <Surface> cascade."
+  },
+  "compositionRules": {
+    "requires": [
+      "icon",
+      "aria-label"
+    ],
+    "allows": [],
+    "forbids": [],
+    "childKind": "leaf"
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "bold"
+      },
+      {
+        "name": "subtle"
+      },
+      {
+        "name": "ghost"
+      }
+    ]
+  },
+  "props": [
+    {
+      "name": "icon",
+      "type": "ReactNode",
+      "required": true,
+      "description": "SemanticIconName string, a JDS <Icon> element, or an IconComponent. Never a raw <Svg>. — [warn] Pass an icon registry name (e.g. icon=\"close\") or a JDS <Icon>; a bare <Svg> ignores the surface-resolved colour + size."
+    },
+    {
+      "name": "variant",
+      "type": "'bold' | 'subtle' | 'ghost'",
+      "required": false,
+      "defaultValue": "bold",
+      "description": ""
+    },
+    {
+      "name": "attention",
+      "type": "'high' | 'medium' | 'low'",
+      "required": false,
+      "defaultValue": "high",
+      "description": "Figma alias → variant (high→bold, medium→subtle, low→ghost)."
+    },
+    {
+      "name": "size",
+      "type": "4 | 6 | 8 | 10 | 12 | 14",
+      "required": false,
+      "defaultValue": "10",
+      "description": "f-step numeric size; t-shirt aliases (2xs…xl) canonicalise to these."
+    },
+    {
+      "name": "appearance",
+      "type": "'auto' | 'primary' | 'secondary' | 'neutral' | 'sparkle' | 'brand-bg' | 'positive' | 'negative' | 'warning' | 'informative'",
+      "required": false,
+      "defaultValue": "auto",
+      "description": "Multi-accent role resolved against the parent <Surface>."
+    },
+    {
+      "name": "contained",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "true",
+      "description": "When false, renders the bare icon (no chip / background); condensed / layout / fullWidth are ignored."
+    },
+    {
+      "name": "condensed",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": "Reduces padding. Only when contained=true."
+    },
+    {
+      "name": "layout",
+      "type": "'1:1' | '3:2'",
+      "required": false,
+      "defaultValue": "1:1",
+      "description": "Aspect ratio of the hit area. Only when contained=true."
+    },
+    {
+      "name": "fullWidth",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "loading",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": "Swaps the icon for a spinner; sets accessibilityState.busy."
+    },
+    {
+      "name": "onPress",
+      "type": "ReactNode",
+      "required": false,
+      "description": "RN press handler."
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": true,
+      "description": "REQUIRED — the only accessible name for this icon-only control."
+    },
+    {
+      "name": "aria-expanded",
+      "type": "boolean",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "aria-haspopup",
+      "type": "ReactNode",
+      "required": false,
+      "description": "boolean or one of dialog / grid / listbox / menu / tree."
+    },
+    {
+      "name": "backgroundColor",
+      "type": "string",
+      "required": false,
+      "description": "[error] Don't paint directly. Use `appearance` (role) + `variant`/`mode` and wrap in <Surface mode>; the brand cascade picks the right fill."
+    },
+    {
+      "name": "style",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Layout style only. Painting via style is rejected — variant + appearance + surface drive the fill. — [warn] Use the appearance + surface system; inline paint defeats the brand cascade."
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.kb.rn.IconButton",
+    "type": "object",
+    "properties": {
+      "icon": {
+        "description": "SemanticIconName string, a JDS <Icon> element, or an IconComponent. Never a raw <Svg>.",
+        "x-jds-suggestion": "Pass an icon registry name (e.g. icon=\"close\") or a JDS <Icon>; a bare <Svg> ignores the surface-resolved colour + size.",
+        "x-jds-severity": "warn"
+      },
+      "variant": {
+        "enum": [
+          "bold",
+          "subtle",
+          "ghost"
+        ],
+        "default": "bold"
+      },
+      "attention": {
+        "enum": [
+          "high",
+          "medium",
+          "low"
+        ],
+        "default": "high",
+        "description": "Figma alias → variant (high→bold, medium→subtle, low→ghost)."
+      },
+      "size": {
+        "enum": [
+          4,
+          6,
+          8,
+          10,
+          12,
+          14
+        ],
+        "default": 10,
+        "description": "f-step numeric size; t-shirt aliases (2xs…xl) canonicalise to these."
+      },
+      "appearance": {
+        "enum": [
+          "auto",
+          "primary",
+          "secondary",
+          "neutral",
+          "sparkle",
+          "brand-bg",
+          "positive",
+          "negative",
+          "warning",
+          "informative"
+        ],
+        "default": "auto",
+        "description": "Multi-accent role resolved against the parent <Surface>."
+      },
+      "contained": {
+        "type": "boolean",
+        "default": true,
+        "description": "When false, renders the bare icon (no chip / background); condensed / layout / fullWidth are ignored."
+      },
+      "condensed": {
+        "type": "boolean",
+        "default": false,
+        "description": "Reduces padding. Only when contained=true."
+      },
+      "layout": {
+        "enum": [
+          "1:1",
+          "3:2"
+        ],
+        "default": "1:1",
+        "description": "Aspect ratio of the hit area. Only when contained=true."
+      },
+      "fullWidth": {
+        "type": "boolean",
+        "default": false
+      },
+      "disabled": {
+        "type": "boolean",
+        "default": false
+      },
+      "loading": {
+        "type": "boolean",
+        "default": false,
+        "description": "Swaps the icon for a spinner; sets accessibilityState.busy."
+      },
+      "onPress": {
+        "description": "RN press handler."
+      },
+      "aria-label": {
+        "type": "string",
+        "description": "REQUIRED — the only accessible name for this icon-only control."
+      },
+      "aria-expanded": {
+        "type": "boolean"
+      },
+      "aria-haspopup": {
+        "description": "boolean or one of dialog / grid / listbox / menu / tree."
+      },
+      "backgroundColor": {
+        "type": "string",
+        "not": {
+          "anyOf": [
+            {
+              "pattern": "^#"
+            },
+            {
+              "pattern": "^rgba?\\("
+            },
+            {
+              "pattern": "^hsla?\\("
+            },
+            {
+              "pattern": "^oklch\\("
+            },
+            {
+              "pattern": "^color-mix\\("
+            },
+            {
+              "enum": [
+                "transparent",
+                "inherit"
+              ]
+            }
+          ]
+        },
+        "x-jds-suggestion": "Don't paint directly. Use `appearance` (role) + `variant`/`mode` and wrap in <Surface mode>; the brand cascade picks the right fill.",
+        "x-jds-severity": "error"
+      },
+      "style": {
+        "description": "Layout style only. Painting via style is rejected — variant + appearance + surface drive the fill.",
+        "x-jds-suggestion": "Use the appearance + surface system; inline paint defeats the brand cascade.",
+        "x-jds-severity": "warn"
+      }
+    },
+    "required": [
+      "icon",
+      "aria-label"
+    ]
+  },
+  "tokens": {
+    "color": [
+      "primary",
+      "secondary",
+      "neutral",
+      "sparkle",
+      "brand-bg",
+      "positive",
+      "negative",
+      "warning",
+      "informative"
+    ],
+    "surface": [
+      "bold",
+      "subtle"
+    ],
+    "shape": [
+      "pill",
+      "3XS",
+      "2XS",
+      "XS",
+      "S",
+      "M"
+    ],
+    "motion": [
+      "motion.duration.discreet.short",
+      "motion.easing.transition"
+    ]
+  },
+  "a11y": {
+    "accessibilityRole": "button",
+    "accessibilityState": [
+      "disabled",
+      "busy",
+      "expanded"
+    ],
+    "accessibleNameSource": "aria-label",
+    "minTouchTarget": 44,
+    "honorsBoldText": true,
+    "honorsScreenReader": true
+  },
+  "renderHints": {
+    "baseElement": "Pressable",
+    "animatedOn": [
+      "press"
+    ],
+    "honorsReduceMotion": true,
+    "readsFromSurfaceContext": true
+  },
+  "figma": {
+    "componentKey": "jds-icon-button-v4",
+    "keyHistory": [],
+    "variantProperties": {
+      "Component": "IconButton"
+    }
+  },
+  "codeSnippets": [
+    {
+      "id": "import-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { IconButton } from '@oneui/ui-native';\n\n<IconButton />"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "iconbutton",
+    "cta",
+    "action",
+    "interactive",
+    "icon-only"
+  ],
+  "importPath": "@oneui/ui-native"
+}

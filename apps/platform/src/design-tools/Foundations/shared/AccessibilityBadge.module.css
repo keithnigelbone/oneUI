@@ -1,0 +1,58 @@
+/**
+ * AccessibilityBadge.module.css
+ * Token-only styling for WCAG badge
+ */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--Spacing-2);
+  padding: var(--Spacing-1-5) var(--Spacing-2-5);
+  border-radius: var(--Shape-3-5);
+  font-size: var(--Label-XS-FontSize);
+  font-weight: var(--Body-FontWeight-Medium);
+  white-space: nowrap;
+}
+
+.small {
+  padding: var(--Spacing-1) var(--Spacing-2);
+  font-size: var(--Label-2XS-FontSize);
+}
+
+.medium {
+  padding: var(--Spacing-1-5) var(--Spacing-2-5);
+  font-size: var(--Label-XS-FontSize);
+}
+
+/* Status variants */
+.success {
+  background-color: var(--Status-Success-Background);
+  color: var(--Status-Success-Text);
+}
+
+.warning {
+  background-color: var(--Status-Warning-Background);
+  color: var(--Status-Warning-Text);
+}
+
+.error {
+  background-color: var(--Status-Error-Background);
+  color: var(--Status-Error-Text);
+}
+
+/* Status tokens now defined in semantic.css — no fallbacks needed */
+
+.icon {
+  width: var(--Spacing-3-5);
+  height: var(--Spacing-3-5);
+}
+
+.small .icon {
+  width: var(--Spacing-3);
+  height: var(--Spacing-3);
+}
+
+.ratio {
+  font-variant-numeric: tabular-nums;
+  opacity: 0.8;
+}

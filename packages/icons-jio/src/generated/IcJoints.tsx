@@ -1,0 +1,30 @@
+import React, { forwardRef } from 'react';
+import type { IconComponentProps } from '../iconProps';
+
+export const IcJoints = forwardRef<SVGSVGElement, IconComponentProps>(function IcJoints(
+  { size = 24, width, height, color = 'currentColor', className, style, ...props },
+  ref,
+) {
+  const dim = width ?? height ?? size;
+  return (
+    <svg
+      ref={ref}
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      width={width ?? dim}
+      height={height ?? dim}
+      color={color}
+      className={className}
+      style={style}
+      {...props}
+    >
+      <path
+            fill="currentColor"
+            d="M9.34 10.93c.68.15 1.33.06 1.89-.2a1.88 1.88 0 0 1 1.54 0c.56.26 1.2.35 1.89.2 1.15-.25 2.07-1.2 2.29-2.35.21-1.11-.19-2.13-.93-2.79C15.41 5.24 15 4.5 15 3.68V3.1c0-.66-.45-1.11-1-1.11h-4c-.55 0-1 .45-1 1v.68c0 .82-.41 1.56-1.02 2.11-.73.66-1.13 1.68-.93 2.79.22 1.15 1.14 2.1 2.29 2.35zm7.6 4.49a3.02 3.02 0 0 0-2.29-2.35 2.94 2.94 0 0 0-1.89.2c-.49.22-1.05.22-1.54 0-.56-.26-1.2-.35-1.89-.2-1.15.25-2.07 1.2-2.29 2.35-.21 1.11.19 2.13.93 2.79.61.55 1.02 1.29 1.02 2.11V21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-.68c0-.82.41-1.56 1.02-2.11.73-.66 1.13-1.68.93-2.79"
+          />
+    </svg>
+  );
+});
+
+IcJoints.displayName = 'IcJoints';

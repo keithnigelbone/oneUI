@@ -1,0 +1,53 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Input",
+  "machineReadable": true,
+  "authoring": "hand-authored from packages/ui/src/components/Input/Input.shared.ts (pending official doc-generator parity)",
+  "intentAndPurpose": {
+    "intent": "Low-level single-line text entry control. Use standalone only when you do not need a visible label, helper text, or validation chrome; otherwise compose it inside InputField.",
+    "taskContexts": ["inline-search", "compact-form-field", "toolbar-input", "composed-into-inputfield"],
+    "sentiments": ["neutral"]
+  },
+  "compositionRules": {
+    "requires": ["an accessible name — aria-label when standalone, or a Field.Label via InputField"],
+    "allows": ["start adornment (icon/affix)", "end adornment (icon/affix/clear button)"],
+    "forbids": ["multi-line content (use a textarea pattern)", "using errorHighlight standalone — use InputField for validation UX"]
+  },
+  "variantLogic": {
+    "rules": [
+      { "name": "default (medium)", "useWhen": ["standard outlined input on a default surface"] },
+      { "name": "high attention", "useWhen": ["filled neutral background is wanted for emphasis"] }
+    ]
+  },
+  "props": [
+    { "name": "size", "type": "InputSize", "required": false, "defaultValue": "10 (M)", "description": "Input size — f-step number or t-shirt alias." },
+    { "name": "appearance", "type": "InputAppearance", "required": false, "defaultValue": "auto", "description": "Multi-accent appearance role. 'auto' resolves to 'primary'." },
+    { "name": "shape", "type": "InputShape", "required": false, "description": "Shape of the input field." },
+    { "name": "attention", "type": "'medium' | 'high'", "required": false, "defaultValue": "medium", "description": "'medium' (outlined) or 'high' (filled neutral background)." },
+    { "name": "value", "type": "string", "required": false, "description": "Controlled value." },
+    { "name": "defaultValue", "type": "string", "required": false, "description": "Uncontrolled initial value." },
+    { "name": "onChange", "type": "(value: string) => void", "required": false, "description": "Fires on value change." },
+    { "name": "placeholder", "type": "string", "required": false, "description": "Placeholder text." },
+    { "name": "type", "type": "string", "required": false, "description": "Native input type (text, tel, email, password, …)." },
+    { "name": "start", "type": "ReactNode", "required": false, "description": "Leading adornment." },
+    { "name": "end", "type": "ReactNode", "required": false, "description": "Trailing adornment." },
+    { "name": "aria-label", "type": "string", "required": false, "description": "Accessible label for standalone usage (no visible label)." }
+  ],
+  "slots": ["start", "end"],
+  "propsSchema": {
+    "$id": "Input",
+    "type": "object",
+    "properties": {
+      "labelAssociation": {}, "aria-label": {}, "errorHighlight": {}, "size": {}, "appearance": {},
+      "shape": {}, "attention": {}, "value": {}, "defaultValue": {}, "onChange": {}, "onBlur": {},
+      "onFocus": {}, "onKeyDown": {}, "placeholder": {}, "type": {}, "name": {}, "id": {},
+      "disabled": {}, "readOnly": {}, "required": {}, "autoComplete": {}, "autoFocus": {},
+      "maxLength": {}, "start": {}, "end": {}, "className": {}, "style": {}, "data-testid": {}
+    }
+  },
+  "codeSnippets": [
+    { "title": "Standalone search input", "code": "<Input type=\"search\" aria-label=\"Search\" placeholder=\"Search\" value={q} onChange={setQ} />" }
+  ],
+  "tags": ["input", "form", "text", "field"],
+  "importPath": "@jds4/oneui-react"
+}

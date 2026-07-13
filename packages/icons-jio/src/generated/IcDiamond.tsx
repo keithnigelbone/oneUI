@@ -1,0 +1,30 @@
+import React, { forwardRef } from 'react';
+import type { IconComponentProps } from '../iconProps';
+
+export const IcDiamond = forwardRef<SVGSVGElement, IconComponentProps>(function IcDiamond(
+  { size = 24, width, height, color = 'currentColor', className, style, ...props },
+  ref,
+) {
+  const dim = width ?? height ?? size;
+  return (
+    <svg
+      ref={ref}
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      width={width ?? dim}
+      height={height ?? dim}
+      color={color}
+      className={className}
+      style={style}
+      {...props}
+    >
+      <path
+            fill="currentColor"
+            d="M12 7a1 1 0 0 0 1-1V4a1 1 0 1 0-2 0v2a1 1 0 0 0 1 1m3.55-.11A.93.93 0 0 0 16 7a1 1 0 0 0 .89-.55l.5-1a1 1 0 1 0-1.78-.9l-.5 1a1 1 0 0 0 .44 1.34m-8.44-.44A1 1 0 0 0 8 7a.93.93 0 0 0 .45-.11 1 1 0 0 0 .44-1.34l-.5-1a1 1 0 0 0-1.78.9zm13.3 5.14-3-3A2 2 0 0 0 16 8H8a2 2 0 0 0-1.41.59l-3 3A2 2 0 0 0 3 13.08a2 2 0 0 0 .7 1.44l7 6a2 2 0 0 0 2.6 0l7-6a2 2 0 0 0 .7-1.44 2 2 0 0 0-.59-1.49"
+          />
+    </svg>
+  );
+});
+
+IcDiamond.displayName = 'IcDiamond';

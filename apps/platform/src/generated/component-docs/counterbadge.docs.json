@@ -1,0 +1,300 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "CounterBadge",
+  "generatedAt": "2026-01-01T00:00:00.000Z",
+  "machineReadable": true,
+  "intentAndPurpose": {
+    "intent": {
+      "value": "Non-interactive display component showing a numeric count with bold/subtle/ghost variants and multi-accent support.",
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "taskContexts": {
+      "value": [],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "sentiments": {
+      "value": [
+        "neutral"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "compositionRules": {
+    "requires": {
+      "value": [],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "allows": {
+      "value": [],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "forbids": {
+      "value": [],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "bold",
+        "useWhen": {
+          "value": [
+            "High"
+          ],
+          "attribution": {
+            "source": "inferred"
+          }
+        }
+      },
+      {
+        "name": "subtle",
+        "useWhen": {
+          "value": [
+            "Medium"
+          ],
+          "attribution": {
+            "source": "inferred"
+          }
+        }
+      },
+      {
+        "name": "ghost",
+        "useWhen": {
+          "value": [
+            "Low"
+          ],
+          "attribution": {
+            "source": "inferred"
+          }
+        }
+      }
+    ]
+  },
+  "relationshipsAndDependencies": {
+    "related": {
+      "value": [],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "contextSignals": {
+    "density": {
+      "value": [
+        "compact",
+        "default",
+        "open"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "modality": {
+      "value": [
+        "desktop",
+        "mobile"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "brand": {
+      "value": [
+        "theme-scope aware",
+        "recipe-driven"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "mode": {
+      "value": [
+        "light",
+        "dark",
+        "surface-context"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "observabilityHooks": {
+    "track": {
+      "value": [],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "health": {
+      "value": [
+        "a11y_violations"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "props": [
+    {
+      "name": "value",
+      "type": "number",
+      "required": true,
+      "description": "Numeric value to display"
+    },
+    {
+      "name": "appearance",
+      "type": "CounterBadgeAppearance",
+      "required": false,
+      "description": "Multi-accent appearance role. 'auto' resolves to 'primary'."
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": false,
+      "description": "Accessible label for screen readers"
+    },
+    {
+      "name": "attention",
+      "type": "CounterBadgeAttention",
+      "required": false,
+      "description": "Figma attention level — high (bold fill), medium (subtle/tinted fill), low (ghost/transparent). Default: 'high'."
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "required": false,
+      "description": "Additional class name"
+    },
+    {
+      "name": "data-testid",
+      "type": "string",
+      "required": false,
+      "description": "Test automation id — forwarded to the root `<span role=\"status\">`."
+    },
+    {
+      "name": "max",
+      "type": "number",
+      "required": false,
+      "description": "Maximum value before showing overflow (e.g., \"99+\"). Default: 99"
+    },
+    {
+      "name": "showZero",
+      "type": "boolean",
+      "required": false,
+      "description": "Whether to show the badge when value is 0. Default: false"
+    },
+    {
+      "name": "size",
+      "type": "CounterBadgeSize",
+      "required": false,
+      "description": "CounterBadge size. Default: 'm'"
+    },
+    {
+      "name": "style",
+      "type": "CSSProperties",
+      "required": false,
+      "description": "Inline styles"
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.docs.counter-badge",
+    "type": "object",
+    "properties": {
+      "value": {
+        "type": "number",
+        "description": "Numeric value to display"
+      },
+      "appearance": {
+        "enum": [
+          "auto",
+          "primary",
+          "secondary",
+          "neutral",
+          "sparkle",
+          "brand-bg",
+          "positive",
+          "negative",
+          "warning",
+          "informative"
+        ],
+        "description": "Multi-accent appearance role. 'auto' resolves to 'primary'."
+      },
+      "aria-label": {
+        "type": "string",
+        "description": "Accessible label for screen readers"
+      },
+      "attention": {
+        "enum": [
+          "high",
+          "medium",
+          "low"
+        ],
+        "description": "Figma attention level — high (bold fill), medium (subtle/tinted fill), low (ghost/transparent). Default: 'high'."
+      },
+      "className": {
+        "type": "string",
+        "description": "Additional class name"
+      },
+      "data-testid": {
+        "type": "string",
+        "description": "Test automation id — forwarded to the root `<span role=\"status\">`."
+      },
+      "max": {
+        "type": "number",
+        "description": "Maximum value before showing overflow (e.g., \"99+\"). Default: 99"
+      },
+      "showZero": {
+        "type": "boolean",
+        "description": "Whether to show the badge when value is 0. Default: false"
+      },
+      "size": {
+        "enum": [
+          "xs",
+          "s",
+          "m",
+          "l"
+        ],
+        "description": "CounterBadge size. Default: 'm'"
+      },
+      "style": {
+        "description": "Inline styles"
+      }
+    },
+    "required": [
+      "value"
+    ]
+  },
+  "codeSnippets": [
+    {
+      "id": "counter-badge-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { CounterBadge } from '@oneui/ui';\n\n<CounterBadge />"
+    },
+    {
+      "id": "counter-badge-recipe-decisions",
+      "title": "Recipe Decisions",
+      "language": "json",
+      "code": "{\n  \"component\": \"CounterBadge\",\n  \"decisions\": [\n    \"Shape\"\n  ]\n}"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "counter-badge"
+  ],
+  "generatedMarkdown": "# CounterBadge Machine-Readable Documentation\n\n_Generated from source metadata. Do not edit manually._\n\n## Intent and Purpose\n\n- **Intent**: Non-interactive display component showing a numeric count with bold/subtle/ghost variants and multi-accent support.\n- **Task contexts**: \n- **Sentiments**: neutral\n\n## Composition Rules\n\n- **Requires**: \n- **Allows**: \n- **Forbids**: \n\n## Variant Logic\n\n- **bold**: use when High\n- **subtle**: use when Medium\n- **ghost**: use when Low\n\n## Relationships and Dependencies\n\n- **Related**: \n- **Escalates to**: -\n- **Degrades to**: -\n- **Groups with**: -\n\n## Context Signals\n\n- **Density**: compact, default, open\n- **Modality**: desktop, mobile\n- **Brand**: theme-scope aware, recipe-driven\n- **Mode**: light, dark, surface-context\n\n## Observability Hooks\n\n- **Track**: \n- **Health**: a11y_violations\n\n## Props\n\n| Prop | Type | Required | Default | Description |\n| --- | --- | --- | --- | --- |\n| `value` | `number` | Yes | - | Numeric value to display |\n| `appearance` | `CounterBadgeAppearance` | No | - | Multi-accent appearance role. 'auto' resolves to 'primary'. |\n| `aria-label` | `string` | No | - | Accessible label for screen readers |\n| `attention` | `CounterBadgeAttention` | No | - | Figma attention level — high (bold fill), medium (subtle/tinted fill), low (ghost/transparent). Default: 'high'. |\n| `className` | `string` | No | - | Additional class name |\n| `data-testid` | `string` | No | - | Test automation id — forwarded to the root `<span role=\"status\">`. |\n| `max` | `number` | No | - | Maximum value before showing overflow (e.g., \"99+\"). Default: 99 |\n| `showZero` | `boolean` | No | - | Whether to show the badge when value is 0. Default: false |\n| `size` | `CounterBadgeSize` | No | - | CounterBadge size. Default: 'm' |\n| `style` | `CSSProperties` | No | - | Inline styles |\n\n## Slots\n\n| Slot | Types | Tokens |\n| --- | --- | --- |\n\n\n## Code Snippets\n\n### Basic Usage\n\n```tsx\nimport { CounterBadge } from '@oneui/ui';\n\n<CounterBadge />\n```\n\n### Recipe Decisions\n\n```json\n{\n  \"component\": \"CounterBadge\",\n  \"decisions\": [\n    \"Shape\"\n  ]\n}\n```\n"
+}

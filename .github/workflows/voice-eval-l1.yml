@@ -1,0 +1,27 @@
+name: Voice Tone Guard Tests (L1)
+
+on:
+  pull_request:
+    paths:
+      - 'packages/shared/src/engine/voice*.ts'
+      - 'packages/shared/src/engine/__tests__/voiceToneGuard*'
+      - 'packages/shared/src/engine/__tests__/fixtures/voiceEval*'
+      - 'packages/shared/src/engine/__tests__/fixtures/voiceTest*'
+
+jobs:
+  test:
+    runs-on: [self-hosted, linux]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Run tone guard eval tests
+        run: pnpm --filter @oneui/shared test -- --run voiceToneGuard.eval

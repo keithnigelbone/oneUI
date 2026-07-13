@@ -1,0 +1,288 @@
+/**
+ * CampaignWizard — Plain overlay dialog with custom styling.
+ * Intentionally avoids brand-styled components for a neutral UI.
+ */
+
+/* Dark backdrop overlay */
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--Scrim);
+}
+
+/* Dialog panel */
+.dialog {
+  box-sizing: border-box;
+  width: 520px;
+  max-width: calc(100vw - 48px);
+  max-height: calc(100vh - 48px);
+  overflow-y: auto;
+  background: var(--Surface-Elevated);
+  border-radius: var(--Shape-4-5);
+  padding: var(--Spacing-5);
+  box-shadow: var(--Elevation-4);
+}
+
+.dialogTitle {
+  font-family: var(--Title-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Title-L-FontSize);
+  font-weight: var(--Title-L-FontWeight);
+  line-height: var(--Title-L-LineHeight);
+  color: var(--Text-High);
+  margin: 0 0 var(--Spacing-4-5) 0;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-4-5);
+  max-height: 65vh;
+  overflow-y: auto;
+  padding-right: var(--Spacing-2);
+  margin-bottom: var(--Spacing-4-5);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-2);
+}
+
+.label {
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Body-S-FontSize);
+  font-weight: var(--Body-FontWeight-High);
+  line-height: var(--Body-S-LineHeight);
+  color: var(--Text-High);
+}
+
+/* Text input */
+.input {
+  box-sizing: border-box;
+  width: 100%;
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Body-M-FontSize);
+  line-height: var(--Body-M-LineHeight);
+  padding: var(--Spacing-3) var(--Spacing-3-5);
+  background: var(--Neutral-Minimal);
+  color: var(--Text-High);
+  border-radius: var(--Shape-3-5);
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+  outline: none;
+  transition: border-color var(--Duration-XS) var(--Motion-Easing-Transition);
+}
+
+.input::placeholder {
+  color: var(--Text-Low);
+}
+
+.input:focus {
+  border-color: var(--Neutral-Default);
+}
+
+/* Textarea */
+.textarea {
+  box-sizing: border-box;
+  width: 100%;
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Body-M-FontSize);
+  line-height: var(--Body-M-LineHeight);
+  padding: var(--Spacing-3) var(--Spacing-3-5);
+  background: var(--Neutral-Minimal);
+  color: var(--Text-High);
+  border-radius: var(--Shape-3-5);
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+  resize: vertical;
+  min-height: 80px;
+  outline: none;
+  transition: border-color var(--Duration-XS) var(--Motion-Easing-Transition);
+}
+
+.textarea::placeholder {
+  color: var(--Text-Low);
+}
+
+.textarea:focus {
+  border-color: var(--Neutral-Default);
+}
+
+/* Chip buttons for platform/tone selection */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--Spacing-2);
+}
+
+.chip {
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Body-S-FontSize);
+  font-weight: var(--Body-FontWeight-High);
+  line-height: var(--Body-S-LineHeight);
+  padding: var(--Spacing-2) var(--Spacing-3-5);
+  border-radius: var(--Shape-Pill);
+  border: none;
+  background: var(--Neutral-Minimal);
+  color: var(--Text-Medium);
+  cursor: pointer;
+  transition: background-color var(--Duration-XS) var(--Motion-Easing-Transition),
+              color var(--Duration-XS) var(--Motion-Easing-Transition);
+}
+
+.chip:hover {
+  background: var(--Surface-Subtle);
+}
+
+/* Selected state */
+.chip[data-selected] {
+  background: var(--Surface-Bold);
+  color: var(--Text-OnBold-High);
+}
+
+.chip[data-selected]:hover {
+  opacity: 0.9;
+  background: var(--Surface-Bold);
+}
+
+.optionalFields {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-4-5);
+}
+
+/* Expand button */
+.expandButton {
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Body-M-FontSize);
+  line-height: var(--Body-M-LineHeight);
+  color: var(--Text-Medium);
+  background: var(--Neutral-Minimal);
+  border: none;
+  border-radius: var(--Shape-3-5);
+  padding: var(--Spacing-2) var(--Spacing-3-5);
+  cursor: pointer;
+  transition: background-color var(--Duration-XS) var(--Motion-Easing-Transition);
+}
+
+.expandButton:hover {
+  background: var(--Surface-Subtle);
+}
+
+/* Footer */
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--Spacing-3-5);
+  padding-top: var(--Spacing-4-5);
+  margin-top: var(--Spacing-3);
+}
+
+/* Plain action buttons */
+.cancelButton,
+.primaryButton {
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Body-M-FontSize);
+  font-weight: var(--Body-FontWeight-High);
+  line-height: var(--Body-M-LineHeight);
+  padding: var(--Spacing-2) var(--Spacing-4-5);
+  border-radius: var(--Shape-3-5);
+  cursor: pointer;
+  transition: background-color var(--Duration-XS) var(--Motion-Easing-Transition),
+              opacity var(--Duration-XS) var(--Motion-Easing-Transition);
+}
+
+.cancelButton {
+  background: var(--Neutral-Minimal);
+  color: var(--Text-High);
+  border: none;
+}
+
+.cancelButton:hover {
+  background: var(--Surface-Subtle);
+}
+
+.primaryButton {
+  background: var(--Surface-Bold);
+  color: var(--Text-OnBold-High);
+  border: none;
+}
+
+.primaryButton:hover {
+  opacity: 0.85;
+}
+
+.primaryButton:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+/* Reference image upload area */
+.referenceArea {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--Spacing-2);
+  align-items: center;
+}
+
+.referenceThumbnail {
+  position: relative;
+  width: 64px;
+  height: 64px;
+  border-radius: var(--Shape-3-5);
+  overflow: hidden;
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+}
+
+.referenceImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.referenceRemove {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--Scrim-Heavy);
+  color: var(--Text-OnBold-High);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.referenceRemove:hover {
+  background: var(--Scrim-Heavy);
+}
+
+.referenceAdd {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--Spacing-2);
+  height: 64px;
+  padding: 0 var(--Spacing-4);
+  border-radius: var(--Shape-3-5);
+  border: var(--Stroke-XL) dashed var(--Border-Default);
+  background: var(--Surface-Ghost, transparent);
+  color: var(--Text-Medium);
+  cursor: pointer;
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Body-S-FontSize);
+  transition: background-color var(--Duration-XS) var(--Motion-Easing-Transition),
+              border-color var(--Duration-XS) var(--Motion-Easing-Transition);
+}
+
+.referenceAdd:hover {
+  background: var(--Surface-Minimal);
+  border-color: var(--Text-Low);
+}

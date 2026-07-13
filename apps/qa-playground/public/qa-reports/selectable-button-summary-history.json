@@ -1,0 +1,2952 @@
+{
+  "slug": "selectable-button",
+  "runs": [
+    {
+      "savedAt": "2026-06-23T09:36:43.344Z",
+      "report": {
+        "ok": false,
+        "slug": "selectable-button",
+        "message": "selectable-button QA Playwright run had failures — 2026-06-23T06:53:10.127Z",
+        "suites": {
+          "accessibility": {
+            "suite": "accessibility",
+            "passed": 11,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "11 test(s) in Playwright report for accessibility.",
+              "Axe: scan completed — 0 violation rules reported."
+            ],
+            "errors": [],
+            "cases": [
+              {
+                "name": "[a11y] WCAG 2.1 AA tag scan — Test Scenarios story bands + JSON artefact",
+                "status": "passed",
+                "durationMs": 7202
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Default band",
+                "status": "passed",
+                "durationMs": 6480,
+                "componentBand": "selectable-button-qa-default"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Size (S · M · L) band",
+                "status": "passed",
+                "durationMs": 6672,
+                "componentBand": "selectable-button-qa-size"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Elevation / attention band",
+                "status": "passed",
+                "durationMs": 6501,
+                "componentBand": "selectable-button-qa-elevation"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Contained and inline band",
+                "status": "passed",
+                "durationMs": 6611,
+                "componentBand": "selectable-button-qa-contained"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Start and end icons band",
+                "status": "passed",
+                "durationMs": 3501,
+                "componentBand": "selectable-button-qa-icons"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Toggle band",
+                "status": "passed",
+                "durationMs": 3466,
+                "componentBand": "selectable-button-qa-toggle"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Disabled and loading band",
+                "status": "passed",
+                "durationMs": 3692,
+                "componentBand": "selectable-button-qa-states"
+              },
+              {
+                "name": "[a11y] axe button-name rule — Test Scenarios page",
+                "status": "passed",
+                "durationMs": 3653
+              },
+              {
+                "name": "[a11y] Keyboard Space and aria-pressed — toggle button",
+                "status": "passed",
+                "durationMs": 3260
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Figma validation grid",
+                "status": "passed",
+                "durationMs": 7085
+              }
+            ],
+            "axe": {
+              "violations": []
+            }
+          },
+          "functional": {
+            "suite": "functional",
+            "passed": 57,
+            "failed": 4,
+            "skipped": 0,
+            "logs": [
+              "61 test(s) in Playwright report for functional."
+            ],
+            "errors": [
+              "3.2 — Disabled button does not toggle on click: Error: expect(locator).toHaveAttribute(expected) failed",
+              "6.1 — Default button starts unselected: Error: expect(locator).toHaveAttribute(expected) failed",
+              "6.3 — Disabled button is not focusable via click: Error: expect(locator).toHaveAttribute(expected) failed",
+              "6.6 — Loading state disables interaction: Error: expect(locator).toHaveAttribute(expected) failed"
+            ],
+            "cases": [
+              {
+                "name": "1.1 — Page loads without console errors",
+                "status": "passed",
+                "durationMs": 3946
+              },
+              {
+                "name": "1.1 — Default button renders with role button",
+                "status": "passed",
+                "durationMs": 1235
+              },
+              {
+                "name": "1.2 — Every playground data-testid is visible",
+                "status": "passed",
+                "durationMs": 2018
+              },
+              {
+                "name": "1.3 — Every data-section band is visible",
+                "status": "passed",
+                "durationMs": 3952
+              },
+              {
+                "name": "2.1 — Size S renders with data-size",
+                "status": "passed",
+                "durationMs": 3350
+              },
+              {
+                "name": "2.1 — Size M renders with data-size",
+                "status": "passed",
+                "durationMs": 2895
+              },
+              {
+                "name": "2.1 — Size L renders with data-size",
+                "status": "passed",
+                "durationMs": 2362
+              },
+              {
+                "name": "2.2 — Size S/M/L scale progressively (height)",
+                "status": "passed",
+                "durationMs": 2435
+              },
+              {
+                "name": "2.1 — Attention high selected renders data-attention",
+                "status": "passed",
+                "durationMs": 2552
+              },
+              {
+                "name": "2.1 — Attention medium selected renders data-attention",
+                "status": "passed",
+                "durationMs": 2397
+              },
+              {
+                "name": "2.1 — Attention low selected renders data-attention",
+                "status": "passed",
+                "durationMs": 2430
+              },
+              {
+                "name": "2.1 — appearance prop matrix (N/A in showcase)",
+                "status": "passed",
+                "durationMs": 3371
+              },
+              {
+                "name": "3.1 — Click toggles aria-pressed on interactive toggle",
+                "status": "passed",
+                "durationMs": 2618
+              },
+              {
+                "name": "3.2 — Disabled button does not toggle on click",
+                "status": "failed",
+                "durationMs": 6161,
+                "error": "Error: expect(locator).toHaveAttribute(expected) failed"
+              },
+              {
+                "name": "3.3 — Readonly (N/A)",
+                "status": "passed",
+                "durationMs": 1464
+              },
+              {
+                "name": "3.4 — Click outside removes focus from button",
+                "status": "passed",
+                "durationMs": 1408
+              },
+              {
+                "name": "4.1 — Tab reaches default selectable button",
+                "status": "passed",
+                "durationMs": 4489
+              },
+              {
+                "name": "4.2 — Enter activates toggle",
+                "status": "passed",
+                "durationMs": 3051
+              },
+              {
+                "name": "4.3 — Space toggles pressed state",
+                "status": "passed",
+                "durationMs": 2953
+              },
+              {
+                "name": "4.4 — Arrow keys (N/A)",
+                "status": "passed",
+                "durationMs": 2175
+              },
+              {
+                "name": "4.5 — Home and End keys (N/A)",
+                "status": "passed",
+                "durationMs": 2423
+              },
+              {
+                "name": "4.6 — Escape does not remove toggle (no overlay)",
+                "status": "passed",
+                "durationMs": 2471
+              },
+              {
+                "name": "4.7 — Tab cycles without trapping focus",
+                "status": "passed",
+                "durationMs": 2151
+              },
+              {
+                "name": "5.1 — Click focuses toggle control",
+                "status": "passed",
+                "durationMs": 2461
+              },
+              {
+                "name": "5.2 — Focus indicator visible on keyboard focus",
+                "status": "passed",
+                "durationMs": 3444
+              },
+              {
+                "name": "5.4 — Blur removes focus",
+                "status": "passed",
+                "durationMs": 2415
+              },
+              {
+                "name": "5.5 — autoFocus (N/A)",
+                "status": "passed",
+                "durationMs": 2566
+              },
+              {
+                "name": "6.1 — Default button starts unselected",
+                "status": "failed",
+                "durationMs": 6187,
+                "error": "Error: expect(locator).toHaveAttribute(expected) failed"
+              },
+              {
+                "name": "6.2 — Elevation band selected buttons expose aria-pressed true",
+                "status": "passed",
+                "durationMs": 1632
+              },
+              {
+                "name": "6.3 — Disabled button is not focusable via click",
+                "status": "failed",
+                "durationMs": 6192,
+                "error": "Error: expect(locator).toHaveAttribute(expected) failed"
+              },
+              {
+                "name": "6.4 — Readonly (N/A)",
+                "status": "passed",
+                "durationMs": 1162
+              },
+              {
+                "name": "6.5 — Error state (N/A)",
+                "status": "passed",
+                "durationMs": 1257
+              },
+              {
+                "name": "6.6 — Loading state disables interaction",
+                "status": "failed",
+                "durationMs": 6234,
+                "error": "Error: expect(locator).toHaveAttribute(expected) failed"
+              },
+              {
+                "name": "7.1 — Start and end icon slots render SVG icons",
+                "status": "passed",
+                "durationMs": 1278
+              },
+              {
+                "name": "7.3 — Icons visible alongside label text",
+                "status": "passed",
+                "durationMs": 1005
+              },
+              {
+                "name": "7.4 — Icon slots use aria-hidden decorative SVG",
+                "status": "passed",
+                "durationMs": 1048
+              },
+              {
+                "name": "8.1 — Click toggles on and off",
+                "status": "passed",
+                "durationMs": 1174
+              },
+              {
+                "name": "8.2 — Single-select group (N/A)",
+                "status": "passed",
+                "durationMs": 1027
+              },
+              {
+                "name": "8.3 — Indeterminate (N/A)",
+                "status": "passed",
+                "durationMs": 1080
+              },
+              {
+                "name": "9.x — Not a text input",
+                "status": "passed",
+                "durationMs": 992
+              },
+              {
+                "name": "10.1 — condensed has no effect when contained=false (N/A in showcase)",
+                "status": "passed",
+                "durationMs": 1024
+              },
+              {
+                "name": "10.3 — loading=true disables button",
+                "status": "passed",
+                "durationMs": 1193
+              },
+              {
+                "name": "11.2 — Icon content visible in with-icons band",
+                "status": "passed",
+                "durationMs": 2767
+              },
+              {
+                "name": "12.1 — fullWidth (N/A in showcase)",
+                "status": "passed",
+                "durationMs": 2137
+              },
+              {
+                "name": "12.2 — At 320px viewport, each scenario band fits without horizontal scroll",
+                "status": "passed",
+                "durationMs": 3864
+              },
+              {
+                "name": "12.2 — Visible at 1440px viewport",
+                "status": "passed",
+                "durationMs": 4177
+              },
+              {
+                "name": "12.3 — Size band lays out S/M/L side by side",
+                "status": "passed",
+                "durationMs": 2339
+              },
+              {
+                "name": "13.1 — All sections visible in dark theme",
+                "status": "passed",
+                "durationMs": 3589
+              },
+              {
+                "name": "13.1 — High-attention selected button visible in dark mode",
+                "status": "passed",
+                "durationMs": 2681
+              },
+              {
+                "name": "Smoke — Page heading reads “Selectable Button”",
+                "status": "passed",
+                "durationMs": 4897
+              },
+              {
+                "name": "Smoke — Default toggle button is visible",
+                "status": "passed",
+                "durationMs": 1588
+              },
+              {
+                "name": "[fn] Component page shows title and QA tabs",
+                "status": "passed",
+                "durationMs": 3275
+              },
+              {
+                "name": "[fn] Default selectable button is visible",
+                "status": "passed",
+                "durationMs": 3983
+              },
+              {
+                "name": "[fn] Size variants S, M, and L render",
+                "status": "passed",
+                "durationMs": 2756
+              },
+              {
+                "name": "[fn] Selected buttons expose high / medium / low attention via data-attention",
+                "status": "passed",
+                "durationMs": 2573
+              },
+              {
+                "name": "[fn] Contained, inline, and condensed layouts set data-contained correctly",
+                "status": "passed",
+                "durationMs": 2335
+              },
+              {
+                "name": "[fn] Start and end icon slots render",
+                "status": "passed",
+                "durationMs": 1946
+              },
+              {
+                "name": "[fn] Toggle updates aria-pressed, data-pressed, and state label on click",
+                "status": "passed",
+                "durationMs": 2136
+              },
+              {
+                "name": "[fn] Disabled and loading buttons cannot be activated",
+                "status": "passed",
+                "durationMs": 1816
+              },
+              {
+                "name": "[fn] All Test Scenarios story bands are mounted on the page",
+                "status": "passed",
+                "durationMs": 2358
+              },
+              {
+                "name": "[fn] Figma Validation tab shows API table and validation grid",
+                "status": "passed",
+                "durationMs": 5335
+              }
+            ]
+          },
+          "performance": {
+            "suite": "performance",
+            "passed": 0,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "Performance suite is not executed in apps/qa-playground selectable-button Playwright bundle."
+            ],
+            "errors": []
+          }
+        }
+      }
+    },
+    {
+      "savedAt": "2026-06-23T06:53:10.128Z",
+      "report": {
+        "ok": false,
+        "slug": "selectable-button",
+        "message": "selectable-button QA Playwright run had failures — 2026-06-23T06:39:51.350Z",
+        "suites": {
+          "accessibility": {
+            "suite": "accessibility",
+            "passed": 10,
+            "failed": 1,
+            "skipped": 0,
+            "logs": [
+              "11 test(s) in Playwright report for accessibility.",
+              "Axe: scan completed — 0 violation rules reported."
+            ],
+            "errors": [
+              "[a11y] WCAG 2.1 AA axe scan — Figma validation grid: Test timeout of 30000ms exceeded while running \"beforeEach\" hook."
+            ],
+            "cases": [
+              {
+                "name": "[a11y] WCAG 2.1 AA tag scan — Test Scenarios story bands + JSON artefact",
+                "status": "passed",
+                "durationMs": 5558
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Default band",
+                "status": "passed",
+                "durationMs": 5228,
+                "componentBand": "selectable-button-qa-default"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Size (S · M · L) band",
+                "status": "passed",
+                "durationMs": 5352,
+                "componentBand": "selectable-button-qa-size"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Elevation / attention band",
+                "status": "passed",
+                "durationMs": 5326,
+                "componentBand": "selectable-button-qa-elevation"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Contained and inline band",
+                "status": "passed",
+                "durationMs": 5215,
+                "componentBand": "selectable-button-qa-contained"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Start and end icons band",
+                "status": "passed",
+                "durationMs": 3994,
+                "componentBand": "selectable-button-qa-icons"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Toggle band",
+                "status": "passed",
+                "durationMs": 4008,
+                "componentBand": "selectable-button-qa-toggle"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Disabled and loading band",
+                "status": "passed",
+                "durationMs": 4000,
+                "componentBand": "selectable-button-qa-states"
+              },
+              {
+                "name": "[a11y] axe button-name rule — Test Scenarios page",
+                "status": "passed",
+                "durationMs": 4453
+              },
+              {
+                "name": "[a11y] Keyboard Space and aria-pressed — toggle button",
+                "status": "passed",
+                "durationMs": 3818
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Figma validation grid",
+                "status": "failed",
+                "durationMs": 977781,
+                "error": "Test timeout of 30000ms exceeded while running \"beforeEach\" hook."
+              }
+            ],
+            "axe": {
+              "violations": []
+            }
+          },
+          "functional": {
+            "suite": "functional",
+            "passed": 51,
+            "failed": 10,
+            "skipped": 0,
+            "logs": [
+              "61 test(s) in Playwright report for functional."
+            ],
+            "errors": [
+              "1.3 — Every data-section band is visible: \"beforeAll\" hook timeout of 30000ms exceeded.",
+              "2.1 — Attention high selected renders data-attention: Test timeout of 30000ms exceeded while running \"beforeEach\" hook.",
+              "3.2 — Disabled button does not toggle on click: Test timeout of 30000ms exceeded while running \"beforeEach\" hook.",
+              "4.1 — Tab reaches default selectable button: \"beforeAll\" hook timeout of 30000ms exceeded.",
+              "4.5 — Home and End keys (N/A): Test timeout of 30000ms exceeded while running \"beforeEach\" hook.",
+              "6.1 — Default button starts unselected: Test timeout of 30000ms exceeded.",
+              "6.3 — Disabled button is not focusable via click: \"beforeAll\" hook timeout of 30000ms exceeded.",
+              "6.6 — Loading state disables interaction: Test timeout of 30000ms exceeded.",
+              "8.2 — Single-select group (N/A): Test timeout of 30000ms exceeded while running \"beforeEach\" hook.",
+              "[fn] Component page shows title and QA tabs: \"beforeAll\" hook timeout of 30000ms exceeded."
+            ],
+            "cases": [
+              {
+                "name": "1.1 — Page loads without console errors",
+                "status": "passed",
+                "durationMs": 7836
+              },
+              {
+                "name": "1.1 — Default button renders with role button",
+                "status": "passed",
+                "durationMs": 5093
+              },
+              {
+                "name": "1.2 — Every playground data-testid is visible",
+                "status": "passed",
+                "durationMs": 4760
+              },
+              {
+                "name": "1.3 — Every data-section band is visible",
+                "status": "failed",
+                "durationMs": 1,
+                "error": "\"beforeAll\" hook timeout of 30000ms exceeded."
+              },
+              {
+                "name": "2.1 — Size S renders with data-size",
+                "status": "passed",
+                "durationMs": 7522
+              },
+              {
+                "name": "2.1 — Size M renders with data-size",
+                "status": "passed",
+                "durationMs": 8101
+              },
+              {
+                "name": "2.1 — Size L renders with data-size",
+                "status": "passed",
+                "durationMs": 4442
+              },
+              {
+                "name": "2.2 — Size S/M/L scale progressively (height)",
+                "status": "passed",
+                "durationMs": 3598
+              },
+              {
+                "name": "2.1 — Attention high selected renders data-attention",
+                "status": "failed",
+                "durationMs": 681136,
+                "error": "Test timeout of 30000ms exceeded while running \"beforeEach\" hook."
+              },
+              {
+                "name": "2.1 — Attention medium selected renders data-attention",
+                "status": "passed",
+                "durationMs": 7152
+              },
+              {
+                "name": "2.1 — Attention low selected renders data-attention",
+                "status": "passed",
+                "durationMs": 4252
+              },
+              {
+                "name": "2.1 — appearance prop matrix (N/A in showcase)",
+                "status": "passed",
+                "durationMs": 4593
+              },
+              {
+                "name": "3.1 — Click toggles aria-pressed on interactive toggle",
+                "status": "passed",
+                "durationMs": 3771
+              },
+              {
+                "name": "3.2 — Disabled button does not toggle on click",
+                "status": "failed",
+                "durationMs": 376541,
+                "error": "Test timeout of 30000ms exceeded while running \"beforeEach\" hook."
+              },
+              {
+                "name": "3.3 — Readonly (N/A)",
+                "status": "passed",
+                "durationMs": 4449
+              },
+              {
+                "name": "3.4 — Click outside removes focus from button",
+                "status": "passed",
+                "durationMs": 2356
+              },
+              {
+                "name": "4.1 — Tab reaches default selectable button",
+                "status": "failed",
+                "durationMs": 0,
+                "error": "\"beforeAll\" hook timeout of 30000ms exceeded."
+              },
+              {
+                "name": "4.2 — Enter activates toggle",
+                "status": "passed",
+                "durationMs": 7452
+              },
+              {
+                "name": "4.3 — Space toggles pressed state",
+                "status": "passed",
+                "durationMs": 7442
+              },
+              {
+                "name": "4.4 — Arrow keys (N/A)",
+                "status": "passed",
+                "durationMs": 4800
+              },
+              {
+                "name": "4.5 — Home and End keys (N/A)",
+                "status": "failed",
+                "durationMs": 684874,
+                "error": "Test timeout of 30000ms exceeded while running \"beforeEach\" hook."
+              },
+              {
+                "name": "4.6 — Escape does not remove toggle (no overlay)",
+                "status": "passed",
+                "durationMs": 24091
+              },
+              {
+                "name": "4.7 — Tab cycles without trapping focus",
+                "status": "passed",
+                "durationMs": 2139
+              },
+              {
+                "name": "5.1 — Click focuses toggle control",
+                "status": "passed",
+                "durationMs": 4128
+              },
+              {
+                "name": "5.2 — Focus indicator visible on keyboard focus",
+                "status": "passed",
+                "durationMs": 3201
+              },
+              {
+                "name": "5.4 — Blur removes focus",
+                "status": "passed",
+                "durationMs": 5375
+              },
+              {
+                "name": "5.5 — autoFocus (N/A)",
+                "status": "passed",
+                "durationMs": 5019
+              },
+              {
+                "name": "6.1 — Default button starts unselected",
+                "status": "failed",
+                "durationMs": 382880,
+                "error": "Test timeout of 30000ms exceeded."
+              },
+              {
+                "name": "6.2 — Elevation band selected buttons expose aria-pressed true",
+                "status": "passed",
+                "durationMs": 4449
+              },
+              {
+                "name": "6.3 — Disabled button is not focusable via click",
+                "status": "failed",
+                "durationMs": 0,
+                "error": "\"beforeAll\" hook timeout of 30000ms exceeded."
+              },
+              {
+                "name": "6.4 — Readonly (N/A)",
+                "status": "passed",
+                "durationMs": 7360
+              },
+              {
+                "name": "6.5 — Error state (N/A)",
+                "status": "passed",
+                "durationMs": 8184
+              },
+              {
+                "name": "6.6 — Loading state disables interaction",
+                "status": "failed",
+                "durationMs": 689226,
+                "error": "Test timeout of 30000ms exceeded."
+              },
+              {
+                "name": "7.1 — Start and end icon slots render SVG icons",
+                "status": "passed",
+                "durationMs": 7389
+              },
+              {
+                "name": "7.3 — Icons visible alongside label text",
+                "status": "passed",
+                "durationMs": 4803
+              },
+              {
+                "name": "7.4 — Icon slots use aria-hidden decorative SVG",
+                "status": "passed",
+                "durationMs": 4519
+              },
+              {
+                "name": "8.1 — Click toggles on and off",
+                "status": "passed",
+                "durationMs": 3493
+              },
+              {
+                "name": "8.2 — Single-select group (N/A)",
+                "status": "failed",
+                "durationMs": 376557,
+                "error": "Test timeout of 30000ms exceeded while running \"beforeEach\" hook."
+              },
+              {
+                "name": "8.3 — Indeterminate (N/A)",
+                "status": "passed",
+                "durationMs": 4448
+              },
+              {
+                "name": "9.x — Not a text input",
+                "status": "passed",
+                "durationMs": 2194
+              },
+              {
+                "name": "10.1 — condensed has no effect when contained=false (N/A in showcase)",
+                "status": "passed",
+                "durationMs": 2339
+              },
+              {
+                "name": "10.3 — loading=true disables button",
+                "status": "passed",
+                "durationMs": 1502
+              },
+              {
+                "name": "11.2 — Icon content visible in with-icons band",
+                "status": "passed",
+                "durationMs": 7613
+              },
+              {
+                "name": "12.1 — fullWidth (N/A in showcase)",
+                "status": "passed",
+                "durationMs": 8379
+              },
+              {
+                "name": "12.2 — At 320px viewport, each scenario band fits without horizontal scroll",
+                "status": "passed",
+                "durationMs": 8644
+              },
+              {
+                "name": "12.2 — Visible at 1440px viewport",
+                "status": "passed",
+                "durationMs": 8214
+              },
+              {
+                "name": "12.3 — Size band lays out S/M/L side by side",
+                "status": "passed",
+                "durationMs": 5422
+              },
+              {
+                "name": "13.1 — All sections visible in dark theme",
+                "status": "passed",
+                "durationMs": 2656
+              },
+              {
+                "name": "13.1 — High-attention selected button visible in dark mode",
+                "status": "passed",
+                "durationMs": 2652
+              },
+              {
+                "name": "Smoke — Page heading reads “Selectable Button”",
+                "status": "passed",
+                "durationMs": 1945
+              },
+              {
+                "name": "Smoke — Default toggle button is visible",
+                "status": "passed",
+                "durationMs": 1590
+              },
+              {
+                "name": "[fn] Component page shows title and QA tabs",
+                "status": "failed",
+                "durationMs": 0,
+                "error": "\"beforeAll\" hook timeout of 30000ms exceeded."
+              },
+              {
+                "name": "[fn] Default selectable button is visible",
+                "status": "passed",
+                "durationMs": 7400
+              },
+              {
+                "name": "[fn] Size variants S, M, and L render",
+                "status": "passed",
+                "durationMs": 7117
+              },
+              {
+                "name": "[fn] Selected buttons expose high / medium / low attention via data-attention",
+                "status": "passed",
+                "durationMs": 5295
+              },
+              {
+                "name": "[fn] Contained, inline, and condensed layouts set data-contained correctly",
+                "status": "passed",
+                "durationMs": 3863
+              },
+              {
+                "name": "[fn] Start and end icon slots render",
+                "status": "passed",
+                "durationMs": 2753
+              },
+              {
+                "name": "[fn] Toggle updates aria-pressed, data-pressed, and state label on click",
+                "status": "passed",
+                "durationMs": 4722
+              },
+              {
+                "name": "[fn] Disabled and loading buttons cannot be activated",
+                "status": "passed",
+                "durationMs": 22099
+              },
+              {
+                "name": "[fn] All Test Scenarios story bands are mounted on the page",
+                "status": "passed",
+                "durationMs": 1988
+              },
+              {
+                "name": "[fn] Figma Validation tab shows API table and validation grid",
+                "status": "passed",
+                "durationMs": 5547
+              }
+            ]
+          },
+          "performance": {
+            "suite": "performance",
+            "passed": 0,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "Performance suite is not executed in apps/qa-playground selectable-button Playwright bundle."
+            ],
+            "errors": []
+          }
+        }
+      }
+    },
+    {
+      "savedAt": "2026-06-23T06:39:51.355Z",
+      "report": {
+        "ok": false,
+        "slug": "selectable-button",
+        "message": "selectable-button QA Playwright run had failures — 2026-06-17T08:11:52.160Z",
+        "suites": {
+          "accessibility": {
+            "suite": "accessibility",
+            "passed": 11,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "11 test(s) in Playwright report for accessibility.",
+              "Axe: scan completed — 0 violation rules reported."
+            ],
+            "errors": [],
+            "cases": [
+              {
+                "name": "[a11y] WCAG 2.1 AA tag scan — Test Scenarios story bands + JSON artefact",
+                "status": "passed",
+                "durationMs": 5031
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Default band",
+                "status": "passed",
+                "durationMs": 5067,
+                "componentBand": "selectable-button-qa-default"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Size (S · M · L) band",
+                "status": "passed",
+                "durationMs": 5265,
+                "componentBand": "selectable-button-qa-size"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Elevation / attention band",
+                "status": "passed",
+                "durationMs": 5100,
+                "componentBand": "selectable-button-qa-elevation"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Contained and inline band",
+                "status": "passed",
+                "durationMs": 5264,
+                "componentBand": "selectable-button-qa-contained"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Start and end icons band",
+                "status": "passed",
+                "durationMs": 4846,
+                "componentBand": "selectable-button-qa-icons"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Toggle band",
+                "status": "passed",
+                "durationMs": 4808,
+                "componentBand": "selectable-button-qa-toggle"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Disabled and loading band",
+                "status": "passed",
+                "durationMs": 4773,
+                "componentBand": "selectable-button-qa-states"
+              },
+              {
+                "name": "[a11y] axe button-name rule — Test Scenarios page",
+                "status": "passed",
+                "durationMs": 4801
+              },
+              {
+                "name": "[a11y] Keyboard Space and aria-pressed — toggle button",
+                "status": "passed",
+                "durationMs": 8448
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Figma validation grid",
+                "status": "passed",
+                "durationMs": 5700
+              }
+            ],
+            "axe": {
+              "violations": []
+            }
+          },
+          "functional": {
+            "suite": "functional",
+            "passed": 57,
+            "failed": 4,
+            "skipped": 0,
+            "logs": [
+              "61 test(s) in Playwright report for functional."
+            ],
+            "errors": [
+              "3.2 — Disabled button does not toggle on click: Error: expect(locator).toHaveAttribute(expected) failed",
+              "6.1 — Default button starts unselected: Error: expect(locator).toHaveAttribute(expected) failed",
+              "6.3 — Disabled button is not focusable via click: Error: expect(locator).toHaveAttribute(expected) failed",
+              "6.6 — Loading state disables interaction: Error: expect(locator).toHaveAttribute(expected) failed"
+            ],
+            "cases": [
+              {
+                "name": "1.1 — Page loads without console errors",
+                "status": "passed",
+                "durationMs": 6374
+              },
+              {
+                "name": "1.1 — Default button renders with role button",
+                "status": "passed",
+                "durationMs": 3392
+              },
+              {
+                "name": "1.2 — Every playground data-testid is visible",
+                "status": "passed",
+                "durationMs": 3011
+              },
+              {
+                "name": "1.3 — Every data-section band is visible",
+                "status": "passed",
+                "durationMs": 3961
+              },
+              {
+                "name": "2.1 — Size S renders with data-size",
+                "status": "passed",
+                "durationMs": 4244
+              },
+              {
+                "name": "2.1 — Size M renders with data-size",
+                "status": "passed",
+                "durationMs": 7607
+              },
+              {
+                "name": "2.1 — Size L renders with data-size",
+                "status": "passed",
+                "durationMs": 4331
+              },
+              {
+                "name": "2.2 — Size S/M/L scale progressively (height)",
+                "status": "passed",
+                "durationMs": 5522
+              },
+              {
+                "name": "2.1 — Attention high selected renders data-attention",
+                "status": "passed",
+                "durationMs": 3364
+              },
+              {
+                "name": "2.1 — Attention medium selected renders data-attention",
+                "status": "passed",
+                "durationMs": 8303
+              },
+              {
+                "name": "2.1 — Attention low selected renders data-attention",
+                "status": "passed",
+                "durationMs": 3020
+              },
+              {
+                "name": "2.1 — appearance prop matrix (N/A in showcase)",
+                "status": "passed",
+                "durationMs": 1864
+              },
+              {
+                "name": "3.1 — Click toggles aria-pressed on interactive toggle",
+                "status": "passed",
+                "durationMs": 4419
+              },
+              {
+                "name": "3.2 — Disabled button does not toggle on click",
+                "status": "failed",
+                "durationMs": 12097,
+                "error": "Error: expect(locator).toHaveAttribute(expected) failed"
+              },
+              {
+                "name": "3.3 — Readonly (N/A)",
+                "status": "passed",
+                "durationMs": 3551
+              },
+              {
+                "name": "3.4 — Click outside removes focus from button",
+                "status": "passed",
+                "durationMs": 1865
+              },
+              {
+                "name": "4.1 — Tab reaches default selectable button",
+                "status": "passed",
+                "durationMs": 3877
+              },
+              {
+                "name": "4.2 — Enter activates toggle",
+                "status": "passed",
+                "durationMs": 5198
+              },
+              {
+                "name": "4.3 — Space toggles pressed state",
+                "status": "passed",
+                "durationMs": 7421
+              },
+              {
+                "name": "4.4 — Arrow keys (N/A)",
+                "status": "passed",
+                "durationMs": 4357
+              },
+              {
+                "name": "4.5 — Home and End keys (N/A)",
+                "status": "passed",
+                "durationMs": 4798
+              },
+              {
+                "name": "4.6 — Escape does not remove toggle (no overlay)",
+                "status": "passed",
+                "durationMs": 3589
+              },
+              {
+                "name": "4.7 — Tab cycles without trapping focus",
+                "status": "passed",
+                "durationMs": 11411
+              },
+              {
+                "name": "5.1 — Click focuses toggle control",
+                "status": "passed",
+                "durationMs": 2061
+              },
+              {
+                "name": "5.2 — Focus indicator visible on keyboard focus",
+                "status": "passed",
+                "durationMs": 4586
+              },
+              {
+                "name": "5.4 — Blur removes focus",
+                "status": "passed",
+                "durationMs": 5060
+              },
+              {
+                "name": "5.5 — autoFocus (N/A)",
+                "status": "passed",
+                "durationMs": 7413
+              },
+              {
+                "name": "6.1 — Default button starts unselected",
+                "status": "failed",
+                "durationMs": 8472,
+                "error": "Error: expect(locator).toHaveAttribute(expected) failed"
+              },
+              {
+                "name": "6.2 — Elevation band selected buttons expose aria-pressed true",
+                "status": "passed",
+                "durationMs": 1418
+              },
+              {
+                "name": "6.3 — Disabled button is not focusable via click",
+                "status": "failed",
+                "durationMs": 9350,
+                "error": "Error: expect(locator).toHaveAttribute(expected) failed"
+              },
+              {
+                "name": "6.4 — Readonly (N/A)",
+                "status": "passed",
+                "durationMs": 5696
+              },
+              {
+                "name": "6.5 — Error state (N/A)",
+                "status": "passed",
+                "durationMs": 3628
+              },
+              {
+                "name": "6.6 — Loading state disables interaction",
+                "status": "failed",
+                "durationMs": 9514,
+                "error": "Error: expect(locator).toHaveAttribute(expected) failed"
+              },
+              {
+                "name": "7.1 — Start and end icon slots render SVG icons",
+                "status": "passed",
+                "durationMs": 3519
+              },
+              {
+                "name": "7.3 — Icons visible alongside label text",
+                "status": "passed",
+                "durationMs": 5277
+              },
+              {
+                "name": "7.4 — Icon slots use aria-hidden decorative SVG",
+                "status": "passed",
+                "durationMs": 6656
+              },
+              {
+                "name": "8.1 — Click toggles on and off",
+                "status": "passed",
+                "durationMs": 3727
+              },
+              {
+                "name": "8.2 — Single-select group (N/A)",
+                "status": "passed",
+                "durationMs": 5451
+              },
+              {
+                "name": "8.3 — Indeterminate (N/A)",
+                "status": "passed",
+                "durationMs": 1848
+              },
+              {
+                "name": "9.x — Not a text input",
+                "status": "passed",
+                "durationMs": 1061
+              },
+              {
+                "name": "10.1 — condensed has no effect when contained=false (N/A in showcase)",
+                "status": "passed",
+                "durationMs": 1160
+              },
+              {
+                "name": "10.3 — loading=true disables button",
+                "status": "passed",
+                "durationMs": 1370
+              },
+              {
+                "name": "11.2 — Icon content visible in with-icons band",
+                "status": "passed",
+                "durationMs": 3951
+              },
+              {
+                "name": "12.1 — fullWidth (N/A in showcase)",
+                "status": "passed",
+                "durationMs": 6865
+              },
+              {
+                "name": "12.2 — At 320px viewport, each scenario band fits without horizontal scroll",
+                "status": "passed",
+                "durationMs": 10032
+              },
+              {
+                "name": "12.2 — Visible at 1440px viewport",
+                "status": "passed",
+                "durationMs": 10355
+              },
+              {
+                "name": "12.3 — Size band lays out S/M/L side by side",
+                "status": "passed",
+                "durationMs": 6476
+              },
+              {
+                "name": "13.1 — All sections visible in dark theme",
+                "status": "passed",
+                "durationMs": 5662
+              },
+              {
+                "name": "13.1 — High-attention selected button visible in dark mode",
+                "status": "passed",
+                "durationMs": 11128
+              },
+              {
+                "name": "Smoke — Page heading reads “Selectable Button”",
+                "status": "passed",
+                "durationMs": 3489
+              },
+              {
+                "name": "Smoke — Default toggle button is visible",
+                "status": "passed",
+                "durationMs": 2809
+              },
+              {
+                "name": "[fn] Component page shows title and QA tabs",
+                "status": "passed",
+                "durationMs": 4026
+              },
+              {
+                "name": "[fn] Default selectable button is visible",
+                "status": "passed",
+                "durationMs": 4137
+              },
+              {
+                "name": "[fn] Size variants S, M, and L render",
+                "status": "passed",
+                "durationMs": 7529
+              },
+              {
+                "name": "[fn] Selected buttons expose high / medium / low attention via data-attention",
+                "status": "passed",
+                "durationMs": 6079
+              },
+              {
+                "name": "[fn] Contained, inline, and condensed layouts set data-contained correctly",
+                "status": "passed",
+                "durationMs": 4783
+              },
+              {
+                "name": "[fn] Start and end icon slots render",
+                "status": "passed",
+                "durationMs": 3675
+              },
+              {
+                "name": "[fn] Toggle updates aria-pressed, data-pressed, and state label on click",
+                "status": "passed",
+                "durationMs": 7948
+              },
+              {
+                "name": "[fn] Disabled and loading buttons cannot be activated",
+                "status": "passed",
+                "durationMs": 3643
+              },
+              {
+                "name": "[fn] All Test Scenarios story bands are mounted on the page",
+                "status": "passed",
+                "durationMs": 3491
+              },
+              {
+                "name": "[fn] Figma Validation tab shows API table and validation grid",
+                "status": "passed",
+                "durationMs": 9131
+              }
+            ]
+          },
+          "performance": {
+            "suite": "performance",
+            "passed": 0,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "Performance suite is not executed in apps/qa-playground selectable-button Playwright bundle."
+            ],
+            "errors": []
+          }
+        }
+      }
+    },
+    {
+      "savedAt": "2026-06-17T08:11:52.164Z",
+      "report": {
+        "ok": true,
+        "slug": "selectable-button",
+        "message": "selectable-button QA Playwright run OK — 2026-06-04T10:07:15.145Z",
+        "suites": {
+          "accessibility": {
+            "suite": "accessibility",
+            "passed": 11,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "11 test(s) in Playwright report for accessibility.",
+              "Axe: scan completed — 0 violation rules reported."
+            ],
+            "errors": [],
+            "cases": [
+              {
+                "name": "[a11y] WCAG 2.1 AA tag scan — Test Scenarios story bands + JSON artefact",
+                "status": "passed",
+                "durationMs": 3595
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Default band",
+                "status": "passed",
+                "durationMs": 3456,
+                "componentBand": "selectable-button-qa-default"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Size (S · M · L) band",
+                "status": "passed",
+                "durationMs": 3528,
+                "componentBand": "selectable-button-qa-size"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Elevation / attention band",
+                "status": "passed",
+                "durationMs": 3474,
+                "componentBand": "selectable-button-qa-elevation"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Contained and inline band",
+                "status": "passed",
+                "durationMs": 3779,
+                "componentBand": "selectable-button-qa-contained"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Start and end icons band",
+                "status": "passed",
+                "durationMs": 3967,
+                "componentBand": "selectable-button-qa-icons"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Toggle band",
+                "status": "passed",
+                "durationMs": 4037,
+                "componentBand": "selectable-button-qa-toggle"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Disabled and loading band",
+                "status": "passed",
+                "durationMs": 4141,
+                "componentBand": "selectable-button-qa-states"
+              },
+              {
+                "name": "[a11y] axe button-name rule — Test Scenarios page",
+                "status": "passed",
+                "durationMs": 3943
+              },
+              {
+                "name": "[a11y] Keyboard Space and aria-pressed — toggle button",
+                "status": "passed",
+                "durationMs": 3921
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Figma validation grid",
+                "status": "passed",
+                "durationMs": 4747
+              }
+            ],
+            "axe": {
+              "violations": []
+            }
+          },
+          "functional": {
+            "suite": "functional",
+            "passed": 61,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "61 test(s) in Playwright report for functional."
+            ],
+            "errors": [],
+            "cases": [
+              {
+                "name": "1.1 — Page loads without console errors",
+                "status": "passed",
+                "durationMs": 5168
+              },
+              {
+                "name": "1.1 — Default button renders with role button",
+                "status": "passed",
+                "durationMs": 2451
+              },
+              {
+                "name": "1.2 — Every playground data-testid is visible",
+                "status": "passed",
+                "durationMs": 1459
+              },
+              {
+                "name": "1.3 — Every data-section band is visible",
+                "status": "passed",
+                "durationMs": 2884
+              },
+              {
+                "name": "2.1 — Size S renders with data-size",
+                "status": "passed",
+                "durationMs": 2471
+              },
+              {
+                "name": "2.1 — Size M renders with data-size",
+                "status": "passed",
+                "durationMs": 2570
+              },
+              {
+                "name": "2.1 — Size L renders with data-size",
+                "status": "passed",
+                "durationMs": 2835
+              },
+              {
+                "name": "2.2 — Size S/M/L scale progressively (height)",
+                "status": "passed",
+                "durationMs": 2893
+              },
+              {
+                "name": "2.1 — Attention high selected renders data-attention",
+                "status": "passed",
+                "durationMs": 2730
+              },
+              {
+                "name": "2.1 — Attention medium selected renders data-attention",
+                "status": "passed",
+                "durationMs": 2647
+              },
+              {
+                "name": "2.1 — Attention low selected renders data-attention",
+                "status": "passed",
+                "durationMs": 2886
+              },
+              {
+                "name": "2.1 — appearance prop matrix (N/A in showcase)",
+                "status": "passed",
+                "durationMs": 3089
+              },
+              {
+                "name": "3.1 — Click toggles aria-pressed on interactive toggle",
+                "status": "passed",
+                "durationMs": 3667
+              },
+              {
+                "name": "3.2 — Disabled button does not toggle on click",
+                "status": "passed",
+                "durationMs": 3240
+              },
+              {
+                "name": "3.3 — Readonly (N/A)",
+                "status": "passed",
+                "durationMs": 3142
+              },
+              {
+                "name": "3.4 — Click outside removes focus from button",
+                "status": "passed",
+                "durationMs": 2401
+              },
+              {
+                "name": "4.1 — Tab reaches default selectable button",
+                "status": "passed",
+                "durationMs": 3152
+              },
+              {
+                "name": "4.2 — Enter activates toggle",
+                "status": "passed",
+                "durationMs": 2475
+              },
+              {
+                "name": "4.3 — Space toggles pressed state",
+                "status": "passed",
+                "durationMs": 2637
+              },
+              {
+                "name": "4.4 — Arrow keys (N/A)",
+                "status": "passed",
+                "durationMs": 3043
+              },
+              {
+                "name": "4.5 — Home and End keys (N/A)",
+                "status": "passed",
+                "durationMs": 2773
+              },
+              {
+                "name": "4.6 — Escape does not remove toggle (no overlay)",
+                "status": "passed",
+                "durationMs": 2710
+              },
+              {
+                "name": "4.7 — Tab cycles without trapping focus",
+                "status": "passed",
+                "durationMs": 2663
+              },
+              {
+                "name": "5.1 — Click focuses toggle control",
+                "status": "passed",
+                "durationMs": 3070
+              },
+              {
+                "name": "5.2 — Focus indicator visible on keyboard focus",
+                "status": "passed",
+                "durationMs": 3232
+              },
+              {
+                "name": "5.4 — Blur removes focus",
+                "status": "passed",
+                "durationMs": 3583
+              },
+              {
+                "name": "5.5 — autoFocus (N/A)",
+                "status": "passed",
+                "durationMs": 2885
+              },
+              {
+                "name": "6.1 — Default button starts unselected",
+                "status": "passed",
+                "durationMs": 3411
+              },
+              {
+                "name": "6.2 — Elevation band selected buttons expose aria-pressed true",
+                "status": "passed",
+                "durationMs": 2081
+              },
+              {
+                "name": "6.3 — Disabled button is not focusable via click",
+                "status": "passed",
+                "durationMs": 3143
+              },
+              {
+                "name": "6.4 — Readonly (N/A)",
+                "status": "passed",
+                "durationMs": 2337
+              },
+              {
+                "name": "6.5 — Error state (N/A)",
+                "status": "passed",
+                "durationMs": 2467
+              },
+              {
+                "name": "6.6 — Loading state disables interaction",
+                "status": "passed",
+                "durationMs": 3149
+              },
+              {
+                "name": "7.1 — Start and end icon slots render SVG icons",
+                "status": "passed",
+                "durationMs": 2716
+              },
+              {
+                "name": "7.3 — Icons visible alongside label text",
+                "status": "passed",
+                "durationMs": 2491
+              },
+              {
+                "name": "7.4 — Icon slots use aria-hidden decorative SVG",
+                "status": "passed",
+                "durationMs": 2578
+              },
+              {
+                "name": "8.1 — Click toggles on and off",
+                "status": "passed",
+                "durationMs": 3399
+              },
+              {
+                "name": "8.2 — Single-select group (N/A)",
+                "status": "passed",
+                "durationMs": 3358
+              },
+              {
+                "name": "8.3 — Indeterminate (N/A)",
+                "status": "passed",
+                "durationMs": 3516
+              },
+              {
+                "name": "9.x — Not a text input",
+                "status": "passed",
+                "durationMs": 2915
+              },
+              {
+                "name": "10.1 — condensed has no effect when contained=false (N/A in showcase)",
+                "status": "passed",
+                "durationMs": 3354
+              },
+              {
+                "name": "10.3 — loading=true disables button",
+                "status": "passed",
+                "durationMs": 1990
+              },
+              {
+                "name": "11.2 — Icon content visible in with-icons band",
+                "status": "passed",
+                "durationMs": 2451
+              },
+              {
+                "name": "12.1 — fullWidth (N/A in showcase)",
+                "status": "passed",
+                "durationMs": 2475
+              },
+              {
+                "name": "12.2 — At 320px viewport, each scenario band fits without horizontal scroll",
+                "status": "passed",
+                "durationMs": 5293
+              },
+              {
+                "name": "12.2 — Visible at 1440px viewport",
+                "status": "passed",
+                "durationMs": 4493
+              },
+              {
+                "name": "12.3 — Size band lays out S/M/L side by side",
+                "status": "passed",
+                "durationMs": 3331
+              },
+              {
+                "name": "13.1 — All sections visible in dark theme",
+                "status": "passed",
+                "durationMs": 3589
+              },
+              {
+                "name": "13.1 — High-attention selected button visible in dark mode",
+                "status": "passed",
+                "durationMs": 3821
+              },
+              {
+                "name": "Smoke — Page heading reads “Selectable Button”",
+                "status": "passed",
+                "durationMs": 2966
+              },
+              {
+                "name": "Smoke — Default toggle button is visible",
+                "status": "passed",
+                "durationMs": 3177
+              },
+              {
+                "name": "[fn] Component page shows title and QA tabs",
+                "status": "passed",
+                "durationMs": 2729
+              },
+              {
+                "name": "[fn] Default selectable button is visible",
+                "status": "passed",
+                "durationMs": 2432
+              },
+              {
+                "name": "[fn] Size variants S, M, and L render",
+                "status": "passed",
+                "durationMs": 2417
+              },
+              {
+                "name": "[fn] Selected buttons expose high / medium / low attention via data-attention",
+                "status": "passed",
+                "durationMs": 2949
+              },
+              {
+                "name": "[fn] Contained, inline, and condensed layouts set data-contained correctly",
+                "status": "passed",
+                "durationMs": 2629
+              },
+              {
+                "name": "[fn] Start and end icon slots render",
+                "status": "passed",
+                "durationMs": 2450
+              },
+              {
+                "name": "[fn] Toggle updates aria-pressed, data-pressed, and state label on click",
+                "status": "passed",
+                "durationMs": 2520
+              },
+              {
+                "name": "[fn] Disabled and loading buttons cannot be activated",
+                "status": "passed",
+                "durationMs": 2598
+              },
+              {
+                "name": "[fn] All Test Scenarios story bands are mounted on the page",
+                "status": "passed",
+                "durationMs": 2746
+              },
+              {
+                "name": "[fn] Figma Validation tab shows API table and validation grid",
+                "status": "passed",
+                "durationMs": 6264
+              }
+            ]
+          },
+          "performance": {
+            "suite": "performance",
+            "passed": 0,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "Performance suite is not executed in apps/qa-playground selectable-button Playwright bundle."
+            ],
+            "errors": []
+          }
+        }
+      }
+    },
+    {
+      "savedAt": "2026-06-04T10:07:15.147Z",
+      "report": {
+        "ok": true,
+        "slug": "selectable-button",
+        "message": "selectable-button QA Playwright run OK — 2026-06-04T08:55:15.833Z",
+        "suites": {
+          "accessibility": {
+            "suite": "accessibility",
+            "passed": 11,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "11 test(s) in Playwright report for accessibility.",
+              "Axe: scan completed — 0 violation rules reported."
+            ],
+            "errors": [],
+            "cases": [
+              {
+                "name": "[a11y] WCAG 2.1 AA tag scan — Test Scenarios story bands + JSON artefact",
+                "status": "passed",
+                "durationMs": 4074
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Default band",
+                "status": "passed",
+                "durationMs": 4497,
+                "componentBand": "selectable-button-qa-default"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Size (S · M · L) band",
+                "status": "passed",
+                "durationMs": 4229,
+                "componentBand": "selectable-button-qa-size"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Elevation / attention band",
+                "status": "passed",
+                "durationMs": 3989,
+                "componentBand": "selectable-button-qa-elevation"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Contained and inline band",
+                "status": "passed",
+                "durationMs": 3995,
+                "componentBand": "selectable-button-qa-contained"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Start and end icons band",
+                "status": "passed",
+                "durationMs": 3639,
+                "componentBand": "selectable-button-qa-icons"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Toggle band",
+                "status": "passed",
+                "durationMs": 3612,
+                "componentBand": "selectable-button-qa-toggle"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Disabled and loading band",
+                "status": "passed",
+                "durationMs": 3606,
+                "componentBand": "selectable-button-qa-states"
+              },
+              {
+                "name": "[a11y] axe button-name rule — Test Scenarios page",
+                "status": "passed",
+                "durationMs": 3716
+              },
+              {
+                "name": "[a11y] Keyboard Space and aria-pressed — toggle button",
+                "status": "passed",
+                "durationMs": 3232
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Figma validation grid",
+                "status": "passed",
+                "durationMs": 4460
+              }
+            ],
+            "axe": {
+              "violations": []
+            }
+          },
+          "functional": {
+            "suite": "functional",
+            "passed": 61,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "61 test(s) in Playwright report for functional."
+            ],
+            "errors": [],
+            "cases": [
+              {
+                "name": "1.1 — Page loads without console errors",
+                "status": "passed",
+                "durationMs": 5277
+              },
+              {
+                "name": "1.1 — Default button renders with role button",
+                "status": "passed",
+                "durationMs": 2194
+              },
+              {
+                "name": "1.2 — Every playground data-testid is visible",
+                "status": "passed",
+                "durationMs": 1535
+              },
+              {
+                "name": "1.3 — Every data-section band is visible",
+                "status": "passed",
+                "durationMs": 3053
+              },
+              {
+                "name": "2.1 — Size S renders with data-size",
+                "status": "passed",
+                "durationMs": 2633
+              },
+              {
+                "name": "2.1 — Size M renders with data-size",
+                "status": "passed",
+                "durationMs": 2881
+              },
+              {
+                "name": "2.1 — Size L renders with data-size",
+                "status": "passed",
+                "durationMs": 2757
+              },
+              {
+                "name": "2.2 — Size S/M/L scale progressively (height)",
+                "status": "passed",
+                "durationMs": 3028
+              },
+              {
+                "name": "2.1 — Attention high selected renders data-attention",
+                "status": "passed",
+                "durationMs": 2562
+              },
+              {
+                "name": "2.1 — Attention medium selected renders data-attention",
+                "status": "passed",
+                "durationMs": 2755
+              },
+              {
+                "name": "2.1 — Attention low selected renders data-attention",
+                "status": "passed",
+                "durationMs": 3045
+              },
+              {
+                "name": "2.1 — appearance prop matrix (N/A in showcase)",
+                "status": "passed",
+                "durationMs": 2761
+              },
+              {
+                "name": "3.1 — Click toggles aria-pressed on interactive toggle",
+                "status": "passed",
+                "durationMs": 2795
+              },
+              {
+                "name": "3.2 — Disabled button does not toggle on click",
+                "status": "passed",
+                "durationMs": 2808
+              },
+              {
+                "name": "3.3 — Readonly (N/A)",
+                "status": "passed",
+                "durationMs": 3569
+              },
+              {
+                "name": "3.4 — Click outside removes focus from button",
+                "status": "passed",
+                "durationMs": 2182
+              },
+              {
+                "name": "4.1 — Tab reaches default selectable button",
+                "status": "passed",
+                "durationMs": 3055
+              },
+              {
+                "name": "4.2 — Enter activates toggle",
+                "status": "passed",
+                "durationMs": 2692
+              },
+              {
+                "name": "4.3 — Space toggles pressed state",
+                "status": "passed",
+                "durationMs": 3013
+              },
+              {
+                "name": "4.4 — Arrow keys (N/A)",
+                "status": "passed",
+                "durationMs": 2740
+              },
+              {
+                "name": "4.5 — Home and End keys (N/A)",
+                "status": "passed",
+                "durationMs": 2717
+              },
+              {
+                "name": "4.6 — Escape does not remove toggle (no overlay)",
+                "status": "passed",
+                "durationMs": 2619
+              },
+              {
+                "name": "4.7 — Tab cycles without trapping focus",
+                "status": "passed",
+                "durationMs": 2714
+              },
+              {
+                "name": "5.1 — Click focuses toggle control",
+                "status": "passed",
+                "durationMs": 3042
+              },
+              {
+                "name": "5.2 — Focus indicator visible on keyboard focus",
+                "status": "passed",
+                "durationMs": 2845
+              },
+              {
+                "name": "5.4 — Blur removes focus",
+                "status": "passed",
+                "durationMs": 2675
+              },
+              {
+                "name": "5.5 — autoFocus (N/A)",
+                "status": "passed",
+                "durationMs": 2965
+              },
+              {
+                "name": "6.1 — Default button starts unselected",
+                "status": "passed",
+                "durationMs": 3054
+              },
+              {
+                "name": "6.2 — Elevation band selected buttons expose aria-pressed true",
+                "status": "passed",
+                "durationMs": 2280
+              },
+              {
+                "name": "6.3 — Disabled button is not focusable via click",
+                "status": "passed",
+                "durationMs": 3269
+              },
+              {
+                "name": "6.4 — Readonly (N/A)",
+                "status": "passed",
+                "durationMs": 2480
+              },
+              {
+                "name": "6.5 — Error state (N/A)",
+                "status": "passed",
+                "durationMs": 3026
+              },
+              {
+                "name": "6.6 — Loading state disables interaction",
+                "status": "passed",
+                "durationMs": 2729
+              },
+              {
+                "name": "7.1 — Start and end icon slots render SVG icons",
+                "status": "passed",
+                "durationMs": 3222
+              },
+              {
+                "name": "7.3 — Icons visible alongside label text",
+                "status": "passed",
+                "durationMs": 2991
+              },
+              {
+                "name": "7.4 — Icon slots use aria-hidden decorative SVG",
+                "status": "passed",
+                "durationMs": 2692
+              },
+              {
+                "name": "8.1 — Click toggles on and off",
+                "status": "passed",
+                "durationMs": 2781
+              },
+              {
+                "name": "8.2 — Single-select group (N/A)",
+                "status": "passed",
+                "durationMs": 2733
+              },
+              {
+                "name": "8.3 — Indeterminate (N/A)",
+                "status": "passed",
+                "durationMs": 2700
+              },
+              {
+                "name": "9.x — Not a text input",
+                "status": "passed",
+                "durationMs": 2887
+              },
+              {
+                "name": "10.1 — condensed has no effect when contained=false (N/A in showcase)",
+                "status": "passed",
+                "durationMs": 2922
+              },
+              {
+                "name": "10.3 — loading=true disables button",
+                "status": "passed",
+                "durationMs": 2211
+              },
+              {
+                "name": "11.2 — Icon content visible in with-icons band",
+                "status": "passed",
+                "durationMs": 2532
+              },
+              {
+                "name": "12.1 — fullWidth (N/A in showcase)",
+                "status": "passed",
+                "durationMs": 2556
+              },
+              {
+                "name": "12.2 — At 320px viewport, each scenario band fits without horizontal scroll",
+                "status": "passed",
+                "durationMs": 5237
+              },
+              {
+                "name": "12.2 — Visible at 1440px viewport",
+                "status": "passed",
+                "durationMs": 4987
+              },
+              {
+                "name": "12.3 — Size band lays out S/M/L side by side",
+                "status": "passed",
+                "durationMs": 3233
+              },
+              {
+                "name": "13.1 — All sections visible in dark theme",
+                "status": "passed",
+                "durationMs": 3210
+              },
+              {
+                "name": "13.1 — High-attention selected button visible in dark mode",
+                "status": "passed",
+                "durationMs": 3076
+              },
+              {
+                "name": "Smoke — Page heading reads “Selectable Button”",
+                "status": "passed",
+                "durationMs": 2593
+              },
+              {
+                "name": "Smoke — Default toggle button is visible",
+                "status": "passed",
+                "durationMs": 2990
+              },
+              {
+                "name": "[fn] Component page shows title and QA tabs",
+                "status": "passed",
+                "durationMs": 2821
+              },
+              {
+                "name": "[fn] Default selectable button is visible",
+                "status": "passed",
+                "durationMs": 2240
+              },
+              {
+                "name": "[fn] Size variants S, M, and L render",
+                "status": "passed",
+                "durationMs": 2525
+              },
+              {
+                "name": "[fn] Selected buttons expose high / medium / low attention via data-attention",
+                "status": "passed",
+                "durationMs": 2536
+              },
+              {
+                "name": "[fn] Contained, inline, and condensed layouts set data-contained correctly",
+                "status": "passed",
+                "durationMs": 2779
+              },
+              {
+                "name": "[fn] Start and end icon slots render",
+                "status": "passed",
+                "durationMs": 2223
+              },
+              {
+                "name": "[fn] Toggle updates aria-pressed, data-pressed, and state label on click",
+                "status": "passed",
+                "durationMs": 3408
+              },
+              {
+                "name": "[fn] Disabled and loading buttons cannot be activated",
+                "status": "passed",
+                "durationMs": 3077
+              },
+              {
+                "name": "[fn] All Test Scenarios story bands are mounted on the page",
+                "status": "passed",
+                "durationMs": 2433
+              },
+              {
+                "name": "[fn] Figma Validation tab shows API table and validation grid",
+                "status": "passed",
+                "durationMs": 4790
+              }
+            ]
+          },
+          "performance": {
+            "suite": "performance",
+            "passed": 0,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "Performance suite is not executed in apps/qa-playground selectable-button Playwright bundle."
+            ],
+            "errors": []
+          }
+        }
+      }
+    },
+    {
+      "savedAt": "2026-06-04T08:55:15.834Z",
+      "report": {
+        "ok": true,
+        "slug": "selectable-button",
+        "message": "selectable-button QA Playwright run OK — 2026-06-04T06:34:53.438Z",
+        "suites": {
+          "accessibility": {
+            "suite": "accessibility",
+            "passed": 11,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "11 test(s) in Playwright report for accessibility.",
+              "Axe: scan completed — 0 violation rules reported."
+            ],
+            "errors": [],
+            "cases": [
+              {
+                "name": "[a11y] WCAG 2.1 AA tag scan — Test Scenarios story bands + JSON artefact",
+                "status": "passed",
+                "durationMs": 3931
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Default band",
+                "status": "passed",
+                "durationMs": 3802,
+                "componentBand": "selectable-button-qa-default"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Size (S · M · L) band",
+                "status": "passed",
+                "durationMs": 3796,
+                "componentBand": "selectable-button-qa-size"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Elevation / attention band",
+                "status": "passed",
+                "durationMs": 3785,
+                "componentBand": "selectable-button-qa-elevation"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Contained and inline band",
+                "status": "passed",
+                "durationMs": 3775,
+                "componentBand": "selectable-button-qa-contained"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Start and end icons band",
+                "status": "passed",
+                "durationMs": 3496,
+                "componentBand": "selectable-button-qa-icons"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Toggle band",
+                "status": "passed",
+                "durationMs": 3541,
+                "componentBand": "selectable-button-qa-toggle"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Disabled and loading band",
+                "status": "passed",
+                "durationMs": 3560,
+                "componentBand": "selectable-button-qa-states"
+              },
+              {
+                "name": "[a11y] axe button-name rule — Test Scenarios page",
+                "status": "passed",
+                "durationMs": 3821
+              },
+              {
+                "name": "[a11y] Keyboard Space and aria-pressed — toggle button",
+                "status": "passed",
+                "durationMs": 3595
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Figma validation grid",
+                "status": "passed",
+                "durationMs": 4390
+              }
+            ],
+            "axe": {
+              "violations": []
+            }
+          },
+          "functional": {
+            "suite": "functional",
+            "passed": 61,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "61 test(s) in Playwright report for functional."
+            ],
+            "errors": [],
+            "cases": [
+              {
+                "name": "1.1 — Page loads without console errors",
+                "status": "passed",
+                "durationMs": 4440
+              },
+              {
+                "name": "1.1 — Default button renders with role button",
+                "status": "passed",
+                "durationMs": 1768
+              },
+              {
+                "name": "1.2 — Every playground data-testid is visible",
+                "status": "passed",
+                "durationMs": 1082
+              },
+              {
+                "name": "1.3 — Every data-section band is visible",
+                "status": "passed",
+                "durationMs": 2862
+              },
+              {
+                "name": "2.1 — Size S renders with data-size",
+                "status": "passed",
+                "durationMs": 2413
+              },
+              {
+                "name": "2.1 — Size M renders with data-size",
+                "status": "passed",
+                "durationMs": 2763
+              },
+              {
+                "name": "2.1 — Size L renders with data-size",
+                "status": "passed",
+                "durationMs": 2557
+              },
+              {
+                "name": "2.2 — Size S/M/L scale progressively (height)",
+                "status": "passed",
+                "durationMs": 2632
+              },
+              {
+                "name": "2.1 — Attention high selected renders data-attention",
+                "status": "passed",
+                "durationMs": 2428
+              },
+              {
+                "name": "2.1 — Attention medium selected renders data-attention",
+                "status": "passed",
+                "durationMs": 2358
+              },
+              {
+                "name": "2.1 — Attention low selected renders data-attention",
+                "status": "passed",
+                "durationMs": 2414
+              },
+              {
+                "name": "2.1 — appearance prop matrix (N/A in showcase)",
+                "status": "passed",
+                "durationMs": 2237
+              },
+              {
+                "name": "3.1 — Click toggles aria-pressed on interactive toggle",
+                "status": "passed",
+                "durationMs": 2419
+              },
+              {
+                "name": "3.2 — Disabled button does not toggle on click",
+                "status": "passed",
+                "durationMs": 2198
+              },
+              {
+                "name": "3.3 — Readonly (N/A)",
+                "status": "passed",
+                "durationMs": 2311
+              },
+              {
+                "name": "3.4 — Click outside removes focus from button",
+                "status": "passed",
+                "durationMs": 2072
+              },
+              {
+                "name": "4.1 — Tab reaches default selectable button",
+                "status": "passed",
+                "durationMs": 2728
+              },
+              {
+                "name": "4.2 — Enter activates toggle",
+                "status": "passed",
+                "durationMs": 2676
+              },
+              {
+                "name": "4.3 — Space toggles pressed state",
+                "status": "passed",
+                "durationMs": 2895
+              },
+              {
+                "name": "4.4 — Arrow keys (N/A)",
+                "status": "passed",
+                "durationMs": 2642
+              },
+              {
+                "name": "4.5 — Home and End keys (N/A)",
+                "status": "passed",
+                "durationMs": 2544
+              },
+              {
+                "name": "4.6 — Escape does not remove toggle (no overlay)",
+                "status": "passed",
+                "durationMs": 2200
+              },
+              {
+                "name": "4.7 — Tab cycles without trapping focus",
+                "status": "passed",
+                "durationMs": 2393
+              },
+              {
+                "name": "5.1 — Click focuses toggle control",
+                "status": "passed",
+                "durationMs": 2604
+              },
+              {
+                "name": "5.2 — Focus indicator visible on keyboard focus",
+                "status": "passed",
+                "durationMs": 2430
+              },
+              {
+                "name": "5.4 — Blur removes focus",
+                "status": "passed",
+                "durationMs": 2498
+              },
+              {
+                "name": "5.5 — autoFocus (N/A)",
+                "status": "passed",
+                "durationMs": 2146
+              },
+              {
+                "name": "6.1 — Default button starts unselected",
+                "status": "passed",
+                "durationMs": 2439
+              },
+              {
+                "name": "6.2 — Elevation band selected buttons expose aria-pressed true",
+                "status": "passed",
+                "durationMs": 1835
+              },
+              {
+                "name": "6.3 — Disabled button is not focusable via click",
+                "status": "passed",
+                "durationMs": 3012
+              },
+              {
+                "name": "6.4 — Readonly (N/A)",
+                "status": "passed",
+                "durationMs": 2514
+              },
+              {
+                "name": "6.5 — Error state (N/A)",
+                "status": "passed",
+                "durationMs": 2967
+              },
+              {
+                "name": "6.6 — Loading state disables interaction",
+                "status": "passed",
+                "durationMs": 2525
+              },
+              {
+                "name": "7.1 — Start and end icon slots render SVG icons",
+                "status": "passed",
+                "durationMs": 2568
+              },
+              {
+                "name": "7.3 — Icons visible alongside label text",
+                "status": "passed",
+                "durationMs": 2308
+              },
+              {
+                "name": "7.4 — Icon slots use aria-hidden decorative SVG",
+                "status": "passed",
+                "durationMs": 2369
+              },
+              {
+                "name": "8.1 — Click toggles on and off",
+                "status": "passed",
+                "durationMs": 2680
+              },
+              {
+                "name": "8.2 — Single-select group (N/A)",
+                "status": "passed",
+                "durationMs": 2342
+              },
+              {
+                "name": "8.3 — Indeterminate (N/A)",
+                "status": "passed",
+                "durationMs": 2424
+              },
+              {
+                "name": "9.x — Not a text input",
+                "status": "passed",
+                "durationMs": 2452
+              },
+              {
+                "name": "10.1 — condensed has no effect when contained=false (N/A in showcase)",
+                "status": "passed",
+                "durationMs": 2605
+              },
+              {
+                "name": "10.3 — loading=true disables button",
+                "status": "passed",
+                "durationMs": 1413
+              },
+              {
+                "name": "11.2 — Icon content visible in with-icons band",
+                "status": "passed",
+                "durationMs": 2676
+              },
+              {
+                "name": "12.1 — fullWidth (N/A in showcase)",
+                "status": "passed",
+                "durationMs": 2761
+              },
+              {
+                "name": "12.2 — At 320px viewport, each scenario band fits without horizontal scroll",
+                "status": "passed",
+                "durationMs": 4410
+              },
+              {
+                "name": "12.2 — Visible at 1440px viewport",
+                "status": "passed",
+                "durationMs": 4004
+              },
+              {
+                "name": "12.3 — Size band lays out S/M/L side by side",
+                "status": "passed",
+                "durationMs": 2401
+              },
+              {
+                "name": "13.1 — All sections visible in dark theme",
+                "status": "passed",
+                "durationMs": 2547
+              },
+              {
+                "name": "13.1 — High-attention selected button visible in dark mode",
+                "status": "passed",
+                "durationMs": 2790
+              },
+              {
+                "name": "Smoke — Page heading reads “Selectable Button”",
+                "status": "passed",
+                "durationMs": 2211
+              },
+              {
+                "name": "Smoke — Default toggle button is visible",
+                "status": "passed",
+                "durationMs": 2404
+              },
+              {
+                "name": "[fn] Component page shows title and QA tabs",
+                "status": "passed",
+                "durationMs": 2697
+              },
+              {
+                "name": "[fn] Default selectable button is visible",
+                "status": "passed",
+                "durationMs": 2250
+              },
+              {
+                "name": "[fn] Size variants S, M, and L render",
+                "status": "passed",
+                "durationMs": 2719
+              },
+              {
+                "name": "[fn] Selected buttons expose high / medium / low attention via data-attention",
+                "status": "passed",
+                "durationMs": 2788
+              },
+              {
+                "name": "[fn] Contained, inline, and condensed layouts set data-contained correctly",
+                "status": "passed",
+                "durationMs": 2421
+              },
+              {
+                "name": "[fn] Start and end icon slots render",
+                "status": "passed",
+                "durationMs": 2350
+              },
+              {
+                "name": "[fn] Toggle updates aria-pressed, data-pressed, and state label on click",
+                "status": "passed",
+                "durationMs": 2276
+              },
+              {
+                "name": "[fn] Disabled and loading buttons cannot be activated",
+                "status": "passed",
+                "durationMs": 2278
+              },
+              {
+                "name": "[fn] All Test Scenarios story bands are mounted on the page",
+                "status": "passed",
+                "durationMs": 2239
+              },
+              {
+                "name": "[fn] Figma Validation tab shows API table and validation grid",
+                "status": "passed",
+                "durationMs": 4140
+              }
+            ]
+          },
+          "performance": {
+            "suite": "performance",
+            "passed": 0,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "Performance suite is not executed in apps/qa-playground selectable-button Playwright bundle."
+            ],
+            "errors": []
+          }
+        }
+      }
+    },
+    {
+      "savedAt": "2026-06-04T06:34:53.442Z",
+      "report": {
+        "ok": true,
+        "slug": "selectable-button",
+        "message": "selectable-button QA Playwright run OK — 2026-05-29T12:58:07.882Z",
+        "suites": {
+          "accessibility": {
+            "suite": "accessibility",
+            "passed": 11,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "11 test(s) in Playwright report for accessibility.",
+              "Axe: scan completed — 0 violation rules reported."
+            ],
+            "errors": [],
+            "cases": [
+              {
+                "name": "[a11y] WCAG 2.1 AA tag scan — Test Scenarios story bands + JSON artefact",
+                "status": "passed",
+                "durationMs": 3493
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Default band",
+                "status": "passed",
+                "durationMs": 3463,
+                "componentBand": "selectable-button-qa-default"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Size (S · M · L) band",
+                "status": "passed",
+                "durationMs": 3213,
+                "componentBand": "selectable-button-qa-size"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Elevation / attention band",
+                "status": "passed",
+                "durationMs": 3476,
+                "componentBand": "selectable-button-qa-elevation"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Contained and inline band",
+                "status": "passed",
+                "durationMs": 3675,
+                "componentBand": "selectable-button-qa-contained"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Start and end icons band",
+                "status": "passed",
+                "durationMs": 2707,
+                "componentBand": "selectable-button-qa-icons"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Toggle band",
+                "status": "passed",
+                "durationMs": 2862,
+                "componentBand": "selectable-button-qa-toggle"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Disabled and loading band",
+                "status": "passed",
+                "durationMs": 3144,
+                "componentBand": "selectable-button-qa-states"
+              },
+              {
+                "name": "[a11y] axe button-name rule — Test Scenarios page",
+                "status": "passed",
+                "durationMs": 3056
+              },
+              {
+                "name": "[a11y] Keyboard Space and aria-pressed — toggle button",
+                "status": "passed",
+                "durationMs": 2760
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Figma validation grid",
+                "status": "passed",
+                "durationMs": 3831
+              }
+            ],
+            "axe": {
+              "violations": []
+            }
+          },
+          "functional": {
+            "suite": "functional",
+            "passed": 61,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "61 test(s) in Playwright report for functional."
+            ],
+            "errors": [],
+            "cases": [
+              {
+                "name": "1.1 — Page loads without console errors",
+                "status": "passed",
+                "durationMs": 4056
+              },
+              {
+                "name": "1.1 — Default button renders with role button",
+                "status": "passed",
+                "durationMs": 1853
+              },
+              {
+                "name": "1.2 — Every playground data-testid is visible",
+                "status": "passed",
+                "durationMs": 1189
+              },
+              {
+                "name": "1.3 — Every data-section band is visible",
+                "status": "passed",
+                "durationMs": 2528
+              },
+              {
+                "name": "2.1 — Size S renders with data-size",
+                "status": "passed",
+                "durationMs": 2457
+              },
+              {
+                "name": "2.1 — Size M renders with data-size",
+                "status": "passed",
+                "durationMs": 2199
+              },
+              {
+                "name": "2.1 — Size L renders with data-size",
+                "status": "passed",
+                "durationMs": 1993
+              },
+              {
+                "name": "2.2 — Size S/M/L scale progressively (height)",
+                "status": "passed",
+                "durationMs": 2052
+              },
+              {
+                "name": "2.1 — Attention high selected renders data-attention",
+                "status": "passed",
+                "durationMs": 2039
+              },
+              {
+                "name": "2.1 — Attention medium selected renders data-attention",
+                "status": "passed",
+                "durationMs": 2777
+              },
+              {
+                "name": "2.1 — Attention low selected renders data-attention",
+                "status": "passed",
+                "durationMs": 2284
+              },
+              {
+                "name": "2.1 — appearance prop matrix (N/A in showcase)",
+                "status": "passed",
+                "durationMs": 2400
+              },
+              {
+                "name": "3.1 — Click toggles aria-pressed on interactive toggle",
+                "status": "passed",
+                "durationMs": 2296
+              },
+              {
+                "name": "3.2 — Disabled button does not toggle on click",
+                "status": "passed",
+                "durationMs": 2034
+              },
+              {
+                "name": "3.3 — Readonly (N/A)",
+                "status": "passed",
+                "durationMs": 2430
+              },
+              {
+                "name": "3.4 — Click outside removes focus from button",
+                "status": "passed",
+                "durationMs": 1615
+              },
+              {
+                "name": "4.1 — Tab reaches default selectable button",
+                "status": "passed",
+                "durationMs": 2472
+              },
+              {
+                "name": "4.2 — Enter activates toggle",
+                "status": "passed",
+                "durationMs": 2401
+              },
+              {
+                "name": "4.3 — Space toggles pressed state",
+                "status": "passed",
+                "durationMs": 2236
+              },
+              {
+                "name": "4.4 — Arrow keys (N/A)",
+                "status": "passed",
+                "durationMs": 2102
+              },
+              {
+                "name": "4.5 — Home and End keys (N/A)",
+                "status": "passed",
+                "durationMs": 1950
+              },
+              {
+                "name": "4.6 — Escape does not remove toggle (no overlay)",
+                "status": "passed",
+                "durationMs": 2347
+              },
+              {
+                "name": "4.7 — Tab cycles without trapping focus",
+                "status": "passed",
+                "durationMs": 2641
+              },
+              {
+                "name": "5.1 — Click focuses toggle control",
+                "status": "passed",
+                "durationMs": 2334
+              },
+              {
+                "name": "5.2 — Focus indicator visible on keyboard focus",
+                "status": "passed",
+                "durationMs": 2252
+              },
+              {
+                "name": "5.4 — Blur removes focus",
+                "status": "passed",
+                "durationMs": 2177
+              },
+              {
+                "name": "5.5 — autoFocus (N/A)",
+                "status": "passed",
+                "durationMs": 2115
+              },
+              {
+                "name": "6.1 — Default button starts unselected",
+                "status": "passed",
+                "durationMs": 2475
+              },
+              {
+                "name": "6.2 — Elevation band selected buttons expose aria-pressed true",
+                "status": "passed",
+                "durationMs": 1961
+              },
+              {
+                "name": "6.3 — Disabled button is not focusable via click",
+                "status": "passed",
+                "durationMs": 2541
+              },
+              {
+                "name": "6.4 — Readonly (N/A)",
+                "status": "passed",
+                "durationMs": 2350
+              },
+              {
+                "name": "6.5 — Error state (N/A)",
+                "status": "passed",
+                "durationMs": 2438
+              },
+              {
+                "name": "6.6 — Loading state disables interaction",
+                "status": "passed",
+                "durationMs": 2119
+              },
+              {
+                "name": "7.1 — Start and end icon slots render SVG icons",
+                "status": "passed",
+                "durationMs": 2131
+              },
+              {
+                "name": "7.3 — Icons visible alongside label text",
+                "status": "passed",
+                "durationMs": 2453
+              },
+              {
+                "name": "7.4 — Icon slots use aria-hidden decorative SVG",
+                "status": "passed",
+                "durationMs": 2493
+              },
+              {
+                "name": "8.1 — Click toggles on and off",
+                "status": "passed",
+                "durationMs": 2310
+              },
+              {
+                "name": "8.2 — Single-select group (N/A)",
+                "status": "passed",
+                "durationMs": 2351
+              },
+              {
+                "name": "8.3 — Indeterminate (N/A)",
+                "status": "passed",
+                "durationMs": 1958
+              },
+              {
+                "name": "9.x — Not a text input",
+                "status": "passed",
+                "durationMs": 2107
+              },
+              {
+                "name": "10.1 — condensed has no effect when contained=false (N/A in showcase)",
+                "status": "passed",
+                "durationMs": 2367
+              },
+              {
+                "name": "10.3 — loading=true disables button",
+                "status": "passed",
+                "durationMs": 1831
+              },
+              {
+                "name": "11.2 — Icon content visible in with-icons band",
+                "status": "passed",
+                "durationMs": 2169
+              },
+              {
+                "name": "12.1 — fullWidth (N/A in showcase)",
+                "status": "passed",
+                "durationMs": 2110
+              },
+              {
+                "name": "12.2 — At 320px viewport, each scenario band fits without horizontal scroll",
+                "status": "passed",
+                "durationMs": 3993
+              },
+              {
+                "name": "12.2 — Visible at 1440px viewport",
+                "status": "passed",
+                "durationMs": 3894
+              },
+              {
+                "name": "12.3 — Size band lays out S/M/L side by side",
+                "status": "passed",
+                "durationMs": 2344
+              },
+              {
+                "name": "13.1 — All sections visible in dark theme",
+                "status": "passed",
+                "durationMs": 2179
+              },
+              {
+                "name": "13.1 — High-attention selected button visible in dark mode",
+                "status": "passed",
+                "durationMs": 2458
+              },
+              {
+                "name": "Smoke — Page heading reads “Selectable Button”",
+                "status": "passed",
+                "durationMs": 1795
+              },
+              {
+                "name": "Smoke — Default toggle button is visible",
+                "status": "passed",
+                "durationMs": 2323
+              },
+              {
+                "name": "[fn] Component page shows title and QA tabs",
+                "status": "passed",
+                "durationMs": 2452
+              },
+              {
+                "name": "[fn] Default selectable button is visible",
+                "status": "passed",
+                "durationMs": 1916
+              },
+              {
+                "name": "[fn] Size variants S, M, and L render",
+                "status": "passed",
+                "durationMs": 1895
+              },
+              {
+                "name": "[fn] Selected buttons expose high / medium / low attention via data-attention",
+                "status": "passed",
+                "durationMs": 1831
+              },
+              {
+                "name": "[fn] Contained, inline, and condensed layouts set data-contained correctly",
+                "status": "passed",
+                "durationMs": 1916
+              },
+              {
+                "name": "[fn] Start and end icon slots render",
+                "status": "passed",
+                "durationMs": 1923
+              },
+              {
+                "name": "[fn] Toggle updates aria-pressed, data-pressed, and state label on click",
+                "status": "passed",
+                "durationMs": 2670
+              },
+              {
+                "name": "[fn] Disabled and loading buttons cannot be activated",
+                "status": "passed",
+                "durationMs": 2514
+              },
+              {
+                "name": "[fn] All Test Scenarios story bands are mounted on the page",
+                "status": "passed",
+                "durationMs": 2187
+              },
+              {
+                "name": "[fn] Figma Validation tab shows API table and validation grid",
+                "status": "passed",
+                "durationMs": 4347
+              }
+            ]
+          },
+          "performance": {
+            "suite": "performance",
+            "passed": 0,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "Performance suite is not executed in apps/qa-playground selectable-button Playwright bundle."
+            ],
+            "errors": []
+          }
+        }
+      }
+    }
+  ]
+}

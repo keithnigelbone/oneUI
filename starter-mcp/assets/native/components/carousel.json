@@ -1,0 +1,209 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Carousel",
+  "generatedAt": "2026-07-09T13:07:37.427Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "Compound carousel micropattern. Root manages paging (ScrollView-based, mirrors web Embla API), optional loop, autoplay, and a shared image aspect ratio / height across slides. Slides (`Carousel.Item`) each resolve their own surface context and may host image, headline/body text, badges, and a button group. Controls (prev/next/play, pagination dots, selection rail) are presence-driven — they render wherever the matching subcomponent is placed as a child."
+  },
+  "compositionRules": {
+    "requires": [
+      "aria-label",
+      "children"
+    ],
+    "allows": [],
+    "forbids": [],
+    "childKind": "fixed-slots"
+  },
+  "props": [
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": true,
+      "description": "Accessible name for the carousel landmark (required — no visual title implies one)."
+    },
+    {
+      "name": "opts",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Embla-style options object (advanced). `loop` prop takes precedence over `opts.loop` when both are set."
+    },
+    {
+      "name": "loop",
+      "type": "boolean",
+      "required": false,
+      "description": "Prev/next navigation and autoplay wrap from last slide to first."
+    },
+    {
+      "name": "autoPlay",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Autoplay interval in ms, or `false` to disable. Default: false."
+    },
+    {
+      "name": "fullWidth",
+      "type": "boolean",
+      "required": false,
+      "description": "Slides stretch edge-to-edge instead of respecting content max-width."
+    },
+    {
+      "name": "aspectRatio",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Shared media aspect ratio for every slide (Figma `.CarouselImage/*`). 'flexible' uses `height` (or per-slide override) instead of a fixed ratio."
+    },
+    {
+      "name": "height",
+      "type": "number",
+      "required": false,
+      "description": "Shared slide height in px when `aspectRatio` is `flexible`. Per-slide `height` overrides. Must be a positive integer."
+    },
+    {
+      "name": "style",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Root layout style."
+    },
+    {
+      "name": "testID",
+      "type": "string",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "accessibilityHint",
+      "type": "string",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "required": true,
+      "description": "One or more `Carousel.Item` slides, plus optional `Carousel.Controls` / `Carousel.SelectionRail`."
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.kb.rn.Carousel",
+    "type": "object",
+    "required": [
+      "aria-label",
+      "children"
+    ],
+    "properties": {
+      "aria-label": {
+        "type": "string",
+        "description": "Accessible name for the carousel landmark (required — no visual title implies one)."
+      },
+      "opts": {
+        "description": "Embla-style options object (advanced). `loop` prop takes precedence over `opts.loop` when both are set."
+      },
+      "loop": {
+        "type": "boolean",
+        "description": "Prev/next navigation and autoplay wrap from last slide to first."
+      },
+      "autoPlay": {
+        "description": "Autoplay interval in ms, or `false` to disable. Default: false."
+      },
+      "fullWidth": {
+        "type": "boolean",
+        "description": "Slides stretch edge-to-edge instead of respecting content max-width."
+      },
+      "aspectRatio": {
+        "description": "Shared media aspect ratio for every slide (Figma `.CarouselImage/*`). 'flexible' uses `height` (or per-slide override) instead of a fixed ratio."
+      },
+      "height": {
+        "type": "number",
+        "description": "Shared slide height in px when `aspectRatio` is `flexible`. Per-slide `height` overrides. Must be a positive integer."
+      },
+      "style": {
+        "description": "Root layout style."
+      },
+      "testID": {
+        "type": "string"
+      },
+      "accessibilityHint": {
+        "type": "string"
+      },
+      "children": {
+        "description": "One or more `Carousel.Item` slides, plus optional `Carousel.Controls` / `Carousel.SelectionRail`."
+      }
+    }
+  },
+  "tokens": {
+    "color": [
+      "primary",
+      "secondary",
+      "neutral",
+      "sparkle",
+      "brand-bg",
+      "positive",
+      "negative",
+      "warning",
+      "informative"
+    ],
+    "surface": [
+      "default",
+      "bold",
+      "subtle",
+      "minimal",
+      "elevated"
+    ],
+    "typography": [
+      "headline.M",
+      "body.S",
+      "label.XS"
+    ],
+    "shape": [
+      "S",
+      "M"
+    ],
+    "motion": [
+      "motion.duration.expressive.long",
+      "motion.easing.transition"
+    ]
+  },
+  "a11y": {
+    "accessibilityRole": "none",
+    "accessibleNameSource": "aria-label",
+    "minTouchTarget": 44,
+    "honorsBoldText": true,
+    "honorsScreenReader": true
+  },
+  "renderHints": {
+    "baseElement": "View",
+    "animatedOn": [
+      "mount"
+    ],
+    "honorsReduceMotion": true,
+    "readsFromSurfaceContext": true
+  },
+  "figma": {
+    "componentKey": "jds-carousel-v1",
+    "keyHistory": [],
+    "variantProperties": {
+      "Component": "Carousel"
+    }
+  },
+  "codeSnippets": [
+    {
+      "id": "import-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { Carousel } from '@oneui/ui-native';\n\n<Carousel />"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "carousel",
+    "media",
+    "carousel",
+    "compound",
+    "surface-aware",
+    "paging"
+  ],
+  "importPath": "@oneui/ui-native"
+}

@@ -1,0 +1,1382 @@
+{
+  "slug": "badge",
+  "runs": [
+    {
+      "savedAt": "2026-06-23T08:58:47.026Z",
+      "report": {
+        "ok": true,
+        "slug": "badge",
+        "message": "badge QA Playwright run OK — 2026-06-23T08:40:58.975Z",
+        "suites": {
+          "accessibility": {
+            "suite": "accessibility",
+            "passed": 26,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "26 test(s) in Playwright report for accessibility.",
+              "Axe: scan completed — 0 violation rules reported."
+            ],
+            "errors": [],
+            "cases": [
+              {
+                "name": "All Badge story bands meet WCAG 2.1 AA (axe tags) with HTML + JSON artefacts",
+                "status": "passed",
+                "durationMs": 6071
+              },
+              {
+                "name": "Story band \"badge-qa-default\" has no serious/critical axe violations",
+                "status": "passed",
+                "durationMs": 5379
+              },
+              {
+                "name": "Story band \"badge-qa-size\" has no serious/critical axe violations",
+                "status": "passed",
+                "durationMs": 5552
+              },
+              {
+                "name": "Story band \"badge-qa-attention\" has no serious/critical axe violations",
+                "status": "passed",
+                "durationMs": 5762
+              },
+              {
+                "name": "Story band \"badge-qa-attention-both-slots\" has no serious/critical axe violations",
+                "status": "passed",
+                "durationMs": 5438
+              },
+              {
+                "name": "Story band \"badge-qa-appearance\" has no serious/critical axe violations",
+                "status": "passed",
+                "durationMs": 3459
+              },
+              {
+                "name": "Story band \"badge-qa-start-slot\" has no serious/critical axe violations",
+                "status": "passed",
+                "durationMs": 3662
+              },
+              {
+                "name": "Story band \"badge-qa-end-slot\" has no serious/critical axe violations",
+                "status": "passed",
+                "durationMs": 3479
+              },
+              {
+                "name": "Story band \"badge-qa-start-end-combo\" has no serious/critical axe violations",
+                "status": "passed",
+                "durationMs": 3642
+              },
+              {
+                "name": "Story band \"badge-qa-accent\" has no serious/critical axe violations",
+                "status": "passed",
+                "durationMs": 3487
+              },
+              {
+                "name": "Story band \"badge-qa-content\" has no serious/critical axe violations",
+                "status": "passed",
+                "durationMs": 3327
+              },
+              {
+                "name": "Story band \"badge-qa-combos\" has no serious/critical axe violations",
+                "status": "passed",
+                "durationMs": 3588
+              },
+              {
+                "name": "Section 508 tag set reports no serious/critical issues in story bands",
+                "status": "passed",
+                "durationMs": 3443
+              },
+              {
+                "name": "ARIA validity rules pass in Badge story bands",
+                "status": "passed",
+                "durationMs": 3970
+              },
+              {
+                "name": "Naming rules pass for buttons, images, and links in story bands",
+                "status": "passed",
+                "durationMs": 3460
+              },
+              {
+                "name": "Label rule passes in Badge story bands",
+                "status": "passed",
+                "durationMs": 3152
+              },
+              {
+                "name": "Scrollable regions are keyboard-accessible when applicable",
+                "status": "passed",
+                "durationMs": 3553
+              },
+              {
+                "name": "Default Badge exposes role status and accessible name",
+                "status": "passed",
+                "durationMs": 2833
+              },
+              {
+                "name": "Document has a valid lang attribute",
+                "status": "passed",
+                "durationMs": 3275
+              },
+              {
+                "name": "Every showcase Badge has a non-empty accessible name",
+                "status": "passed",
+                "durationMs": 6022
+              },
+              {
+                "name": "Slot icons are decorative or named",
+                "status": "passed",
+                "durationMs": 3301
+              },
+              {
+                "name": "Tab moves focus to an interactive control on the page",
+                "status": "passed",
+                "durationMs": 3453
+              },
+              {
+                "name": "Badge root is not focused after Tab (non-interactive)",
+                "status": "passed",
+                "durationMs": 3698
+              },
+              {
+                "name": "Tab cycle visits multiple distinct targets (no keyboard trap)",
+                "status": "passed",
+                "durationMs": 3685
+              },
+              {
+                "name": "Mode select activates with Enter when focused",
+                "status": "passed",
+                "durationMs": 2824
+              },
+              {
+                "name": "Mode select activates with Space when focused",
+                "status": "passed",
+                "durationMs": 3385
+              }
+            ],
+            "axe": {
+              "violations": []
+            }
+          },
+          "functional": {
+            "suite": "functional",
+            "passed": 32,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "32 test(s) in Playwright report for functional."
+            ],
+            "errors": [],
+            "cases": [
+              {
+                "name": "Visitor sees the Badge playground and default label badge",
+                "status": "passed",
+                "durationMs": 4816
+              },
+              {
+                "name": "Visitor can switch light/dark theme from the page header",
+                "status": "passed",
+                "durationMs": 4716
+              },
+              {
+                "name": "Size band shows Figma scale XS through XL",
+                "status": "passed",
+                "durationMs": 4007
+              },
+              {
+                "name": "Attention band shows high, medium, and low emphasis",
+                "status": "passed",
+                "durationMs": 4109
+              },
+              {
+                "name": "Start and end slot bands document Icon, Avatar, CounterBadge, and IndicatorBadge",
+                "status": "passed",
+                "durationMs": 3936
+              },
+              {
+                "name": "Combination matrix renders all documented prop mixes",
+                "status": "passed",
+                "durationMs": 4801
+              },
+              {
+                "name": "Page loads cleanly and default Badge matches showcase props",
+                "status": "passed",
+                "durationMs": 5182
+              },
+              {
+                "name": "Every playground data-testid renders without error text",
+                "status": "passed",
+                "durationMs": 5710
+              },
+              {
+                "name": "Every story band (data-section) is visible on the page",
+                "status": "passed",
+                "durationMs": 3709
+              },
+              {
+                "name": "Size prop maps Figma labels to code data-size values",
+                "status": "passed",
+                "durationMs": 3305
+              },
+              {
+                "name": "Attention maps to variant tokens on the DOM",
+                "status": "passed",
+                "durationMs": 2891
+              },
+              {
+                "name": "Appearance prop surfaces on each Figma role row",
+                "status": "passed",
+                "durationMs": 2631
+              },
+              {
+                "name": "Badge sizes grow progressively from XS to XL",
+                "status": "passed",
+                "durationMs": 3354
+              },
+              {
+                "name": "Badge is display-only and not activated by click",
+                "status": "passed",
+                "durationMs": 2948
+              },
+              {
+                "name": "Tab focus stays on page chrome, not Badge instances",
+                "status": "passed",
+                "durationMs": 3103
+              },
+              {
+                "name": "Clicking Badge does not move focus to the Badge root",
+                "status": "passed",
+                "durationMs": 2975
+              },
+              {
+                "name": "Default state renders label text with bold variant",
+                "status": "passed",
+                "durationMs": 3012
+              },
+              {
+                "name": "Low attention uses ghost variant styling vs high bold",
+                "status": "passed",
+                "durationMs": 3223
+              },
+              {
+                "name": "start=none renders only the label wrapper",
+                "status": "passed",
+                "durationMs": 3021
+              },
+              {
+                "name": "start=Icon renders svg in the first slot span",
+                "status": "passed",
+                "durationMs": 3075
+              },
+              {
+                "name": "start=Avatar renders avatar content in the first slot",
+                "status": "passed",
+                "durationMs": 2983
+              },
+              {
+                "name": "start=CounterBadge shows counter value in the start slot",
+                "status": "passed",
+                "durationMs": 2700
+              },
+              {
+                "name": "end=Icon renders svg in the last slot span",
+                "status": "passed",
+                "durationMs": 2930
+              },
+              {
+                "name": "start and end Icon slots both render when combined",
+                "status": "passed",
+                "durationMs": 2940
+              },
+              {
+                "name": "Attention + both-slots rows render start and end for each slot type",
+                "status": "passed",
+                "durationMs": 3251
+              },
+              {
+                "name": "Badge does not support selection or toggle",
+                "status": "passed",
+                "durationMs": 2806
+              },
+              {
+                "name": "Badge does not accept typed input",
+                "status": "passed",
+                "durationMs": 2900
+              },
+              {
+                "name": "Attention alias resolves variant when variant prop is omitted",
+                "status": "passed",
+                "durationMs": 3029
+              },
+              {
+                "name": "Slot Icon uses decorative svg (aria-hidden) inside start slot",
+                "status": "passed",
+                "durationMs": 3300
+              },
+              {
+                "name": "Playground fits narrow mobile width without horizontal scroll",
+                "status": "passed",
+                "durationMs": 4697
+              },
+              {
+                "name": "Playground remains usable on large desktop viewport",
+                "status": "passed",
+                "durationMs": 4185
+              },
+              {
+                "name": "All story bands and sample badges remain visible in dark theme",
+                "status": "passed",
+                "durationMs": 2899
+              }
+            ]
+          },
+          "performance": {
+            "suite": "performance",
+            "passed": 0,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "Performance suite is not executed in apps/qa-playground badge Playwright bundle."
+            ],
+            "errors": []
+          }
+        }
+      }
+    },
+    {
+      "savedAt": "2026-06-23T08:40:58.977Z",
+      "report": {
+        "ok": true,
+        "slug": "badge",
+        "message": "badge QA Playwright run OK — 2026-06-17T07:17:14.360Z",
+        "suites": {
+          "accessibility": {
+            "suite": "accessibility",
+            "passed": 26,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "26 test(s) in Playwright report for accessibility.",
+              "Axe: scan completed — 0 violation rules reported."
+            ],
+            "errors": [],
+            "cases": [
+              {
+                "name": "All Badge story bands meet WCAG 2.1 AA (axe tags) with HTML + JSON artefacts",
+                "status": "passed",
+                "durationMs": 4544
+              },
+              {
+                "name": "Story band \"badge-qa-default\" has no serious/critical axe violations",
+                "status": "passed",
+                "durationMs": 4622
+              },
+              {
+                "name": "Story band \"badge-qa-size\" has no serious/critical axe violations",
+                "status": "passed",
+                "durationMs": 3867
+              },
+              {
+                "name": "Story band \"badge-qa-attention\" has no serious/critical axe violations",
+                "status": "passed",
+                "durationMs": 4420
+              },
+              {
+                "name": "Story band \"badge-qa-attention-both-slots\" has no serious/critical axe violations",
+                "status": "passed",
+                "durationMs": 4195
+              },
+              {
+                "name": "Story band \"badge-qa-appearance\" has no serious/critical axe violations",
+                "status": "passed",
+                "durationMs": 2116
+              },
+              {
+                "name": "Story band \"badge-qa-start-slot\" has no serious/critical axe violations",
+                "status": "passed",
+                "durationMs": 3465
+              },
+              {
+                "name": "Story band \"badge-qa-end-slot\" has no serious/critical axe violations",
+                "status": "passed",
+                "durationMs": 3877
+              },
+              {
+                "name": "Story band \"badge-qa-start-end-combo\" has no serious/critical axe violations",
+                "status": "passed",
+                "durationMs": 3910
+              },
+              {
+                "name": "Story band \"badge-qa-accent\" has no serious/critical axe violations",
+                "status": "passed",
+                "durationMs": 4256
+              },
+              {
+                "name": "Story band \"badge-qa-content\" has no serious/critical axe violations",
+                "status": "passed",
+                "durationMs": 3680
+              },
+              {
+                "name": "Story band \"badge-qa-combos\" has no serious/critical axe violations",
+                "status": "passed",
+                "durationMs": 2605
+              },
+              {
+                "name": "Section 508 tag set reports no serious/critical issues in story bands",
+                "status": "passed",
+                "durationMs": 4482
+              },
+              {
+                "name": "ARIA validity rules pass in Badge story bands",
+                "status": "passed",
+                "durationMs": 4788
+              },
+              {
+                "name": "Naming rules pass for buttons, images, and links in story bands",
+                "status": "passed",
+                "durationMs": 4398
+              },
+              {
+                "name": "Label rule passes in Badge story bands",
+                "status": "passed",
+                "durationMs": 3915
+              },
+              {
+                "name": "Scrollable regions are keyboard-accessible when applicable",
+                "status": "passed",
+                "durationMs": 3721
+              },
+              {
+                "name": "Default Badge exposes role status and accessible name",
+                "status": "passed",
+                "durationMs": 3160
+              },
+              {
+                "name": "Document has a valid lang attribute",
+                "status": "passed",
+                "durationMs": 3438
+              },
+              {
+                "name": "Every showcase Badge has a non-empty accessible name",
+                "status": "passed",
+                "durationMs": 9678
+              },
+              {
+                "name": "Slot icons are decorative or named",
+                "status": "passed",
+                "durationMs": 3738
+              },
+              {
+                "name": "Tab moves focus to an interactive control on the page",
+                "status": "passed",
+                "durationMs": 3444
+              },
+              {
+                "name": "Badge root is not focused after Tab (non-interactive)",
+                "status": "passed",
+                "durationMs": 3814
+              },
+              {
+                "name": "Tab cycle visits multiple distinct targets (no keyboard trap)",
+                "status": "passed",
+                "durationMs": 6277
+              },
+              {
+                "name": "Mode select activates with Enter when focused",
+                "status": "passed",
+                "durationMs": 5831
+              },
+              {
+                "name": "Mode select activates with Space when focused",
+                "status": "passed",
+                "durationMs": 6459
+              }
+            ],
+            "axe": {
+              "violations": []
+            }
+          },
+          "functional": {
+            "suite": "functional",
+            "passed": 32,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "32 test(s) in Playwright report for functional."
+            ],
+            "errors": [],
+            "cases": [
+              {
+                "name": "Visitor sees the Badge playground and default label badge",
+                "status": "passed",
+                "durationMs": 2749
+              },
+              {
+                "name": "Visitor can switch light/dark theme from the page header",
+                "status": "passed",
+                "durationMs": 2804
+              },
+              {
+                "name": "Size band shows Figma scale XS through XL",
+                "status": "passed",
+                "durationMs": 2685
+              },
+              {
+                "name": "Attention band shows high, medium, and low emphasis",
+                "status": "passed",
+                "durationMs": 2680
+              },
+              {
+                "name": "Start and end slot bands document Icon, Avatar, CounterBadge, and IndicatorBadge",
+                "status": "passed",
+                "durationMs": 2650
+              },
+              {
+                "name": "Combination matrix renders all documented prop mixes",
+                "status": "passed",
+                "durationMs": 3385
+              },
+              {
+                "name": "Page loads cleanly and default Badge matches showcase props",
+                "status": "passed",
+                "durationMs": 4434
+              },
+              {
+                "name": "Every playground data-testid renders without error text",
+                "status": "passed",
+                "durationMs": 5555
+              },
+              {
+                "name": "Every story band (data-section) is visible on the page",
+                "status": "passed",
+                "durationMs": 3923
+              },
+              {
+                "name": "Size prop maps Figma labels to code data-size values",
+                "status": "passed",
+                "durationMs": 2927
+              },
+              {
+                "name": "Attention maps to variant tokens on the DOM",
+                "status": "passed",
+                "durationMs": 1952
+              },
+              {
+                "name": "Appearance prop surfaces on each Figma role row",
+                "status": "passed",
+                "durationMs": 2386
+              },
+              {
+                "name": "Badge sizes grow progressively from XS to XL",
+                "status": "passed",
+                "durationMs": 2537
+              },
+              {
+                "name": "Badge is display-only and not activated by click",
+                "status": "passed",
+                "durationMs": 2526
+              },
+              {
+                "name": "Tab focus stays on page chrome, not Badge instances",
+                "status": "passed",
+                "durationMs": 2392
+              },
+              {
+                "name": "Clicking Badge does not move focus to the Badge root",
+                "status": "passed",
+                "durationMs": 2299
+              },
+              {
+                "name": "Default state renders label text with bold variant",
+                "status": "passed",
+                "durationMs": 2499
+              },
+              {
+                "name": "Low attention uses ghost variant styling vs high bold",
+                "status": "passed",
+                "durationMs": 2800
+              },
+              {
+                "name": "start=none renders only the label wrapper",
+                "status": "passed",
+                "durationMs": 2802
+              },
+              {
+                "name": "start=Icon renders svg in the first slot span",
+                "status": "passed",
+                "durationMs": 2911
+              },
+              {
+                "name": "start=Avatar renders avatar content in the first slot",
+                "status": "passed",
+                "durationMs": 2634
+              },
+              {
+                "name": "start=CounterBadge shows counter value in the start slot",
+                "status": "passed",
+                "durationMs": 2368
+              },
+              {
+                "name": "end=Icon renders svg in the last slot span",
+                "status": "passed",
+                "durationMs": 2586
+              },
+              {
+                "name": "start and end Icon slots both render when combined",
+                "status": "passed",
+                "durationMs": 2801
+              },
+              {
+                "name": "Attention + both-slots rows render start and end for each slot type",
+                "status": "passed",
+                "durationMs": 2964
+              },
+              {
+                "name": "Badge does not support selection or toggle",
+                "status": "passed",
+                "durationMs": 2830
+              },
+              {
+                "name": "Badge does not accept typed input",
+                "status": "passed",
+                "durationMs": 2861
+              },
+              {
+                "name": "Attention alias resolves variant when variant prop is omitted",
+                "status": "passed",
+                "durationMs": 3038
+              },
+              {
+                "name": "Slot Icon uses decorative svg (aria-hidden) inside start slot",
+                "status": "passed",
+                "durationMs": 2997
+              },
+              {
+                "name": "Playground fits narrow mobile width without horizontal scroll",
+                "status": "passed",
+                "durationMs": 4241
+              },
+              {
+                "name": "Playground remains usable on large desktop viewport",
+                "status": "passed",
+                "durationMs": 3719
+              },
+              {
+                "name": "All story bands and sample badges remain visible in dark theme",
+                "status": "passed",
+                "durationMs": 2794
+              }
+            ]
+          },
+          "performance": {
+            "suite": "performance",
+            "passed": 0,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "Performance suite is not executed in apps/qa-playground badge Playwright bundle."
+            ],
+            "errors": []
+          }
+        }
+      }
+    },
+    {
+      "savedAt": "2026-06-17T07:17:14.362Z",
+      "report": {
+        "ok": true,
+        "slug": "badge",
+        "message": "badge QA Playwright run OK — 2026-06-04T11:24:03.380Z",
+        "suites": {
+          "accessibility": {
+            "suite": "accessibility",
+            "passed": 26,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "26 test(s) in Playwright report for accessibility.",
+              "Axe: scan completed — 0 violation rules reported."
+            ],
+            "errors": [],
+            "cases": [
+              {
+                "name": "All Badge story bands meet WCAG 2.1 AA (axe tags) with HTML + JSON artefacts",
+                "status": "passed",
+                "durationMs": 5406
+              },
+              {
+                "name": "Story band \"badge-qa-default\" has no serious/critical axe violations",
+                "status": "passed",
+                "durationMs": 5148
+              },
+              {
+                "name": "Story band \"badge-qa-size\" has no serious/critical axe violations",
+                "status": "passed",
+                "durationMs": 5186
+              },
+              {
+                "name": "Story band \"badge-qa-attention\" has no serious/critical axe violations",
+                "status": "passed",
+                "durationMs": 5157
+              },
+              {
+                "name": "Story band \"badge-qa-attention-both-slots\" has no serious/critical axe violations",
+                "status": "passed",
+                "durationMs": 5227
+              },
+              {
+                "name": "Story band \"badge-qa-appearance\" has no serious/critical axe violations",
+                "status": "passed",
+                "durationMs": 4127
+              },
+              {
+                "name": "Story band \"badge-qa-start-slot\" has no serious/critical axe violations",
+                "status": "passed",
+                "durationMs": 3890
+              },
+              {
+                "name": "Story band \"badge-qa-end-slot\" has no serious/critical axe violations",
+                "status": "passed",
+                "durationMs": 4111
+              },
+              {
+                "name": "Story band \"badge-qa-start-end-combo\" has no serious/critical axe violations",
+                "status": "passed",
+                "durationMs": 4147
+              },
+              {
+                "name": "Story band \"badge-qa-accent\" has no serious/critical axe violations",
+                "status": "passed",
+                "durationMs": 4451
+              },
+              {
+                "name": "Story band \"badge-qa-content\" has no serious/critical axe violations",
+                "status": "passed",
+                "durationMs": 2954
+              },
+              {
+                "name": "Story band \"badge-qa-combos\" has no serious/critical axe violations",
+                "status": "passed",
+                "durationMs": 3475
+              },
+              {
+                "name": "Section 508 tag set reports no serious/critical issues in story bands",
+                "status": "passed",
+                "durationMs": 3331
+              },
+              {
+                "name": "ARIA validity rules pass in Badge story bands",
+                "status": "passed",
+                "durationMs": 3725
+              },
+              {
+                "name": "Naming rules pass for buttons, images, and links in story bands",
+                "status": "passed",
+                "durationMs": 3222
+              },
+              {
+                "name": "Label rule passes in Badge story bands",
+                "status": "passed",
+                "durationMs": 2030
+              },
+              {
+                "name": "Scrollable regions are keyboard-accessible when applicable",
+                "status": "passed",
+                "durationMs": 2944
+              },
+              {
+                "name": "Default Badge exposes role status and accessible name",
+                "status": "passed",
+                "durationMs": 2547
+              },
+              {
+                "name": "Document has a valid lang attribute",
+                "status": "passed",
+                "durationMs": 2642
+              },
+              {
+                "name": "Every showcase Badge has a non-empty accessible name",
+                "status": "passed",
+                "durationMs": 5292
+              },
+              {
+                "name": "Slot icons are decorative or named",
+                "status": "passed",
+                "durationMs": 2401
+              },
+              {
+                "name": "Tab moves focus to an interactive control on the page",
+                "status": "passed",
+                "durationMs": 2567
+              },
+              {
+                "name": "Badge root is not focused after Tab (non-interactive)",
+                "status": "passed",
+                "durationMs": 2592
+              },
+              {
+                "name": "Tab cycle visits multiple distinct targets (no keyboard trap)",
+                "status": "passed",
+                "durationMs": 3069
+              },
+              {
+                "name": "Mode select activates with Enter when focused",
+                "status": "passed",
+                "durationMs": 2653
+              },
+              {
+                "name": "Mode select activates with Space when focused",
+                "status": "passed",
+                "durationMs": 2384
+              }
+            ],
+            "axe": {
+              "violations": []
+            }
+          },
+          "functional": {
+            "suite": "functional",
+            "passed": 32,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "32 test(s) in Playwright report for functional."
+            ],
+            "errors": [],
+            "cases": [
+              {
+                "name": "Visitor sees the Badge playground and default label badge",
+                "status": "passed",
+                "durationMs": 2812
+              },
+              {
+                "name": "Visitor can switch light/dark theme from the page header",
+                "status": "passed",
+                "durationMs": 3419
+              },
+              {
+                "name": "Size band shows Figma scale XS through XL",
+                "status": "passed",
+                "durationMs": 3421
+              },
+              {
+                "name": "Attention band shows high, medium, and low emphasis",
+                "status": "passed",
+                "durationMs": 3426
+              },
+              {
+                "name": "Start and end slot bands document Icon, Avatar, CounterBadge, and IndicatorBadge",
+                "status": "passed",
+                "durationMs": 3228
+              },
+              {
+                "name": "Combination matrix renders all documented prop mixes",
+                "status": "passed",
+                "durationMs": 3841
+              },
+              {
+                "name": "Page loads cleanly and default Badge matches showcase props",
+                "status": "passed",
+                "durationMs": 5815
+              },
+              {
+                "name": "Every playground data-testid renders without error text",
+                "status": "passed",
+                "durationMs": 5810
+              },
+              {
+                "name": "Every story band (data-section) is visible on the page",
+                "status": "passed",
+                "durationMs": 3856
+              },
+              {
+                "name": "Size prop maps Figma labels to code data-size values",
+                "status": "passed",
+                "durationMs": 3789
+              },
+              {
+                "name": "Attention maps to variant tokens on the DOM",
+                "status": "passed",
+                "durationMs": 2891
+              },
+              {
+                "name": "Appearance prop surfaces on each Figma role row",
+                "status": "passed",
+                "durationMs": 3030
+              },
+              {
+                "name": "Badge sizes grow progressively from XS to XL",
+                "status": "passed",
+                "durationMs": 3305
+              },
+              {
+                "name": "Badge is display-only and not activated by click",
+                "status": "passed",
+                "durationMs": 3202
+              },
+              {
+                "name": "Tab focus stays on page chrome, not Badge instances",
+                "status": "passed",
+                "durationMs": 2962
+              },
+              {
+                "name": "Clicking Badge does not move focus to the Badge root",
+                "status": "passed",
+                "durationMs": 2781
+              },
+              {
+                "name": "Default state renders label text with bold variant",
+                "status": "passed",
+                "durationMs": 2268
+              },
+              {
+                "name": "Low attention uses ghost variant styling vs high bold",
+                "status": "passed",
+                "durationMs": 2631
+              },
+              {
+                "name": "start=none renders only the label wrapper",
+                "status": "passed",
+                "durationMs": 2688
+              },
+              {
+                "name": "start=Icon renders svg in the first slot span",
+                "status": "passed",
+                "durationMs": 2959
+              },
+              {
+                "name": "start=Avatar renders avatar content in the first slot",
+                "status": "passed",
+                "durationMs": 2926
+              },
+              {
+                "name": "start=CounterBadge shows counter value in the start slot",
+                "status": "passed",
+                "durationMs": 2534
+              },
+              {
+                "name": "end=Icon renders svg in the last slot span",
+                "status": "passed",
+                "durationMs": 2778
+              },
+              {
+                "name": "start and end Icon slots both render when combined",
+                "status": "passed",
+                "durationMs": 2806
+              },
+              {
+                "name": "Attention + both-slots rows render start and end for each slot type",
+                "status": "passed",
+                "durationMs": 3264
+              },
+              {
+                "name": "Badge does not support selection or toggle",
+                "status": "passed",
+                "durationMs": 3134
+              },
+              {
+                "name": "Badge does not accept typed input",
+                "status": "passed",
+                "durationMs": 2941
+              },
+              {
+                "name": "Attention alias resolves variant when variant prop is omitted",
+                "status": "passed",
+                "durationMs": 2923
+              },
+              {
+                "name": "Slot Icon uses decorative svg (aria-hidden) inside start slot",
+                "status": "passed",
+                "durationMs": 2929
+              },
+              {
+                "name": "Playground fits narrow mobile width without horizontal scroll",
+                "status": "passed",
+                "durationMs": 4086
+              },
+              {
+                "name": "Playground remains usable on large desktop viewport",
+                "status": "passed",
+                "durationMs": 3901
+              },
+              {
+                "name": "All story bands and sample badges remain visible in dark theme",
+                "status": "passed",
+                "durationMs": 2631
+              }
+            ]
+          },
+          "performance": {
+            "suite": "performance",
+            "passed": 0,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "Performance suite is not executed in apps/qa-playground badge Playwright bundle."
+            ],
+            "errors": []
+          }
+        }
+      }
+    },
+    {
+      "savedAt": "2026-06-04T11:24:03.382Z",
+      "report": {
+        "ok": true,
+        "slug": "badge",
+        "message": "Badge QA Playwright run OK — 2026-05-28T09:19:36.959Z",
+        "suites": {
+          "accessibility": {
+            "suite": "accessibility",
+            "passed": 29,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "29 test(s) in Playwright report for accessibility.",
+              "Axe: scan completed — 0 violation rules reported."
+            ],
+            "errors": [],
+            "cases": [
+              {
+                "name": "All Badge story bands meet WCAG 2.1 AA (axe tags) with HTML + JSON artefacts",
+                "status": "passed",
+                "durationMs": 4174
+              },
+              {
+                "name": "Story band \"badge-qa-default\" has no serious/critical axe violations",
+                "status": "passed",
+                "durationMs": 3278
+              },
+              {
+                "name": "Story band \"badge-qa-size\" has no serious/critical axe violations",
+                "status": "passed",
+                "durationMs": 3347
+              },
+              {
+                "name": "Story band \"badge-qa-attention\" has no serious/critical axe violations",
+                "status": "passed",
+                "durationMs": 3743
+              },
+              {
+                "name": "Story band \"badge-qa-attention-both-slots\" has no serious/critical axe violations",
+                "status": "passed",
+                "durationMs": 3555
+              },
+              {
+                "name": "Story band \"badge-qa-appearance\" has no serious/critical axe violations",
+                "status": "passed",
+                "durationMs": 2647
+              },
+              {
+                "name": "Story band \"badge-qa-start-slot\" has no serious/critical axe violations",
+                "status": "passed",
+                "durationMs": 2581
+              },
+              {
+                "name": "Story band \"badge-qa-end-slot\" has no serious/critical axe violations",
+                "status": "passed",
+                "durationMs": 3107
+              },
+              {
+                "name": "Story band \"badge-qa-start-end-combo\" has no serious/critical axe violations",
+                "status": "passed",
+                "durationMs": 3173
+              },
+              {
+                "name": "Story band \"badge-qa-accent\" has no serious/critical axe violations",
+                "status": "passed",
+                "durationMs": 2916
+              },
+              {
+                "name": "Story band \"badge-qa-content\" has no serious/critical axe violations",
+                "status": "passed",
+                "durationMs": 3117
+              },
+              {
+                "name": "Story band \"badge-qa-combos\" has no serious/critical axe violations",
+                "status": "passed",
+                "durationMs": 3322
+              },
+              {
+                "name": "Section 508 tag set reports no serious/critical issues in story bands",
+                "status": "passed",
+                "durationMs": 4170
+              },
+              {
+                "name": "Appearance story band passes colour contrast axe rule",
+                "status": "passed",
+                "durationMs": 4149
+              },
+              {
+                "name": "Each appearance row passes colour contrast in isolation",
+                "status": "passed",
+                "durationMs": 7717
+              },
+              {
+                "name": "ARIA validity rules pass in Badge story bands",
+                "status": "passed",
+                "durationMs": 3647
+              },
+              {
+                "name": "Naming rules pass for buttons, images, and links in story bands",
+                "status": "passed",
+                "durationMs": 3147
+              },
+              {
+                "name": "Label rule passes in Badge story bands",
+                "status": "passed",
+                "durationMs": 2509
+              },
+              {
+                "name": "Scrollable regions are keyboard-accessible when applicable",
+                "status": "passed",
+                "durationMs": 2547
+              },
+              {
+                "name": "Default Badge exposes role status and accessible name",
+                "status": "passed",
+                "durationMs": 1769
+              },
+              {
+                "name": "Document has a valid lang attribute",
+                "status": "passed",
+                "durationMs": 1533
+              },
+              {
+                "name": "Every showcase Badge has a non-empty accessible name",
+                "status": "passed",
+                "durationMs": 4951
+              },
+              {
+                "name": "Slot icons are decorative or named",
+                "status": "passed",
+                "durationMs": 2238
+              },
+              {
+                "name": "Tab moves focus to an interactive control on the page",
+                "status": "passed",
+                "durationMs": 2584
+              },
+              {
+                "name": "Badge root is not focused after Tab (non-interactive)",
+                "status": "passed",
+                "durationMs": 2575
+              },
+              {
+                "name": "Tab cycle visits multiple distinct targets (no keyboard trap)",
+                "status": "passed",
+                "durationMs": 2811
+              },
+              {
+                "name": "Theme button activates with Enter and Space when focused",
+                "status": "passed",
+                "durationMs": 1874
+              },
+              {
+                "name": "Story bands fit within 320px width without horizontal overflow",
+                "status": "passed",
+                "durationMs": 4393
+              },
+              {
+                "name": "Badges remain visible at 200% browser zoom",
+                "status": "passed",
+                "durationMs": 2045
+              }
+            ],
+            "axe": {
+              "violations": []
+            }
+          },
+          "functional": {
+            "suite": "functional",
+            "passed": 34,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "34 test(s) in Playwright report for functional."
+            ],
+            "errors": [],
+            "cases": [
+              {
+                "name": "Visitor sees the Badge playground and default label badge",
+                "status": "passed",
+                "durationMs": 2680
+              },
+              {
+                "name": "Visitor can switch light/dark theme from the page header",
+                "status": "passed",
+                "durationMs": 3078
+              },
+              {
+                "name": "Size band shows Figma scale XS through XL",
+                "status": "passed",
+                "durationMs": 2751
+              },
+              {
+                "name": "Attention band shows high, medium, and low emphasis",
+                "status": "passed",
+                "durationMs": 2343
+              },
+              {
+                "name": "Start and end slot bands document Icon, Avatar, CounterBadge, and IndicatorBadge",
+                "status": "passed",
+                "durationMs": 2320
+              },
+              {
+                "name": "Combination matrix renders all documented prop mixes",
+                "status": "passed",
+                "durationMs": 2563
+              },
+              {
+                "name": "Page loads cleanly and default Badge matches showcase props",
+                "status": "passed",
+                "durationMs": 3796
+              },
+              {
+                "name": "Every playground data-testid renders without error text",
+                "status": "passed",
+                "durationMs": 4578
+              },
+              {
+                "name": "Every story band (data-section) is visible on the page",
+                "status": "passed",
+                "durationMs": 2613
+              },
+              {
+                "name": "Size prop maps Figma labels to code data-size values",
+                "status": "passed",
+                "durationMs": 2258
+              },
+              {
+                "name": "Attention maps to variant tokens on the DOM",
+                "status": "passed",
+                "durationMs": 1884
+              },
+              {
+                "name": "Appearance prop surfaces on each Figma role row",
+                "status": "passed",
+                "durationMs": 2203
+              },
+              {
+                "name": "Badge sizes grow progressively from XS to XL",
+                "status": "passed",
+                "durationMs": 2183
+              },
+              {
+                "name": "Appearance roles use distinct, non-transparent fill colours",
+                "status": "passed",
+                "durationMs": 2196
+              },
+              {
+                "name": "Badge is display-only and not activated by click",
+                "status": "passed",
+                "durationMs": 1792
+              },
+              {
+                "name": "Tab focus stays on page chrome, not Badge instances",
+                "status": "passed",
+                "durationMs": 1381
+              },
+              {
+                "name": "Clicking Badge does not move focus to the Badge root",
+                "status": "passed",
+                "durationMs": 2131
+              },
+              {
+                "name": "Default state renders label text with bold variant",
+                "status": "passed",
+                "durationMs": 2321
+              },
+              {
+                "name": "Low attention uses ghost variant styling vs high bold",
+                "status": "passed",
+                "durationMs": 2430
+              },
+              {
+                "name": "start=none renders only the label wrapper",
+                "status": "passed",
+                "durationMs": 2277
+              },
+              {
+                "name": "start=Icon renders svg in the first slot span",
+                "status": "passed",
+                "durationMs": 1968
+              },
+              {
+                "name": "start=Avatar renders avatar content in the first slot",
+                "status": "passed",
+                "durationMs": 2244
+              },
+              {
+                "name": "start=CounterBadge shows counter value in the start slot",
+                "status": "passed",
+                "durationMs": 2720
+              },
+              {
+                "name": "end=Icon renders svg in the last slot span",
+                "status": "passed",
+                "durationMs": 2774
+              },
+              {
+                "name": "start and end Icon slots both render when combined",
+                "status": "passed",
+                "durationMs": 3093
+              },
+              {
+                "name": "Attention + both-slots rows render start and end for each slot type",
+                "status": "passed",
+                "durationMs": 3156
+              },
+              {
+                "name": "Badge does not support selection or toggle",
+                "status": "passed",
+                "durationMs": 2304
+              },
+              {
+                "name": "Badge does not accept typed input",
+                "status": "passed",
+                "durationMs": 2264
+              },
+              {
+                "name": "Attention alias resolves variant when variant prop is omitted",
+                "status": "passed",
+                "durationMs": 2767
+              },
+              {
+                "name": "Label text renders in children and is non-empty",
+                "status": "passed",
+                "durationMs": 2577
+              },
+              {
+                "name": "Slot Icon uses decorative svg (aria-hidden) inside start slot",
+                "status": "passed",
+                "durationMs": 2722
+              },
+              {
+                "name": "Playground fits narrow mobile width without horizontal scroll",
+                "status": "passed",
+                "durationMs": 3703
+              },
+              {
+                "name": "Playground remains usable on large desktop viewport",
+                "status": "passed",
+                "durationMs": 3024
+              },
+              {
+                "name": "All story bands and sample badges remain visible in dark theme",
+                "status": "passed",
+                "durationMs": 2159
+              }
+            ]
+          },
+          "performance": {
+            "suite": "performance",
+            "passed": 0,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "Performance suite is not executed in apps/qa-playground Badge Playwright bundle."
+            ],
+            "errors": []
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,124 @@
+/**
+ * SliderKnob.module.css
+ *
+ * Figma spec (.Knob, node 5723:7913):
+ *   Hit target:  48×48       (Spacing-12 / Dimension-f8)
+ *   knobInside:  idle 4px white   → hover/pressed/focus 8px white  (scale 2)
+ *   knobOutside: idle 12px accent → hover/pressed/focus 18px accent (scale 1.5)
+ *   Focus ring:  2px offset (halo gap) + 2px-visible accent ring
+ *                → box-shadow 2px Surface-Halo-Gap, 4px accent (outer − inner = 2px visible)
+ *
+ * Animation strategy:
+ *   Scale with transform (GPU-accelerated, smooth in + out) instead of
+ *   animating width/height. Same duration/easing in both directions so the
+ *   growth feels symmetric and continuous.
+ *
+ * Motion tokens used:
+ *   --Motion-Duration-M (200ms default)            — knob scale duration
+ *   --Motion-Easing-Transition-Moderate            — smooth ease-in-out both ways
+ *   --Motion-Duration-XS + Transition-Moderate     — focus ring + colour
+ *
+ * State drivers:
+ *   :hover, [data-dragging], :has(:focus-visible),
+ *   [data-force-state="hover|pressed|focus"] (Storybook)
+ */
+
+/* ============================================
+   HIT TARGET — 48×48 invisible interactive layer
+   ============================================ */
+
+.knob {
+  box-sizing: border-box;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: var(--Slider-hitTarget, var(--Spacing-12));
+  height: var(--Slider-hitTarget, var(--Spacing-12));
+  background: transparent;
+  border: 0;
+  cursor: grab;
+  outline: none;
+  user-select: none;
+  touch-action: none;
+}
+
+.knob[data-dragging] {
+  cursor: grabbing;
+}
+
+.knob[data-disabled] {
+  cursor: not-allowed;
+}
+
+/* ============================================
+   DOT — base (idle) geometry; grows via transform: scale
+   ============================================ */
+
+.dot {
+  display: block;
+  border-radius: var(--Slider-knobBorderRadius, var(--Shape-Pill));
+  transform: scale(1);
+  transform-origin: center;
+  will-change: transform;
+  transition:
+    transform var(--Motion-Duration-L) var(--Motion-Easing-Transition-Moderate),
+    background-color var(--Motion-Duration-XS) var(--Motion-Easing-Transition-Moderate),
+    box-shadow var(--Motion-Duration-XS) var(--Motion-Easing-Transition-Moderate);
+}
+
+/* Idle geometry per knob style */
+
+[data-knob-style="outside"] .dot {
+  width: var(--Slider-knobSize-outside, var(--Spacing-3));       /* 12px */
+  height: var(--Slider-knobSize-outside, var(--Spacing-3));
+  background-color: var(--_slider-knob);
+}
+
+[data-knob-style="inside"] .dot {
+  width: var(--Slider-knobSize-inside, var(--Spacing-1));        /* 4px */
+  height: var(--Slider-knobSize-inside, var(--Spacing-1));
+  background-color: var(--_slider-inner);
+}
+
+/* ============================================
+   GROWN STATE — transform: scale (smooth in + out)
+   outside: 12 → 18 = scale 1.5
+   inside:  4  →  8 = scale 2
+   ============================================ */
+
+[data-knob-style="outside"] .knob:hover .dot,
+[data-knob-style="outside"] .knob[data-knob-active] .dot,
+[data-knob-style="outside"] .knob:has(:focus-visible) .dot,
+[data-force-state="hover"] [data-knob-style="outside"] .dot,
+[data-force-state="pressed"] [data-knob-style="outside"] .dot,
+[data-force-state="focus"] [data-knob-style="outside"] .dot {
+  transform: scale(var(--Slider-knobScale-outside, 1.5));
+}
+
+[data-knob-style="inside"] .knob:hover .dot,
+[data-knob-style="inside"] .knob[data-knob-active] .dot,
+[data-knob-style="inside"] .knob:has(:focus-visible) .dot,
+[data-force-state="hover"] [data-knob-style="inside"] .dot,
+[data-force-state="pressed"] [data-knob-style="inside"] .dot,
+[data-force-state="focus"] [data-knob-style="inside"] .dot {
+  transform: scale(var(--Slider-knobScale-inside, 2));
+}
+
+/* ============================================
+   FOCUS RING — two concentric rings per Figma
+     inner: Stroke-XL (2px) gap using Surface-Halo-Gap (matches container)
+     outer: Stroke-XL + Focus-Outline-Width (2+2=4px) in the Informative role
+            (always Informative, matching Switch/Button convention — regardless
+             of slider's own appearance).
+     visible ring = 2px between the two.
+   ============================================ */
+
+.knob:has(:focus-visible) .dot,
+[data-force-state="focus"] .dot {
+  box-shadow:
+    0 0 0 var(--Stroke-XL) var(--Surface-Halo-Gap, var(--Surface-Main)),
+    0 0 0 calc(var(--Stroke-XL) + var(--Focus-Outline-Width))
+      var(--Informative-Bold, var(--Focus-Outline));
+}

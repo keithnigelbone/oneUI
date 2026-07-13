@@ -1,0 +1,184 @@
+/**
+ * DirectionPicker.module.css
+ *
+ * Three-up gallery layout for the explore-directions feature. Tiles use the
+ * default surface so the live ASTRenderer previews inside resolve their own
+ * tokens correctly — never wrap the gallery in a tinted Surface.
+ */
+
+.headerActions {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-2);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--Spacing-4);
+  padding: var(--Spacing-3-5) 0;
+}
+
+/* ── Tile ───────────────────────────────────────────────────────────── */
+
+.tile {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-3-5);
+  padding: var(--Spacing-4);
+  background-color: var(--Surface-Main);
+  border-radius: var(--Shape-4);
+  border: var(--Stroke-S) solid var(--Border-Subtle);
+  transition: transform 120ms ease-out, border-color 120ms ease-out;
+}
+
+.tile:hover {
+  border-color: var(--Border-High);
+  transform: translateY(-2px);
+}
+
+.tile[data-state='failed'] {
+  background-color: var(--Negative-Subtle);
+  border-color: var(--Negative-Stroke-Low);
+}
+
+.tileHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--Spacing-3);
+}
+
+.tileLabel {
+  margin: 0;
+  font-family: var(--Title-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Title-M-FontSize);
+  font-weight: var(--Title-M-FontWeight);
+  line-height: var(--Title-M-LineHeight);
+  color: var(--Text-High);
+}
+
+.tileDescription {
+  margin: 0;
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Body-S-FontSize);
+  font-weight: var(--Body-FontWeight-Low);
+  line-height: var(--Body-S-LineHeight);
+  color: var(--Text-Medium);
+}
+
+.tileError {
+  margin: 0;
+  padding: var(--Spacing-3);
+  background-color: var(--Surface-Main);
+  border-radius: var(--Shape-2);
+  font-family: var(--Typography-Font-Code);
+  font-size: var(--Code-S-FontSize);
+  line-height: var(--Code-S-LineHeight);
+  color: var(--Text-High);
+}
+
+/* ── Live preview frame ─────────────────────────────────────────────── */
+
+/*
+ * The preview is a fixed-aspect window that scales the rendered AST down so
+ * a full mobile-app screen fits inside ~280px without horizontal scroll.
+ * `transform: scale()` is the simplest way to get a faithful thumbnail
+ * without re-running the renderer at a smaller breakpoint — but it requires
+ * an outer overflow:hidden frame and a fixed source width on the inner
+ * wrapper.
+ */
+.tilePreview {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  overflow: hidden;
+  border-radius: var(--Shape-2-5);
+  background-color: var(--Surface-Subtle);
+  border: var(--Stroke-S) solid var(--Border-Subtle);
+}
+
+.tilePreviewScale {
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* Source dimensions match a mobile-app frame; scale is applied to fit
+     the aspect-locked outer frame. */
+  width: 390px;
+  height: 693.3px; /* 9/16 ratio of 390 */
+  transform-origin: top left;
+  transform: scale(0.7);
+  pointer-events: none;
+}
+
+/* For wider thumbnails, bump the scale via a media query elsewhere — for now
+   the 0.7 factor is tuned so a 280px-wide tile shows ~273px of source. */
+
+.tileFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--Spacing-3);
+  flex-wrap: wrap;
+}
+
+.tileMeta {
+  font-family: var(--Label-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Label-XS-FontSize);
+  font-weight: var(--Label-FontWeight-Low);
+  line-height: var(--Label-XS-LineHeight);
+  color: var(--Text-Low);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* ── Status / error rows ────────────────────────────────────────────── */
+
+.statusRow {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-2);
+  padding: var(--Spacing-4) 0;
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Body-M-FontSize);
+  line-height: var(--Body-M-LineHeight);
+  color: var(--Text-Medium);
+}
+
+.muted {
+  color: var(--Text-Low);
+}
+
+.errorRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--Spacing-3-5);
+  padding: var(--Spacing-3-5);
+  background-color: var(--Negative-Subtle);
+  border-radius: var(--Shape-2-5);
+}
+
+.errorBody {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--Spacing-2);
+  color: var(--Text-High);
+}
+
+.errorTitle {
+  display: block;
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Body-M-FontSize);
+  font-weight: var(--Body-FontWeight-Medium);
+  line-height: var(--Body-M-LineHeight);
+}
+
+.errorMessage {
+  margin: 0;
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Body-S-FontSize);
+  font-weight: var(--Body-FontWeight-Low);
+  line-height: var(--Body-S-LineHeight);
+  color: var(--Text-Medium);
+}

@@ -1,0 +1,115 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "CarouselItem",
+  "generatedAt": "2026-07-09T13:07:37.428Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "A single carousel slide. `surface` (e.g. \"bold\") sets the slide-level Surface context for its content."
+  },
+  "compositionRules": {
+    "requires": [
+      "children"
+    ],
+    "allows": [],
+    "forbids": [],
+    "childKind": "fixed-slots"
+  },
+  "props": [
+    {
+      "name": "height",
+      "type": "number",
+      "required": false,
+      "description": "Per-slide height override — falls back to Carousel root height."
+    },
+    {
+      "name": "surface",
+      "type": "'default' | 'ghost' | 'minimal' | 'subtle' | 'moderate' | 'bold' | 'elevated'",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "required": true,
+      "description": "CarouselSlideImage (+ optional CarouselItemBadgeRow / CarouselSlideContent)."
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.kb.rn.CarouselItem",
+    "type": "object",
+    "required": [
+      "children"
+    ],
+    "properties": {
+      "height": {
+        "type": "number",
+        "description": "Per-slide height override — falls back to Carousel root height."
+      },
+      "surface": {
+        "enum": [
+          "default",
+          "ghost",
+          "minimal",
+          "subtle",
+          "moderate",
+          "bold",
+          "elevated"
+        ]
+      },
+      "aria-label": {
+        "type": "string"
+      },
+      "children": {
+        "description": "CarouselSlideImage (+ optional CarouselItemBadgeRow / CarouselSlideContent)."
+      }
+    }
+  },
+  "tokens": {
+    "surface": [
+      "default",
+      "bold"
+    ]
+  },
+  "a11y": {
+    "accessibilityRole": "image",
+    "accessibleNameSource": "aria-label",
+    "minTouchTarget": 44,
+    "honorsBoldText": false,
+    "honorsScreenReader": true
+  },
+  "renderHints": {
+    "baseElement": "View",
+    "animatedOn": [],
+    "honorsReduceMotion": false,
+    "readsFromSurfaceContext": true
+  },
+  "figma": {
+    "componentKey": "jds-carousel-item-v1",
+    "keyHistory": []
+  },
+  "codeSnippets": [
+    {
+      "id": "import-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { CarouselItem } from '@oneui/ui-native';\n\n<CarouselItem />"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "carouselitem",
+    "carousel",
+    "compound",
+    "surface-aware"
+  ],
+  "importPath": "@oneui/ui-native"
+}

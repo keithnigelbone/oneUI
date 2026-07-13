@@ -1,0 +1,474 @@
+/**
+ * ASTPreviewCard.module.css
+ *
+ * DCA composition card — inline in the chat transcript.
+ * Surface context: outer card = minimal, header bar = subtle.
+ *
+ * INTENTIONAL-LITERAL: the device-mockup preview replicates an iPhone 15
+ * Pro shell (393 × 852 viewport, 52px corner radius, notch cutout at
+ * 126 × 10px, 14px notch margin). These pixel values mirror Apple's
+ * published hardware dimensions and are not expressible via the spacing /
+ * shape token scale. The drop shadow (rgba 0.18) and 1px alignment
+ * offsets around the notch are similarly device-accurate.
+ */
+
+/* ── Card root (Surface "minimal" handles background) ─────────────────────── */
+
+.root {
+  display: flex;
+  flex-direction: column;
+  border: var(--Stroke-S) solid var(--Primary-Stroke-Low);
+  border-radius: var(--Shape-4);
+  margin-block: var(--Spacing-2-5);
+  overflow: hidden; /* clip children to border-radius */
+}
+
+/* ── Chip variant — calm accordion row, modeled on ToneGuardCard.
+       Used when the canvas panel is already visible (Playground v2
+       split layout) so the chat stays lightweight. ────────────────────── */
+
+.chipRoot {
+  display: flex;
+  flex-direction: column;
+  background: transparent;
+  border-radius: 0;
+  margin-block: var(--Spacing-2);
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Primary));
+  overflow: hidden;
+}
+
+.chipHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-2);
+  padding: var(--Spacing-3) var(--Spacing-3-5);
+  background: transparent;
+  border: none;
+  width: 100%;
+  text-align: left;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background-color var(--Motion-Duration-Discreet-Short) var(--Motion-Easing-Standard);
+}
+
+.chipHeader:hover:not(:disabled) {
+  background: var(--Primary-Subtle);
+}
+
+.chipHeader:disabled {
+  cursor: default;
+}
+
+/* INTENTIONAL-LITERAL: 6px status dot is below the smallest spacing token
+   (Spacing-1-5 = 8px would round up). Mirrors ToneGuardCard.statusDot. */
+.chipStatusDot {
+  flex-shrink: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: var(--Shape-Pill);
+}
+
+.chipStatusDotPassed {
+  background: var(--Positive-Medium-Text, var(--Positive-Bold));
+}
+
+.chipStatusDotFlagged {
+  background: var(--Warning-Medium-Text, var(--Warning-Bold));
+}
+
+.chipVersion {
+  flex-shrink: 0;
+  font-family: var(--Label-FontFamily, var(--Typography-Font-Primary));
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+  color: var(--Secondary-Medium-Text, var(--Text-Medium));
+  padding: var(--Spacing-1) var(--Spacing-2-5);
+  background: var(--Secondary-Stroke-Low, var(--Primary-Subtle));
+  border-radius: var(--Shape-3);
+}
+
+.chipTitle {
+  font-family: var(--Label-FontFamily, var(--Typography-Font-Primary));
+  font-size: var(--Label-S-FontSize);
+  line-height: var(--Label-S-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+  color: var(--Secondary-Medium-Text, var(--Text-High));
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+}
+
+.chipSummary {
+  font-family: var(--Label-FontFamily, var(--Typography-Font-Primary));
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  color: var(--Secondary-Low, var(--Text-Low));
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.chipScore {
+  margin-left: auto;
+  flex-shrink: 0;
+  font-family: var(--Label-FontFamily, var(--Typography-Font-Primary));
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+  padding: var(--Spacing-1) var(--Spacing-2-5);
+  border-radius: var(--Shape-3);
+}
+
+.chipChevron {
+  flex-shrink: 0;
+  display: inline-flex;
+  color: var(--Secondary-Low, var(--Text-Low));
+  transition: transform var(--Motion-Duration-Discreet-Short) var(--Motion-Easing-Standard);
+}
+
+.chipChevronOpen {
+  color: var(--Secondary-Medium-Text, var(--Text-Medium));
+  transform: rotate(90deg);
+}
+
+.chipCheckList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-2);
+  margin: 0;
+  list-style: none;
+  border-top: var(--Stroke-S) solid var(--Secondary-Stroke-Low, var(--Border-Subtle));
+  padding: var(--Spacing-3-5);
+}
+
+.chipCheck {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--Spacing-3);
+}
+
+.chipCheckSeverity {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--Spacing-4);
+  height: var(--Spacing-4);
+  border-radius: var(--Shape-Pill);
+  font-family: var(--Label-FontFamily, var(--Typography-Font-Primary));
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Spacing-4);
+  font-weight: var(--Label-FontWeight-Medium);
+  margin-top: var(--Spacing-1);
+}
+
+.chipCheckSeverityError {
+  background: var(--Negative-Subtle);
+  color: var(--Negative-High);
+}
+
+.chipCheckSeverityWarn {
+  background: var(--Warning-Subtle);
+  color: var(--Warning-High);
+}
+
+.chipCheckBody {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-1);
+  min-width: 0;
+}
+
+.chipCheckName {
+  font-family: var(--Label-FontFamily, var(--Typography-Font-Primary));
+  font-size: var(--Label-S-FontSize);
+  line-height: var(--Label-S-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+  color: var(--Secondary-Medium-Text, var(--Text-High));
+}
+
+.chipCheckDetails {
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Primary));
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  font-weight: var(--Body-FontWeight-Low);
+  color: var(--Secondary-Low, var(--Text-Low));
+  /* Long node paths: keep on one line, ellipsis when overflowing. */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.chipFooter {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 var(--Spacing-3-5) var(--Spacing-3);
+}
+
+/* ── Header bar (Surface "subtle" handles background) ────────────────────── */
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--Spacing-4);
+  padding: var(--Spacing-3) var(--Spacing-4);
+  border-bottom: var(--Stroke-S) solid var(--Primary-Stroke-Low);
+}
+
+.title {
+  font-family: var(--Label-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Label-M-FontSize);
+  line-height: var(--Label-M-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+  color: var(--Primary-High);
+  margin: 0;
+}
+
+.scorePill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--Spacing-1-5);
+  padding: var(--Spacing-1) var(--Spacing-2-5);
+  border-radius: var(--Shape-Pill);
+  font-family: var(--Label-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+}
+
+.scorePillGood {
+  background: var(--Positive-Subtle);
+  color: var(--Positive-High);
+}
+
+.scorePillWarn {
+  background: var(--Warning-Subtle);
+  color: var(--Warning-High);
+}
+
+.scorePillBad {
+  background: var(--Negative-Subtle);
+  color: var(--Negative-High);
+}
+
+/* ── Generic preview (web, marketing, social, print, outdoor) ─────────────── */
+
+.preview {
+  display: flex;
+  justify-content: center;
+  padding: var(--Spacing-4);
+  background: var(--Surface-Main);
+  overflow: hidden;
+}
+
+/* ── Mobile phone frame ───────────────────────────────────────────────────── */
+
+/*
+ * Phone canvas — proper 9:19.5 iPhone aspect ratio (390×844).
+ * Rendered at full 390px width, scaled 50% → 195px wide × 422px tall.
+ *
+ * CSS transform does NOT affect layout footprint, so we collapse the dead
+ * space with a matching negative margin:
+ *   layout height = 844px
+ *   visual height = 844 × 0.5 = 422px
+ *   margin-bottom = -(844 − 422) = -422px  → parent sees 422px
+ */
+.previewMobile {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: var(--Spacing-4-5);
+  background: var(--Surface-Main);
+}
+
+/*
+ * Scale 0.43: 393px → 169px wide, 852px → 366px tall.
+ * margin-bottom collapses the layout gap: -(852 × (1 − 0.43)) = -485px.
+ * Parent .previewMobile auto-sizes to the 366px visual height.
+ */
+.phoneScaleWrapper {
+  flex-shrink: 0;
+  transform: scale(0.43);
+  transform-origin: top center;
+  margin-bottom: -485px;
+}
+
+/* INTENTIONAL-LITERAL: block below replicates iPhone 17 hardware (393×852,
+   52px corner, 12px bezel, 126×10px notch 14px from top, 0.18 drop-shadow
+   alpha). Device dimensions can't come from design-system tokens.
+ *
+ * Phone chrome — iPhone 17 logical dimensions: 393×852px.
+ * Scaled to 43% → 169px wide × 366px tall (proper 9:19.5 aspect ratio).
+ * Fixed height with overflow: hidden clips content exactly like a real device.
+ * Content is never scrollable here — this is a static preview frame.
+ */
+.phoneFrame {
+  width: 393px;
+  height: 852px;
+  background: var(--Surface-Main);
+  border-radius: 52px;
+  border: 12px solid var(--Primary-Stroke-Low);
+  box-shadow:
+    0 0 0 2px var(--Primary-Stroke-Low),
+    0 24px 64px rgba(0, 0, 0, 0.18);
+  overflow: hidden;
+  position: relative;
+}
+
+.phoneFrame::before {
+  content: '';
+  position: sticky;
+  top: 0;
+  display: block;
+  width: 126px;
+  height: 10px;
+  margin: 14px auto 0;
+  background: var(--Primary-Stroke-Low);
+  border-radius: var(--Shape-Pill);
+  z-index: 1;
+}
+
+/* ── Footer (toggle + actions row) ───────────────────────────────────────── */
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--Spacing-4);
+  padding: var(--Spacing-3) var(--Spacing-4);
+  border-top: var(--Stroke-S) solid var(--Primary-Stroke-Low);
+}
+
+.actions {
+  display: inline-flex;
+  gap: var(--Spacing-2);
+}
+
+/* ── Issues toggle button ────────────────────────────────────────────────── */
+
+.issuesToggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--Spacing-2);
+  padding: var(--Spacing-1) var(--Spacing-3);
+  background: transparent;
+  border: var(--Stroke-S) solid var(--Primary-Stroke-Low);
+  border-radius: var(--Shape-Pill);
+  cursor: pointer;
+  font-family: var(--Label-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+  color: var(--Primary-Medium-Text);
+  transition: background-color 120ms ease, border-color 120ms ease;
+}
+
+.issuesToggle:hover {
+  background: var(--Primary-Subtle);
+  color: var(--Primary-High);
+}
+
+.issuesCaret {
+  display: inline-flex;
+  align-items: center;
+  color: var(--Primary-Low);
+  transition: transform 200ms ease;
+  flex-shrink: 0;
+}
+
+.issuesCaretOpen {
+  transform: rotate(90deg);
+}
+
+.issuesCountError {
+  color: var(--Negative-TintedA11y);
+}
+
+.issuesCountWarning {
+  color: var(--Warning-TintedA11y);
+}
+
+/* ── Issues panel — CSS grid animation (no layout jump) ──────────────────── */
+
+/*
+ * grid-template-rows: 0fr → 1fr animates the row from zero to its natural
+ * height without affecting elements above. The inner div must have
+ * min-height: 0 so it can collapse to zero.
+ */
+.issuesContainer {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 200ms ease;
+  border-top: 0 solid transparent;
+}
+
+.issuesContainerOpen {
+  grid-template-rows: 1fr;
+  border-top-color: var(--Primary-Stroke-Low);
+  border-top-width: var(--Stroke-S);
+}
+
+.issuesInner {
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* ── Issues list content (Surface "minimal" handles background) ──────────── */
+
+.issuesList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-1-5);
+  padding: var(--Spacing-3) var(--Spacing-4);
+}
+
+.issueRow {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--Spacing-3);
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  font-weight: var(--Body-FontWeight-Low);
+}
+
+/* INTENTIONAL-LITERAL: 1px nudge aligns the status icon to the text
+   baseline at this specific font-size. Optical fix; no token equivalent. */
+.issueIcon {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.issueIconError {
+  color: var(--Negative-TintedA11y);
+}
+
+.issueIconWarning {
+  color: var(--Warning-TintedA11y);
+}
+
+.issueIconInfo {
+  color: var(--Informative-TintedA11y);
+}
+
+.issueName {
+  font-weight: var(--Body-FontWeight-High);
+  color: var(--Primary-High);
+}
+
+.issueDetail {
+  font-weight: var(--Body-FontWeight-Low);
+  color: var(--Primary-Low);
+}
+
+/* no-issue state */
+.allPassed {
+  font-family: var(--Label-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  color: var(--Positive-TintedA11y);
+}

@@ -1,0 +1,329 @@
+/**
+ * PaginationDots.module.css
+ *
+ * Zero literals. All values via design tokens.
+ *
+ * Architecture:
+ *   - Role-agnostic intermediate vars (--_pg-*) default to Primary role.
+ *   - Appearance classes (.appearance<Role>) remap --_pg-* to other roles.
+ *   - Three visual states per dot, driven by [data-state]:
+ *       * data-state="active"  → elongated pill (width = activeWidth, height = dotSize)
+ *       * data-state="regular" → standard dot (width = height = dotSize)
+ *       * data-state="edge"    → smaller dot (width = height = edgeSize) — only
+ *         rendered at the outermost visible slots of a sliding window, to
+ *         signal "more content this way".
+ *   - Width, height, and background-color transition so as the window
+ *     slides the dots morph smoothly (edge → regular → active → regular
+ *     → edge). Geometry uses a non-overshooting easing so expressive
+ *     brand motion cannot inflate the dot dimensions past their tokens.
+ *   - Touch-target padding is an absolute-positioned ::before pseudo — it
+ *     extends OUTSIDE the box so the visual gap is controlled entirely by
+ *     --_pg-gap and not inflated by hit-area padding.
+ *
+ * Verified by: pnpm check:literals
+ */
+
+.root {
+  /* ========================================
+     INTERMEDIATE VARIABLES
+     Active colour defaults to the Primary role and is remapped by
+     the appearance classes below (.appearance<Role>). Inactive dots
+     ALWAYS use Neutral tokens regardless of appearance so the
+     unselected indicators read as neutral gray while only the active
+     pill picks up the brand / appearance accent.
+     ======================================== */
+  --_pg-bold: var(--Primary-Bold, var(--Surface-Bold));
+  --_pg-bold-hover: var(--Primary-Bold-Hover, var(--Surface-Bold-Hover));
+  --_pg-default-accent-a11y: var(--Primary-TintedA11y, var(--Primary-Tinted, var(--Surface-Bold)));
+  /* Neutral inactive — used on the default (page background) surface only.
+     Never remapped by appearance classes; always neutral-grey. */
+  --_pg-neutral-low: var(--Neutral-Stroke-Low, var(--Neutral-Subtle, var(--Surface-Subtle)));
+  /* Tinted inactive — used on any non-default surface. Defaults to the
+     Primary role low-stroke and is remapped by appearance classes so
+     each role gets its own tint. Brand CSS surface-context blocks also
+     remap this token inside [data-surface="bold"] etc., keeping inactive
+     dots legible across the full surface range. */
+  --_pg-tinted-low: var(--Primary-Stroke-Low, var(--Primary-Subtle, var(--Surface-Subtle)));
+
+  /* ========================================
+     BRAND-OVERRIDABLE COMPONENT TOKENS
+     dotSize    = diameter of a regular inactive dot (6px, Figma M)
+     edgeSize   = diameter of the smaller edge dot (4px, Figma M)
+     activeWidth = width of the elongated active pill (16px, Figma M)
+     ======================================== */
+  --_pg-dot-size: var(--PaginationDots-dotSize, var(--Spacing-1-5));
+  --_pg-edge-size: var(--PaginationDots-edgeSize, var(--Spacing-1));
+  --_pg-active-width: var(--PaginationDots-activeWidth, var(--Spacing-4));
+  --_pg-hit-area: var(--PaginationDots-hitArea, var(--Spacing-3));
+  --_pg-gap: var(--PaginationDots-gap, var(--Spacing-1));
+  --_pg-radius: var(--PaginationDots-borderRadius, var(--Shape-Pill));
+  /* Geometry must use non-overshooting easing. Bounce curves can overshoot
+     numeric width / height transitions and make dots look like they scale. */
+  --_pg-duration: var(--PaginationDots-motionDuration, var(--Motion-Duration-L));
+  --_pg-easing: var(--PaginationDots-motionEasing, var(--Motion-Easing-Transition-Moderate));
+  --_pg-geometry-easing: var(--PaginationDots-geometryEasing, var(--Motion-Easing-Transition-Moderate));
+  --_pg-color-active: var(--PaginationDots-colorActive, var(--_pg-bold));
+  --_pg-color-inactive: var(--PaginationDots-colorInactive, var(--_pg-neutral-low));
+
+  /* ========================================
+     BASE LAYOUT
+     ======================================== */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--_pg-gap);
+  box-sizing: border-box;
+  /* Height = hit-area height so the component vertically encompasses the
+     touch target without the padding inflating the horizontal gap. */
+  min-height: calc(var(--_pg-dot-size) + var(--_pg-hit-area) * 2);
+}
+
+/* ========================================
+   SINGLE SIZE — Figma defines one size only (M).
+   Dot dimensions verified against Figma node-id=4953-233:
+     dotSize    = Spacing-1-5 = f-5 = 6px   (regular dot diameter)
+     edgeSize   = Spacing-1 = f-6 = 4px   (outermost edge dot)
+     activeWidth = Spacing-4  = f0  = 16px  (elongated pill width)
+     gap        = Spacing-1 = f-6 = 4px   (visual gap between dots)
+   All values derive from the f-step scale → responsive across platforms.
+   ======================================== */
+
+/* ========================================
+   SURFACE CONTEXT — inactive dot colour swap
+   On the default (page background) surface, inactive dots are neutral-grey
+   so they read as "unselected / passive" regardless of appearance role.
+   On any other surface (minimal, subtle, moderate, bold, elevated) they
+   pick up a tinted version of the appearance role (--_pg-tinted-low) so
+   they stay visually connected to the surface while still being clearly
+   distinct from the active pill.
+   ======================================== */
+:global([data-surface]:not([data-surface="default"])) .root {
+  --_pg-color-inactive: var(--PaginationDots-colorInactive, var(--_pg-tinted-low));
+}
+
+/* ========================================
+   TAB — clickable wrapper. The visual box hugs the dot tightly so gap is
+   preserved; a ::before pseudo provides the WCAG touch target (24/44px)
+   by extending absolutely beyond the box.
+   ======================================== */
+.tab {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  background: transparent;
+  border: none;
+  appearance: none;
+  cursor: pointer;
+  border-radius: var(--_pg-radius);
+  box-sizing: content-box;
+  outline: none;
+  flex: 0 0 auto;
+  /* No explicit width — the tab sizes to its .dot child. This guarantees
+     the flex `gap` is applied edge-to-edge between the actual dot shapes,
+     so the visual spacing is identical around inactive dots AND around
+     the elongated active pill. When .dot transitions its width, the tab
+     reflows and the neighbours naturally shift. Height stays pinned to
+     dotSize so vertical alignment is stable. */
+  height: var(--_pg-dot-size);
+  transition:
+    width var(--_pg-duration) var(--_pg-geometry-easing),
+    border-radius var(--_pg-duration) var(--_pg-geometry-easing);
+}
+
+/* Absolute hit-area extension — invisible, extends beyond the tab box
+   so gap stays tight while touch target meets WCAG (Spacing-2-5 / XS / S
+   per size = 10/12/14px padding each side). */
+.tab::before {
+  content: '';
+  position: absolute;
+  inset: calc(-1 * var(--_pg-hit-area));
+  border-radius: var(--_pg-radius);
+}
+
+.root[data-readonly] .tab,
+.tab:disabled {
+  cursor: default;
+}
+.root[data-readonly] .tab::before,
+.tab:disabled::before {
+  display: none;
+}
+
+/* Focus halo — drawn on the ::before so it traces the hit area,
+   not the tight visual box. */
+.tab:focus {
+  outline: none;
+}
+
+.tab:focus-visible::before,
+:global([data-force-state="focus"]) .tab::before {
+  box-shadow:
+    0 0 0 var(--Stroke-XL) var(--Surface-Halo-Gap, var(--Surface-Main)),
+    0 0 0 calc(var(--Stroke-XL) + var(--Focus-Outline-Width)) var(--Focus-Outline);
+}
+
+/* ========================================
+   DOT — the visible shape. Three discrete states drive width + height.
+   Border-radius is pill so all states look rounded; the difference comes
+   entirely from box dimensions, and width/height transition smoothly so
+   the shape morphs as the window slides.
+   ======================================== */
+.dot {
+  display: block;
+  /* Default (safety fallback) — same as state="regular" */
+  width: var(--_pg-dot-size);
+  height: var(--_pg-dot-size);
+  background-color: var(--_pg-color-inactive);
+  border-radius: var(--_pg-radius);
+  transition:
+    width var(--_pg-duration) var(--_pg-geometry-easing),
+    height var(--_pg-duration) var(--_pg-geometry-easing),
+    border-radius var(--_pg-duration) var(--_pg-geometry-easing),
+    background-color var(--_pg-duration) var(--_pg-easing),
+    opacity var(--_pg-duration) var(--_pg-easing);
+}
+
+/* Regular dot — standard circle */
+.tab[data-state="regular"] .dot {
+  width: var(--_pg-dot-size);
+  height: var(--_pg-dot-size);
+  background-color: var(--_pg-color-inactive);
+}
+
+/* Edge dot — smaller circle, only at the outermost visible slots of
+   a sliding window, signalling "more content this way". */
+.tab[data-state="edge"] .dot {
+  width: var(--_pg-edge-size);
+  height: var(--_pg-edge-size);
+  background-color: var(--_pg-color-inactive);
+}
+
+/* Active pill — elongated horizontally; height stays = dot-size. */
+.tab[data-state="active"] .dot {
+  width: var(--_pg-active-width);
+  height: var(--_pg-dot-size);
+  background-color: var(--_pg-color-active);
+}
+
+/* ========================================
+   SHAPE MORPH — the feeling of motion comes entirely from the CSS
+   transitions on width / height / background-color declared on .dot
+   and .tab. When the window slides (active=5 → 6):
+     - absIdx=5 (was active pill) becomes state="regular" → its .dot
+       smoothly animates width from activeWidth → dotSize (pill shrinks)
+     - absIdx=6 (was regular) becomes state="active" → its .dot animates
+       width from dotSize → activeWidth (dot grows into pill)
+     - The .tab widths animate in parallel, causing the row to reflow
+       so neighbours shift outward/inward
+   The pill appears to "flow" between positions without ever using a
+   translate — matching the Instagram / Prime Video carousel pattern.
+
+   Keying each button by absIdx (in the component) is what keeps the
+   DOM elements stable across active changes so the CSS transitions
+   can actually interpolate between states.
+
+   PaginationDots intentionally does not add a separate tap-scale
+   transform. The active-index change is already the interaction
+   feedback; adding transform on :active compounds with the morph and
+   can look exaggerated for expressive brand motion settings.
+   ======================================== */
+
+/* New dots entering from the far edge (as the window slides into
+   previously-hidden content) fade in so they don't pop abruptly.
+   The fade-in is brief; its duration matches the morph transition. */
+@keyframes pg-dot-enter {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+.tab {
+  animation: pg-dot-enter var(--_pg-duration) var(--_pg-easing);
+}
+
+/* ========================================
+   REDUCED MOTION — keep state changes but drop the entry fade.
+   Width / height still transition so state changes are still visible
+   (just accelerated via no transition).
+   ======================================== */
+@media (prefers-reduced-motion: reduce) {
+  .tab {
+    animation: none;
+  }
+  .dot,
+  .tab {
+    transition-duration: var(--Motion-Duration-2XS, var(--Motion-Duration-S));
+  }
+}
+
+/* ========================================
+   APPEARANCE — role-agnostic intermediate variable remapping
+   Adding a new appearance = 1 new class with 4 remappings.
+   ======================================== */
+
+.appearanceNeutral {
+  --_pg-bold: var(--Neutral-Bold, var(--Surface-Bold));
+  --_pg-bold-hover: var(--Neutral-Bold-Hover, var(--Surface-Bold-Hover));
+  --_pg-default-accent-a11y: var(--Neutral-TintedA11y, var(--Neutral-Tinted, var(--Surface-Bold)));
+  --_pg-tinted-low: var(--Neutral-Stroke-Low, var(--Neutral-Subtle, var(--Surface-Subtle)));
+}
+
+.appearanceSecondary {
+  --_pg-bold: var(--Secondary-Bold, var(--Surface-Bold));
+  --_pg-bold-hover: var(--Secondary-Bold-Hover, var(--Surface-Bold-Hover));
+  --_pg-default-accent-a11y: var(--Secondary-TintedA11y, var(--Secondary-Tinted, var(--Surface-Bold)));
+  --_pg-tinted-low: var(--Secondary-Stroke-Low, var(--Secondary-Subtle, var(--Surface-Subtle)));
+}
+
+.appearanceSparkle {
+  --_pg-bold: var(--Sparkle-Bold, var(--Surface-Bold));
+  --_pg-bold-hover: var(--Sparkle-Bold-Hover, var(--Surface-Bold-Hover));
+  --_pg-default-accent-a11y: var(--Sparkle-TintedA11y, var(--Sparkle-Tinted, var(--Surface-Bold)));
+  --_pg-tinted-low: var(--Sparkle-Stroke-Low, var(--Sparkle-Subtle, var(--Surface-Subtle)));
+}
+
+.appearanceBrandBg {
+  --_pg-bold: var(--Brand-Bg-Bold, var(--Surface-Bold));
+  --_pg-bold-hover: var(--Brand-Bg-Bold-Hover, var(--Surface-Bold-Hover));
+  --_pg-default-accent-a11y: var(--Brand-Bg-TintedA11y, var(--Brand-Bg-Tinted, var(--Surface-Bold)));
+  --_pg-tinted-low: var(--Brand-Bg-Stroke-Low, var(--Brand-Bg-Subtle, var(--Surface-Subtle)));
+}
+
+.appearancePositive {
+  --_pg-bold: var(--Positive-Bold, var(--Surface-Bold));
+  --_pg-bold-hover: var(--Positive-Bold-Hover, var(--Surface-Bold-Hover));
+  --_pg-default-accent-a11y: var(--Positive-TintedA11y, var(--Positive-Tinted, var(--Surface-Bold)));
+  --_pg-tinted-low: var(--Positive-Stroke-Low, var(--Positive-Subtle, var(--Surface-Subtle)));
+}
+
+.appearanceNegative {
+  --_pg-bold: var(--Negative-Bold, var(--Surface-Bold));
+  --_pg-bold-hover: var(--Negative-Bold-Hover, var(--Surface-Bold-Hover));
+  --_pg-default-accent-a11y: var(--Negative-TintedA11y, var(--Negative-Tinted, var(--Surface-Bold)));
+  --_pg-tinted-low: var(--Negative-Stroke-Low, var(--Negative-Subtle, var(--Surface-Subtle)));
+}
+
+.appearanceWarning {
+  --_pg-bold: var(--Warning-Bold, var(--Surface-Bold));
+  --_pg-bold-hover: var(--Warning-Bold-Hover, var(--Surface-Bold-Hover));
+  --_pg-default-accent-a11y: var(--Warning-TintedA11y, var(--Warning-Tinted, var(--Surface-Bold)));
+  --_pg-tinted-low: var(--Warning-Stroke-Low, var(--Warning-Subtle, var(--Surface-Subtle)));
+}
+
+.appearanceInformative {
+  --_pg-bold: var(--Informative-Bold, var(--Surface-Bold));
+  --_pg-bold-hover: var(--Informative-Bold-Hover, var(--Surface-Bold-Hover));
+  --_pg-default-accent-a11y: var(--Informative-TintedA11y, var(--Informative-Tinted, var(--Surface-Bold)));
+  --_pg-tinted-low: var(--Informative-Stroke-Low, var(--Informative-Subtle, var(--Surface-Subtle)));
+}
+
+/**
+ * ========================================
+ * IMPORTANT: NO LITERALS IN THIS FILE
+ * ========================================
+ *
+ * All values come from --Token-Name variables or from the
+ * --PaginationDots-* brand-overridable tokens declared on .root.
+ * Bare numbers only appear inside var(--PaginationDots-*, N) fallbacks
+ * for pure multipliers.
+ */

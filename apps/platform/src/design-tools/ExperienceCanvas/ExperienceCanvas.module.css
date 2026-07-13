@@ -1,0 +1,838 @@
+/**
+ * ExperienceCanvas.module.css
+ *
+ * Uses NEUTRAL appearance tokens throughout to avoid interfering
+ * with the brand's primary color on the design canvas.
+ */
+
+.canvas {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.canvas :global(.tl-container) {
+  position: absolute !important;
+  inset: 0;
+}
+
+/* Override tldraw's background with our surface tokens so frames
+   respect the brand theme instead of tldraw's built-in dark mode */
+.canvas :global(.tl-theme__dark),
+.canvas :global(.tl-theme__light) {
+  --tl-color-background: var(--Neutral-Default, var(--Surface-Default));
+}
+
+/* Portal anchor for AI prompt — MUST be a plain div (no position/z-index)
+   so backdrop-filter on the prompt can see through to the canvas content.
+   A positioned z-indexed parent creates an isolated stacking context
+   that breaks backdrop-filter. The portaled content positions itself. */
+.aiPortalTarget {
+  display: contents;
+}
+
+/* ── tldraw UI chrome — transparent backgrounds ────── */
+
+/* Top-left menu bar (Page 1, undo/redo, delete, duplicate, actions) */
+.canvas :global(.tlui-menu-zone),
+.canvas :global(.tlui-menu-zone__controls),
+.canvas :global([class*="tlui-menu-zone"]) {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+/* Bottom-left zoom/navigation panel */
+.canvas :global(.tlui-navigation-zone),
+.canvas :global([class*="tlui-navigation"]) {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* Bottom-center toolbar */
+.canvas :global(.tlui-toolbar),
+.canvas :global([class*="tlui-toolbar"]) {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+/* Toolbar inner container */
+.canvas :global(.tlui-toolbar__inner) {
+  background: var(--Surface-Elevated) !important;
+  border-radius: var(--Shape-Pill) !important;
+  box-shadow: var(--Elevation-1) !important;
+  outline: var(--Stroke-M) solid var(--Neutral-Stroke-Low) !important;
+}
+
+/* Quick actions bar (top-left actions) */
+.canvas :global(.tlui-quick-actions),
+.canvas :global([class*="tlui-quick-actions"]) {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* Minimap */
+.canvas :global(.tlui-minimap) {
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Canvas typography — use brand's primary font for all text on canvas */
+.canvas {
+  font-family: var(--Typography-Font-Text, system-ui, sans-serif);
+}
+
+/* Text shapes from tldraw should use the brand font */
+.canvas :global(.tl-text),
+.canvas :global(.tl-text-content),
+.canvas :global([class*="tl-text"]) {
+  font-family: var(--Typography-Font-Text, system-ui, sans-serif) !important;
+}
+
+/* Canvas background — configurable via --canvas-bg custom property */
+.canvas :global(.tl-background) {
+  background-color: var(--canvas-bg, var(--Neutral-Minimal));
+}
+
+/* ── Frame/artboard — Figma clean look (NO borders) ── */
+
+.canvas :global(.tl-frame__body),
+.canvas :global(.tl-frame),
+.canvas :global([class*="tl-frame"]) > :global([class*="body"]) {
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.canvas :global(.tl-frame) :global(rect),
+.canvas :global(.tl-frame__body) :global(rect),
+.canvas :global(svg) :global(rect[rx]) {
+  stroke: transparent !important;
+}
+
+.canvas :global(.tl-shape[data-shape-type="frame"]) :global(rect) {
+  stroke: transparent !important;
+}
+
+.canvas :global(.tl-shape) :global(.tl-frame__body) {
+  border: none !important;
+  outline: none !important;
+}
+
+.canvas :global(.tl-frame__body) > * {
+  border: none !important;
+  outline: none !important;
+}
+
+.canvas :global(.tl-frame) {
+  background-color: var(--Neutral-Default, var(--Surface-Default)) !important;
+}
+
+/* INTENTIONAL-LITERAL: tldraw frame drop-shadow override — rgba is a geometry/rendering parameter, no shadow token supports this opacity */
+.canvas :global(.tl-frame__body) {
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.04)) !important;
+}
+
+.canvas :global(.tl-frame-heading),
+.canvas :global(.tl-frame-heading-hit-area) {
+  background: none !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.canvas :global(.tl-frame-label) {
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+  color: var(--Text-Low) !important;
+  font-size: var(--Label-XS-FontSize) !important;
+  font-weight: var(--Label-FontWeight-Low) !important;
+  font-family: var(--Label-FontFamily, var(--Typography-Font-Text)) !important;
+  /* INTENTIONAL-LITERAL: 2px nudge-padding for tldraw label alignment */
+  padding: 0 2px !important;
+}
+
+.canvas :global(.tl-frame-name-input) {
+  background: none !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  color: var(--Text-Low) !important;
+  font-size: var(--Label-XS-FontSize) !important;
+  font-weight: var(--Label-FontWeight-Low) !important;
+  font-family: var(--Label-FontFamily, var(--Typography-Font-Text)) !important;
+  padding: 0 !important;
+}
+
+.canvas :global(.tl-frame-name-input:focus) {
+  color: var(--Text-High) !important;
+}
+
+/* ── Left sidebar ──────────────────────────────────── */
+
+.sidebar {
+  position: absolute;
+  /* Flush to the viewport — top-to-bottom, no floating card chrome. The
+     tldraw native MenuPanel is now hidden (see modeComponents), so the
+     sidebar owns the whole left column top-to-bottom. */
+  top: 0;
+  left: 0;
+  bottom: 0;
+  /* INTENTIONAL-LITERAL: 280px is a fixed sidebar width, no f-step equivalent */
+  width: 280px;
+  background: var(--Surface-Elevated);
+  border-right: var(--Stroke-M) solid var(--Border-Subtle);
+  z-index: 300;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: width var(--Motion-Duration-Discreet-Short, 160ms) var(--Motion-Easing-Transition, ease);
+}
+
+/* Collapsed state — a 48px rail with just the expand affordance. */
+/* INTENTIONAL-LITERAL: 48px collapsed rail matches tldraw toolbar height, no f-step equivalent */
+.sidebarCollapsed {
+  width: 48px;
+  align-items: center;
+  padding-top: var(--Spacing-3);
+}
+
+.sidebarHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-1);
+  padding: var(--Spacing-2) var(--Spacing-2-5);
+  border-bottom: var(--Stroke-M) solid var(--Border-Subtle);
+  flex-shrink: 0;
+}
+
+.headerSpacer {
+  flex: 1;
+}
+
+.pagePickerBtn {
+  max-width: 9ch;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ── Sidebar row alignment ────────────────────────────────────────────────
+   The sidebar defines a single shared inline padding (`--sidebar-row-pad`)
+   that every row — Menu trigger, list Button, Collapsible trigger,
+   category heading — honours. Button's own interior padding is reset via
+   the .sidebarItem override so its text starts at the same x as every
+   non-Button row. No inner steps. */
+.sidebar {
+  --sidebar-row-pad: var(--Spacing-3);
+}
+
+.sidebarRow,
+.sidebarList {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.sidebarList {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* Button rows — left-aligned, zero inline padding on the Button so its
+   interior label aligns with every non-Button row's text. Lighter
+   font-weight + no transition so the list reads as a tool, not a CTA
+   stack. !important is load-bearing: Button's own rules specify
+   text-align:center, inline padding, a transition on all, font-weight
+   medium, AND a subtle neutral fill on hover that we don't want — the
+   dividers between sections do the work of separating, we don't need
+   row-level fills muddying the column. */
+.sidebarItem {
+  justify-content: flex-start !important;
+  text-align: left;
+  padding-left: var(--sidebar-row-pad) !important;
+  padding-right: var(--sidebar-row-pad) !important;
+  font-weight: var(--Label-FontWeight-Low) !important;
+  background: transparent !important;
+  transition: none !important;
+}
+
+.sidebarItem:hover {
+  background: var(--Neutral-Minimal) !important;
+}
+
+.sidebarItem:active,
+.sidebarItem:focus-visible {
+  transform: none !important;
+}
+
+/* Surfaces mode list needs a touch more breathing room between rows —
+   the swatch + label combo reads cleaner with a small gap. */
+.surfaceModeList {
+  gap: var(--Spacing-1-5);
+  padding-top: var(--Spacing-2);
+  padding-bottom: var(--Spacing-2);
+}
+
+/* Artboards dropdown row — add a touch of breathing space below so the
+   Surfaces section heading isn't crowding it. */
+.artboardsRow {
+  padding-bottom: var(--Spacing-2-5);
+}
+
+/* ── Collapsible sections ─────────────────────────────────────────────────
+   Surfaces / Components / Micro Patterns / Layers. Each renders as a plain
+   section with a full-width top border (the hairline that separates it
+   from the section above), a trigger button that shows the title + chevron,
+   and a panel that holds the content. */
+
+.sidebarCollapsible {
+  border-top: var(--Stroke-S) solid var(--Border-Subtle);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  min-height: 0;
+}
+
+/* Collapsible trigger — chevron on the RIGHT so the TEXT aligns with every
+   other row in the sidebar. Zero background, transparent on hover, no
+   animation chrome. Padding matches .sidebarList / .sidebarRow exactly so
+   "Components" lines up with "Button". */
+.sidebarCollapsibleTrigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--Spacing-2-5);
+  padding: var(--Spacing-2) var(--sidebar-row-pad);
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  font-family: var(--Label-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  /* Section types are structural — medium weight distinguishes them from
+     the lighter row labels below, without shouting like the legacy caps
+     headings did. */
+  font-weight: var(--Label-FontWeight-Medium);
+  color: var(--Text-High);
+  text-transform: none;
+  letter-spacing: 0;
+  text-align: left;
+}
+
+.sidebarCollapsibleTrigger:hover,
+.sidebarCollapsibleTrigger:focus-visible {
+  background: transparent;
+  outline: none;
+}
+
+/* Collapsible component injects its ChevronIcon as the first child and the
+   trigger label as the rest. Use flex order to push the chevron to the
+   right while keeping the text flush left with the rest of the sidebar. */
+.sidebarCollapsibleTrigger :global(svg:first-child) {
+  order: 2;
+  width: var(--Spacing-3);
+  height: var(--Spacing-3);
+  color: var(--Text-Low);
+  transition: transform var(--Motion-Duration-Discreet-Short, 140ms) var(--Motion-Easing-Transition, ease);
+  transform: rotate(-90deg);
+  flex-shrink: 0;
+}
+
+.sidebarCollapsibleTrigger[data-panel-open] :global(svg:first-child) {
+  transform: rotate(0deg);
+}
+
+.sidebarCollapsiblePanel {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  padding-bottom: var(--Spacing-2);
+}
+
+/* INTENTIONAL-LITERAL: max-height clamps collapsible scroll area, no f-step equivalent */
+.sidebarCollapsibleScroll {
+  max-height: 280px;
+  min-height: 0;
+  padding: 0 0 var(--Spacing-2);
+}
+
+/* Category sub-heading inside the Components collapsible — same left
+   padding as the rows below so "actions" sits exactly above "Button". */
+.sidebarCategory + .sidebarCategory {
+  margin-top: var(--Spacing-2-5);
+}
+
+.sidebarCategoryHeading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--Spacing-3);
+  padding: var(--Spacing-2) var(--sidebar-row-pad) var(--Spacing-1-5);
+  font-family: var(--Label-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Low);
+  color: var(--Text-Low);
+}
+
+/* Layers Collapsible — pinned to the bottom via auto margin so the sections
+   above share remaining vertical space. */
+.layersCollapsible {
+  margin-top: auto;
+}
+
+/* Menu item override — the Artboards + Surfaces role dropdowns are
+   information-dense pickers, not navigation. Tighten Menu.Item's default
+   (--Spacing-3 vertical / --Spacing-4 horizontal) down to ~4px vertical
+   / --Spacing-3-5 horizontal so items sit close together inside the popup. */
+.sidebarMenuItem {
+  padding: var(--Spacing-1) var(--Spacing-3-5) !important;
+  font-size: var(--Label-S-FontSize) !important;
+  line-height: var(--Label-S-LineHeight) !important;
+  gap: var(--Spacing-3) !important;
+}
+
+/* Menu item layout — reused by Artboards dropdown + Surfaces role menu. */
+.menuItemLabel {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--Text-High);
+}
+
+.menuItemMeta {
+  margin-left: var(--Spacing-4);
+  font-family: var(--Label-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  color: var(--Text-Low);
+}
+
+/* Trailing meta — small muted text shown at the row's end (category count,
+   artboard dimensions, template slug). */
+.sidebarItemMeta {
+  font-family: var(--Label-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Low);
+  color: var(--Text-Low);
+}
+
+/* Surface swatch — small coloured square shown in the Menu trigger and
+   mode list rows. */
+.surfaceModeSwatch {
+  display: inline-block;
+  width: var(--Spacing-3-5);
+  height: var(--Spacing-3-5);
+  border-radius: var(--Shape-2);
+  border: var(--Stroke-S) solid var(--Border-Subtle);
+  flex-shrink: 0;
+}
+
+/*
+ * Legacy rule `.sidebar :global([class*="trigger"])` was removed.
+ * It was a blunt selector added to recolour Select's trigger inside the
+ * sidebar, but it also matched Base UI's Collapsible.Trigger (class name
+ * `.trigger`) — painting every section header gray. With Select gone
+ * from the LeftSidebar (Artboards + Surfaces now use Menu), the rule is
+ * redundant; removing it restores the transparent section headers the
+ * user requested.
+ */
+
+.sidebarSearch {
+  padding: var(--Spacing-2-5);
+  border-bottom: var(--Stroke-S) solid var(--Border-Subtle);
+  background: var(--Surface-Elevated);
+  flex-shrink: 0;
+}
+
+.searchInput {
+  width: 100%;
+  padding: var(--Spacing-1-5) var(--Spacing-2-5);
+  font-size: var(--Body-S-FontSize, 13px);
+  font-weight: var(--Body-FontWeight-Low);
+  border: var(--Stroke-M) solid var(--Neutral-Stroke-Low, var(--Border-Subtle));
+  border-radius: var(--Shape-2);
+  background: var(--Neutral-Minimal, var(--Surface-Minimal));
+  color: var(--Text-High);
+  outline: none;
+}
+
+.searchInput:focus {
+  border-color: var(--Neutral-Tinted, var(--Text-Medium));
+}
+
+.searchInput::placeholder {
+  color: var(--Text-Low);
+}
+
+/* Tab bar for Components / Templates */
+.tabBar {
+  display: flex;
+  border-bottom: var(--Stroke-M) solid var(--Border-Subtle);
+  position: sticky;
+  /* INTENTIONAL-LITERAL: 36px sticky offset positions below tldraw canvas chrome */
+  top: 36px;
+  background: var(--Surface-Elevated);
+  z-index: 1;
+}
+
+.tab {
+  flex: 1;
+  padding: var(--Spacing-2) var(--Spacing-3);
+  font-size: var(--Body-S-FontSize, 13px);
+  font-weight: var(--Body-FontWeight-Low);
+  color: var(--Text-Low);
+  background: transparent;
+  border: none;
+  border-bottom: var(--Stroke-XL) solid transparent;
+  cursor: pointer;
+  text-align: center;
+  transition: all var(--Motion-Duration-Discreet-Short);
+}
+
+.tab:hover {
+  color: var(--Text-Medium);
+}
+
+.tab[data-active] {
+  color: var(--Text-High);
+  border-bottom-color: var(--Text-High);
+  font-weight: var(--Body-FontWeight-Medium);
+}
+
+/* Surface swatch */
+.surfaceSwatch {
+  width: var(--Spacing-3-5);
+  height: var(--Spacing-3-5);
+  border-radius: var(--Shape-0-5);
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+  flex-shrink: 0;
+}
+
+/* ── Right panel ───────────────────────────────────── */
+
+/* Right panel — offset to leave room for mode toolbar (56px + spacing) */
+/* INTENTIONAL-LITERAL: 48px/64px are fixed canvas chrome offsets with no token equivalent */
+.propPanelContainer {
+  position: absolute;
+  top: 48px;
+  right: 64px;
+  z-index: 300;
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-3);
+}
+
+/* ── Frame actions panel ───────────────────────────── */
+
+.frameActions {
+  background: var(--Surface-Elevated);
+  border-radius: var(--Shape-4);
+  box-shadow: var(--Elevation-1);
+  outline: var(--Stroke-M) solid var(--Border-Subtle);
+  /* INTENTIONAL-LITERAL: 260px is a fixed panel width with no token equivalent */
+  width: 260px;
+  overflow: hidden;
+}
+
+.frameHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--Spacing-2);
+  padding: var(--Spacing-3) var(--Spacing-4);
+  border-bottom: var(--Stroke-M) solid var(--Border-Subtle);
+}
+
+.frameTitle {
+  font-size: var(--Body-S-FontSize, 13px);
+  font-weight: var(--Body-FontWeight-Medium);
+  color: var(--Text-High);
+  flex: 1;
+}
+
+.frameChildCount {
+  font-size: var(--Label-2XS-FontSize);
+  color: var(--Text-Low);
+  background: var(--Neutral-Minimal);
+  padding: 0 var(--Spacing-1-5);
+  border-radius: var(--Shape-0-5);
+  flex-shrink: 0;
+}
+
+.frameZoomButton {
+  padding: var(--Spacing-1) var(--Spacing-2-5);
+  font-size: var(--Label-XS-FontSize, 11px);
+  font-weight: var(--Label-FontWeight-Low);
+  color: var(--Text-Low);
+  background: transparent;
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+  border-radius: var(--Shape-2);
+  cursor: pointer;
+}
+
+.frameZoomButton:hover {
+  background: var(--Neutral-Subtle);
+  color: var(--Text-High);
+}
+
+.frameSection {
+  padding: var(--Spacing-2) var(--Spacing-3-5);
+}
+
+.frameSectionTitle {
+  font-size: var(--Label-XS-FontSize, 11px);
+  font-weight: var(--Label-FontWeight-Medium);
+  color: var(--Text-Low);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  display: block;
+  padding: var(--Spacing-1-5) var(--Spacing-2);
+}
+
+/* Sub-brand picker — full width like other frame controls */
+.frameSubBrandSelectWrap {
+  width: 100%;
+  margin-top: var(--Spacing-2);
+}
+
+.frameSubBrandSelectWrap :global(.trigger),
+.frameSubBrandSelectWrap :global([class*="trigger"]) {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.frameButtons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--Spacing-1-5);
+  padding-bottom: var(--Spacing-2);
+}
+
+.frameButton {
+  padding: var(--Spacing-1) var(--Spacing-2-5);
+  font-size: var(--Body-S-FontSize, 13px);
+  font-weight: var(--Body-FontWeight-Low);
+  color: var(--Text-Medium);
+  background: transparent;
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+  border-radius: var(--Shape-2);
+  cursor: pointer;
+  transition: all var(--Motion-Duration-Discreet-Short) var(--Motion-Easing-Standard);
+}
+
+.frameButton:hover {
+  background: var(--Neutral-Subtle, var(--Surface-Subtle));
+  color: var(--Text-High);
+}
+
+.frameButton[data-active] {
+  background: var(--Text-High);
+  color: var(--Surface-Elevated);
+  border-color: transparent;
+}
+
+/* Spacing controls */
+.spacingRow {
+  display: flex;
+  gap: var(--Spacing-3);
+  padding-bottom: var(--Spacing-2);
+}
+
+.spacingLabel {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-1-5);
+  font-size: var(--Label-XS-FontSize, 11px);
+  color: var(--Text-Low);
+  flex: 1;
+}
+
+/* INTENTIONAL-LITERAL: 40px is a fixed numeric-input width with no f-step equivalent */
+.spacingInput {
+  width: 40px;
+  padding: var(--Spacing-1) var(--Spacing-1-5);
+  font-size: var(--Label-XS-FontSize, 11px);
+  font-family: var(--Typography-Font-Code, monospace);
+  border: var(--Stroke-M) solid var(--Neutral-Stroke-Low, var(--Border-Subtle));
+  border-radius: var(--Shape-2);
+  background: var(--Neutral-Minimal, var(--Surface-Minimal));
+  color: var(--Text-High);
+  outline: none;
+  text-align: center;
+}
+
+.spacingInput:focus {
+  border-color: var(--Neutral-Tinted);
+}
+
+/* ── Export panel ─────────────────────────────────────── */
+
+.exportPanel {
+  border-top: var(--Stroke-M) solid var(--Border-Subtle);
+  padding: var(--Spacing-2) var(--Spacing-3-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-2);
+}
+
+.exportRow {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-2);
+}
+
+/* INTENTIONAL-LITERAL: min-width 52px is a fixed label column with no token equivalent */
+.exportRowLabel {
+  font-size: var(--Label-XS-FontSize, 11px);
+  font-weight: var(--Label-FontWeight-Medium);
+  font-family: var(--Label-FontFamily, var(--Typography-Font-Text));
+  color: var(--Text-Low);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  min-width: 52px;
+  flex-shrink: 0;
+}
+
+.exportChips {
+  display: flex;
+  gap: var(--Spacing-1);
+  flex: 1;
+}
+
+.exportChip {
+  padding: var(--Spacing-1) var(--Spacing-2);
+  font-size: var(--Label-XS-FontSize, 11px);
+  font-weight: var(--Label-FontWeight-Low);
+  font-family: var(--Label-FontFamily, var(--Typography-Font-Text));
+  color: var(--Text-Medium);
+  background: transparent;
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+  border-radius: var(--Shape-2);
+  cursor: pointer;
+  transition: all var(--Motion-Duration-Discreet-Short) var(--Motion-Easing-Standard);
+  line-height: var(--Label-XS-LineHeight, 1.2);
+}
+
+.exportChip:hover {
+  background: var(--Neutral-Subtle, var(--Surface-Subtle));
+  color: var(--Text-High);
+}
+
+.exportChip[data-active] {
+  background: var(--Text-High);
+  color: var(--Surface-Elevated);
+  border-color: transparent;
+}
+
+/* INTENTIONAL-LITERAL: slider track height 4px is a fixed UI measurement with no token equivalent */
+.exportQualitySlider {
+  flex: 1;
+  height: 4px;
+  appearance: none;
+  background: var(--Neutral-Subtle, var(--Surface-Subtle));
+  border-radius: var(--Shape-Pill);
+  outline: none;
+  cursor: pointer;
+}
+
+.exportQualitySlider::-webkit-slider-thumb {
+  appearance: none;
+  width: var(--Spacing-3-5);
+  height: var(--Spacing-3-5);
+  border-radius: var(--Shape-Pill);
+  background: var(--Text-High);
+  border: var(--Stroke-M) solid var(--Surface-Elevated);
+  cursor: pointer;
+}
+
+/* INTENTIONAL-LITERAL: min-width 28px holds the percentage value display, no token equivalent */
+.exportQualityValue {
+  font-size: var(--Label-XS-FontSize, 11px);
+  font-family: var(--Typography-Font-Code, monospace);
+  color: var(--Text-Medium);
+  min-width: 28px;
+  text-align: right;
+}
+
+.exportBackgroundCheck {
+  appearance: none;
+  width: var(--Spacing-3-5);
+  height: var(--Spacing-3-5);
+  border: var(--Stroke-M) solid var(--Neutral-Stroke-Medium, var(--Border-Subtle));
+  border-radius: var(--Shape-0-5);
+  background: var(--Neutral-Minimal, var(--Surface-Minimal));
+  cursor: pointer;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.exportBackgroundCheck:checked {
+  background: var(--Text-High);
+  border-color: var(--Text-High);
+}
+
+/* INTENTIONAL-LITERAL: checkmark geometry (3px/1px/5px/8px/1.5px) is optical SVG-style geometry, no token applies */
+.exportBackgroundCheck:checked::after {
+  content: '';
+  position: absolute;
+  left: 3px;
+  top: 1px;
+  width: 5px;
+  height: 8px;
+  border: solid var(--Surface-Elevated);
+  border-width: 0 1.5px 1.5px 0;
+  transform: rotate(45deg);
+}
+
+.exportBackgroundCheck:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.exportBackgroundLabel {
+  font-size: var(--Label-XS-FontSize, 11px);
+  font-family: var(--Label-FontFamily, var(--Typography-Font-Text));
+  color: var(--Text-Medium);
+}
+
+.exportBackgroundNote {
+  font-size: var(--Label-XS-FontSize, 11px);
+  font-family: var(--Label-FontFamily, var(--Typography-Font-Text));
+  color: var(--Text-Low);
+  font-style: italic;
+  margin-left: auto;
+}
+
+.exportActionButton {
+  width: 100%;
+  padding: var(--Spacing-1-5) var(--Spacing-3);
+  font-size: var(--Label-S-FontSize, 13px);
+  font-weight: var(--Label-FontWeight-Medium);
+  font-family: var(--Label-FontFamily, var(--Typography-Font-Text));
+  line-height: var(--Label-S-LineHeight, 1.3);
+  color: var(--Surface-Elevated);
+  background: var(--Text-High);
+  border: none;
+  border-radius: var(--Shape-2);
+  cursor: pointer;
+  transition: opacity var(--Motion-Duration-Discreet-Short) var(--Motion-Easing-Standard);
+}
+
+.exportActionButton:hover {
+  opacity: 0.85;
+}
+
+.exportActionButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

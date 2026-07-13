@@ -1,0 +1,261 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Container",
+  "generatedAt": "2026-07-09T13:07:37.422Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "Presentational layout wrapper — constrains children width via variant (fluid / fixed / full-bleed) + maxWidth, plus the shared token-resolved flex-layout props (direction/gap/padding*/align/justify/wrap/flex). No surface paint, no landmark role, a11y-transparent. Use <Surface> when you need a tinted background that remaps child tokens."
+  },
+  "compositionRules": {
+    "requires": [],
+    "allows": [],
+    "forbids": [],
+    "childKind": "fixed-slots"
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "fluid"
+      },
+      {
+        "name": "fixed"
+      },
+      {
+        "name": "full-bleed"
+      }
+    ]
+  },
+  "props": [
+    {
+      "name": "variant",
+      "type": "'fluid' | 'fixed' | 'full-bleed'",
+      "required": false,
+      "defaultValue": "fluid",
+      "description": "fluid = grows with parent; fixed = capped at maxWidth; full-bleed = edge-to-edge."
+    },
+    {
+      "name": "maxWidth",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Width cap — number (px) or string (dim). Honoured for variant=\"fixed\"."
+    },
+    {
+      "name": "direction",
+      "type": "'row' | 'column'",
+      "required": false,
+      "description": "Flex main-axis direction."
+    },
+    {
+      "name": "gap",
+      "type": "string",
+      "required": false,
+      "description": "Token-only spacing between children — a NativeSpacingKey (e.g. \"6\"), a Figma \"dimensions/spacings/N\" path, or a \"Spacing-N\" alias. NEVER a raw pixel number/string — resolveSpacingPx silently drops unresolvable values."
+    },
+    {
+      "name": "padding",
+      "type": "string",
+      "required": false,
+      "description": "Token-only padding on all sides. Same value shape as `gap`."
+    },
+    {
+      "name": "paddingX",
+      "type": "string",
+      "required": false,
+      "description": "Token-only horizontal padding. Same value shape as `gap`."
+    },
+    {
+      "name": "paddingY",
+      "type": "string",
+      "required": false,
+      "description": "Token-only vertical padding. Same value shape as `gap`."
+    },
+    {
+      "name": "paddingTop",
+      "type": "string",
+      "required": false,
+      "description": "Token-only. Same value shape as `gap`."
+    },
+    {
+      "name": "paddingRight",
+      "type": "string",
+      "required": false,
+      "description": "Token-only. Same value shape as `gap`."
+    },
+    {
+      "name": "paddingBottom",
+      "type": "string",
+      "required": false,
+      "description": "Token-only. Same value shape as `gap`."
+    },
+    {
+      "name": "paddingLeft",
+      "type": "string",
+      "required": false,
+      "description": "Token-only. Same value shape as `gap`."
+    },
+    {
+      "name": "align",
+      "type": "'start' | 'center' | 'end' | 'stretch' | 'baseline'",
+      "required": false,
+      "description": "Cross-axis alignment — maps to `alignItems`."
+    },
+    {
+      "name": "justify",
+      "type": "'start' | 'center' | 'end' | 'between' | 'around' | 'evenly'",
+      "required": false,
+      "description": "Main-axis distribution — maps to `justifyContent`."
+    },
+    {
+      "name": "wrap",
+      "type": "boolean",
+      "required": false,
+      "description": "Flex-wrap."
+    },
+    {
+      "name": "flex",
+      "type": "number",
+      "required": false,
+      "description": "Flex-grow factor — a plain number IS valid here (not a spacing token)."
+    },
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Arbitrary content; layout order preserved."
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.kb.rn.Container",
+    "type": "object",
+    "properties": {
+      "variant": {
+        "enum": [
+          "fluid",
+          "fixed",
+          "full-bleed"
+        ],
+        "default": "fluid",
+        "description": "fluid = grows with parent; fixed = capped at maxWidth; full-bleed = edge-to-edge."
+      },
+      "maxWidth": {
+        "description": "Width cap — number (px) or string (dim). Honoured for variant=\"fixed\"."
+      },
+      "direction": {
+        "enum": [
+          "row",
+          "column"
+        ],
+        "description": "Flex main-axis direction."
+      },
+      "gap": {
+        "type": "string",
+        "description": "Token-only spacing between children — a NativeSpacingKey (e.g. \"6\"), a Figma \"dimensions/spacings/N\" path, or a \"Spacing-N\" alias. NEVER a raw pixel number/string — resolveSpacingPx silently drops unresolvable values."
+      },
+      "padding": {
+        "type": "string",
+        "description": "Token-only padding on all sides. Same value shape as `gap`."
+      },
+      "paddingX": {
+        "type": "string",
+        "description": "Token-only horizontal padding. Same value shape as `gap`."
+      },
+      "paddingY": {
+        "type": "string",
+        "description": "Token-only vertical padding. Same value shape as `gap`."
+      },
+      "paddingTop": {
+        "type": "string",
+        "description": "Token-only. Same value shape as `gap`."
+      },
+      "paddingRight": {
+        "type": "string",
+        "description": "Token-only. Same value shape as `gap`."
+      },
+      "paddingBottom": {
+        "type": "string",
+        "description": "Token-only. Same value shape as `gap`."
+      },
+      "paddingLeft": {
+        "type": "string",
+        "description": "Token-only. Same value shape as `gap`."
+      },
+      "align": {
+        "enum": [
+          "start",
+          "center",
+          "end",
+          "stretch",
+          "baseline"
+        ],
+        "description": "Cross-axis alignment — maps to `alignItems`."
+      },
+      "justify": {
+        "enum": [
+          "start",
+          "center",
+          "end",
+          "between",
+          "around",
+          "evenly"
+        ],
+        "description": "Main-axis distribution — maps to `justifyContent`."
+      },
+      "wrap": {
+        "type": "boolean",
+        "description": "Flex-wrap."
+      },
+      "flex": {
+        "type": "number",
+        "description": "Flex-grow factor — a plain number IS valid here (not a spacing token)."
+      },
+      "children": {
+        "description": "Arbitrary content; layout order preserved."
+      }
+    }
+  },
+  "tokens": {
+    "spacing": [
+      "margin",
+      "gutter"
+    ]
+  },
+  "a11y": {
+    "accessibilityRole": "none",
+    "accessibleNameSource": "children",
+    "minTouchTarget": 44,
+    "honorsBoldText": false,
+    "honorsScreenReader": true
+  },
+  "renderHints": {
+    "baseElement": "View",
+    "animatedOn": [],
+    "honorsReduceMotion": false,
+    "readsFromSurfaceContext": false
+  },
+  "figma": {
+    "componentKey": "jds-container-v4",
+    "keyHistory": [],
+    "variantProperties": {
+      "Component": "Container"
+    }
+  },
+  "codeSnippets": [
+    {
+      "id": "import-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { Container } from '@oneui/ui-native';\n\n<Container />"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "container",
+    "layout",
+    "container",
+    "structural"
+  ],
+  "importPath": "@oneui/ui-native"
+}

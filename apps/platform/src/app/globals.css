@@ -1,0 +1,179 @@
+/**
+ * globals.css
+ *
+ * Global reset and base typography
+ * Uses design tokens exclusively
+ */
+
+/* Custom font: JioType Variable */
+@font-face {
+  font-family: 'JioType Variable';
+  src: url('/fonts/JioTypeVar.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: optional;
+}
+
+:root {
+  --Spacing-0: var(--Dimension-f-8);
+  --Spacing-0-5: var(--Dimension-f-7);
+  --Spacing-1: var(--Dimension-f-6);
+  --Spacing-1-5: var(--Dimension-f-5);
+  --Spacing-2: var(--Dimension-f-4);
+  --Spacing-2-5: var(--Dimension-f-3);
+  --Spacing-3: var(--Dimension-f-2);
+  --Spacing-3-5: var(--Dimension-f-1);
+  --Spacing-4: var(--Dimension-f0);
+  --Spacing-4-5: var(--Dimension-f1);
+  --Spacing-5: var(--Dimension-f2);
+  --Spacing-5-5: var(--Dimension-f2-5);
+  --Spacing-6: var(--Dimension-f3);
+  --Spacing-7: var(--Dimension-f4);
+  --Spacing-8: var(--Dimension-f5);
+  --Spacing-9: var(--Dimension-f6);
+  --Spacing-10: var(--Dimension-f7);
+  --Spacing-12: var(--Dimension-f8);
+  --Spacing-14: var(--Dimension-f9);
+  --Spacing-16: var(--Dimension-f10);
+  --Spacing-18: var(--Dimension-f11);
+  --Spacing-20: var(--Dimension-f12);
+  --Spacing-24: var(--Dimension-f13);
+  --Spacing-28: var(--Dimension-f14);
+  --Spacing-32: var(--Dimension-f15);
+  --Spacing-40: var(--Dimension-f16);
+  --Spacing-Negative-0-5: calc(var(--Spacing-0-5) * -1);
+  --Spacing-Negative-1: calc(var(--Spacing-1) * -1);
+  --Spacing-Negative-1-5: calc(var(--Spacing-1-5) * -1);
+  --Spacing-Negative-2: calc(var(--Spacing-2) * -1);
+  --Spacing-Negative-2-5: calc(var(--Spacing-2-5) * -1);
+  --Spacing-Negative-3: calc(var(--Spacing-3) * -1);
+  --Spacing-Negative-3-5: calc(var(--Spacing-3-5) * -1);
+  --Spacing-Negative-4: calc(var(--Spacing-4) * -1);
+  --Spacing-Negative-4-5: calc(var(--Spacing-4-5) * -1);
+  --Spacing-Negative-5: calc(var(--Spacing-5) * -1);
+  --Spacing-Negative-5-5: calc(var(--Spacing-5-5) * -1);
+  --Spacing-Negative-6: calc(var(--Spacing-6) * -1);
+  --Spacing-Negative-7: calc(var(--Spacing-7) * -1);
+  --Spacing-Negative-8: calc(var(--Spacing-8) * -1);
+
+  --Shape-0: var(--Dimension-f-8);
+  --Shape-0-5: var(--Dimension-f-7);
+  --Shape-1: var(--Dimension-f-6);
+  --Shape-1-5: var(--Dimension-f-5);
+  --Shape-2: var(--Dimension-f-4);
+  --Shape-2-5: var(--Dimension-f-3);
+  --Shape-3: var(--Dimension-f-2);
+  --Shape-3-5: var(--Dimension-f-1);
+  --Shape-4: var(--Dimension-f0);
+  --Shape-4-5: var(--Dimension-f1);
+  --Shape-5: var(--Dimension-f2);
+  --Shape-5-5: var(--Dimension-f2-5);
+  --Shape-6: var(--Dimension-f3);
+  --Shape-7: var(--Dimension-f4);
+  --Shape-8: var(--Dimension-f5);
+  --Shape-9: var(--Dimension-f6);
+  --Shape-10: var(--Dimension-f7);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  background-color: var(--Surface-Subtle);
+  overscroll-behavior: none;
+  /* Prevent body-level scrolling - let containers handle scrolling */
+  overflow: hidden;
+  height: 100%;
+}
+
+body {
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Body-M-FontSize);
+  font-weight: var(--Body-FontWeight-Low);
+  line-height: var(--Body-M-LineHeight);
+  letter-spacing: var(--Body-LetterSpacing, 0);
+  font-feature-settings: var(--Typography-Features-Primary);
+  color: var(--Text-High);
+  background-color: var(--Surface-Subtle);
+  overscroll-behavior: none;
+  /* Prevent body-level scrolling - let containers handle scrolling */
+  overflow: hidden;
+  height: 100%;
+}
+
+button {
+  font-family: inherit;
+  font-size: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+input,
+textarea,
+select {
+  font-family: inherit;
+  font-size: inherit;
+  -webkit-appearance: none;
+  appearance: none;
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
+code,
+pre {
+  font-family: var(--Typography-Font-Code);
+}
+
+::selection {
+  background-color: var(--Surface-Bold);
+  color: var(--Text-OnBold-High);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--Text-Low);
+  border-radius: var(--Shape-Pill);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--Text-Medium);
+}
+
+/* Brand logo SVG — no theme adaptation, logos stay as-is in all modes */
+.brand-logo-svg {
+  background-color: transparent;
+}

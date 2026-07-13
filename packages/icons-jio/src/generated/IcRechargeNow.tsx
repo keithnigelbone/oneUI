@@ -1,0 +1,34 @@
+import React, { forwardRef } from 'react';
+import type { IconComponentProps } from '../iconProps';
+
+export const IcRechargeNow = forwardRef<SVGSVGElement, IconComponentProps>(function IcRechargeNow(
+  { size = 24, width, height, color = 'currentColor', className, style, ...props },
+  ref,
+) {
+  const dim = width ?? height ?? size;
+  return (
+    <svg
+      ref={ref}
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      width={width ?? dim}
+      height={height ?? dim}
+      color={color}
+      className={className}
+      style={style}
+      {...props}
+    >
+      <path
+            fill="currentColor"
+            d="M16.56 15.06c.28-.28.44-.66.44-1.06v-2.5c0-.23-.05-.45-.14-.66-.1-.21-.24-.39-.42-.53l-1.85-1.5c-.27-.21-.6-.31-.93-.31H8.51a1.5 1.5 0 0 0-1.5 1.5v4a1.5 1.5 0 0 0 1.5 1.5h7c.4 0 .78-.16 1.06-.44z"
+          />
+          <path
+            fill="currentColor"
+            d="M12 4c1.35 0 2.67.35 3.85 1H15a1.014 1.014 0 0 0-.99 1.2 1.03 1.03 0 0 0 .61.73c.12.05.25.07.38.07h3c.27 0 .52-.11.71-.29A1 1 0 0 0 19 6V3c0-.27-.11-.52-.29-.71A1 1 0 0 0 18 2c-.27 0-.52.11-.71.29A1 1 0 0 0 17 3v.36c-1.52-.88-3.24-1.35-5-1.36-1.75 0-3.48.46-4.99 1.34C5.49 4.22 4.23 5.48 3.35 7A10 10 0 0 0 2 12c0 .27.11.52.29.71.19.19.44.29.71.29s.52-.11.71-.29A1 1 0 0 0 4 12c0-2.12.84-4.16 2.34-5.66S9.88 4 12 4m9.71 7.29a1.03 1.03 0 0 0-.51-.28.96.96 0 0 0-.58.06c-.18.08-.34.21-.45.37-.11.17-.17.36-.17.56 0 1.39-.37 2.75-1.06 3.95a8 8 0 0 1-2.87 2.91 7.9 7.9 0 0 1-3.94 1.11 7.95 7.95 0 0 1-3.97-.98H9c.27 0 .52-.11.71-.29a1 1 0 0 0 .29-.71c0-.27-.11-.52-.29-.71a1 1 0 0 0-.71-.29H6c-.27 0-.52.11-.71.29a1 1 0 0 0-.29.71v3a1.014 1.014 0 0 0 1.2.99 1.03 1.03 0 0 0 .73-.61c.05-.12.07-.25.07-.38v-.36c1.52.88 3.24 1.35 5 1.36 1.76 0 3.48-.46 5-1.34s2.78-2.14 3.66-3.66a9.96 9.96 0 0 0 1.34-5 .99.99 0 0 0-.29-.71z"
+          />
+    </svg>
+  );
+});
+
+IcRechargeNow.displayName = 'IcRechargeNow';

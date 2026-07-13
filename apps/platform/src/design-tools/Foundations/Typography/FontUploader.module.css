@@ -1,0 +1,369 @@
+/**
+ * Font Uploader styles
+ */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-4);
+}
+
+.dropZone {
+  border: 2px dashed var(--Border-Subtle);
+  border-radius: var(--Shape-4);
+  padding: var(--Spacing-6);
+  text-align: center;
+  cursor: pointer;
+  transition: all var(--Motion-Duration-Discreet-Short) var(--Motion-Easing-Standard);
+  background-color: transparent;
+}
+
+.dropZone:hover,
+.dropZone.dragOver {
+  border-color: var(--Surface-Bold);
+  background-color: var(--Surface-Ghost);
+}
+
+.dropZone.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.dropZone.disabled:hover {
+  border-color: var(--Border-Subtle);
+  background-color: transparent;
+}
+
+.dropZoneIcon {
+  font-size: var(--Title-S-FontSize);
+  margin-bottom: var(--Spacing-3-5);
+  opacity: 0.6;
+}
+
+.dropZoneText {
+  font-size: var(--Body-S-FontSize);
+  color: var(--Text-Medium);
+  margin-bottom: var(--Spacing-3);
+}
+
+.dropZoneHint {
+  font-size: var(--Label-XS-FontSize);
+  color: var(--Text-Low);
+}
+
+.formatBadges {
+  display: flex;
+  justify-content: center;
+  gap: var(--Spacing-2-5);
+  margin-top: var(--Spacing-3-5);
+}
+
+.formatBadge {
+  font-size: var(--Label-2XS-FontSize);
+  font-weight: var(--Body-FontWeight-Medium);
+  color: var(--Text-Low);
+  padding: var(--Spacing-1) var(--Spacing-3);
+  background-color: var(--Surface-Subtle);
+  border-radius: var(--Shape-4);
+  text-transform: uppercase;
+  line-height: 1.4;
+  letter-spacing: var(--Typography-LetterSpacing-Wide);
+}
+
+.hiddenInput {
+  display: none;
+}
+
+/* Font preview section - Table layout */
+
+.previewSection {
+  border: 1px solid var(--Border-Subtle);
+  border-radius: var(--Shape-4);
+  overflow: hidden;
+}
+
+.previewHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--Spacing-3-5) var(--Spacing-4);
+  background-color: var(--Surface-Ghost);
+  border-bottom: var(--Stroke-M) solid var(--Border-Subtle);
+}
+
+.previewTitle {
+  font-size: var(--Label-XS-FontSize);
+  font-weight: var(--Body-FontWeight-High);
+  color: var(--Text-High);
+  text-transform: uppercase;
+  letter-spacing: var(--Typography-LetterSpacing-Wider);
+}
+
+.previewBadges {
+  display: flex;
+  gap: var(--Spacing-3);
+  align-items: center;
+}
+
+.badge {
+  font-size: var(--Label-2XS-FontSize);
+  font-weight: var(--Body-FontWeight-Medium);
+  padding: var(--Spacing-1) var(--Spacing-3);
+  background-color: var(--Surface-Subtle);
+  border-radius: var(--Shape-4);
+  color: var(--Text-Medium);
+  line-height: 1.4;
+  letter-spacing: var(--Typography-LetterSpacing-Wide);
+}
+
+.badge.variable {
+  background-color: var(--Surface-Bold);
+  color: var(--Text-OnBold-High);
+}
+
+.previewInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.infoRow {
+  display: flex;
+  align-items: flex-start;
+  padding: var(--Spacing-3-5) var(--Spacing-4);
+  border-bottom: var(--Stroke-M) solid var(--Border-Subtle);
+  font-size: var(--Body-S-FontSize);
+}
+
+.infoRow:last-child {
+  border-bottom: none;
+}
+
+.infoLabel {
+  color: var(--Text-Low);
+  min-width: var(--Spacing-20);
+  flex-shrink: 0;
+}
+
+.infoValue {
+  color: var(--Text-High);
+  flex: 1;
+}
+
+.weightsList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--Spacing-2-5);
+}
+
+.weightBadge {
+  font-size: var(--Label-2XS-FontSize);
+  font-weight: var(--Body-FontWeight-Medium);
+  padding: var(--Spacing-1) var(--Spacing-3);
+  background-color: var(--Surface-Subtle);
+  border-radius: var(--Shape-4);
+  color: var(--Text-Medium);
+  line-height: 1.4;
+}
+
+.axesList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-2-5);
+}
+
+.axisItem {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-3);
+  font-size: var(--Body-S-FontSize);
+}
+
+.axisTag {
+  font-weight: var(--Body-FontWeight-Medium);
+  color: var(--Text-High);
+  font-family: monospace;
+  background-color: var(--Surface-Subtle);
+  padding: var(--Stroke-M) var(--Spacing-2-5);
+  border-radius: var(--Shape-3);
+}
+
+.axisRange {
+  color: var(--Text-Low);
+}
+
+/* Font preview sample */
+
+.fontPreview {
+  padding: var(--Spacing-4);
+  border: 1px solid var(--Border-Subtle);
+  border-radius: var(--Shape-4);
+  text-align: center;
+}
+
+.fontPreviewLabel {
+  font-size: var(--Label-XS-FontSize);
+  color: var(--Text-Low);
+  margin-bottom: var(--Spacing-3-5);
+  text-transform: uppercase;
+  letter-spacing: var(--Typography-LetterSpacing-Wider);
+}
+
+.fontPreviewSample {
+  font-size: var(--Title-S-FontSize);
+  line-height: 1.3;
+  color: var(--Text-High);
+}
+
+/* Form fields */
+
+.formFields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--Spacing-4);
+}
+
+.formField {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-3);
+}
+
+.formField.fullWidth {
+  grid-column: 1 / -1;
+}
+
+.formField label {
+  font-size: var(--Label-XS-FontSize);
+  font-weight: var(--Body-FontWeight-Medium);
+  color: var(--Text-Medium);
+}
+
+.formField input,
+.formField select {
+  padding: var(--Spacing-3) var(--Spacing-3-5);
+  border-radius: var(--Shape-4);
+  border: 1px solid var(--Border-Subtle);
+  background-color: var(--Surface-Main);
+  font-size: var(--Body-S-FontSize);
+}
+
+.formField input:focus,
+.formField select:focus {
+  outline: none;
+  border-color: var(--Surface-Bold);
+}
+
+/* Error section */
+
+.errorSection {
+  background-color: var(--Negative-Subtle);
+  border: var(--Stroke-XL) solid var(--Negative-Stroke-Medium);
+  border-radius: var(--Shape-4);
+  padding: var(--Spacing-4);
+}
+
+.errorTitle {
+  font-size: var(--Body-S-FontSize);
+  font-weight: var(--Body-FontWeight-Medium);
+  color: var(--Negative-TintedA11y);
+  margin-bottom: var(--Spacing-3);
+}
+
+.errorList {
+  list-style: disc;
+  padding-left: var(--Spacing-4-5);
+  font-size: var(--Body-XS-FontSize);
+  color: var(--Negative-TintedA11y);
+}
+
+.errorList li {
+  margin-bottom: var(--Spacing-2-5);
+}
+
+/* Actions */
+
+.actions {
+  display: flex;
+  gap: var(--Spacing-3-5);
+  justify-content: flex-end;
+}
+
+.actionButton {
+  padding: var(--Spacing-3) var(--Spacing-4-5);
+  border-radius: var(--Shape-4);
+  border: none;
+  cursor: pointer;
+  font-size: var(--Body-S-FontSize);
+  font-weight: var(--Body-FontWeight-Medium);
+  transition: all var(--Motion-Duration-Discreet-Short) var(--Motion-Easing-Standard);
+}
+
+.actionButton.primary {
+  background-color: var(--Surface-Bold);
+  color: var(--Text-OnBold-High);
+}
+
+.actionButton.primary:hover:not(:disabled) {
+  opacity: 0.9;
+}
+
+.actionButton.primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.actionButton.secondary {
+  background-color: transparent;
+  color: var(--Text-Medium);
+  border: 1px solid var(--Border-Subtle);
+}
+
+.actionButton.secondary:hover {
+  background-color: var(--Surface-Ghost);
+}
+
+/* Status messages */
+
+.statusMessage {
+  font-size: var(--Label-XS-FontSize);
+  padding: var(--Spacing-3-5) var(--Spacing-4);
+  border-radius: var(--Shape-3-5);
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-3);
+}
+
+.statusMessage.parsing {
+  background-color: var(--Informative-Subtle);
+  color: var(--Informative-TintedA11y);
+}
+
+.statusMessage.uploading {
+  background-color: var(--Positive-Subtle);
+  color: var(--Positive-TintedA11y);
+}
+
+.statusMessage.success {
+  background-color: var(--Positive-Subtle);
+  color: var(--Positive-TintedA11y);
+}
+
+.statusMessage.error {
+  background-color: var(--Negative-Subtle);
+  color: var(--Negative-TintedA11y);
+}
+
+.spinner {
+  width: var(--Spacing-4);
+  height: var(--Spacing-4);
+  border: var(--Stroke-XL) solid currentColor;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

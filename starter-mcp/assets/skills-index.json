@@ -1,0 +1,46 @@
+[
+  {
+    "name": "oneui",
+    "description": "Build correct OneUI / JDS UI with @jds4/oneui-react (web) and @oneui/ui-native (React Native). The entry-point skill for any project that consumes the published OneUI component library: it loads project context, enforces the cross-cutting correctness rules (appearance vs attention, surface discipline, icons, images, Base-UI composition, token-only styling), and drives component APIs live from the OneUI MCP so generated code matches the installed version. Use this skill whenever building a screen, page, form, or component with OneUI/JDS, whenever a project has @jds4/oneui-react / @oneui/ui-native in package.json or an oneui.brands.json file, and whenever someone says \"OneUI\", \"JDS\", \"Jio design system\", \"build a OneUI screen\", or imports from @jds4/oneui-react. SCOPE: this skill owns component-API correctness + the build workflow. For page composition/layout/typography/navigation defer to `oneui-design-composition`; for WHICH surface level a region earns defer to `surface`; for the [data-surface] remapping mechanism defer to `surface-context`.",
+    "files": [
+      "SKILL.md",
+      "evals/evals.json",
+      "rules/appearance-vs-attention.md",
+      "rules/base-ui-composition.md",
+      "rules/icons-and-text.md",
+      "rules/images.md",
+      "rules/imports-and-setup.md",
+      "rules/surface-discipline.md"
+    ]
+  },
+  {
+    "name": "oneui-design-composition",
+    "description": "OneUI/Jio design composition philosophy and UI authoring guide — the holistic layer that decides how a whole page or screen hangs together. Teaches layout and grid, navigation and app structure, component selection, typography, color roles, spacing, shape, elevation, motion, and the content-first / attention-as-budget philosophy of the OneUI design system. Use this skill when composing pages, building layouts, structuring screens, designing navigation (tabs, bottom nav, headers, app shell), selecting which component fits a need, applying color roles, picking typography styles, deciding spacing or grid, or creating any UI that should follow OneUI/Jio conventions. Trigger when the user says \"design\", \"layout\", \"compose\", \"page structure\", \"visual hierarchy\", \"navigation\", \"nav\", \"tab bar\", \"bottom nav\", \"header\", \"app structure\", \"which component\", \"typography\", \"color role\", \"spacing\", \"whitespace\", \"card design\", \"hero section\", \"product grid\", or asks about Apple-like simplicity, content-first design, or Jio brand conventions. Even a plain \"build a page\" / \"create a screen\" / \"add a section\" should pull this skill in for composition decisions. For the specific decision of WHICH surface level to use and WHEN (default vs minimal/subtle/moderate/bold/elevated/brand-bg, restraint, tinting rules), defer to the dedicated `surface` skill — this skill references it rather than duplicating it. Do NOT use this skill for engine internals (the [data-surface] remapping mechanism, CSS generation pipeline, Convex schema, brand CSS injection) — use `surface-context` for those.",
+    "files": [
+      "SKILL.md",
+      "references/attention-level-mapping.md",
+      "references/composition-patterns.md",
+      "references/navigation-patterns.md",
+      "references/token-quick-reference.md"
+    ]
+  },
+  {
+    "name": "surface",
+    "description": "Decide WHEN, WHICH, and WHY to use a surface in OneUI — the focused design-judgment layer for surface, background, and attention-level choice. A surface is a choice about meaning and attention, not color: you pick a level (default/minimal/subtle/moderate/bold/elevated/brand-bg/sparkle) and the engine computes every fill, text, stroke, contrast, and state automatically. Use this skill specifically when choosing a section/card/hero/banner/toast background or attention level, when placing components on colored/dark/brand areas, when someone asks 'what surface should I use', 'should this be bold/tinted/branded', 'why does this screen feel busy/loud', or wants a screen to feel calm and uncluttered, and when reviewing or repairing surface misuse (tinted default backgrounds, too many colored cards, competing bold areas, decorative color, tinted dark mode, hardcoded backgrounds). Reach for it even when the user doesn't say 'surface' — any time a UI background, emphasis, or visual-hierarchy decision is in play, surface choice is the question. SCOPE BOUNDARY: this skill owns surface-level choice only. For overall page composition — layout, grid, navigation/app structure, typography, color roles, component selection, spacing — use the `oneui-design-composition` skill (it hands surface decisions back to this one). For the underlying [data-surface] token-remapping mechanism, building surface-aware components, or debugging adaptation, use the `surface-context` skill.",
+    "files": [
+      "SKILL.md",
+      "assets/surface-taxonomy.json",
+      "references/decision-tree.md",
+      "references/patterns.md",
+      "references/surface-levels.md"
+    ]
+  },
+  {
+    "name": "surface-context",
+    "description": "OneUI surface context awareness system — how components automatically adapt colors when placed on different background surfaces via CSS-only token remapping. Use this skill whenever working with: surface tokens, the <Surface> component, data-surface attributes, surface modes (default/ghost/minimal/subtle/moderate/bold/elevated), on-colour tokens, bold inversion, content tokens (high/medium/low/tinted/tintedA11y/strokeMedium/strokeLow), state tokens, component surface adaptation, creating surface-aware components, or the intermediate variable CSS pattern. Also use when placing components on colored/dark/brand backgrounds, debugging invisible components on bold surfaces, understanding token naming (--Role-Bold, --Role-TintedA11y), or building showcase pages with Surface context sections.",
+    "files": [
+      "SKILL.md",
+      "references/token-reference.md"
+    ]
+  }
+]

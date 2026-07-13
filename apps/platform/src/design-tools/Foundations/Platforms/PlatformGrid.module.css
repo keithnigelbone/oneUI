@@ -1,0 +1,440 @@
+/**
+ * PlatformList.module.css
+ * Accordion-style platform rows that expand to show all settings inline
+ */
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-0);
+}
+
+.categoryTabsRow {
+  margin-left: calc(-1 * var(--Spacing-2-5));
+  margin-bottom: var(--Spacing-5);
+  border-bottom: var(--Stroke-M) solid var(--Border-Subtle);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.categoryTabsRow::-webkit-scrollbar {
+  display: none;
+}
+
+.categoryTabsList {
+  width: max-content;
+  min-width: 100%;
+}
+
+.categoryTabCount {
+  margin-left: var(--Spacing-2);
+  color: var(--Text-Low);
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+}
+
+/*
+ * Type scale — three tiers only:
+ *   Title S  — category section headers (Digital / Print / Physical)
+ *   Body  S  — platform titles, section labels, input text, stat values
+ *   Body  XS / Label XS — descriptions, stat labels, units, helper text
+ * Differentiation inside a tier comes from weight + color, not size.
+ */
+
+.categoryGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-3);
+  /*
+   * `position: relative` anchors the `::before` pseudo-element that draws
+   * the edge-to-edge divider above each category group (see rule below).
+   * The absolute positioning lets the divider escape the FoundationCard's
+   * `Spacing-4-5` horizontal padding without affecting inner layout.
+   */
+  position: relative;
+}
+
+.categoryGroup + .categoryGroup {
+  margin-top: var(--Spacing-6);
+  padding-top: var(--Spacing-6);
+}
+
+/*
+ * Edge-to-edge category divider. Spans beyond the FoundationCard content
+ * padding (Spacing-4-5 each side) via negative left/right on the absolute
+ * positioning. Only draws on category groups that are NOT first — the
+ * opening category sits directly under the FoundationCard title and
+ * doesn't need its own top divider.
+ */
+.categoryGroup + .categoryGroup::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: calc(-1 * var(--Spacing-4-5));
+  right: calc(-1 * var(--Spacing-4-5));
+  height: var(--Stroke-M);
+  background-color: var(--Border-Subtle);
+}
+
+.categoryHeader {
+  display: flex;
+  align-items: baseline;
+  gap: var(--Spacing-3-5);
+  /* Extra bottom padding so the row list has breathing room below the
+     section title — user asked for "a little more space after the title". */
+  padding: var(--Spacing-2-5) 0 var(--Spacing-4);
+  font-size: var(--Title-S-FontSize);
+  line-height: var(--Title-S-LineHeight);
+  font-weight: var(--Title-S-FontWeight);
+  color: var(--Text-High);
+}
+
+.categoryHeaderCount {
+  color: var(--Text-Low);
+  font-size: var(--Body-XS-FontSize);
+  line-height: var(--Body-XS-LineHeight);
+  font-weight: var(--Body-FontWeight-Low);
+}
+
+/*
+ * Platform rows: no outer border, no background, no border-radius. Each
+ * row draws its own edge-to-edge bottom divider via a `::after`
+ * pseudo-element that extends beyond the FoundationCard content padding
+ * (same escape trick as the category divider above). The last row in
+ * each category suppresses its divider — the next category's top
+ * divider handles the separation, and this avoids a double line.
+ */
+.row {
+  background-color: transparent;
+  position: relative;
+}
+
+.rowDisabled {
+  opacity: var(--Disabled-Opacity);
+}
+
+.rowHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-3-5);
+  /* Tight + symmetric vertical padding so collapsed rows read as a
+     dense list and expanded rows flow naturally into the body below. */
+  padding: var(--Spacing-2) 0;
+  cursor: pointer;
+  user-select: none;
+  border-bottom: var(--Stroke-S) solid var(--Neutral-Stroke-Low);
+}
+
+.categoryHeader + .row .rowHeader {
+  border-top: var(--Stroke-S) solid var(--Neutral-Stroke-Low);
+}
+
+.rowHeader:focus-visible {
+  outline: var(--Stroke-XL) solid var(--Surface-Bold);
+  outline-offset: calc(-1 * var(--Stroke-XL));
+}
+
+.chevron {
+  box-sizing: content-box;
+  flex-shrink: 0;
+  margin-left: var(--Spacing-2);
+  padding: var(--Spacing-2);
+  border-radius: var(--Shape-2);
+  background-color: var(--Surface-Minimal);
+  box-shadow: inset 0 0 0 var(--Stroke-S) var(--Border-Subtle);
+  color: var(--Text-Low);
+  transition:
+    background-color var(--Motion-Duration-Discreet-Short),
+    color var(--Motion-Duration-Discreet-Short),
+    box-shadow var(--Motion-Duration-Discreet-Short),
+    transform var(--Motion-Duration-Discreet-Medium) var(--Motion-Easing-Standard);
+}
+
+.chevronExpanded {
+  transform: rotate(90deg);
+}
+
+.rowHeader:hover .chevron,
+.rowHeader:focus-visible .chevron {
+  background-color: var(--Primary-Subtle);
+  box-shadow: inset 0 0 0 var(--Stroke-M) var(--Primary-Stroke-Low);
+  color: var(--Primary-TintedA11y);
+}
+
+.rowIcon {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--Text-Medium);
+}
+
+/*
+ * Row header is a single line: icon + platform title on the left, a
+ * single category Badge on the right, then the overflow menu and
+ * enable toggle. All free-floating description/stats copy was removed
+ * — the category header above each group already names the group, and
+ * the badge (Responsive / Fixed / Print / Physical + breakpoint count)
+ * carries all the meta information that used to live in the row.
+ */
+.rowInfo {
+  flex: 0 1 auto;
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.rowLabel {
+  font-size: var(--Body-M-FontSize);
+  /* Tight line-height so the glyph box matches the cap-height closely.
+     The normal Body-M line-height (~1.5) adds ascender/descender space
+     that pushes the visual centre below the icon when aligned via
+     flex `align-items: center`. line-height: 1 keeps icon + glyph
+     baseline-centred pixel-for-pixel. */
+  line-height: 1;
+  font-weight: var(--Body-FontWeight-Medium);
+  color: var(--Text-High);
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rowMeta {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+/* Inline rename */
+.renameRow {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-2);
+}
+
+.renameInput {
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  font-weight: var(--Body-FontWeight-Medium);
+  font-family: inherit;
+  color: var(--Text-High);
+  background: var(--Surface-Ghost);
+  border: none;
+  border-radius: var(--Shape-4);
+  padding: var(--Spacing-1-5) var(--Spacing-2);
+  outline: none;
+  min-width: 0;
+  flex: 1;
+}
+
+.renameInput:focus {
+  box-shadow: 0 0 0 var(--Stroke-M) var(--Primary-Bold);
+}
+
+.renameAction {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--Spacing-1-5);
+  background: none;
+  border: none;
+  color: var(--Text-Medium);
+  cursor: pointer;
+  border-radius: var(--Shape-4);
+  flex-shrink: 0;
+}
+
+.renameAction:hover {
+  color: var(--Text-High);
+  background: var(--Surface-Subtle);
+}
+
+/* Row action buttons (rename / delete) */
+.rowActions {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-1-5);
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+.actionButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--Spacing-1-5);
+  background: none;
+  border: none;
+  color: var(--Text-Low);
+  cursor: pointer;
+  border-radius: var(--Shape-4);
+  transition: color var(--Motion-Duration-Discreet-Short) var(--Motion-Easing-Standard),
+              background-color var(--Motion-Duration-Discreet-Short) var(--Motion-Easing-Standard);
+}
+
+.actionButton:hover {
+  color: var(--Text-High);
+  background: var(--Surface-Subtle);
+}
+
+.actionButton:disabled {
+  opacity: var(--Disabled-Opacity);
+  cursor: not-allowed;
+}
+
+/* Delete confirmation inline */
+.deleteConfirm {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-1-5);
+}
+
+.deleteConfirmText {
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  color: var(--Text-High);
+  font-weight: var(--Label-FontWeight-Medium);
+}
+
+.deleteConfirmYes,
+.deleteConfirmNo {
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-family: inherit;
+  font-weight: var(--Label-FontWeight-Medium);
+  padding: var(--Spacing-1-5) var(--Spacing-2);
+  border: none;
+  border-radius: var(--Shape-4);
+  cursor: pointer;
+  transition: background-color var(--Motion-Duration-Discreet-Short) var(--Motion-Easing-Standard);
+}
+
+.deleteConfirmYes {
+  background: var(--Surface-Bold);
+  color: var(--Text-OnBold-High);
+}
+
+.deleteConfirmYes:hover {
+  opacity: 0.9;
+}
+
+.deleteConfirmNo {
+  background: var(--Surface-Subtle);
+  color: var(--Text-High);
+}
+
+.deleteConfirmNo:hover {
+  background: var(--Surface-Ghost);
+}
+
+/*
+ * Expanded content area flows flush with the row header's horizontal
+ * bounds — no left inset. Previously indented by `Spacing-6`, which
+ * misaligned the DIN / Breakpoints / Density section headers from the
+ * row's chevron and platform title. Vertical padding tightened so the
+ * body sits closer to the header line it belongs to, and the right
+ * edge matches the three-dot menu (both land at the card inner edge).
+ */
+.rowBody {
+  padding: var(--Spacing-4) 0 var(--Spacing-4-5) 0;
+  display: flex;
+  flex-direction: column;
+  /* gap:0 because inter-section spacing is handled on `.section + .section`
+     together with the horizontal divider below. */
+  gap: 0;
+  border-bottom: var(--Stroke-S) solid var(--Neutral-Stroke-Low);
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-4);
+}
+
+/*
+ * Horizontal divider between sections inside the expanded body. Only
+ * draws between adjacent `.section`s (the first section has no top
+ * divider because it sits directly below the row header). The padding
+ * above gives breathing room, and `margin-top` pulls the section into
+ * the spacing so the divider lives in the middle of the gap.
+ */
+.section + .section {
+  margin-top: var(--Spacing-5);
+  padding-top: var(--Spacing-5);
+  border-top: var(--Stroke-M) solid var(--Border-Subtle);
+}
+
+/*
+ * Section header is a flex toolbar: title on the left, optional result
+ * or action slot on the right. All three sections (DIN / Breakpoints /
+ * Density) use this so the section-label typography stays identical
+ * and any inline result (e.g. DIN 1450 base-size readout) sits flush
+ * with the title baseline.
+ */
+.sectionHeader {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--Spacing-4);
+  margin: 0;
+}
+
+.sectionTitle {
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  font-weight: var(--Body-FontWeight-Medium);
+  color: var(--Text-Medium);
+  margin: 0;
+}
+
+.sectionResult {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--Spacing-2);
+}
+
+.sectionResultLabel {
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Low);
+  color: var(--Text-Low);
+}
+
+.sectionResultValue {
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+  color: var(--Text-High);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Add Platform button at bottom of list */
+.addPlatformButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--Spacing-3);
+  padding: var(--Spacing-3-5) var(--Spacing-4);
+  border: var(--Stroke-M) dashed var(--Border-Subtle);
+  border-radius: var(--Shape-4-5);
+  background-color: transparent;
+  color: var(--Text-Medium);
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  font-family: inherit;
+  cursor: pointer;
+  transition: all var(--Motion-Duration-Discreet-Short) var(--Motion-Easing-Standard);
+}
+
+.addPlatformButton:hover {
+  background-color: var(--Surface-Ghost);
+  border-color: var(--Primary-Bold);
+  color: var(--Primary-Bold);
+}
+
+.addPlatformButton:disabled {
+  opacity: var(--Disabled-Opacity);
+  cursor: not-allowed;
+}

@@ -1,0 +1,160 @@
+/**
+ * InspectPanel.module.css
+ *
+ * Single-column token inspector.
+ * Each row: actual value preview on the left, token info to its right.
+ * Color → swatch, Spacing → bold px number, Shape → radius preview,
+ * Stroke → thickness line. No decorative icons.
+ * Token-only styling (zero literals).
+ */
+
+.panel {
+  display: flex;
+  flex-direction: column;
+}
+
+.tokenList {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Row ─────────────────────────────────────────────── */
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-3-5);
+  padding: var(--Spacing-3-5) var(--Spacing-2-5);
+  min-height: var(--Spacing-7);
+  transition: background-color var(--Motion-Duration-Discreet-Short);
+}
+
+.row:hover {
+  background-color: var(--Surface-Ghost);
+}
+
+.row:not(:last-child) {
+  border-bottom: var(--Stroke-M) solid var(--Border-Subtle);
+}
+
+/* ── Value preview (left) ────────────────────────────── */
+
+.valuePreview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: var(--Spacing-6);
+}
+
+/* Color swatch — large, prominent */
+.colorSwatch {
+  display: block;
+  width: var(--Spacing-5);
+  height: var(--Spacing-5);
+  border-radius: var(--Shape-3-5);
+  border: var(--Stroke-XL) solid var(--Text-Low-Stroke);
+}
+
+.colorSwatch[data-transparent] {
+  background-image:
+    linear-gradient(45deg, var(--Surface-Subtle) 25%, transparent 25%),
+    linear-gradient(-45deg, var(--Surface-Subtle) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, var(--Surface-Subtle) 75%),
+    linear-gradient(-45deg, transparent 75%, var(--Surface-Subtle) 75%);
+  background-size: var(--Spacing-2) var(--Spacing-2);
+  background-position:
+    0 0,
+    0 calc(var(--Spacing-2) / 2),
+    calc(var(--Spacing-2) / 2) calc(var(--Spacing-2) * -1 / 2),
+    calc(var(--Spacing-2) * -1 / 2) 0;
+  background-color: var(--Surface-Main);
+}
+
+/* Shape preview — box showing the actual border-radius */
+.shapePreview {
+  display: block;
+  width: var(--Spacing-5);
+  height: var(--Spacing-5);
+  background-color: var(--Surface-Subtle);
+  border: var(--Stroke-XL) solid var(--Text-Low-Stroke);
+  /* border-radius set inline */
+}
+
+/* Stroke preview — horizontal line showing thickness */
+.strokePreview {
+  display: block;
+  width: var(--Spacing-5);
+  /* height set inline to actual stroke thickness */
+  min-height: var(--Stroke-M);
+  background-color: var(--Text-Medium);
+  border-radius: var(--Shape-Pill);
+}
+
+/* Pixel value as bold number — spacing, font-size */
+.pixelPreview {
+  font-family: var(--Typography-Font-Mono, monospace);
+  font-size: var(--Body-S-FontSize);
+  font-weight: var(--Body-FontWeight-High);
+  color: var(--Text-High);
+  white-space: nowrap;
+  letter-spacing: -0.02em;
+}
+
+/* ── Token info (right of preview) ───────────────────── */
+
+.tokenInfo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-1);
+  min-width: 0;
+  flex: 1;
+}
+
+.tokenName {
+  font-size: var(--Label-XS-FontSize);
+  font-weight: var(--Body-FontWeight-Medium);
+  color: var(--Text-High);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-2);
+}
+
+.tokenValue {
+  font-family: var(--Typography-Font-Mono, monospace);
+  font-size: var(--Label-2XS-FontSize);
+  font-weight: var(--Body-FontWeight-Medium);
+  color: var(--Text-Medium);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cssVar {
+  font-family: var(--Typography-Font-Mono, monospace);
+  font-size: var(--Label-3XS-FontSize);
+  color: var(--Text-Low);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Override indicator dot */
+.overrideDot {
+  width: var(--Spacing-2);
+  height: var(--Spacing-2);
+  border-radius: var(--Shape-Pill);
+  background-color: var(--Surface-Bold);
+  flex-shrink: 0;
+}
+
+/* Section divider */
+.sectionDivider {
+  width: 100%;
+  height: var(--Stroke-M);
+  background-color: var(--Border-Subtle);
+  flex-shrink: 0;
+}

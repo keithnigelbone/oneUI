@@ -1,0 +1,27 @@
+import React, { forwardRef } from 'react';
+import type { IconComponentProps } from '../iconProps';
+
+export const OrdersOutlined = forwardRef<SVGSVGElement, IconComponentProps>(function OrdersOutlined(
+  { size = 24, width, height, color = 'currentColor', className, style, ...props },
+  ref,
+) {
+  const dim = width ?? height ?? size;
+  return (
+    <svg
+      ref={ref}
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      width={width ?? dim}
+      height={height ?? dim}
+      color={color}
+      className={className}
+      style={style}
+      {...props}
+    >
+      <path d="M15.459 3.5C16.1115 3.5001 16.7225 3.81894 17.0967 4.35352L19.6387 7.9834C19.874 8.31956 20 8.72052 20 9.13086V17.5C20 18.6046 19.1046 19.5 18 19.5H6C4.89543 19.5 4 18.6046 4 17.5V9.13086C4 8.72052 4.12601 8.31956 4.36133 7.9834L6.90332 4.35352C7.27752 3.81894 7.8885 3.5001 8.54102 3.5H15.459ZM5.20215 9.09961C5.20175 9.1099 5.2002 9.12053 5.2002 9.13086V17.5C5.2002 17.9418 5.55817 18.2998 6 18.2998H18C18.4418 18.2998 18.7998 17.9418 18.7998 17.5V9.13086C18.7998 9.12053 18.7982 9.1099 18.7979 9.09961H5.20215ZM12.6104 7.90039H18.1152L16.1143 5.04102C15.9646 4.82727 15.7199 4.70029 15.459 4.7002H12.6006L12.6104 7.90039ZM8.54102 4.7002C8.2801 4.70029 8.03539 4.82727 7.88574 5.04102L5.88477 7.90039H11.4102L11.4014 4.7002H8.54102Z" fill="currentColor"/>
+    </svg>
+  );
+});
+
+OrdersOutlined.displayName = 'OrdersOutlined';

@@ -1,0 +1,60 @@
+{
+  "name": "@jds/kb-web",
+  "version": "5.0.0-wip.0",
+  "private": false,
+  "description": "JDS knowledge-base for web (React + CSS Modules). Consumed by AI code-generation tools to emit idiomatic web code that matches OneUI design system rules.",
+  "license": "UNLICENSED",
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "import": "./src/index.ts"
+    },
+    "./manifest.json": "./dist/manifest.json",
+    "./components.json": "./dist/components.json",
+    "./components/*": "./dist/components/*.json",
+    "./schemas/*": "./dist/schemas/*.json"
+  },
+  "publishConfig": {
+    "main": "./dist/index.cjs",
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "registry": "https://jfrog.jio.com/artifactory/api/npm/npm-jds/",
+    "access": "restricted",
+    "exports": {
+      ".": {
+        "types": "./dist/index.d.ts",
+        "import": "./dist/index.js",
+        "require": "./dist/index.cjs"
+      },
+      "./manifest.json": "./dist/manifest.json",
+      "./components.json": "./dist/components.json",
+      "./components/*": "./dist/components/*.json",
+      "./schemas/*": "./dist/schemas/*.json"
+    }
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "build": "tsup && node scripts/generate-json.mjs",
+    "generate:json": "node scripts/generate-json.mjs",
+    "test": "vitest run"
+  },
+  "peerDependencies": {
+    "@jds/kb-core": "5.0.0-wip.0"
+  },
+  "devDependencies": {
+    "@jds/kb-core": "workspace:*",
+    "@types/node": "^22.10.5",
+    "ajv": "^8.17.1",
+    "sharp": "^0.34.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.7.2",
+    "vitest": "^2.0.0"
+  }
+}

@@ -1,0 +1,30 @@
+import React, { forwardRef } from 'react';
+import type { IconComponentProps } from '../iconProps';
+
+export const IcNightPartlyCloudyThunderstorms = forwardRef<SVGSVGElement, IconComponentProps>(function IcNightPartlyCloudyThunderstorms(
+  { size = 24, width, height, color = 'currentColor', className, style, ...props },
+  ref,
+) {
+  const dim = width ?? height ?? size;
+  return (
+    <svg
+      ref={ref}
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      width={width ?? dim}
+      height={height ?? dim}
+      color={color}
+      className={className}
+      style={style}
+      {...props}
+    >
+      <path
+            fill="currentColor"
+            d="m10.2 18.4-1.5 2c-.33.44-.24 1.07.2 1.4.18.13.39.2.6.2.3 0 .6-.14.8-.4l1.5-2c.33-.44.24-1.07-.2-1.4s-1.07-.24-1.4.2m4 0-1.5 2c-.33.44-.24 1.07.2 1.4.18.13.39.2.6.2.3 0 .6-.14.8-.4l1.5-2c.33-.44.24-1.07-.2-1.4s-1.07-.24-1.4.2m-.87-7.62c-1.44 0-2.6 1.19-2.6 2.67-.96 0-1.73.8-1.73 1.78s.78 1.78 1.73 1.78H15c0-.64.2-1.27.6-1.8l3-4c.25-.34.58-.6.94-.8-.63-.84-1.62-1.4-2.74-1.4-1.3 0-2.42.74-3.01 1.82-.15-.03-.3-.05-.46-.05m9.06 5.77a1 1 0 0 0-.89-.55H20l1.8-2.4c.33-.44.24-1.07-.2-1.4s-1.07-.24-1.4.2l-3 4c-.23.3-.26.71-.09 1.05A1 1 0 0 0 18 18h1.5l-1.8 2.4c-.33.44-.24 1.07.2 1.4.18.13.39.2.6.2.3 0 .6-.14.8-.4l3-4c.23-.3.26-.71.09-1.05m-9.61-7.74c.34-.38.73-.7 1.15-.96.15-2.31-.9-4.38-2.58-5.65-.74-.56-1.83.17-1.55 1.06.38 1.23.31 2.65-.38 4.09-.43.89-1.16 1.62-2.05 2.05-1.44.7-2.86.76-4.09.38-.89-.27-1.63.81-1.06 1.55a6.49 6.49 0 0 0 5.04 2.59c.32-.89.95-1.62 1.77-2.06.58-1.64 2.03-2.85 3.78-3.07z"
+          />
+    </svg>
+  );
+});
+
+IcNightPartlyCloudyThunderstorms.displayName = 'IcNightPartlyCloudyThunderstorms';

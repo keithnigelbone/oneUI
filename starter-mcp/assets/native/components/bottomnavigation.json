@@ -1,0 +1,170 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "BottomNavigation",
+  "generatedAt": "2026-07-09T13:07:37.403Z",
+  "machineReadable": true,
+  "status": "beta",
+  "intentAndPurpose": {
+    "intent": "Bottom navigation bar. Hosts 2..5 BottomNavigationItems. Sits above safe-area inset; elevates over scrolled content via the elevation token."
+  },
+  "compositionRules": {
+    "requires": [
+      "activeId"
+    ],
+    "allows": [],
+    "forbids": [],
+    "childKind": "variadic"
+  },
+  "props": [
+    {
+      "name": "activeId",
+      "type": "string",
+      "required": true,
+      "description": "id of the active TabBarItem."
+    },
+    {
+      "name": "appearance",
+      "type": "'neutral' | 'primary' | 'brand-bg'",
+      "required": false,
+      "defaultValue": "neutral",
+      "description": ""
+    },
+    {
+      "name": "elevated",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "true",
+      "description": ""
+    },
+    {
+      "name": "backgroundColor",
+      "type": "string",
+      "required": false,
+      "description": "[error] Don't paint directly. Use `appearance` (role) + `variant`/`mode` and wrap in <Surface mode>; the brand cascade picks the right fill."
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.kb.rn.BottomNavigation",
+    "type": "object",
+    "properties": {
+      "activeId": {
+        "type": "string",
+        "description": "id of the active TabBarItem."
+      },
+      "appearance": {
+        "enum": [
+          "neutral",
+          "primary",
+          "brand-bg"
+        ],
+        "default": "neutral"
+      },
+      "elevated": {
+        "type": "boolean",
+        "default": true
+      },
+      "backgroundColor": {
+        "type": "string",
+        "not": {
+          "anyOf": [
+            {
+              "pattern": "^#"
+            },
+            {
+              "pattern": "^rgba?\\("
+            },
+            {
+              "pattern": "^hsla?\\("
+            },
+            {
+              "pattern": "^oklch\\("
+            },
+            {
+              "pattern": "^color-mix\\("
+            },
+            {
+              "enum": [
+                "transparent",
+                "inherit"
+              ]
+            }
+          ]
+        },
+        "x-jds-suggestion": "Don't paint directly. Use `appearance` (role) + `variant`/`mode` and wrap in <Surface mode>; the brand cascade picks the right fill.",
+        "x-jds-severity": "error"
+      }
+    },
+    "required": [
+      "activeId"
+    ]
+  },
+  "tokens": {
+    "color": [
+      "neutral",
+      "primary",
+      "brand-bg"
+    ],
+    "surface": [
+      "default",
+      "elevated"
+    ],
+    "spacing": [
+      "XS",
+      "S",
+      "M",
+      "L"
+    ],
+    "shape": [
+      "XS",
+      "S",
+      "M"
+    ],
+    "elevation": [
+      1,
+      2,
+      3
+    ],
+    "motion": [
+      "motion.duration.discreet.short",
+      "motion.easing.transition"
+    ]
+  },
+  "a11y": {
+    "accessibilityRole": "tablist",
+    "accessibleNameSource": "children",
+    "minTouchTarget": 44,
+    "honorsBoldText": true,
+    "honorsScreenReader": true
+  },
+  "renderHints": {
+    "baseElement": "View",
+    "animatedOn": [],
+    "honorsReduceMotion": false,
+    "readsFromSurfaceContext": true
+  },
+  "figma": {
+    "componentKey": "jds-bottomnav-v4",
+    "keyHistory": [],
+    "variantProperties": {
+      "Component": "BottomNavigation"
+    }
+  },
+  "codeSnippets": [
+    {
+      "id": "import-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { BottomNavigation } from '@oneui/ui-native';\n\n<BottomNavigation />"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "bottomnavigation",
+    "navigation",
+    "chassis",
+    "mobile-primary-nav"
+  ],
+  "importPath": "@oneui/ui-native"
+}

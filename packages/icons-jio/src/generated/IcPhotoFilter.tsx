@@ -1,0 +1,30 @@
+import React, { forwardRef } from 'react';
+import type { IconComponentProps } from '../iconProps';
+
+export const IcPhotoFilter = forwardRef<SVGSVGElement, IconComponentProps>(function IcPhotoFilter(
+  { size = 24, width, height, color = 'currentColor', className, style, ...props },
+  ref,
+) {
+  const dim = width ?? height ?? size;
+  return (
+    <svg
+      ref={ref}
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      width={width ?? dim}
+      height={height ?? dim}
+      color={color}
+      className={className}
+      style={style}
+      {...props}
+    >
+      <path
+            fill="currentColor"
+            d="M21.89 13.42q.1-.706.11-1.42a11 11 0 0 0-.11-1.42 10 10 0 0 0-1.36-3.78 10.1 10.1 0 0 0-3.32-3.32 10 10 0 0 0-3.78-1.36A11 11 0 0 0 12 2a11 11 0 0 0-1.42.11A10 10 0 0 0 6.8 3.47a10.1 10.1 0 0 0-3.33 3.32 10 10 0 0 0-1.36 3.78A11 11 0 0 0 2 12a11 11 0 0 0 .11 1.42 10 10 0 0 0 1.36 3.78 10.1 10.1 0 0 0 3.32 3.32 10 10 0 0 0 3.78 1.36q.71.107 1.43.12.714-.01 1.42-.11a10 10 0 0 0 3.78-1.36 10.1 10.1 0 0 0 3.32-3.32 10 10 0 0 0 1.37-3.79M17.6 17.7a2 2 0 1 1 .1-.1.5.5 0 0 1-.1.1m-11.3-.1a2 2 0 1 1 .1.1.5.5 0 0 1-.1-.1M4 12c0-.627.077-1.252.23-1.86a1.9 1.9 0 0 1 .7.45 2 2 0 0 1 0 2.82 1.9 1.9 0 0 1-.7.45A7.6 7.6 0 0 1 4 12m2.4-5.7a2 2 0 1 1-.1.1zm11.3.1a2 2 0 1 1-.1-.1.5.5 0 0 1 .1.1m1.37 7a2 2 0 0 1 0-2.82 1.9 1.9 0 0 1 .7-.45 7.64 7.64 0 0 1 0 3.72 1.9 1.9 0 0 1-.7-.44zm-5.21-9.17a1.9 1.9 0 0 1-.45.7 2 2 0 0 1-2.82 0 1.9 1.9 0 0 1-.45-.7 7.64 7.64 0 0 1 3.72 0m-.45 9.18a2 2 0 1 1-2.836-2.82 2 2 0 0 1 2.836 2.82m-3.27 6.36a1.9 1.9 0 0 1 .45-.7 2 2 0 0 1 2.82 0c.2.197.354.436.45.7a7.64 7.64 0 0 1-3.72 0"
+          />
+    </svg>
+  );
+});
+
+IcPhotoFilter.displayName = 'IcPhotoFilter';

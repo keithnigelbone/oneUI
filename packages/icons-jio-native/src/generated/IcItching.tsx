@@ -1,0 +1,13 @@
+import React from 'react';
+import Svg, { Path, type SvgProps } from 'react-native-svg';
+export function IcItching(props: SvgProps) {
+  const fill = String(props.fill ?? '#000000');
+  return (
+    <Svg viewBox="0 0 24 24" fill="none" {...props}>
+      <Path
+            fill={fill}
+            d="M18 5h-3V4c0-.55-.45-1-1-1h-4c-.55 0-1 .45-1 1v1H6C3.79 5 2 6.79 2 9v1c0 .55.45 1 1 1h3v9c0 .55.45 1 1 1h10c.55 0 1-.45 1-1v-9h3c.55 0 1-.45 1-1V9c0-2.21-1.79-4-4-4m-7 12c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1m0-5c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1m4 2c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1"
+          />
+    </Svg>
+  );
+}

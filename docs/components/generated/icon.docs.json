@@ -1,0 +1,324 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Icon",
+  "generatedAt": "2026-01-01T00:00:00.000Z",
+  "machineReadable": true,
+  "intentAndPurpose": {
+    "intent": {
+      "value": "Render a semantic or custom icon with configurable size, colour role, and emphasis level.",
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "taskContexts": {
+      "value": [
+        "inline-decoration",
+        "button-icon",
+        "status-indicator",
+        "navigation-icon"
+      ],
+      "attribution": {
+        "source": "authored"
+      }
+    },
+    "sentiments": {
+      "value": [
+        "neutral",
+        "positive",
+        "negative",
+        "warning",
+        "informative"
+      ],
+      "attribution": {
+        "source": "authored"
+      }
+    }
+  },
+  "compositionRules": {
+    "requires": {
+      "value": [
+        "icon prop (semantic name or React element)"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "allows": {
+      "value": [
+        "aria-label for non-decorative use"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "forbids": {
+      "value": [
+        "interactive behaviour (use IconButton instead)",
+        "text content"
+      ],
+      "attribution": {
+        "source": "authored"
+      }
+    }
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "high emphasis",
+        "useWhen": {
+          "value": [
+            "primary content icon requiring strongest contrast"
+          ],
+          "attribution": {
+            "source": "inferred"
+          }
+        }
+      },
+      {
+        "name": "medium emphasis",
+        "useWhen": {
+          "value": [
+            "secondary or supporting icon"
+          ],
+          "attribution": {
+            "source": "inferred"
+          }
+        }
+      },
+      {
+        "name": "low emphasis",
+        "useWhen": {
+          "value": [
+            "subtle decorative icon"
+          ],
+          "attribution": {
+            "source": "inferred"
+          }
+        }
+      }
+    ]
+  },
+  "relationshipsAndDependencies": {
+    "related": {
+      "value": [
+        "IconButton",
+        "IconContained",
+        "Button"
+      ],
+      "attribution": {
+        "source": "authored"
+      }
+    }
+  },
+  "contextSignals": {
+    "density": {
+      "value": [
+        "compact",
+        "default",
+        "open"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "modality": {
+      "value": [
+        "desktop",
+        "mobile"
+      ],
+      "attribution": {
+        "source": "authored"
+      }
+    },
+    "brand": {
+      "value": [
+        "theme-scope aware"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "mode": {
+      "value": [
+        "light",
+        "dark",
+        "surface-context"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "observabilityHooks": {
+    "track": {
+      "value": [],
+      "attribution": {
+        "source": "authored"
+      }
+    },
+    "health": {
+      "value": [
+        "a11y_violations"
+      ],
+      "attribution": {
+        "source": "authored"
+      }
+    }
+  },
+  "props": [
+    {
+      "name": "icon",
+      "type": "ComponentIconInput | ReactElement",
+      "required": true,
+      "description": "Icon to display — semantic name, pack id, component, or React element"
+    },
+    {
+      "name": "appearance",
+      "type": "IconAppearance",
+      "required": false,
+      "description": "Colour role. Omitted → slot parent → nearest Surface → neutral."
+    },
+    {
+      "name": "aria-hidden",
+      "type": "boolean",
+      "required": false,
+      "description": "Whether icon is hidden from assistive technology. Default: true (decorative)"
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": false,
+      "description": "Accessible label — if provided, icon is not decorative"
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "required": false,
+      "description": "Additional class name"
+    },
+    {
+      "name": "data-testid",
+      "type": "string",
+      "required": false,
+      "description": "QA / Playwright hook — forwarded to the root span"
+    },
+    {
+      "name": "emphasis",
+      "type": "IconEmphasis",
+      "required": false,
+      "description": "Colour emphasis level. Default: 'high'"
+    },
+    {
+      "name": "size",
+      "type": "IconSize",
+      "required": false,
+      "description": "Size preset (spacing index). Default: '5' (20px)"
+    },
+    {
+      "name": "style",
+      "type": "CSSProperties",
+      "required": false,
+      "description": "Inline styles"
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.docs.icon",
+    "type": "object",
+    "properties": {
+      "icon": {
+        "description": "Icon to display — semantic name, pack id, component, or React element"
+      },
+      "appearance": {
+        "enum": [
+          "neutral",
+          "primary",
+          "secondary",
+          "sparkle",
+          "negative",
+          "positive",
+          "warning",
+          "informative"
+        ],
+        "description": "Colour role. Omitted → slot parent → nearest Surface → neutral."
+      },
+      "aria-hidden": {
+        "type": "boolean",
+        "description": "Whether icon is hidden from assistive technology. Default: true (decorative)"
+      },
+      "aria-label": {
+        "type": "string",
+        "description": "Accessible label — if provided, icon is not decorative"
+      },
+      "className": {
+        "type": "string",
+        "description": "Additional class name"
+      },
+      "data-testid": {
+        "type": "string",
+        "description": "QA / Playwright hook — forwarded to the root span"
+      },
+      "emphasis": {
+        "enum": [
+          "high",
+          "medium",
+          "low",
+          "tinted",
+          "tintedA11y"
+        ],
+        "description": "Colour emphasis level. Default: 'high'"
+      },
+      "size": {
+        "enum": [
+          "2",
+          "2.5",
+          "3",
+          "3.5",
+          "4",
+          "4.5",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9",
+          "10",
+          "12",
+          "14",
+          "16",
+          "18",
+          "20",
+          "24",
+          "32",
+          "40"
+        ],
+        "description": "Size preset (spacing index). Default: '5' (20px)"
+      },
+      "style": {
+        "description": "Inline styles"
+      }
+    },
+    "required": [
+      "icon"
+    ]
+  },
+  "codeSnippets": [
+    {
+      "id": "icon-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { Icon } from '@oneui/ui';\n\n<Icon icon=\"check\" />"
+    },
+    {
+      "id": "icon-appearance",
+      "title": "With Appearance",
+      "language": "tsx",
+      "code": "<Icon icon=\"warning\" appearance=\"negative\" emphasis=\"high\" size=\"7\" />"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "icon"
+  ],
+  "generatedMarkdown": "# Icon Machine-Readable Documentation\n\n_Generated from source metadata. Do not edit manually._\n\n## Intent and Purpose\n\n- **Intent**: Render a semantic or custom icon with configurable size, colour role, and emphasis level.\n- **Task contexts**: inline-decoration, button-icon, status-indicator, navigation-icon\n- **Sentiments**: neutral, positive, negative, warning, informative\n\n## Composition Rules\n\n- **Requires**: icon prop (semantic name or React element)\n- **Allows**: aria-label for non-decorative use\n- **Forbids**: interactive behaviour (use IconButton instead), text content\n\n## Variant Logic\n\n- **high emphasis**: use when primary content icon requiring strongest contrast\n- **medium emphasis**: use when secondary or supporting icon\n- **low emphasis**: use when subtle decorative icon\n\n## Relationships and Dependencies\n\n- **Related**: IconButton, IconContained, Button\n- **Escalates to**: -\n- **Degrades to**: -\n- **Groups with**: -\n\n## Context Signals\n\n- **Density**: compact, default, open\n- **Modality**: desktop, mobile\n- **Brand**: theme-scope aware\n- **Mode**: light, dark, surface-context\n\n## Observability Hooks\n\n- **Track**: \n- **Health**: a11y_violations\n\n## Props\n\n| Prop | Type | Required | Default | Description |\n| --- | --- | --- | --- | --- |\n| `icon` | `ComponentIconInput | ReactElement` | Yes | - | Icon to display — semantic name, pack id, component, or React element |\n| `appearance` | `IconAppearance` | No | - | Colour role. Omitted → slot parent → nearest Surface → neutral. |\n| `aria-hidden` | `boolean` | No | - | Whether icon is hidden from assistive technology. Default: true (decorative) |\n| `aria-label` | `string` | No | - | Accessible label — if provided, icon is not decorative |\n| `className` | `string` | No | - | Additional class name |\n| `data-testid` | `string` | No | - | QA / Playwright hook — forwarded to the root span |\n| `emphasis` | `IconEmphasis` | No | - | Colour emphasis level. Default: 'high' |\n| `size` | `IconSize` | No | - | Size preset (spacing index). Default: '5' (20px) |\n| `style` | `CSSProperties` | No | - | Inline styles |\n\n## Slots\n\n| Slot | Types | Tokens |\n| --- | --- | --- |\n\n\n## Code Snippets\n\n### Basic Usage\n\n```tsx\nimport { Icon } from '@oneui/ui';\n\n<Icon icon=\"check\" />\n```\n\n### With Appearance\n\n```tsx\n<Icon icon=\"warning\" appearance=\"negative\" emphasis=\"high\" size=\"7\" />\n```\n"
+}

@@ -1,0 +1,60 @@
+/**
+ * SliderSteps.module.css
+ * Tick marks along the track, one per step. Pointer-events: none so Base UI
+ * drag/keyboard still hits the Control.
+ */
+
+/* Steps container is a pure positioning frame. Each tick is absolutely
+   placed at `left: valuePercent%` (or `top:` for vertical) to match Base UI's
+   thumb math exactly — so ticks and thumbs align at every step including the
+   min/max edges. Edge ticks are intentionally half-covered by the pill corner,
+   same as the thumb sits at min/max. */
+.steps {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+/* Horizontal: inline style sets `left:N%`; we fix `top:50%` and translate
+   the dot to center on that percentage.
+   Vertical:   inline style sets `bottom:N%`; we fix `left:50%` and translate
+   the dot so its center lands on that percentage. */
+.tickLabelWrap {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+[data-orientation="vertical"] .tickLabelWrap {
+  top: auto;
+  left: 50%;
+  transform: translate(-50%, 50%);
+}
+
+.tick {
+  width: var(--_slider-tick-size, var(--Stroke-XL));
+  height: var(--_slider-tick-size, var(--Stroke-XL));
+  border-radius: var(--Shape-Pill);
+  background-color: var(--_slider-tick, var(--Neutral-Subtle, var(--Text-Low)));
+}
+
+/* Active ticks paint in the fill color so the boundary tick blends cleanly.
+   The fill layer also covers active ticks via DOM order — this is the belt
+   alongside the braces. */
+.tick[data-active] {
+  background-color: var(--_slider-fill);
+}
+
+.tickLabel {
+  position: absolute;
+  top: var(--Spacing-4);
+  font-family: var(--Label-FontFamily, var(--Typography-Font-Primary, inherit));
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Low);
+  color: var(--Text-Low);
+  white-space: nowrap;
+}

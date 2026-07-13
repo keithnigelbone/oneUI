@@ -1,0 +1,730 @@
+{
+  "ok": true,
+  "slug": "segmented-control",
+  "message": "segmented-control QA Playwright run OK — 2026-07-07T14:50:44.013Z",
+  "suites": {
+    "accessibility": {
+      "suite": "accessibility",
+      "passed": 46,
+      "failed": 0,
+      "skipped": 0,
+      "logs": [
+        "46 test(s) in Playwright report for accessibility.",
+        "Axe: scan completed — 0 violation rules reported."
+      ],
+      "errors": [],
+      "cases": [
+        {
+          "name": "[a11y] M3 — every segmented group exposes an accessible name (aria-label / aria-labelledby)",
+          "status": "passed",
+          "durationMs": 4492
+        },
+        {
+          "name": "[a11y] M3 — each segment is a button with aria-pressed true or false",
+          "status": "passed",
+          "durationMs": 3331
+        },
+        {
+          "name": "[a11y] M3 — single-select group has exactly one pressed segment",
+          "status": "passed",
+          "durationMs": 3310
+        },
+        {
+          "name": "[a11y] Default group exposes accessible name via aria-label",
+          "status": "passed",
+          "durationMs": 3356
+        },
+        {
+          "name": "[a11y] aria-labelledby wiring on labelled group",
+          "status": "passed",
+          "durationMs": 3357
+        },
+        {
+          "name": "[a11y] M3 — icon-only segments expose per-item accessible names",
+          "status": "passed",
+          "durationMs": 3673
+        },
+        {
+          "name": "[a11y] every segment button in a11y band has non-empty accessible name",
+          "status": "passed",
+          "durationMs": 3583
+        },
+        {
+          "name": "[a11y] M3 — Enter and Space activate the focused segment",
+          "status": "passed",
+          "durationMs": 3769
+        },
+        {
+          "name": "[a11y] M3 — arrow keys move focus between segments (roving focus)",
+          "status": "passed",
+          "durationMs": 3671
+        },
+        {
+          "name": "[a11y] Arrow keys update focus but not selection until Space/Enter",
+          "status": "passed",
+          "durationMs": 3672
+        },
+        {
+          "name": "[a11y] Tab reaches segment buttons in default group",
+          "status": "passed",
+          "durationMs": 3548
+        },
+        {
+          "name": "[a11y] M3 — disabled segment is inert and removed from tab order",
+          "status": "passed",
+          "durationMs": 3851
+        },
+        {
+          "name": "[a11y] disabled group marks every segment aria-disabled",
+          "status": "passed",
+          "durationMs": 3644
+        },
+        {
+          "name": "[a11y] M3 — keyboard focus shows a visible focus indicator on segments",
+          "status": "passed",
+          "durationMs": 3463
+        },
+        {
+          "name": "[a11y] selected segment exposes aria-pressed=true for screen readers",
+          "status": "passed",
+          "durationMs": 3439
+        },
+        {
+          "name": "[a11y] default showcase band has no pressed segment without defaultValue",
+          "status": "passed",
+          "durationMs": 3200
+        },
+        {
+          "name": "[a11y] no keyboard trap — Tab cycle advances across page controls",
+          "status": "passed",
+          "durationMs": 14251
+        },
+        {
+          "name": "[a11y] axe on SegmentedControl showcase bands",
+          "status": "passed",
+          "durationMs": 8252
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA tag scan + JSON artefact + HTML report",
+          "status": "passed",
+          "durationMs": 9382
+        },
+        {
+          "name": "[a11y] data-section=\"segmented-control-qa-default\" — WCAG tags, zero serious/critical",
+          "status": "passed",
+          "durationMs": 6510
+        },
+        {
+          "name": "[a11y] data-section=\"segmented-control-qa-automation\" — WCAG tags, zero serious/critical",
+          "status": "passed",
+          "durationMs": 6623
+        },
+        {
+          "name": "[a11y] data-section=\"segmented-control-qa-basic\" — WCAG tags, zero serious/critical",
+          "status": "passed",
+          "durationMs": 6842
+        },
+        {
+          "name": "[a11y] data-section=\"segmented-control-qa-size\" — WCAG tags, zero serious/critical",
+          "status": "passed",
+          "durationMs": 3435
+        },
+        {
+          "name": "[a11y] data-section=\"segmented-control-qa-attention\" — WCAG tags, zero serious/critical",
+          "status": "passed",
+          "durationMs": 5082
+        },
+        {
+          "name": "[a11y] data-section=\"segmented-control-qa-appearance\" — WCAG tags, zero serious/critical",
+          "status": "passed",
+          "durationMs": 4256
+        },
+        {
+          "name": "[a11y] data-section=\"segmented-control-qa-shape\" — WCAG tags, zero serious/critical",
+          "status": "passed",
+          "durationMs": 3724
+        },
+        {
+          "name": "[a11y] data-section=\"segmented-control-qa-track-emphasis\" — WCAG tags, zero serious/critical",
+          "status": "passed",
+          "durationMs": 5325
+        },
+        {
+          "name": "[a11y] data-section=\"segmented-control-qa-equal-width\" — WCAG tags, zero serious/critical",
+          "status": "passed",
+          "durationMs": 5598
+        },
+        {
+          "name": "[a11y] data-section=\"segmented-control-qa-slots\" — WCAG tags, zero serious/critical",
+          "status": "passed",
+          "durationMs": 6520
+        },
+        {
+          "name": "[a11y] data-section=\"segmented-control-qa-selection\" — WCAG tags, zero serious/critical",
+          "status": "passed",
+          "durationMs": 6057
+        },
+        {
+          "name": "[a11y] data-section=\"segmented-control-qa-content-type\" — WCAG tags, zero serious/critical",
+          "status": "passed",
+          "durationMs": 6359
+        },
+        {
+          "name": "[a11y] data-section=\"segmented-control-qa-a11y\" — WCAG tags, zero serious/critical",
+          "status": "passed",
+          "durationMs": 5518
+        },
+        {
+          "name": "[a11y] data-section=\"segmented-control-qa-edge-cases\" — WCAG tags, zero serious/critical",
+          "status": "passed",
+          "durationMs": 6243
+        },
+        {
+          "name": "[a11y] data-section=\"segmented-control-qa-interaction\" — WCAG tags, zero serious/critical",
+          "status": "passed",
+          "durationMs": 4917
+        },
+        {
+          "name": "[a11y] data-section=\"segmented-control-qa-surface\" — WCAG tags, zero serious/critical",
+          "status": "passed",
+          "durationMs": 4892
+        },
+        {
+          "name": "[a11y] data-section=\"segmented-control-qa-controls\" — WCAG tags, zero serious/critical",
+          "status": "passed",
+          "durationMs": 5035
+        },
+        {
+          "name": "[a11y] data-section=\"segmented-control-qa-combos\" — WCAG tags, zero serious/critical",
+          "status": "passed",
+          "durationMs": 3940
+        },
+        {
+          "name": "[a11y] Section 508 tag run — zero serious/critical",
+          "status": "passed",
+          "durationMs": 4366
+        },
+        {
+          "name": "[a11y] ARIA validity rules — zero serious/critical",
+          "status": "passed",
+          "durationMs": 5434
+        },
+        {
+          "name": "[a11y] axe button-name rule — Test Scenarios bands, zero serious/critical",
+          "status": "passed",
+          "durationMs": 4852
+        },
+        {
+          "name": "[a11y] axe label rule — zero serious/critical",
+          "status": "passed",
+          "durationMs": 4420
+        },
+        {
+          "name": "[a11y] non-text-contrast rule — zero serious/critical (if rule exists)",
+          "status": "passed",
+          "durationMs": 3478
+        },
+        {
+          "name": "[a11y] SVG icons in showcase: aria-label, aria-hidden, role, or title",
+          "status": "passed",
+          "durationMs": 3113
+        },
+        {
+          "name": "[a11y] page lang on <html>",
+          "status": "passed",
+          "durationMs": 3047
+        },
+        {
+          "name": "[a11y] Reflow at 320px — story bands fit without horizontal scroll",
+          "status": "passed",
+          "durationMs": 6775
+        },
+        {
+          "name": "[a11y] All scenario bands present for regression",
+          "status": "passed",
+          "durationMs": 3947
+        }
+      ],
+      "axe": {
+        "violations": []
+      }
+    },
+    "functional": {
+      "suite": "functional",
+      "passed": 91,
+      "failed": 0,
+      "skipped": 0,
+      "logs": [
+        "91 test(s) in Playwright report for functional."
+      ],
+      "errors": [],
+      "cases": [
+        {
+          "name": "1.1 — Page loads without console errors",
+          "status": "passed",
+          "durationMs": 7361
+        },
+        {
+          "name": "1.1 — Default control renders segment buttons",
+          "status": "passed",
+          "durationMs": 5056
+        },
+        {
+          "name": "1.2 — Playground data-testid values are unique on the page",
+          "status": "passed",
+          "durationMs": 4468
+        },
+        {
+          "name": "1.2 — Every playground data-testid is visible",
+          "status": "passed",
+          "durationMs": 10244
+        },
+        {
+          "name": "1.3 — Every data-section band is visible",
+          "status": "passed",
+          "durationMs": 4426
+        },
+        {
+          "name": "2.1 — Size S renders",
+          "status": "passed",
+          "durationMs": 7117
+        },
+        {
+          "name": "2.1 — Size M renders",
+          "status": "passed",
+          "durationMs": 5670
+        },
+        {
+          "name": "2.1 — Size L renders",
+          "status": "passed",
+          "durationMs": 4071
+        },
+        {
+          "name": "2.2 — Size S/M/L scale progressively (wrapper width)",
+          "status": "passed",
+          "durationMs": 4298
+        },
+        {
+          "name": "2.1 — Attention high renders",
+          "status": "passed",
+          "durationMs": 3735
+        },
+        {
+          "name": "2.1 — Attention medium renders",
+          "status": "passed",
+          "durationMs": 7219
+        },
+        {
+          "name": "2.1 — Attention low renders",
+          "status": "passed",
+          "durationMs": 6300
+        },
+        {
+          "name": "2.1 — Appearance auto renders",
+          "status": "passed",
+          "durationMs": 4678
+        },
+        {
+          "name": "2.1 — Appearance neutral renders",
+          "status": "passed",
+          "durationMs": 3697
+        },
+        {
+          "name": "2.1 — Appearance primary renders",
+          "status": "passed",
+          "durationMs": 4238
+        },
+        {
+          "name": "2.1 — Appearance secondary renders",
+          "status": "passed",
+          "durationMs": 3549
+        },
+        {
+          "name": "2.1 — Appearance sparkle renders",
+          "status": "passed",
+          "durationMs": 2976
+        },
+        {
+          "name": "2.1 — Appearance positive renders",
+          "status": "passed",
+          "durationMs": 5352
+        },
+        {
+          "name": "2.1 — Appearance negative renders",
+          "status": "passed",
+          "durationMs": 6009
+        },
+        {
+          "name": "2.1 — Appearance informative renders",
+          "status": "passed",
+          "durationMs": 5090
+        },
+        {
+          "name": "2.1 — Appearance warning renders",
+          "status": "passed",
+          "durationMs": 3896
+        },
+        {
+          "name": "2.3 — Appearance prop maps to group data-appearance",
+          "status": "passed",
+          "durationMs": 4456
+        },
+        {
+          "name": "2.1 — Shape pill renders",
+          "status": "passed",
+          "durationMs": 3556
+        },
+        {
+          "name": "2.1 — Shape rectangular renders",
+          "status": "passed",
+          "durationMs": 3178
+        },
+        {
+          "name": "2.1 — trackEmphasis high renders",
+          "status": "passed",
+          "durationMs": 4347
+        },
+        {
+          "name": "2.1 — trackEmphasis medium renders",
+          "status": "passed",
+          "durationMs": 7529
+        },
+        {
+          "name": "2.1 — trackEmphasis low renders",
+          "status": "passed",
+          "durationMs": 5638
+        },
+        {
+          "name": "2.4 — data-shape and data-track-emphasis attributes",
+          "status": "passed",
+          "durationMs": 4230
+        },
+        {
+          "name": "3.1 — Click selects segment and updates aria-pressed",
+          "status": "passed",
+          "durationMs": 3864
+        },
+        {
+          "name": "3.1 — Controlled demo logs onValueChange",
+          "status": "passed",
+          "durationMs": 3952
+        },
+        {
+          "name": "3.2 — Disabled group ignores segment clicks",
+          "status": "passed",
+          "durationMs": 7884
+        },
+        {
+          "name": "3.2 — Disabled item cannot be selected",
+          "status": "passed",
+          "durationMs": 5960
+        },
+        {
+          "name": "3.3 — Readonly state (N/A)",
+          "status": "passed",
+          "durationMs": 4003
+        },
+        {
+          "name": "3.4 — Click outside removes focus from segment",
+          "status": "passed",
+          "durationMs": 4088
+        },
+        {
+          "name": "4.1 — Tab reaches segment buttons",
+          "status": "passed",
+          "durationMs": 3141
+        },
+        {
+          "name": "4.2 — Enter activates focused segment",
+          "status": "passed",
+          "durationMs": 2979
+        },
+        {
+          "name": "4.3 — Space activates focused segment",
+          "status": "passed",
+          "durationMs": 2786
+        },
+        {
+          "name": "4.4 — ArrowRight moves focus to next segment (roving focus)",
+          "status": "passed",
+          "durationMs": 1994
+        },
+        {
+          "name": "4.4b — Arrow keys move focus without changing selection until activation",
+          "status": "passed",
+          "durationMs": 4662
+        },
+        {
+          "name": "4.4 — ArrowLeft moves focus to previous segment (roving focus)",
+          "status": "passed",
+          "durationMs": 4934
+        },
+        {
+          "name": "4.5 — Home / End keys (N/A for ToggleGroup toolbar pattern)",
+          "status": "passed",
+          "durationMs": 3536
+        },
+        {
+          "name": "4.6 — Escape does not hide control",
+          "status": "passed",
+          "durationMs": 4258
+        },
+        {
+          "name": "4.7 — No keyboard trap — Tab visits multiple targets",
+          "status": "passed",
+          "durationMs": 4833
+        },
+        {
+          "name": "5.1 — Click focuses segment button",
+          "status": "passed",
+          "durationMs": 3648
+        },
+        {
+          "name": "5.2 — Focus indicator visible on keyboard focus",
+          "status": "passed",
+          "durationMs": 3783
+        },
+        {
+          "name": "5.4 — Blur removes focus",
+          "status": "passed",
+          "durationMs": 6276
+        },
+        {
+          "name": "5.3 — Focus order follows left-to-right segments",
+          "status": "passed",
+          "durationMs": 5550
+        },
+        {
+          "name": "5.5 — autoFocus (N/A)",
+          "status": "passed",
+          "durationMs": 4544
+        },
+        {
+          "name": "6.1 — Default group has no selection without defaultValue (document Figma gap)",
+          "status": "passed",
+          "durationMs": 3909
+        },
+        {
+          "name": "6.1b — Canonical defaultValue selects Day (first item)",
+          "status": "passed",
+          "durationMs": 3426
+        },
+        {
+          "name": "6.2 — First / middle / last selection states render",
+          "status": "passed",
+          "durationMs": 4324
+        },
+        {
+          "name": "6.3 — Disabled combo group is not interactive",
+          "status": "passed",
+          "durationMs": 8299
+        },
+        {
+          "name": "6.4 — Readonly (N/A)",
+          "status": "passed",
+          "durationMs": 4807
+        },
+        {
+          "name": "6.5 — Error state (N/A)",
+          "status": "passed",
+          "durationMs": 3091
+        },
+        {
+          "name": "6.6 — Loading state (N/A)",
+          "status": "passed",
+          "durationMs": 2849
+        },
+        {
+          "name": "7.1 — Start slot renders icons",
+          "status": "passed",
+          "durationMs": 2749
+        },
+        {
+          "name": "7.2 — End slot renders CounterBadge",
+          "status": "passed",
+          "durationMs": 2012
+        },
+        {
+          "name": "7.3 — Start + end combined visible",
+          "status": "passed",
+          "durationMs": 4596
+        },
+        {
+          "name": "7.4 — Icon inherits currentColor from segment",
+          "status": "passed",
+          "durationMs": 5410
+        },
+        {
+          "name": "8.1 — Toggle on/off (N/A)",
+          "status": "passed",
+          "durationMs": 3657
+        },
+        {
+          "name": "8.2 — Only one segment selected at a time",
+          "status": "passed",
+          "durationMs": 4215
+        },
+        {
+          "name": "8.3 — Indeterminate (N/A)",
+          "status": "passed",
+          "durationMs": 4161
+        },
+        {
+          "name": "9.x — Not a text input",
+          "status": "passed",
+          "durationMs": 3573
+        },
+        {
+          "name": "10.1 — equalWidth=true yields equal segment widths",
+          "status": "passed",
+          "durationMs": 3879
+        },
+        {
+          "name": "10.1 — equalWidth=false allows variable segment widths",
+          "status": "passed",
+          "durationMs": 6625
+        },
+        {
+          "name": "10.1b — icon type uses hug-width track (data-type=icon, no equal-width)",
+          "status": "passed",
+          "durationMs": 5533
+        },
+        {
+          "name": "10.2 — Live controls disabled checkbox disables group",
+          "status": "passed",
+          "durationMs": 5027
+        },
+        {
+          "name": "11.1 — Default segments expose Day / Week / Month labels",
+          "status": "passed",
+          "durationMs": 4220
+        },
+        {
+          "name": "11.2 — Icon-only type renders per-item aria-labels",
+          "status": "passed",
+          "durationMs": 3651
+        },
+        {
+          "name": "11.3 — Progress value (N/A)",
+          "status": "passed",
+          "durationMs": 5402
+        },
+        {
+          "name": "12.1 — fullWidth (N/A)",
+          "status": "passed",
+          "durationMs": 7397
+        },
+        {
+          "name": "12.2 — At 320px viewport bands remain visible",
+          "status": "passed",
+          "durationMs": 8606
+        },
+        {
+          "name": "12.2 — Visible at 1440px viewport",
+          "status": "passed",
+          "durationMs": 10251
+        },
+        {
+          "name": "12.3 — Segments layout horizontally in default group",
+          "status": "passed",
+          "durationMs": 4217
+        },
+        {
+          "name": "13.1 — All sections visible after theme toggle",
+          "status": "passed",
+          "durationMs": 5923
+        },
+        {
+          "name": "Figma combination matrix renders every row",
+          "status": "passed",
+          "durationMs": 3198
+        },
+        {
+          "name": "Changing size control updates live preview data-size",
+          "status": "passed",
+          "durationMs": 3636
+        },
+        {
+          "name": "Reset restores default live props",
+          "status": "passed",
+          "durationMs": 5468
+        },
+        {
+          "name": "should expose data-testid=\"segmented-control\" on group root",
+          "status": "passed",
+          "durationMs": 5937
+        },
+        {
+          "name": "should expose segment-item-day/week/month on items",
+          "status": "passed",
+          "durationMs": 5692
+        },
+        {
+          "name": "should select first item by default when defaultValue=day",
+          "status": "passed",
+          "durationMs": 4250
+        },
+        {
+          "name": "should call onValueChange when item is selected",
+          "status": "passed",
+          "durationMs": 4253
+        },
+        {
+          "name": "KI-1 — No auto-select when value/defaultValue omitted",
+          "status": "passed",
+          "durationMs": 4566
+        },
+        {
+          "name": "KI-2 — Figma itemSelected vs React group value model",
+          "status": "passed",
+          "durationMs": 8261
+        },
+        {
+          "name": "KI-3 — equalWidth defaults differ by type",
+          "status": "passed",
+          "durationMs": 5922
+        },
+        {
+          "name": "Smoke — Page heading reads “Segmented Control”",
+          "status": "passed",
+          "durationMs": 4182
+        },
+        {
+          "name": "Smoke — Default control is visible",
+          "status": "passed",
+          "durationMs": 4250
+        },
+        {
+          "name": "[fn] Smoke — page heading and default control",
+          "status": "passed",
+          "durationMs": 3185
+        },
+        {
+          "name": "[fn] Smoke — all story bands render",
+          "status": "passed",
+          "durationMs": 3072
+        },
+        {
+          "name": "[fn] Interaction — controlled selection updates state",
+          "status": "passed",
+          "durationMs": 2566
+        },
+        {
+          "name": "[fn] Live controls — JSON preview block visible",
+          "status": "passed",
+          "durationMs": 2066
+        }
+      ]
+    },
+    "performance": {
+      "suite": "performance",
+      "passed": 0,
+      "failed": 0,
+      "skipped": 0,
+      "logs": [
+        "Performance suite is not executed in apps/qa-playground segmented-control Playwright bundle."
+      ],
+      "errors": []
+    }
+  }
+}

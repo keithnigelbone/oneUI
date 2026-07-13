@@ -1,0 +1,665 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Container",
+  "generatedAt": "2026-01-01T00:00:00.000Z",
+  "machineReadable": true,
+  "intentAndPurpose": {
+    "intent": {
+      "value": "Page-width shell (`fluid` / `fixed` / `full-bleed`) and declarative layout root. On web the node is always `<Surface>` (default `surface=\"ghost\"`) so children get `[data-surface]` token context without an opaque page fill. Omit `layout` for normal block flow; set `layout` to `flex` or `grid` for token-backed flex/grid. Spacing props use spacing scale keys, not raw px.",
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "taskContexts": {
+      "value": [
+        "container",
+        "layout",
+        "wrapper",
+        "page-width",
+        "flex",
+        "grid",
+        "spacing",
+        "surface",
+        "a2ui"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "sentiments": {
+      "value": [
+        "neutral"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "compositionRules": {
+    "requires": {
+      "value": [],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "allows": {
+      "value": [
+        "children"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "forbids": {
+      "value": [],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "fluid",
+        "useWhen": {
+          "value": [
+            "Fluid"
+          ],
+          "attribution": {
+            "source": "inferred"
+          }
+        }
+      },
+      {
+        "name": "fixed",
+        "useWhen": {
+          "value": [
+            "Fixed"
+          ],
+          "attribution": {
+            "source": "inferred"
+          }
+        }
+      },
+      {
+        "name": "full-bleed",
+        "useWhen": {
+          "value": [
+            "Full bleed"
+          ],
+          "attribution": {
+            "source": "inferred"
+          }
+        }
+      }
+    ]
+  },
+  "relationshipsAndDependencies": {
+    "related": {
+      "value": [],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "contextSignals": {
+    "density": {
+      "value": [
+        "compact",
+        "default",
+        "open"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "modality": {
+      "value": [
+        "desktop",
+        "mobile"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "brand": {
+      "value": [
+        "theme-scope aware",
+        "recipe-driven"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "mode": {
+      "value": [
+        "light",
+        "dark",
+        "surface-context"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "observabilityHooks": {
+    "track": {
+      "value": [],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "health": {
+      "value": [
+        "a11y_violations"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "props": [
+    {
+      "name": "align",
+      "type": "ContainerAlign",
+      "required": false,
+      "description": "Maps to `align-items` when `layout` is `flex` or `grid`."
+    },
+    {
+      "name": "alignSelf",
+      "type": "ContainerAlign",
+      "required": false,
+      "description": "When this `Container` is a flex/grid item, maps to `align-self`."
+    },
+    {
+      "name": "appearance",
+      "type": "ComponentAppearance",
+      "required": false,
+      "description": "Multi-accent role for the root `<Surface>` — passed through as `appearance` (Surface defaults to `'auto'` when omitted)."
+    },
+    {
+      "name": "as",
+      "type": "ElementType",
+      "required": false,
+      "description": "as property"
+    },
+    {
+      "name": "basis",
+      "type": "ContainerSizePreset",
+      "required": false,
+      "description": "`flex-basis` when `flex` is omitted."
+    },
+    {
+      "name": "bottom",
+      "type": "string",
+      "required": false,
+      "description": "bottom property"
+    },
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "required": false,
+      "description": "children property"
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "required": false,
+      "description": "className property"
+    },
+    {
+      "name": "columnGap",
+      "type": "ContainerSpaceKey",
+      "required": false,
+      "description": "columnGap property"
+    },
+    {
+      "name": "columns",
+      "type": "ContainerColumns",
+      "required": false,
+      "description": "columns property"
+    },
+    {
+      "name": "direction",
+      "type": "'row' | 'column'",
+      "required": false,
+      "description": "direction property"
+    },
+    {
+      "name": "flex",
+      "type": "number | string",
+      "required": false,
+      "description": "Flex shorthand on the root (`flex`). When set, overrides `grow` / `shrink` / `basis` for that axis bundle — prefer either `flex` or the longhands, not both."
+    },
+    {
+      "name": "fullWidth",
+      "type": "boolean",
+      "required": false,
+      "description": "Deprecated compatibility hint used by older/generated compositions. Consumed so it does not leak to the DOM as an unknown React prop."
+    },
+    {
+      "name": "gap",
+      "type": "ContainerSpaceKey",
+      "required": false,
+      "description": "gap property"
+    },
+    {
+      "name": "grow",
+      "type": "number",
+      "required": false,
+      "description": "`flex-grow` when `flex` is omitted."
+    },
+    {
+      "name": "height",
+      "type": "ContainerSizePreset",
+      "required": false,
+      "description": "height property"
+    },
+    {
+      "name": "justify",
+      "type": "ContainerJustify",
+      "required": false,
+      "description": "justify property"
+    },
+    {
+      "name": "layout",
+      "type": "ContainerLayoutMode",
+      "required": false,
+      "description": "layout property"
+    },
+    {
+      "name": "left",
+      "type": "string",
+      "required": false,
+      "description": "left property"
+    },
+    {
+      "name": "maxHeight",
+      "type": "ContainerSizePreset",
+      "required": false,
+      "description": "maxHeight property"
+    },
+    {
+      "name": "maxWidth",
+      "type": "string | number | ContainerSizePreset",
+      "required": false,
+      "description": "Viewport cap when `variant` is `fixed` (number or non-preset string), or CSS `max-width` / token preset on the element. See {@link resolveContainerMaxWidth}."
+    },
+    {
+      "name": "minHeight",
+      "type": "ContainerSizePreset",
+      "required": false,
+      "description": "minHeight property"
+    },
+    {
+      "name": "minWidth",
+      "type": "ContainerSizePreset",
+      "required": false,
+      "description": "minWidth property"
+    },
+    {
+      "name": "overflow",
+      "type": "ContainerOverflow",
+      "required": false,
+      "description": "overflow property"
+    },
+    {
+      "name": "padding",
+      "type": "ContainerSpaceKey",
+      "required": false,
+      "description": "padding property"
+    },
+    {
+      "name": "paddingBottom",
+      "type": "ContainerSpaceKey",
+      "required": false,
+      "description": "paddingBottom property"
+    },
+    {
+      "name": "paddingLeft",
+      "type": "ContainerSpaceKey",
+      "required": false,
+      "description": "paddingLeft property"
+    },
+    {
+      "name": "paddingRight",
+      "type": "ContainerSpaceKey",
+      "required": false,
+      "description": "paddingRight property"
+    },
+    {
+      "name": "paddingTop",
+      "type": "ContainerSpaceKey",
+      "required": false,
+      "description": "paddingTop property"
+    },
+    {
+      "name": "paddingX",
+      "type": "ContainerSpaceKey",
+      "required": false,
+      "description": "paddingX property"
+    },
+    {
+      "name": "paddingY",
+      "type": "ContainerSpaceKey",
+      "required": false,
+      "description": "paddingY property"
+    },
+    {
+      "name": "position",
+      "type": "ContainerPosition",
+      "required": false,
+      "description": "position property"
+    },
+    {
+      "name": "right",
+      "type": "string",
+      "required": false,
+      "description": "right property"
+    },
+    {
+      "name": "rowGap",
+      "type": "ContainerSpaceKey",
+      "required": false,
+      "description": "rowGap property"
+    },
+    {
+      "name": "rows",
+      "type": "number",
+      "required": false,
+      "description": "rows property"
+    },
+    {
+      "name": "shrink",
+      "type": "number",
+      "required": false,
+      "description": "`flex-shrink` when `flex` is omitted."
+    },
+    {
+      "name": "style",
+      "type": "CSSProperties",
+      "required": false,
+      "description": "style property"
+    },
+    {
+      "name": "surface",
+      "type": "SurfaceToken",
+      "required": false,
+      "description": "Surface mode for the **root** element (always `<Surface>` on web). Defaults to `'ghost'` when omitted. Container layout classes and styles are applied on that same node (`data-surface` remapping for children). Native ignores `surface` / `appearance` today."
+    },
+    {
+      "name": "top",
+      "type": "string",
+      "required": false,
+      "description": "top property"
+    },
+    {
+      "name": "variant",
+      "type": "ContainerVariant",
+      "required": false,
+      "description": "Layout variant. - `fluid` (default): grows with viewport, always applies `--Grid-Margin`. - `fixed`: capped at `--Grid-MaxWidth` per breakpoint, centered. - `full-bleed`: no margin, no cap — edge-to-edge."
+    },
+    {
+      "name": "width",
+      "type": "ContainerSizePreset",
+      "required": false,
+      "description": "width property"
+    },
+    {
+      "name": "wrap",
+      "type": "boolean",
+      "required": false,
+      "description": "wrap property"
+    },
+    {
+      "name": "zIndex",
+      "type": "number",
+      "required": false,
+      "description": "zIndex property"
+    }
+  ],
+  "slots": [
+    {
+      "name": "children",
+      "types": [],
+      "tokens": []
+    }
+  ],
+  "propsSchema": {
+    "$id": "jds.docs.container",
+    "type": "object",
+    "properties": {
+      "align": {
+        "enum": [
+          "start",
+          "center",
+          "end",
+          "stretch",
+          "baseline"
+        ],
+        "description": "Maps to `align-items` when `layout` is `flex` or `grid`."
+      },
+      "alignSelf": {
+        "enum": [
+          "start",
+          "center",
+          "end",
+          "stretch",
+          "baseline"
+        ],
+        "description": "When this `Container` is a flex/grid item, maps to `align-self`."
+      },
+      "appearance": {
+        "enum": [
+          "auto",
+          "primary",
+          "secondary",
+          "neutral",
+          "sparkle",
+          "brand-bg",
+          "positive",
+          "negative",
+          "warning",
+          "informative"
+        ],
+        "description": "Multi-accent role for the root `<Surface>` — passed through as `appearance` (Surface defaults to `'auto'` when omitted)."
+      },
+      "as": {
+        "description": "as property"
+      },
+      "basis": {
+        "description": "`flex-basis` when `flex` is omitted."
+      },
+      "bottom": {
+        "type": "string",
+        "description": "bottom property"
+      },
+      "children": {
+        "description": "children property"
+      },
+      "className": {
+        "type": "string",
+        "description": "className property"
+      },
+      "columnGap": {
+        "description": "columnGap property"
+      },
+      "columns": {
+        "description": "columns property"
+      },
+      "direction": {
+        "enum": [
+          "row",
+          "column"
+        ],
+        "description": "direction property"
+      },
+      "flex": {
+        "description": "Flex shorthand on the root (`flex`). When set, overrides `grow` / `shrink` / `basis` for that axis bundle — prefer either `flex` or the longhands, not both."
+      },
+      "fullWidth": {
+        "type": "boolean",
+        "description": "Deprecated compatibility hint used by older/generated compositions. Consumed so it does not leak to the DOM as an unknown React prop."
+      },
+      "gap": {
+        "description": "gap property"
+      },
+      "grow": {
+        "type": "number",
+        "description": "`flex-grow` when `flex` is omitted."
+      },
+      "height": {
+        "description": "height property"
+      },
+      "justify": {
+        "enum": [
+          "start",
+          "center",
+          "end",
+          "space-between",
+          "space-around",
+          "space-evenly",
+          "stretch"
+        ],
+        "description": "justify property"
+      },
+      "layout": {
+        "enum": [
+          "flex",
+          "grid"
+        ],
+        "description": "layout property"
+      },
+      "left": {
+        "type": "string",
+        "description": "left property"
+      },
+      "maxHeight": {
+        "description": "maxHeight property"
+      },
+      "maxWidth": {
+        "description": "Viewport cap when `variant` is `fixed` (number or non-preset string), or CSS `max-width` / token preset on the element. See {@link resolveContainerMaxWidth}."
+      },
+      "minHeight": {
+        "description": "minHeight property"
+      },
+      "minWidth": {
+        "description": "minWidth property"
+      },
+      "overflow": {
+        "enum": [
+          "visible",
+          "hidden",
+          "clip",
+          "scroll",
+          "auto"
+        ],
+        "description": "overflow property"
+      },
+      "padding": {
+        "description": "padding property"
+      },
+      "paddingBottom": {
+        "description": "paddingBottom property"
+      },
+      "paddingLeft": {
+        "description": "paddingLeft property"
+      },
+      "paddingRight": {
+        "description": "paddingRight property"
+      },
+      "paddingTop": {
+        "description": "paddingTop property"
+      },
+      "paddingX": {
+        "description": "paddingX property"
+      },
+      "paddingY": {
+        "description": "paddingY property"
+      },
+      "position": {
+        "enum": [
+          "static",
+          "relative",
+          "absolute",
+          "fixed",
+          "sticky"
+        ],
+        "description": "position property"
+      },
+      "right": {
+        "type": "string",
+        "description": "right property"
+      },
+      "rowGap": {
+        "description": "rowGap property"
+      },
+      "rows": {
+        "type": "number",
+        "description": "rows property"
+      },
+      "shrink": {
+        "type": "number",
+        "description": "`flex-shrink` when `flex` is omitted."
+      },
+      "style": {
+        "description": "style property"
+      },
+      "surface": {
+        "enum": [
+          "default",
+          "ghost",
+          "minimal",
+          "subtle",
+          "moderate",
+          "bold",
+          "elevated"
+        ],
+        "description": "Surface mode for the **root** element (always `<Surface>` on web). Defaults to `'ghost'` when omitted. Container layout classes and styles are applied on that same node (`data-surface` remapping for children). Native ignores `surface` / `appearance` today."
+      },
+      "top": {
+        "type": "string",
+        "description": "top property"
+      },
+      "variant": {
+        "enum": [
+          "fluid",
+          "fixed",
+          "full-bleed"
+        ],
+        "description": "Layout variant. - `fluid` (default): grows with viewport, always applies `--Grid-Margin`. - `fixed`: capped at `--Grid-MaxWidth` per breakpoint, centered. - `full-bleed`: no margin, no cap — edge-to-edge."
+      },
+      "width": {
+        "description": "width property"
+      },
+      "wrap": {
+        "type": "boolean",
+        "description": "wrap property"
+      },
+      "zIndex": {
+        "type": "number",
+        "description": "zIndex property"
+      }
+    }
+  },
+  "codeSnippets": [
+    {
+      "id": "container-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { Container } from '@oneui/ui';\n\n<Container />"
+    },
+    {
+      "id": "container-recipe-decisions",
+      "title": "Recipe Decisions",
+      "language": "json",
+      "code": "{\n  \"component\": \"Container\",\n  \"decisions\": [\n    \"Width behavior\"\n  ]\n}"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "container"
+  ],
+  "generatedMarkdown": "# Container Machine-Readable Documentation\n\n_Generated from source metadata. Do not edit manually._\n\n## Intent and Purpose\n\n- **Intent**: Page-width shell (`fluid` / `fixed` / `full-bleed`) and declarative layout root. On web the node is always `<Surface>` (default `surface=\"ghost\"`) so children get `[data-surface]` token context without an opaque page fill. Omit `layout` for normal block flow; set `layout` to `flex` or `grid` for token-backed flex/grid. Spacing props use spacing scale keys, not raw px.\n- **Task contexts**: container, layout, wrapper, page-width, flex, grid, spacing, surface, a2ui\n- **Sentiments**: neutral\n\n## Composition Rules\n\n- **Requires**: \n- **Allows**: children\n- **Forbids**: \n\n## Variant Logic\n\n- **fluid**: use when Fluid\n- **fixed**: use when Fixed\n- **full-bleed**: use when Full bleed\n\n## Relationships and Dependencies\n\n- **Related**: \n- **Escalates to**: -\n- **Degrades to**: -\n- **Groups with**: -\n\n## Context Signals\n\n- **Density**: compact, default, open\n- **Modality**: desktop, mobile\n- **Brand**: theme-scope aware, recipe-driven\n- **Mode**: light, dark, surface-context\n\n## Observability Hooks\n\n- **Track**: \n- **Health**: a11y_violations\n\n## Props\n\n| Prop | Type | Required | Default | Description |\n| --- | --- | --- | --- | --- |\n| `align` | `ContainerAlign` | No | - | Maps to `align-items` when `layout` is `flex` or `grid`. |\n| `alignSelf` | `ContainerAlign` | No | - | When this `Container` is a flex/grid item, maps to `align-self`. |\n| `appearance` | `ComponentAppearance` | No | - | Multi-accent role for the root `<Surface>` — passed through as `appearance` (Surface defaults to `'auto'` when omitted). |\n| `as` | `ElementType` | No | - | as property |\n| `basis` | `ContainerSizePreset` | No | - | `flex-basis` when `flex` is omitted. |\n| `bottom` | `string` | No | - | bottom property |\n| `children` | `ReactNode` | No | - | children property |\n| `className` | `string` | No | - | className property |\n| `columnGap` | `ContainerSpaceKey` | No | - | columnGap property |\n| `columns` | `ContainerColumns` | No | - | columns property |\n| `direction` | `'row' | 'column'` | No | - | direction property |\n| `flex` | `number | string` | No | - | Flex shorthand on the root (`flex`). When set, overrides `grow` / `shrink` / `basis` for that axis bundle — prefer either `flex` or the longhands, not both. |\n| `fullWidth` | `boolean` | No | - | Deprecated compatibility hint used by older/generated compositions. Consumed so it does not leak to the DOM as an unknown React prop. |\n| `gap` | `ContainerSpaceKey` | No | - | gap property |\n| `grow` | `number` | No | - | `flex-grow` when `flex` is omitted. |\n| `height` | `ContainerSizePreset` | No | - | height property |\n| `justify` | `ContainerJustify` | No | - | justify property |\n| `layout` | `ContainerLayoutMode` | No | - | layout property |\n| `left` | `string` | No | - | left property |\n| `maxHeight` | `ContainerSizePreset` | No | - | maxHeight property |\n| `maxWidth` | `string | number | ContainerSizePreset` | No | - | Viewport cap when `variant` is `fixed` (number or non-preset string), or CSS `max-width` / token preset on the element. See {@link resolveContainerMaxWidth}. |\n| `minHeight` | `ContainerSizePreset` | No | - | minHeight property |\n| `minWidth` | `ContainerSizePreset` | No | - | minWidth property |\n| `overflow` | `ContainerOverflow` | No | - | overflow property |\n| `padding` | `ContainerSpaceKey` | No | - | padding property |\n| `paddingBottom` | `ContainerSpaceKey` | No | - | paddingBottom property |\n| `paddingLeft` | `ContainerSpaceKey` | No | - | paddingLeft property |\n| `paddingRight` | `ContainerSpaceKey` | No | - | paddingRight property |\n| `paddingTop` | `ContainerSpaceKey` | No | - | paddingTop property |\n| `paddingX` | `ContainerSpaceKey` | No | - | paddingX property |\n| `paddingY` | `ContainerSpaceKey` | No | - | paddingY property |\n| `position` | `ContainerPosition` | No | - | position property |\n| `right` | `string` | No | - | right property |\n| `rowGap` | `ContainerSpaceKey` | No | - | rowGap property |\n| `rows` | `number` | No | - | rows property |\n| `shrink` | `number` | No | - | `flex-shrink` when `flex` is omitted. |\n| `style` | `CSSProperties` | No | - | style property |\n| `surface` | `SurfaceToken` | No | - | Surface mode for the **root** element (always `<Surface>` on web). Defaults to `'ghost'` when omitted. Container layout classes and styles are applied on that same node (`data-surface` remapping for children). Native ignores `surface` / `appearance` today. |\n| `top` | `string` | No | - | top property |\n| `variant` | `ContainerVariant` | No | - | Layout variant. - `fluid` (default): grows with viewport, always applies `--Grid-Margin`. - `fixed`: capped at `--Grid-MaxWidth` per breakpoint, centered. - `full-bleed`: no margin, no cap — edge-to-edge. |\n| `width` | `ContainerSizePreset` | No | - | width property |\n| `wrap` | `boolean` | No | - | wrap property |\n| `zIndex` | `number` | No | - | zIndex property |\n\n## Slots\n\n| Slot | Types | Tokens |\n| --- | --- | --- |\n| `children` |  |  |\n\n## Code Snippets\n\n### Basic Usage\n\n```tsx\nimport { Container } from '@oneui/ui';\n\n<Container />\n```\n\n### Recipe Decisions\n\n```json\n{\n  \"component\": \"Container\",\n  \"decisions\": [\n    \"Width behavior\"\n  ]\n}\n```\n"
+}

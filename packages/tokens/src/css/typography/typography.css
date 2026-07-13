@@ -1,0 +1,317 @@
+/**
+ * TYPOGRAPHY — Relational F-Scale Typography System
+ *
+ * All typography tokens are CSS aliases to dimension f-step variables.
+ * When platform/density changes, typography sizes cascade automatically.
+ *
+ * Formula: fontSize = --Dimension-f{N}
+ *          lineHeight = --Dimension-f{N+offset}
+ *
+ * Import order: dimensions/scale.css → typography/typography.css → primitives.css
+ *
+ * 25 sizes across 6 roles:
+ *   Display (3), Headline (3), Title (3), Body (5), Label (6), Code (5)
+ */
+
+@layer base {
+  :root {
+
+    /* =============================================
+       DISPLAY — Large decorative text
+       Weight: 900 (all sizes)
+       Line height offset: 0 (tight)
+       Brand-customizable f-step assignments
+       ============================================= */
+
+    --Display-L-FontSize: var(--Dimension-f7);
+    --Display-L-LineHeight: var(--Dimension-f7);
+    --Display-L-FontWeight: 900;
+
+    --Display-M-FontSize: var(--Dimension-f6);
+    --Display-M-LineHeight: var(--Dimension-f6);
+    --Display-M-FontWeight: 900;
+
+    --Display-S-FontSize: var(--Dimension-f5);
+    --Display-S-LineHeight: var(--Dimension-f5);
+    --Display-S-FontWeight: 900;
+
+    /* =============================================
+       HEADLINE — Section headings
+       Weight: 900 (L, M), 850 (S + optical)
+       Line height offset: 0
+       Brand-customizable f-step assignments
+       ============================================= */
+
+    --Headline-L-FontSize: var(--Dimension-f4);
+    --Headline-L-LineHeight: var(--Dimension-f4);
+    --Headline-L-FontWeight: 900;
+
+    --Headline-M-FontSize: var(--Dimension-f2);
+    --Headline-M-LineHeight: var(--Dimension-f2);
+    --Headline-M-FontWeight: 900;
+
+    --Headline-S-FontSize: var(--Dimension-f0);
+    --Headline-S-LineHeight: var(--Dimension-f0);
+    --Headline-S-FontWeight: 850;
+
+    /* =============================================
+       TITLE — Card/component titles
+       Weight: 800 (L, M), 750 (S + optical)
+       Line height offset: 1
+       Fixed f-step assignments
+       ============================================= */
+
+    --Title-L-FontSize: var(--Dimension-f2);
+    --Title-L-LineHeight: var(--Dimension-f3);
+    --Title-L-FontWeight: 800;
+
+    --Title-M-FontSize: var(--Dimension-f0);
+    --Title-M-LineHeight: var(--Dimension-f1);
+    --Title-M-FontWeight: 800;
+
+    --Title-S-FontSize: var(--Dimension-f-2);
+    --Title-S-LineHeight: var(--Dimension-f-1);
+    --Title-S-FontWeight: 750;
+
+    /* =============================================
+       BODY — Paragraph text (5 sizes: L, M, S, XS, 2XS)
+       Weight: emphasis-based (high=700, medium=500, low=400)
+       Line height offset: 3 (generous for readability)
+       Fixed f-step assignments
+       ============================================= */
+
+    --Body-L-FontSize: var(--Dimension-f1);
+    --Body-L-LineHeight: var(--Dimension-f4);
+
+    --Body-M-FontSize: var(--Dimension-f0);
+    --Body-M-LineHeight: var(--Dimension-f3);
+
+    --Body-S-FontSize: var(--Dimension-f-1);
+    --Body-S-LineHeight: var(--Dimension-f2);
+
+    --Body-XS-FontSize: var(--Dimension-f-2);
+    --Body-XS-LineHeight: var(--Dimension-f1);
+
+    --Body-2XS-FontSize: var(--Dimension-f-3);
+    --Body-2XS-LineHeight: var(--Dimension-f0);
+
+    /* Body emphasis weights (shared across all Body sizes) */
+    --Body-FontWeight-High: 700;
+    --Body-FontWeight-Medium: 500;
+    --Body-FontWeight-Low: 400;
+
+    /* =============================================
+       LABEL — UI labels, buttons, navigation (6 sizes: L, M, S, XS, 2XS, 3XS)
+       Weight: emphasis-based (high=700, medium=500, low=400)
+       Line height offset: 0 (compact, single-line)
+       Fixed f-step assignments
+       ============================================= */
+
+    --Label-L-FontSize: var(--Dimension-f1);
+    --Label-L-LineHeight: var(--Dimension-f1);
+
+    --Label-M-FontSize: var(--Dimension-f0);
+    --Label-M-LineHeight: var(--Dimension-f0);
+
+    --Label-S-FontSize: var(--Dimension-f-1);
+    --Label-S-LineHeight: var(--Dimension-f-1);
+
+    --Label-XS-FontSize: var(--Dimension-f-2);
+    --Label-XS-LineHeight: var(--Dimension-f-2);
+
+    --Label-2XS-FontSize: var(--Dimension-f-3);
+    --Label-2XS-LineHeight: var(--Dimension-f-3);
+
+    --Label-3XS-FontSize: var(--Dimension-f-4);
+    --Label-3XS-LineHeight: var(--Dimension-f-4);
+
+    /* Label emphasis weights (shared across all Label sizes) */
+    --Label-FontWeight-High: 700;
+    --Label-FontWeight-Medium: 500;
+    --Label-FontWeight-Low: 400;
+
+    /* =============================================
+       CODE — Monospaced code text (5 sizes: M, S, XS, 2XS, 3XS)
+       Weight: emphasis-based (high=700, medium=500, low=400)
+       Line height offset: 2
+       Fixed f-step assignments
+       ============================================= */
+
+    --Code-M-FontSize: var(--Dimension-f0);
+    --Code-M-LineHeight: var(--Dimension-f2);
+
+    --Code-S-FontSize: var(--Dimension-f-1);
+    --Code-S-LineHeight: var(--Dimension-f1);
+
+    --Code-XS-FontSize: var(--Dimension-f-2);
+    --Code-XS-LineHeight: var(--Dimension-f0);
+
+    --Code-2XS-FontSize: var(--Dimension-f-3);
+    --Code-2XS-LineHeight: var(--Dimension-f-1);
+
+    --Code-3XS-FontSize: var(--Dimension-f-4);
+    --Code-3XS-LineHeight: var(--Dimension-f-2);
+
+    /* Code emphasis weights (shared across all Code sizes) */
+    --Code-FontWeight-High: 700;
+    --Code-FontWeight-Medium: 500;
+    --Code-FontWeight-Low: 400;
+
+    /* =============================================
+       FONT FAMILIES
+       ============================================= */
+
+    --Typography-Font-Code: 'JetBrains Mono', 'Fira Code', 'SF Mono', Consolas, monospace;
+
+    /* =============================================
+       FONT SLOTS — function-named, brand-customisable.
+       Text:    workhorse for UI, body copy, labels.
+       Heading: editorial / hero copy. Brand may set this same as Text.
+       Script:  multi-script fallback (Devanagari etc.).
+       Code:    monospace.
+       The role-to-slot mapping below assigns each typography role
+       (Display, Headline, Title, Body, Label) to a slot. Brands
+       override this mapping in @layer brand via
+       typographyV2.roleFontSlots — see Brand Engine.
+       NOTE on naming: typography ROLES (Display, Body) and font
+       SLOTS used to share the same vocabulary, which made comments
+       ambiguous. Slots are now Text / Heading; roles keep their
+       existing names. Slot ↔ role mapping is set per-brand below.
+       ============================================= */
+
+    /* Canonical font slot tokens — function-named per typography intent */
+    --Typography-Font-Text: var(--font-inter, 'Inter'), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --Typography-Font-Heading: var(--font-inter, 'Inter'), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --Typography-Font-Script: 'Noto Sans', 'Noto Sans Devanagari', 'Noto Sans Tamil', ui-sans-serif, system-ui, sans-serif;
+
+    /* Deprecation aliases — DO NOT USE IN NEW CODE.
+       Body/Display were transient names from a prior iteration.
+       Primary/Secondary are the original V1 names. All four resolve
+       to the canonical Text / Heading. Will be removed in a future
+       release once the codebase fully migrates. */
+    --Typography-Font-Body: var(--Typography-Font-Text);
+    --Typography-Font-Display: var(--Typography-Font-Heading);
+    --Typography-Font-Primary: var(--Typography-Font-Text);
+    --Typography-Font-Secondary: var(--Typography-Font-Heading);
+
+    /* =============================================
+       Per-role font family slot
+       Consumed by components via
+         `font-family: var(--{Role}-FontFamily, var(--Typography-Font-Text))`.
+       Defaults to the Text slot at the base layer. Brand CSS may override
+       a role to the Heading slot in `@layer brand` when
+       `typographyV2.roleFontSlots` assigns `'heading'`. Code role is
+       intentionally omitted — it always resolves via `--Typography-Font-Code`.
+       ============================================= */
+
+    --Display-FontFamily: var(--Typography-Font-Text);
+    --Headline-FontFamily: var(--Typography-Font-Text);
+    --Title-FontFamily: var(--Typography-Font-Text);
+    --Body-FontFamily: var(--Typography-Font-Text);
+    --Label-FontFamily: var(--Typography-Font-Text);
+
+    /* =============================================
+       BACKWARD COMPATIBILITY ALIASES
+       Map old --Typography-Size-* tokens to new V2 tokens.
+       Old tokens remain functional via these aliases.
+       ============================================= */
+
+    /* Display aliases */
+    --Typography-Size-DisplayL: var(--Display-L-FontSize);
+    --Typography-Size-DisplayM: var(--Display-M-FontSize);
+    --Typography-Size-DisplayS: var(--Display-S-FontSize);
+
+    /* Headline aliases */
+    --Typography-Size-HeadlineL: var(--Headline-L-FontSize);
+    --Typography-Size-HeadlineM: var(--Headline-M-FontSize);
+    --Typography-Size-HeadlineS: var(--Headline-S-FontSize);
+
+    /* Title aliases */
+    --Typography-Size-TitleL: var(--Title-L-FontSize);
+    --Typography-Size-TitleM: var(--Title-M-FontSize);
+    --Typography-Size-TitleS: var(--Title-S-FontSize);
+
+    /* Body aliases */
+    --Typography-Size-BodyL: var(--Body-L-FontSize);
+    --Typography-Size-BodyM: var(--Body-M-FontSize);
+    --Typography-Size-BodyS: var(--Body-S-FontSize);
+
+    /* Label aliases */
+    --Typography-Size-LabelL: var(--Label-L-FontSize);
+    --Typography-Size-LabelM: var(--Label-M-FontSize);
+    --Typography-Size-LabelS: var(--Label-S-FontSize);
+
+    /* Legacy generic size scale → closest V2 mapping */
+    --Typography-Size-5XL: var(--Display-L-FontSize);
+    --Typography-Size-4XL: var(--Display-M-FontSize);
+    --Typography-Size-3XL: var(--Display-S-FontSize);
+    --Typography-Size-2XL: var(--Headline-L-FontSize);
+    --Typography-Size-XL: var(--Headline-M-FontSize);
+    --Typography-Size-L: var(--Body-L-FontSize);
+    --Typography-Size-M: var(--Body-M-FontSize);
+    --Typography-Size-S: var(--Body-S-FontSize);
+    --Typography-Size-XS: var(--Body-XS-FontSize);
+    --Typography-Size-2XS: var(--Body-2XS-FontSize);
+    --Typography-Size-3XS: var(--Label-3XS-FontSize);
+
+    /* =============================================
+       OpenType feature settings — per font slot
+       Used via `font-feature-settings: var(--Typography-Features-Primary)`.
+       `normal` = browser defaults (ligatures on). Brand overrides may set
+       e.g. `"liga" 0, "clig" 0` to disable JioType's fi/fl ligatures.
+       ============================================= */
+
+    --Typography-Features-Primary: normal;
+    --Typography-Features-Secondary: normal;
+    --Typography-Features-Code: normal;
+
+    /* =============================================
+       Per-role letter-spacing (em units)
+       Consumed by components via `letter-spacing: var(--{Role}-LetterSpacing, 0)`.
+       Default is 0 — brand overrides tune tracking for variable fonts.
+       ============================================= */
+
+    --Display-LetterSpacing: 0;
+    --Headline-LetterSpacing: 0;
+    --Title-LetterSpacing: 0;
+    --Body-LetterSpacing: 0;
+    --Label-LetterSpacing: 0;
+    --Code-LetterSpacing: 0;
+
+    /* =============================================
+       Per-role optical sizing mode
+       Consumed by components via `font-optical-sizing: var(--{Role}-FontOpticalSizing, auto)`.
+       Default is `auto` — browser maps computed font-size → opsz axis automatically.
+       Brand overrides set to `none` to disable (e.g. for non-variable fonts).
+       When manual mode is active, brand CSS also emits --{Role}-OpszValue as a hint.
+       ============================================= */
+
+    --Display-FontOpticalSizing: auto;
+    --Headline-FontOpticalSizing: auto;
+    --Title-FontOpticalSizing: auto;
+    --Body-FontOpticalSizing: auto;
+    --Label-FontOpticalSizing: auto;
+    --Code-FontOpticalSizing: auto;
+  }
+
+  /* =============================================
+     L BREAKPOINT GROUP — viewport ≥ 991px (Tablet Landscape / Desktop / Desktop Large)
+     Display & Headline step UP one tier on large screens, matching the Figma
+     text styles. Other roles are flat across breakpoint groups.
+       Display-L #10→#14 (f7→f9)   Display-M #9→#10 (f6→f7)
+       Headline-L #7→#9 (f4→f6)    Headline-M #5→#6 (f2→f3)
+     The S/M groups use the :root values above unchanged.
+     ============================================= */
+
+  [data-Breakpoint="L"] {
+    --Display-L-FontSize: var(--Dimension-f9);
+    --Display-L-LineHeight: var(--Dimension-f9);
+    --Display-M-FontSize: var(--Dimension-f7);
+    --Display-M-LineHeight: var(--Dimension-f7);
+
+    --Headline-L-FontSize: var(--Dimension-f6);
+    --Headline-L-LineHeight: var(--Dimension-f6);
+    --Headline-M-FontSize: var(--Dimension-f3);
+    --Headline-M-LineHeight: var(--Dimension-f3);
+  }
+}

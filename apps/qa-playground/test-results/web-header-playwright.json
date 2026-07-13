@@ -1,0 +1,4391 @@
+{
+  "config": {
+    "configFile": "/Users/prathip.kattekola/Documents/OneUIDev/OneUiStudio_Base_v4/apps/qa-playground/playwright.web-header.config.ts",
+    "rootDir": "/Users/prathip.kattekola/Documents/OneUIDev/OneUiStudio_Base_v4/apps/qa-playground/e2e",
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 5
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/Users/prathip.kattekola/Documents/OneUIDev/OneUiStudio_Base_v4/apps/qa-playground/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 5
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/Users/prathip.kattekola/Documents/OneUIDev/OneUiStudio_Base_v4/apps/qa-playground/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/web-header-qa.spec.ts",
+          "**/web-header-accessibility.spec.ts"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results/web-header-playwright.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.59.1",
+    "workers": 5,
+    "webServer": {
+      "command": "node ../../node_modules/vite/bin/vite.js --host --port 5180",
+      "url": "http://localhost:5180",
+      "reuseExistingServer": true,
+      "cwd": "."
+    }
+  },
+  "suites": [
+    {
+      "title": "web-header-accessibility.spec.ts",
+      "file": "web-header-accessibility.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Accessibility",
+          "file": "web-header-accessibility.spec.ts",
+          "line": 57,
+          "column": 6,
+          "specs": [
+            {
+              "title": "[a11y] WCAG 2.1 AA axe scan — zero serious/critical + HTML report",
+              "ok": true,
+              "tags": [
+                "Accessibility"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 10781,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "[Web Header QA] STEP: Navigate to Web Header playground\n"
+                        },
+                        {
+                          "text": "[Web Header QA] STEP: Select the Test Scenarios tab\n"
+                        },
+                        {
+                          "text": "[Web Header QA] STEP: Run scoped WCAG 2.1 AA axe scan on Test Scenarios bands\n"
+                        },
+                        {
+                          "text": "HTML report was saved into the following directory /Users/prathip.kattekola/Documents/OneUIDev/OneUiStudio_Base_v4/apps/qa-playground/test-results/web-header-accessibility-axe-report.html\n"
+                        }
+                      ],
+                      "stderr": [
+                        {
+                          "text": "(node:51573) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.\n(Use `node --trace-warnings ...` to show where the warning was created)\n"
+                        }
+                      ],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Run scoped WCAG 2.1 AA axe scan on Test Scenarios bands",
+                          "duration": 3355
+                        }
+                      ],
+                      "startTime": "2026-07-09T14:38:01.426Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "95dd8b9d8cc29160832d-1f8500c219b8e6c52d9a",
+              "file": "web-header-accessibility.spec.ts",
+              "line": 58,
+              "column": 3
+            },
+            {
+              "title": "[a11y] WCAG 2.1 AA axe scan — Default (homeBar · fluid · search end) band",
+              "ok": true,
+              "tags": [
+                "Accessibility"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "qa-band",
+                      "description": "web-header-qa-default"
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 9899,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "[Web Header QA] STEP: Navigate to Web Header playground\n"
+                        },
+                        {
+                          "text": "[Web Header QA] STEP: Select the Test Scenarios tab\n"
+                        }
+                      ],
+                      "stderr": [
+                        {
+                          "text": "(node:51575) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.\n(Use `node --trace-warnings ...` to show where the warning was created)\n"
+                        }
+                      ],
+                      "retry": 0,
+                      "startTime": "2026-07-09T14:38:01.391Z",
+                      "annotations": [
+                        {
+                          "type": "qa-band",
+                          "description": "web-header-qa-default"
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "95dd8b9d8cc29160832d-55f79016228c9b2ef51e",
+              "file": "web-header-accessibility.spec.ts",
+              "line": 68,
+              "column": 5
+            },
+            {
+              "title": "[a11y] WCAG 2.1 AA axe scan — homeBar variations band",
+              "ok": true,
+              "tags": [
+                "Accessibility"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "qa-band",
+                      "description": "web-header-qa-home-bar"
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 9880,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "[Web Header QA] STEP: Navigate to Web Header playground\n"
+                        },
+                        {
+                          "text": "[Web Header QA] STEP: Select the Test Scenarios tab\n"
+                        }
+                      ],
+                      "stderr": [
+                        {
+                          "text": "(node:51577) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.\n(Use `node --trace-warnings ...` to show where the warning was created)\n"
+                        }
+                      ],
+                      "retry": 0,
+                      "startTime": "2026-07-09T14:38:01.404Z",
+                      "annotations": [
+                        {
+                          "type": "qa-band",
+                          "description": "web-header-qa-home-bar"
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "95dd8b9d8cc29160832d-76ac6c38415f6ecc61d6",
+              "file": "web-header-accessibility.spec.ts",
+              "line": 68,
+              "column": 5
+            },
+            {
+              "title": "[a11y] WCAG 2.1 AA axe scan — contextBar variations band",
+              "ok": true,
+              "tags": [
+                "Accessibility"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "qa-band",
+                      "description": "web-header-qa-context-bar"
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 9971,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "[Web Header QA] STEP: Navigate to Web Header playground\n"
+                        },
+                        {
+                          "text": "[Web Header QA] STEP: Select the Test Scenarios tab\n"
+                        }
+                      ],
+                      "stderr": [
+                        {
+                          "text": "(node:51576) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.\n(Use `node --trace-warnings ...` to show where the warning was created)\n"
+                        }
+                      ],
+                      "retry": 0,
+                      "startTime": "2026-07-09T14:38:01.449Z",
+                      "annotations": [
+                        {
+                          "type": "qa-band",
+                          "description": "web-header-qa-context-bar"
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "95dd8b9d8cc29160832d-9efe3433515f2a53bc77",
+              "file": "web-header-accessibility.spec.ts",
+              "line": 68,
+              "column": 5
+            },
+            {
+              "title": "[a11y] WCAG 2.1 AA axe scan — searchBar variations band",
+              "ok": true,
+              "tags": [
+                "Accessibility"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "qa-band",
+                      "description": "web-header-qa-search-bar"
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 4,
+                      "parallelIndex": 4,
+                      "status": "passed",
+                      "duration": 9811,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "[Web Header QA] STEP: Navigate to Web Header playground\n"
+                        },
+                        {
+                          "text": "[Web Header QA] STEP: Select the Test Scenarios tab\n"
+                        }
+                      ],
+                      "stderr": [
+                        {
+                          "text": "(node:51574) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.\n(Use `node --trace-warnings ...` to show where the warning was created)\n"
+                        }
+                      ],
+                      "retry": 0,
+                      "startTime": "2026-07-09T14:38:01.418Z",
+                      "annotations": [
+                        {
+                          "type": "qa-band",
+                          "description": "web-header-qa-search-bar"
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "95dd8b9d8cc29160832d-b0c8ee8feb0a0265cb72",
+              "file": "web-header-accessibility.spec.ts",
+              "line": 68,
+              "column": 5
+            },
+            {
+              "title": "[a11y] WCAG 2.1 AA axe scan — start=true / false band",
+              "ok": true,
+              "tags": [
+                "Accessibility"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "qa-band",
+                      "description": "web-header-qa-api-start"
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 4,
+                      "parallelIndex": 4,
+                      "status": "passed",
+                      "duration": 5458,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "[Web Header QA] STEP: Navigate to Web Header playground\n"
+                        },
+                        {
+                          "text": "[Web Header QA] STEP: Select the Test Scenarios tab\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-09T14:38:12.058Z",
+                      "annotations": [
+                        {
+                          "type": "qa-band",
+                          "description": "web-header-qa-api-start"
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "95dd8b9d8cc29160832d-8d57ba6c5389484d9ec8",
+              "file": "web-header-accessibility.spec.ts",
+              "line": 68,
+              "column": 5
+            },
+            {
+              "title": "[a11y] WCAG 2.1 AA axe scan — middle=fluid / centred band",
+              "ok": true,
+              "tags": [
+                "Accessibility"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "qa-band",
+                      "description": "web-header-qa-api-middle"
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 5469,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "[Web Header QA] STEP: Navigate to Web Header playground\n"
+                        },
+                        {
+                          "text": "[Web Header QA] STEP: Select the Test Scenarios tab\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-09T14:38:12.114Z",
+                      "annotations": [
+                        {
+                          "type": "qa-band",
+                          "description": "web-header-qa-api-middle"
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "95dd8b9d8cc29160832d-bc06eb8538df081408b3",
+              "file": "web-header-accessibility.spec.ts",
+              "line": 68,
+              "column": 5
+            },
+            {
+              "title": "[a11y] WCAG 2.1 AA axe scan — primaryNavItems=true / false band",
+              "ok": true,
+              "tags": [
+                "Accessibility"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "qa-band",
+                      "description": "web-header-qa-api-primary-nav"
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 5726,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "[Web Header QA] STEP: Navigate to Web Header playground\n"
+                        },
+                        {
+                          "text": "[Web Header QA] STEP: Select the Test Scenarios tab\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-09T14:38:12.157Z",
+                      "annotations": [
+                        {
+                          "type": "qa-band",
+                          "description": "web-header-qa-api-primary-nav"
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "95dd8b9d8cc29160832d-60a6f2c08f504e2411dd",
+              "file": "web-header-accessibility.spec.ts",
+              "line": 68,
+              "column": 5
+            },
+            {
+              "title": "[a11y] WCAG 2.1 AA axe scan — end=true / false band",
+              "ok": true,
+              "tags": [
+                "Accessibility"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "qa-band",
+                      "description": "web-header-qa-api-end"
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 5735,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "[Web Header QA] STEP: Navigate to Web Header playground\n"
+                        },
+                        {
+                          "text": "[Web Header QA] STEP: Select the Test Scenarios tab\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-09T14:38:12.206Z",
+                      "annotations": [
+                        {
+                          "type": "qa-band",
+                          "description": "web-header-qa-api-end"
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "95dd8b9d8cc29160832d-a18f7d2a071b1e22f8c2",
+              "file": "web-header-accessibility.spec.ts",
+              "line": 68,
+              "column": 5
+            },
+            {
+              "title": "[a11y] WCAG 2.1 AA axe scan — avatar=true / false band",
+              "ok": true,
+              "tags": [
+                "Accessibility"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "qa-band",
+                      "description": "web-header-qa-api-avatar"
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 5766,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "[Web Header QA] STEP: Navigate to Web Header playground\n"
+                        },
+                        {
+                          "text": "[Web Header QA] STEP: Select the Test Scenarios tab\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-09T14:38:13.021Z",
+                      "annotations": [
+                        {
+                          "type": "qa-band",
+                          "description": "web-header-qa-api-avatar"
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "95dd8b9d8cc29160832d-47155cb947ac005d8d07",
+              "file": "web-header-accessibility.spec.ts",
+              "line": 68,
+              "column": 5
+            },
+            {
+              "title": "[a11y] WCAG 2.1 AA axe scan — EndActions Button / IconButton band",
+              "ok": true,
+              "tags": [
+                "Accessibility"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "qa-band",
+                      "description": "web-header-qa-end-actions"
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 4,
+                      "parallelIndex": 4,
+                      "status": "passed",
+                      "duration": 4168,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "[Web Header QA] STEP: Navigate to Web Header playground\n"
+                        },
+                        {
+                          "text": "[Web Header QA] STEP: Select the Test Scenarios tab\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-09T14:38:17.540Z",
+                      "annotations": [
+                        {
+                          "type": "qa-band",
+                          "description": "web-header-qa-end-actions"
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "95dd8b9d8cc29160832d-b5a3aa03b41cab2916a0",
+              "file": "web-header-accessibility.spec.ts",
+              "line": 68,
+              "column": 5
+            },
+            {
+              "title": "[a11y] WCAG 2.1 AA axe scan — Header.Item slot band",
+              "ok": true,
+              "tags": [
+                "Accessibility"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "qa-band",
+                      "description": "web-header-qa-header-item"
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 4347,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "[Web Header QA] STEP: Navigate to Web Header playground\n"
+                        },
+                        {
+                          "text": "[Web Header QA] STEP: Select the Test Scenarios tab\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-09T14:38:17.600Z",
+                      "annotations": [
+                        {
+                          "type": "qa-band",
+                          "description": "web-header-qa-header-item"
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "95dd8b9d8cc29160832d-7b555160cba1f18ae9d9",
+              "file": "web-header-accessibility.spec.ts",
+              "line": 68,
+              "column": 5
+            },
+            {
+              "title": "[a11y] WCAG 2.1 AA axe scan — Negative / edge cases band",
+              "ok": true,
+              "tags": [
+                "Accessibility"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "qa-band",
+                      "description": "web-header-qa-negative"
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 4623,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "[Web Header QA] STEP: Navigate to Web Header playground\n"
+                        },
+                        {
+                          "text": "[Web Header QA] STEP: Select the Test Scenarios tab\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-09T14:38:17.903Z",
+                      "annotations": [
+                        {
+                          "type": "qa-band",
+                          "description": "web-header-qa-negative"
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "95dd8b9d8cc29160832d-c11033962e665ca78219",
+              "file": "web-header-accessibility.spec.ts",
+              "line": 68,
+              "column": 5
+            },
+            {
+              "title": "[a11y] WCAG 2.1 AA axe scan — Responsive platform widths band",
+              "ok": true,
+              "tags": [
+                "Accessibility"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "qa-band",
+                      "description": "web-header-qa-responsive"
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 4980,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "[Web Header QA] STEP: Navigate to Web Header playground\n"
+                        },
+                        {
+                          "text": "[Web Header QA] STEP: Select the Test Scenarios tab\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-09T14:38:17.968Z",
+                      "annotations": [
+                        {
+                          "type": "qa-band",
+                          "description": "web-header-qa-responsive"
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "95dd8b9d8cc29160832d-91324452e19839ca2f71",
+              "file": "web-header-accessibility.spec.ts",
+              "line": 68,
+              "column": 5
+            },
+            {
+              "title": "[a11y] data-testid=\"web-header-default\" — zero serious/critical",
+              "ok": true,
+              "tags": [
+                "Accessibility"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 4079,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "[Web Header QA] STEP: Navigate to Web Header playground\n"
+                        },
+                        {
+                          "text": "[Web Header QA] STEP: Select the Test Scenarios tab\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-09T14:38:18.847Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "95dd8b9d8cc29160832d-89595cb4410ead390cf1",
+              "file": "web-header-accessibility.spec.ts",
+              "line": 80,
+              "column": 5
+            },
+            {
+              "title": "[a11y] data-testid=\"web-header-home-fluid-search-end\" — zero serious/critical",
+              "ok": true,
+              "tags": [
+                "Accessibility"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 4,
+                      "parallelIndex": 4,
+                      "status": "passed",
+                      "duration": 3026,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "[Web Header QA] STEP: Navigate to Web Header playground\n"
+                        },
+                        {
+                          "text": "[Web Header QA] STEP: Select the Test Scenarios tab\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-09T14:38:21.738Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "95dd8b9d8cc29160832d-89467a3e4e56030f4948",
+              "file": "web-header-accessibility.spec.ts",
+              "line": 80,
+              "column": 5
+            },
+            {
+              "title": "[a11y] data-testid=\"web-header-start-false\" — zero serious/critical",
+              "ok": true,
+              "tags": [
+                "Accessibility"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 3444,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "[Web Header QA] STEP: Navigate to Web Header playground\n"
+                        },
+                        {
+                          "text": "[Web Header QA] STEP: Select the Test Scenarios tab\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-09T14:38:21.968Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "95dd8b9d8cc29160832d-31bb2525aa0b8a44399f",
+              "file": "web-header-accessibility.spec.ts",
+              "line": 80,
+              "column": 5
+            },
+            {
+              "title": "[a11y] data-testid=\"web-header-primary-nav-false\" — zero serious/critical",
+              "ok": true,
+              "tags": [
+                "Accessibility"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 3717,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "[Web Header QA] STEP: Navigate to Web Header playground\n"
+                        },
+                        {
+                          "text": "[Web Header QA] STEP: Select the Test Scenarios tab\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-09T14:38:22.556Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "95dd8b9d8cc29160832d-a088c0e235031761900c",
+              "file": "web-header-accessibility.spec.ts",
+              "line": 80,
+              "column": 5
+            },
+            {
+              "title": "[a11y] data-testid=\"web-header-end-button\" — zero serious/critical",
+              "ok": true,
+              "tags": [
+                "Accessibility"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 3743,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "[Web Header QA] STEP: Navigate to Web Header playground\n"
+                        },
+                        {
+                          "text": "[Web Header QA] STEP: Select the Test Scenarios tab\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-09T14:38:22.946Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "95dd8b9d8cc29160832d-91c542fee12375b478f9",
+              "file": "web-header-accessibility.spec.ts",
+              "line": 80,
+              "column": 5
+            },
+            {
+              "title": "[a11y] data-testid=\"web-header-context-no-nav\" — zero serious/critical",
+              "ok": true,
+              "tags": [
+                "Accessibility"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 3684,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "[Web Header QA] STEP: Navigate to Web Header playground\n"
+                        },
+                        {
+                          "text": "[Web Header QA] STEP: Select the Test Scenarios tab\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-09T14:38:22.973Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "95dd8b9d8cc29160832d-9a66fad320aab33eba2f",
+              "file": "web-header-accessibility.spec.ts",
+              "line": 80,
+              "column": 5
+            },
+            {
+              "title": "[a11y] data-testid=\"web-header-search-middle\" — zero serious/critical",
+              "ok": true,
+              "tags": [
+                "Accessibility"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 4,
+                      "parallelIndex": 4,
+                      "status": "passed",
+                      "duration": 3219,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "[Web Header QA] STEP: Navigate to Web Header playground\n"
+                        },
+                        {
+                          "text": "[Web Header QA] STEP: Select the Test Scenarios tab\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-09T14:38:24.792Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "95dd8b9d8cc29160832d-617af2e10b145bb68d25",
+              "file": "web-header-accessibility.spec.ts",
+              "line": 80,
+              "column": 5
+            },
+            {
+              "title": "[a11y] data-testid=\"web-header-negative-empty-nav\" — zero serious/critical",
+              "ok": true,
+              "tags": [
+                "Accessibility"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 3731,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "[Web Header QA] STEP: Navigate to Web Header playground\n"
+                        },
+                        {
+                          "text": "[Web Header QA] STEP: Select the Test Scenarios tab\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-09T14:38:25.434Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "95dd8b9d8cc29160832d-8273d5e153dd252c8e14",
+              "file": "web-header-accessibility.spec.ts",
+              "line": 80,
+              "column": 5
+            },
+            {
+              "title": "[a11y] data-testid=\"web-header-platform-360-inner\" — zero serious/critical",
+              "ok": true,
+              "tags": [
+                "Accessibility"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 4888,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "[Web Header QA] STEP: Navigate to Web Header playground\n"
+                        },
+                        {
+                          "text": "[Web Header QA] STEP: Select the Test Scenarios tab\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-09T14:38:26.295Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "95dd8b9d8cc29160832d-26aaac74b6e31e8e2895",
+              "file": "web-header-accessibility.spec.ts",
+              "line": 80,
+              "column": 5
+            },
+            {
+              "title": "[a11y] data-testid=\"web-header-platform-768-inner\" — zero serious/critical",
+              "ok": true,
+              "tags": [
+                "Accessibility"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 4805,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "[Web Header QA] STEP: Navigate to Web Header playground\n"
+                        },
+                        {
+                          "text": "[Web Header QA] STEP: Select the Test Scenarios tab\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-09T14:38:26.715Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "95dd8b9d8cc29160832d-259c5c8fa8a7632e7b1a",
+              "file": "web-header-accessibility.spec.ts",
+              "line": 80,
+              "column": 5
+            },
+            {
+              "title": "[a11y] data-testid=\"web-header-platform-1024-inner\" — zero serious/critical",
+              "ok": true,
+              "tags": [
+                "Accessibility"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 5059,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "[Web Header QA] STEP: Navigate to Web Header playground\n"
+                        },
+                        {
+                          "text": "[Web Header QA] STEP: Select the Test Scenarios tab\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-09T14:38:26.754Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "95dd8b9d8cc29160832d-1c9e24df083cf5135feb",
+              "file": "web-header-accessibility.spec.ts",
+              "line": 80,
+              "column": 5
+            },
+            {
+              "title": "[a11y] Figma validation tab — property × platform grid — zero serious/critical",
+              "ok": true,
+              "tags": [
+                "Accessibility"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 4,
+                      "parallelIndex": 4,
+                      "status": "passed",
+                      "duration": 8399,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "[Web Header QA] STEP: Navigate to Web Header playground\n"
+                        },
+                        {
+                          "text": "[Web Header QA] STEP: Select the Test Scenarios tab\n"
+                        },
+                        {
+                          "text": "[Web Header QA] STEP: Open Figma Validation tab\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Open Figma Validation tab",
+                          "duration": 211
+                        }
+                      ],
+                      "startTime": "2026-07-09T14:38:28.034Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "95dd8b9d8cc29160832d-a140d62e3b4506bd71e2",
+              "file": "web-header-accessibility.spec.ts",
+              "line": 94,
+              "column": 3
+            },
+            {
+              "title": "[a11y] Section 508 tag run — zero serious/critical",
+              "ok": true,
+              "tags": [
+                "Accessibility"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 3858,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "[Web Header QA] STEP: Navigate to Web Header playground\n"
+                        },
+                        {
+                          "text": "[Web Header QA] STEP: Select the Test Scenarios tab\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-09T14:38:29.191Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "95dd8b9d8cc29160832d-78cee186712ae39b69bb",
+              "file": "web-header-accessibility.spec.ts",
+              "line": 103,
+              "column": 3
+            },
+            {
+              "title": "[a11y] axe label rule — showcase bands, zero serious/critical",
+              "ok": true,
+              "tags": [
+                "Accessibility"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 3359,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "[Web Header QA] STEP: Navigate to Web Header playground\n"
+                        },
+                        {
+                          "text": "[Web Header QA] STEP: Select the Test Scenarios tab\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-09T14:38:31.213Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "95dd8b9d8cc29160832d-b5a24857992d1c1d5b3a",
+              "file": "web-header-accessibility.spec.ts",
+              "line": 111,
+              "column": 3
+            },
+            {
+              "title": "[a11y] ARIA validity rules — zero serious/critical",
+              "ok": true,
+              "tags": [
+                "Accessibility"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 4277,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "[Web Header QA] STEP: Navigate to Web Header playground\n"
+                        },
+                        {
+                          "text": "[Web Header QA] STEP: Select the Test Scenarios tab\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-09T14:38:31.598Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "95dd8b9d8cc29160832d-62676d24b6e38401cfff",
+              "file": "web-header-accessibility.spec.ts",
+              "line": 119,
+              "column": 3
+            },
+            {
+              "title": "[a11y] axe name rules — showcase bands, zero serious/critical",
+              "ok": true,
+              "tags": [
+                "Accessibility"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 4025,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "[Web Header QA] STEP: Navigate to Web Header playground\n"
+                        },
+                        {
+                          "text": "[Web Header QA] STEP: Select the Test Scenarios tab\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-09T14:38:31.844Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "95dd8b9d8cc29160832d-b288e8476893d5210d28",
+              "file": "web-header-accessibility.spec.ts",
+              "line": 134,
+              "column": 3
+            },
+            {
+              "title": "[a11y] page lang on <html>",
+              "ok": true,
+              "tags": [
+                "Accessibility"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 2700,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "[Web Header QA] STEP: Navigate to Web Header playground\n"
+                        },
+                        {
+                          "text": "[Web Header QA] STEP: Select the Test Scenarios tab\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-09T14:38:33.065Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "95dd8b9d8cc29160832d-565289f1cad613fec704",
+              "file": "web-header-accessibility.spec.ts",
+              "line": 142,
+              "column": 3
+            },
+            {
+              "title": "[a11y] Default mount exposes labelled primary navigation landmark",
+              "ok": true,
+              "tags": [
+                "Accessibility"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 2143,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "[Web Header QA] STEP: Navigate to Web Header playground\n"
+                        },
+                        {
+                          "text": "[Web Header QA] STEP: Select the Test Scenarios tab\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-09T14:38:34.596Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "95dd8b9d8cc29160832d-88393f1c58372ae5fb76",
+              "file": "web-header-accessibility.spec.ts",
+              "line": 148,
+              "column": 3
+            },
+            {
+              "title": "[a11y] search input has accessible label",
+              "ok": true,
+              "tags": [
+                "Accessibility"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 3072,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "[Web Header QA] STEP: Navigate to Web Header playground\n"
+                        },
+                        {
+                          "text": "[Web Header QA] STEP: Select the Test Scenarios tab\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-09T14:38:35.790Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "95dd8b9d8cc29160832d-f848984d2ba080de7d1c",
+              "file": "web-header-accessibility.spec.ts",
+              "line": 153,
+              "column": 3
+            },
+            {
+              "title": "[a11y] icon buttons in end slot have accessible names",
+              "ok": true,
+              "tags": [
+                "Accessibility"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 3918,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "[Web Header QA] STEP: Navigate to Web Header playground\n"
+                        },
+                        {
+                          "text": "[Web Header QA] STEP: Select the Test Scenarios tab\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-09T14:38:35.885Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "95dd8b9d8cc29160832d-5319d3c8553b63c2b83c",
+              "file": "web-header-accessibility.spec.ts",
+              "line": 164,
+              "column": 3
+            },
+            {
+              "title": "[a11y] avatar exposes accessible name",
+              "ok": true,
+              "tags": [
+                "Accessibility"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 4106,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "[Web Header QA] STEP: Navigate to Web Header playground\n"
+                        },
+                        {
+                          "text": "[Web Header QA] STEP: Select the Test Scenarios tab\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-09T14:38:35.906Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "95dd8b9d8cc29160832d-ce4297321520e1dae382",
+              "file": "web-header-accessibility.spec.ts",
+              "line": 170,
+              "column": 3
+            },
+            {
+              "title": "[a11y] Viewport 320px — horizontal overflow check per showcase band",
+              "ok": true,
+              "tags": [
+                "Accessibility"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 4,
+                      "parallelIndex": 4,
+                      "status": "passed",
+                      "duration": 8056,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "[Web Header QA] STEP: Navigate to Web Header playground\n"
+                        },
+                        {
+                          "text": "[Web Header QA] STEP: Select the Test Scenarios tab\n"
+                        },
+                        {
+                          "text": "[Web Header QA] STEP: Navigate to Web Header playground\n"
+                        },
+                        {
+                          "text": "[Web Header QA] STEP: Select the Test Scenarios tab\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Navigate to Web Header playground",
+                          "duration": 3224
+                        },
+                        {
+                          "title": "Select the Test Scenarios tab",
+                          "duration": 252
+                        }
+                      ],
+                      "startTime": "2026-07-09T14:38:36.445Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "95dd8b9d8cc29160832d-2db84e33f10af78af168",
+              "file": "web-header-accessibility.spec.ts",
+              "line": 175,
+              "column": 3
+            },
+            {
+              "title": "[a11y] 200% zoom — showcase headers remain visible",
+              "ok": true,
+              "tags": [
+                "Accessibility"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 4319,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "[Web Header QA] STEP: Navigate to Web Header playground\n"
+                        },
+                        {
+                          "text": "[Web Header QA] STEP: Select the Test Scenarios tab\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-09T14:38:36.760Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "95dd8b9d8cc29160832d-fa2582610ed4021616e0",
+              "file": "web-header-accessibility.spec.ts",
+              "line": 189,
+              "column": 3
+            },
+            {
+              "title": "[a11y] Tab reaches a focusable control",
+              "ok": true,
+              "tags": [
+                "Accessibility"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 4114,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "[Web Header QA] STEP: Navigate to Web Header playground\n"
+                        },
+                        {
+                          "text": "[Web Header QA] STEP: Select the Test Scenarios tab\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-09T14:38:38.880Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "95dd8b9d8cc29160832d-45e5807d781f93c68db4",
+              "file": "web-header-accessibility.spec.ts",
+              "line": 201,
+              "column": 3
+            },
+            {
+              "title": "[a11y] no keyboard trap (Tab cycle advances)",
+              "ok": true,
+              "tags": [
+                "Accessibility"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 4238,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "[Web Header QA] STEP: Navigate to Web Header playground\n"
+                        },
+                        {
+                          "text": "[Web Header QA] STEP: Select the Test Scenarios tab\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-09T14:38:39.844Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "95dd8b9d8cc29160832d-32e3c7f6b2d62777cc34",
+              "file": "web-header-accessibility.spec.ts",
+              "line": 207,
+              "column": 3
+            },
+            {
+              "title": "[a11y] focus order — Tab visits multiple distinct targets",
+              "ok": true,
+              "tags": [
+                "Accessibility"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 4007,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "[Web Header QA] STEP: Navigate to Web Header playground\n"
+                        },
+                        {
+                          "text": "[Web Header QA] STEP: Select the Test Scenarios tab\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-09T14:38:40.037Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "95dd8b9d8cc29160832d-99422f1906c921096e7d",
+              "file": "web-header-accessibility.spec.ts",
+              "line": 222,
+              "column": 3
+            },
+            {
+              "title": "[a11y] focused element shows outline or box-shadow",
+              "ok": true,
+              "tags": [
+                "Accessibility"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 3847,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "[Web Header QA] STEP: Navigate to Web Header playground\n"
+                        },
+                        {
+                          "text": "[Web Header QA] STEP: Select the Test Scenarios tab\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-09T14:38:41.099Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "95dd8b9d8cc29160832d-4037d566152960d734a0",
+              "file": "web-header-accessibility.spec.ts",
+              "line": 233,
+              "column": 3
+            },
+            {
+              "title": "[a11y] Mode select activates with Enter when focused",
+              "ok": true,
+              "tags": [
+                "Accessibility"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 3055,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "[Web Header QA] STEP: Navigate to Web Header playground\n"
+                        },
+                        {
+                          "text": "[Web Header QA] STEP: Select the Test Scenarios tab\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-09T14:38:43.030Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "95dd8b9d8cc29160832d-c003042301f230663bf1",
+              "file": "web-header-accessibility.spec.ts",
+              "line": 247,
+              "column": 3
+            },
+            {
+              "title": "[a11y] Mode select activates with Space when focused",
+              "ok": true,
+              "tags": [
+                "Accessibility"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 3468,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "[Web Header QA] STEP: Navigate to Web Header playground\n"
+                        },
+                        {
+                          "text": "[Web Header QA] STEP: Select the Test Scenarios tab\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-09T14:38:44.091Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "95dd8b9d8cc29160832d-7bfffa943545f78c7908",
+              "file": "web-header-accessibility.spec.ts",
+              "line": 251,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "web-header-qa.spec.ts",
+      "file": "web-header-qa.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Functional",
+          "file": "web-header-qa.spec.ts",
+          "line": 60,
+          "column": 6,
+          "specs": [
+            {
+              "title": "[fn] shows Web Header page heading",
+              "ok": true,
+              "tags": [
+                "Functional"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 3287,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "[Web Header QA] STEP: Navigate to Web Header playground\n"
+                        },
+                        {
+                          "text": "[Web Header QA] STEP: Select the Test Scenarios tab\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-09T14:38:44.143Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "a24dfff998b437d6563c-bc358b5ff54b89e7adce",
+              "file": "web-header-qa.spec.ts",
+              "line": 65,
+              "column": 3
+            },
+            {
+              "title": "[fn] scenario tabs are present",
+              "ok": true,
+              "tags": [
+                "Functional"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 3265,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "[Web Header QA] STEP: Navigate to Web Header playground\n"
+                        },
+                        {
+                          "text": "[Web Header QA] STEP: Select the Test Scenarios tab\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-09T14:38:47.534Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "a24dfff998b437d6563c-78a46f0e869149b33581",
+              "file": "web-header-qa.spec.ts",
+              "line": 69,
+              "column": 3
+            },
+            {
+              "title": "[fn] theme toggle updates data-mode",
+              "ok": true,
+              "tags": [
+                "Functional"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2752,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "[Web Header QA] STEP: Navigate to Web Header playground\n"
+                        },
+                        {
+                          "text": "[Web Header QA] STEP: Select the Test Scenarios tab\n"
+                        },
+                        {
+                          "text": "[Web Header QA] STEP: Toggle mode using the toolbar control\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Toggle mode using the toolbar control",
+                          "duration": 318
+                        }
+                      ],
+                      "startTime": "2026-07-09T14:38:50.833Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "a24dfff998b437d6563c-3d3cfd6747851fa6a120",
+              "file": "web-header-qa.spec.ts",
+              "line": 76,
+              "column": 3
+            },
+            {
+              "title": "[fn] default header mount is visible",
+              "ok": true,
+              "tags": [
+                "Functional"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2406,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "[Web Header QA] STEP: Navigate to Web Header playground\n"
+                        },
+                        {
+                          "text": "[Web Header QA] STEP: Select the Test Scenarios tab\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-09T14:38:53.606Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "a24dfff998b437d6563c-c79392134e9892a04288",
+              "file": "web-header-qa.spec.ts",
+              "line": 83,
+              "column": 3
+            },
+            {
+              "title": "[fn] default mount exposes primary navigation landmark",
+              "ok": true,
+              "tags": [
+                "Functional"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2328,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "[Web Header QA] STEP: Navigate to Web Header playground\n"
+                        },
+                        {
+                          "text": "[Web Header QA] STEP: Select the Test Scenarios tab\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-09T14:38:56.023Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "a24dfff998b437d6563c-1591a6b49d0386820454",
+              "file": "web-header-qa.spec.ts",
+              "line": 87,
+              "column": 3
+            },
+            {
+              "title": "[fn] default mount — four nav items render",
+              "ok": true,
+              "tags": [
+                "Functional"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 3601,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "[Web Header QA] STEP: Navigate to Web Header playground\n"
+                        },
+                        {
+                          "text": "[Web Header QA] STEP: Select the Test Scenarios tab\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-09T14:38:58.375Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "a24dfff998b437d6563c-cbd71940aa2a91a4ba79",
+              "file": "web-header-qa.spec.ts",
+              "line": 92,
+              "column": 3
+            },
+            {
+              "title": "[fn] default mount — clicking Products updates active item",
+              "ok": true,
+              "tags": [
+                "Functional"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 4063,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "[Web Header QA] STEP: Navigate to Web Header playground\n"
+                        },
+                        {
+                          "text": "[Web Header QA] STEP: Select the Test Scenarios tab\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-09T14:39:02.000Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "a24dfff998b437d6563c-e889b9eddc59d16ca6b7",
+              "file": "web-header-qa.spec.ts",
+              "line": 100,
+              "column": 3
+            },
+            {
+              "title": "[fn] homeBar mounts are visible",
+              "ok": true,
+              "tags": [
+                "Functional"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 3613,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "[Web Header QA] STEP: Navigate to Web Header playground\n"
+                        },
+                        {
+                          "text": "[Web Header QA] STEP: Select the Test Scenarios tab\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-09T14:39:06.078Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "a24dfff998b437d6563c-d7766bb38d7ea1cb8937",
+              "file": "web-header-qa.spec.ts",
+              "line": 106,
+              "column": 3
+            },
+            {
+              "title": "[fn] contextBar mounts are visible",
+              "ok": true,
+              "tags": [
+                "Functional"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 4261,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "[Web Header QA] STEP: Navigate to Web Header playground\n"
+                        },
+                        {
+                          "text": "[Web Header QA] STEP: Select the Test Scenarios tab\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-09T14:39:09.722Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "a24dfff998b437d6563c-d5f79ea3604d6927cd9f",
+              "file": "web-header-qa.spec.ts",
+              "line": 114,
+              "column": 3
+            },
+            {
+              "title": "[fn] searchBar mounts are visible",
+              "ok": true,
+              "tags": [
+                "Functional"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 4486,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "[Web Header QA] STEP: Navigate to Web Header playground\n"
+                        },
+                        {
+                          "text": "[Web Header QA] STEP: Select the Test Scenarios tab\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-09T14:39:14.004Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "a24dfff998b437d6563c-be4840824536071adbba",
+              "file": "web-header-qa.spec.ts",
+              "line": 120,
+              "column": 3
+            },
+            {
+              "title": "[fn] start=true shows logo",
+              "ok": false,
+              "tags": [
+                "Functional"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 4,
+                      "parallelIndex": 4,
+                      "status": "failed",
+                      "duration": 8937,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByTestId('web-header-start-true').locator('[data-oneui-component=\"Logo\"]')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('web-header-start-true').locator('[data-oneui-component=\"Logo\"]')\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByTestId('web-header-start-true').locator('[data-oneui-component=\"Logo\"]')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('web-header-start-true').locator('[data-oneui-component=\"Logo\"]')\u001b[22m\n\n    at expectLogoVisible (/Users/prathip.kattekola/Documents/OneUIDev/OneUiStudio_Base_v4/apps/qa-playground/e2e/web-header-playground/webHeaderHelpers.ts:82:64)\n    at /Users/prathip.kattekola/Documents/OneUIDev/OneUiStudio_Base_v4/apps/qa-playground/e2e/web-header-qa.spec.ts:128:11",
+                        "location": {
+                          "file": "/Users/prathip.kattekola/Documents/OneUIDev/OneUiStudio_Base_v4/apps/qa-playground/e2e/web-header-playground/webHeaderHelpers.ts",
+                          "column": 64,
+                          "line": 82
+                        },
+                        "snippet": "   at web-header-playground/webHeaderHelpers.ts:82\n\n  80 |\n  81 | export async function expectLogoVisible(mount: Locator): Promise<void> {\n> 82 |   await expect(mount.locator('[data-oneui-component=\"Logo\"]')).toBeVisible();\n     |                                                                ^\n  83 | }\n  84 |\n  85 | export async function expectLogoHidden(mount: Locator): Promise<void> {"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/prathip.kattekola/Documents/OneUIDev/OneUiStudio_Base_v4/apps/qa-playground/e2e/web-header-playground/webHeaderHelpers.ts",
+                            "column": 64,
+                            "line": 82
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByTestId('web-header-start-true').locator('[data-oneui-component=\"Logo\"]')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('web-header-start-true').locator('[data-oneui-component=\"Logo\"]')\u001b[22m\n\n\n   at web-header-playground/webHeaderHelpers.ts:82\n\n  80 |\n  81 | export async function expectLogoVisible(mount: Locator): Promise<void> {\n> 82 |   await expect(mount.locator('[data-oneui-component=\"Logo\"]')).toBeVisible();\n     |                                                                ^\n  83 | }\n  84 |\n  85 | export async function expectLogoHidden(mount: Locator): Promise<void> {\n    at expectLogoVisible (/Users/prathip.kattekola/Documents/OneUIDev/OneUiStudio_Base_v4/apps/qa-playground/e2e/web-header-playground/webHeaderHelpers.ts:82:64)\n    at /Users/prathip.kattekola/Documents/OneUIDev/OneUiStudio_Base_v4/apps/qa-playground/e2e/web-header-qa.spec.ts:128:11"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "[Web Header QA] STEP: Navigate to Web Header playground\n"
+                        },
+                        {
+                          "text": "[Web Header QA] STEP: Select the Test Scenarios tab\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-09T14:38:44.576Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/prathip.kattekola/Documents/OneUIDev/OneUiStudio_Base_v4/apps/qa-playground/test-results/web-header-qa-Functional-fn-start-true-shows-logo-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/prathip.kattekola/Documents/OneUIDev/OneUiStudio_Base_v4/apps/qa-playground/test-results/web-header-qa-Functional-fn-start-true-shows-logo-chromium/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/prathip.kattekola/Documents/OneUIDev/OneUiStudio_Base_v4/apps/qa-playground/e2e/web-header-playground/webHeaderHelpers.ts",
+                        "column": 64,
+                        "line": 82
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "a24dfff998b437d6563c-97952bb972a59f0c06d0",
+              "file": "web-header-qa.spec.ts",
+              "line": 126,
+              "column": 3
+            },
+            {
+              "title": "[fn] start=false hides logo",
+              "ok": true,
+              "tags": [
+                "Functional"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 4,
+                      "status": "passed",
+                      "duration": 3551,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "[Web Header QA] STEP: Navigate to Web Header playground\n"
+                        },
+                        {
+                          "text": "[Web Header QA] STEP: Select the Test Scenarios tab\n"
+                        }
+                      ],
+                      "stderr": [
+                        {
+                          "text": "(node:51903) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.\n(Use `node --trace-warnings ...` to show where the warning was created)\n"
+                        }
+                      ],
+                      "retry": 0,
+                      "startTime": "2026-07-09T14:38:56.445Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "a24dfff998b437d6563c-aea5673ac5ec8df28969",
+              "file": "web-header-qa.spec.ts",
+              "line": 131,
+              "column": 3
+            },
+            {
+              "title": "[fn] middle=fluid data attribute",
+              "ok": true,
+              "tags": [
+                "Functional"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 4,
+                      "status": "passed",
+                      "duration": 3968,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "[Web Header QA] STEP: Navigate to Web Header playground\n"
+                        },
+                        {
+                          "text": "[Web Header QA] STEP: Select the Test Scenarios tab\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-09T14:39:00.837Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "a24dfff998b437d6563c-9d3b1e98f3bb137e74eb",
+              "file": "web-header-qa.spec.ts",
+              "line": 136,
+              "column": 3
+            },
+            {
+              "title": "[fn] middle=centred data attribute",
+              "ok": true,
+              "tags": [
+                "Functional"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 4,
+                      "status": "passed",
+                      "duration": 3823,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "[Web Header QA] STEP: Navigate to Web Header playground\n"
+                        },
+                        {
+                          "text": "[Web Header QA] STEP: Select the Test Scenarios tab\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-09T14:39:04.835Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "a24dfff998b437d6563c-af9823fe0ea7b5389ef8",
+              "file": "web-header-qa.spec.ts",
+              "line": 141,
+              "column": 3
+            },
+            {
+              "title": "[fn] primaryNavItems=false hides nav buttons",
+              "ok": true,
+              "tags": [
+                "Functional"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 4,
+                      "status": "passed",
+                      "duration": 4096,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "[Web Header QA] STEP: Navigate to Web Header playground\n"
+                        },
+                        {
+                          "text": "[Web Header QA] STEP: Select the Test Scenarios tab\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-09T14:39:08.683Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "a24dfff998b437d6563c-de2004e1c78bccda0196",
+              "file": "web-header-qa.spec.ts",
+              "line": 146,
+              "column": 3
+            },
+            {
+              "title": "[fn] primaryNavItems=true shows nav buttons",
+              "ok": true,
+              "tags": [
+                "Functional"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 4,
+                      "status": "passed",
+                      "duration": 4148,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "[Web Header QA] STEP: Navigate to Web Header playground\n"
+                        },
+                        {
+                          "text": "[Web Header QA] STEP: Select the Test Scenarios tab\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-09T14:39:12.800Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "a24dfff998b437d6563c-07233e6946a5935ed5d7",
+              "file": "web-header-qa.spec.ts",
+              "line": 152,
+              "column": 3
+            },
+            {
+              "title": "[fn] end=true shows IconButton actions",
+              "ok": true,
+              "tags": [
+                "Functional"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 4,
+                      "status": "passed",
+                      "duration": 3558,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "[Web Header QA] STEP: Navigate to Web Header playground\n"
+                        },
+                        {
+                          "text": "[Web Header QA] STEP: Select the Test Scenarios tab\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-09T14:39:16.958Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "a24dfff998b437d6563c-4e2945f4931c100e011d",
+              "file": "web-header-qa.spec.ts",
+              "line": 158,
+              "column": 3
+            },
+            {
+              "title": "[fn] end=false hides end actions",
+              "ok": true,
+              "tags": [
+                "Functional"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 4,
+                      "status": "passed",
+                      "duration": 1957,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "[Web Header QA] STEP: Navigate to Web Header playground\n"
+                        },
+                        {
+                          "text": "[Web Header QA] STEP: Select the Test Scenarios tab\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-09T14:39:20.538Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "a24dfff998b437d6563c-6b9c58fbe3e19f3b3a7c",
+              "file": "web-header-qa.spec.ts",
+              "line": 163,
+              "column": 3
+            },
+            {
+              "title": "[fn] avatar=true shows avatar",
+              "ok": false,
+              "tags": [
+                "Functional"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 4,
+                      "status": "failed",
+                      "duration": 6916,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByTestId('web-header-avatar-true').locator('[data-oneui-component=\"Avatar\"]')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('web-header-avatar-true').locator('[data-oneui-component=\"Avatar\"]')\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByTestId('web-header-avatar-true').locator('[data-oneui-component=\"Avatar\"]')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('web-header-avatar-true').locator('[data-oneui-component=\"Avatar\"]')\u001b[22m\n\n    at expectAvatarVisible (/Users/prathip.kattekola/Documents/OneUIDev/OneUiStudio_Base_v4/apps/qa-playground/e2e/web-header-playground/webHeaderHelpers.ts:58:66)\n    at /Users/prathip.kattekola/Documents/OneUIDev/OneUiStudio_Base_v4/apps/qa-playground/e2e/web-header-qa.spec.ts:171:11",
+                        "location": {
+                          "file": "/Users/prathip.kattekola/Documents/OneUIDev/OneUiStudio_Base_v4/apps/qa-playground/e2e/web-header-playground/webHeaderHelpers.ts",
+                          "column": 66,
+                          "line": 58
+                        },
+                        "snippet": "   at web-header-playground/webHeaderHelpers.ts:58\n\n  56 |\n  57 | export async function expectAvatarVisible(mount: Locator): Promise<void> {\n> 58 |   await expect(mount.locator('[data-oneui-component=\"Avatar\"]')).toBeVisible();\n     |                                                                  ^\n  59 | }\n  60 |\n  61 | export async function expectAvatarHidden(mount: Locator): Promise<void> {"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/prathip.kattekola/Documents/OneUIDev/OneUiStudio_Base_v4/apps/qa-playground/e2e/web-header-playground/webHeaderHelpers.ts",
+                            "column": 66,
+                            "line": 58
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByTestId('web-header-avatar-true').locator('[data-oneui-component=\"Avatar\"]')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('web-header-avatar-true').locator('[data-oneui-component=\"Avatar\"]')\u001b[22m\n\n\n   at web-header-playground/webHeaderHelpers.ts:58\n\n  56 |\n  57 | export async function expectAvatarVisible(mount: Locator): Promise<void> {\n> 58 |   await expect(mount.locator('[data-oneui-component=\"Avatar\"]')).toBeVisible();\n     |                                                                  ^\n  59 | }\n  60 |\n  61 | export async function expectAvatarHidden(mount: Locator): Promise<void> {\n    at expectAvatarVisible (/Users/prathip.kattekola/Documents/OneUIDev/OneUiStudio_Base_v4/apps/qa-playground/e2e/web-header-playground/webHeaderHelpers.ts:58:66)\n    at /Users/prathip.kattekola/Documents/OneUIDev/OneUiStudio_Base_v4/apps/qa-playground/e2e/web-header-qa.spec.ts:171:11"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "[Web Header QA] STEP: Navigate to Web Header playground\n"
+                        },
+                        {
+                          "text": "[Web Header QA] STEP: Select the Test Scenarios tab\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-09T14:39:22.513Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/prathip.kattekola/Documents/OneUIDev/OneUiStudio_Base_v4/apps/qa-playground/test-results/web-header-qa-Functional-fn-avatar-true-shows-avatar-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/prathip.kattekola/Documents/OneUIDev/OneUiStudio_Base_v4/apps/qa-playground/test-results/web-header-qa-Functional-fn-avatar-true-shows-avatar-chromium/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/prathip.kattekola/Documents/OneUIDev/OneUiStudio_Base_v4/apps/qa-playground/e2e/web-header-playground/webHeaderHelpers.ts",
+                        "column": 66,
+                        "line": 58
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "a24dfff998b437d6563c-08b150d425793341d0da",
+              "file": "web-header-qa.spec.ts",
+              "line": 169,
+              "column": 3
+            },
+            {
+              "title": "[fn] avatar=false hides avatar",
+              "ok": true,
+              "tags": [
+                "Functional"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 6,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1603,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "[Web Header QA] STEP: Navigate to Web Header playground\n"
+                        },
+                        {
+                          "text": "[Web Header QA] STEP: Select the Test Scenarios tab\n"
+                        }
+                      ],
+                      "stderr": [
+                        {
+                          "text": "(node:52131) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.\n(Use `node --trace-warnings ...` to show where the warning was created)\n"
+                        }
+                      ],
+                      "retry": 0,
+                      "startTime": "2026-07-09T14:39:30.260Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "a24dfff998b437d6563c-b443d6924ddbc4882b04",
+              "file": "web-header-qa.spec.ts",
+              "line": 174,
+              "column": 3
+            },
+            {
+              "title": "[fn] EndActions Button slot renders",
+              "ok": true,
+              "tags": [
+                "Functional"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 3861,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "[Web Header QA] STEP: Navigate to Web Header playground\n"
+                        },
+                        {
+                          "text": "[Web Header QA] STEP: Select the Test Scenarios tab\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-09T14:38:45.017Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "a24dfff998b437d6563c-1de88f7e99e17066b2d1",
+              "file": "web-header-qa.spec.ts",
+              "line": 179,
+              "column": 3
+            },
+            {
+              "title": "[fn] EndActions IconButton cluster renders",
+              "ok": true,
+              "tags": [
+                "Functional"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 2707,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "[Web Header QA] STEP: Navigate to Web Header playground\n"
+                        },
+                        {
+                          "text": "[Web Header QA] STEP: Select the Test Scenarios tab\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-09T14:38:49.034Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "a24dfff998b437d6563c-8b752074cc7b0369ea82",
+              "file": "web-header-qa.spec.ts",
+              "line": 184,
+              "column": 3
+            },
+            {
+              "title": "[fn] Header.Item slot — nav items clickable",
+              "ok": true,
+              "tags": [
+                "Functional"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 2518,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "[Web Header QA] STEP: Navigate to Web Header playground\n"
+                        },
+                        {
+                          "text": "[Web Header QA] STEP: Select the Test Scenarios tab\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-09T14:38:51.758Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "a24dfff998b437d6563c-13ea0841bfb9caa2e968",
+              "file": "web-header-qa.spec.ts",
+              "line": 189,
+              "column": 3
+            },
+            {
+              "title": "[fn] searchBar middle — search landmark visible",
+              "ok": true,
+              "tags": [
+                "Functional"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 2894,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "[Web Header QA] STEP: Navigate to Web Header playground\n"
+                        },
+                        {
+                          "text": "[Web Header QA] STEP: Select the Test Scenarios tab\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-09T14:38:54.290Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "a24dfff998b437d6563c-d41c72111ce4bfb2540e",
+              "file": "web-header-qa.spec.ts",
+              "line": 196,
+              "column": 3
+            },
+            {
+              "title": "[fn] contextBar without nav — no Home button",
+              "ok": true,
+              "tags": [
+                "Functional"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 3551,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "[Web Header QA] STEP: Navigate to Web Header playground\n"
+                        },
+                        {
+                          "text": "[Web Header QA] STEP: Select the Test Scenarios tab\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-09T14:38:57.200Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "a24dfff998b437d6563c-687a34bf5293090dc861",
+              "file": "web-header-qa.spec.ts",
+              "line": 203,
+              "column": 3
+            },
+            {
+              "title": "[fn] responsive band — all Figma platform mounts visible",
+              "ok": true,
+              "tags": [
+                "Functional"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 3776,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "[Web Header QA] STEP: Navigate to Web Header playground\n"
+                        },
+                        {
+                          "text": "[Web Header QA] STEP: Select the Test Scenarios tab\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-09T14:39:00.792Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "a24dfff998b437d6563c-64056da805d54317f13a",
+              "file": "web-header-qa.spec.ts",
+              "line": 208,
+              "column": 3
+            },
+            {
+              "title": "[fn] platform 360 — hamburger menu button visible",
+              "ok": true,
+              "tags": [
+                "Functional"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 3944,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "[Web Header QA] STEP: Navigate to Web Header playground\n"
+                        },
+                        {
+                          "text": "[Web Header QA] STEP: Select the Test Scenarios tab\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-09T14:39:04.596Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "a24dfff998b437d6563c-e99292fccc1af297680a",
+              "file": "web-header-qa.spec.ts",
+              "line": 215,
+              "column": 3
+            },
+            {
+              "title": "[fn] platform 1024 — expanded search input visible",
+              "ok": true,
+              "tags": [
+                "Functional"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 3818,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "[Web Header QA] STEP: Navigate to Web Header playground\n"
+                        },
+                        {
+                          "text": "[Web Header QA] STEP: Select the Test Scenarios tab\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-09T14:39:08.561Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "a24dfff998b437d6563c-67affde2520b33b10b64",
+              "file": "web-header-qa.spec.ts",
+              "line": 220,
+              "column": 3
+            },
+            {
+              "title": "[fn] platform 360 — search hidden on mobile",
+              "ok": true,
+              "tags": [
+                "Functional"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 4316,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "[Web Header QA] STEP: Navigate to Web Header playground\n"
+                        },
+                        {
+                          "text": "[Web Header QA] STEP: Select the Test Scenarios tab\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-09T14:39:12.492Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "a24dfff998b437d6563c-3ad0c5db8857f712ca47",
+              "file": "web-header-qa.spec.ts",
+              "line": 226,
+              "column": 3
+            },
+            {
+              "title": "[fn] figma validation tab mounts property × platform grid",
+              "ok": true,
+              "tags": [
+                "Functional"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 3615,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "[Web Header QA] STEP: Navigate to Web Header playground\n"
+                        },
+                        {
+                          "text": "[Web Header QA] STEP: Select the Test Scenarios tab\n"
+                        },
+                        {
+                          "text": "[Web Header QA] STEP: Open Figma Validation tab\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Open Figma Validation tab",
+                          "duration": 217
+                        }
+                      ],
+                      "startTime": "2026-07-09T14:39:16.872Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "a24dfff998b437d6563c-63f7fb6c8b8dc61f9f44",
+              "file": "web-header-qa.spec.ts",
+              "line": 232,
+              "column": 3
+            }
+          ],
+          "suites": [
+            {
+              "title": "Group 1 — Render",
+              "file": "web-header-qa.spec.ts",
+              "line": 240,
+              "column": 8,
+              "specs": [
+                {
+                  "title": "[fn] 1.1 — Page loads without console errors",
+                  "ok": true,
+                  "tags": [
+                    "Functional"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 2,
+                          "parallelIndex": 2,
+                          "status": "passed",
+                          "duration": 5607,
+                          "errors": [],
+                          "stdout": [
+                            {
+                              "text": "[Web Header QA] STEP: Navigate to Web Header playground\n"
+                            },
+                            {
+                              "text": "[Web Header QA] STEP: Select the Test Scenarios tab\n"
+                            },
+                            {
+                              "text": "[Web Header QA] STEP: Navigate to Web Header playground\n"
+                            },
+                            {
+                              "text": "[Web Header QA] STEP: Select the Test Scenarios tab\n"
+                            }
+                          ],
+                          "stderr": [],
+                          "retry": 0,
+                          "steps": [
+                            {
+                              "title": "Navigate to Web Header playground",
+                              "duration": 1739
+                            },
+                            {
+                              "title": "Select the Test Scenarios tab",
+                              "duration": 220
+                            }
+                          ],
+                          "startTime": "2026-07-09T14:38:46.135Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "a24dfff998b437d6563c-ca94138270d1cf22fb06",
+                  "file": "web-header-qa.spec.ts",
+                  "line": 241,
+                  "column": 5
+                },
+                {
+                  "title": "[fn] 1.2 — manifest section count matches showcase bands",
+                  "ok": true,
+                  "tags": [
+                    "Functional"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 2,
+                          "parallelIndex": 2,
+                          "status": "passed",
+                          "duration": 2366,
+                          "errors": [],
+                          "stdout": [
+                            {
+                              "text": "[Web Header QA] STEP: Navigate to Web Header playground\n"
+                            },
+                            {
+                              "text": "[Web Header QA] STEP: Select the Test Scenarios tab\n"
+                            },
+                            {
+                              "text": "[Web Header QA] Section manifest {\"count\":13}\n"
+                            }
+                          ],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-07-09T14:38:51.866Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "a24dfff998b437d6563c-ad6b00ad72ccbb478a97",
+                  "file": "web-header-qa.spec.ts",
+                  "line": 247,
+                  "column": 5
+                },
+                {
+                  "title": "[fn] 1.3 — every manifest testid is visible",
+                  "ok": true,
+                  "tags": [
+                    "Functional"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 2,
+                          "parallelIndex": 2,
+                          "status": "passed",
+                          "duration": 3138,
+                          "errors": [],
+                          "stdout": [
+                            {
+                              "text": "[Web Header QA] STEP: Navigate to Web Header playground\n"
+                            },
+                            {
+                              "text": "[Web Header QA] STEP: Select the Test Scenarios tab\n"
+                            },
+                            {
+                              "text": "[Web Header QA] STEP: Validate all manifest testids\n"
+                            }
+                          ],
+                          "stderr": [],
+                          "retry": 0,
+                          "steps": [
+                            {
+                              "title": "Validate all manifest testids",
+                              "duration": 340
+                            }
+                          ],
+                          "startTime": "2026-07-09T14:38:54.250Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "a24dfff998b437d6563c-729d21c6de3999ae9bcc",
+                  "file": "web-header-qa.spec.ts",
+                  "line": 252,
+                  "column": 5
+                },
+                {
+                  "title": "[fn] 1.4 — every data-section band is visible",
+                  "ok": true,
+                  "tags": [
+                    "Functional"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 2,
+                          "parallelIndex": 2,
+                          "status": "passed",
+                          "duration": 5225,
+                          "errors": [],
+                          "stdout": [
+                            {
+                              "text": "[Web Header QA] STEP: Navigate to Web Header playground\n"
+                            },
+                            {
+                              "text": "[Web Header QA] STEP: Select the Test Scenarios tab\n"
+                            }
+                          ],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-07-09T14:38:57.401Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "a24dfff998b437d6563c-9e661e192dc4ef62e511",
+                  "file": "web-header-qa.spec.ts",
+                  "line": 263,
+                  "column": 5
+                }
+              ]
+            },
+            {
+              "title": "Group 2 — Props validation",
+              "file": "web-header-qa.spec.ts",
+              "line": 272,
+              "column": 8,
+              "specs": [
+                {
+                  "title": "[fn] 2.1 — homeBar type attribute",
+                  "ok": true,
+                  "tags": [
+                    "Functional"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 2,
+                          "parallelIndex": 2,
+                          "status": "passed",
+                          "duration": 4040,
+                          "errors": [],
+                          "stdout": [
+                            {
+                              "text": "[Web Header QA] STEP: Navigate to Web Header playground\n"
+                            },
+                            {
+                              "text": "[Web Header QA] STEP: Select the Test Scenarios tab\n"
+                            }
+                          ],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-07-09T14:39:02.651Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "a24dfff998b437d6563c-bd9f0dab87f255a94a99",
+                  "file": "web-header-qa.spec.ts",
+                  "line": 273,
+                  "column": 5
+                },
+                {
+                  "title": "[fn] 2.2 — contextBar type attribute",
+                  "ok": true,
+                  "tags": [
+                    "Functional"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 2,
+                          "parallelIndex": 2,
+                          "status": "passed",
+                          "duration": 3770,
+                          "errors": [],
+                          "stdout": [
+                            {
+                              "text": "[Web Header QA] STEP: Navigate to Web Header playground\n"
+                            },
+                            {
+                              "text": "[Web Header QA] STEP: Select the Test Scenarios tab\n"
+                            }
+                          ],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-07-09T14:39:06.720Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "a24dfff998b437d6563c-61bd54643145b4dad072",
+                  "file": "web-header-qa.spec.ts",
+                  "line": 277,
+                  "column": 5
+                },
+                {
+                  "title": "[fn] 2.3 — searchBar type attribute",
+                  "ok": true,
+                  "tags": [
+                    "Functional"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 2,
+                          "parallelIndex": 2,
+                          "status": "passed",
+                          "duration": 4225,
+                          "errors": [],
+                          "stdout": [
+                            {
+                              "text": "[Web Header QA] STEP: Navigate to Web Header playground\n"
+                            },
+                            {
+                              "text": "[Web Header QA] STEP: Select the Test Scenarios tab\n"
+                            }
+                          ],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-07-09T14:39:10.515Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "a24dfff998b437d6563c-264b04bf8c77029875b3",
+                  "file": "web-header-qa.spec.ts",
+                  "line": 282,
+                  "column": 5
+                }
+              ]
+            },
+            {
+              "title": "Group 3 — Negative / edge",
+              "file": "web-header-qa.spec.ts",
+              "line": 288,
+              "column": 8,
+              "specs": [
+                {
+                  "title": "[fn] 3.1 — empty navigation band renders without crash",
+                  "ok": true,
+                  "tags": [
+                    "Functional"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 2,
+                          "parallelIndex": 2,
+                          "status": "passed",
+                          "duration": 4716,
+                          "errors": [],
+                          "stdout": [
+                            {
+                              "text": "[Web Header QA] STEP: Navigate to Web Header playground\n"
+                            },
+                            {
+                              "text": "[Web Header QA] STEP: Select the Test Scenarios tab\n"
+                            }
+                          ],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-07-09T14:39:14.765Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "a24dfff998b437d6563c-e5498334f556cf83036d",
+                  "file": "web-header-qa.spec.ts",
+                  "line": 289,
+                  "column": 5
+                },
+                {
+                  "title": "[fn] 3.2 — no end + no avatar band renders",
+                  "ok": true,
+                  "tags": [
+                    "Functional"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 2,
+                          "parallelIndex": 2,
+                          "status": "passed",
+                          "duration": 2295,
+                          "errors": [],
+                          "stdout": [
+                            {
+                              "text": "[Web Header QA] STEP: Navigate to Web Header playground\n"
+                            },
+                            {
+                              "text": "[Web Header QA] STEP: Select the Test Scenarios tab\n"
+                            }
+                          ],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-07-09T14:39:19.496Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "a24dfff998b437d6563c-067d7942883db6896d01",
+                  "file": "web-header-qa.spec.ts",
+                  "line": 294,
+                  "column": 5
+                },
+                {
+                  "title": "[fn] 3.3 — searchBar without search input band renders",
+                  "ok": true,
+                  "tags": [
+                    "Functional"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 2,
+                          "parallelIndex": 2,
+                          "status": "passed",
+                          "duration": 1855,
+                          "errors": [],
+                          "stdout": [
+                            {
+                              "text": "[Web Header QA] STEP: Navigate to Web Header playground\n"
+                            },
+                            {
+                              "text": "[Web Header QA] STEP: Select the Test Scenarios tab\n"
+                            }
+                          ],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-07-09T14:39:21.802Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "a24dfff998b437d6563c-1ae48ae3fa39f93c6b5c",
+                  "file": "web-header-qa.spec.ts",
+                  "line": 301,
+                  "column": 5
+                }
+              ]
+            },
+            {
+              "title": "Group 4 — Responsive",
+              "file": "web-header-qa.spec.ts",
+              "line": 307,
+              "column": 8,
+              "specs": [
+                {
+                  "title": "[fn] 4.1 — mobile layout (360)",
+                  "ok": true,
+                  "tags": [
+                    "Functional"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 3,
+                          "parallelIndex": 3,
+                          "status": "passed",
+                          "duration": 3482,
+                          "errors": [],
+                          "stdout": [
+                            {
+                              "text": "[Web Header QA] STEP: Navigate to Web Header playground\n"
+                            },
+                            {
+                              "text": "[Web Header QA] STEP: Select the Test Scenarios tab\n"
+                            }
+                          ],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-07-09T14:38:47.641Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "a24dfff998b437d6563c-3901137584a0d1fccea8",
+                  "file": "web-header-qa.spec.ts",
+                  "line": 308,
+                  "column": 5
+                },
+                {
+                  "title": "[fn] 4.2 — tablet layout (768)",
+                  "ok": true,
+                  "tags": [
+                    "Functional"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 3,
+                          "parallelIndex": 3,
+                          "status": "passed",
+                          "duration": 2586,
+                          "errors": [],
+                          "stdout": [
+                            {
+                              "text": "[Web Header QA] STEP: Navigate to Web Header playground\n"
+                            },
+                            {
+                              "text": "[Web Header QA] STEP: Select the Test Scenarios tab\n"
+                            }
+                          ],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-07-09T14:38:51.275Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "a24dfff998b437d6563c-fa119373339f597cba46",
+                  "file": "web-header-qa.spec.ts",
+                  "line": 315,
+                  "column": 5
+                },
+                {
+                  "title": "[fn] 4.3 — desktop layout (1024)",
+                  "ok": true,
+                  "tags": [
+                    "Functional"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 3,
+                          "parallelIndex": 3,
+                          "status": "passed",
+                          "duration": 2798,
+                          "errors": [],
+                          "stdout": [
+                            {
+                              "text": "[Web Header QA] STEP: Navigate to Web Header playground\n"
+                            },
+                            {
+                              "text": "[Web Header QA] STEP: Select the Test Scenarios tab\n"
+                            }
+                          ],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-07-09T14:38:53.897Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "a24dfff998b437d6563c-9aafbaa6a5a2d6592b62",
+                  "file": "web-header-qa.spec.ts",
+                  "line": 321,
+                  "column": 5
+                }
+              ]
+            },
+            {
+              "title": "Group 5 — Keyboard",
+              "file": "web-header-qa.spec.ts",
+              "line": 329,
+              "column": 8,
+              "specs": [
+                {
+                  "title": "[fn] 5.1 — Tab reaches focusable controls in default header",
+                  "ok": true,
+                  "tags": [
+                    "Functional"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 3,
+                          "parallelIndex": 3,
+                          "status": "passed",
+                          "duration": 2770,
+                          "errors": [],
+                          "stdout": [
+                            {
+                              "text": "[Web Header QA] STEP: Navigate to Web Header playground\n"
+                            },
+                            {
+                              "text": "[Web Header QA] STEP: Select the Test Scenarios tab\n"
+                            }
+                          ],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-07-09T14:38:56.713Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "a24dfff998b437d6563c-98365c5316b644c3b031",
+                  "file": "web-header-qa.spec.ts",
+                  "line": 330,
+                  "column": 5
+                },
+                {
+                  "title": "[fn] 5.2 — focus indicator visible after Tab",
+                  "ok": true,
+                  "tags": [
+                    "Functional"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 3,
+                          "parallelIndex": 3,
+                          "status": "passed",
+                          "duration": 4058,
+                          "errors": [],
+                          "stdout": [
+                            {
+                              "text": "[Web Header QA] STEP: Navigate to Web Header playground\n"
+                            },
+                            {
+                              "text": "[Web Header QA] STEP: Select the Test Scenarios tab\n"
+                            }
+                          ],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-07-09T14:38:59.507Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "a24dfff998b437d6563c-f4d701144047ca9d1d78",
+                  "file": "web-header-qa.spec.ts",
+                  "line": 336,
+                  "column": 5
+                }
+              ]
+            },
+            {
+              "title": "Smoke",
+              "file": "web-header-qa.spec.ts",
+              "line": 342,
+              "column": 8,
+              "specs": [
+                {
+                  "title": "[fn] Smoke — Page heading reads \"Web Header\"",
+                  "ok": true,
+                  "tags": [
+                    "Functional",
+                    "Functional",
+                    "Smoke"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 3,
+                          "parallelIndex": 3,
+                          "status": "passed",
+                          "duration": 3926,
+                          "errors": [],
+                          "stdout": [
+                            {
+                              "text": "[Web Header QA] STEP: Navigate to Web Header playground\n"
+                            },
+                            {
+                              "text": "[Web Header QA] STEP: Select the Test Scenarios tab\n"
+                            }
+                          ],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-07-09T14:39:03.584Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "a24dfff998b437d6563c-375489091270255a7ac9",
+                  "file": "web-header-qa.spec.ts",
+                  "line": 343,
+                  "column": 5
+                },
+                {
+                  "title": "[fn] Smoke — Default mount visible",
+                  "ok": true,
+                  "tags": [
+                    "Functional",
+                    "Functional",
+                    "Smoke"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 3,
+                          "parallelIndex": 3,
+                          "status": "passed",
+                          "duration": 3836,
+                          "errors": [],
+                          "stdout": [
+                            {
+                              "text": "[Web Header QA] STEP: Navigate to Web Header playground\n"
+                            },
+                            {
+                              "text": "[Web Header QA] STEP: Select the Test Scenarios tab\n"
+                            }
+                          ],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-07-09T14:39:07.530Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "a24dfff998b437d6563c-e18f298fadad668ff352",
+                  "file": "web-header-qa.spec.ts",
+                  "line": 347,
+                  "column": 5
+                },
+                {
+                  "title": "[fn] Smoke — goto helper reaches default mount",
+                  "ok": true,
+                  "tags": [
+                    "Functional",
+                    "Functional",
+                    "Smoke"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 3,
+                          "parallelIndex": 3,
+                          "status": "passed",
+                          "duration": 7694,
+                          "errors": [],
+                          "stdout": [
+                            {
+                              "text": "[Web Header QA] STEP: Navigate to Web Header playground\n"
+                            },
+                            {
+                              "text": "[Web Header QA] STEP: Select the Test Scenarios tab\n"
+                            }
+                          ],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-07-09T14:39:11.383Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "a24dfff998b437d6563c-118d2d561e4900d860bd",
+                  "file": "web-header-qa.spec.ts",
+                  "line": 351,
+                  "column": 5
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-07-09T14:37:58.397Z",
+    "duration": 93784.398,
+    "expected": 89,
+    "skipped": 0,
+    "unexpected": 2,
+    "flaky": 0
+  }
+}

@@ -1,0 +1,531 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "InputField",
+  "generatedAt": "2026-07-09T13:07:37.419Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "Full text-input field stack: label/description header + bordered Input + optional feedback + dynamic-text rows. Owns the label (not delegated). appearance=\"auto\" → secondary; attention medium=outlined / high=filled; shape default|pill. Root View is decorative — the inner Input carries focus + a11y."
+  },
+  "compositionRules": {
+    "requires": [],
+    "allows": [],
+    "forbids": [],
+    "childKind": "fixed-slots"
+  },
+  "props": [
+    {
+      "name": "label",
+      "type": "string",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "description",
+      "type": "string",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "infoIcon",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": "Show the default info control beside the label (needs a string label)."
+    },
+    {
+      "name": "infoIconSlot",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Replaces the default info <IconButton>."
+    },
+    {
+      "name": "infoIconAriaLabel",
+      "type": "string",
+      "required": false,
+      "defaultValue": "More information",
+      "description": ""
+    },
+    {
+      "name": "size",
+      "type": "'xs' | 's' | 'm' | 'l'",
+      "required": false,
+      "defaultValue": "m",
+      "description": ""
+    },
+    {
+      "name": "appearance",
+      "type": "'auto' | 'primary' | 'secondary' | 'neutral' | 'sparkle' | 'brand-bg' | 'positive' | 'negative' | 'warning' | 'informative'",
+      "required": false,
+      "defaultValue": "auto",
+      "description": "Forwarded to the inner Input. 'auto' → secondary."
+    },
+    {
+      "name": "shape",
+      "type": "'default' | 'pill'",
+      "required": false,
+      "defaultValue": "default",
+      "description": "Per-size radius (default) or fully rounded (pill)."
+    },
+    {
+      "name": "attention",
+      "type": "'medium' | 'high'",
+      "required": false,
+      "defaultValue": "medium",
+      "description": "medium = outlined, high = filled."
+    },
+    {
+      "name": "start",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Leading slot (Icon / IconButton)."
+    },
+    {
+      "name": "start2",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Second leading slot."
+    },
+    {
+      "name": "end",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Trailing slot."
+    },
+    {
+      "name": "end2",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Second trailing slot."
+    },
+    {
+      "name": "placeholder",
+      "type": "string",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "value",
+      "type": "string",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "defaultValue",
+      "type": "string",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "onChange",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Text-change callback (value)."
+    },
+    {
+      "name": "onSubmit",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Submit callback (value)."
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "readOnly",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "required",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": "Visible asterisk + a11y required."
+    },
+    {
+      "name": "invalid",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": "Negative stroke chrome + negative feedback default."
+    },
+    {
+      "name": "maxLength",
+      "type": "number",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "type",
+      "type": "'text' | 'email' | 'password' | 'number' | 'tel' | 'url' | 'search'",
+      "required": false,
+      "defaultValue": "text",
+      "description": ""
+    },
+    {
+      "name": "autoComplete",
+      "type": "string",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "autoFocus",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "onFocus",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Focus handler."
+    },
+    {
+      "name": "onBlur",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Blur handler."
+    },
+    {
+      "name": "error",
+      "type": "string",
+      "required": false,
+      "description": "Shorthand negative InputFeedback row."
+    },
+    {
+      "name": "feedback",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Pre-built <InputFeedback> node — wins over `error`."
+    },
+    {
+      "name": "dynamicText",
+      "type": "string",
+      "required": false,
+      "description": "Leading copy for the dynamic-text row."
+    },
+    {
+      "name": "helperButton",
+      "type": "string",
+      "required": false,
+      "description": "Trailing action label for the dynamic-text row."
+    },
+    {
+      "name": "onHelperPress",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Handler for helperButton."
+    },
+    {
+      "name": "fullWidth",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": false,
+      "description": "Forwarded to the inner Input when there is no visible label."
+    },
+    {
+      "name": "aria-describedby",
+      "type": "string",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "aria-invalid",
+      "type": "boolean",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "backgroundColor",
+      "type": "string",
+      "required": false,
+      "description": "[error] Don't paint directly. Use `appearance` (role) + `variant`/`mode` and wrap in <Surface mode>; the brand cascade picks the right fill."
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.kb.rn.InputField",
+    "type": "object",
+    "properties": {
+      "label": {
+        "type": "string"
+      },
+      "description": {
+        "type": "string"
+      },
+      "infoIcon": {
+        "type": "boolean",
+        "default": false,
+        "description": "Show the default info control beside the label (needs a string label)."
+      },
+      "infoIconSlot": {
+        "description": "Replaces the default info <IconButton>."
+      },
+      "infoIconAriaLabel": {
+        "type": "string",
+        "default": "More information"
+      },
+      "size": {
+        "enum": [
+          "xs",
+          "s",
+          "m",
+          "l"
+        ],
+        "default": "m"
+      },
+      "appearance": {
+        "enum": [
+          "auto",
+          "primary",
+          "secondary",
+          "neutral",
+          "sparkle",
+          "brand-bg",
+          "positive",
+          "negative",
+          "warning",
+          "informative"
+        ],
+        "default": "auto",
+        "description": "Forwarded to the inner Input. 'auto' → secondary."
+      },
+      "shape": {
+        "enum": [
+          "default",
+          "pill"
+        ],
+        "default": "default",
+        "description": "Per-size radius (default) or fully rounded (pill)."
+      },
+      "attention": {
+        "enum": [
+          "medium",
+          "high"
+        ],
+        "default": "medium",
+        "description": "medium = outlined, high = filled."
+      },
+      "start": {
+        "description": "Leading slot (Icon / IconButton)."
+      },
+      "start2": {
+        "description": "Second leading slot."
+      },
+      "end": {
+        "description": "Trailing slot."
+      },
+      "end2": {
+        "description": "Second trailing slot."
+      },
+      "placeholder": {
+        "type": "string"
+      },
+      "value": {
+        "type": "string"
+      },
+      "defaultValue": {
+        "type": "string"
+      },
+      "onChange": {
+        "description": "Text-change callback (value)."
+      },
+      "onSubmit": {
+        "description": "Submit callback (value)."
+      },
+      "disabled": {
+        "type": "boolean",
+        "default": false
+      },
+      "readOnly": {
+        "type": "boolean",
+        "default": false
+      },
+      "required": {
+        "type": "boolean",
+        "default": false,
+        "description": "Visible asterisk + a11y required."
+      },
+      "invalid": {
+        "type": "boolean",
+        "default": false,
+        "description": "Negative stroke chrome + negative feedback default."
+      },
+      "maxLength": {
+        "type": "number"
+      },
+      "type": {
+        "enum": [
+          "text",
+          "email",
+          "password",
+          "number",
+          "tel",
+          "url",
+          "search"
+        ],
+        "default": "text"
+      },
+      "autoComplete": {
+        "type": "string"
+      },
+      "autoFocus": {
+        "type": "boolean",
+        "default": false
+      },
+      "onFocus": {
+        "description": "Focus handler."
+      },
+      "onBlur": {
+        "description": "Blur handler."
+      },
+      "error": {
+        "type": "string",
+        "description": "Shorthand negative InputFeedback row."
+      },
+      "feedback": {
+        "description": "Pre-built <InputFeedback> node — wins over `error`."
+      },
+      "dynamicText": {
+        "type": "string",
+        "description": "Leading copy for the dynamic-text row."
+      },
+      "helperButton": {
+        "type": "string",
+        "description": "Trailing action label for the dynamic-text row."
+      },
+      "onHelperPress": {
+        "description": "Handler for helperButton."
+      },
+      "fullWidth": {
+        "type": "boolean",
+        "default": false
+      },
+      "aria-label": {
+        "type": "string",
+        "description": "Forwarded to the inner Input when there is no visible label."
+      },
+      "aria-describedby": {
+        "type": "string"
+      },
+      "aria-invalid": {
+        "type": "boolean"
+      },
+      "backgroundColor": {
+        "type": "string",
+        "not": {
+          "anyOf": [
+            {
+              "pattern": "^#"
+            },
+            {
+              "pattern": "^rgba?\\("
+            },
+            {
+              "pattern": "^hsla?\\("
+            },
+            {
+              "pattern": "^oklch\\("
+            },
+            {
+              "pattern": "^color-mix\\("
+            },
+            {
+              "enum": [
+                "transparent",
+                "inherit"
+              ]
+            }
+          ]
+        },
+        "x-jds-suggestion": "Don't paint directly. Use `appearance` (role) + `variant`/`mode` and wrap in <Surface mode>; the brand cascade picks the right fill.",
+        "x-jds-severity": "error"
+      }
+    }
+  },
+  "tokens": {
+    "color": [
+      "neutral",
+      "primary",
+      "secondary",
+      "negative",
+      "positive",
+      "warning"
+    ],
+    "typography": [
+      "body.XS",
+      "body.S",
+      "body.M",
+      "label.S",
+      "label.M",
+      "label.L"
+    ],
+    "shape": [
+      "pill",
+      "XS",
+      "S",
+      "M"
+    ],
+    "spacing": [
+      "3XS",
+      "2XS",
+      "XS",
+      "S"
+    ]
+  },
+  "a11y": {
+    "accessibilityRole": "none",
+    "accessibilityState": [
+      "disabled"
+    ],
+    "accessibleNameSource": "aria-label",
+    "minTouchTarget": 44,
+    "honorsBoldText": true,
+    "honorsScreenReader": true
+  },
+  "renderHints": {
+    "baseElement": "View",
+    "animatedOn": [],
+    "honorsReduceMotion": false,
+    "readsFromSurfaceContext": true
+  },
+  "figma": {
+    "componentKey": "jds-input-field-v4",
+    "keyHistory": [],
+    "variantProperties": {
+      "Component": "InputField"
+    }
+  },
+  "codeSnippets": [
+    {
+      "id": "import-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { InputField } from '@oneui/ui-native';\n\n<InputField />"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "inputfield",
+    "form",
+    "field",
+    "input",
+    "composition"
+  ],
+  "importPath": "@oneui/ui-native"
+}

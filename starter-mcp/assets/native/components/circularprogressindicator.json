@@ -1,0 +1,291 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "CircularProgressIndicator",
+  "generatedAt": "2026-07-09T13:07:37.413Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "Circular progress ring. Determinate (arc ∝ value) or indeterminate (spin). Ten t-shirt sizes (2XS…5XL); optional centre content — auto percentage (text, L+ only) or a JDS <Icon>. appearance=\"auto\" → primary. Honours reduce-motion."
+  },
+  "compositionRules": {
+    "requires": [],
+    "allows": [],
+    "forbids": [],
+    "childKind": "fixed-slots"
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "determinate"
+      },
+      {
+        "name": "indeterminate"
+      }
+    ]
+  },
+  "props": [
+    {
+      "name": "variant",
+      "type": "'determinate' | 'indeterminate'",
+      "required": false,
+      "defaultValue": "determinate",
+      "description": "determinate requires `value`; missing value coerces to indeterminate."
+    },
+    {
+      "name": "size",
+      "type": "'2XS' | 'XS' | 'S' | 'M' | 'L' | 'XL' | '2XL' | '3XL' | '4XL' | '5XL'",
+      "required": false,
+      "defaultValue": "M",
+      "description": ""
+    },
+    {
+      "name": "appearance",
+      "type": "'auto' | 'primary' | 'secondary' | 'neutral' | 'sparkle' | 'brand-bg' | 'positive' | 'negative' | 'warning' | 'informative'",
+      "required": false,
+      "defaultValue": "auto",
+      "description": "Multi-accent role resolved against the parent <Surface>. 'auto' → primary."
+    },
+    {
+      "name": "content",
+      "type": "'none' | 'icon' | 'text'",
+      "required": false,
+      "defaultValue": "none",
+      "description": "text = auto percentage (L+ only); icon = `children` (a JDS <Icon>) at all sizes."
+    },
+    {
+      "name": "value",
+      "type": "number",
+      "required": false,
+      "description": "Required for determinate; clamped to [min, max]."
+    },
+    {
+      "name": "min",
+      "type": "number",
+      "required": false,
+      "defaultValue": "0",
+      "description": ""
+    },
+    {
+      "name": "max",
+      "type": "number",
+      "required": false,
+      "defaultValue": "100",
+      "description": ""
+    },
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Centre icon node when content=\"icon\". MUST be a JDS <Icon>. — [warn] Use a JDS <Icon> for the centre slot; a bare <Svg> ignores the surface-resolved colour + size."
+    },
+    {
+      "name": "animate",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": "Opt-in entry/exit animation; pair with `show`."
+    },
+    {
+      "name": "show",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "true",
+      "description": "Controlled visibility when `animate` is true."
+    },
+    {
+      "name": "valueTransitionDuration",
+      "type": "number",
+      "required": false,
+      "description": "ms override for the determinate value transition. 0 = instant (continuous-tracking pattern)."
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "aria-labelledby",
+      "type": "string",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "aria-live",
+      "type": "'off' | 'polite' | 'assertive'",
+      "required": false,
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.kb.rn.CircularProgressIndicator",
+    "type": "object",
+    "properties": {
+      "variant": {
+        "enum": [
+          "determinate",
+          "indeterminate"
+        ],
+        "default": "determinate",
+        "description": "determinate requires `value`; missing value coerces to indeterminate."
+      },
+      "size": {
+        "enum": [
+          "2XS",
+          "XS",
+          "S",
+          "M",
+          "L",
+          "XL",
+          "2XL",
+          "3XL",
+          "4XL",
+          "5XL"
+        ],
+        "default": "M"
+      },
+      "appearance": {
+        "enum": [
+          "auto",
+          "primary",
+          "secondary",
+          "neutral",
+          "sparkle",
+          "brand-bg",
+          "positive",
+          "negative",
+          "warning",
+          "informative"
+        ],
+        "default": "auto",
+        "description": "Multi-accent role resolved against the parent <Surface>. 'auto' → primary."
+      },
+      "content": {
+        "enum": [
+          "none",
+          "icon",
+          "text"
+        ],
+        "default": "none",
+        "description": "text = auto percentage (L+ only); icon = `children` (a JDS <Icon>) at all sizes."
+      },
+      "value": {
+        "type": "number",
+        "description": "Required for determinate; clamped to [min, max]."
+      },
+      "min": {
+        "type": "number",
+        "default": 0
+      },
+      "max": {
+        "type": "number",
+        "default": 100
+      },
+      "children": {
+        "description": "Centre icon node when content=\"icon\". MUST be a JDS <Icon>.",
+        "x-jds-suggestion": "Use a JDS <Icon> for the centre slot; a bare <Svg> ignores the surface-resolved colour + size.",
+        "x-jds-severity": "warn"
+      },
+      "animate": {
+        "type": "boolean",
+        "default": false,
+        "description": "Opt-in entry/exit animation; pair with `show`."
+      },
+      "show": {
+        "type": "boolean",
+        "default": true,
+        "description": "Controlled visibility when `animate` is true."
+      },
+      "valueTransitionDuration": {
+        "type": "number",
+        "description": "ms override for the determinate value transition. 0 = instant (continuous-tracking pattern)."
+      },
+      "aria-label": {
+        "type": "string"
+      },
+      "aria-labelledby": {
+        "type": "string"
+      },
+      "aria-live": {
+        "enum": [
+          "off",
+          "polite",
+          "assertive"
+        ]
+      }
+    }
+  },
+  "tokens": {
+    "color": [
+      "primary",
+      "secondary",
+      "neutral",
+      "sparkle",
+      "brand-bg",
+      "positive",
+      "negative",
+      "warning",
+      "informative"
+    ],
+    "surface": [
+      "bold",
+      "subtle"
+    ],
+    "typography": [
+      "label.S",
+      "label.M",
+      "label.L"
+    ],
+    "shape": [
+      "pill"
+    ],
+    "motion": [
+      "motion.duration.expressive.long",
+      "motion.easing.transition"
+    ]
+  },
+  "a11y": {
+    "accessibilityRole": "progressbar",
+    "accessibilityState": [
+      "busy"
+    ],
+    "accessibleNameSource": "aria-label",
+    "minTouchTarget": 44,
+    "honorsBoldText": false,
+    "honorsScreenReader": true
+  },
+  "renderHints": {
+    "baseElement": "View",
+    "animatedOn": [
+      "mount"
+    ],
+    "honorsReduceMotion": true,
+    "readsFromSurfaceContext": true
+  },
+  "figma": {
+    "componentKey": "jds-circular-progress-indicator-v4",
+    "keyHistory": [],
+    "variantProperties": {
+      "Component": "CircularProgressIndicator"
+    }
+  },
+  "codeSnippets": [
+    {
+      "id": "import-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { CircularProgressIndicator } from '@oneui/ui-native';\n\n<CircularProgressIndicator />"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "circularprogressindicator",
+    "feedback",
+    "progress",
+    "circular",
+    "surface-aware"
+  ],
+  "importPath": "@oneui/ui-native"
+}

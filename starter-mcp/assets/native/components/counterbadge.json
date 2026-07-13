@@ -1,0 +1,269 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "CounterBadge",
+  "generatedAt": "2026-07-09T13:07:37.417Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "Numeric count badge (e.g. notification count). Overflows to `${max}+` (default 99); hidden at 0 unless showZero. Three surface-resolved variants. `appearance` inherits from a slot-owning parent (Badge/Button) when not set, else primary. Announces via a polite live region."
+  },
+  "compositionRules": {
+    "requires": [
+      "value"
+    ],
+    "allows": [],
+    "forbids": [],
+    "childKind": "leaf"
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "bold"
+      },
+      {
+        "name": "subtle"
+      },
+      {
+        "name": "ghost"
+      }
+    ]
+  },
+  "props": [
+    {
+      "name": "value",
+      "type": "number",
+      "required": true,
+      "description": "Count to display. <=0 hidden unless showZero; > max renders as `${max}+`."
+    },
+    {
+      "name": "max",
+      "type": "number",
+      "required": false,
+      "defaultValue": "99",
+      "description": "Overflow cap."
+    },
+    {
+      "name": "showZero",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "size",
+      "type": "'xs' | 's' | 'm' | 'l'",
+      "required": false,
+      "defaultValue": "m",
+      "description": ""
+    },
+    {
+      "name": "variant",
+      "type": "'bold' | 'subtle' | 'ghost'",
+      "required": false,
+      "defaultValue": "bold",
+      "description": "Surface-resolved paint."
+    },
+    {
+      "name": "attention",
+      "type": "'high' | 'medium' | 'low'",
+      "required": false,
+      "defaultValue": "high",
+      "description": "Figma alias → variant (default high → bold)."
+    },
+    {
+      "name": "appearance",
+      "type": "'auto' | 'primary' | 'secondary' | 'neutral' | 'sparkle' | 'brand-bg' | 'positive' | 'negative' | 'warning' | 'informative'",
+      "required": false,
+      "defaultValue": "auto",
+      "description": "Multi-accent role. When unset, inherits from a slot-owning parent (Badge/Button), else 'primary'."
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": false,
+      "description": "Overrides the count as the accessible name."
+    },
+    {
+      "name": "backgroundColor",
+      "type": "string",
+      "required": false,
+      "description": "[error] Don't paint directly. Use `appearance` (role) + `variant`/`mode` and wrap in <Surface mode>; the brand cascade picks the right fill."
+    },
+    {
+      "name": "style",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Layout style only — variant + appearance + the parent <Surface> drive the fill. — [warn] Don't paint the CounterBadge; use `variant` + `appearance`. In a parent slot, leave appearance unset to inherit."
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.kb.rn.CounterBadge",
+    "type": "object",
+    "properties": {
+      "value": {
+        "type": "number",
+        "description": "Count to display. <=0 hidden unless showZero; > max renders as `${max}+`."
+      },
+      "max": {
+        "type": "number",
+        "default": 99,
+        "description": "Overflow cap."
+      },
+      "showZero": {
+        "type": "boolean",
+        "default": false
+      },
+      "size": {
+        "enum": [
+          "xs",
+          "s",
+          "m",
+          "l"
+        ],
+        "default": "m"
+      },
+      "variant": {
+        "enum": [
+          "bold",
+          "subtle",
+          "ghost"
+        ],
+        "default": "bold",
+        "description": "Surface-resolved paint."
+      },
+      "attention": {
+        "enum": [
+          "high",
+          "medium",
+          "low"
+        ],
+        "default": "high",
+        "description": "Figma alias → variant (default high → bold)."
+      },
+      "appearance": {
+        "enum": [
+          "auto",
+          "primary",
+          "secondary",
+          "neutral",
+          "sparkle",
+          "brand-bg",
+          "positive",
+          "negative",
+          "warning",
+          "informative"
+        ],
+        "default": "auto",
+        "description": "Multi-accent role. When unset, inherits from a slot-owning parent (Badge/Button), else 'primary'."
+      },
+      "aria-label": {
+        "type": "string",
+        "description": "Overrides the count as the accessible name."
+      },
+      "backgroundColor": {
+        "type": "string",
+        "not": {
+          "anyOf": [
+            {
+              "pattern": "^#"
+            },
+            {
+              "pattern": "^rgba?\\("
+            },
+            {
+              "pattern": "^hsla?\\("
+            },
+            {
+              "pattern": "^oklch\\("
+            },
+            {
+              "pattern": "^color-mix\\("
+            },
+            {
+              "enum": [
+                "transparent",
+                "inherit"
+              ]
+            }
+          ]
+        },
+        "x-jds-suggestion": "Don't paint directly. Use `appearance` (role) + `variant`/`mode` and wrap in <Surface mode>; the brand cascade picks the right fill.",
+        "x-jds-severity": "error"
+      },
+      "style": {
+        "description": "Layout style only — variant + appearance + the parent <Surface> drive the fill.",
+        "x-jds-suggestion": "Don't paint the CounterBadge; use `variant` + `appearance`. In a parent slot, leave appearance unset to inherit.",
+        "x-jds-severity": "warn"
+      }
+    },
+    "required": [
+      "value"
+    ]
+  },
+  "tokens": {
+    "color": [
+      "primary",
+      "secondary",
+      "neutral",
+      "sparkle",
+      "brand-bg",
+      "positive",
+      "negative",
+      "warning",
+      "informative"
+    ],
+    "surface": [
+      "bold",
+      "subtle"
+    ],
+    "typography": [
+      "label.3XS",
+      "label.2XS",
+      "label.XS",
+      "label.S"
+    ],
+    "shape": [
+      "pill"
+    ]
+  },
+  "a11y": {
+    "accessibilityRole": "text",
+    "accessibleNameSource": "children",
+    "minTouchTarget": 44,
+    "honorsBoldText": true,
+    "honorsScreenReader": true
+  },
+  "renderHints": {
+    "baseElement": "View",
+    "animatedOn": [],
+    "honorsReduceMotion": false,
+    "readsFromSurfaceContext": true
+  },
+  "figma": {
+    "componentKey": "jds-counter-badge-v4",
+    "keyHistory": [],
+    "variantProperties": {
+      "Component": "CounterBadge"
+    }
+  },
+  "codeSnippets": [
+    {
+      "id": "import-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { CounterBadge } from '@oneui/ui-native';\n\n<CounterBadge />"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "counterbadge",
+    "display",
+    "status",
+    "notification",
+    "count",
+    "surface-aware"
+  ],
+  "importPath": "@oneui/ui-native"
+}

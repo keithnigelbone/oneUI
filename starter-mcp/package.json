@@ -1,0 +1,60 @@
+{
+  "name": "@jds4/oneui-mcp",
+  "version": "0.1.0-alpha.9",
+  "description": "Model Context Protocol server for the One UI / JDS design system. Lets an AI coding agent install OneUI packages, load design skills, look up components/tokens/brands, and build OneUI-compliant React (web) apps. Self-contained, offline, zero runtime dependency on the OneUI monorepo.",
+  "type": "module",
+  "license": "UNLICENSED",
+  "private": false,
+  "bin": {
+    "oneui-mcp": "dist/index.js"
+  },
+  "main": "dist/index.js",
+  "files": [
+    "dist",
+    "assets",
+    "skills",
+    "commands",
+    "hooks",
+    "figma-bridge-plugin",
+    ".claude-plugin",
+    ".mcp.json",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "build:snapshot": "node scripts/build-snapshot.mjs",
+    "build:native-snapshot": "pnpm --filter @jds/kb-core build && pnpm --filter @jds/kb-rn build && node scripts/build-native-snapshot.mjs",
+    "build:plugin": "node scripts/build-plugin.mjs",
+    "pack:plugin": "node scripts/pack-plugin.mjs --mode=full",
+    "pack:plugin:npm": "node scripts/pack-plugin.mjs --mode=npm",
+    "prepare": "npm run build",
+    "start": "node dist/index.js",
+    "clean": "rm -rf dist",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@babel/parser": "^7.24.0",
+    "@modelcontextprotocol/sdk": "^1.12.0",
+    "ws": "^8.21.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/ws": "^8.18.1",
+    "esbuild": "^0.24.0",
+    "typescript": "^5.6.0",
+    "vitest": "^3.2.7"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "oneui",
+    "jds",
+    "design-system",
+    "react",
+    "ai"
+  ]
+}

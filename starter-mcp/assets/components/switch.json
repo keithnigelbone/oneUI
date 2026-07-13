@@ -1,0 +1,292 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Switch",
+  "generatedAt": "2026-01-01T00:00:00.000Z",
+  "machineReadable": true,
+  "intentAndPurpose": {
+    "intent": "Immediate binary toggle — state takes effect on change without a submit action.",
+    "taskContexts": [
+      "settings-toggle",
+      "feature-flag",
+      "live-preference"
+    ],
+    "sentiments": [
+      "neutral",
+      "positive"
+    ]
+  },
+  "compositionRules": {
+    "requires": [
+      "label or aria-label"
+    ],
+    "allows": [
+      "read-only mode",
+      "accent override"
+    ],
+    "forbids": [
+      "use in forms requiring explicit submit",
+      "replace with Checkbox for non-immediate effects"
+    ]
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "default",
+        "useWhen": [
+          "immediate on/off setting"
+        ]
+      },
+      {
+        "name": "readOnly",
+        "useWhen": [
+          "display-only permission or system setting"
+        ]
+      }
+    ]
+  },
+  "relationshipsAndDependencies": {
+    "related": [
+      "Checkbox",
+      "Radio"
+    ],
+    "degradesTo": [
+      "Checkbox"
+    ]
+  },
+  "contextSignals": {
+    "density": [
+      "compact",
+      "default",
+      "open"
+    ],
+    "modality": [
+      "desktop",
+      "mobile"
+    ],
+    "brand": [
+      "theme-scope aware",
+      "appearance + accent dual-role"
+    ],
+    "mode": [
+      "light",
+      "dark",
+      "surface-context"
+    ]
+  },
+  "observabilityHooks": {
+    "track": [
+      "toggle_on",
+      "toggle_off"
+    ],
+    "health": [
+      "a11y_violations",
+      "adoption_rate"
+    ]
+  },
+  "props": [
+    {
+      "name": "accent",
+      "type": "SwitchAccent",
+      "required": false,
+      "description": "Accent override for selected fill color. When set, overrides the fill from appearance while keeping appearance's border/context. When not set, fill follows appearance role."
+    },
+    {
+      "name": "appearance",
+      "type": "SwitchAppearance",
+      "required": false,
+      "description": "Multi-accent appearance role. Controls checked fill and context tokens. 'auto' resolves to 'secondary'. Unchecked track is always neutral regardless of appearance."
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": false,
+      "description": "Accessible label for switches without a text child."
+    },
+    {
+      "name": "aria-labelledby",
+      "type": "string",
+      "required": false,
+      "description": "ID of an element that labels the switch."
+    },
+    {
+      "name": "checked",
+      "type": "boolean",
+      "required": false,
+      "description": "Whether the switch is on (controlled)"
+    },
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Label text"
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "required": false,
+      "description": "Additional class name"
+    },
+    {
+      "name": "data-testid",
+      "type": "string",
+      "required": false,
+      "description": "Stable anchor for QA / e2e — forwarded to the root switch control only (not the label wrapper)."
+    },
+    {
+      "name": "defaultChecked",
+      "type": "boolean",
+      "required": false,
+      "description": "Default state (uncontrolled)"
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "required": false,
+      "description": "Whether the switch is disabled"
+    },
+    {
+      "name": "id",
+      "type": "string",
+      "required": false,
+      "description": "HTML id attribute"
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "required": false,
+      "description": "Field name for form submission"
+    },
+    {
+      "name": "onCheckedChange",
+      "type": "(checked: boolean) => void",
+      "required": false,
+      "description": "Change handler"
+    },
+    {
+      "name": "readOnly",
+      "type": "boolean",
+      "required": false,
+      "description": "Whether the switch is read-only (visually distinct from disabled)"
+    },
+    {
+      "name": "size",
+      "type": "SwitchSize",
+      "required": false,
+      "description": "Size preset. Default: 'm'"
+    },
+    {
+      "name": "style",
+      "type": "CSSProperties",
+      "required": false,
+      "description": "Inline styles"
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.docs.switch",
+    "type": "object",
+    "properties": {
+      "accent": {
+        "description": "Accent override for selected fill color. When set, overrides the fill from appearance while keeping appearance's border/context. When not set, fill follows appearance role."
+      },
+      "appearance": {
+        "enum": [
+          "auto",
+          "primary",
+          "secondary",
+          "neutral",
+          "sparkle",
+          "brand-bg",
+          "positive",
+          "negative",
+          "warning",
+          "informative"
+        ],
+        "description": "Multi-accent appearance role. Controls checked fill and context tokens. 'auto' resolves to 'secondary'. Unchecked track is always neutral regardless of appearance."
+      },
+      "aria-label": {
+        "type": "string",
+        "description": "Accessible label for switches without a text child."
+      },
+      "aria-labelledby": {
+        "type": "string",
+        "description": "ID of an element that labels the switch."
+      },
+      "checked": {
+        "type": "boolean",
+        "description": "Whether the switch is on (controlled)"
+      },
+      "children": {
+        "description": "Label text"
+      },
+      "className": {
+        "type": "string",
+        "description": "Additional class name"
+      },
+      "data-testid": {
+        "type": "string",
+        "description": "Stable anchor for QA / e2e — forwarded to the root switch control only (not the label wrapper)."
+      },
+      "defaultChecked": {
+        "type": "boolean",
+        "description": "Default state (uncontrolled)"
+      },
+      "disabled": {
+        "type": "boolean",
+        "description": "Whether the switch is disabled"
+      },
+      "id": {
+        "type": "string",
+        "description": "HTML id attribute"
+      },
+      "name": {
+        "type": "string",
+        "description": "Field name for form submission"
+      },
+      "onCheckedChange": {
+        "description": "Change handler"
+      },
+      "readOnly": {
+        "type": "boolean",
+        "description": "Whether the switch is read-only (visually distinct from disabled)"
+      },
+      "size": {
+        "enum": [
+          "s",
+          "m",
+          "l"
+        ],
+        "description": "Size preset. Default: 'm'"
+      },
+      "style": {
+        "description": "Inline styles"
+      }
+    }
+  },
+  "codeSnippets": [
+    {
+      "id": "switch-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { Switch } from '@oneui/ui';\n\n<Switch>Enable notifications</Switch>"
+    },
+    {
+      "id": "switch-controlled",
+      "title": "Controlled",
+      "language": "tsx",
+      "code": "<Switch checked={isOn} onCheckedChange={setIsOn}>Dark mode</Switch>"
+    },
+    {
+      "id": "switch-recipe-decisions",
+      "title": "Recipe Decisions",
+      "language": "json",
+      "code": "{\n  \"component\": \"Switch\",\n  \"decisions\": [\n    \"Shape\"\n  ]\n}"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "switch"
+  ],
+  "importPath": "@jds4/oneui-react"
+}

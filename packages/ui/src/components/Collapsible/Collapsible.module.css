@@ -1,0 +1,71 @@
+/**
+ * Collapsible.module.css
+ * Token-only styling for Collapsible component
+ * Verified by: pnpm check:literals
+ */
+
+/* Root */
+.root {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Trigger */
+.trigger {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-3);
+  border: none;
+  background: none;
+  padding: var(--Spacing-3-5) 0;
+  font-family: inherit;
+  font-size: var(--Body-M-FontSize);
+  font-weight: var(--Body-FontWeight-Medium);
+  line-height: var(--Typography-LineHeight-Normal);
+  color: var(--Text-High);
+  cursor: pointer;
+  outline: none;
+}
+
+.trigger[data-disabled] {
+  opacity: var(--Disabled-Opacity);
+  cursor: not-allowed;
+}
+
+.trigger:focus {
+  outline: none;
+}
+
+.trigger:focus-visible {
+  outline: var(--Focus-Outline-Width) solid var(--Focus-Outline);
+  outline-offset: var(--Spacing-1);
+  border-radius: var(--Shape-3);
+}
+
+/* Chevron icon */
+.chevron {
+  width: var(--Spacing-4);
+  height: var(--Spacing-4);
+  flex-shrink: 0;
+  color: var(--Text-Medium);
+  transition: transform var(--Motion-Duration-Discreet-Medium) var(--Motion-Easing-Emphasized);
+}
+
+.trigger[data-panel-open] .chevron {
+  transform: rotate(180deg);
+}
+
+/* Panel */
+.panel {
+  overflow: hidden;
+  transition: height var(--Motion-Duration-Expressive-Short) var(--Motion-Easing-Emphasized);
+}
+
+.panel[data-starting-style],
+.panel[data-ending-style] {
+  height: 0;
+}
+
+.panelContent {
+  padding: var(--Spacing-3) 0 var(--Spacing-4) 0;
+}

@@ -1,0 +1,337 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "SingleTextButton",
+  "generatedAt": "2026-01-01T00:00:00.000Z",
+  "machineReadable": true,
+  "intentAndPurpose": {
+    "intent": {
+      "value": "Circular single-text action button (max 2 characters, e.g. \"Ag\", \"En\"). Attention level drives the visual: high=bold fill, medium=subtle fill, low=ghost. 3 sizes (S/M/L). Shape customisable per brand.",
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "taskContexts": {
+      "value": [],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "sentiments": {
+      "value": [
+        "neutral"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "compositionRules": {
+    "requires": {
+      "value": [],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "allows": {
+      "value": [],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "forbids": {
+      "value": [],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "high",
+        "useWhen": {
+          "value": [
+            "High"
+          ],
+          "attribution": {
+            "source": "inferred"
+          }
+        }
+      },
+      {
+        "name": "medium",
+        "useWhen": {
+          "value": [
+            "Medium"
+          ],
+          "attribution": {
+            "source": "inferred"
+          }
+        }
+      },
+      {
+        "name": "low",
+        "useWhen": {
+          "value": [
+            "Low"
+          ],
+          "attribution": {
+            "source": "inferred"
+          }
+        }
+      }
+    ]
+  },
+  "relationshipsAndDependencies": {
+    "related": {
+      "value": [],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "contextSignals": {
+    "density": {
+      "value": [
+        "compact",
+        "default",
+        "open"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "modality": {
+      "value": [
+        "desktop",
+        "mobile"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "brand": {
+      "value": [
+        "theme-scope aware",
+        "recipe-driven"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "mode": {
+      "value": [
+        "light",
+        "dark",
+        "surface-context"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "observabilityHooks": {
+    "track": {
+      "value": [],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "health": {
+      "value": [
+        "a11y_violations"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "props": [
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "required": true,
+      "description": "Text label content — max 2 characters (e.g. \"Ag\", \"En\", \"A\", \"12\"). This component renders as a circular button; longer text breaks the shape. Text exceeding 2 characters will be truncated in development with a warning."
+    },
+    {
+      "name": "appearance",
+      "type": "SingleTextButtonAppearance",
+      "required": false,
+      "description": "Multi-accent appearance role. 'auto' resolves to 'primary'. Default: 'auto'."
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": false,
+      "description": "Accessible label for screen readers (optional — children text is visible)."
+    },
+    {
+      "name": "attention",
+      "type": "SingleTextButtonAttention",
+      "required": false,
+      "description": "Attention level — drives the visual variant. high → bold fill (solid accent bg, on-bold-high text) medium → subtle fill (tinted bg, accent text) low → ghost (transparent bg, accent text) Default: 'high'."
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "required": false,
+      "description": "Additional class name."
+    },
+    {
+      "name": "condensed",
+      "type": "boolean",
+      "required": false,
+      "description": "Condensed mode: reduces height and padding while keeping the same typography."
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "required": false,
+      "description": "Whether the button is disabled."
+    },
+    {
+      "name": "fullWidth",
+      "type": "boolean",
+      "required": false,
+      "description": "Stretch to fill container width — overrides circular shape."
+    },
+    {
+      "name": "loading",
+      "type": "boolean",
+      "required": false,
+      "description": "Loading state — shows circular progress indicator replacing the text label. Disables interaction while loading."
+    },
+    {
+      "name": "onClick",
+      "type": "() => void",
+      "required": false,
+      "description": "Web-only alias for onPress."
+    },
+    {
+      "name": "onPress",
+      "type": "() => void",
+      "required": false,
+      "description": "onPress property"
+    },
+    {
+      "name": "size",
+      "type": "SingleTextButtonSize",
+      "required": false,
+      "description": "Button size. Default: 'm'. S/M/L only (no XS)."
+    },
+    {
+      "name": "style",
+      "type": "CSSProperties",
+      "required": false,
+      "description": "Inline styles."
+    },
+    {
+      "name": "type",
+      "type": "'button' | 'submit' | 'reset'",
+      "required": false,
+      "description": "HTML button type attribute."
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.docs.single-text-button",
+    "type": "object",
+    "properties": {
+      "children": {
+        "description": "Text label content — max 2 characters (e.g. \"Ag\", \"En\", \"A\", \"12\"). This component renders as a circular button; longer text breaks the shape. Text exceeding 2 characters will be truncated in development with a warning."
+      },
+      "appearance": {
+        "enum": [
+          "auto",
+          "primary",
+          "secondary",
+          "tertiary",
+          "quaternary",
+          "neutral",
+          "sparkle",
+          "brand-bg",
+          "positive",
+          "negative",
+          "warning",
+          "informative"
+        ],
+        "description": "Multi-accent appearance role. 'auto' resolves to 'primary'. Default: 'auto'."
+      },
+      "aria-label": {
+        "type": "string",
+        "description": "Accessible label for screen readers (optional — children text is visible)."
+      },
+      "attention": {
+        "enum": [
+          "high",
+          "medium",
+          "low"
+        ],
+        "description": "Attention level — drives the visual variant. high → bold fill (solid accent bg, on-bold-high text) medium → subtle fill (tinted bg, accent text) low → ghost (transparent bg, accent text) Default: 'high'."
+      },
+      "className": {
+        "type": "string",
+        "description": "Additional class name."
+      },
+      "condensed": {
+        "type": "boolean",
+        "description": "Condensed mode: reduces height and padding while keeping the same typography."
+      },
+      "disabled": {
+        "type": "boolean",
+        "description": "Whether the button is disabled."
+      },
+      "fullWidth": {
+        "type": "boolean",
+        "description": "Stretch to fill container width — overrides circular shape."
+      },
+      "loading": {
+        "type": "boolean",
+        "description": "Loading state — shows circular progress indicator replacing the text label. Disables interaction while loading."
+      },
+      "onClick": {
+        "description": "Web-only alias for onPress."
+      },
+      "onPress": {
+        "description": "onPress property"
+      },
+      "size": {
+        "enum": [
+          "s",
+          "m",
+          "l"
+        ],
+        "description": "Button size. Default: 'm'. S/M/L only (no XS)."
+      },
+      "style": {
+        "description": "Inline styles."
+      },
+      "type": {
+        "description": "HTML button type attribute."
+      }
+    },
+    "required": [
+      "children"
+    ]
+  },
+  "codeSnippets": [
+    {
+      "id": "single-text-button-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { SingleTextButton } from '@oneui/ui';\n\n<SingleTextButton />"
+    },
+    {
+      "id": "single-text-button-recipe-decisions",
+      "title": "Recipe Decisions",
+      "language": "json",
+      "code": "{\n  \"component\": \"SingleTextButton\",\n  \"decisions\": [\n    \"Shape\"\n  ]\n}"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "single-text-button"
+  ],
+  "generatedMarkdown": "# SingleTextButton Machine-Readable Documentation\n\n_Generated from source metadata. Do not edit manually._\n\n## Intent and Purpose\n\n- **Intent**: Circular single-text action button (max 2 characters, e.g. \"Ag\", \"En\"). Attention level drives the visual: high=bold fill, medium=subtle fill, low=ghost. 3 sizes (S/M/L). Shape customisable per brand.\n- **Task contexts**: \n- **Sentiments**: neutral\n\n## Composition Rules\n\n- **Requires**: \n- **Allows**: \n- **Forbids**: \n\n## Variant Logic\n\n- **high**: use when High\n- **medium**: use when Medium\n- **low**: use when Low\n\n## Relationships and Dependencies\n\n- **Related**: \n- **Escalates to**: -\n- **Degrades to**: -\n- **Groups with**: -\n\n## Context Signals\n\n- **Density**: compact, default, open\n- **Modality**: desktop, mobile\n- **Brand**: theme-scope aware, recipe-driven\n- **Mode**: light, dark, surface-context\n\n## Observability Hooks\n\n- **Track**: \n- **Health**: a11y_violations\n\n## Props\n\n| Prop | Type | Required | Default | Description |\n| --- | --- | --- | --- | --- |\n| `children` | `ReactNode` | Yes | - | Text label content — max 2 characters (e.g. \"Ag\", \"En\", \"A\", \"12\"). This component renders as a circular button; longer text breaks the shape. Text exceeding 2 characters will be truncated in development with a warning. |\n| `appearance` | `SingleTextButtonAppearance` | No | - | Multi-accent appearance role. 'auto' resolves to 'primary'. Default: 'auto'. |\n| `aria-label` | `string` | No | - | Accessible label for screen readers (optional — children text is visible). |\n| `attention` | `SingleTextButtonAttention` | No | - | Attention level — drives the visual variant. high → bold fill (solid accent bg, on-bold-high text) medium → subtle fill (tinted bg, accent text) low → ghost (transparent bg, accent text) Default: 'high'. |\n| `className` | `string` | No | - | Additional class name. |\n| `condensed` | `boolean` | No | - | Condensed mode: reduces height and padding while keeping the same typography. |\n| `disabled` | `boolean` | No | - | Whether the button is disabled. |\n| `fullWidth` | `boolean` | No | - | Stretch to fill container width — overrides circular shape. |\n| `loading` | `boolean` | No | - | Loading state — shows circular progress indicator replacing the text label. Disables interaction while loading. |\n| `onClick` | `() => void` | No | - | Web-only alias for onPress. |\n| `onPress` | `() => void` | No | - | onPress property |\n| `size` | `SingleTextButtonSize` | No | - | Button size. Default: 'm'. S/M/L only (no XS). |\n| `style` | `CSSProperties` | No | - | Inline styles. |\n| `type` | `'button' | 'submit' | 'reset'` | No | - | HTML button type attribute. |\n\n## Slots\n\n| Slot | Types | Tokens |\n| --- | --- | --- |\n\n\n## Code Snippets\n\n### Basic Usage\n\n```tsx\nimport { SingleTextButton } from '@oneui/ui';\n\n<SingleTextButton />\n```\n\n### Recipe Decisions\n\n```json\n{\n  \"component\": \"SingleTextButton\",\n  \"decisions\": [\n    \"Shape\"\n  ]\n}\n```\n"
+}

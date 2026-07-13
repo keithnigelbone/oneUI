@@ -1,0 +1,217 @@
+/**
+ * component.module.css
+ * Shared styling for all component showcase pages
+ * Token-only values
+ */
+
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-5);
+  max-width: 1200px;
+  padding-top: var(--Spacing-6);
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-3-5);
+}
+
+.title {
+  font-family: var(--Display-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Display-S-FontSize);
+  line-height: var(--Display-S-LineHeight);
+  font-weight: var(--Display-S-FontWeight);
+  color: var(--Text-High);
+  margin: 0;
+}
+
+.description {
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Body-M-FontSize);
+  line-height: var(--Body-M-LineHeight);
+  color: var(--Text-Medium);
+  margin: 0;
+  max-width: 600px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-4-5);
+  padding-bottom: var(--Spacing-6);
+}
+
+.section {
+  background-color: var(--Surface-Main);
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+  border-radius: var(--Shape-4-5);
+  padding: var(--Spacing-4-5);
+}
+
+.sectionTitle {
+  font-family: var(--Title-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Title-M-FontSize);
+  line-height: var(--Title-M-LineHeight);
+  font-weight: var(--Title-M-FontWeight);
+  color: var(--Text-High);
+  margin: 0 0 var(--Spacing-2-5) 0;
+}
+
+.sectionDescription {
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  color: var(--Text-Low);
+  margin: 0 0 var(--Spacing-4) 0;
+}
+
+/* Component showcase area */
+.showcase {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--Spacing-4);
+  align-items: center;
+}
+
+.showcaseColumn {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-4-5);
+  align-items: flex-start;
+}
+
+/* Divider between showcase sections within a card */
+.showcase + .showcase,
+.showcaseColumn + .showcaseColumn,
+.showcase + .showcaseColumn,
+.showcaseColumn + .showcase {
+  padding-top: var(--Spacing-4-5);
+  border-top: var(--Stroke-M) solid var(--Border-Subtle);
+}
+
+/* Labeled showcase item */
+.showcaseItem {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-3);
+  align-items: center;
+}
+
+.showcaseLabel {
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  color: var(--Text-Low);
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+/* Explicit divider between groups inside a card */
+.sectionDivider {
+  width: 100%;
+  height: 0;
+  border: none;
+  border-top: var(--Stroke-M) solid var(--Border-Subtle);
+  margin: var(--Spacing-3-5) 0;
+}
+
+/* Code snippet display */
+.codeBlock {
+  background-color: transparent;
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+  border-radius: var(--Shape-4);
+  padding: var(--Spacing-4);
+  font-family: var(--Typography-Font-Code);
+  font-size: var(--Code-S-FontSize);
+  line-height: var(--Code-S-LineHeight);
+  color: var(--Text-High);
+  overflow-x: auto;
+}
+
+/* Props table */
+.propsTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+}
+
+.propsTable th,
+.propsTable td {
+  text-align: left;
+  padding: var(--Spacing-3-5) var(--Spacing-4);
+  border-bottom: var(--Stroke-M) solid var(--Border-Subtle);
+}
+
+.propsTable th {
+  color: var(--Text-Medium);
+  font-weight: var(--Label-FontWeight-Medium);
+  background-color: transparent;
+}
+
+.propsTable td {
+  color: var(--Text-High);
+}
+
+.propsTable code {
+  background-color: transparent;
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+  padding: var(--Spacing-2) var(--Spacing-2-5);
+  border-radius: var(--Shape-3);
+  font-family: var(--Typography-Font-Code);
+  font-size: var(--Code-S-FontSize);
+}
+
+/* Info box */
+.infoBox {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--Spacing-3-5);
+  padding: var(--Spacing-4);
+  background-color: transparent;
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+  border-radius: var(--Shape-4);
+}
+
+.infoIcon {
+  width: var(--Spacing-4);
+  height: var(--Spacing-4);
+  color: var(--Text-Medium);
+  flex-shrink: 0;
+}
+
+.infoText {
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  color: var(--Text-Medium);
+  margin: 0;
+}
+
+/* =========================================
+   PANEL LAYOUT - For Advanced Mode
+   ========================================= */
+
+.pageWithPanel {
+  /* Container for main content and panel */
+  position: relative;
+  display: flex;
+  width: 100%;
+  min-height: 100%;
+  background-color: var(--Surface-Main);
+  border-radius: var(--Shape-4-5);
+}
+
+.mainContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-5);
+  padding: var(--Spacing-5);
+  transition: margin-right var(--Motion-Duration-Expressive-Short) var(--Motion-Easing-Standard);
+}
+
+.mainContent[data-panel-open='true'] {
+  /* Make room for the panel */
+  margin-right: 560px;
+}

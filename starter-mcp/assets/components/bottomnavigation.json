@@ -1,0 +1,240 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "BottomNavigation",
+  "generatedAt": "2026-01-01T00:00:00.000Z",
+  "machineReadable": true,
+  "intentAndPurpose": {
+    "intent": "App-level bottom navigation bar. Accepts 2–5 <BottomNavItem> children with a shared `labelType` (none / 1line / 2line). Supports controlled or uncontrolled active value, multi-accent appearance roles, and an optional top hairline divider.",
+    "taskContexts": [
+      "navigation",
+      "nav",
+      "bottom-nav",
+      "tab-bar",
+      "mobile"
+    ],
+    "sentiments": [
+      "neutral"
+    ]
+  },
+  "compositionRules": {
+    "requires": [
+      "children"
+    ],
+    "allows": [],
+    "forbids": []
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "1line",
+        "useWhen": [
+          "1 Line"
+        ]
+      },
+      {
+        "name": "2line",
+        "useWhen": [
+          "2 Lines"
+        ]
+      },
+      {
+        "name": "none",
+        "useWhen": [
+          "None"
+        ]
+      }
+    ]
+  },
+  "relationshipsAndDependencies": {
+    "related": []
+  },
+  "contextSignals": {
+    "density": [
+      "compact",
+      "default",
+      "open"
+    ],
+    "modality": [
+      "desktop",
+      "mobile"
+    ],
+    "brand": [
+      "theme-scope aware",
+      "recipe-driven"
+    ],
+    "mode": [
+      "light",
+      "dark",
+      "surface-context"
+    ]
+  },
+  "observabilityHooks": {
+    "track": [],
+    "health": [
+      "a11y_violations"
+    ]
+  },
+  "props": [
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": true,
+      "description": "Accessible label for the `<nav>` landmark. Required."
+    },
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "required": true,
+      "description": "2–5 `<BottomNavItem>` children."
+    },
+    {
+      "name": "appearance",
+      "type": "BottomNavigationAppearance",
+      "required": false,
+      "description": "Multi-accent appearance role applied to all child items. Default: 'primary'."
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "required": false,
+      "description": "Additional CSS class name."
+    },
+    {
+      "name": "data-testid",
+      "type": "string",
+      "required": false,
+      "description": "Test id forwarded to the root `<nav>`."
+    },
+    {
+      "name": "defaultValue",
+      "type": "string",
+      "required": false,
+      "description": "Uncontrolled initial active item value."
+    },
+    {
+      "name": "labelType",
+      "type": "BottomNavigationLabelType",
+      "required": false,
+      "description": "Label layout for all items. Default: '1line'."
+    },
+    {
+      "name": "onValueChange",
+      "type": "(value: string) => void",
+      "required": false,
+      "description": "Called when an item is pressed and its `value` becomes active."
+    },
+    {
+      "name": "showDivider",
+      "type": "boolean",
+      "required": false,
+      "description": "Show the top edge-to-edge divider. Default: true."
+    },
+    {
+      "name": "style",
+      "type": "CSSProperties",
+      "required": false,
+      "description": "Inline styles."
+    },
+    {
+      "name": "value",
+      "type": "string",
+      "required": false,
+      "description": "Controlled active item value. Match `value` on a child `<BottomNavItem>`."
+    }
+  ],
+  "slots": [
+    {
+      "name": "children",
+      "types": [
+        "BottomNavItem"
+      ],
+      "tokens": []
+    }
+  ],
+  "propsSchema": {
+    "$id": "jds.docs.bottom-navigation",
+    "type": "object",
+    "properties": {
+      "aria-label": {
+        "type": "string",
+        "description": "Accessible label for the `<nav>` landmark. Required."
+      },
+      "children": {
+        "description": "2–5 `<BottomNavItem>` children."
+      },
+      "appearance": {
+        "enum": [
+          "auto",
+          "primary",
+          "secondary",
+          "neutral",
+          "sparkle",
+          "brand-bg",
+          "positive",
+          "negative",
+          "warning",
+          "informative"
+        ],
+        "description": "Multi-accent appearance role applied to all child items. Default: 'primary'."
+      },
+      "className": {
+        "type": "string",
+        "description": "Additional CSS class name."
+      },
+      "data-testid": {
+        "type": "string",
+        "description": "Test id forwarded to the root `<nav>`."
+      },
+      "defaultValue": {
+        "type": "string",
+        "description": "Uncontrolled initial active item value."
+      },
+      "labelType": {
+        "enum": [
+          "none",
+          "1line",
+          "2line"
+        ],
+        "description": "Label layout for all items. Default: '1line'."
+      },
+      "onValueChange": {
+        "description": "Called when an item is pressed and its `value` becomes active."
+      },
+      "showDivider": {
+        "type": "boolean",
+        "description": "Show the top edge-to-edge divider. Default: true."
+      },
+      "style": {
+        "description": "Inline styles."
+      },
+      "value": {
+        "type": "string",
+        "description": "Controlled active item value. Match `value` on a child `<BottomNavItem>`."
+      }
+    },
+    "required": [
+      "aria-label",
+      "children"
+    ]
+  },
+  "codeSnippets": [
+    {
+      "id": "bottom-navigation-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { BottomNavigation } from '@oneui/ui';\n\n<BottomNavigation />"
+    },
+    {
+      "id": "bottom-navigation-recipe-decisions",
+      "title": "Recipe Decisions",
+      "language": "json",
+      "code": "{\n  \"component\": \"BottomNavigation\",\n  \"decisions\": [\n    \"Label layout\",\n    \"Item shape\"\n  ]\n}"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "bottom-navigation"
+  ],
+  "importPath": "@jds4/oneui-react"
+}

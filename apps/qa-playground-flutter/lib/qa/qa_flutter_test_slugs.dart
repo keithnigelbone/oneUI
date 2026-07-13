@@ -1,0 +1,32 @@
+/// Catalog slugs that have flutter_test suites (functional and/or a11y).
+const Set<String> kQaFlutterTestSlugs = {
+  'checkbox',
+  'checkbox-field',
+  'input',
+  'input-field',
+  'input-dynamic-text',
+  'input-feedback',
+  'radio',
+  'radio-field',
+  'slider',
+  'touch-slider',
+  'badge',
+  'counter-badge',
+  'indicator-badge',
+  'avatar',
+  'text',
+  'image',
+  'divider',
+  'logo',
+  'circular-progress-indicator',
+  'linear-progress-indicator',
+  'button',
+  'chip',
+  'chip-group',
+  'icon',
+  'icon-contained',
+  'icon-button',
+  'bottom-navigation',
+};
+
+bool isQaFlutterTestSlug(String slug) => kQaFlutterTestSlugs.contains(slug);

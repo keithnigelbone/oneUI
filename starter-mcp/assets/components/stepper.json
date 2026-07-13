@@ -1,0 +1,343 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Stepper",
+  "generatedAt": "2026-01-01T00:00:00.000Z",
+  "machineReadable": true,
+  "intentAndPurpose": {
+    "intent": "Numeric input control with increment and decrement buttons for bounded integer values.",
+    "taskContexts": [
+      "quantity-selection",
+      "numeric-form-field",
+      "pagination-control"
+    ],
+    "sentiments": [
+      "neutral",
+      "positive",
+      "warning"
+    ]
+  },
+  "compositionRules": {
+    "requires": [
+      "numeric value context"
+    ],
+    "allows": [
+      "min/max constraints",
+      "custom step",
+      "shift multiplier",
+      "error state"
+    ],
+    "forbids": [
+      "non-numeric values",
+      "string entry"
+    ]
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "high",
+        "useWhen": [
+          "primary quantity input requiring high emphasis"
+        ]
+      },
+      {
+        "name": "medium",
+        "useWhen": [
+          "default quantity field (most common use)"
+        ]
+      },
+      {
+        "name": "low",
+        "useWhen": [
+          "de-emphasised numeric control"
+        ]
+      }
+    ]
+  },
+  "relationshipsAndDependencies": {
+    "related": [
+      "Button",
+      "FormField",
+      "NumberInput"
+    ]
+  },
+  "contextSignals": {
+    "density": [
+      "compact",
+      "default",
+      "open"
+    ],
+    "modality": [
+      "desktop",
+      "mobile"
+    ],
+    "brand": [
+      "theme-scope aware",
+      "appearance + accent dual-role"
+    ],
+    "mode": [
+      "light",
+      "dark",
+      "surface-context"
+    ]
+  },
+  "observabilityHooks": {
+    "track": [
+      "increment",
+      "decrement",
+      "manual_input"
+    ],
+    "health": [
+      "a11y_violations",
+      "out_of_range_frequency"
+    ]
+  },
+  "props": [
+    {
+      "name": "accent",
+      "type": "StepperAccent",
+      "required": false,
+      "description": "Accent override for fill color at high attention. When set, overrides the fill from appearance while keeping appearance's context. When not set, fill follows appearance role."
+    },
+    {
+      "name": "appearance",
+      "type": "StepperAppearance",
+      "required": false,
+      "description": "Multi-accent appearance role. Controls all tokens. 'auto' resolves to 'secondary'."
+    },
+    {
+      "name": "attention",
+      "type": "StepperAttention",
+      "required": false,
+      "description": "Attention level controls visual weight. Default: 'medium'"
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "required": false,
+      "description": "Additional class name"
+    },
+    {
+      "name": "condensed",
+      "type": "boolean",
+      "required": false,
+      "description": "Whether to use condensed height. Default: false"
+    },
+    {
+      "name": "data-testid",
+      "type": "string",
+      "required": false,
+      "description": "Test ID"
+    },
+    {
+      "name": "defaultValue",
+      "type": "number",
+      "required": false,
+      "description": "Default value (uncontrolled)"
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "required": false,
+      "description": "Whether the stepper is disabled"
+    },
+    {
+      "name": "error",
+      "type": "boolean",
+      "required": false,
+      "description": "Whether the stepper is in error state"
+    },
+    {
+      "name": "max",
+      "type": "number",
+      "required": false,
+      "description": "Maximum allowed value"
+    },
+    {
+      "name": "min",
+      "type": "number",
+      "required": false,
+      "description": "Minimum allowed value"
+    },
+    {
+      "name": "onChange",
+      "type": "(event: SyntheticEvent | null, value: number | null) => void",
+      "required": false,
+      "description": "Change handler — Base UI standard signature"
+    },
+    {
+      "name": "partProps",
+      "type": "{ root?: ComponentPropsWithRef<'div'>; input?: ComponentPropsWithRef<'input'>; incrementButton?: ComponentPropsWithRef<'button'>; decrementButton?: ComponentPropsWithRef<'button'>; }",
+      "required": false,
+      "description": "Props for internal Base UI parts. Use for primitive-level overrides, not public content slots."
+    },
+    {
+      "name": "readOnly",
+      "type": "boolean",
+      "required": false,
+      "description": "Whether the stepper is read-only"
+    },
+    {
+      "name": "required",
+      "type": "boolean",
+      "required": false,
+      "description": "Whether the field is required"
+    },
+    {
+      "name": "shiftMultiplier",
+      "type": "number",
+      "required": false,
+      "description": "Jump by larger amount when holding Shift. Maps to Base UI's largeStep."
+    },
+    {
+      "name": "size",
+      "type": "StepperSize",
+      "required": false,
+      "description": "Size preset. Default: 'm'"
+    },
+    {
+      "name": "step",
+      "type": "number",
+      "required": false,
+      "description": "Step increment. Default: 1"
+    },
+    {
+      "name": "style",
+      "type": "CSSProperties",
+      "required": false,
+      "description": "Inline styles"
+    },
+    {
+      "name": "value",
+      "type": "number | null",
+      "required": false,
+      "description": "Controlled value"
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.docs.stepper",
+    "type": "object",
+    "properties": {
+      "accent": {
+        "description": "Accent override for fill color at high attention. When set, overrides the fill from appearance while keeping appearance's context. When not set, fill follows appearance role."
+      },
+      "appearance": {
+        "enum": [
+          "auto",
+          "primary",
+          "secondary",
+          "neutral",
+          "sparkle",
+          "brand-bg",
+          "positive",
+          "negative",
+          "warning",
+          "informative"
+        ],
+        "description": "Multi-accent appearance role. Controls all tokens. 'auto' resolves to 'secondary'."
+      },
+      "attention": {
+        "enum": [
+          "high",
+          "medium",
+          "low"
+        ],
+        "description": "Attention level controls visual weight. Default: 'medium'"
+      },
+      "className": {
+        "type": "string",
+        "description": "Additional class name"
+      },
+      "condensed": {
+        "type": "boolean",
+        "description": "Whether to use condensed height. Default: false"
+      },
+      "data-testid": {
+        "type": "string",
+        "description": "Test ID"
+      },
+      "defaultValue": {
+        "type": "number",
+        "description": "Default value (uncontrolled)"
+      },
+      "disabled": {
+        "type": "boolean",
+        "description": "Whether the stepper is disabled"
+      },
+      "error": {
+        "type": "boolean",
+        "description": "Whether the stepper is in error state"
+      },
+      "max": {
+        "type": "number",
+        "description": "Maximum allowed value"
+      },
+      "min": {
+        "type": "number",
+        "description": "Minimum allowed value"
+      },
+      "onChange": {
+        "description": "Change handler — Base UI standard signature"
+      },
+      "partProps": {
+        "description": "Props for internal Base UI parts. Use for primitive-level overrides, not public content slots."
+      },
+      "readOnly": {
+        "type": "boolean",
+        "description": "Whether the stepper is read-only"
+      },
+      "required": {
+        "type": "boolean",
+        "description": "Whether the field is required"
+      },
+      "shiftMultiplier": {
+        "type": "number",
+        "description": "Jump by larger amount when holding Shift. Maps to Base UI's largeStep."
+      },
+      "size": {
+        "enum": [
+          "s",
+          "m",
+          "l"
+        ],
+        "description": "Size preset. Default: 'm'"
+      },
+      "step": {
+        "type": "number",
+        "description": "Step increment. Default: 1"
+      },
+      "style": {
+        "description": "Inline styles"
+      },
+      "value": {
+        "description": "Controlled value"
+      }
+    }
+  },
+  "codeSnippets": [
+    {
+      "id": "stepper-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { Stepper } from '@oneui/ui';\n\n<Stepper defaultValue={1} min={0} max={10} />"
+    },
+    {
+      "id": "stepper-controlled",
+      "title": "Controlled",
+      "language": "tsx",
+      "code": "<Stepper value={qty} onChange={(_, v) => setQty(v ?? 0)} min={1} max={99} />"
+    },
+    {
+      "id": "stepper-recipe-decisions",
+      "title": "Recipe Decisions",
+      "language": "json",
+      "code": "{\n  \"component\": \"Stepper\",\n  \"decisions\": [\n    \"Shape\"\n  ]\n}"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "stepper"
+  ],
+  "importPath": "@jds4/oneui-react"
+}

@@ -1,0 +1,30 @@
+import React, { forwardRef } from 'react';
+import type { IconComponentProps } from '../iconProps';
+
+export const IcBrain = forwardRef<SVGSVGElement, IconComponentProps>(function IcBrain(
+  { size = 24, width, height, color = 'currentColor', className, style, ...props },
+  ref,
+) {
+  const dim = width ?? height ?? size;
+  return (
+    <svg
+      ref={ref}
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      width={width ?? dim}
+      height={height ?? dim}
+      color={color}
+      className={className}
+      style={style}
+      {...props}
+    >
+      <path
+            fill="currentColor"
+            d="M9 3c-1.1 0-2 .9-2 2-1.45 0-2.66 1.03-2.94 2.39C4.66 7.14 5.31 7 6 7c.96 0 1.85.27 2.61.74.52.32.6 1.04.17 1.47l-.08.08c-.32.32-.8.34-1.19.11a2.97 2.97 0 0 0-3.11.06c-.21.13-.4.29-.57.47h-.01a3.4 3.4 0 0 0-.47.69c-.08.15-.15.32-.2.49l-.06.18c-.06.23-.09.46-.09.71 0 1.07.56 2 1.4 2.53-.25.44-.4.93-.4 1.47 0 1.66 1.34 3 3 3 0 1.1.9 2 2 2s2-.9 2-2V5c0-1.1-.9-2-2-2m10.6 6.47c.25-.44.4-.93.4-1.47 0-1.66-1.34-3-3-3 0-1.1-.9-2-2-2s-2 .9-2 2v8.5c0 1.1.9 2 2 2 .38 0 .74-.11 1.05-.3.39-.24.9-.19 1.22.14a1 1 0 0 1-.17 1.55 3.906 3.906 0 0 1-4.11.05V19c0 1.1.9 2 2 2s2-.9 2-2c1.66 0 3-1.34 3-3 0-.15-.02-.29-.04-.44-.01-.09-.03-.17-.05-.25 0-.04-.02-.08-.03-.12-.07-.23-.16-.45-.28-.66a2.97 2.97 0 0 0-1.81-1.42c-.46-.13-.8-.5-.8-.98 0-.65.62-1.14 1.25-.97 1.05.27 1.96.88 2.62 1.69.08-.27.13-.55.13-.85 0-1.07-.56-2-1.4-2.53z"
+          />
+    </svg>
+  );
+});
+
+IcBrain.displayName = 'IcBrain';

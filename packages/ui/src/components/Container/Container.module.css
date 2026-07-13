@@ -1,0 +1,35 @@
+/**
+ * Container — outer layout boundary.
+ *
+ * Applies `--Grid-Margin` as horizontal padding (except full-bleed) and an
+ * optional `--Grid-MaxWidth` cap (fixed variant only).
+ */
+
+.container {
+  width: 100%;
+  box-sizing: border-box;
+  margin-inline: auto;
+}
+
+.fluid {
+  padding-inline: var(--Grid-Margin);
+}
+
+.fixed {
+  padding-inline: var(--Grid-Margin);
+  max-width: var(--_container-max-width, var(--Grid-MaxWidth));
+}
+
+.full-bleed {
+  padding-inline: 0;
+  max-width: none;
+}
+
+/**
+ * When custom padding props are set, neutralise variant horizontal padding so
+ * token padding from inline styles is the single source of truth.
+ */
+.resetInlinePad.fluid,
+.resetInlinePad.fixed {
+  padding-inline: 0;
+}

@@ -1,0 +1,38 @@
+import React, { forwardRef } from 'react';
+import type { IconComponentProps } from '../iconProps';
+
+export const IcFolderPublic = forwardRef<SVGSVGElement, IconComponentProps>(function IcFolderPublic(
+  { size = 24, width, height, color = 'currentColor', className, style, ...props },
+  ref,
+) {
+  const dim = width ?? height ?? size;
+  return (
+    <svg
+      ref={ref}
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      width={width ?? dim}
+      height={height ?? dim}
+      color={color}
+      className={className}
+      style={style}
+      {...props}
+    >
+      <path
+            fill="currentColor"
+            d="M12 16.99c.42 0 1-.74 1.27-2h-2.55c.3 1.26.85 2 1.27 2zM9.69 10.99c.11-.55.28-1.08.52-1.57-.7.35-1.28.9-1.68 1.57zM8.54 14.99c.39.67.96 1.22 1.65 1.57-.23-.5-.4-1.03-.5-1.57zM12 8.99c-.42 0-.98.74-1.27 2h2.55c-.3-1.26-.85-2-1.27-2zM9.5 12.99c0-.34 0-.68.04-1H8.12c-.08.33-.13.66-.13 1s.05.67.13 1h1.42c-.04-.32-.04-.66-.04-1M15.46 10.99c-.39-.67-.96-1.22-1.65-1.57.23.5.4 1.03.5 1.57zM10.56 11.99a9.6 9.6 0 0 0 0 2h2.89a8.4 8.4 0 0 0 0-2z"
+          />
+          <path
+            fill="currentColor"
+            d="M21.12 6.88C20.56 6.32 19.79 6 19 6h-6.59l-1.12-1.12C10.73 4.32 9.97 4 9.17 4H5c-.8 0-1.56.32-2.12.88S2 6.21 2 7v10c0 .8.32 1.56.88 2.12S4.21 20 5 20h14c.8 0 1.56-.32 2.12-.88S22 17.79 22 17V9c0-.8-.32-1.56-.88-2.12m-4.96 8.89c-.55.82-1.33 1.46-2.24 1.84s-1.92.48-2.89.28c-.97-.19-1.86-.67-2.56-1.37s-1.18-1.59-1.37-2.56-.09-1.98.28-2.89A4.992 4.992 0 0 1 12 7.99c.66 0 1.31.13 1.91.38.61.25 1.16.62 1.62 1.08s.83 1.02 1.08 1.62c.25.61.38 1.26.38 1.91 0 .99-.29 1.96-.84 2.78z"
+          />
+          <path
+            fill="currentColor"
+            d="M14.46 11.99c.04.32.04.66.04 1s-.02.68-.04 1h1.42c.17-.66.17-1.34 0-2zM13.78 16.57c.69-.36 1.27-.9 1.65-1.57h-1.15c-.1.54-.27 1.07-.5 1.57"
+          />
+    </svg>
+  );
+});
+
+IcFolderPublic.displayName = 'IcFolderPublic';

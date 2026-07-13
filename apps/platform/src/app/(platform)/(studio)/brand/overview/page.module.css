@@ -1,0 +1,540 @@
+/**
+ * page.module.css
+ *
+ * Brand overview page styling - token-only
+ */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-6);
+  max-width: 1400px;
+  margin: 0 auto;
+  padding-bottom: var(--Spacing-7);
+}
+
+/* Section */
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-4);
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sectionTitle {
+  font-family: var(--Title-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Title-M-FontSize);
+  line-height: var(--Title-M-LineHeight);
+  font-weight: var(--Title-M-FontWeight);
+  color: var(--Text-High);
+  margin: 0;
+}
+
+/* Not Configured Box */
+.notConfiguredBox {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-3);
+  padding: var(--Spacing-4-5);
+  background-color: var(--Surface-Subtle);
+  border-radius: var(--Shape-4);
+  border: 1px dashed var(--Border-Subtle);
+  color: var(--Text-Medium);
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+}
+
+/* Selection List — table-like rows with divider only, no background, no border */
+.selectionList {
+  display: flex;
+  flex-direction: column;
+}
+
+.selectionRow {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--Spacing-4-5);
+  padding: var(--Spacing-4-5) 0;
+  border: none;
+  background: none;
+  appearance: none;
+  font: inherit;
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+  color: inherit;
+  border-radius: var(--Shape-0);
+  border-top: 1px solid var(--Border-Subtle);
+  transition: background-color var(--Motion-Duration-Discreet-Short) var(--Motion-Easing-Standard);
+}
+
+.selectionRow:first-child {
+  border-top: none;
+}
+
+.selectionRow:hover .selectionLabel {
+  color: var(--Text-High);
+}
+
+.selectionRow:focus-visible {
+  outline: var(--Focus-Outline-Width) solid var(--Focus-Outline);
+  outline-offset: 2px;
+  border-radius: var(--Shape-3);
+}
+
+.selectionRowIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  color: var(--Text-Medium);
+  flex-shrink: 0;
+}
+
+.selectionLabel {
+  flex-shrink: 0;
+  width: 160px;
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Primary));
+  font-size: var(--Body-M-FontSize);
+  line-height: var(--Body-M-LineHeight);
+  font-weight: var(--Body-FontWeight-Medium);
+  color: var(--Text-High);
+}
+
+.selectionPreview {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  text-align: right;
+  gap: var(--Spacing-2);
+  /* visible — elevation tile box-shadows must not be clipped */
+  overflow: visible;
+}
+
+.selectionBadgeCol {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+/* Collapse the badge column when no badge renders so row values sit flush
+   at the end of the row. */
+.selectionBadgeCol:empty {
+  display: none;
+}
+
+.previewSwatch {
+  width: 20px;
+  height: 20px;
+  border-radius: var(--Shape-3);
+  flex-shrink: 0;
+}
+
+.previewShape {
+  width: 20px;
+  height: 20px;
+  background-color: var(--Text-Medium);
+  flex-shrink: 0;
+  opacity: 0.6;
+}
+
+.previewElevation {
+  width: 28px;
+  height: 20px;
+  background-color: var(--Surface-Main);
+  border-radius: var(--Shape-3);
+  flex-shrink: 0;
+}
+
+.previewLabel {
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Primary));
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  color: var(--Text-Medium);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.previewFontSample {
+  font-size: var(--Title-S-FontSize);
+  line-height: var(--Title-S-LineHeight);
+  color: var(--Text-High);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Loading State */
+.loadingSkeleton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--Spacing-5);
+  color: var(--Text-Medium);
+  background-color: var(--Surface-Subtle);
+  border-radius: var(--Shape-4);
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Empty State */
+.emptyState {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--Spacing-8);
+  color: var(--Text-Medium);
+  text-align: center;
+}
+
+/* Brand Header Wrapper */
+.brandHeaderWrapper {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-5);
+}
+
+.brandLogo {
+  position: relative;
+  flex-shrink: 0;
+  width: 120px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--Shape-5);
+  border: 1px solid var(--Border-Subtle);
+  overflow: hidden;
+  padding: var(--Spacing-3);
+  transition: border-color var(--Motion-Duration-Moderate-XS, 150ms) var(--Motion-Easing-Transition, ease);
+}
+
+.brandLogo:hover {
+  border-color: var(--Border-Default, var(--Border-Subtle));
+}
+
+.brandLogo:focus-within {
+  outline: var(--Stroke-L) solid var(--Primary-Bold, var(--Surface-Bold));
+  outline-offset: var(--Spacing-1);
+}
+
+.logoImage {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* When the brand has configured an explicit Logo colour in the Appearance
+   editor, the SVG has been pre-processed so all fills/strokes use
+   `currentColor`. We set the container's `color` to --Logo-color so the
+   cascade drives the final fill. Falls back to Primary-Bold for parity
+   with the Logo component's own CSS in @oneui/ui.
+
+   The descendant selector is a CSS-level safety net: SVGs that the JS
+   normalizer missed (unusual constructs, no fill specified at all, etc.)
+   still recolor because CSS `fill` on `svg *` beats SVG presentation
+   attributes. We leave `fill="none"` and `fill="transparent"` alone so
+   negative-space designs render correctly. */
+.logoImage[data-logo-override] {
+  color: var(--Logo-color, var(--Primary-Bold, var(--Surface-Bold)));
+}
+
+.logoImage[data-logo-override] svg,
+.logoImage[data-logo-override] svg *:not([fill="none"]):not([fill="transparent"]) {
+  fill: var(--Logo-color, var(--Primary-Bold, var(--Surface-Bold)));
+}
+
+.logoImage[data-logo-override] svg *[stroke]:not([stroke="none"]):not([stroke="transparent"]) {
+  stroke: var(--Logo-color, var(--Primary-Bold, var(--Surface-Bold)));
+}
+
+.logoImage svg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.logoAddPrompt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--Spacing-2-5);
+  color: var(--Text-Medium);
+  width: 100%;
+  height: 100%;
+}
+
+.logoAddLabel {
+  font-family: var(--Label-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Label-S-FontSize);
+  line-height: var(--Label-S-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+}
+
+.logoFileInput {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 1;
+  font-size: 0;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  color: transparent;
+  background: transparent;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.logoFileInput::-webkit-file-upload-button {
+  cursor: pointer;
+  visibility: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+.logoFileInput::file-selector-button {
+  cursor: pointer;
+  visibility: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+.logoFileInput:disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Brand Info */
+.brandInfo {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-3);
+}
+
+.brandNameRow {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-4);
+}
+
+.brandName {
+  font-family: var(--Headline-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Headline-L-FontSize);
+  font-weight: var(--Headline-L-FontWeight);
+  line-height: var(--Headline-L-LineHeight);
+  color: var(--Text-High);
+  margin: 0;
+}
+
+.brandStatus {
+  padding: var(--Spacing-2-5) var(--Spacing-3);
+  border-radius: var(--Shape-Pill);
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.brandStatus[data-status="active"] {
+  background-color: var(--Status-Success-Background);
+  color: var(--Status-Success-Text);
+}
+
+.brandStatus[data-status="draft"] {
+  background-color: var(--Status-Warning-Background);
+  color: var(--Status-Warning-Text);
+}
+
+.brandStatus[data-status="archived"] {
+  background-color: var(--Surface-Subtle);
+  color: var(--Text-Low);
+}
+
+.brandDescription {
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Body-M-FontSize);
+  line-height: var(--Body-M-LineHeight);
+  color: var(--Text-Medium);
+  margin: 0;
+}
+
+.brandMeta {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-3);
+  flex-wrap: wrap;
+}
+
+.brandMetaItem {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-2-5);
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  color: var(--Text-Low);
+}
+
+.brandMetaDivider {
+  width: 1px;
+  height: 12px;
+  background-color: var(--Border-Subtle);
+}
+
+.brandHeaderContent {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Actions Menu */
+.actionsMenuWrapper {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.actionsDropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: var(--Spacing-2, 8px);
+  background-color: var(--Surface-Main);
+  border: 1px solid var(--Border-Subtle);
+  border-radius: var(--Shape-4-5, 12px);
+  box-shadow: var(--Elevation-3, 0 4px 16px rgba(0, 0, 0, 0.12));
+  min-width: 160px;
+  z-index: 100;
+  overflow: hidden;
+}
+
+.dropdownItem {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-3);
+  width: 100%;
+  padding: var(--Spacing-3) var(--Spacing-4);
+  background: none;
+  border: none;
+  color: var(--Text-High);
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Body-M-FontSize);
+  line-height: var(--Body-M-LineHeight);
+  text-align: left;
+  cursor: pointer;
+  transition: background-color var(--Motion-Duration-Discreet-Short) var(--Motion-Easing-Standard);
+}
+
+.dropdownItem:hover {
+  background-color: var(--Surface-Subtle);
+}
+
+.dropdownItem:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.dropdownDivider {
+  height: 1px;
+  background-color: var(--Border-Subtle);
+  margin: var(--Spacing-2) 0;
+}
+
+.dangerItem {
+  color: var(--Status-Error-Text);
+}
+
+.dangerItem:hover {
+  background-color: var(--Status-Error-Background);
+}
+
+/* Dialog Overlay */
+.dialogOverlay {
+  position: fixed;
+  inset: 0;
+  background-color: var(--Scrim);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.dialogBox {
+  background-color: var(--Surface-Main);
+  border-radius: var(--Shape-5, 16px);
+  padding: var(--Spacing-5, 24px);
+  max-width: 400px;
+  width: 100%;
+  box-shadow: var(--Elevation-4, 0 8px 32px rgba(0, 0, 0, 0.16));
+}
+
+.dialogTitle {
+  font-family: var(--Title-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Title-M-FontSize);
+  line-height: var(--Title-M-LineHeight);
+  font-weight: var(--Title-M-FontWeight);
+  color: var(--Text-High);
+  margin: 0 0 var(--Spacing-4) 0;
+}
+
+.dialogMessage {
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Body-M-FontSize);
+  line-height: var(--Body-M-LineHeight);
+  color: var(--Text-Medium);
+  margin: 0 0 var(--Spacing-4-5) 0;
+}
+
+.dialogMessage strong {
+  color: var(--Text-High);
+}
+
+.dialogInput {
+  width: 100%;
+  padding: var(--Spacing-3) var(--Spacing-4);
+  border-radius: var(--Shape-4);
+  border: 1px solid var(--Border-Subtle);
+  background-color: var(--Surface-Subtle);
+  color: var(--Text-High);
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Body-M-FontSize);
+  line-height: var(--Body-M-LineHeight);
+  margin-bottom: var(--Spacing-4-5);
+}
+
+.dialogInput:focus {
+  outline: none;
+  border-color: var(--Surface-Bold);
+}
+
+.dialogActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--Spacing-4);
+}

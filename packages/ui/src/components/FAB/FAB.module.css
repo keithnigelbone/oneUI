@@ -1,0 +1,216 @@
+/**
+ * FAB.module.css
+ *
+ * CRITICAL: ZERO LITERALS rule - ALL styling uses design tokens ONLY
+ * Verified by: pnpm check:literals
+ */
+
+.fab {
+  /* ========================================
+     SHAPE - Interactive = Subtle corner radius
+     ======================================== */
+  border-radius: var(--FAB-borderRadius, var(--Shape-4));
+
+  /* ========================================
+     LAYOUT
+     ======================================== */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--Spacing-3);
+
+  /* ========================================
+     ELEVATION - Floating effect
+     ======================================== */
+  box-shadow: var(--Elevation-3);
+
+  /* ========================================
+     POSITIONING - Fixed for floating behavior
+     ======================================== */
+  position: fixed;
+  z-index: var(--Z-Index-Sticky);
+
+  /* ========================================
+     MOTION
+     ======================================== */
+  transition-property: transform, box-shadow, background-color;
+  transition-duration: var(--Motion-Duration-Discreet-Short);
+  transition-timing-function: var(--Motion-Easing-Standard);
+
+  /* ========================================
+     BASE STYLES
+     ======================================== */
+  border: none;
+  cursor: pointer;
+}
+
+/* ========================================
+   VARIANTS
+   ======================================== */
+
+.primary {
+  background-color: var(--FAB-roleBold, var(--Primary-Bold, var(--Surface-Bold)));
+  color: var(--FAB-roleBoldHigh, var(--Primary-Bold-TintedA11y, var(--Primary-Bold-High, var(--Text-OnBold-High))));
+}
+
+.primary:hover:not(.disabled) {
+  background-color: var(--FAB-roleBoldHover, var(--Primary-Bold-Hover, var(--Surface-Bold)));
+  box-shadow: var(--Elevation-4);
+}
+
+.primary:active:not(.disabled) {
+  background-color: var(--FAB-roleBoldPressed, var(--Primary-Bold-Pressed, var(--Surface-Bold)));
+  transform: scale(0.98);
+}
+
+.secondary {
+  background-color: var(--FAB-roleSubtle, var(--Primary-Subtle, var(--Surface-Subtle)));
+  color: var(--FAB-roleTintedA11y, var(--Primary-TintedA11y, var(--Text-High)));
+}
+
+.secondary:hover:not(.disabled) {
+  background-color: var(--FAB-roleSubtleHover, var(--Primary-Subtle-Hover, var(--Surface-Subtle)));
+  box-shadow: var(--Elevation-4);
+}
+
+.secondary:active:not(.disabled) {
+  transform: scale(0.98);
+}
+
+.surface {
+  background-color: var(--Surface-Main);
+  color: var(--Text-High);
+}
+
+.surface:hover:not(.disabled) {
+  box-shadow: var(--Elevation-4);
+}
+
+.surface:active:not(.disabled) {
+  transform: scale(0.98);
+}
+
+/* ========================================
+   SIZES - Square when not extended
+   ======================================== */
+
+.small {
+  width: var(--FAB-size-small, var(--Spacing-7));
+  height: var(--FAB-size-small, var(--Spacing-7));
+  min-width: var(--Touch-Target-Min);
+  min-height: var(--Touch-Target-Min);
+}
+
+.medium {
+  width: var(--FAB-size-medium, var(--Spacing-8));
+  height: var(--FAB-size-medium, var(--Spacing-8));
+}
+
+.large {
+  width: var(--FAB-size-large, var(--Spacing-9));
+  height: var(--FAB-size-large, var(--Spacing-9));
+}
+
+/* ========================================
+   EXTENDED MODE (with label)
+   ======================================== */
+
+.extended {
+  width: auto;
+  padding: var(--Spacing-4) var(--FAB-paddingHorizontal, var(--Spacing-4-5));
+}
+
+.extended.small {
+  height: var(--FAB-size-small, var(--Spacing-7));
+  padding: var(--Spacing-3) var(--FAB-paddingHorizontal-small, var(--FAB-paddingHorizontal, var(--Spacing-4)));
+}
+
+.extended.medium {
+  height: var(--FAB-size-medium, var(--Spacing-8));
+  padding: var(--Spacing-4) var(--FAB-paddingHorizontal-medium, var(--FAB-paddingHorizontal, var(--Spacing-4-5)));
+}
+
+.extended.large {
+  height: var(--FAB-size-large, var(--Spacing-9));
+  padding: var(--Spacing-4-5) var(--FAB-paddingHorizontal-large, var(--FAB-paddingHorizontal, var(--Spacing-5)));
+}
+
+/* ========================================
+   POSITIONS
+   ======================================== */
+
+.bottom-right {
+  bottom: var(--Spacing-4-5);
+  right: var(--Spacing-4-5);
+}
+
+.bottom-left {
+  bottom: var(--Spacing-4-5);
+  left: var(--Spacing-4-5);
+}
+
+.bottom-center {
+  bottom: var(--Spacing-4-5);
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.bottom-center:active:not(.disabled) {
+  transform: translateX(-50%) scale(0.98);
+}
+
+/* ========================================
+   STATES
+   ======================================== */
+
+.disabled {
+  opacity: var(--Disabled-Opacity);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.loading {
+  pointer-events: none;
+}
+
+.fab:focus {
+  outline: none;
+}
+
+.fab:focus-visible,
+:global([data-force-state="focus"]) .fab {
+  box-shadow:
+    0 0 0 var(--Stroke-XL) var(--Surface-Halo-Gap, var(--Surface-Main)),
+    0 0 0 calc(var(--Stroke-XL) + var(--Focus-Outline-Width)) var(--Focus-Outline);
+}
+
+/* ========================================
+   ICON & LABEL
+   ======================================== */
+
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.label {
+  font-weight: var(--Body-FontWeight-Medium);
+  white-space: nowrap;
+}
+
+/* ========================================
+   LOADING SPINNER
+   ======================================== */
+
+.spinner {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: inherit;
+  --CircularProgressIndicator-indicatorColor: currentColor;
+  --CircularProgressIndicator-trackColor: transparent;
+}
+
+/* All styling uses design tokens only - verified by pnpm check:literals */

@@ -1,0 +1,180 @@
+{
+  "ok": true,
+  "slug": "indicator-badge",
+  "message": "indicator-badge QA Playwright run OK — 2026-06-23T09:18:59.942Z",
+  "suites": {
+    "accessibility": {
+      "suite": "accessibility",
+      "passed": 18,
+      "failed": 0,
+      "skipped": 0,
+      "logs": [
+        "18 test(s) in Playwright report for accessibility.",
+        "Axe: scan completed — 0 violation rules reported."
+      ],
+      "errors": [],
+      "cases": [
+        {
+          "name": "[a11y] WCAG 2.1 AA tag scan on story bands + JSON artefact + HTML report",
+          "status": "passed",
+          "durationMs": 4508
+        },
+        {
+          "name": "[a11y] data-section=\"indicator-qa-default\" — WCAG tags, zero serious/critical",
+          "status": "passed",
+          "durationMs": 4153
+        },
+        {
+          "name": "[a11y] data-section=\"indicator-qa-size\" — WCAG tags, zero serious/critical",
+          "status": "passed",
+          "durationMs": 4880
+        },
+        {
+          "name": "[a11y] data-section=\"indicator-qa-appearance\" — WCAG tags, zero serious/critical",
+          "status": "passed",
+          "durationMs": 4303
+        },
+        {
+          "name": "[a11y] data-section=\"indicator-qa-brand-bg\" — WCAG tags, zero serious/critical",
+          "status": "passed",
+          "durationMs": 4828
+        },
+        {
+          "name": "[a11y] data-section=\"indicator-qa-code-api\" — WCAG tags, zero serious/critical",
+          "status": "passed",
+          "durationMs": 3498
+        },
+        {
+          "name": "[a11y] data-section=\"indicator-qa-combos\" — WCAG tags, zero serious/critical",
+          "status": "passed",
+          "durationMs": 3730
+        },
+        {
+          "name": "[a11y] Section 508 tag run on story bands — zero serious/critical",
+          "status": "passed",
+          "durationMs": 3877
+        },
+        {
+          "name": "[a11y] ARIA validity rules on story bands — zero serious/critical",
+          "status": "passed",
+          "durationMs": 4005
+        },
+        {
+          "name": "[a11y] page lang on <html>",
+          "status": "passed",
+          "durationMs": 3246
+        },
+        {
+          "name": "[a11y] reflow: showcase regions fit at 320px (no horizontal overflow inside bands)",
+          "status": "passed",
+          "durationMs": 4501
+        },
+        {
+          "name": "[a11y] resize: 200% zoom — indicator dots remain visible",
+          "status": "passed",
+          "durationMs": 3303
+        },
+        {
+          "name": "[a11y] Tab reaches a focusable control",
+          "status": "passed",
+          "durationMs": 3337
+        },
+        {
+          "name": "[a11y] default indicator: role status + accessible name",
+          "status": "passed",
+          "durationMs": 3220
+        },
+        {
+          "name": "[a11y] every Indicator Badge status in showcase has non-empty accessible name",
+          "status": "passed",
+          "durationMs": 3447
+        },
+        {
+          "name": "Mode select activates with Enter when focused",
+          "status": "passed",
+          "durationMs": 3109
+        },
+        {
+          "name": "Mode select activates with Space when focused",
+          "status": "passed",
+          "durationMs": 3098
+        },
+        {
+          "name": "[a11y] Theme toggle updates label via page chrome control",
+          "status": "passed",
+          "durationMs": 3401
+        }
+      ],
+      "axe": {
+        "violations": []
+      }
+    },
+    "functional": {
+      "suite": "functional",
+      "passed": 9,
+      "failed": 0,
+      "skipped": 0,
+      "logs": [
+        "9 test(s) in Playwright report for functional."
+      ],
+      "errors": [],
+      "cases": [
+        {
+          "name": "[fn] shows Indicator Badge page heading",
+          "status": "passed",
+          "durationMs": 3144
+        },
+        {
+          "name": "[fn] theme toggle updates label",
+          "status": "passed",
+          "durationMs": 3403
+        },
+        {
+          "name": "[fn] scenario tabs are present",
+          "status": "passed",
+          "durationMs": 2629
+        },
+        {
+          "name": "[fn] Default indicator is visible (empty dot)",
+          "status": "passed",
+          "durationMs": 2790
+        },
+        {
+          "name": "[fn] Size row — XS / S / M / L / XL visible",
+          "status": "passed",
+          "durationMs": 3062
+        },
+        {
+          "name": "[fn] Appearance matrix — primary row visible",
+          "status": "passed",
+          "durationMs": 3088
+        },
+        {
+          "name": "[fn] brand-bg band — xs / m / xl visible",
+          "status": "passed",
+          "durationMs": 3018
+        },
+        {
+          "name": "[fn] Combination matrix renders all combo rows",
+          "status": "passed",
+          "durationMs": 2255
+        },
+        {
+          "name": "[fn] Figma Validation tab renders matrix root",
+          "status": "passed",
+          "durationMs": 2107
+        }
+      ]
+    },
+    "performance": {
+      "suite": "performance",
+      "passed": 0,
+      "failed": 0,
+      "skipped": 0,
+      "logs": [
+        "Performance suite is not executed in apps/qa-playground indicator-badge Playwright bundle."
+      ],
+      "errors": []
+    }
+  }
+}

@@ -1,0 +1,19 @@
+node_modules/
+dist/
+*.log
+.DS_Store
+
+# The repo-root .gitignore ignores package-lock.json globally (pnpm workspace);
+# this package is standalone npm, so re-include its lockfile for reproducible CI.
+!package-lock.json
+
+# Build artifacts (regenerable via pack:plugin / npm pack)
+*.tgz
+*.zip
+
+# Regenerable skill copies (build:plugin copies these from assets/skills/).
+# Only skills/figma-to-native/ is authored and tracked.
+skills/oneui/
+skills/oneui-design-composition/
+skills/surface/
+skills/surface-context/

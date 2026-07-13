@@ -1,0 +1,135 @@
+/**
+ * StartHereContent — full-bleed page layout matching Experience Builder pattern.
+ *
+ * Uses negative margin to reclaim Shell's contentInner padding,
+ * not position: absolute (which breaks flex layout).
+ */
+
+.page {
+  display: flex;
+  flex-direction: column;
+  height: calc(100% + var(--Spacing-6) * 2);
+  max-width: none !important;
+  margin: calc(-1 * var(--Spacing-6));
+  overflow: hidden;
+}
+
+/* ========================================
+ * Empty state — centered hero + hints + chat input
+ * Mirrors ExperienceContent .emptyState
+ * ======================================== */
+
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.emptyStateContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--Spacing-3-5);
+  text-align: center;
+  max-width: 600px;
+  width: 100%;
+  padding: 0 var(--Spacing-5);
+  margin-bottom: var(--Spacing-4-5);
+}
+
+.emptyStateTitle {
+  font-family: var(--Headline-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Headline-L-FontSize);
+  font-weight: var(--Headline-L-FontWeight);
+  line-height: var(--Headline-L-LineHeight);
+  color: var(--Text-High);
+}
+
+.emptyStateDescription {
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Body-M-FontSize);
+  line-height: var(--Body-M-LineHeight);
+  color: var(--Text-Low);
+  max-width: 400px;
+}
+
+.emptyStateHints {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--Spacing-3);
+  justify-content: center;
+  max-width: 600px;
+  margin-top: var(--Spacing-3);
+}
+
+/* ========================================
+ * Workspace state — header + chat panel (offline mode)
+ * ======================================== */
+
+.workspaceHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--Spacing-3-5) var(--Spacing-4-5);
+  border-bottom: var(--Stroke-M) solid var(--Border-Subtle);
+  gap: var(--Spacing-4);
+  flex-shrink: 0;
+}
+
+.workspaceHeaderLeft {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-4);
+  min-width: 0;
+}
+
+.workspaceName {
+  font-family: var(--Title-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Title-M-FontSize);
+  font-weight: var(--Title-M-FontWeight);
+  line-height: var(--Title-M-LineHeight);
+  color: var(--Text-High);
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.offlineBadge {
+  font-family: var(--Label-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Label-S-FontSize);
+  line-height: var(--Label-S-LineHeight);
+  padding: 2px var(--Spacing-3);
+  background: var(--Warning-Subtle);
+  color: var(--Warning-TintedA11y);
+  border-radius: var(--Shape-Pill);
+  flex-shrink: 0;
+}
+
+.splitLayout {
+  flex: 1;
+  display: flex;
+  min-height: 0;
+}
+
+.errorBanner {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-4);
+  padding: var(--Spacing-3-5) var(--Spacing-4-5);
+  background: var(--Negative-Subtle);
+  color: var(--Negative-TintedA11y);
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  border-bottom: var(--Stroke-M) solid var(--Border-Subtle);
+  flex-shrink: 0;
+}
+
+.errorBanner span {
+  flex: 1;
+}

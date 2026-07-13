@@ -1,0 +1,187 @@
+name: Release Flutter
+
+# Packs `ui_flutter` into a release tarball (`ui_flutter-<version>.tar.gz`) via
+# `pnpm flutter:pack`, then — when dryRun is unchecked — publishes it to an
+# Azure DevOps Artifacts **Universal Packages** feed.
+#
+# Why Universal Packages (not npm like React/RN)?
+#   The Flutter artifact is a `.tar.gz` vendored by consumer apps
+#   (`path: vendor/ui_flutter`). It is NOT an npm package. Azure Universal
+#   Packages is the correct feed type for arbitrary release binaries.
+#
+# ── One-time Azure setup (platform / DevOps) ────────────────────────────────
+#   1. Open https://dev.azure.com/jio-dsp → project (default: DS-Assets)
+#   2. Artifacts → Create Feed
+#      • Name: JIO-DS-OneUI-Flutter  (must match AZURE_UNIVERSAL_FEED below)
+#      • Visibility: organization or project per your policy
+#      • Upstream sources: none required for Universal-only publishing
+#   3. Feed → Feed settings → Permissions → grant CI / release engineers
+#      "Contributor" (publish) and app teams "Reader" (download).
+#   4. GitHub repo → Settings → Secrets → Actions → AZURE_DEVOPS_PAT
+#      (PAT with Packaging: Read, write, & manage — same secret as release-native.yml)
+#
+# ── How this workflow links to the feed ─────────────────────────────────────
+#   The `az artifacts universal publish` step uses four identifiers that must
+#   match what you created in Azure:
+#     AZURE_DEVOPS_ORG          → dev.azure.com/<org>           (jio-dsp)
+#     AZURE_DEVOPS_PROJECT      → project name inside the org   (DS-Assets)
+#     AZURE_UNIVERSAL_FEED      → feed name                     (JIO-DS-OneUI-Flutter)
+#     AZURE_UNIVERSAL_PACKAGE   → universal package name        (ui_flutter)
+#   Version is read from packages/ui_flutter/pubspec.yaml at publish time.
+#
+# Manual-only trigger (same pattern as release-native.yml):
+#   workflow_dispatch with dryRun=true (default) → pack + GitHub artifact only.
+#   dryRun=false on `main`                        → pack + publish to Azure feed.
+#
+# Consumer download (after publish):
+#   az artifacts universal download \
+#     --organization "https://dev.azure.com/jio-dsp" \
+#     --project "DS-Assets" \
+#     --scope project \
+#     --feed "JIO-DS-OneUI-Flutter" \
+#     --name ui_flutter \
+#     --version "0.1.0-alpha.1" \
+#     --path ./vendor/ui_flutter-src
+#   tar -xzf ./vendor/ui_flutter-src/ui_flutter-0.1.0-alpha.1.tar.gz -C ./vendor/ui_flutter
+
+on:
+  workflow_dispatch:
+    inputs:
+      dryRun:
+        description: 'Pack only — do not publish to Azure Universal Packages feed'
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+
+env:
+  # ── Match these to your Azure Artifacts feed (edit after feed is created) ──
+  AZURE_DEVOPS_ORG: jio-dsp
+  AZURE_DEVOPS_PROJECT: DS-Assets
+  AZURE_UNIVERSAL_FEED: JIO-DS-OneUI-Flutter
+  AZURE_UNIVERSAL_PACKAGE: ui_flutter
+  UI_FLUTTER_DIR: packages/ui_flutter
+
+jobs:
+  release-flutter:
+    name: Build & deploy ui_flutter
+    runs-on: [self-hosted, linux]
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Resolve run mode
+        run: |
+          set -euo pipefail
+          if [ "${{ inputs.dryRun }}" = "true" ]; then
+            echo "::notice::DRY RUN — packing tarball only. Nothing will be published to Azure."
+          else
+            echo "::notice::DEPLOY RUN — tarball will be published to Azure Universal Packages (main only)."
+          fi
+
+      - name: Use Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Enable pnpm
+        run: |
+          set -euo pipefail
+          corepack enable
+          corepack prepare pnpm@9.15.9 --activate
+          node --version
+          pnpm --version
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build Jio icon catalog (required by pack.sh)
+        run: pnpm build:jio-icons
+
+      - name: Pack ui_flutter release tarball
+        run: |
+          set -euo pipefail
+          pnpm flutter:pack
+          VERSION="$(grep '^version:' "${UI_FLUTTER_DIR}/pubspec.yaml" | awk '{print $2}')"
+          TARBALL="${UI_FLUTTER_DIR}/ui_flutter-${VERSION}.tar.gz"
+          if [[ ! -f "$TARBALL" ]]; then
+            echo "::error::Expected tarball at $TARBALL"
+            exit 1
+          fi
+          echo "UI_FLUTTER_VERSION=${VERSION}" >> "$GITHUB_ENV"
+          echo "UI_FLUTTER_TARBALL=${TARBALL}" >> "$GITHUB_ENV"
+          ls -lh "$TARBALL"
+
+      - name: Upload release tarball artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ui-flutter-release
+          path: ${{ env.UI_FLUTTER_TARBALL }}
+          if-no-files-found: error
+          retention-days: 7
+
+      - name: Dry-run summary
+        if: inputs.dryRun == true
+        run: |
+          set -euo pipefail
+          echo "Dry run complete."
+          echo "  version:  ${UI_FLUTTER_VERSION}"
+          echo "  tarball:  ${UI_FLUTTER_TARBALL}"
+          echo "Download the ui-flutter-release artifact from this workflow run to verify locally."
+
+      # ── DEPLOY: Azure Artifacts Universal Packages ──────────────────────────
+      - name: Ensure Azure CLI + azure-devops extension
+        if: inputs.dryRun == false
+        run: |
+          set -euo pipefail
+          if ! command -v az >/dev/null 2>&1; then
+            echo "Installing Azure CLI..."
+            curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+          fi
+          az version
+          if ! az extension show --name azure-devops >/dev/null 2>&1; then
+            az extension add --name azure-devops
+          fi
+
+      - name: Publish tarball to Azure Universal Packages feed
+        if: inputs.dryRun == false
+        env:
+          AZURE_DEVOPS_EXT_PAT: ${{ secrets.AZURE_DEVOPS_PAT }}
+        run: |
+          set -euo pipefail
+
+          if [ "${{ github.ref_name }}" != "main" ]; then
+            echo "::warning::ref is '${{ github.ref_name }}', not 'main' — skipping Azure publish."
+            exit 0
+          fi
+
+          if [ -z "${AZURE_DEVOPS_EXT_PAT:-}" ]; then
+            echo "::error::AZURE_DEVOPS_PAT is empty — add it under repo Settings → Secrets → Actions."
+            exit 1
+          fi
+
+          ORG_URL="https://dev.azure.com/${AZURE_DEVOPS_ORG}"
+          PUBLISH_DIR="$(mktemp -d)"
+          cp "${UI_FLUTTER_TARBALL}" "${PUBLISH_DIR}/"
+
+          echo "Publishing ${UI_FLUTTER_TARBALL}"
+          echo "  org:      ${ORG_URL}"
+          echo "  project:  ${AZURE_DEVOPS_PROJECT}"
+          echo "  feed:     ${AZURE_UNIVERSAL_FEED}"
+          echo "  package:  ${AZURE_UNIVERSAL_PACKAGE}"
+          echo "  version:  ${UI_FLUTTER_VERSION}"
+
+          az artifacts universal publish \
+            --organization "${ORG_URL}" \
+            --project "${AZURE_DEVOPS_PROJECT}" \
+            --scope project \
+            --feed "${AZURE_UNIVERSAL_FEED}" \
+            --name "${AZURE_UNIVERSAL_PACKAGE}" \
+            --version "${UI_FLUTTER_VERSION}" \
+            --description "One UI Flutter component library (ui_flutter ${UI_FLUTTER_VERSION})" \
+            --path "${PUBLISH_DIR}"
+
+          echo "::notice::Published ui_flutter ${UI_FLUTTER_VERSION} to ${AZURE_UNIVERSAL_FEED}"

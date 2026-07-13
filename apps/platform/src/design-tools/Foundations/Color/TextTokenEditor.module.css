@@ -1,0 +1,206 @@
+/**
+ * TextTokenEditor.module.css
+ * Token-only styling for text token mapping editor with contrast validation
+ */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-4);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.headerRow {
+  border-bottom: var(--Stroke-M) solid var(--Border-Subtle);
+}
+
+.headerCell {
+  padding: var(--Spacing-3-5) var(--Spacing-4);
+  text-align: left;
+  font-size: var(--Label-XS-FontSize);
+  font-weight: var(--Body-FontWeight-Medium);
+  color: var(--Text-Medium);
+}
+
+.row {
+  border-bottom: var(--Stroke-M) solid var(--Border-Subtle);
+  transition-duration: var(--Motion-Duration-Discreet-Short);
+}
+
+.row:hover {
+  background-color: var(--Surface-Subtle);
+}
+
+.row:last-child {
+  border-bottom: none;
+}
+
+.cell {
+  padding: var(--Spacing-3-5) var(--Spacing-4);
+  vertical-align: middle;
+}
+
+.tokenInfo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-1-5);
+}
+
+.tokenName {
+  font-size: var(--Body-S-FontSize);
+  font-weight: var(--Body-FontWeight-Medium);
+  color: var(--Text-High);
+  font-family: monospace;
+}
+
+.tokenDescription {
+  font-size: var(--Label-XS-FontSize);
+  color: var(--Text-Low);
+}
+
+.targetBg {
+  font-size: var(--Label-XS-FontSize);
+  color: var(--Text-Medium);
+  font-family: monospace;
+  margin-top: var(--Spacing-2);
+}
+
+.modeCell {
+  /* INTENTIONAL-LITERAL: table cell min-width constraint — 200px has no f-scale equivalent */
+  min-width: 200px;
+}
+
+.stepSelectorWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-2-5);
+}
+
+.stepSelector {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-3);
+}
+
+.colorPreview {
+  width: var(--Spacing-4-5);
+  height: var(--Spacing-4-5);
+  border-radius: var(--Shape-3);
+  border: 1px solid var(--Border-Subtle);
+  flex-shrink: 0;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.previewText {
+  font-size: var(--Label-XS-FontSize);
+  font-weight: var(--Body-FontWeight-High);
+}
+
+.select {
+  flex: 1;
+  padding: var(--Spacing-2-5) var(--Spacing-3);
+  border-radius: var(--Shape-4);
+  border: 1px solid var(--Border-Subtle);
+  background-color: var(--Surface-Main);
+  color: var(--Text-High);
+  font-size: var(--Body-S-FontSize);
+  font-family: monospace;
+  cursor: pointer;
+  transition-duration: var(--Motion-Duration-Discreet-Short);
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right var(--Spacing-2) center;
+  padding-right: var(--Spacing-5);
+}
+
+.select:hover {
+  border-color: var(--Text-Medium);
+}
+
+.select:focus {
+  outline: var(--Focus-Outline-Width) solid var(--Focus-Outline);
+  outline-offset: var(--Focus-Outline-Offset, var(--Stroke-XL));
+}
+
+.select:disabled {
+  opacity: var(--Disabled-Opacity);
+  cursor: not-allowed;
+}
+
+/* Contrast indicator */
+.contrastIndicator {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-2-5);
+  font-size: var(--Label-XS-FontSize);
+}
+
+.contrastRatio {
+  font-family: monospace;
+  color: var(--Text-Medium);
+}
+
+.contrastBadge {
+  padding: var(--Spacing-2) var(--Spacing-2-5);
+  border-radius: var(--Shape-4);
+  font-size: var(--Label-XS-FontSize);
+  font-weight: var(--Body-FontWeight-Medium);
+}
+
+.contrastPass {
+  background-color: var(--Status-Success-Subtle);
+  color: var(--Status-Success-High);
+}
+
+.contrastFail {
+  background-color: var(--Status-Error-Subtle);
+  color: var(--Status-Error-High);
+}
+
+.contrastWarning {
+  background-color: var(--Status-Warning-Subtle);
+  color: var(--Status-Warning-High);
+}
+
+/* Mobile responsive */
+/* INTENTIONAL-LITERAL: responsive breakpoint — layout breakpoints are not design tokens */
+@media (max-width: 768px) {
+  .table {
+    display: block;
+  }
+
+  .headerRow {
+    display: none;
+  }
+
+  .row {
+    display: flex;
+    flex-direction: column;
+    padding: var(--Spacing-4);
+    gap: var(--Spacing-3-5);
+  }
+
+  .cell {
+    padding: 0;
+  }
+
+  .modeCell {
+    min-width: auto;
+  }
+
+  .modeCell::before {
+    content: attr(data-label);
+    display: block;
+    font-size: var(--Label-XS-FontSize);
+    color: var(--Text-Medium);
+    margin-bottom: var(--Spacing-2-5);
+  }
+}

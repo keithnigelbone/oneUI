@@ -1,0 +1,33 @@
+{
+  "name": "@oneui/docs",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "next dev -p 3001",
+    "build": "NODE_OPTIONS='--max-old-space-size=8192' next build",
+    "start": "next start -p 3001",
+    "typecheck": "tsc --noEmit",
+    "generate:component-docs": "tsx scripts/generate-component-docs.ts"
+  },
+  "dependencies": {
+    "@oneui/convex": "workspace:*",
+    "@oneui/shared": "workspace:*",
+    "@oneui/tokens": "workspace:*",
+    "@oneui/ui": "workspace:*",
+    "@types/mdx": "^2.0.13",
+    "convex": "^1.39.1",
+    "fumadocs-core": "^15.8.5",
+    "fumadocs-mdx": "^13.0.8",
+    "next": "^15.5.9",
+    "react": "^19.2.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.5",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.0.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}

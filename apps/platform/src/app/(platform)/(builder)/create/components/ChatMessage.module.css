@@ -1,0 +1,114 @@
+/**
+ * ChatMessage — Individual message bubble
+ */
+
+.message {
+  display: flex;
+  gap: var(--Spacing-3);
+  max-width: 95%;
+}
+
+.userMessage {
+  align-self: flex-end;
+  flex-direction: row-reverse;
+}
+
+.assistantMessage {
+  align-self: flex-start;
+}
+
+.avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: var(--Shape-Pill);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.userAvatar {
+  background: var(--Surface-Bold);
+  color: var(--Text-OnBold-High);
+  font-family: var(--Label-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Label-XS-FontSize);
+  font-weight: var(--Label-FontWeight-High);
+}
+
+.assistantAvatar {
+  background: none;
+  color: var(--Text-Low);
+}
+
+.bubble {
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Body-M-FontSize);
+  line-height: var(--Body-M-LineHeight);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.userBubble {
+  background: var(--Surface-Bold);
+  color: var(--Text-OnBold-High);
+  padding: var(--Spacing-3) var(--Spacing-3-5);
+  border-radius: var(--Shape-4-5);
+  border-bottom-right-radius: var(--Shape-3);
+}
+
+.assistantBubble {
+  background: transparent;
+  color: var(--Text-High);
+  padding: 0;
+}
+
+/* Image attachment in user message */
+.userImage {
+  max-width: 200px;
+  max-height: 200px;
+  border-radius: var(--Shape-4);
+  object-fit: cover;
+  margin-bottom: var(--Spacing-2);
+}
+
+.toolCall {
+  padding: var(--Spacing-2) var(--Spacing-3);
+  background: var(--Surface-Ghost, var(--Surface-Minimal));
+  border-radius: var(--Shape-4);
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Body-S-FontSize);
+  color: var(--Text-Medium);
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-2);
+  align-self: flex-start;
+}
+
+.toolIcon {
+  width: 14px;
+  height: 14px;
+  opacity: 0.5;
+}
+
+.loadingDots {
+  display: flex;
+  gap: var(--Spacing-1);
+  padding: var(--Spacing-3) 0;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--Shape-Pill);
+  background: var(--Text-Low);
+  animation: dotPulse 1.4s infinite;
+}
+
+.dot:nth-child(2) { animation-delay: 0.2s; }
+.dot:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes dotPulse {
+  0%, 80%, 100% { opacity: 0.3; transform: scale(0.8); }
+  40% { opacity: 1; transform: scale(1); }
+}

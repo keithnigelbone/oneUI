@@ -1,0 +1,333 @@
+/**
+ * dimension.module.css
+ * Styles for the Dimension Foundation page
+ * Token-only values
+ */
+
+/* ─── Controls ──────────────────────────────────────────────────────────── */
+
+.page {
+  width: 100%;
+  min-width: 0;
+}
+
+/* Dimension page header — matches Figma: Display-M title, 15px (Spacing-3) gap. */
+.pageHeader {
+  gap: var(--Spacing-3);
+}
+
+.pageTitle {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Display-M-FontSize);
+  line-height: var(--Display-M-LineHeight);
+  font-weight: var(--Display-M-FontWeight);
+}
+
+.minimalCard {
+  border-left: none;
+  border-right: none;
+  border-radius: 0;
+}
+
+.scaleCard {
+  border-bottom: none;
+}
+
+.minimalCardHeader {
+  padding-left: 0;
+  padding-right: 0;
+  border-radius: 0;
+}
+
+.minimalCardContent {
+  padding-left: 0;
+  padding-right: 0;
+  border-radius: 0;
+}
+
+.scaleCardHeader {
+  align-items: center;
+  border-bottom: none;
+  gap: var(--Spacing-6);
+}
+
+.scaleCardHeader > :first-child {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.scaleCardHeader > :last-child {
+  align-self: center;
+  flex-shrink: 0;
+}
+
+.scaleCardContent {
+  padding-top: 0;
+}
+
+.sectionDivider {
+  width: 100%;
+  height: var(--Stroke-M);
+  background-color: var(--Border-Subtle);
+}
+
+/* Platform tabs sit on the section divider. */
+.platformTabsRow {
+  display: flex;
+  align-items: flex-end;
+  border-bottom: var(--Stroke-M) solid var(--Border-Subtle);
+  margin-bottom: var(--Spacing-6);
+  min-width: 0;
+}
+
+.platformTabsScroller {
+  flex: 1 1 auto;
+  min-width: 0;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.platformTabsList {
+  width: max-content;
+  min-width: 100%;
+}
+
+.platformTabItem {
+  --Tabs-itemPaddingX-m: var(--Spacing-3);
+}
+
+.platformTabItemFirst {
+  margin-left: calc(-1 * var(--Spacing-3));
+}
+
+.roundingControl {
+  flex: 0 0 auto;
+  padding-bottom: var(--Spacing-0-5);
+}
+
+/* ─── Scale Table ────────────────────────────────────────────────────────── */
+
+.tableScroller {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.scaleTable {
+  width: 100%;
+  min-width: calc(var(--Dimension-f16) * 5);
+  border-collapse: collapse;
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+}
+
+.scaleTable th {
+  padding: var(--Spacing-3) 0;
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+  color: var(--Text-Low);
+  text-align: left;
+  border-bottom: var(--Stroke-S) solid var(--Border-Subtle);
+  white-space: nowrap;
+}
+
+.scaleTable td {
+  padding: var(--Spacing-2-5) 0;
+  vertical-align: middle;
+}
+
+.scaleTable tbody tr:first-child td {
+  padding-top: var(--Spacing-4);
+}
+
+.scaleTable tr {
+  transition: background-color var(--Motion-Duration-Discreet-Short);
+  border-radius: var(--Shape-3-5);
+}
+
+.scaleTable tbody tr:hover {
+  background-color: var(--Surface-Subtle);
+}
+
+/* Column widths */
+.colStep {
+  width: 180px;
+}
+
+.colRatio {
+  width: 64px;
+}
+
+.colDensity {
+  width: 100px;
+}
+
+.colAlias {
+  width: 160px;
+}
+
+/* Ratio value column */
+.ratioValue {
+  font-family: var(--Typography-Font-Code);
+  font-size: var(--Code-S-FontSize);
+  line-height: var(--Code-S-LineHeight);
+  color: var(--Text-Low);
+  white-space: nowrap;
+}
+
+/* Step name (first column) */
+.stepName {
+  font-family: var(--Typography-Font-Code);
+  font-size: var(--Code-S-FontSize);
+  line-height: var(--Code-S-LineHeight);
+  color: var(--Text-Medium);
+  white-space: nowrap;
+}
+
+/* Base step (f0) highlight */
+.baseRow .stepName {
+  color: var(--Surface-Bold);
+  font-weight: var(--Body-FontWeight-Medium);
+}
+
+.baseRow {
+  background-color: color-mix(in srgb, var(--Surface-Bold) 6%, transparent);
+}
+
+.gridTokenRow {
+  background-color: color-mix(in srgb, var(--Surface-Bold) 4%, transparent);
+}
+
+.gridTokenRow .stepName {
+  color: var(--Text-High);
+  font-weight: var(--Body-FontWeight-Medium);
+}
+
+/* Density value cells */
+.densityValue {
+  font-family: var(--Typography-Font-Code);
+  font-size: var(--Code-S-FontSize);
+  line-height: var(--Code-S-LineHeight);
+  font-weight: var(--Body-FontWeight-Medium);
+  color: var(--Text-High);
+  text-align: left;
+  white-space: nowrap;
+}
+
+/* Non-integer indicator */
+.nonInteger {
+  color: var(--Text-Medium);
+}
+
+.roundedDot {
+  display: inline-block;
+  width: 4px;
+  height: 4px;
+  border-radius: var(--Shape-Pill);
+  background-color: var(--Surface-Bold);
+  margin-left: var(--Spacing-0-5);
+  vertical-align: middle;
+  opacity: 0.6;
+}
+
+/* Spacing alias (last column) */
+.spacingAlias {
+  font-family: var(--Typography-Font-Code);
+  font-size: var(--Code-S-FontSize);
+  line-height: var(--Code-S-LineHeight);
+  color: var(--Text-Medium);
+  white-space: nowrap;
+}
+
+.formulaDefinition {
+  display: block;
+  margin-top: var(--Spacing-0-5);
+  font-family: var(--Typography-Font-Code);
+  font-size: var(--Code-XS-FontSize);
+  line-height: var(--Code-XS-LineHeight);
+  color: var(--Text-Low);
+  white-space: nowrap;
+}
+
+.noAlias {
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  color: var(--Text-Low);
+}
+
+/* ─── Add Step Button ────────────────────────────────────────────────────── */
+
+.addStepRow {
+  display: flex;
+  gap: var(--Spacing-3);
+  padding-top: var(--Spacing-3);
+}
+
+
+/* ─── Info grid ──────────────────────────────────────────────────────────── */
+
+.infoGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--Spacing-4);
+}
+
+@media (max-width: 900px) {
+  .infoGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.infoCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-3);
+  padding: var(--Spacing-4) 0;
+}
+
+.infoTitle {
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  font-weight: var(--Body-FontWeight-Medium);
+  color: var(--Text-High);
+}
+
+.infoBody {
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Body-M-LineHeight);
+  color: var(--Text-Medium);
+}
+
+.infoBody code {
+  font-family: var(--Typography-Font-Code);
+  font-size: var(--Code-S-FontSize);
+  background-color: var(--Surface-Default);
+  padding: 1px var(--Spacing-0-5);
+  border-radius: var(--Shape-3);
+}
+
+/* ─── Responsive ─────────────────────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+  /* Hide compact + open + ratio columns */
+  .colCompact,
+  .colOpen,
+  .colRatio,
+  .ratioValue {
+    display: none;
+  }
+
+  .colStep {
+    width: 140px;
+  }
+
+  .colAlias {
+    display: none;
+  }
+
+  .gridItemValues {
+    flex-direction: column;
+    gap: var(--Spacing-0-5);
+  }
+}

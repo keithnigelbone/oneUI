@@ -1,0 +1,19 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`compile (GEN-06 acceptance triad) > leg 3 — codegen string is snapshot-stable for a fixed IR (determinism) 1`] = `
+"import React from 'react';
+import { Button, Container, Text } from '@oneui/ui';
+
+export function GeneratedArtifact() {
+  return (
+    <Container layout="flex" direction="column" gap="0">
+      <Container layout="flex" direction="column" gap="5" paddingX="10" paddingY="8" surface="default">
+        <Text text="Explore Jio" variant="title" size="L" weight="high" as="h2" />
+        <Text text="A focused Jio experience designed around the next useful action." variant="body" size="M" attention="medium" as="p" />
+        <Button variant="subtle" appearance="primary" size="m">Explore Jio</Button>
+      </Container>
+    </Container>
+  );
+}
+"
+`;

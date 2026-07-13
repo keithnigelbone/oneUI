@@ -1,0 +1,405 @@
+{
+  "ok": true,
+  "slug": "bottom-navigation",
+  "message": "bottom-navigation QA Playwright run OK — 2026-06-23T09:01:18.802Z",
+  "suites": {
+    "accessibility": {
+      "suite": "accessibility",
+      "passed": 26,
+      "failed": 0,
+      "skipped": 0,
+      "logs": [
+        "26 test(s) in Playwright report for accessibility.",
+        "Axe: scan completed — 0 violation rules reported."
+      ],
+      "errors": [],
+      "cases": [
+        {
+          "name": "All story bands meet WCAG 2.1 AA (axe tags) with HTML + JSON artefacts",
+          "status": "passed",
+          "durationMs": 2033
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA tag scan + JSON artefact + HTML report",
+          "status": "passed",
+          "durationMs": 1775
+        },
+        {
+          "name": "[a11y] Section 508 tag run — zero serious/critical",
+          "status": "passed",
+          "durationMs": 1395
+        },
+        {
+          "name": "[a11y] non-text-contrast rule — zero serious/critical (if rule exists)",
+          "status": "passed",
+          "durationMs": 1216
+        },
+        {
+          "name": "[a11y] label rule — zero serious/critical",
+          "status": "passed",
+          "durationMs": 1333
+        },
+        {
+          "name": "[a11y] ARIA validity rules — zero serious/critical",
+          "status": "passed",
+          "durationMs": 1594
+        },
+        {
+          "name": "[a11y] name rules (buttons / images / links) — zero serious/critical",
+          "status": "passed",
+          "durationMs": 1434
+        },
+        {
+          "name": "[a11y] scrollable regions focusable — zero serious/critical",
+          "status": "passed",
+          "durationMs": 1353
+        },
+        {
+          "name": "[a11y] images: if present, every <img> has alt attribute",
+          "status": "passed",
+          "durationMs": 1083
+        },
+        {
+          "name": "[a11y] SVG icons: aria-label, aria-hidden, role, or title",
+          "status": "passed",
+          "durationMs": 1681
+        },
+        {
+          "name": "[a11y] page lang on <html>",
+          "status": "passed",
+          "durationMs": 1136
+        },
+        {
+          "name": "[a11y] reflow: showcase inner sandbox fits at 360px (phone frame width; bands wider than 320 viewport)",
+          "status": "passed",
+          "durationMs": 1912
+        },
+        {
+          "name": "[a11y] resize: 200% zoom — showcase bottom nav roots remain visible",
+          "status": "passed",
+          "durationMs": 1243
+        },
+        {
+          "name": "[a11y] Tab reaches a focusable control",
+          "status": "passed",
+          "durationMs": 1113
+        },
+        {
+          "name": "[a11y] no keyboard trap (Tab cycle advances)",
+          "status": "passed",
+          "durationMs": 1237
+        },
+        {
+          "name": "[a11y] focused element shows outline or box-shadow",
+          "status": "passed",
+          "durationMs": 1128
+        },
+        {
+          "name": "[a11y] focus order: Tab visits multiple distinct focus targets",
+          "status": "passed",
+          "durationMs": 1183
+        },
+        {
+          "name": "[a11y] skip link: if present, first Tab target is visible",
+          "status": "passed",
+          "durationMs": 1185
+        },
+        {
+          "name": "Mode select activates with Enter when focused",
+          "status": "passed",
+          "durationMs": 1278
+        },
+        {
+          "name": "Mode select activates with Space when focused",
+          "status": "passed",
+          "durationMs": 1243
+        },
+        {
+          "name": "[a11y] default nav: landmark navigation + accessible name",
+          "status": "passed",
+          "durationMs": 1168
+        },
+        {
+          "name": "[a11y] default nav: each tab stop item has non-empty accessible name",
+          "status": "passed",
+          "durationMs": 1193
+        },
+        {
+          "name": "[a11y] labelType none strip: items use aria-label",
+          "status": "passed",
+          "durationMs": 1126
+        },
+        {
+          "name": "[a11y] disabled strip: Search item is disabled",
+          "status": "passed",
+          "durationMs": 1117
+        },
+        {
+          "name": "[a11y] error / validity axe rules — zero serious/critical",
+          "status": "passed",
+          "durationMs": 1455
+        },
+        {
+          "name": "[a11y] aria-live-region-content rule if available",
+          "status": "passed",
+          "durationMs": 1182
+        }
+      ],
+      "axe": {
+        "violations": []
+      }
+    },
+    "functional": {
+      "suite": "functional",
+      "passed": 46,
+      "failed": 0,
+      "skipped": 0,
+      "logs": [
+        "46 test(s) in Playwright report for functional."
+      ],
+      "errors": [],
+      "cases": [
+        {
+          "name": "Page loads cleanly and default navigation matches showcase props",
+          "status": "passed",
+          "durationMs": 1878
+        },
+        {
+          "name": "Every playground data-testid renders without error text",
+          "status": "passed",
+          "durationMs": 1659
+        },
+        {
+          "name": "Every story band (data-section) is visible on the page",
+          "status": "passed",
+          "durationMs": 1389
+        },
+        {
+          "name": "labelType prop surfaces on each navigation root",
+          "status": "passed",
+          "durationMs": 1202
+        },
+        {
+          "name": "Item count bands render the expected number of tab stops",
+          "status": "passed",
+          "durationMs": 1190
+        },
+        {
+          "name": "Appearance prop resolves on each Figma role row",
+          "status": "passed",
+          "durationMs": 1341
+        },
+        {
+          "name": "Clicking a tab moves aria-current to the selected item",
+          "status": "passed",
+          "durationMs": 1118
+        },
+        {
+          "name": "Clicking a disabled item does not change selection",
+          "status": "passed",
+          "durationMs": 1136
+        },
+        {
+          "name": "Click outside the bar does not trap focus on a nav item",
+          "status": "passed",
+          "durationMs": 1154
+        },
+        {
+          "name": "Tab reaches navigation items and page chrome",
+          "status": "passed",
+          "durationMs": 1136
+        },
+        {
+          "name": "Enter on a focused tab item activates selection",
+          "status": "passed",
+          "durationMs": 1043
+        },
+        {
+          "name": "Space on a focused tab item activates selection",
+          "status": "passed",
+          "durationMs": 1094
+        },
+        {
+          "name": "Arrow keys are not required for bottom nav (native Tab between buttons)",
+          "status": "passed",
+          "durationMs": 1103
+        },
+        {
+          "name": "Disabled item is skipped by pointer and remains disabled for keyboard",
+          "status": "passed",
+          "durationMs": 1069
+        },
+        {
+          "name": "Focused nav item shows visible focus indicator",
+          "status": "passed",
+          "durationMs": 1143
+        },
+        {
+          "name": "Tab visits multiple distinct focus targets (no keyboard trap)",
+          "status": "passed",
+          "durationMs": 1252
+        },
+        {
+          "name": "defaultValue marks the correct item with aria-current",
+          "status": "passed",
+          "durationMs": 1068
+        },
+        {
+          "name": "Disabled middle item exposes disabled state",
+          "status": "passed",
+          "durationMs": 1072
+        },
+        {
+          "name": "Controlled value updates when user selects another tab",
+          "status": "passed",
+          "durationMs": 1174
+        },
+        {
+          "name": "showDivider true renders a horizontal divider in the nav",
+          "status": "passed",
+          "durationMs": 1109
+        },
+        {
+          "name": "Bottom Navigation uses icon+label items, not start/end slots",
+          "status": "passed",
+          "durationMs": 1160
+        },
+        {
+          "name": "Selection is single-select tabs, not binary toggle",
+          "status": "passed",
+          "durationMs": 1134
+        },
+        {
+          "name": "Bottom Navigation does not accept typed input",
+          "status": "passed",
+          "durationMs": 1111
+        },
+        {
+          "name": "labelType none requires per-item aria-label",
+          "status": "passed",
+          "durationMs": 1109
+        },
+        {
+          "name": "1line labelType shows visible text on each item",
+          "status": "passed",
+          "durationMs": 1092
+        },
+        {
+          "name": "Icons render inside each tab stop",
+          "status": "passed",
+          "durationMs": 1037
+        },
+        {
+          "name": "Phone-frame sandbox fits 360px width without horizontal overflow",
+          "status": "passed",
+          "durationMs": 1853
+        },
+        {
+          "name": "Default strip remains visible on large desktop viewport",
+          "status": "passed",
+          "durationMs": 1912
+        },
+        {
+          "name": "Item buttons are laid out horizontally in the bar",
+          "status": "passed",
+          "durationMs": 1352
+        },
+        {
+          "name": "Representative navigation strips remain visible in dark theme",
+          "status": "passed",
+          "durationMs": 1569
+        },
+        {
+          "name": "[fn] shows Bottom Navigation page heading",
+          "status": "passed",
+          "durationMs": 1082
+        },
+        {
+          "name": "[fn] theme toggle updates label",
+          "status": "passed",
+          "durationMs": 1422
+        },
+        {
+          "name": "[fn] scenario tabs are present",
+          "status": "passed",
+          "durationMs": 1149
+        },
+        {
+          "name": "[fn] Default strip nav is visible",
+          "status": "passed",
+          "durationMs": 1143
+        },
+        {
+          "name": "[fn] Default strip — defaultValue search leaves Search active; click Profile moves selection",
+          "status": "passed",
+          "durationMs": 1103
+        },
+        {
+          "name": "[fn] labelType row — 1line / 2line / none nav roots visible",
+          "status": "passed",
+          "durationMs": 1076
+        },
+        {
+          "name": "[fn] item count row — 2 to 5 item navs visible",
+          "status": "passed",
+          "durationMs": 1069
+        },
+        {
+          "name": "[fn] appearance matrix — primary and brand-bg navs visible",
+          "status": "passed",
+          "durationMs": 1086
+        },
+        {
+          "name": "[fn] active band — home vs search defaultValue",
+          "status": "passed",
+          "durationMs": 1094
+        },
+        {
+          "name": "[fn] disabled middle item — selection stays on Home after click attempt",
+          "status": "passed",
+          "durationMs": 1168
+        },
+        {
+          "name": "[fn] showDivider row — both nav roots visible",
+          "status": "passed",
+          "durationMs": 1110
+        },
+        {
+          "name": "[fn] controlled strip — click updates Active caption",
+          "status": "passed",
+          "durationMs": 1171
+        },
+        {
+          "name": "[fn] activeIcon strip is visible",
+          "status": "passed",
+          "durationMs": 1250
+        },
+        {
+          "name": "[fn] item appearance override — neutral nav with Search item still focusable",
+          "status": "passed",
+          "durationMs": 1086
+        },
+        {
+          "name": "[fn] combination matrix renders all combo navs",
+          "status": "passed",
+          "durationMs": 1119
+        },
+        {
+          "name": "[fn] combo explicit active — Home exposes aria-current (value may still mark Search)",
+          "status": "passed",
+          "durationMs": 1121
+        }
+      ]
+    },
+    "performance": {
+      "suite": "performance",
+      "passed": 0,
+      "failed": 0,
+      "skipped": 0,
+      "logs": [
+        "Performance suite is not executed in apps/qa-playground bottom-navigation Playwright bundle."
+      ],
+      "errors": []
+    }
+  }
+}

@@ -1,0 +1,203 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "TouchSlider",
+  "generatedAt": "2026-07-09T13:07:37.426Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "An adjustable slider control."
+  },
+  "compositionRules": {
+    "requires": [],
+    "allows": [],
+    "forbids": [],
+    "childKind": "leaf"
+  },
+  "props": [
+    {
+      "name": "min",
+      "type": "number",
+      "required": false,
+      "defaultValue": "0",
+      "description": ""
+    },
+    {
+      "name": "max",
+      "type": "number",
+      "required": false,
+      "defaultValue": "100",
+      "description": ""
+    },
+    {
+      "name": "step",
+      "type": "number",
+      "required": false,
+      "defaultValue": "1",
+      "description": ""
+    },
+    {
+      "name": "largeStep",
+      "type": "number",
+      "required": false,
+      "defaultValue": "10",
+      "description": ""
+    },
+    {
+      "name": "appearance",
+      "type": "'auto' | 'primary' | 'secondary' | 'neutral' | 'sparkle' | 'brand-bg' | 'positive' | 'negative' | 'warning' | 'informative'",
+      "required": false,
+      "defaultValue": "auto",
+      "description": ""
+    },
+    {
+      "name": "orientation",
+      "type": "'horizontal' | 'vertical'",
+      "required": false,
+      "defaultValue": "horizontal",
+      "description": ""
+    },
+    {
+      "name": "progressStyle",
+      "type": "'rounded' | 'sharp'",
+      "required": false,
+      "defaultValue": "rounded",
+      "description": ""
+    },
+    {
+      "name": "start",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Optional leading node rendered before the track (≈30×30 slot)."
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "readOnly",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.kb.rn.TouchSlider",
+    "type": "object",
+    "properties": {
+      "min": {
+        "type": "number",
+        "default": 0
+      },
+      "max": {
+        "type": "number",
+        "default": 100
+      },
+      "step": {
+        "type": "number",
+        "default": 1
+      },
+      "largeStep": {
+        "type": "number",
+        "default": 10
+      },
+      "appearance": {
+        "enum": [
+          "auto",
+          "primary",
+          "secondary",
+          "neutral",
+          "sparkle",
+          "brand-bg",
+          "positive",
+          "negative",
+          "warning",
+          "informative"
+        ],
+        "default": "auto"
+      },
+      "orientation": {
+        "enum": [
+          "horizontal",
+          "vertical"
+        ],
+        "default": "horizontal"
+      },
+      "progressStyle": {
+        "enum": [
+          "rounded",
+          "sharp"
+        ],
+        "default": "rounded"
+      },
+      "start": {
+        "description": "Optional leading node rendered before the track (≈30×30 slot)."
+      },
+      "disabled": {
+        "type": "boolean",
+        "default": false
+      },
+      "readOnly": {
+        "type": "boolean",
+        "default": false
+      }
+    }
+  },
+  "tokens": {
+    "color": [
+      "primary",
+      "secondary",
+      "neutral",
+      "sparkle",
+      "brand-bg",
+      "positive",
+      "negative",
+      "warning",
+      "informative"
+    ],
+    "surface": []
+  },
+  "a11y": {
+    "accessibilityRole": "adjustable",
+    "accessibleNameSource": "aria-label",
+    "minTouchTarget": 44,
+    "honorsBoldText": false,
+    "honorsScreenReader": true
+  },
+  "renderHints": {
+    "baseElement": "View",
+    "animatedOn": [
+      "press"
+    ],
+    "honorsReduceMotion": true,
+    "readsFromSurfaceContext": true
+  },
+  "figma": {
+    "componentKey": "jds-touchslider-v4",
+    "keyHistory": [],
+    "variantProperties": {
+      "Component": "TouchSlider"
+    }
+  },
+  "codeSnippets": [
+    {
+      "id": "import-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { TouchSlider } from '@oneui/ui-native';\n\n<TouchSlider />"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "touchslider",
+    "form",
+    "input",
+    "slider"
+  ],
+  "importPath": "@oneui/ui-native"
+}

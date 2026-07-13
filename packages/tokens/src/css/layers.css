@@ -1,0 +1,10 @@
+/**
+ * CSS CASCADE LAYERS
+ *
+ * Declares the layer ordering for the design system token cascade.
+ * Lower layers are overridden by higher layers, regardless of DOM order.
+ *
+ * Must be imported FIRST before any other CSS files.
+ */
+
+@layer base, semantic, theme, density, brand;

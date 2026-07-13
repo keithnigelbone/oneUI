@@ -1,0 +1,728 @@
+/**
+ * DIMENSION SCALE — S/M/L Breakpoint Resolution
+ *
+ * Static dimensions resolve via @media (zero-JS first paint); fluid dimensions
+ * resolve via clamp() (opt-in via [data-dimension-mode="fluid"]). Grid is always
+ * stepped per breakpoint. Each block sets all 26 f-steps (f-8…f16, plus f2-5).
+ *
+ * GENERATED FILE — do not edit by hand.
+ * Run: npx tsx packages/tokens/scripts/generate-scale-css.ts
+ *
+ * Base scale progression (Option A — Min/Mid/Max per breakpoint):
+ *   Small (< 620px): compact=14  default=16  open=18
+ *   Medium (620–990px): compact=16  default=18  open=20
+ *   Large (≥ 991px): compact=18  default=20  open=22
+ *
+ * Cascade:
+ *   @media (width)                          → static, zero-JS, default+density
+ *   [data-Breakpoint="S|M|L"][data-6-Density] → forced scope (ScopedPlatform), wins
+ *   [data-dimension-mode="fluid"][data-6-Density] → clamp() dimensions, source-last
+ *
+ * Import order: This file MUST be loaded BEFORE primitives.css.
+ */
+
+@layer base {
+
+/* ========================================
+   FALLBACK — :root defaults (S / Default)
+   Applied before any @media / attribute match
+   ======================================== */
+
+:root {
+  --Dimension-f-8: 0px;
+  --Dimension-f-7: 2px;
+  --Dimension-f-6: 4px;
+  --Dimension-f-5: 6px;
+  --Dimension-f-4: 8px;
+  --Dimension-f-3: 10px;
+  --Dimension-f-2: 12px;
+  --Dimension-f-1: 14px;
+  --Dimension-f0: 16px;
+  --Dimension-f1: 18px;
+  --Dimension-f2: 20px;
+  --Dimension-f2-5: 22px;
+  --Dimension-f3: 24px;
+  --Dimension-f4: 28px;
+  --Dimension-f5: 32px;
+  --Dimension-f6: 36px;
+  --Dimension-f7: 40px;
+  --Dimension-f8: 48px;
+  --Dimension-f9: 56px;
+  --Dimension-f10: 64px;
+  --Dimension-f11: 72px;
+  --Dimension-f12: 80px;
+  --Dimension-f13: 96px;
+  --Dimension-f14: 112px;
+  --Dimension-f15: 128px;
+  --Dimension-f16: 160px;
+  --Grid-Margin: 16px;
+  --Grid-Gutter: 8px;
+}
+
+/* ========================================
+   STATIC — @media (zero-JS, correct first paint)
+   ======================================== */
+
+/* Small (< 620px) — static */
+@media (max-width: 619px) {
+  :root {
+    --Dimension-f-8: 0px;
+    --Dimension-f-7: 2px;
+    --Dimension-f-6: 4px;
+    --Dimension-f-5: 6px;
+    --Dimension-f-4: 8px;
+    --Dimension-f-3: 10px;
+    --Dimension-f-2: 12px;
+    --Dimension-f-1: 14px;
+    --Dimension-f0: 16px;
+    --Dimension-f1: 18px;
+    --Dimension-f2: 20px;
+    --Dimension-f2-5: 22px;
+    --Dimension-f3: 24px;
+    --Dimension-f4: 28px;
+    --Dimension-f5: 32px;
+    --Dimension-f6: 36px;
+    --Dimension-f7: 40px;
+    --Dimension-f8: 48px;
+    --Dimension-f9: 56px;
+    --Dimension-f10: 64px;
+    --Dimension-f11: 72px;
+    --Dimension-f12: 80px;
+    --Dimension-f13: 96px;
+    --Dimension-f14: 112px;
+    --Dimension-f15: 128px;
+    --Dimension-f16: 160px;
+    --Grid-Margin: 16px;
+    --Grid-Gutter: 8px;
+  }
+
+  [data-6-Density="compact"] {
+    --Dimension-f-8: 0px;
+    --Dimension-f-7: 1.75px;
+    --Dimension-f-6: 3.5px;
+    --Dimension-f-5: 5.25px;
+    --Dimension-f-4: 7px;
+    --Dimension-f-3: 8.75px;
+    --Dimension-f-2: 10.5px;
+    --Dimension-f-1: 12.25px;
+    --Dimension-f0: 14px;
+    --Dimension-f1: 15.75px;
+    --Dimension-f2: 17.5px;
+    --Dimension-f2-5: 19.25px;
+    --Dimension-f3: 21px;
+    --Dimension-f4: 24.5px;
+    --Dimension-f5: 28px;
+    --Dimension-f6: 31.5px;
+    --Dimension-f7: 35px;
+    --Dimension-f8: 42px;
+    --Dimension-f9: 49px;
+    --Dimension-f10: 56px;
+    --Dimension-f11: 63px;
+    --Dimension-f12: 70px;
+    --Dimension-f13: 84px;
+    --Dimension-f14: 98px;
+    --Dimension-f15: 112px;
+    --Dimension-f16: 140px;
+    --Grid-Margin: 10.5px;
+    --Grid-Gutter: 5.25px;
+  }
+
+  [data-6-Density="open"] {
+    --Dimension-f-8: 0px;
+    --Dimension-f-7: 2.25px;
+    --Dimension-f-6: 4.5px;
+    --Dimension-f-5: 6.75px;
+    --Dimension-f-4: 9px;
+    --Dimension-f-3: 11.25px;
+    --Dimension-f-2: 13.5px;
+    --Dimension-f-1: 15.75px;
+    --Dimension-f0: 18px;
+    --Dimension-f1: 20.25px;
+    --Dimension-f2: 22.5px;
+    --Dimension-f2-5: 24.75px;
+    --Dimension-f3: 27px;
+    --Dimension-f4: 31.5px;
+    --Dimension-f5: 36px;
+    --Dimension-f6: 40.5px;
+    --Dimension-f7: 45px;
+    --Dimension-f8: 54px;
+    --Dimension-f9: 63px;
+    --Dimension-f10: 72px;
+    --Dimension-f11: 81px;
+    --Dimension-f12: 90px;
+    --Dimension-f13: 108px;
+    --Dimension-f14: 126px;
+    --Dimension-f15: 144px;
+    --Dimension-f16: 180px;
+    --Grid-Margin: 22.5px;
+    --Grid-Gutter: 11.25px;
+  }
+}
+
+/* Medium (620–990px) — static */
+@media (min-width: 620px) and (max-width: 990px) {
+  :root {
+    --Dimension-f-8: 0px;
+    --Dimension-f-7: 2.25px;
+    --Dimension-f-6: 4.5px;
+    --Dimension-f-5: 6.75px;
+    --Dimension-f-4: 9px;
+    --Dimension-f-3: 11.25px;
+    --Dimension-f-2: 13.5px;
+    --Dimension-f-1: 15.75px;
+    --Dimension-f0: 18px;
+    --Dimension-f1: 20.25px;
+    --Dimension-f2: 22.5px;
+    --Dimension-f2-5: 24.75px;
+    --Dimension-f3: 27px;
+    --Dimension-f4: 31.5px;
+    --Dimension-f5: 36px;
+    --Dimension-f6: 40.5px;
+    --Dimension-f7: 45px;
+    --Dimension-f8: 54px;
+    --Dimension-f9: 63px;
+    --Dimension-f10: 72px;
+    --Dimension-f11: 81px;
+    --Dimension-f12: 90px;
+    --Dimension-f13: 108px;
+    --Dimension-f14: 126px;
+    --Dimension-f15: 144px;
+    --Dimension-f16: 180px;
+    --Grid-Margin: 36px;
+    --Grid-Gutter: 18px;
+  }
+
+  [data-6-Density="compact"] {
+    --Dimension-f-8: 0px;
+    --Dimension-f-7: 2px;
+    --Dimension-f-6: 4px;
+    --Dimension-f-5: 6px;
+    --Dimension-f-4: 8px;
+    --Dimension-f-3: 10px;
+    --Dimension-f-2: 12px;
+    --Dimension-f-1: 14px;
+    --Dimension-f0: 16px;
+    --Dimension-f1: 18px;
+    --Dimension-f2: 20px;
+    --Dimension-f2-5: 22px;
+    --Dimension-f3: 24px;
+    --Dimension-f4: 28px;
+    --Dimension-f5: 32px;
+    --Dimension-f6: 36px;
+    --Dimension-f7: 40px;
+    --Dimension-f8: 48px;
+    --Dimension-f9: 56px;
+    --Dimension-f10: 64px;
+    --Dimension-f11: 72px;
+    --Dimension-f12: 80px;
+    --Dimension-f13: 96px;
+    --Dimension-f14: 112px;
+    --Dimension-f15: 128px;
+    --Dimension-f16: 160px;
+    --Grid-Margin: 24px;
+    --Grid-Gutter: 12px;
+  }
+
+  [data-6-Density="open"] {
+    --Dimension-f-8: 0px;
+    --Dimension-f-7: 2.5px;
+    --Dimension-f-6: 5px;
+    --Dimension-f-5: 7.5px;
+    --Dimension-f-4: 10px;
+    --Dimension-f-3: 12.5px;
+    --Dimension-f-2: 15px;
+    --Dimension-f-1: 17.5px;
+    --Dimension-f0: 20px;
+    --Dimension-f1: 22.5px;
+    --Dimension-f2: 25px;
+    --Dimension-f2-5: 27.5px;
+    --Dimension-f3: 30px;
+    --Dimension-f4: 35px;
+    --Dimension-f5: 40px;
+    --Dimension-f6: 45px;
+    --Dimension-f7: 50px;
+    --Dimension-f8: 60px;
+    --Dimension-f9: 70px;
+    --Dimension-f10: 80px;
+    --Dimension-f11: 90px;
+    --Dimension-f12: 100px;
+    --Dimension-f13: 120px;
+    --Dimension-f14: 140px;
+    --Dimension-f15: 160px;
+    --Dimension-f16: 200px;
+    --Grid-Margin: 50px;
+    --Grid-Gutter: 25px;
+  }
+}
+
+/* Large (≥ 991px) — static */
+@media (min-width: 991px) {
+  :root {
+    --Dimension-f-8: 0px;
+    --Dimension-f-7: 2.5px;
+    --Dimension-f-6: 5px;
+    --Dimension-f-5: 7.5px;
+    --Dimension-f-4: 10px;
+    --Dimension-f-3: 12.5px;
+    --Dimension-f-2: 15px;
+    --Dimension-f-1: 17.5px;
+    --Dimension-f0: 20px;
+    --Dimension-f1: 22.5px;
+    --Dimension-f2: 25px;
+    --Dimension-f2-5: 27.5px;
+    --Dimension-f3: 30px;
+    --Dimension-f4: 35px;
+    --Dimension-f5: 40px;
+    --Dimension-f6: 45px;
+    --Dimension-f7: 50px;
+    --Dimension-f8: 60px;
+    --Dimension-f9: 70px;
+    --Dimension-f10: 80px;
+    --Dimension-f11: 90px;
+    --Dimension-f12: 100px;
+    --Dimension-f13: 120px;
+    --Dimension-f14: 140px;
+    --Dimension-f15: 160px;
+    --Dimension-f16: 200px;
+    --Grid-Margin: 50px;
+    --Grid-Gutter: 25px;
+  }
+
+  [data-6-Density="compact"] {
+    --Dimension-f-8: 0px;
+    --Dimension-f-7: 2.25px;
+    --Dimension-f-6: 4.5px;
+    --Dimension-f-5: 6.75px;
+    --Dimension-f-4: 9px;
+    --Dimension-f-3: 11.25px;
+    --Dimension-f-2: 13.5px;
+    --Dimension-f-1: 15.75px;
+    --Dimension-f0: 18px;
+    --Dimension-f1: 20.25px;
+    --Dimension-f2: 22.5px;
+    --Dimension-f2-5: 24.75px;
+    --Dimension-f3: 27px;
+    --Dimension-f4: 31.5px;
+    --Dimension-f5: 36px;
+    --Dimension-f6: 40.5px;
+    --Dimension-f7: 45px;
+    --Dimension-f8: 54px;
+    --Dimension-f9: 63px;
+    --Dimension-f10: 72px;
+    --Dimension-f11: 81px;
+    --Dimension-f12: 90px;
+    --Dimension-f13: 108px;
+    --Dimension-f14: 126px;
+    --Dimension-f15: 144px;
+    --Dimension-f16: 180px;
+    --Grid-Margin: 36px;
+    --Grid-Gutter: 18px;
+  }
+
+  [data-6-Density="open"] {
+    --Dimension-f-8: 0px;
+    --Dimension-f-7: 2.75px;
+    --Dimension-f-6: 5.5px;
+    --Dimension-f-5: 8.25px;
+    --Dimension-f-4: 11px;
+    --Dimension-f-3: 13.75px;
+    --Dimension-f-2: 16.5px;
+    --Dimension-f-1: 19.25px;
+    --Dimension-f0: 22px;
+    --Dimension-f1: 24.75px;
+    --Dimension-f2: 27.5px;
+    --Dimension-f2-5: 30.25px;
+    --Dimension-f3: 33px;
+    --Dimension-f4: 38.5px;
+    --Dimension-f5: 44px;
+    --Dimension-f6: 49.5px;
+    --Dimension-f7: 55px;
+    --Dimension-f8: 66px;
+    --Dimension-f9: 77px;
+    --Dimension-f10: 88px;
+    --Dimension-f11: 99px;
+    --Dimension-f12: 110px;
+    --Dimension-f13: 132px;
+    --Dimension-f14: 154px;
+    --Dimension-f15: 176px;
+    --Dimension-f16: 220px;
+    --Grid-Margin: 88px;
+    --Grid-Gutter: 30.25px;
+  }
+}
+
+/* ========================================
+   FORCED SCOPE — ScopedPlatform overrides
+   ======================================== */
+
+[data-Breakpoint="S"][data-6-Density="default"] {
+  --Dimension-f-8: 0px;
+  --Dimension-f-7: 2px;
+  --Dimension-f-6: 4px;
+  --Dimension-f-5: 6px;
+  --Dimension-f-4: 8px;
+  --Dimension-f-3: 10px;
+  --Dimension-f-2: 12px;
+  --Dimension-f-1: 14px;
+  --Dimension-f0: 16px;
+  --Dimension-f1: 18px;
+  --Dimension-f2: 20px;
+  --Dimension-f2-5: 22px;
+  --Dimension-f3: 24px;
+  --Dimension-f4: 28px;
+  --Dimension-f5: 32px;
+  --Dimension-f6: 36px;
+  --Dimension-f7: 40px;
+  --Dimension-f8: 48px;
+  --Dimension-f9: 56px;
+  --Dimension-f10: 64px;
+  --Dimension-f11: 72px;
+  --Dimension-f12: 80px;
+  --Dimension-f13: 96px;
+  --Dimension-f14: 112px;
+  --Dimension-f15: 128px;
+  --Dimension-f16: 160px;
+  --Grid-Margin: 16px;
+  --Grid-Gutter: 8px;
+}
+
+[data-Breakpoint="S"][data-6-Density="compact"] {
+  --Dimension-f-8: 0px;
+  --Dimension-f-7: 1.75px;
+  --Dimension-f-6: 3.5px;
+  --Dimension-f-5: 5.25px;
+  --Dimension-f-4: 7px;
+  --Dimension-f-3: 8.75px;
+  --Dimension-f-2: 10.5px;
+  --Dimension-f-1: 12.25px;
+  --Dimension-f0: 14px;
+  --Dimension-f1: 15.75px;
+  --Dimension-f2: 17.5px;
+  --Dimension-f2-5: 19.25px;
+  --Dimension-f3: 21px;
+  --Dimension-f4: 24.5px;
+  --Dimension-f5: 28px;
+  --Dimension-f6: 31.5px;
+  --Dimension-f7: 35px;
+  --Dimension-f8: 42px;
+  --Dimension-f9: 49px;
+  --Dimension-f10: 56px;
+  --Dimension-f11: 63px;
+  --Dimension-f12: 70px;
+  --Dimension-f13: 84px;
+  --Dimension-f14: 98px;
+  --Dimension-f15: 112px;
+  --Dimension-f16: 140px;
+  --Grid-Margin: 10.5px;
+  --Grid-Gutter: 5.25px;
+}
+
+[data-Breakpoint="S"][data-6-Density="open"] {
+  --Dimension-f-8: 0px;
+  --Dimension-f-7: 2.25px;
+  --Dimension-f-6: 4.5px;
+  --Dimension-f-5: 6.75px;
+  --Dimension-f-4: 9px;
+  --Dimension-f-3: 11.25px;
+  --Dimension-f-2: 13.5px;
+  --Dimension-f-1: 15.75px;
+  --Dimension-f0: 18px;
+  --Dimension-f1: 20.25px;
+  --Dimension-f2: 22.5px;
+  --Dimension-f2-5: 24.75px;
+  --Dimension-f3: 27px;
+  --Dimension-f4: 31.5px;
+  --Dimension-f5: 36px;
+  --Dimension-f6: 40.5px;
+  --Dimension-f7: 45px;
+  --Dimension-f8: 54px;
+  --Dimension-f9: 63px;
+  --Dimension-f10: 72px;
+  --Dimension-f11: 81px;
+  --Dimension-f12: 90px;
+  --Dimension-f13: 108px;
+  --Dimension-f14: 126px;
+  --Dimension-f15: 144px;
+  --Dimension-f16: 180px;
+  --Grid-Margin: 22.5px;
+  --Grid-Gutter: 11.25px;
+}
+
+[data-Breakpoint="M"][data-6-Density="default"] {
+  --Dimension-f-8: 0px;
+  --Dimension-f-7: 2.25px;
+  --Dimension-f-6: 4.5px;
+  --Dimension-f-5: 6.75px;
+  --Dimension-f-4: 9px;
+  --Dimension-f-3: 11.25px;
+  --Dimension-f-2: 13.5px;
+  --Dimension-f-1: 15.75px;
+  --Dimension-f0: 18px;
+  --Dimension-f1: 20.25px;
+  --Dimension-f2: 22.5px;
+  --Dimension-f2-5: 24.75px;
+  --Dimension-f3: 27px;
+  --Dimension-f4: 31.5px;
+  --Dimension-f5: 36px;
+  --Dimension-f6: 40.5px;
+  --Dimension-f7: 45px;
+  --Dimension-f8: 54px;
+  --Dimension-f9: 63px;
+  --Dimension-f10: 72px;
+  --Dimension-f11: 81px;
+  --Dimension-f12: 90px;
+  --Dimension-f13: 108px;
+  --Dimension-f14: 126px;
+  --Dimension-f15: 144px;
+  --Dimension-f16: 180px;
+  --Grid-Margin: 36px;
+  --Grid-Gutter: 18px;
+}
+
+[data-Breakpoint="M"][data-6-Density="compact"] {
+  --Dimension-f-8: 0px;
+  --Dimension-f-7: 2px;
+  --Dimension-f-6: 4px;
+  --Dimension-f-5: 6px;
+  --Dimension-f-4: 8px;
+  --Dimension-f-3: 10px;
+  --Dimension-f-2: 12px;
+  --Dimension-f-1: 14px;
+  --Dimension-f0: 16px;
+  --Dimension-f1: 18px;
+  --Dimension-f2: 20px;
+  --Dimension-f2-5: 22px;
+  --Dimension-f3: 24px;
+  --Dimension-f4: 28px;
+  --Dimension-f5: 32px;
+  --Dimension-f6: 36px;
+  --Dimension-f7: 40px;
+  --Dimension-f8: 48px;
+  --Dimension-f9: 56px;
+  --Dimension-f10: 64px;
+  --Dimension-f11: 72px;
+  --Dimension-f12: 80px;
+  --Dimension-f13: 96px;
+  --Dimension-f14: 112px;
+  --Dimension-f15: 128px;
+  --Dimension-f16: 160px;
+  --Grid-Margin: 24px;
+  --Grid-Gutter: 12px;
+}
+
+[data-Breakpoint="M"][data-6-Density="open"] {
+  --Dimension-f-8: 0px;
+  --Dimension-f-7: 2.5px;
+  --Dimension-f-6: 5px;
+  --Dimension-f-5: 7.5px;
+  --Dimension-f-4: 10px;
+  --Dimension-f-3: 12.5px;
+  --Dimension-f-2: 15px;
+  --Dimension-f-1: 17.5px;
+  --Dimension-f0: 20px;
+  --Dimension-f1: 22.5px;
+  --Dimension-f2: 25px;
+  --Dimension-f2-5: 27.5px;
+  --Dimension-f3: 30px;
+  --Dimension-f4: 35px;
+  --Dimension-f5: 40px;
+  --Dimension-f6: 45px;
+  --Dimension-f7: 50px;
+  --Dimension-f8: 60px;
+  --Dimension-f9: 70px;
+  --Dimension-f10: 80px;
+  --Dimension-f11: 90px;
+  --Dimension-f12: 100px;
+  --Dimension-f13: 120px;
+  --Dimension-f14: 140px;
+  --Dimension-f15: 160px;
+  --Dimension-f16: 200px;
+  --Grid-Margin: 50px;
+  --Grid-Gutter: 25px;
+}
+
+[data-Breakpoint="L"][data-6-Density="default"] {
+  --Dimension-f-8: 0px;
+  --Dimension-f-7: 2.5px;
+  --Dimension-f-6: 5px;
+  --Dimension-f-5: 7.5px;
+  --Dimension-f-4: 10px;
+  --Dimension-f-3: 12.5px;
+  --Dimension-f-2: 15px;
+  --Dimension-f-1: 17.5px;
+  --Dimension-f0: 20px;
+  --Dimension-f1: 22.5px;
+  --Dimension-f2: 25px;
+  --Dimension-f2-5: 27.5px;
+  --Dimension-f3: 30px;
+  --Dimension-f4: 35px;
+  --Dimension-f5: 40px;
+  --Dimension-f6: 45px;
+  --Dimension-f7: 50px;
+  --Dimension-f8: 60px;
+  --Dimension-f9: 70px;
+  --Dimension-f10: 80px;
+  --Dimension-f11: 90px;
+  --Dimension-f12: 100px;
+  --Dimension-f13: 120px;
+  --Dimension-f14: 140px;
+  --Dimension-f15: 160px;
+  --Dimension-f16: 200px;
+  --Grid-Margin: 50px;
+  --Grid-Gutter: 25px;
+}
+
+[data-Breakpoint="L"][data-6-Density="compact"] {
+  --Dimension-f-8: 0px;
+  --Dimension-f-7: 2.25px;
+  --Dimension-f-6: 4.5px;
+  --Dimension-f-5: 6.75px;
+  --Dimension-f-4: 9px;
+  --Dimension-f-3: 11.25px;
+  --Dimension-f-2: 13.5px;
+  --Dimension-f-1: 15.75px;
+  --Dimension-f0: 18px;
+  --Dimension-f1: 20.25px;
+  --Dimension-f2: 22.5px;
+  --Dimension-f2-5: 24.75px;
+  --Dimension-f3: 27px;
+  --Dimension-f4: 31.5px;
+  --Dimension-f5: 36px;
+  --Dimension-f6: 40.5px;
+  --Dimension-f7: 45px;
+  --Dimension-f8: 54px;
+  --Dimension-f9: 63px;
+  --Dimension-f10: 72px;
+  --Dimension-f11: 81px;
+  --Dimension-f12: 90px;
+  --Dimension-f13: 108px;
+  --Dimension-f14: 126px;
+  --Dimension-f15: 144px;
+  --Dimension-f16: 180px;
+  --Grid-Margin: 36px;
+  --Grid-Gutter: 18px;
+}
+
+[data-Breakpoint="L"][data-6-Density="open"] {
+  --Dimension-f-8: 0px;
+  --Dimension-f-7: 2.75px;
+  --Dimension-f-6: 5.5px;
+  --Dimension-f-5: 8.25px;
+  --Dimension-f-4: 11px;
+  --Dimension-f-3: 13.75px;
+  --Dimension-f-2: 16.5px;
+  --Dimension-f-1: 19.25px;
+  --Dimension-f0: 22px;
+  --Dimension-f1: 24.75px;
+  --Dimension-f2: 27.5px;
+  --Dimension-f2-5: 30.25px;
+  --Dimension-f3: 33px;
+  --Dimension-f4: 38.5px;
+  --Dimension-f5: 44px;
+  --Dimension-f6: 49.5px;
+  --Dimension-f7: 55px;
+  --Dimension-f8: 66px;
+  --Dimension-f9: 77px;
+  --Dimension-f10: 88px;
+  --Dimension-f11: 99px;
+  --Dimension-f12: 110px;
+  --Dimension-f13: 132px;
+  --Dimension-f14: 154px;
+  --Dimension-f15: 176px;
+  --Dimension-f16: 220px;
+  --Grid-Margin: 88px;
+  --Grid-Gutter: 30.25px;
+}
+
+/* ========================================
+   FLUID — clamp() dimensions (opt-in)
+   ======================================== */
+
+[data-dimension-mode="fluid"][data-6-Density="default"] {
+  --Dimension-f-8: 0px;
+  --Dimension-f-7: clamp(2px, calc(1.88px + 0.0321vw), 2.5px);
+  --Dimension-f-6: clamp(4px, calc(3.77px + 0.0641vw), 5px);
+  --Dimension-f-5: clamp(6px, calc(5.65px + 0.0962vw), 7.5px);
+  --Dimension-f-4: clamp(8px, calc(7.54px + 0.1282vw), 10px);
+  --Dimension-f-3: clamp(10px, calc(9.42px + 0.1603vw), 12.5px);
+  --Dimension-f-2: clamp(12px, calc(11.31px + 0.1923vw), 15px);
+  --Dimension-f-1: clamp(14px, calc(13.19px + 0.2244vw), 17.5px);
+  --Dimension-f0: clamp(16px, calc(15.08px + 0.2564vw), 20px);
+  --Dimension-f1: clamp(18px, calc(16.96px + 0.2885vw), 22.5px);
+  --Dimension-f2: clamp(20px, calc(18.85px + 0.3205vw), 25px);
+  --Dimension-f2-5: clamp(22px, calc(20.73px + 0.3526vw), 27.5px);
+  --Dimension-f3: clamp(24px, calc(22.62px + 0.3846vw), 30px);
+  --Dimension-f4: clamp(28px, calc(26.38px + 0.4487vw), 35px);
+  --Dimension-f5: clamp(32px, calc(30.15px + 0.5128vw), 40px);
+  --Dimension-f6: clamp(36px, calc(33.92px + 0.5769vw), 45px);
+  --Dimension-f7: clamp(40px, calc(37.69px + 0.6410vw), 50px);
+  --Dimension-f8: clamp(48px, calc(45.23px + 0.7692vw), 60px);
+  --Dimension-f9: clamp(56px, calc(52.77px + 0.8974vw), 70px);
+  --Dimension-f10: clamp(64px, calc(60.31px + 1.0256vw), 80px);
+  --Dimension-f11: clamp(72px, calc(67.85px + 1.1538vw), 90px);
+  --Dimension-f12: clamp(80px, calc(75.38px + 1.2821vw), 100px);
+  --Dimension-f13: clamp(96px, calc(90.46px + 1.5385vw), 120px);
+  --Dimension-f14: clamp(112px, calc(105.54px + 1.7949vw), 140px);
+  --Dimension-f15: clamp(128px, calc(120.62px + 2.0513vw), 160px);
+  --Dimension-f16: clamp(160px, calc(150.77px + 2.5641vw), 200px);
+}
+
+[data-dimension-mode="fluid"][data-6-Density="compact"] {
+  --Dimension-f-8: 0px;
+  --Dimension-f-7: clamp(1.75px, calc(1.63px + 0.0321vw), 2.25px);
+  --Dimension-f-6: clamp(3.5px, calc(3.27px + 0.0641vw), 4.5px);
+  --Dimension-f-5: clamp(5.25px, calc(4.90px + 0.0962vw), 6.75px);
+  --Dimension-f-4: clamp(7px, calc(6.54px + 0.1282vw), 9px);
+  --Dimension-f-3: clamp(8.75px, calc(8.17px + 0.1603vw), 11.25px);
+  --Dimension-f-2: clamp(10.5px, calc(9.81px + 0.1923vw), 13.5px);
+  --Dimension-f-1: clamp(12.25px, calc(11.44px + 0.2244vw), 15.75px);
+  --Dimension-f0: clamp(14px, calc(13.08px + 0.2564vw), 18px);
+  --Dimension-f1: clamp(15.75px, calc(14.71px + 0.2885vw), 20.25px);
+  --Dimension-f2: clamp(17.5px, calc(16.35px + 0.3205vw), 22.5px);
+  --Dimension-f2-5: clamp(19.25px, calc(17.98px + 0.3526vw), 24.75px);
+  --Dimension-f3: clamp(21px, calc(19.62px + 0.3846vw), 27px);
+  --Dimension-f4: clamp(24.5px, calc(22.88px + 0.4487vw), 31.5px);
+  --Dimension-f5: clamp(28px, calc(26.15px + 0.5128vw), 36px);
+  --Dimension-f6: clamp(31.5px, calc(29.42px + 0.5769vw), 40.5px);
+  --Dimension-f7: clamp(35px, calc(32.69px + 0.6410vw), 45px);
+  --Dimension-f8: clamp(42px, calc(39.23px + 0.7692vw), 54px);
+  --Dimension-f9: clamp(49px, calc(45.77px + 0.8974vw), 63px);
+  --Dimension-f10: clamp(56px, calc(52.31px + 1.0256vw), 72px);
+  --Dimension-f11: clamp(63px, calc(58.85px + 1.1538vw), 81px);
+  --Dimension-f12: clamp(70px, calc(65.38px + 1.2821vw), 90px);
+  --Dimension-f13: clamp(84px, calc(78.46px + 1.5385vw), 108px);
+  --Dimension-f14: clamp(98px, calc(91.54px + 1.7949vw), 126px);
+  --Dimension-f15: clamp(112px, calc(104.62px + 2.0513vw), 144px);
+  --Dimension-f16: clamp(140px, calc(130.77px + 2.5641vw), 180px);
+}
+
+[data-dimension-mode="fluid"][data-6-Density="open"] {
+  --Dimension-f-8: 0px;
+  --Dimension-f-7: clamp(2.25px, calc(2.13px + 0.0321vw), 2.75px);
+  --Dimension-f-6: clamp(4.5px, calc(4.27px + 0.0641vw), 5.5px);
+  --Dimension-f-5: clamp(6.75px, calc(6.40px + 0.0962vw), 8.25px);
+  --Dimension-f-4: clamp(9px, calc(8.54px + 0.1282vw), 11px);
+  --Dimension-f-3: clamp(11.25px, calc(10.67px + 0.1603vw), 13.75px);
+  --Dimension-f-2: clamp(13.5px, calc(12.81px + 0.1923vw), 16.5px);
+  --Dimension-f-1: clamp(15.75px, calc(14.94px + 0.2244vw), 19.25px);
+  --Dimension-f0: clamp(18px, calc(17.08px + 0.2564vw), 22px);
+  --Dimension-f1: clamp(20.25px, calc(19.21px + 0.2885vw), 24.75px);
+  --Dimension-f2: clamp(22.5px, calc(21.35px + 0.3205vw), 27.5px);
+  --Dimension-f2-5: clamp(24.75px, calc(23.48px + 0.3526vw), 30.25px);
+  --Dimension-f3: clamp(27px, calc(25.62px + 0.3846vw), 33px);
+  --Dimension-f4: clamp(31.5px, calc(29.88px + 0.4487vw), 38.5px);
+  --Dimension-f5: clamp(36px, calc(34.15px + 0.5128vw), 44px);
+  --Dimension-f6: clamp(40.5px, calc(38.42px + 0.5769vw), 49.5px);
+  --Dimension-f7: clamp(45px, calc(42.69px + 0.6410vw), 55px);
+  --Dimension-f8: clamp(54px, calc(51.23px + 0.7692vw), 66px);
+  --Dimension-f9: clamp(63px, calc(59.77px + 0.8974vw), 77px);
+  --Dimension-f10: clamp(72px, calc(68.31px + 1.0256vw), 88px);
+  --Dimension-f11: clamp(81px, calc(76.85px + 1.1538vw), 99px);
+  --Dimension-f12: clamp(90px, calc(85.38px + 1.2821vw), 110px);
+  --Dimension-f13: clamp(108px, calc(102.46px + 1.5385vw), 132px);
+  --Dimension-f14: clamp(126px, calc(119.54px + 1.7949vw), 154px);
+  --Dimension-f15: clamp(144px, calc(136.62px + 2.0513vw), 176px);
+  --Dimension-f16: clamp(180px, calc(170.77px + 2.5641vw), 220px);
+}
+
+}

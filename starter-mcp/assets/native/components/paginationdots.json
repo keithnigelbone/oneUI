@@ -1,0 +1,187 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "PaginationDots",
+  "generatedAt": "2026-07-09T13:07:37.416Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "Carousel / page position indicator. Count-driven (renders `count` dots, not children) with a sliding max-5 window and three dot states (active / regular / edge). Controlled or uncontrolled active index; optional loop. readOnly → progressbar, otherwise tablist of tappable dots."
+  },
+  "compositionRules": {
+    "requires": [
+      "count"
+    ],
+    "allows": [],
+    "forbids": [],
+    "childKind": "leaf"
+  },
+  "props": [
+    {
+      "name": "count",
+      "type": "number",
+      "required": true,
+      "description": "Total number of pages/dots."
+    },
+    {
+      "name": "activeIndex",
+      "type": "number",
+      "required": false,
+      "description": "Active dot index (controlled)."
+    },
+    {
+      "name": "defaultActiveIndex",
+      "type": "number",
+      "required": false,
+      "defaultValue": "0",
+      "description": "Initial active index (uncontrolled)."
+    },
+    {
+      "name": "onActiveIndexChange",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Fires with the next active index on dot press / step."
+    },
+    {
+      "name": "loop",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": "Wrap the window around the ends."
+    },
+    {
+      "name": "appearance",
+      "type": "'auto' | 'primary' | 'secondary' | 'neutral' | 'sparkle' | 'brand-bg' | 'positive' | 'negative' | 'warning' | 'informative'",
+      "required": false,
+      "defaultValue": "auto",
+      "description": "Multi-accent role for the active dot, resolved against the parent <Surface>."
+    },
+    {
+      "name": "readOnly",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": "Non-interactive — root becomes progressbar instead of tablist."
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": false,
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.kb.rn.PaginationDots",
+    "type": "object",
+    "properties": {
+      "count": {
+        "type": "number",
+        "description": "Total number of pages/dots."
+      },
+      "activeIndex": {
+        "type": "number",
+        "description": "Active dot index (controlled)."
+      },
+      "defaultActiveIndex": {
+        "type": "number",
+        "default": 0,
+        "description": "Initial active index (uncontrolled)."
+      },
+      "onActiveIndexChange": {
+        "description": "Fires with the next active index on dot press / step."
+      },
+      "loop": {
+        "type": "boolean",
+        "default": false,
+        "description": "Wrap the window around the ends."
+      },
+      "appearance": {
+        "enum": [
+          "auto",
+          "primary",
+          "secondary",
+          "neutral",
+          "sparkle",
+          "brand-bg",
+          "positive",
+          "negative",
+          "warning",
+          "informative"
+        ],
+        "default": "auto",
+        "description": "Multi-accent role for the active dot, resolved against the parent <Surface>."
+      },
+      "readOnly": {
+        "type": "boolean",
+        "default": false,
+        "description": "Non-interactive — root becomes progressbar instead of tablist."
+      },
+      "aria-label": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "count"
+    ]
+  },
+  "tokens": {
+    "color": [
+      "primary",
+      "secondary",
+      "neutral",
+      "sparkle",
+      "brand-bg",
+      "positive",
+      "negative",
+      "warning",
+      "informative"
+    ],
+    "surface": [
+      "bold"
+    ],
+    "shape": [
+      "pill"
+    ]
+  },
+  "a11y": {
+    "accessibilityRole": "tablist",
+    "accessibilityState": [
+      "selected"
+    ],
+    "accessibleNameSource": "aria-label",
+    "minTouchTarget": 44,
+    "honorsBoldText": false,
+    "honorsScreenReader": true
+  },
+  "renderHints": {
+    "baseElement": "View",
+    "animatedOn": [],
+    "honorsReduceMotion": false,
+    "readsFromSurfaceContext": true
+  },
+  "figma": {
+    "componentKey": "jds-pagination-dots-v4",
+    "keyHistory": [],
+    "variantProperties": {
+      "Component": "PaginationDots"
+    }
+  },
+  "codeSnippets": [
+    {
+      "id": "import-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { PaginationDots } from '@oneui/ui-native';\n\n<PaginationDots />"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "paginationdots",
+    "navigation",
+    "pagination",
+    "indicator",
+    "surface-aware"
+  ],
+  "importPath": "@oneui/ui-native"
+}

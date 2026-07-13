@@ -1,0 +1,143 @@
+{
+  "name": "@oneui/ui-native",
+  "version": "0.1.0-alpha.5",
+  "private": true,
+  "description": "React Native component library for the OneUI design system",
+  "keywords": [
+    "react-native",
+    "design-system",
+    "oneui",
+    "jio"
+  ],
+  "license": "UNLICENSED",
+  "author": "Jio Design System — OneUI",
+  "homepage": "https://jio-dsp.visualstudio.com/AI%20Prototypes/_artifacts/feed/JIO-DS-OneUI-Native",
+  "repository": {
+    "type": "git",
+    "url": "git+https://jio-dsp.visualstudio.com/AI%20Prototypes/_git/OneUiStudio",
+    "directory": "packages/ui-native"
+  },
+  "bugs": {
+    "url": "https://jio-dsp.visualstudio.com/AI%20Prototypes/_workitems"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "sideEffects": false,
+  "react-native": "./src/index.ts",
+  "main": "./src/index.ts",
+  "module": "./src/index.ts",
+  "types": "./src/index.ts",
+  "files": [
+    "src",
+    "!src/**/*.test.ts",
+    "!src/**/*.test.tsx",
+    "scripts",
+    "tsup.config.ts",
+    "tsconfig.build.json"
+  ],
+  "exports": {
+    ".": {
+      "react-native": "./src/index.ts",
+      "default": "./src/index.ts"
+    },
+    "./theme": {
+      "react-native": "./src/theme/public.ts",
+      "default": "./src/theme/public.ts"
+    },
+    "./icons": {
+      "react-native": "./src/components/Icon/icons.ts",
+      "default": "./src/components/Icon/icons.ts"
+    },
+    "./internal": {
+      "react-native": "./src/internal.ts",
+      "default": "./src/internal.ts"
+    },
+    "./components/*": "./src/components/*/index.ts",
+    "./showcase/Button": "./src/components/Button/Button.showcase.native.tsx",
+    "./showcase/Divider": "./src/components/Divider/Divider.showcase.native.tsx",
+    "./showcase/LinkButton": "./src/components/LinkButton/LinkButton.showcase.native.tsx",
+    "./showcase/Separator": "./src/components/Separator/Separator.showcase.native.tsx",
+    "./showcase/Spinner": "./src/components/Spinner/Spinner.showcase.native.tsx",
+    "./showcase/Badge": "./src/components/Badge/Badge.showcase.native.tsx",
+    "./showcase/CounterBadge": "./src/components/CounterBadge/CounterBadge.showcase.native.tsx",
+    "./showcase/Card": "./src/components/Card/Card.showcase.native.tsx",
+    "./showcase/IndicatorBadge": "./src/components/IndicatorBadge/IndicatorBadge.showcase.native.tsx",
+    "./showcase/PaginationDots": "./src/components/PaginationDots/PaginationDots.showcase.native.tsx",
+    "./showcase/Carousel": "./src/components/Carousel/Carousel.showcase.native.tsx",
+    "./showcase/Pagination": "./src/components/Pagination/Pagination.showcase.native.tsx",
+    "./showcase/Progress": "./src/components/Progress/Progress.showcase.native.tsx",
+    "./showcase/CircularProgressIndicator": "./src/components/CircularProgressIndicator/CircularProgressIndicator.showcase.native.tsx",
+    "./showcase/Container": "./src/components/Container/Container.showcase.native.tsx",
+    "./showcase/Image": "./src/components/Image/Image.showcase.native.tsx",
+    "./showcase/Logo": "./src/components/Logo/Logo.showcase.native.tsx",
+    "./showcase/AgentPulse": "./src/components/AgentPulse/AgentPulse.showcase.native.tsx",
+    "./showcase/Avatar": "./src/components/Avatar/Avatar.showcase.native.tsx",
+    "./showcase/IconButton": "./src/components/IconButton/IconButton.showcase.native.tsx",
+    "./showcase/IconContained": "./src/components/IconContained/IconContained.showcase.native.tsx",
+    "./showcase/BottomNavigation": "./src/components/BottomNavigation/BottomNavigation.showcase.native.tsx",
+    "./showcase/HeaderNative": "./src/components/HeaderNative/HeaderNative.showcase.native.tsx",
+    "./showcase/HeaderItem": "./src/components/HeaderNative/HeaderItem.showcase.native.tsx",
+    "./showcase/BottomNavigationItem": "./src/components/BottomNavigationItem/BottomNavigationItem.showcase.native.tsx",
+    "./showcase/Icon": "./src/components/Icon/Icon.showcase.native.tsx",
+    "./showcase/Text": "./src/components/Text/Text.showcase.native.tsx",
+    "./showcase/InputFeedback": "./src/components/InputFeedback/InputFeedback.showcase.native.tsx",
+    "./showcase/Chip": "./src/components/Chip/Chip.showcase.native.tsx",
+    "./showcase/ChipGroup": "./src/components/ChipGroup/ChipGroup.showcase.native.tsx",
+    "./showcase/Checkbox": "./src/components/Checkbox/Checkbox.showcase.native.tsx",
+    "./showcase/CheckboxField": "./src/components/CheckboxField/CheckboxField.showcase.native.tsx",
+    "./showcase/Radio": "./src/components/Radio/Radio.showcase.native.tsx",
+    "./showcase/RadioField": "./src/components/RadioField/RadioField.showcase.native.tsx",
+    "./showcase/InputDynamicText": "./src/components/InputDynamicText/InputDynamicText.showcase.native.tsx",
+    "./showcase/Input": "./src/components/Input/Input.showcase.native.tsx",
+    "./showcase/InputField": "./src/components/InputField/InputField.showcase.native.tsx",
+    "./showcase/Scrim": "./src/components/Scrim/Scrim.showcase.native.tsx",
+    "./showcase/Select": "./src/components/Select/Select.showcase.native.tsx",
+    "./showcase/Modal": "./src/components/Modal/Modal.showcase.native.tsx",
+    "./showcase/Tooltip": "./src/components/Tooltip/Tooltip.showcase.native.tsx",
+    "./showcase/Switch": "./src/components/Switch/Switch.showcase.native.tsx",
+    "./showcase/Tabs": "./src/components/Tabs/Tabs.showcase.native.tsx",
+    "./showcase/SegmentedControl": "./src/components/SegmentedControl/SegmentedControl.showcase.native.tsx",
+    "./showcase/TouchSlider": "./src/components/TouchSlider/TouchSlider.showcase.native.tsx",
+    "./showcase/Slider": "./src/components/Slider/Slider.showcase.native.tsx",
+    "./showcase/SingleTextButton": "./src/components/SingleTextButton/SingleTextButton.showcase.native.tsx"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "check:exports": "node scripts/check-exports.mjs",
+    "check:version": "node scripts/check-version.mjs",
+    "check:docs": "node scripts/check-docs.mjs",
+    "generate:readme": "node scripts/generate-readme.mjs",
+    "check:readme": "node scripts/generate-readme.mjs --check",
+    "check:release": "pnpm run check:exports && pnpm run check:version && pnpm run check:docs && pnpm run check:readme",
+    "build:js": "tsup",
+    "build:dts": "tsc --project tsconfig.build.json --emitDeclarationOnly",
+    "build": "pnpm run check:release && pnpm run build:js && pnpm run build:dts",
+    "postbuild": "node scripts/copy-to-root-dist.mjs",
+    "pack:dist": "node scripts/pack-dist.mjs",
+    "build:pack": "pnpm --filter @jds/kb-core run build && pnpm --filter @jds/kb-rn run build && pnpm run build && pnpm run pack:dist",
+    "build:pack:all": "node scripts/build-pack-all.mjs",
+    "generate:default-brand": "node scripts/generate-default-brand-data.mjs",
+    "prepack": "pnpm run build"
+  },
+  "dependencies": {
+    "@oneui/shared": "workspace:*",
+    "@oneui/tokens": "workspace:*"
+  },
+  "peerDependencies": {
+    "react": "^18.3.0 || ^19.0.0",
+    "react-native": ">=0.76.0",
+    "react-native-svg": ">=15.0.0"
+  },
+  "devDependencies": {
+    "@testing-library/react-native": "^12.9.0",
+    "@types/react": "~19.1.10",
+    "react": "19.1.0",
+    "react-native": "0.81.5",
+    "react-native-svg": "15.12.1",
+    "tsup": "^8.0.0",
+    "typescript": "^5.7.2",
+    "vitest": "^2.0.0"
+  }
+}

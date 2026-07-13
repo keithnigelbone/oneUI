@@ -1,0 +1,19 @@
+/**
+ * BrandEditGate.module.css
+ *
+ * Read-only gating for viewers. The inert region stays at full opacity —
+ * view-only users still need to READ the page comfortably (dimming the whole
+ * editor with --Disabled-Opacity (0.3) would make previews illegible; that
+ * token is calibrated for individual controls). The banner + dead controls
+ * communicate the state; `data-readonly` is the hook if a per-section
+ * treatment is ever wanted.
+ */
+
+.bannerSlot {
+  padding: var(--Spacing-4) var(--Spacing-4) 0;
+}
+
+.gate[data-readonly='true'] {
+  /* Interaction is blocked by the `inert` attribute on this element. */
+  cursor: default;
+}

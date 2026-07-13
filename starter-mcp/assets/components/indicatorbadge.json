@@ -1,0 +1,155 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "IndicatorBadge",
+  "generatedAt": "2026-01-01T00:00:00.000Z",
+  "machineReadable": true,
+  "intentAndPurpose": {
+    "intent": "Non-interactive status/presence indicator dot. Supports multi-accent appearance roles and five sizes.",
+    "taskContexts": [],
+    "sentiments": [
+      "neutral"
+    ]
+  },
+  "compositionRules": {
+    "requires": [],
+    "allows": [],
+    "forbids": []
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "bold",
+        "useWhen": [
+          "Default"
+        ]
+      }
+    ]
+  },
+  "relationshipsAndDependencies": {
+    "related": []
+  },
+  "contextSignals": {
+    "density": [
+      "compact",
+      "default",
+      "open"
+    ],
+    "modality": [
+      "desktop",
+      "mobile"
+    ],
+    "brand": [
+      "theme-scope aware",
+      "recipe-driven"
+    ],
+    "mode": [
+      "light",
+      "dark",
+      "surface-context"
+    ]
+  },
+  "observabilityHooks": {
+    "track": [],
+    "health": [
+      "a11y_violations"
+    ]
+  },
+  "props": [
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": true,
+      "description": "Required accessible label describing the indicator status"
+    },
+    {
+      "name": "appearance",
+      "type": "IndicatorBadgeAppearance",
+      "required": false,
+      "description": "Multi-accent appearance role. 'auto' resolves to 'primary'."
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "required": false,
+      "description": "Additional class name"
+    },
+    {
+      "name": "size",
+      "type": "IndicatorBadgeSize",
+      "required": false,
+      "description": "IndicatorBadge size. Default: 'm'."
+    },
+    {
+      "name": "style",
+      "type": "CSSProperties",
+      "required": false,
+      "description": "Inline styles"
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.docs.indicator-badge",
+    "type": "object",
+    "properties": {
+      "aria-label": {
+        "type": "string",
+        "description": "Required accessible label describing the indicator status"
+      },
+      "appearance": {
+        "enum": [
+          "auto",
+          "primary",
+          "secondary",
+          "neutral",
+          "sparkle",
+          "brand-bg",
+          "positive",
+          "negative",
+          "warning",
+          "informative"
+        ],
+        "description": "Multi-accent appearance role. 'auto' resolves to 'primary'."
+      },
+      "className": {
+        "type": "string",
+        "description": "Additional class name"
+      },
+      "size": {
+        "enum": [
+          "xs",
+          "s",
+          "m",
+          "l",
+          "xl"
+        ],
+        "description": "IndicatorBadge size. Default: 'm'."
+      },
+      "style": {
+        "description": "Inline styles"
+      }
+    },
+    "required": [
+      "aria-label"
+    ]
+  },
+  "codeSnippets": [
+    {
+      "id": "indicator-badge-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { IndicatorBadge } from '@oneui/ui';\n\n<IndicatorBadge />"
+    },
+    {
+      "id": "indicator-badge-recipe-decisions",
+      "title": "Recipe Decisions",
+      "language": "json",
+      "code": "{\n  \"component\": \"IndicatorBadge\",\n  \"decisions\": [\n    \"Shape\"\n  ]\n}"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "indicator-badge"
+  ],
+  "importPath": "@jds4/oneui-react"
+}

@@ -1,0 +1,30 @@
+import React, { forwardRef } from 'react';
+import type { IconComponentProps } from '../iconProps';
+
+export const IcNetworkFuture = forwardRef<SVGSVGElement, IconComponentProps>(function IcNetworkFuture(
+  { size = 24, width, height, color = 'currentColor', className, style, ...props },
+  ref,
+) {
+  const dim = width ?? height ?? size;
+  return (
+    <svg
+      ref={ref}
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      width={width ?? dim}
+      height={height ?? dim}
+      color={color}
+      className={className}
+      style={style}
+      {...props}
+    >
+      <path
+            fill="currentColor"
+            d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20m-2 2.25A8 8 0 0 1 12 4q.722.002 1.43.14a10 10 0 0 0-3.22 2.67A7.7 7.7 0 0 1 10 5zm.27 6.75a2 2 0 0 0 .68-.22 8 8 0 0 1 1.74 1.9 2 2 0 0 0-.19.85v.07c-.54.37-1.125.672-1.74.9a2 2 0 0 0-.67-.37A7 7 0 0 1 10 13a7.7 7.7 0 0 1 .27-2M8 5.09a9.6 9.6 0 0 0 .26 2.19A9.6 9.6 0 0 0 5.76 7 8 8 0 0 1 8 5.09m-3.66 9h-.07a7.84 7.84 0 0 1 .25-4.91 7.8 7.8 0 0 1 3.48.1 2 2 0 0 0 .38.92A9.7 9.7 0 0 0 8 13q.003.781.14 1.55a1.6 1.6 0 0 0-.35.43 7.6 7.6 0 0 1-3.44-.87zm1.18 2.57c.732.19 1.484.29 2.24.3a2 2 0 0 0 1.58 1c.397.69.874 1.331 1.42 1.91a8 8 0 0 1-5.23-3.19zm8 3a8 8 0 0 1-2.39-2.53 1.9 1.9 0 0 0 .3-.74c.755-.28 1.473-.65 2.14-1.1a1 1 0 0 0 .22.1c.124.528.194 1.068.21 1.61.001.9-.151 1.792-.45 2.64zm.95-8.14h-.15A10.3 10.3 0 0 0 12 9a1.94 1.94 0 0 0-.26-1 8 8 0 0 1 4.08-2.73c.123.568.183 1.149.18 1.73a7.9 7.9 0 0 1-1.41 4.51zm1.28 7.55c.16-.679.244-1.373.25-2.07a10 10 0 0 0-.21-2q.117-.105.21-.23.989.213 2 .23a10 10 0 0 0 1.44-.11 8 8 0 0 1-3.66 4.16zm.58-6.24a1.4 1.4 0 0 0-.09-.22A9.85 9.85 0 0 0 18 7v-.29A8 8 0 0 1 20 12c0 .25 0 .49-.05.73a8.06 8.06 0 0 1-3.59.08z"
+          />
+    </svg>
+  );
+});
+
+IcNetworkFuture.displayName = 'IcNetworkFuture';

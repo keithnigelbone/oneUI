@@ -1,0 +1,973 @@
+{
+  "ok": false,
+  "slug": "input-field",
+  "message": "input-field QA Playwright run had failures — 2026-06-23T09:27:47.689Z",
+  "suites": {
+    "accessibility": {
+      "suite": "accessibility",
+      "passed": 57,
+      "failed": 2,
+      "skipped": 0,
+      "logs": [
+        "59 test(s) in Playwright report for accessibility.",
+        "Axe: 1 violation rule(s) reported."
+      ],
+      "errors": [
+        "[a11y] Full page WCAG 2.1 AA scan has no serious or critical issues (report saved): Foreground and background colours do not meet WCAG AA minimum contrast.",
+        "[a11y] WCAG 2.1 AA axe scan — Edge cases band: Foreground and background colours do not meet WCAG AA minimum contrast."
+      ],
+      "cases": [
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — Figma validation matrix",
+          "status": "passed",
+          "durationMs": 6245
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — Figma validation matrix band",
+          "status": "passed",
+          "durationMs": 4757,
+          "componentBand": "input-field-qa-figma-validation-matrix"
+        },
+        {
+          "name": "[a11y] Full page WCAG 2.1 AA scan has no serious or critical issues (report saved)",
+          "status": "failed",
+          "durationMs": 5780,
+          "error": "Foreground and background colours do not meet WCAG AA minimum contrast."
+        },
+        {
+          "name": "ARIA validity rules — zero serious/critical (Input Field showcase)",
+          "status": "passed",
+          "durationMs": 4897
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — Default band",
+          "status": "passed",
+          "durationMs": 5019,
+          "componentBand": "input-field-qa-default"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — All properties band",
+          "status": "passed",
+          "durationMs": 4085,
+          "componentBand": "input-field-qa-all-props"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — Size (S · M · L) band",
+          "status": "passed",
+          "durationMs": 4156,
+          "componentBand": "input-field-qa-size"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — Input slots band",
+          "status": "passed",
+          "durationMs": 10545,
+          "componentBand": "input-field-qa-input-slots"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — Input chrome band",
+          "status": "passed",
+          "durationMs": 3307,
+          "componentBand": "input-field-qa-input-chrome"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — Input appearance band",
+          "status": "passed",
+          "durationMs": 3660,
+          "componentBand": "input-field-qa-appearance"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — Input types band",
+          "status": "passed",
+          "durationMs": 3493,
+          "componentBand": "input-field-qa-input-types"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — Field slots band",
+          "status": "passed",
+          "durationMs": 3462,
+          "componentBand": "input-field-qa-field-slots"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — Property isolates band",
+          "status": "passed",
+          "durationMs": 2364,
+          "componentBand": "input-field-qa-isolates"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — Edge cases band",
+          "status": "failed",
+          "durationMs": 3350,
+          "error": "Foreground and background colours do not meet WCAG AA minimum contrast.",
+          "componentBand": "input-field-qa-edge"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — Playground examples band",
+          "status": "passed",
+          "durationMs": 3630,
+          "componentBand": "input-field-qa-playground"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — Pairwise (7 × 2×2) band",
+          "status": "passed",
+          "durationMs": 3279,
+          "componentBand": "input-field-qa-pairwise"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — Accessibility band",
+          "status": "passed",
+          "durationMs": 2350,
+          "componentBand": "input-field-qa-a11y"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — Controls panel band",
+          "status": "passed",
+          "durationMs": 2575,
+          "componentBand": "input-field-qa-controls"
+        },
+        {
+          "name": "[a11y] Row \"Default\": WCAG 2.1 AA scan has no serious or critical issues",
+          "status": "passed",
+          "durationMs": 3734
+        },
+        {
+          "name": "[a11y] Row \"All Props\": WCAG 2.1 AA scan has no serious or critical issues",
+          "status": "passed",
+          "durationMs": 3711
+        },
+        {
+          "name": "[a11y] Row \"Size M\": WCAG 2.1 AA scan has no serious or critical issues",
+          "status": "passed",
+          "durationMs": 3661
+        },
+        {
+          "name": "[a11y] Row \"Slot Start\": WCAG 2.1 AA scan has no serious or critical issues",
+          "status": "passed",
+          "durationMs": 3496
+        },
+        {
+          "name": "[a11y] Row \"Slot All Four\": WCAG 2.1 AA scan has no serious or critical issues",
+          "status": "passed",
+          "durationMs": 3696
+        },
+        {
+          "name": "[a11y] Row \"Appearance Primary\": WCAG 2.1 AA scan has no serious or critical issues",
+          "status": "passed",
+          "durationMs": 3686
+        },
+        {
+          "name": "[a11y] Row \"Appearance Negative\": WCAG 2.1 AA scan has no serious or critical issues",
+          "status": "passed",
+          "durationMs": 3687
+        },
+        {
+          "name": "[a11y] Row \"Chrome Invalid\": WCAG 2.1 AA scan has no serious or critical issues",
+          "status": "passed",
+          "durationMs": 3985
+        },
+        {
+          "name": "[a11y] Row \"Chrome Readonly\": WCAG 2.1 AA scan has no serious or critical issues",
+          "status": "passed",
+          "durationMs": 3921
+        },
+        {
+          "name": "[a11y] Row \"Required\": WCAG 2.1 AA scan has no serious or critical issues",
+          "status": "passed",
+          "durationMs": 3969
+        },
+        {
+          "name": "[a11y] Row \"Info Icon\": WCAG 2.1 AA scan has no serious or critical issues",
+          "status": "passed",
+          "durationMs": 3965
+        },
+        {
+          "name": "[a11y] Row \"Feedback\": WCAG 2.1 AA scan has no serious or critical issues",
+          "status": "passed",
+          "durationMs": 4093
+        },
+        {
+          "name": "[a11y] Row \"Field Slot Full Stack\": WCAG 2.1 AA scan has no serious or critical issues",
+          "status": "passed",
+          "durationMs": 4154
+        },
+        {
+          "name": "[a11y] Row \"A11y Required\": WCAG 2.1 AA scan has no serious or critical issues",
+          "status": "passed",
+          "durationMs": 4228
+        },
+        {
+          "name": "[a11y] Row \"Pw Label Required Tt\": WCAG 2.1 AA scan has no serious or critical issues",
+          "status": "passed",
+          "durationMs": 4291
+        },
+        {
+          "name": "[a11y] Row \"Controls Live\": WCAG 2.1 AA scan has no serious or critical issues",
+          "status": "passed",
+          "durationMs": 4239
+        },
+        {
+          "name": "[a11y] Section 508 tag run — zero serious/critical on showcase",
+          "status": "passed",
+          "durationMs": 4286
+        },
+        {
+          "name": "Default field label is associated with textbox",
+          "status": "passed",
+          "durationMs": 3152
+        },
+        {
+          "name": "Required field exposes required on input and visible label",
+          "status": "passed",
+          "durationMs": 3044
+        },
+        {
+          "name": "Disabled field textbox is not editable",
+          "status": "passed",
+          "durationMs": 3420
+        },
+        {
+          "name": "[a11y] Placeholder supplies accessible name when no visible label",
+          "status": "passed",
+          "durationMs": 3126
+        },
+        {
+          "name": "Error feedback row uses role alert",
+          "status": "passed",
+          "durationMs": 3019
+        },
+        {
+          "name": "Info icon button has accessible name when label is set",
+          "status": "passed",
+          "durationMs": 3521
+        },
+        {
+          "name": "Start slot icon is aria-hidden decorative",
+          "status": "passed",
+          "durationMs": 3596
+        },
+        {
+          "name": "Reflow at 320px — story bands fit without horizontal scroll",
+          "status": "passed",
+          "durationMs": 4625
+        },
+        {
+          "name": "[a11y] A11y mount \"input-field-a11y-aria-label\" is visible with associated control",
+          "status": "passed",
+          "durationMs": 3737
+        },
+        {
+          "name": "[a11y] A11y mount \"input-field-a11y-required\" is visible with associated control",
+          "status": "passed",
+          "durationMs": 3640
+        },
+        {
+          "name": "[a11y] A11y mount \"input-field-a11y-description\" is visible with associated control",
+          "status": "passed",
+          "durationMs": 3125
+        },
+        {
+          "name": "[a11y] A11y mount \"input-field-a11y-disabled\" is visible with associated control",
+          "status": "passed",
+          "durationMs": 3461
+        },
+        {
+          "name": "[a11y] A11y mount \"input-field-a11y-feedback\" is visible with associated control",
+          "status": "passed",
+          "durationMs": 3573
+        },
+        {
+          "name": "Invalid chrome mount exposes aria-invalid on the control",
+          "status": "passed",
+          "durationMs": 4103
+        },
+        {
+          "name": "Password type mount renders a visible control",
+          "status": "passed",
+          "durationMs": 3581
+        },
+        {
+          "name": "[a11y] Edge mount \"input-field-edge-long-label\" exposes focusable input",
+          "status": "passed",
+          "durationMs": 3290
+        },
+        {
+          "name": "[a11y] Edge mount \"input-field-edge-long-description\" exposes focusable input",
+          "status": "passed",
+          "durationMs": 4147
+        },
+        {
+          "name": "[a11y] Edge mount \"input-field-edge-empty-value\" exposes focusable input",
+          "status": "passed",
+          "durationMs": 3152
+        },
+        {
+          "name": "[a11y] Edge mount \"input-field-edge-required-no-label\" exposes focusable input",
+          "status": "passed",
+          "durationMs": 3561
+        },
+        {
+          "name": "[a11y] Edge mount \"input-field-edge-info-icon-no-label\" exposes focusable input",
+          "status": "passed",
+          "durationMs": 3188
+        },
+        {
+          "name": "[a11y] Edge mount \"input-field-edge-feedback-no-description\" exposes focusable input",
+          "status": "passed",
+          "durationMs": 3233
+        },
+        {
+          "name": "[a11y] Edge mount \"input-field-edge-disabled-feedback\" exposes focusable input",
+          "status": "passed",
+          "durationMs": 4037
+        },
+        {
+          "name": "[a11y] Edge mount \"input-field-edge-disabled-dynamic\" exposes focusable input",
+          "status": "passed",
+          "durationMs": 4057
+        },
+        {
+          "name": "[a11y] Edge mount \"input-field-edge-minimal\" exposes focusable input",
+          "status": "passed",
+          "durationMs": 4440
+        }
+      ],
+      "axe": {
+        "violations": [
+          {
+            "id": "color-contrast",
+            "impact": "serious",
+            "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+            "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/color-contrast?application=playwright",
+            "nodes": 1
+          }
+        ]
+      }
+    },
+    "functional": {
+      "suite": "functional",
+      "passed": 121,
+      "failed": 0,
+      "skipped": 0,
+      "logs": [
+        "121 test(s) in Playwright report for functional."
+      ],
+      "errors": [],
+      "cases": [
+        {
+          "name": "[fn] 1.1 — Page heading is visible",
+          "status": "passed",
+          "durationMs": 4624
+        },
+        {
+          "name": "[fn] 1.1 — Playground loads without console errors",
+          "status": "passed",
+          "durationMs": 5514
+        },
+        {
+          "name": "[fn] 1.1 — Default field renders with label and textbox",
+          "status": "passed",
+          "durationMs": 2991
+        },
+        {
+          "name": "[fn] 1.1 — All properties mount is visible",
+          "status": "passed",
+          "durationMs": 3179
+        },
+        {
+          "name": "[fn] 1.1 — Playground inventory matches manifest",
+          "status": "passed",
+          "durationMs": 3174
+        },
+        {
+          "name": "[fn] 1.2 — Every scenario data-testid is visible",
+          "status": "passed",
+          "durationMs": 9410
+        },
+        {
+          "name": "[fn] 1.2 — Controls panel and live preview testids are visible",
+          "status": "passed",
+          "durationMs": 3316
+        },
+        {
+          "name": "[fn] 1.3 — Every showcase data-section is visible",
+          "status": "passed",
+          "durationMs": 4137
+        },
+        {
+          "name": "[fn] 2.1 — Size S input shell uses data-size \"8\"",
+          "status": "passed",
+          "durationMs": 3419
+        },
+        {
+          "name": "[fn] 2.1 — Size M input shell uses data-size \"10\"",
+          "status": "passed",
+          "durationMs": 3271
+        },
+        {
+          "name": "[fn] 2.1 — Size L input shell uses data-size \"12\"",
+          "status": "passed",
+          "durationMs": 3140
+        },
+        {
+          "name": "[fn] 2.2 — Font sizes scale progressively S → M → L",
+          "status": "passed",
+          "durationMs": 3204
+        },
+        {
+          "name": "[fn] 2.1 — Required field shows asterisk in label",
+          "status": "passed",
+          "durationMs": 3143
+        },
+        {
+          "name": "[fn] 2.1 — Disabled field input is disabled",
+          "status": "passed",
+          "durationMs": 3478
+        },
+        {
+          "name": "[fn] 2.1 — Feedback mount shows error message",
+          "status": "passed",
+          "durationMs": 3009
+        },
+        {
+          "name": "[fn] 2.1 — Invalid chrome mount sets aria-invalid on control",
+          "status": "passed",
+          "durationMs": 4108
+        },
+        {
+          "name": "[fn] 2.1 — Readonly mount keeps value unchanged on fill attempt",
+          "status": "passed",
+          "durationMs": 3783
+        },
+        {
+          "name": "[fn] 2.3 — Appearance roles share the neutral resting border on the page surface",
+          "status": "passed",
+          "durationMs": 3094
+        },
+        {
+          "name": "[fn] 2.3 — Appearance \"primary\" resolves a visible border colour",
+          "status": "passed",
+          "durationMs": 3031
+        },
+        {
+          "name": "[fn] 2.3 — Appearance \"secondary\" resolves a visible border colour",
+          "status": "passed",
+          "durationMs": 3263
+        },
+        {
+          "name": "[fn] 2.3 — Appearance \"neutral\" resolves a visible border colour",
+          "status": "passed",
+          "durationMs": 3163
+        },
+        {
+          "name": "[fn] 2.3 — Appearance \"sparkle\" resolves a visible border colour",
+          "status": "passed",
+          "durationMs": 3166
+        },
+        {
+          "name": "[fn] 2.3 — Appearance \"positive\" resolves a visible border colour",
+          "status": "passed",
+          "durationMs": 3135
+        },
+        {
+          "name": "[fn] 2.3 — Appearance \"negative\" resolves a visible border colour",
+          "status": "passed",
+          "durationMs": 2739
+        },
+        {
+          "name": "[fn] 2.3 — Appearance \"warning\" resolves a visible border colour",
+          "status": "passed",
+          "durationMs": 1706
+        },
+        {
+          "name": "[fn] 2.3 — Appearance \"informative\" resolves a visible border colour",
+          "status": "passed",
+          "durationMs": 1201
+        },
+        {
+          "name": "[fn] 2.3 — Attention high uses non-transparent filled background",
+          "status": "passed",
+          "durationMs": 4139
+        },
+        {
+          "name": "[fn] 2.1 — Pill shape uses different border-radius than default shape",
+          "status": "passed",
+          "durationMs": 3485
+        },
+        {
+          "name": "[fn] 2.1 — Input type mount \"input-field-type-email\" renders control",
+          "status": "passed",
+          "durationMs": 3071
+        },
+        {
+          "name": "[fn] 2.1 — Input type mount \"input-field-type-password\" renders control",
+          "status": "passed",
+          "durationMs": 3012
+        },
+        {
+          "name": "[fn] 2.1 — Input type mount \"input-field-type-number\" renders control",
+          "status": "passed",
+          "durationMs": 3102
+        },
+        {
+          "name": "[fn] 2.1 — Input type mount \"input-field-type-tel\" renders control",
+          "status": "passed",
+          "durationMs": 3112
+        },
+        {
+          "name": "[fn] 2.1 — Input type mount \"input-field-type-url\" renders control",
+          "status": "passed",
+          "durationMs": 3251
+        },
+        {
+          "name": "[fn] 2.1 — Input type mount \"input-field-type-search\" renders control",
+          "status": "passed",
+          "durationMs": 3291
+        },
+        {
+          "name": "[fn] 2.1 — Field slot mount \"input-field-field-slot-feedback\" renders",
+          "status": "passed",
+          "durationMs": 3586
+        },
+        {
+          "name": "[fn] 2.1 — Field slot mount \"input-field-field-slot-dynamic\" renders",
+          "status": "passed",
+          "durationMs": 3822
+        },
+        {
+          "name": "[fn] 2.1 — Field slot mount \"input-field-field-slot-label\" renders",
+          "status": "passed",
+          "durationMs": 3438
+        },
+        {
+          "name": "[fn] 2.1 — Field slot mount \"input-field-field-slot-full-stack\" renders",
+          "status": "passed",
+          "durationMs": 3305
+        },
+        {
+          "name": "[fn] 2.1 — Field slot mount \"input-field-field-slot-figma-composition\" renders",
+          "status": "passed",
+          "durationMs": 3461
+        },
+        {
+          "name": "[fn] 2.1 — Chrome mount \"input-field-chrome-attention-medium\" is visible",
+          "status": "passed",
+          "durationMs": 3281
+        },
+        {
+          "name": "[fn] 2.1 — Chrome mount \"input-field-chrome-attention-high\" is visible",
+          "status": "passed",
+          "durationMs": 3247
+        },
+        {
+          "name": "[fn] 2.1 — Chrome mount \"input-field-chrome-shape-default\" is visible",
+          "status": "passed",
+          "durationMs": 3416
+        },
+        {
+          "name": "[fn] 2.1 — Chrome mount \"input-field-chrome-shape-pill\" is visible",
+          "status": "passed",
+          "durationMs": 3244
+        },
+        {
+          "name": "[fn] 2.1 — Chrome mount \"input-field-chrome-readonly\" is visible",
+          "status": "passed",
+          "durationMs": 3654
+        },
+        {
+          "name": "[fn] 2.1 — Chrome mount \"input-field-chrome-invalid\" is visible",
+          "status": "passed",
+          "durationMs": 3184
+        },
+        {
+          "name": "[fn] 2.1 — Chrome mount \"input-field-chrome-full-width\" is visible",
+          "status": "passed",
+          "durationMs": 3413
+        },
+        {
+          "name": "[fn] 3.1 — Click focuses the default text input",
+          "status": "passed",
+          "durationMs": 3299
+        },
+        {
+          "name": "[fn] 3.2 — Disabled field does not accept typing on click",
+          "status": "passed",
+          "durationMs": 3324
+        },
+        {
+          "name": "[fn] 3.3 — Readonly field does not change value on click + fill",
+          "status": "passed",
+          "durationMs": 3065
+        },
+        {
+          "name": "[fn] 3.4 — Click outside removes focus from input",
+          "status": "passed",
+          "durationMs": 3187
+        },
+        {
+          "name": "[fn] 4.1 — Tab reaches default text input",
+          "status": "passed",
+          "durationMs": 2463
+        },
+        {
+          "name": "[fn] 4.1 — Disabled field is not editable via keyboard",
+          "status": "passed",
+          "durationMs": 2716
+        },
+        {
+          "name": "[fn] 4.1 — Shift+Tab moves focus away from controls label field",
+          "status": "passed",
+          "durationMs": 3576
+        },
+        {
+          "name": "[fn] 4.1 — Tab reaches controls panel label text field when label on",
+          "status": "passed",
+          "durationMs": 3209
+        },
+        {
+          "name": "[fn] 4.2 — Enter key (N/A on single-line text)",
+          "status": "passed",
+          "durationMs": 3094
+        },
+        {
+          "name": "[fn] 4.3 — Space toggles required checkbox in controls panel",
+          "status": "passed",
+          "durationMs": 3289
+        },
+        {
+          "name": "[fn] 4.3 — User can type characters in default field",
+          "status": "passed",
+          "durationMs": 3031
+        },
+        {
+          "name": "[fn] 4.4 — Arrow keys (N/A)",
+          "status": "passed",
+          "durationMs": 3105
+        },
+        {
+          "name": "[fn] 4.5 — Home and End (N/A)",
+          "status": "passed",
+          "durationMs": 3018
+        },
+        {
+          "name": "[fn] 4.6 — Escape (N/A)",
+          "status": "passed",
+          "durationMs": 3125
+        },
+        {
+          "name": "[fn] 4.7 — Tab through page without keyboard trap",
+          "status": "passed",
+          "durationMs": 3473
+        },
+        {
+          "name": "[fn] 5.1 — Click to focus default input",
+          "status": "passed",
+          "durationMs": 3562
+        },
+        {
+          "name": "[fn] 5.2 — Focused input shows visible focus indicator",
+          "status": "passed",
+          "durationMs": 3581
+        },
+        {
+          "name": "[fn] 5.3 — Focus order reaches input after label stack",
+          "status": "passed",
+          "durationMs": 3103
+        },
+        {
+          "name": "[fn] 5.4 — Blur removes focus from input",
+          "status": "passed",
+          "durationMs": 3147
+        },
+        {
+          "name": "[fn] 5.5 — autoFocus (N/A in showcase)",
+          "status": "passed",
+          "durationMs": 3240
+        },
+        {
+          "name": "[fn] 6.1 — Default state is editable with placeholder",
+          "status": "passed",
+          "durationMs": 2989
+        },
+        {
+          "name": "[fn] 6.2 — Selected/checked (N/A)",
+          "status": "passed",
+          "durationMs": 2950
+        },
+        {
+          "name": "[fn] 6.3 — Disabled state blocks interaction",
+          "status": "passed",
+          "durationMs": 3292
+        },
+        {
+          "name": "[fn] 6.4 — Readonly state preserves value and allows focus",
+          "status": "passed",
+          "durationMs": 5277
+        },
+        {
+          "name": "[fn] 6.5 — Error state shows feedback and aria-invalid",
+          "status": "passed",
+          "durationMs": 3459
+        },
+        {
+          "name": "[fn] 6.6 — Loading state (N/A)",
+          "status": "passed",
+          "durationMs": 2961
+        },
+        {
+          "name": "[fn] 7.1 — Default field has no start/end slot icons",
+          "status": "passed",
+          "durationMs": 3038
+        },
+        {
+          "name": "[fn] 7.1 — Start slot renders decorative icon",
+          "status": "passed",
+          "durationMs": 3314
+        },
+        {
+          "name": "[fn] 7.2 — End slot renders decorative icon",
+          "status": "passed",
+          "durationMs": 3122
+        },
+        {
+          "name": "[fn] 7.3 — Start and end icons visible together",
+          "status": "passed",
+          "durationMs": 3207
+        },
+        {
+          "name": "[fn] 7.1 — start2 prefix text is visible",
+          "status": "passed",
+          "durationMs": 3045
+        },
+        {
+          "name": "[fn] 7.2 — end2 suffix text is visible",
+          "status": "passed",
+          "durationMs": 2779
+        },
+        {
+          "name": "[fn] 7.x — Slot mount \"input-field-slot-start\" is visible",
+          "status": "passed",
+          "durationMs": 3778
+        },
+        {
+          "name": "[fn] 7.x — Slot mount \"input-field-slot-end\" is visible",
+          "status": "passed",
+          "durationMs": 3104
+        },
+        {
+          "name": "[fn] 7.x — Slot mount \"input-field-slot-start-end\" is visible",
+          "status": "passed",
+          "durationMs": 3644
+        },
+        {
+          "name": "[fn] 7.x — Slot mount \"input-field-slot-start2\" is visible",
+          "status": "passed",
+          "durationMs": 3085
+        },
+        {
+          "name": "[fn] 7.x — Slot mount \"input-field-slot-end2\" is visible",
+          "status": "passed",
+          "durationMs": 3027
+        },
+        {
+          "name": "[fn] 7.x — Slot mount \"input-field-slot-all-four\" is visible",
+          "status": "passed",
+          "durationMs": 3469
+        },
+        {
+          "name": "[fn] 7.4 — Slot icons use aria-hidden",
+          "status": "passed",
+          "durationMs": 3319
+        },
+        {
+          "name": "[fn] 7.4 — Slot icon colour is resolved (not transparent)",
+          "status": "passed",
+          "durationMs": 3118
+        },
+        {
+          "name": "[fn] 8.1 — Size L control updates live preview data-size",
+          "status": "passed",
+          "durationMs": 3423
+        },
+        {
+          "name": "[fn] 8.2 — Disabling label hides visible label on live preview",
+          "status": "passed",
+          "durationMs": 3130
+        },
+        {
+          "name": "[fn] 8.1 — Toggle on/off (N/A)",
+          "status": "passed",
+          "durationMs": 3194
+        },
+        {
+          "name": "[fn] 8.2 — Single select (N/A)",
+          "status": "passed",
+          "durationMs": 3187
+        },
+        {
+          "name": "[fn] 8.3 — Indeterminate (N/A)",
+          "status": "passed",
+          "durationMs": 3017
+        },
+        {
+          "name": "[fn] 9.1 — Default field accepts typed value",
+          "status": "passed",
+          "durationMs": 3375
+        },
+        {
+          "name": "[fn] 9.1 — Input accepts special characters",
+          "status": "passed",
+          "durationMs": 3035
+        },
+        {
+          "name": "[fn] 9.1 — Input can be cleared",
+          "status": "passed",
+          "durationMs": 3352
+        },
+        {
+          "name": "[fn] 9.2 — Controls live field accepts typing",
+          "status": "passed",
+          "durationMs": 3349
+        },
+        {
+          "name": "[fn] 9.2 — Backspace deletes last character",
+          "status": "passed",
+          "durationMs": 3511
+        },
+        {
+          "name": "[fn] 9.2 — Delete key removes character at cursor",
+          "status": "passed",
+          "durationMs": 3116
+        },
+        {
+          "name": "[fn] 9.2 — ArrowLeft and ArrowRight move caret",
+          "status": "passed",
+          "durationMs": 3544
+        },
+        {
+          "name": "[fn] 9.3 — Number type rejects letters",
+          "status": "passed",
+          "durationMs": 3207
+        },
+        {
+          "name": "[fn] 9.3 — Max length (N/A)",
+          "status": "passed",
+          "durationMs": 3394
+        },
+        {
+          "name": "[fn] 9.4 — Copy and paste (N/A in headless)",
+          "status": "passed",
+          "durationMs": 3244
+        },
+        {
+          "name": "[fn] 10.1 — infoIcon without label shows no info button",
+          "status": "passed",
+          "durationMs": 3298
+        },
+        {
+          "name": "[fn] 10.2 — infoIcon with label shows info button",
+          "status": "passed",
+          "durationMs": 3179
+        },
+        {
+          "name": "[fn] 10.1 — required without label has no asterisk in DOM",
+          "status": "passed",
+          "durationMs": 2876
+        },
+        {
+          "name": "[fn] 10.2 — required with label shows asterisk",
+          "status": "passed",
+          "durationMs": 3883
+        },
+        {
+          "name": "[fn] 10.3 — Loading overrides (N/A)",
+          "status": "passed",
+          "durationMs": 3004
+        },
+        {
+          "name": "[fn] 11.1 — Default label text is non-empty",
+          "status": "passed",
+          "durationMs": 3005
+        },
+        {
+          "name": "[fn] 11.1 — Description mount shows helper copy",
+          "status": "passed",
+          "durationMs": 2896
+        },
+        {
+          "name": "[fn] 11.2 — Start slot icon is visible",
+          "status": "passed",
+          "durationMs": 3309
+        },
+        {
+          "name": "[fn] 11.3 — Progress value (N/A)",
+          "status": "passed",
+          "durationMs": 3119
+        },
+        {
+          "name": "[fn] 12.1 — fullWidth mount fills parent scenario cell",
+          "status": "passed",
+          "durationMs": 3323
+        },
+        {
+          "name": "[fn] 12.1 — Theme toggle updates html data-mode",
+          "status": "passed",
+          "durationMs": 3859
+        },
+        {
+          "name": "[fn] 12.2 — Reflow at 320px without horizontal scroll on bands",
+          "status": "passed",
+          "durationMs": 4211
+        },
+        {
+          "name": "[fn] 12.2 — Component visible at 1440px viewport",
+          "status": "passed",
+          "durationMs": 3306
+        },
+        {
+          "name": "[fn] 12.3 — Orientation (N/A)",
+          "status": "passed",
+          "durationMs": 3205
+        },
+        {
+          "name": "[fn] Figma matrix — every size cell is visible with spec copy",
+          "status": "passed",
+          "durationMs": 5228
+        },
+        {
+          "name": "[fn] Figma matrix — size M maps to data-size \"10\"",
+          "status": "passed",
+          "durationMs": 5368
+        },
+        {
+          "name": "[fn] Figma matrix — size S maps to data-size \"8\"",
+          "status": "passed",
+          "durationMs": 5763
+        },
+        {
+          "name": "[fn] Figma matrix — size L maps to data-size \"12\"",
+          "status": "passed",
+          "durationMs": 5361
+        },
+        {
+          "name": "[fn] Figma matrix — start and end icons render (heart + microphone)",
+          "status": "passed",
+          "durationMs": 5913
+        },
+        {
+          "name": "[fn] scenario tabs include Figma Validation",
+          "status": "passed",
+          "durationMs": 7472
+        }
+      ]
+    },
+    "performance": {
+      "suite": "performance",
+      "passed": 0,
+      "failed": 0,
+      "skipped": 0,
+      "logs": [
+        "Performance suite is not executed in apps/qa-playground input-field Playwright bundle."
+      ],
+      "errors": []
+    }
+  }
+}

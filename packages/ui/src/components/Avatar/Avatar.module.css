@@ -1,0 +1,421 @@
+/**
+ * Avatar.module.css
+ *
+ * Architecture: Role-agnostic intermediate variables (--_av-*)
+ * - Default = Primary role
+ * - Appearance classes remap --_av-* to other roles
+ * - Attention selectors consume --_av-*
+ *
+ * CRITICAL: All tokens verified against Figma MCP variable definitions.
+ *
+ * Figma color tokens per attention level:
+ *   HIGH:   bg = Colour/surface (Bold)
+ *   MEDIUM: bg = Colour/surface (Subtle, translucent)
+ *   LOW:    bg = Colour/ghost (transparent)
+ *
+ * Figma on-colour tokens (DIFFERENT for icon vs text):
+ *   Icon:  Colour/on-Colour/tinted    → --{Role}-Tinted
+ *   Text:  Colour/on-Colour/tinted A11y → --{Role}-TintedA11y
+ *
+ * Figma size → spacing token mapping (verified):
+ *   2XS=f-4=3XS(8)  XS=f-2=XS(12)  S=f0=M(16)  M=f2=XL(20)
+ *   L=f3=2XL(24)  XL=f5=4XL(32)  2XL=f7=6XL(40)
+ *
+ * Verified by: pnpm check:literals
+ */
+
+.root {
+  /* ========================================
+     INTERMEDIATE VARIABLES — default = Primary role
+     Remapped by .appearanceNeutral, .appearanceSecondary, etc.
+
+     HIGH on-colours use the branded Bold-Tinted / Bold-TintedA11y tokens
+     (scale walked from base against the Avatar's own bold fill). Bold-High
+     is the achromatic fallback — on saturated brand scales it would render
+     the icon/text as pure-black/white, breaking the brand identity. Figma
+     spec: Icon = on-Colour/tinted, Text = on-Colour/tinted A11y.
+     ======================================== */
+  --_av-bold: var(--Primary-Bold, var(--Surface-Bold));
+  --_av-bold-high: var(--Primary-Bold-TintedA11y, var(--Primary-TintedA11y, var(--Text-OnBold-High)));
+  --_av-bold-accent: var(--Primary-Bold-Tinted, var(--Primary-Bold-TintedA11y, var(--Primary-TintedA11y, var(--Text-OnBold-High))));
+  --_av-subtle: var(--Primary-Subtle, var(--Surface-Subtle));
+  --_av-default-accent: var(--Primary-Tinted, var(--Text-High));
+  --_av-default-accent-a11y: var(--Primary-TintedA11y, var(--Text-High));
+  /* Metallic material assignment — the brand engine emits --{Role}-Material-Fill /
+     --{Role}-Material-Text only when the role has an ACTIVE metal assigned.
+     When absent these resolve to the guaranteed-invalid value and every consumer
+     falls back to the standard bold chain (zero visual change). */
+  --_av-material-fill: var(--Avatar-roleMaterialFill, var(--Primary-Material-Fill));
+  --_av-material-text: var(--Avatar-roleMaterialText, var(--Primary-Material-Text));
+
+  /* ========================================
+     SHAPE
+     ======================================== */
+  border-radius: var(--Avatar-borderRadius, var(--Shape-Pill));
+  overflow: hidden;
+
+  /* ========================================
+     BASE STYLES
+     ======================================== */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  user-select: none;
+  vertical-align: middle;
+
+  /* Typography — Label role */
+  font-family: var(--Avatar-fontFamily, var(--Label-FontFamily, var(--Typography-Font-Primary, inherit)));
+  font-weight: var(--Avatar-fontWeight, var(--Label-FontWeight-Medium, 500));
+  line-height: 1;
+}
+
+/* ========================================
+   APPEARANCE — role-agnostic intermediate variable remapping
+   ======================================== */
+
+.appearanceNeutral {
+  --_av-bold: var(--Neutral-Bold, var(--Surface-Bold));
+  --_av-bold-high: var(--Neutral-Bold-TintedA11y, var(--Neutral-TintedA11y, var(--Text-OnBold-High)));
+  --_av-bold-accent: var(--Neutral-Bold-Tinted, var(--Neutral-Bold-TintedA11y, var(--Neutral-TintedA11y, var(--Text-OnBold-High))));
+  --_av-subtle: var(--Neutral-Subtle, var(--Surface-Subtle));
+  --_av-default-accent: var(--Neutral-Tinted, var(--Text-High));
+  --_av-default-accent-a11y: var(--Neutral-TintedA11y, var(--Text-High));
+  --_av-material-fill: var(--Neutral-Material-Fill);
+  --_av-material-text: var(--Neutral-Material-Text);
+}
+
+.appearanceSecondary {
+  --_av-bold: var(--Secondary-Bold, var(--Surface-Bold));
+  --_av-bold-high: var(--Secondary-Bold-TintedA11y, var(--Secondary-TintedA11y, var(--Text-OnBold-High)));
+  --_av-bold-accent: var(--Secondary-Bold-Tinted, var(--Secondary-Bold-TintedA11y, var(--Secondary-TintedA11y, var(--Text-OnBold-High))));
+  --_av-subtle: var(--Secondary-Subtle, var(--Surface-Subtle));
+  --_av-default-accent: var(--Secondary-Tinted, var(--Text-High));
+  --_av-default-accent-a11y: var(--Secondary-TintedA11y, var(--Text-High));
+  --_av-material-fill: var(--Secondary-Material-Fill);
+  --_av-material-text: var(--Secondary-Material-Text);
+}
+
+.appearanceSparkle {
+  --_av-bold: var(--Sparkle-Bold, var(--Surface-Bold));
+  --_av-bold-high: var(--Sparkle-Bold-TintedA11y, var(--Sparkle-TintedA11y, var(--Text-OnBold-High)));
+  --_av-bold-accent: var(--Sparkle-Bold-Tinted, var(--Sparkle-Bold-TintedA11y, var(--Sparkle-TintedA11y, var(--Text-OnBold-High))));
+  --_av-subtle: var(--Sparkle-Subtle, var(--Surface-Subtle));
+  --_av-default-accent: var(--Sparkle-Tinted, var(--Text-High));
+  --_av-default-accent-a11y: var(--Sparkle-TintedA11y, var(--Text-High));
+  --_av-material-fill: var(--Sparkle-Material-Fill);
+  --_av-material-text: var(--Sparkle-Material-Text);
+}
+
+.appearanceBrandBg {
+  --_av-bold: var(--Brand-Bg-Bold, var(--Surface-Bold));
+  --_av-bold-high: var(--Brand-Bg-Bold-TintedA11y, var(--Brand-Bg-TintedA11y, var(--Text-OnBold-High)));
+  --_av-bold-accent: var(--Brand-Bg-Bold-Tinted, var(--Brand-Bg-Bold-TintedA11y, var(--Brand-Bg-TintedA11y, var(--Text-OnBold-High))));
+  --_av-subtle: var(--Brand-Bg-Subtle, var(--Surface-Subtle));
+  --_av-default-accent: var(--Brand-Bg-Tinted, var(--Text-High));
+  --_av-default-accent-a11y: var(--Brand-Bg-TintedA11y, var(--Text-High));
+  --_av-material-fill: var(--Brand-Bg-Material-Fill);
+  --_av-material-text: var(--Brand-Bg-Material-Text);
+}
+
+.appearancePositive {
+  --_av-bold: var(--Positive-Bold, var(--Surface-Bold));
+  --_av-bold-high: var(--Positive-Bold-TintedA11y, var(--Positive-TintedA11y, var(--Text-OnBold-High)));
+  --_av-bold-accent: var(--Positive-Bold-Tinted, var(--Positive-Bold-TintedA11y, var(--Positive-TintedA11y, var(--Text-OnBold-High))));
+  --_av-subtle: var(--Positive-Subtle, var(--Surface-Subtle));
+  --_av-default-accent: var(--Positive-Tinted, var(--Text-High));
+  --_av-default-accent-a11y: var(--Positive-TintedA11y, var(--Text-High));
+  --_av-material-fill: var(--Positive-Material-Fill);
+  --_av-material-text: var(--Positive-Material-Text);
+}
+
+.appearanceNegative {
+  --_av-bold: var(--Negative-Bold, var(--Surface-Bold));
+  --_av-bold-high: var(--Negative-Bold-TintedA11y, var(--Negative-TintedA11y, var(--Text-OnBold-High)));
+  --_av-bold-accent: var(--Negative-Bold-Tinted, var(--Negative-Bold-TintedA11y, var(--Negative-TintedA11y, var(--Text-OnBold-High))));
+  --_av-subtle: var(--Negative-Subtle, var(--Surface-Subtle));
+  --_av-default-accent: var(--Negative-Tinted, var(--Text-High));
+  --_av-default-accent-a11y: var(--Negative-TintedA11y, var(--Text-High));
+  --_av-material-fill: var(--Negative-Material-Fill);
+  --_av-material-text: var(--Negative-Material-Text);
+}
+
+.appearanceWarning {
+  --_av-bold: var(--Warning-Bold, var(--Surface-Bold));
+  --_av-bold-high: var(--Warning-Bold-TintedA11y, var(--Warning-TintedA11y, var(--Text-OnBold-High)));
+  --_av-bold-accent: var(--Warning-Bold-Tinted, var(--Warning-Bold-TintedA11y, var(--Warning-TintedA11y, var(--Text-OnBold-High))));
+  --_av-subtle: var(--Warning-Subtle, var(--Surface-Subtle));
+  --_av-default-accent: var(--Warning-Tinted, var(--Text-High));
+  --_av-default-accent-a11y: var(--Warning-TintedA11y, var(--Text-High));
+  --_av-material-fill: var(--Warning-Material-Fill);
+  --_av-material-text: var(--Warning-Material-Text);
+}
+
+.appearanceInformative {
+  --_av-bold: var(--Informative-Bold, var(--Surface-Bold));
+  --_av-bold-high: var(--Informative-Bold-TintedA11y, var(--Informative-TintedA11y, var(--Text-OnBold-High)));
+  --_av-bold-accent: var(--Informative-Bold-Tinted, var(--Informative-Bold-TintedA11y, var(--Informative-TintedA11y, var(--Text-OnBold-High))));
+  --_av-subtle: var(--Informative-Subtle, var(--Surface-Subtle));
+  --_av-default-accent: var(--Informative-Tinted, var(--Text-High));
+  --_av-default-accent-a11y: var(--Informative-TintedA11y, var(--Text-High));
+  --_av-material-fill: var(--Informative-Material-Fill);
+  --_av-material-text: var(--Informative-Material-Text);
+}
+
+/* ========================================
+   ATTENTION — consume intermediate vars
+   Background varies by attention. Color set per content type below.
+   ======================================== */
+
+.high {
+  /* `background` (not background-color) — the material fill is a gradient image. */
+  background: var(--Avatar-backgroundColor, var(--_av-material-fill, var(--_av-bold)));
+}
+
+.medium {
+  background-color: var(--Avatar-backgroundColor, var(--_av-subtle));
+}
+
+.low {
+  background-color: transparent;
+}
+
+/* Image showing — transparent bg only when image is actually displayed.
+   When image fails, fallback content gets the attention-level background.
+   `background` shorthand (not background-color) so a metallic material
+   gradient set by `.high` is cleared too, not just the colour channel. */
+.root[data-showing-image] {
+  background: transparent;
+}
+
+/* ========================================
+   ATTENTION × CONTENT-TYPE COLOR
+   Figma variable mode cascade: `tinted` / `tinted A11y` resolve
+   differently per surface context (bold / subtle / ghost).
+
+   HIGH (bold bg):    icon = Bold-High, text = Bold-High
+   MEDIUM (subtle bg): icon = Tinted, text = TintedA11y
+   LOW (ghost bg):     icon = Tinted, text = TintedA11y
+   ======================================== */
+
+/* HIGH attention — icon = Bold-High, text = Bold-High (both white on bold; remapped to accentA11y on fg-bold surface) */
+.high .icon {
+  color: var(--Avatar-iconColor, var(--_av-material-text, var(--_av-bold-accent)));
+}
+.high .text {
+  color: var(--Avatar-textColor, var(--_av-material-text, var(--_av-bold-high)));
+}
+
+/* MEDIUM attention — accent colours (contrast with Subtle surface) */
+.medium .icon {
+  color: var(--Avatar-iconColor, var(--_av-default-accent));
+}
+.medium .text {
+  color: var(--Avatar-textColor, var(--_av-default-accent-a11y));
+}
+
+/* LOW attention — accent colours (contrast with transparent/page bg) */
+.low .icon {
+  color: var(--Avatar-iconColor, var(--_av-default-accent));
+}
+.low .text {
+  color: var(--Avatar-textColor, var(--_av-default-accent-a11y));
+}
+
+/* ========================================
+   SIZES — via data-size attribute selectors
+   ======================================== */
+
+.root[data-size="2xs"] {
+  width: var(--Avatar-size-2xs, var(--Spacing-2));
+  height: var(--Avatar-size-2xs, var(--Spacing-2));
+}
+
+.root[data-size="xs"] {
+  width: var(--Avatar-size-xs, var(--Spacing-3));
+  height: var(--Avatar-size-xs, var(--Spacing-3));
+}
+
+.root[data-size="s"] {
+  width: var(--Avatar-size-s, var(--Spacing-4));
+  height: var(--Avatar-size-s, var(--Spacing-4));
+}
+
+.root[data-size="m"] {
+  width: var(--Avatar-size-m, var(--Spacing-5));
+  height: var(--Avatar-size-m, var(--Spacing-5));
+}
+
+.root[data-size="l"] {
+  width: var(--Avatar-size-l, var(--Spacing-6));
+  height: var(--Avatar-size-l, var(--Spacing-6));
+}
+
+.root[data-size="xl"] {
+  width: var(--Avatar-size-xl, var(--Spacing-8));
+  height: var(--Avatar-size-xl, var(--Spacing-8));
+}
+
+.root[data-size="2xl"] {
+  width: var(--Avatar-size-2xl, var(--Spacing-10));
+  height: var(--Avatar-size-2xl, var(--Spacing-10));
+}
+
+.root[data-size="custom"] {
+  width: var(--Avatar-customSize);
+  height: var(--Avatar-customSize);
+}
+
+/* ========================================
+   IMAGE
+   ======================================== */
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ========================================
+   ICON — sized proportionally per avatar size
+   Figma icon sizes: 2XS=8(fills) XS=10 S=12 M=16 L=20 XL=24 2XL=32 custom=40
+   ======================================== */
+
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.root[data-size="2xs"] .icon {
+  width: 100%;
+  height: 100%;
+}
+
+.root[data-size="2xs"] .icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.root[data-size="xs"] .icon svg {
+  width: var(--Avatar-iconSize-xs, var(--Spacing-2-5));
+  height: var(--Avatar-iconSize-xs, var(--Spacing-2-5));
+}
+
+.root[data-size="s"] .icon svg {
+  width: var(--Avatar-iconSize-s, var(--Spacing-3));
+  height: var(--Avatar-iconSize-s, var(--Spacing-3));
+}
+
+.root[data-size="m"] .icon svg {
+  width: var(--Avatar-iconSize-m, var(--Spacing-4));
+  height: var(--Avatar-iconSize-m, var(--Spacing-4));
+}
+
+.root[data-size="l"] .icon svg {
+  width: var(--Avatar-iconSize-l, var(--Spacing-5));
+  height: var(--Avatar-iconSize-l, var(--Spacing-5));
+}
+
+.root[data-size="xl"] .icon svg {
+  width: var(--Avatar-iconSize-xl, var(--Spacing-6));
+  height: var(--Avatar-iconSize-xl, var(--Spacing-6));
+}
+
+.root[data-size="2xl"] .icon svg {
+  width: var(--Avatar-iconSize-2xl, var(--Spacing-8));
+  height: var(--Avatar-iconSize-2xl, var(--Spacing-8));
+}
+
+/* Custom size: icon scales as 2/3 of customSize (matches Figma spec
+   for custom=60 → icon=40, padding=10 on each side; same ratio at any
+   customSize). Consumers can still override via --Avatar-iconSize-custom. */
+.root[data-size="custom"] .icon svg {
+  width: var(--Avatar-iconSize-custom, calc(var(--Avatar-customSize, var(--Spacing-14)) * 2 / 3));
+  height: var(--Avatar-iconSize-custom, calc(var(--Avatar-customSize, var(--Spacing-14)) * 2 / 3));
+}
+
+/* ========================================
+   TEXT — font-size per avatar size (Label role tokens)
+   Figma: Label/Label 3XS(S), 2XS(M), XS(L), S(XL), M(2XL), L(custom)
+   At 2XS and XS, text is too small — falls back to icon in component logic.
+   ======================================== */
+
+.text {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.root[data-size="s"] .text {
+  font-size: var(--Avatar-fontSize-s, var(--Label-3XS-FontSize));
+  line-height: var(--Label-3XS-LineHeight);
+}
+
+.root[data-size="m"] .text {
+  font-size: var(--Avatar-fontSize-m, var(--Label-2XS-FontSize));
+  line-height: var(--Label-2XS-LineHeight);
+}
+
+.root[data-size="l"] .text {
+  font-size: var(--Avatar-fontSize-l, var(--Label-XS-FontSize));
+  line-height: var(--Label-XS-LineHeight);
+}
+
+.root[data-size="xl"] .text {
+  font-size: var(--Avatar-fontSize-xl, var(--Label-S-FontSize));
+  line-height: var(--Label-S-LineHeight);
+}
+
+.root[data-size="2xl"] .text {
+  font-size: var(--Avatar-fontSize-2xl, var(--Label-M-FontSize));
+  line-height: var(--Label-M-LineHeight);
+}
+
+.root[data-size="custom"] .text {
+  font-size: var(--Avatar-fontSize-custom, var(--Label-L-FontSize));
+  line-height: var(--Label-L-LineHeight);
+}
+
+/* ========================================
+   DISABLED
+   ======================================== */
+
+/* ========================================
+   INTERACTIVE — Base UI button reset + focus halo
+   ======================================== */
+
+.interactive {
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+  text-align: inherit;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.interactive:focus {
+  outline: none;
+}
+
+.interactive:focus-visible {
+  box-shadow:
+    0 0 0 var(--Stroke-XL) var(--Surface-Halo-Gap, var(--Surface-Main)),
+    0 0 0 calc(var(--Stroke-XL) + var(--Focus-Outline-Width)) var(--Focus-Outline);
+}
+
+.disabled {
+  opacity: var(--Avatar-disabledOpacity, var(--Disabled-Opacity));
+  pointer-events: none;
+}
+
+/**
+ * ========================================
+ * IMPORTANT: NO LITERALS IN THIS FILE
+ * ========================================
+ */

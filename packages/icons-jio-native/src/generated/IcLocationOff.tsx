@@ -1,0 +1,13 @@
+import React from 'react';
+import Svg, { Path, type SvgProps } from 'react-native-svg';
+export function IcLocationOff(props: SvgProps) {
+  const fill = String(props.fill ?? '#000000');
+  return (
+    <Svg viewBox="0 0 24 24" fill="none" {...props}>
+      <Path
+                d='M20.49 3.51a1.001 1.001 0 00-1.45 0L3.51 19A1.054 1.054 0 105 20.49l2.6-2.61a33.48 33.48 0 003 3.53 2 2 0 002.82 0C14.09 20.74 20 14.68 20 9.6c-.001-1.16-.282-2.302-.82-3.33L20.49 5a1.001 1.001 0 000-1.49zM9.08 10.67A2.93 2.93 0 019 10a3 3 0 013-3c.225.001.45.028.67.08l3.79-3.78A8.21 8.21 0 0012 2a7.82 7.82 0 00-8 7.6 10.84 10.84 0 001.36 4.79l3.72-3.72z'
+                fill='currentColor'
+              />
+    </Svg>
+  );
+}

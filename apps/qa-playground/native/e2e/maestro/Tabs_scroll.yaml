@@ -1,0 +1,82 @@
+# Tabs scroll E2E — verifies horizontal tab-list overflow scroll
+#
+# Prerequisites:
+#   1. Android emulator running (adb devices shows emulator-5554)
+#   2. Metro serving qa-native on port 8082
+#   3. adb reverse tcp:8082 tcp:8082 already run
+#
+# Run:
+#   maestro --device emulator-5554 test \
+#     apps/qa-playground/native/e2e/maestro/Tabs_scroll.yaml
+
+appId: host.exp.exponent
+---
+
+# ── Launch + deep-link into qa-native ────────────────────────────────────────
+- launchApp:
+    clearState: false
+- openLink: "exp://127.0.0.1:8082"
+- waitForAnimationToEnd
+
+# Confirm we're on the component list
+- assertVisible: "Tabs"
+
+# ── Navigate to the Tabs screen ───────────────────────────────────────────────
+- tapOn: "Tabs"
+- waitForAnimationToEnd
+- assertVisible: "1 · Size S"
+
+# ── Scroll down to the 8-tab overflow section ─────────────────────────────────
+- scrollUntilVisible:
+    element:
+      text: "8 · Scroll (8 tabs — swipe the tab list)"
+    direction: DOWN
+    timeout: 10000
+
+- assertVisible:
+    text: "8 · Scroll (8 tabs — swipe the tab list)"
+
+# ── Initial state: first tab visible, last tabs off-screen ────────────────────
+- assertVisible:
+    text: "Home"
+
+- assertNotVisible:
+    text: "Edit mode"
+
+# ── Swipe left to scroll the tab list and reveal hidden tabs ─────────────────
+- swipe:
+    direction: LEFT
+    duration: 400
+
+- waitForAnimationToEnd
+
+- assertVisible:
+    text: "Notifications"
+
+# ── Swipe left again to reach the rightmost tabs ─────────────────────────────
+- swipe:
+    direction: LEFT
+    duration: 400
+
+- waitForAnimationToEnd
+
+- assertVisible:
+    text: "Edit mode"
+
+# ── Tap a tab that was previously off-screen; verify panel updates ────────────
+- tapOn: "Edit mode"
+- waitForAnimationToEnd
+
+- assertVisible:
+    text: "Edit mode lets you rearrange sections and update content inline."
+
+# ── Swipe right: confirms selected tab scrolls into view on the way back ──────
+- swipe:
+    direction: RIGHT
+    duration: 400
+
+- waitForAnimationToEnd
+
+# "Edit mode" is still selected — it should have scrolled into view
+- assertVisible:
+    text: "Edit mode"

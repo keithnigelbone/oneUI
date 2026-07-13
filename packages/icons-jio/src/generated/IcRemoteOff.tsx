@@ -1,0 +1,30 @@
+import React, { forwardRef } from 'react';
+import type { IconComponentProps } from '../iconProps';
+
+export const IcRemoteOff = forwardRef<SVGSVGElement, IconComponentProps>(function IcRemoteOff(
+  { size = 24, width, height, color = 'currentColor', className, style, ...props },
+  ref,
+) {
+  const dim = width ?? height ?? size;
+  return (
+    <svg
+      ref={ref}
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      width={width ?? dim}
+      height={height ?? dim}
+      color={color}
+      className={className}
+      style={style}
+      {...props}
+    >
+      <path
+            fill="currentColor"
+            d="M21.71 2.29a.996.996 0 0 0-1.41 0l-18.01 18a.996.996 0 0 0 .71 1.7c.26 0 .51-.1.71-.29L7 18.41V19c0 .8.32 1.56.88 2.12S9.21 22 10 22h4c.8 0 1.56-.32 2.12-.88S17 19.79 17 19V8.41l4.71-4.71a.996.996 0 0 0 0-1.41m-7 11.42A1 1 0 0 1 14 14c-.2 0-.39-.06-.56-.17-.16-.11-.29-.27-.37-.45a.96.96 0 0 1-.06-.58c.04-.19.13-.37.27-.51s.32-.24.51-.27a1.014 1.014 0 0 1 1.2.99c0 .27-.11.52-.29.71zM9.44 9.83c-.16-.11-.29-.27-.37-.45a.96.96 0 0 1-.06-.58c.04-.19.13-.37.27-.51s.32-.24.51-.27a1.014 1.014 0 0 1 1.03.43c.08.12.12.25.14.39l2.86-2.86c-.14-.02-.27-.07-.39-.14-.16-.11-.29-.27-.37-.45a.96.96 0 0 1-.06-.58c.04-.19.13-.37.27-.51s.32-.24.51-.27a1.014 1.014 0 0 1 1.03.43c.08.12.12.25.14.39l1.51-1.51a3 3 0 0 0-.36-.44c-.56-.56-1.33-.88-2.12-.88h-4c-.8 0-1.56.32-2.12.88s-.88 1.33-.88 2.12v7.81L9.81 10c-.14-.02-.27-.07-.39-.14zM9.01 4.8c.04-.19.13-.37.27-.51s.32-.24.51-.27a1.014 1.014 0 0 1 1.2.99c0 .27-.11.52-.29.71a1 1 0 0 1-.71.29A1.014 1.014 0 0 1 9 4.81z"
+          />
+    </svg>
+  );
+});
+
+IcRemoteOff.displayName = 'IcRemoteOff';

@@ -1,0 +1,280 @@
+/**
+ * SkillBriefGenerator.module.css
+ *
+ * Field-by-field skill author. Brief textarea on top; once generated, each
+ * field renders as its own editable row with a per-field regenerate button.
+ */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-4);
+}
+
+/* ── Brief input ─────────────────────────────────────────────────────── */
+
+.briefBlock {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-3);
+}
+
+.briefLabel {
+  font-family: var(--Label-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Label-S-FontSize);
+  line-height: var(--Label-S-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+  color: var(--Text-Medium);
+}
+
+.briefHint {
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  color: var(--Text-Low);
+  margin: 0;
+}
+
+.briefTextarea {
+  width: 100%;
+  min-height: 96px;
+  padding: var(--Spacing-3-5);
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+  border-radius: var(--Shape-3);
+  background-color: var(--Surface-Main);
+  color: var(--Text-High);
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  resize: vertical;
+}
+
+.briefTextarea:focus {
+  outline: none;
+  border-color: var(--Primary-Bold);
+}
+
+.briefActions {
+  display: flex;
+  gap: var(--Spacing-3);
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.briefSpacer {
+  flex: 1;
+}
+
+/* ── Field card stack ────────────────────────────────────────────────── */
+
+.fieldStack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-3-5);
+}
+
+.fieldCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-3);
+  padding: var(--Spacing-3-5) var(--Spacing-4);
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+  border-radius: var(--Shape-4);
+  background-color: var(--Surface-Main);
+}
+
+.fieldHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--Spacing-3-5);
+}
+
+.fieldLabelGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-1);
+  min-width: 0;
+}
+
+.fieldLabel {
+  font-family: var(--Label-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Label-S-FontSize);
+  line-height: var(--Label-S-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+  color: var(--Text-High);
+}
+
+.fieldHint {
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  color: var(--Text-Low);
+  margin: 0;
+}
+
+.fieldActions {
+  display: flex;
+  gap: var(--Spacing-2);
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.regenSpinner {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border: 1.5px solid var(--Border-Default);
+  border-top-color: var(--Primary-Bold);
+  border-radius: 50%;
+  animation: skillBriefSpin 0.8s linear infinite;
+}
+
+@keyframes skillBriefSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ── Field input controls ────────────────────────────────────────────── */
+
+.input,
+.textarea,
+.select {
+  width: 100%;
+  padding: var(--Spacing-3) var(--Spacing-3-5);
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+  border-radius: var(--Shape-3);
+  background-color: var(--Surface-Main);
+  color: var(--Text-High);
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  box-sizing: border-box;
+}
+
+.textarea {
+  min-height: 80px;
+  resize: vertical;
+  font-family: var(--Code-FontFamily, var(--Typography-Font-Code, ui-monospace, SFMono-Regular, monospace));
+  font-size: var(--Code-S-FontSize, var(--Body-S-FontSize));
+  line-height: var(--Code-S-LineHeight, var(--Body-S-LineHeight));
+}
+
+.textareaProse {
+  min-height: 64px;
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+}
+
+.input:focus,
+.textarea:focus,
+.select:focus {
+  outline: none;
+  border-color: var(--Primary-Bold);
+}
+
+/* ── Context / list pills ────────────────────────────────────────────── */
+
+.pillRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--Spacing-2);
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--Spacing-1-5);
+  padding: var(--Spacing-1-5) var(--Spacing-3-5);
+  border-radius: var(--Shape-Pill);
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+  background-color: var(--Surface-Main);
+  color: var(--Text-Medium);
+  font-family: var(--Label-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+  cursor: pointer;
+  transition: background-color var(--Motion-Duration-Discreet-Short),
+              border-color var(--Motion-Duration-Discreet-Short),
+              color var(--Motion-Duration-Discreet-Short);
+}
+
+.pill:hover {
+  background-color: var(--Surface-Subtle);
+  color: var(--Text-High);
+}
+
+.pill[data-active='true'] {
+  background-color: var(--Primary-Bold);
+  border-color: var(--Primary-Bold);
+  color: var(--Primary-Bold-High);
+}
+
+/* ── DosDonts list editor ────────────────────────────────────────────── */
+
+.bulletList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-2);
+}
+
+.bulletRow {
+  display: flex;
+  gap: var(--Spacing-2);
+  align-items: flex-start;
+}
+
+.bulletInput {
+  flex: 1;
+}
+
+/* ── Footer actions ──────────────────────────────────────────────────── */
+
+.footerActions {
+  display: flex;
+  gap: var(--Spacing-3);
+  align-items: center;
+  flex-wrap: wrap;
+  padding-top: var(--Spacing-3-5);
+  border-top: var(--Stroke-M) solid var(--Border-Subtle);
+}
+
+.footerSpacer {
+  flex: 1;
+}
+
+/* ── Status messages ─────────────────────────────────────────────────── */
+
+.errorBanner {
+  padding: var(--Spacing-3-5);
+  border-radius: var(--Shape-3);
+  background-color: var(--Negative-Subtle);
+  color: var(--Negative-TintedA11y);
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+}
+
+.successBanner {
+  padding: var(--Spacing-3-5);
+  border-radius: var(--Shape-3);
+  background-color: var(--Positive-Subtle);
+  color: var(--Positive-TintedA11y);
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+}
+
+.metaRow {
+  display: flex;
+  gap: var(--Spacing-3-5);
+  align-items: center;
+  flex-wrap: wrap;
+  font-family: var(--Label-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  color: var(--Text-Low);
+}

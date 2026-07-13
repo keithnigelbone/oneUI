@@ -1,0 +1,48 @@
+---
+title: Installation
+description: Install the OneUI web alpha packages and load the token cascade in the correct order.
+---
+
+For Jio web alpha, consumers install the published packages:
+
+<InstallSnippet />
+
+Then load token CSS once in the app root before rendering components.
+
+```ts
+import '@oneui/tokens/css/layers';
+import '@oneui/tokens/css/dimensions/scale';
+import '@oneui/tokens/css/dimensions/grid';
+import '@oneui/tokens/css/typography';
+import '@oneui/tokens/css';
+import '@oneui/tokens/css/semantic';
+import '@oneui/tokens/css/light';
+import '@oneui/tokens/css/dark';
+import '@oneui/tokens/css/density/compact';
+import '@oneui/tokens/css/density/open';
+import '@oneui/tokens/css/materials';
+import '@oneui/ui/styles';
+```
+
+## Path Imports
+
+Use package subpaths for alpha adoption. They exercise the same public contract we intend to publish.
+
+```tsx
+import { Button } from '@oneui/ui/components/Button';
+import { Surface } from '@oneui/ui/components/Surface';
+
+export function Example() {
+  return (
+    <Surface mode="bold">
+      <Button variant="bold">Get started</Button>
+    </Surface>
+  );
+}
+```
+
+<SurfaceRuleCallout />
+
+## Brand CSS
+
+The alpha package remains multi-brand-safe. Components use role-explicit tokens and `Surface` context rather than Jio-specific values. The Jio alpha validation path proves the first supported brand; it does not make the package Jio-only.

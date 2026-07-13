@@ -1,0 +1,62 @@
+/**
+ * T-shirt spacing/shape aliases for QA playground CSS and showcase inline styles.
+ *
+ * @oneui/tokens primitives emit numeric --Spacing-* / --Shape-* only. Storybook + QA
+ * do not load apps/platform/src/app/globals.css, so var(--Spacing-M) etc. would
+ * otherwise be invalid and `gap` / `padding` declarations drop — rows collapse
+ * with no visible spacing.
+ *
+ * ⚠️ The --Shape-* block below is DEPRECATED. Shape tokens are migrating to the
+ * numeric dimension-scale naming (--Shape-0 … --Shape-10, --Shape-Pill). Every
+ * remaining consumer is tracked in scripts/shape-token-allowlist.json and
+ * enforced by `pnpm check:shape-tokens`. When that allowlist is empty, delete
+ * the --Shape-* block. Do NOT add new entries to it.
+ *
+ * Definitions mirror the resolution chain implied by globals.css (shirt → numeric token).
+ */
+@layer base {
+  :root {
+    --Spacing-None: var(--Spacing-0);
+    --Spacing-6XS: var(--Spacing-0-5);
+    --Spacing-5XS: var(--Spacing-1);
+    --Spacing-4XS: var(--Spacing-1-5);
+    --Spacing-3XS: var(--Spacing-2);
+    --Spacing-2XS: var(--Spacing-2-5);
+    --Spacing-XS: var(--Spacing-3);
+    --Spacing-S: var(--Spacing-3-5);
+    --Spacing-M: var(--Spacing-4);
+    --Spacing-L: var(--Spacing-4-5);
+    --Spacing-XL: var(--Spacing-5);
+    --Spacing-2XL: var(--Spacing-6);
+    --Spacing-3XL: var(--Spacing-7);
+    --Spacing-4XL: var(--Spacing-8);
+    --Spacing-5XL: var(--Spacing-9);
+    --Spacing-6XL: var(--Spacing-10);
+    --Spacing-7XL: var(--Spacing-12);
+    --Spacing-8XL: var(--Spacing-14);
+    --Spacing-9XL: var(--Spacing-16);
+    --Spacing-10XL: var(--Spacing-18);
+    --Spacing-11XL: var(--Spacing-20);
+    --Spacing-12XL: var(--Spacing-24);
+    --Spacing-13XL: var(--Spacing-28);
+    --Spacing-14XL: var(--Spacing-32);
+    --Spacing-15XL: var(--Spacing-40);
+
+    --Shape-None: var(--Shape-0);
+    --Shape-6XS: var(--Shape-0-5);
+    --Shape-5XS: var(--Shape-1);
+    --Shape-4XS: var(--Shape-1-5);
+    --Shape-3XS: var(--Shape-2);
+    --Shape-2XS: var(--Shape-2-5);
+    --Shape-XS: var(--Shape-3);
+    --Shape-S: var(--Shape-3-5);
+    --Shape-M: var(--Shape-4);
+    --Shape-L: var(--Shape-4-5);
+    --Shape-XL: var(--Shape-5);
+    --Shape-2XL: var(--Shape-6);
+    --Shape-3XL: var(--Shape-7);
+    --Shape-4XL: var(--Shape-8);
+    --Shape-5XL: var(--Shape-9);
+    --Shape-6XL: var(--Shape-10);
+  }
+}

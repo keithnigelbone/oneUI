@@ -1,0 +1,28 @@
+import React, { forwardRef } from 'react';
+import type { IconComponentProps } from '../iconProps';
+
+export const PhotoGalleryOutlined = forwardRef<SVGSVGElement, IconComponentProps>(function PhotoGalleryOutlined(
+  { size = 24, width, height, color = 'currentColor', className, style, ...props },
+  ref,
+) {
+  const dim = width ?? height ?? size;
+  return (
+    <svg
+      ref={ref}
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      width={width ?? dim}
+      height={height ?? dim}
+      color={color}
+      className={className}
+      style={style}
+      {...props}
+    >
+      <path fillRule="evenodd" clipRule="evenodd" d="M11.0015 8.50073C11.0015 9.88185 9.88185 11.0015 8.50073 11.0015C7.11962 11.0015 6 9.88185 6 8.50073C6 7.11962 7.11962 6 8.50073 6C9.88185 6 11.0015 7.11962 11.0015 8.50073ZM9.80147 8.50073C9.80147 9.21911 9.21911 9.80147 8.50073 9.80147C7.78236 9.80147 7.2 9.21911 7.2 8.50073C7.2 7.78236 7.78236 7.2 8.50073 7.2C9.21911 7.2 9.80147 7.78236 9.80147 8.50073Z" fill="currentColor"/>
+      <path fillRule="evenodd" clipRule="evenodd" d="M5 21C4.50102 21 4.04473 20.8173 3.69437 20.5151C3.67589 20.504 3.65783 20.4918 3.64026 20.4785C3.57694 20.4307 3.5258 20.3726 3.48738 20.3085C3.18372 19.9577 3 19.5003 3 19V5C3 3.89543 3.89543 3 5 3H19C20.1046 3 21 3.89543 21 5V19C21 20.1046 20.1046 21 19 21H5ZM19 4.2H5C4.55817 4.2 4.2 4.55817 4.2 5V18.7438L6.113 16.2145C6.56184 15.6211 7.32956 15.365 8.04479 15.5701L10.7578 16.3481C11.0488 16.4315 11.3564 16.2851 11.4751 16.0066L13.663 10.8731C14.0538 9.95598 15.1156 9.53123 16.0311 9.92571L19.8 11.5496V5C19.8 4.55817 19.4418 4.2 19 4.2ZM7.07008 16.9384L4.90958 19.7949C4.93926 19.7983 4.96943 19.8 5 19.8H19C19.4418 19.8 19.8 19.4418 19.8 19V12.855C19.7882 12.8508 19.7764 12.8461 19.7648 12.8411L15.5563 11.0278C15.2511 10.8963 14.8972 11.0379 14.7669 11.3435L12.579 16.477C12.2229 17.3126 11.3001 17.752 10.427 17.5016L7.71401 16.7236C7.4756 16.6552 7.21969 16.7406 7.07008 16.9384Z" fill="currentColor"/>
+    </svg>
+  );
+});
+
+PhotoGalleryOutlined.displayName = 'PhotoGalleryOutlined';

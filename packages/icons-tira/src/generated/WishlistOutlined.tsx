@@ -1,0 +1,27 @@
+import React, { forwardRef } from 'react';
+import type { IconComponentProps } from '../iconProps';
+
+export const WishlistOutlined = forwardRef<SVGSVGElement, IconComponentProps>(function WishlistOutlined(
+  { size = 24, width, height, color = 'currentColor', className, style, ...props },
+  ref,
+) {
+  const dim = width ?? height ?? size;
+  return (
+    <svg
+      ref={ref}
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      width={width ?? dim}
+      height={height ?? dim}
+      color={color}
+      className={className}
+      style={style}
+      {...props}
+    >
+      <path fillRule="evenodd" clipRule="evenodd" d="M11.9757 5.82638C13.2617 4.99702 14.9705 4.76782 16.4464 5.2502C19.6566 6.30641 20.5683 9.15568 19.6769 11.9963C18.3014 16.4564 12.4298 19.7839 12.1779 19.925C12.0894 19.9749 11.9906 20.0002 11.8927 20.0002C11.7948 20.0001 11.6969 19.9761 11.6085 19.927C11.3555 19.786 5.72165 16.6438 4.30091 12.133C3.40906 9.29186 4.48793 6.44253 7.69446 5.3879C9.20042 4.89092 10.6485 4.97201 11.9757 5.82638ZM16.0734 6.39083C14.9431 6.02144 13.6101 6.19978 12.6261 6.83419L11.9757 7.25411L11.3263 6.83517C10.4163 6.24938 9.42816 6.13611 8.29896 6.45724L8.07044 6.52755C6.74972 6.9619 5.9532 7.72751 5.54798 8.59688C5.13548 9.48233 5.07514 10.591 5.44642 11.7736C6.05485 13.7048 7.61123 15.4375 9.17005 16.7541C10.3145 17.7207 11.3826 18.3979 11.8898 18.7014C12.4104 18.387 13.5348 17.6714 14.7325 16.6633C16.3538 15.2986 17.9465 13.5359 18.5304 11.6428L18.5314 11.6369L18.5978 11.4113C18.9053 10.2894 18.8545 9.25449 18.4982 8.42892C18.1296 7.57548 17.3836 6.82238 16.0734 6.39083Z" fill="currentColor"/>
+    </svg>
+  );
+});
+
+WishlistOutlined.displayName = 'WishlistOutlined';

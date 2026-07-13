@@ -1,0 +1,196 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Avatar",
+  "generatedAt": "2026-01-01T00:00:00.000Z",
+  "machineReadable": true,
+  "intentAndPurpose": {
+    "intent": "Display a user or entity representation as image, icon, or text initials.",
+    "taskContexts": [
+      "user-profile",
+      "contact-list",
+      "comment-attribution",
+      "navigation-header"
+    ],
+    "sentiments": [
+      "neutral",
+      "positive"
+    ]
+  },
+  "compositionRules": {
+    "requires": [
+      "alt text for accessibility"
+    ],
+    "allows": [
+      "image src",
+      "icon element",
+      "text initials via alt"
+    ],
+    "forbids": [
+      "interactive content within avatar"
+    ]
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "image",
+        "useWhen": [
+          "user has a profile photo"
+        ]
+      },
+      {
+        "name": "icon",
+        "useWhen": [
+          "generic entity or placeholder representation"
+        ]
+      },
+      {
+        "name": "text",
+        "useWhen": [
+          "no image available, display initials"
+        ]
+      }
+    ]
+  },
+  "relationshipsAndDependencies": {
+    "related": [
+      "IconContained",
+      "Image"
+    ]
+  },
+  "contextSignals": {
+    "density": [
+      "compact",
+      "default",
+      "open"
+    ],
+    "modality": [
+      "desktop",
+      "mobile"
+    ],
+    "brand": [
+      "theme-scope aware",
+      "recipe-driven"
+    ],
+    "mode": [
+      "light",
+      "dark",
+      "surface-context"
+    ]
+  },
+  "observabilityHooks": {
+    "track": [
+      "impression"
+    ],
+    "health": [
+      "a11y_violations",
+      "image_load_failure_rate"
+    ]
+  },
+  "props": [
+    {
+      "name": "alt",
+      "type": "string",
+      "required": false,
+      "description": "Alt text / name used for accessibility and initials extraction"
+    },
+    {
+      "name": "appearance",
+      "type": "AvatarAppearance",
+      "required": false,
+      "description": "Multi-accent appearance role. 'auto' resolves to 'primary'."
+    },
+    {
+      "name": "attention",
+      "type": "AvatarAttention",
+      "required": false,
+      "description": "Attention level — High (filled), Medium (tinted), Low (transparent). Default: 'high'"
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "required": false,
+      "description": "Additional class name"
+    },
+    {
+      "name": "content",
+      "type": "AvatarContent",
+      "required": false,
+      "description": "Display content: image, icon, or text (initials). Aligns with Figma property `content`."
+    },
+    {
+      "name": "customSize",
+      "type": "number",
+      "required": false,
+      "description": "Custom size in pixels (only when size='custom')"
+    },
+    {
+      "name": "data-testid",
+      "type": "string",
+      "required": false,
+      "description": "Test automation id — forwarded to the root element."
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "required": false,
+      "description": "Disabled state"
+    },
+    {
+      "name": "fallback",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Custom fallback content when image fails or for icon/text content"
+    },
+    {
+      "name": "icon",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Icon element (when content is icon)"
+    },
+    {
+      "name": "size",
+      "type": "AvatarSize",
+      "required": false,
+      "description": "Size preset. Default: 'm'"
+    },
+    {
+      "name": "src",
+      "type": "string",
+      "required": false,
+      "description": "Image source URL (when content is image)"
+    },
+    {
+      "name": "style",
+      "type": "CSSProperties",
+      "required": false,
+      "description": "Inline styles"
+    }
+  ],
+  "slots": [],
+  "codeSnippets": [
+    {
+      "id": "avatar-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { Avatar } from '@oneui/ui';\n\n<Avatar src=\"/photo.jpg\" alt=\"Jane Doe\" />"
+    },
+    {
+      "id": "avatar-initials",
+      "title": "Text Initials",
+      "language": "tsx",
+      "code": "<Avatar content=\"text\" alt=\"Jane Doe\" />"
+    },
+    {
+      "id": "avatar-recipe-decisions",
+      "title": "Recipe Decisions",
+      "language": "json",
+      "code": "{\n  \"component\": \"Avatar\",\n  \"decisions\": [\n    \"Shape\"\n  ]\n}"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "avatar"
+  ],
+  "importPath": "@jds4/oneui-react"
+}

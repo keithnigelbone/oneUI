@@ -1,0 +1,1838 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flutter QA — touch-slider</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0f1117; color: #e2e8f0; min-height: 100vh; }
+    .header { background: #1a1d27; border-bottom: 1px solid #2d3147; padding: 20px 32px; display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
+    .header-title { font-size: 18px; font-weight: 600; color: #f0f4ff; }
+    .header-sub { font-size: 12px; color: #64748b; margin-top: 2px; }
+    .stat-card { display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 8px 16px; border-radius: 8px; min-width: 80px; }
+    .stat-value { font-size: 22px; font-weight: 700; line-height: 1; }
+    .stat-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; color: #94a3b8; }
+    .stat-total { background: #1e2235; }
+    .stat-pass { background: #0f2a1a; }
+    .stat-fail { background: #2a0f0f; }
+    .stat-skip { background: #1e2235; }
+    .stat-time { background: #1e2235; }
+    .stat-pass .stat-value { color: #4ade80; }
+    .stat-fail .stat-value { color: #f87171; }
+    .stat-skip .stat-value { color: #94a3b8; }
+    .stat-total .stat-value, .stat-time .stat-value { color: #94a3b8; }
+    .status-banner { margin-left: auto; padding: 6px 16px; border-radius: 20px; font-size: 13px; font-weight: 600; }
+    .status-banner.all-pass { background: #052e16; color: #4ade80; border: 1px solid #16a34a; }
+    .status-banner.has-fail { background: #2a0f0f; color: #f87171; border: 1px solid #dc2626; }
+    .content { padding: 24px 32px; max-width: 1100px; margin: 0 auto; }
+    .toolbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; }
+    .filters { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+    .filter-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; color: #64748b; }
+    .filter-select { appearance: none; background: #1e2235; color: #c7d2fe; border: 1px solid #2d3147; border-radius: 6px; padding: 6px 12px; font-size: 12px; min-width: 140px; }
+    .suite-pills { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+    .suite-pill { font-size: 11px; padding: 4px 10px; border-radius: 999px; border: 1px solid #2d3147; color: #94a3b8; }
+    .suite-pill.fn { border-color: #4c1d95; color: #c4b5fd; }
+    .suite-pill.a11y { border-color: #14532d; color: #6ee7b7; }
+    .suite-pill.smoke { border-color: #0c4a6e; color: #7dd3fc; }
+    .file-block { background: #1a1d27; border: 1px solid #2d3147; border-radius: 10px; margin-bottom: 16px; overflow: hidden; }
+    .file-block.file-fail { border-color: #7f1d1d; }
+    .file-block.file-pass { border-color: #14532d; }
+    .file-summary { display: flex; align-items: center; gap: 10px; padding: 12px 16px; cursor: pointer; list-style: none; background: #20243a; user-select: none; }
+    .file-summary::-webkit-details-marker { display: none; }
+    .file-icon { font-size: 14px; }
+    .file-block.file-pass .file-icon { color: #4ade80; }
+    .file-block.file-fail .file-icon { color: #f87171; }
+    .file-path { font-size: 13px; font-weight: 500; color: #c7d2fe; font-family: 'JetBrains Mono', monospace; flex: 1; }
+    .file-counts { display: flex; gap: 8px; font-size: 12px; }
+    .pass-count { color: #4ade80; }
+    .fail-count { color: #f87171; }
+    .file-dur { font-size: 12px; color: #475569; }
+    .suite-block { padding: 4px 16px 12px; }
+    .test-row { border-radius: 6px; margin: 2px 0; }
+    .test-row.failed { background: #1a0a0a; }
+    .test-header { display: flex; align-items: center; gap: 8px; padding: 7px 10px; border-radius: 6px; }
+    .test-header:hover { background: #252a3f; }
+    .status-icon { font-size: 13px; font-weight: 700; width: 18px; flex-shrink: 0; }
+    .status-icon.pass { color: #4ade80; }
+    .status-icon.fail { color: #f87171; }
+    .status-icon.skip { color: #94a3b8; }
+    .test-name { flex: 1; font-size: 13px; color: #cbd5e1; }
+    .test-dur { font-size: 11px; color: #475569; flex-shrink: 0; }
+    .tag { font-size: 10px; font-weight: 600; padding: 2px 7px; border-radius: 10px; letter-spacing: 0.3px; flex-shrink: 0; }
+    .tag-smoke { background: #1e3a5f; color: #7dd3fc; }
+    .tag-fn { background: #2d1b69; color: #c4b5fd; }
+    .tag-a11y { background: #1a3a2a; color: #6ee7b7; }
+    .tag-catalog { background: #3b2f0a; color: #fcd34d; }
+    .tag-other { background: #2d2d2d; color: #94a3b8; }
+    .platform-badge { font-size: 10px; color: #64748b; border: 1px solid #334155; border-radius: 4px; padding: 1px 5px; }
+    .error-block { margin: 4px 10px 8px 36px; padding: 8px 12px; background: #1f0a0a; border-left: 3px solid #dc2626; border-radius: 0 4px 4px 0; }
+    .error-block pre { font-size: 11px; color: #fca5a5; white-space: pre-wrap; word-break: break-word; font-family: 'JetBrains Mono', monospace; max-height: 240px; overflow: auto; }
+    .footer { text-align: center; padding: 32px; font-size: 12px; color: #334155; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div>
+      <div class="header-title">Flutter QA — touch-slider</div>
+      <div class="header-sub">flutter_test · headless VM · 7/8/2026, 2:31:37 PM</div>
+    </div>
+    <div class="stat-card stat-total"><div class="stat-value">158</div><div class="stat-label">Total</div></div>
+    <div class="stat-card stat-pass"><div class="stat-value">158</div><div class="stat-label">Passed</div></div>
+    <div class="stat-card stat-fail"><div class="stat-value">0</div><div class="stat-label">Failed</div></div>
+    <div class="stat-card stat-skip"><div class="stat-value">0</div><div class="stat-label">Skipped</div></div>
+    <div class="stat-card stat-time"><div class="stat-value">7.6s</div><div class="stat-label">Duration</div></div>
+    <div class="status-banner all-pass">✓ All tests passed</div>
+  </div>
+  <div class="content">
+    <div class="toolbar">
+      <div class="filters">
+        <span class="filter-label">Component</span>
+        <select class="filter-select" id="comp-filter" onchange="applyFilters()">
+          <option value="">All</option>
+          <option value="touch_slider">touch_slider</option>
+        </select>
+        <span class="filter-label">Tier</span>
+        <select class="filter-select" id="tier-filter" onchange="applyFilters()">
+          <option value="">All</option>
+          <option value="smoke">Smoke</option>
+          <option value="fn">Functional</option>
+          <option value="a11y">Accessibility</option>
+          <option value="catalog">Catalog</option>
+        </select>
+      </div>
+    </div>
+    <div class="suite-pills">
+      <span class="suite-pill smoke">Smoke: 10</span>
+      <span class="suite-pill fn">Functional: 39</span>
+      <span class="suite-pill a11y">Accessibility: 5</span>
+      <span class="suite-pill">Catalog: 2</span>
+    </div>
+    <details class="file-block file-pass" data-component="touch_slider" open>
+      <summary class="file-summary">
+        <span class="file-icon">✓</span>
+        <span class="file-path">test/components/touch_slider/touch_slider_a11y_test.dart</span>
+        <span class="file-counts">
+          <span class="pass-count">5 passed</span>
+          
+        </span>
+        <span class="file-dur">0.60s</span>
+      </summary>
+      <div class="suite-block"><div class="test-row passed" data-component="touch_slider" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          
+          <span class="test-name">[a11y] resolveOneUiTouchSliderSemantics [a11y] prefers semanticsLabel over ariaLabel</span>
+          <span class="test-dur">17ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          
+          <span class="test-name">[a11y] resolveOneUiTouchSliderSemantics [a11y] readOnly stays enabled in semantics (Figma + Slider parity)</span>
+          <span class="test-dur">3ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[a11y] TouchSlider widget semantics [a11y] exposes slider role and value string</span>
+          <span class="test-dur">490ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[a11y] TouchSlider widget semantics [a11y] exposes slider role and value string</span>
+          <span class="test-dur">46ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[a11y] TouchSlider widget semantics [a11y] exposes slider role and value string</span>
+          <span class="test-dur">43ms</span>
+        </div>
+        
+      </div></div>
+    </details>
+<details class="file-block file-pass" data-component="touch_slider" open>
+      <summary class="file-summary">
+        <span class="file-icon">✓</span>
+        <span class="file-path">test/components/touch_slider/touch_slider_figma_parity_test.dart</span>
+        <span class="file-counts">
+          <span class="pass-count">40 passed</span>
+          
+        </span>
+        <span class="file-dur">1.60s</span>
+      </summary>
+      <div class="suite-block"><div class="test-row passed" data-component="touch_slider" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] TouchSlider — progressStyle [figma] progressStyle=rounded renders</span>
+          <span class="test-dur">662ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] TouchSlider — progressStyle [figma] progressStyle=rounded renders</span>
+          <span class="test-dur">50ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] TouchSlider — progressStyle [figma] progressStyle=rounded renders</span>
+          <span class="test-dur">35ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] TouchSlider — progressStyle [figma] progressStyle=sharp renders</span>
+          <span class="test-dur">28ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] TouchSlider — progressStyle [figma] progressStyle=sharp renders</span>
+          <span class="test-dur">23ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] TouchSlider — progressStyle [figma] progressStyle=sharp renders</span>
+          <span class="test-dur">26ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] TouchSlider — appearance [figma] appearance=neutral renders</span>
+          <span class="test-dur">26ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] TouchSlider — appearance [figma] appearance=neutral renders</span>
+          <span class="test-dur">25ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] TouchSlider — appearance [figma] appearance=neutral renders</span>
+          <span class="test-dur">23ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] TouchSlider — appearance [figma] appearance=primary renders</span>
+          <span class="test-dur">43ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] TouchSlider — appearance [figma] appearance=primary renders</span>
+          <span class="test-dur">23ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] TouchSlider — appearance [figma] appearance=primary renders</span>
+          <span class="test-dur">21ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] TouchSlider — appearance [figma] appearance=secondary renders</span>
+          <span class="test-dur">22ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] TouchSlider — appearance [figma] appearance=secondary renders</span>
+          <span class="test-dur">21ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] TouchSlider — appearance [figma] appearance=secondary renders</span>
+          <span class="test-dur">22ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] TouchSlider — appearance [figma] appearance=negative renders</span>
+          <span class="test-dur">22ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] TouchSlider — appearance [figma] appearance=negative renders</span>
+          <span class="test-dur">41ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] TouchSlider — appearance [figma] appearance=negative renders</span>
+          <span class="test-dur">19ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] TouchSlider — appearance [figma] appearance=positive renders</span>
+          <span class="test-dur">19ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] TouchSlider — appearance [figma] appearance=positive renders</span>
+          <span class="test-dur">21ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] TouchSlider — appearance [figma] appearance=positive renders</span>
+          <span class="test-dur">25ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] TouchSlider — appearance [figma] appearance=informative renders</span>
+          <span class="test-dur">35ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] TouchSlider — appearance [figma] appearance=informative renders</span>
+          <span class="test-dur">24ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] TouchSlider — appearance [figma] appearance=informative renders</span>
+          <span class="test-dur">21ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] TouchSlider — appearance [figma] appearance=warning renders</span>
+          <span class="test-dur">25ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] TouchSlider — appearance [figma] appearance=warning renders</span>
+          <span class="test-dur">23ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] TouchSlider — appearance [figma] appearance=warning renders</span>
+          <span class="test-dur">21ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] TouchSlider — orientation [figma] orientation=horizontal renders</span>
+          <span class="test-dur">23ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] TouchSlider — orientation [figma] orientation=horizontal renders</span>
+          <span class="test-dur">32ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] TouchSlider — orientation [figma] orientation=horizontal renders</span>
+          <span class="test-dur">27ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] TouchSlider — orientation [figma] orientation=vertical renders</span>
+          <span class="test-dur">24ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] TouchSlider — orientation [figma] orientation=vertical renders</span>
+          <span class="test-dur">28ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] TouchSlider — orientation [figma] orientation=vertical renders</span>
+          <span class="test-dur">25ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          
+          <span class="test-name">[figma] TouchSlider — fill geometry [figma] horizontal rounded 50% fill width</span>
+          <span class="test-dur">33ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          
+          <span class="test-name">[figma] TouchSlider — fill geometry [figma] horizontal sharp 50% fill width</span>
+          <span class="test-dur">21ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          
+          <span class="test-name">[figma] TouchSlider — fill geometry [figma] vertical rounded 50% fill height</span>
+          <span class="test-dur">24ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          
+          <span class="test-name">[figma] TouchSlider — state resolver [figma] fillRatio at value 50</span>
+          <span class="test-dur">4ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          
+          <span class="test-name">[figma] TouchSlider — state resolver [figma] readOnly is distinct from disabled</span>
+          <span class="test-dur">2ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          
+          <span class="test-name">[figma] TouchSlider — state resolver [figma] sparkle and brand-bg are not in Figma appearance API</span>
+          <span class="test-dur">8ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          
+          <span class="test-name">[figma] TouchSlider — state resolver [figma] cap ratio matches 138×32 Figma reference</span>
+          <span class="test-dur">3ms</span>
+        </div>
+        
+      </div></div>
+    </details>
+<details class="file-block file-pass" data-component="touch_slider" open>
+      <summary class="file-summary">
+        <span class="file-icon">✓</span>
+        <span class="file-path">test/components/touch_slider/touch_slider_functional_test.dart</span>
+        <span class="file-counts">
+          <span class="pass-count">48 passed</span>
+          
+        </span>
+        <span class="file-dur">1.65s</span>
+      </summary>
+      <div class="suite-block"><div class="test-row passed" data-component="touch_slider" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[smoke] TouchSlider [smoke] renders with ariaLabel</span>
+          <span class="test-dur">460ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[smoke] TouchSlider [smoke] renders with ariaLabel</span>
+          <span class="test-dur">41ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[smoke] TouchSlider [smoke] renders with ariaLabel</span>
+          <span class="test-dur">39ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[smoke] TouchSlider [smoke] progressStyle=rounded renders</span>
+          <span class="test-dur">24ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[smoke] TouchSlider [smoke] progressStyle=rounded renders</span>
+          <span class="test-dur">22ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[smoke] TouchSlider [smoke] progressStyle=rounded renders</span>
+          <span class="test-dur">22ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[smoke] TouchSlider [smoke] progressStyle=sharp renders</span>
+          <span class="test-dur">22ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[smoke] TouchSlider [smoke] progressStyle=sharp renders</span>
+          <span class="test-dur">23ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[smoke] TouchSlider [smoke] progressStyle=sharp renders</span>
+          <span class="test-dur">21ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[functional] TouchSlider — value change [fn] horizontal drag updates value</span>
+          <span class="test-dur">77ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[functional] TouchSlider — value change [fn] horizontal drag updates value</span>
+          <span class="test-dur">32ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[functional] TouchSlider — value change [fn] horizontal drag updates value</span>
+          <span class="test-dur">32ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[functional] TouchSlider — value change [fn] pan updates value on track drag</span>
+          <span class="test-dur">24ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[functional] TouchSlider — value change [fn] pan updates value on track drag</span>
+          <span class="test-dur">25ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[functional] TouchSlider — value change [fn] pan updates value on track drag</span>
+          <span class="test-dur">26ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[functional] TouchSlider — value change [fn] vertical drag up increases value</span>
+          <span class="test-dur">35ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[functional] TouchSlider — value change [fn] vertical drag up increases value</span>
+          <span class="test-dur">27ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[functional] TouchSlider — value change [fn] vertical drag up increases value</span>
+          <span class="test-dur">25ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[functional] TouchSlider — value change [fn] vertical drag down decreases value</span>
+          <span class="test-dur">24ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[functional] TouchSlider — value change [fn] vertical drag down decreases value</span>
+          <span class="test-dur">21ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[functional] TouchSlider — value change [fn] vertical drag down decreases value</span>
+          <span class="test-dur">22ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[functional] TouchSlider — states [fn] disabled blocks onValueChange</span>
+          <span class="test-dur">49ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[functional] TouchSlider — states [fn] disabled blocks onValueChange</span>
+          <span class="test-dur">23ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[functional] TouchSlider — states [fn] disabled blocks onValueChange</span>
+          <span class="test-dur">23ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[functional] TouchSlider — states [fn] readOnly blocks onValueChange</span>
+          <span class="test-dur">23ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[functional] TouchSlider — states [fn] readOnly blocks onValueChange</span>
+          <span class="test-dur">23ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[functional] TouchSlider — states [fn] readOnly blocks onValueChange</span>
+          <span class="test-dur">24ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[functional] TouchSlider — keyboard [fn] ArrowRight nudges value via keyboard</span>
+          <span class="test-dur">25ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[functional] TouchSlider — keyboard [fn] ArrowRight nudges value via keyboard</span>
+          <span class="test-dur">22ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[functional] TouchSlider — keyboard [fn] ArrowRight nudges value via keyboard</span>
+          <span class="test-dur">21ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[functional] TouchSlider — keyboard [fn] PageUp jumps value via keyboard</span>
+          <span class="test-dur">23ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[functional] TouchSlider — keyboard [fn] PageUp jumps value via keyboard</span>
+          <span class="test-dur">22ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[functional] TouchSlider — keyboard [fn] PageUp jumps value via keyboard</span>
+          <span class="test-dur">21ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[functional] TouchSlider — keyboard [fn] Home and End jump to min/max</span>
+          <span class="test-dur">23ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[functional] TouchSlider — keyboard [fn] Home and End jump to min/max</span>
+          <span class="test-dur">26ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[functional] TouchSlider — keyboard [fn] Home and End jump to min/max</span>
+          <span class="test-dur">32ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[functional] TouchSlider — onValueCommitted [fn] tap commits value</span>
+          <span class="test-dur">25ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[functional] TouchSlider — onValueCommitted [fn] tap commits value</span>
+          <span class="test-dur">22ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[functional] TouchSlider — onValueCommitted [fn] tap commits value</span>
+          <span class="test-dur">19ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[functional] TouchSlider — onValueCommitted [fn] pan end commits value</span>
+          <span class="test-dur">19ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[functional] TouchSlider — onValueCommitted [fn] pan end commits value</span>
+          <span class="test-dur">23ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[functional] TouchSlider — onValueCommitted [fn] pan end commits value</span>
+          <span class="test-dur">19ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[functional] TouchSlider — controlled + testId [fn] controlled value ignores internal drag state</span>
+          <span class="test-dur">22ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[functional] TouchSlider — controlled + testId [fn] controlled value ignores internal drag state</span>
+          <span class="test-dur">17ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[functional] TouchSlider — controlled + testId [fn] controlled value ignores internal drag state</span>
+          <span class="test-dur">18ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[functional] TouchSlider — controlled + testId [fn] forwards testId to Semantics.identifier</span>
+          <span class="test-dur">15ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[functional] TouchSlider — controlled + testId [fn] forwards testId to Semantics.identifier</span>
+          <span class="test-dur">13ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[functional] TouchSlider — controlled + testId [fn] forwards testId to Semantics.identifier</span>
+          <span class="test-dur">15ms</span>
+        </div>
+        
+      </div></div>
+    </details>
+<details class="file-block file-pass" data-component="touch_slider" open>
+      <summary class="file-summary">
+        <span class="file-icon">✓</span>
+        <span class="file-path">test/components/touch_slider/touch_slider_golden_dark_test.dart</span>
+        <span class="file-counts">
+          <span class="pass-count">7 passed</span>
+          
+        </span>
+        <span class="file-dur">0.99s</span>
+      </summary>
+      <div class="suite-block"><div class="test-row passed" data-component="touch_slider" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden][dark] TouchSlider — appearance grid (rounded / 50) dark / secondary / rounded / 50</span>
+          <span class="test-dur">561ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden][dark] TouchSlider — appearance grid (rounded / 50) dark / primary / rounded / 50</span>
+          <span class="test-dur">249ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden][dark] TouchSlider — appearance grid (rounded / 50) dark / positive / rounded / 50</span>
+          <span class="test-dur">43ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden][dark] TouchSlider — appearance grid (rounded / 50) dark / negative / rounded / 50</span>
+          <span class="test-dur">39ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden][dark] TouchSlider — matrix subset dark / horizontal / sharp / 0</span>
+          <span class="test-dur">29ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden][dark] TouchSlider — matrix subset dark / horizontal / sharp / 100</span>
+          <span class="test-dur">30ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] TouchSlider — dark baselines dark / rounded / secondary (legacy)</span>
+          <span class="test-dur">35ms</span>
+        </div>
+        
+      </div></div>
+    </details>
+<details class="file-block file-pass" data-component="touch_slider" open>
+      <summary class="file-summary">
+        <span class="file-icon">✓</span>
+        <span class="file-path">test/components/touch_slider/touch_slider_golden_surface_test.dart</span>
+        <span class="file-counts">
+          <span class="pass-count">5 passed</span>
+          
+        </span>
+        <span class="file-dur">0.87s</span>
+      </summary>
+      <div class="suite-block"><div class="test-row passed" data-component="touch_slider" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden][surface] TouchSlider — appearance:auto inherits surface mode=subtle / appearance=primary</span>
+          <span class="test-dur">563ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden][surface] TouchSlider — appearance:auto inherits surface mode=subtle / appearance=secondary</span>
+          <span class="test-dur">173ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden][surface] TouchSlider — appearance:auto inherits surface mode=bold / appearance=primary</span>
+          <span class="test-dur">47ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden][surface] TouchSlider — appearance:auto inherits surface mode=bold / appearance=secondary</span>
+          <span class="test-dur">44ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] TouchSlider — surface baselines bold / secondary (legacy)</span>
+          <span class="test-dur">41ms</span>
+        </div>
+        
+      </div></div>
+    </details>
+<details class="file-block file-pass" data-component="touch_slider" open>
+      <summary class="file-summary">
+        <span class="file-icon">✓</span>
+        <span class="file-path">test/components/touch_slider/touch_slider_golden_test.dart</span>
+        <span class="file-counts">
+          <span class="pass-count">17 passed</span>
+          
+        </span>
+        <span class="file-dur">0.94s</span>
+      </summary>
+      <div class="suite-block"><div class="test-row passed" data-component="touch_slider" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          
+          <span class="test-name">[golden][smoke] TouchSlider — light [smoke] default renders for golden setup</span>
+          <span class="test-dur">479ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] TouchSlider — Figma matrix (light) horizontal / rounded / 0.0</span>
+          <span class="test-dur">47ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] TouchSlider — Figma matrix (light) horizontal / rounded / 50.0</span>
+          <span class="test-dur">33ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] TouchSlider — Figma matrix (light) horizontal / rounded / 100.0</span>
+          <span class="test-dur">33ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] TouchSlider — Figma matrix (light) horizontal / sharp / 0.0</span>
+          <span class="test-dur">25ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] TouchSlider — Figma matrix (light) horizontal / sharp / 50.0</span>
+          <span class="test-dur">39ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] TouchSlider — Figma matrix (light) horizontal / sharp / 100.0</span>
+          <span class="test-dur">29ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] TouchSlider — Figma matrix (light) vertical / rounded / 0.0</span>
+          <span class="test-dur">29ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] TouchSlider — Figma matrix (light) vertical / rounded / 50.0</span>
+          <span class="test-dur">28ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] TouchSlider — Figma matrix (light) vertical / rounded / 100.0</span>
+          <span class="test-dur">26ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] TouchSlider — Figma matrix (light) vertical / sharp / 0.0</span>
+          <span class="test-dur">27ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] TouchSlider — Figma matrix (light) vertical / sharp / 50.0</span>
+          <span class="test-dur">31ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] TouchSlider — Figma matrix (light) vertical / sharp / 100.0</span>
+          <span class="test-dur">27ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] TouchSlider — appearance grid (horizontal / rounded / 50) horizontal / rounded / 50 / primary</span>
+          <span class="test-dur">22ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] TouchSlider — appearance grid (horizontal / rounded / 50) horizontal / rounded / 50 / positive</span>
+          <span class="test-dur">23ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] TouchSlider — appearance grid (horizontal / rounded / 50) horizontal / rounded / 50 / negative</span>
+          <span class="test-dur">22ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] TouchSlider — light baselines default / rounded / secondary</span>
+          <span class="test-dur">24ms</span>
+        </div>
+        
+      </div></div>
+    </details>
+<details class="file-block file-pass" data-component="touch_slider" open>
+      <summary class="file-summary">
+        <span class="file-icon">✓</span>
+        <span class="file-path">test/components/touch_slider/touch_slider_motion_test.dart</span>
+        <span class="file-counts">
+          <span class="pass-count">9 passed</span>
+          
+        </span>
+        <span class="file-dur">0.99s</span>
+      </summary>
+      <div class="suite-block"><div class="test-row passed" data-component="touch_slider" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[motion] TouchSlider — fill animation [motion] fill uses Motion-Duration-M at rest</span>
+          <span class="test-dur">699ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[motion] TouchSlider — fill animation [motion] fill uses Motion-Duration-M at rest</span>
+          <span class="test-dur">40ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[motion] TouchSlider — fill animation [motion] fill uses Motion-Duration-M at rest</span>
+          <span class="test-dur">44ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[motion] TouchSlider — fill animation [motion] fill duration is zero while dragging</span>
+          <span class="test-dur">84ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[motion] TouchSlider — fill animation [motion] fill duration is zero while dragging</span>
+          <span class="test-dur">31ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[motion] TouchSlider — fill animation [motion] fill duration is zero while dragging</span>
+          <span class="test-dur">30ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[motion] TouchSlider — fill animation [motion] subtleMotion zeroes fill settle duration</span>
+          <span class="test-dur">22ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[motion] TouchSlider — fill animation [motion] subtleMotion zeroes fill settle duration</span>
+          <span class="test-dur">24ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[motion] TouchSlider — fill animation [motion] subtleMotion zeroes fill settle duration</span>
+          <span class="test-dur">21ms</span>
+        </div>
+        
+      </div></div>
+    </details>
+<details class="file-block file-pass" data-component="touch_slider" open>
+      <summary class="file-summary">
+        <span class="file-icon">✓</span>
+        <span class="file-path">test/components/touch_slider/touch_slider_platform_test.dart</span>
+        <span class="file-counts">
+          <span class="pass-count">4 passed</span>
+          
+        </span>
+        <span class="file-dur">0.71s</span>
+      </summary>
+      <div class="suite-block"><div class="test-row passed" data-component="touch_slider" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[platform][mobile] TouchSlider [mobile] slider role + value string</span>
+          <span class="test-dur">606ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[platform][mobile] TouchSlider [mobile] slider role + value string</span>
+          <span class="test-dur">39ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[platform][web-desktop] TouchSlider [desktop] slider role + value string</span>
+          <span class="test-dur">35ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">macos</span>
+          <span class="test-name">[platform][web-desktop] TouchSlider [desktop] slider role + value string (macOS)</span>
+          <span class="test-dur">31ms</span>
+        </div>
+        
+      </div></div>
+    </details>
+<details class="file-block file-pass" data-component="touch_slider" open>
+      <summary class="file-summary">
+        <span class="file-icon">✓</span>
+        <span class="file-path">test/components/touch_slider/touch_slider_regression_test.dart</span>
+        <span class="file-counts">
+          <span class="pass-count">3 passed</span>
+          
+        </span>
+        <span class="file-dur">0.02s</span>
+      </summary>
+      <div class="suite-block"><div class="test-row passed" data-component="touch_slider" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          
+          <span class="test-name">[parity] TouchSlider — matches the web contract [parity] [TSL-PAR-001] readOnly is distinct from disabled (Figma + Slider)</span>
+          <span class="test-dur">17ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          
+          <span class="test-name">[parity] TouchSlider — matches the web contract [parity] [TSL-PAR-002] appearance=auto resolves to secondary</span>
+          <span class="test-dur">3ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          
+          <span class="test-name">[regression][meta] TouchSlider [meta] attribution counts</span>
+          <span class="test-dur">3ms</span>
+        </div>
+        
+      </div></div>
+    </details>
+<details class="file-block file-pass" data-component="touch_slider" open>
+      <summary class="file-summary">
+        <span class="file-icon">✓</span>
+        <span class="file-path">test/components/touch_slider/touch_slider_story_catalog_test.dart</span>
+        <span class="file-counts">
+          <span class="pass-count">2 passed</span>
+          
+        </span>
+        <span class="file-dur">0.02s</span>
+      </summary>
+      <div class="suite-block"><div class="test-row passed" data-component="touch_slider" data-tier="catalog">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-catalog">CATALOG</span>
+          
+          <span class="test-name">[catalog] TouchSlider Storybook parity [catalog] kTouchSliderStoryNavOrder matches web export order</span>
+          <span class="test-dur">16ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="catalog">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-catalog">CATALOG</span>
+          
+          <span class="test-name">[catalog] TouchSlider Storybook parity [catalog] every catalog entry has a non-empty description</span>
+          <span class="test-dur">2ms</span>
+        </div>
+        
+      </div></div>
+    </details>
+<details class="file-block file-pass" data-component="touch_slider" open>
+      <summary class="file-summary">
+        <span class="file-icon">✓</span>
+        <span class="file-path">test/components/touch_slider/touch_slider_visual_regression_test.dart</span>
+        <span class="file-counts">
+          <span class="pass-count">18 passed</span>
+          
+        </span>
+        <span class="file-dur">0.87s</span>
+      </summary>
+      <div class="suite-block"><div class="test-row passed" data-component="touch_slider" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[visual] TouchSlider — fill ratio contract [visual] [TSL-VIS-001] fillRatio tracks value across min/max</span>
+          <span class="test-dur">14ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[visual] TouchSlider — fill ratio contract [visual] [TSL-VIS-002] touchSliderFillExtentPx at 50% is half track</span>
+          <span class="test-dur">2ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[visual] TouchSlider — fill ratio contract [visual] [TSL-VIS-003] sharp fill grows from zero without min pill</span>
+          <span class="test-dur">2ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[visual] TouchSlider — painted fill span [visual] [TSL-VIS-004] horizontal rounded fill at 0.0</span>
+          <span class="test-dur">485ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[visual] TouchSlider — painted fill span [visual] [TSL-VIS-004] horizontal rounded fill at 0.0</span>
+          <span class="test-dur">42ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[visual] TouchSlider — painted fill span [visual] [TSL-VIS-004] horizontal rounded fill at 0.0</span>
+          <span class="test-dur">36ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[visual] TouchSlider — painted fill span [visual] [TSL-VIS-005] horizontal rounded fill at 50.0</span>
+          <span class="test-dur">29ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[visual] TouchSlider — painted fill span [visual] [TSL-VIS-005] horizontal rounded fill at 50.0</span>
+          <span class="test-dur">22ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[visual] TouchSlider — painted fill span [visual] [TSL-VIS-005] horizontal rounded fill at 50.0</span>
+          <span class="test-dur">25ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[visual] TouchSlider — painted fill span [visual] [TSL-VIS-006] horizontal rounded fill at 100.0</span>
+          <span class="test-dur">24ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[visual] TouchSlider — painted fill span [visual] [TSL-VIS-006] horizontal rounded fill at 100.0</span>
+          <span class="test-dur">24ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[visual] TouchSlider — painted fill span [visual] [TSL-VIS-006] horizontal rounded fill at 100.0</span>
+          <span class="test-dur">30ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[visual] TouchSlider — painted fill span [visual] [TSL-VIS-007] vertical rounded fill at 50%</span>
+          <span class="test-dur">24ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[visual] TouchSlider — painted fill span [visual] [TSL-VIS-007] vertical rounded fill at 50%</span>
+          <span class="test-dur">23ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[visual] TouchSlider — painted fill span [visual] [TSL-VIS-007] vertical rounded fill at 50%</span>
+          <span class="test-dur">23ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[visual] TouchSlider — painted fill span [visual] [TSL-VIS-008] sharp horizontal fill at 50%</span>
+          <span class="test-dur">23ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[visual] TouchSlider — painted fill span [visual] [TSL-VIS-008] sharp horizontal fill at 50%</span>
+          <span class="test-dur">22ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="touch_slider" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[visual] TouchSlider — painted fill span [visual] [TSL-VIS-008] sharp horizontal fill at 50%</span>
+          <span class="test-dur">19ms</span>
+        </div>
+        
+      </div></div>
+    </details>
+  </div>
+  <div class="footer">Generated by <code>generate-html-report.mts</code> · OneUI QA Playground Flutter</div>
+  <script>
+    function applyFilters() {
+      var comp = document.getElementById('comp-filter').value;
+      var tier = document.getElementById('tier-filter').value;
+      document.querySelectorAll('.file-block').forEach(function(block) {
+        var bc = block.getAttribute('data-component');
+        var showFile = (!comp || bc === comp);
+        if (showFile && tier) {
+          var rows = block.querySelectorAll('.test-row');
+          var any = false;
+          rows.forEach(function(row) {
+            var match = row.getAttribute('data-tier') === tier;
+            row.style.display = match ? '' : 'none';
+            if (match) any = true;
+          });
+          block.style.display = any ? '' : 'none';
+        } else {
+          block.style.display = showFile ? '' : 'none';
+          block.querySelectorAll('.test-row').forEach(function(row) { row.style.display = ''; });
+        }
+      });
+    }
+  </script>
+</body>
+</html>

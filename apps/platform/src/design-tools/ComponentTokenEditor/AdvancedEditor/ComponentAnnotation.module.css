@@ -1,0 +1,161 @@
+/**
+ * ComponentAnnotation.module.css
+ *
+ * Wireframe diagram with token annotations.
+ * Shows where each key token is applied visually.
+ * Token-only styling (zero literals).
+ */
+
+.annotationContainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--Spacing-7);
+}
+
+.componentPreview {
+  position: relative;
+  z-index: 1;
+}
+
+/* SVG overlay for annotation lines */
+.annotationOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Individual annotation label */
+.annotationLabel {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-2-5);
+  padding: var(--Spacing-2-5) var(--Spacing-3-5);
+  background-color: var(--Surface-Main);
+  border: 1px solid var(--Border-Subtle);
+  border-radius: var(--Shape-Pill);
+  font-size: var(--Label-XS-FontSize);
+  color: var(--Text-Medium);
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all var(--Motion-Duration-Discreet-Short);
+  pointer-events: auto;
+  z-index: 2;
+}
+
+.annotationLabel:hover {
+  background-color: var(--Surface-Subtle);
+  color: var(--Text-High);
+  border-color: var(--Surface-Bold);
+}
+
+.annotationLabel[data-selected='true'] {
+  background-color: var(--Surface-Bold);
+  color: var(--Text-OnBold-High);
+  border-color: var(--Surface-Bold);
+}
+
+.annotationLabel[data-highlighted='true'] {
+  background-color: var(--Surface-Subtle);
+  border-color: var(--Surface-Bold);
+  box-shadow: 0 0 0 2px var(--Surface-Bold);
+}
+
+/* INTENTIONAL-LITERAL: annotation dot is 6×6px — sub-token precision indicator, no Spacing token at this scale */
+.annotationDot {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--Shape-Pill);
+  background-color: var(--Surface-Bold);
+}
+
+.annotationText {
+  font-weight: var(--Body-FontWeight-Medium);
+}
+
+/* Annotation lines (SVG paths) */
+.annotationLine {
+  stroke: var(--Border-Subtle);
+  stroke-width: 1;
+  fill: none;
+  transition: stroke var(--Motion-Duration-Discreet-Short);
+}
+
+.annotationLine[data-highlighted='true'],
+.annotationLine[data-selected='true'] {
+  stroke: var(--Surface-Bold);
+  stroke-width: 2;
+}
+
+/* Line endpoint dot */
+.lineEndpoint {
+  fill: var(--Surface-Bold);
+  r: 3;
+}
+
+/* Position variants for labels */
+.annotationLabel[data-position='top'] {
+  transform: translateX(-50%);
+}
+
+.annotationLabel[data-position='bottom'] {
+  transform: translateX(-50%);
+}
+
+.annotationLabel[data-position='left'] {
+  transform: translateY(-50%);
+}
+
+.annotationLabel[data-position='right'] {
+  transform: translateY(-50%);
+}
+
+.annotationLabel[data-position='top-left'] {
+  transform: translate(0, 0);
+}
+
+.annotationLabel[data-position='top-right'] {
+  transform: translate(0, 0);
+}
+
+.annotationLabel[data-position='bottom-left'] {
+  transform: translate(0, 0);
+}
+
+.annotationLabel[data-position='bottom-right'] {
+  transform: translate(0, 0);
+}
+
+/* Variant selector for the preview */
+.variantPreviewTabs {
+  display: flex;
+  gap: var(--Spacing-3);
+  margin-bottom: var(--Spacing-4);
+}
+
+.variantPreviewTab {
+  padding: var(--Spacing-3) var(--Spacing-4);
+  border-radius: var(--Shape-Pill);
+  border: 1px solid var(--Border-Subtle);
+  background-color: transparent;
+  color: var(--Text-Medium);
+  font-size: var(--Body-S-FontSize);
+  cursor: pointer;
+  transition: all var(--Motion-Duration-Discreet-Short);
+}
+
+.variantPreviewTab:hover {
+  background-color: var(--Surface-Subtle);
+}
+
+.variantPreviewTab[data-active='true'] {
+  background-color: var(--Surface-Bold);
+  color: var(--Text-OnBold-High);
+  border-color: var(--Surface-Bold);
+}

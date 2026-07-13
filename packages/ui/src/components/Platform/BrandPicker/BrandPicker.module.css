@@ -1,0 +1,291 @@
+/**
+ * BrandPicker.module.css
+ *
+ * Token-only styles (V4). The picker renders inside the Popover's .popup
+ * which provides background, border-radius, shadow. We override its padding
+ * to zero and manage layout ourselves.
+ *
+ * INTENTIONAL-LITERAL: the popup body uses a product-design fixed width
+ * (280px) and a scroll-cap max-height (480px) that fits the longest brand
+ * list + search input. Not expressible via the spacing/dimension scale.
+ */
+
+/* ─── Trigger ──────────────────────────────────────────────────────────── */
+
+.triggerButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  background: transparent;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  border-radius: var(--IconButton-borderRadius, var(--Shape-4));
+}
+
+.triggerButton:focus {
+  outline: none;
+}
+
+.triggerButton:focus-visible {
+  outline: var(--Focus-Outline-Width) solid var(--Focus-Outline);
+  outline-offset: var(--Stroke-XL);
+}
+
+/* ─── Content wrapper (inside popup, overrides its padding) ────────────── */
+
+.pickerContent {
+  display: flex;
+  flex-direction: column;
+  width: 280px;
+  max-height: 480px;
+  margin: calc(-1 * var(--Spacing-4-5));
+  overflow: hidden;
+}
+
+/* ─── Search ───────────────────────────────────────────────────────────── */
+
+.searchContainer {
+  padding: var(--Spacing-3);
+  flex-shrink: 0;
+}
+
+/* ─── Footer (optional + New brand) ────────────────────────────────────── */
+
+.footer {
+  display: flex;
+  padding: var(--Spacing-2);
+  flex-shrink: 0;
+}
+
+.footer > button {
+  width: 100%;
+  justify-content: flex-start;
+}
+
+/* ─── Body (scrollable list) ───────────────────────────────────────────── */
+
+.body {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--Spacing-2) 0;
+}
+
+/* ─── Divider wrapper — edge to edge (between sections) ────────────────── */
+
+.dividerWrap {
+  padding: var(--Spacing-2) 0;
+}
+
+/* ─── Soft divider — between major brands, full width edge to edge ──────── */
+
+.softDividerWrap {
+  padding: var(--Spacing-2) 0;
+}
+
+/* ─── Section (flat, non-collapsible) ──────────────────────────────────── */
+
+.section {
+  display: flex;
+  flex-direction: column;
+}
+
+.sectionLabel {
+  display: block;
+  padding: var(--Spacing-2) var(--Spacing-3-5);
+  font-family: var(--Label-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+  color: var(--Text-Low);
+  letter-spacing: 0.02em;
+}
+
+/* ─── Group (collapsible — kept for potential future use) ──────────────── */
+
+.group {
+  display: flex;
+  flex-direction: column;
+}
+
+.groupHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-2-5);
+  width: 100%;
+  padding: var(--Spacing-2) var(--Spacing-3-5);
+  background-color: transparent;
+  border: none;
+  color: var(--Text-Medium);
+  cursor: pointer;
+  text-align: left;
+  font-family: var(--Label-FontFamily, var(--Typography-Font-Text));
+}
+
+.groupHeader:hover {
+  background-color: var(--Surface-Minimal);
+}
+
+.groupHeader:focus {
+  outline: none;
+}
+
+.groupHeader:focus-visible {
+  outline: var(--Focus-Outline-Width) solid var(--Focus-Outline);
+  outline-offset: calc(-1 * var(--Stroke-XL));
+}
+
+.groupChevron {
+  color: var(--Text-Low);
+  flex-shrink: 0;
+  transition: transform var(--Motion-Duration-Discreet-Short) var(--Motion-Easing-Standard);
+}
+
+.groupChevron[data-collapsed] {
+  transform: rotate(-90deg);
+}
+
+.groupLabel {
+  flex: 1;
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+  color: var(--Text-Low);
+  letter-spacing: 0.02em;
+}
+
+.groupBody {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ─── Item (selectable brand row) ──────────────────────────────────────── */
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-3);
+  width: 100%;
+  padding: var(--Spacing-3) var(--Spacing-3-5);
+  padding-left: var(--Spacing-4);
+  background-color: transparent;
+  border: none;
+  color: var(--Text-High);
+  cursor: pointer;
+  text-align: left;
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  transition: background-color var(--Motion-Duration-Discreet-Short) var(--Motion-Easing-Standard);
+}
+
+.item[data-indent] {
+  padding-left: var(--Spacing-4-5);
+}
+
+.item:hover {
+  background-color: var(--Surface-Minimal);
+}
+
+.item[data-selected] {
+  background-color: var(--Primary-Subtle, var(--Surface-Subtle));
+  color: var(--Primary-TintedA11y, var(--Text-High));
+}
+
+.item:focus {
+  outline: none;
+}
+
+.item:focus-visible {
+  outline: var(--Focus-Outline-Width) solid var(--Focus-Outline);
+  outline-offset: calc(-1 * var(--Stroke-XL));
+}
+
+.itemLogo {
+  flex-shrink: 0;
+}
+
+.itemName {
+  flex: 1;
+  font-size: var(--Body-M-FontSize);
+  line-height: var(--Body-M-LineHeight);
+  font-weight: var(--Body-FontWeight-Medium);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.baseTag {
+  flex-shrink: 0;
+  padding: 0 var(--Spacing-2-5);
+  border-radius: var(--Badge-borderRadius, var(--Shape-3));
+  background-color: var(--Surface-Minimal);
+  color: var(--Text-Medium);
+  font-family: var(--Label-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+}
+
+.checkIcon {
+  color: var(--Primary-Bold, var(--Surface-Bold));
+  flex-shrink: 0;
+}
+
+/* ─── Variant (sub-brand row — same alignment as brand items) ──────────── */
+
+.variant {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-3);
+  width: 100%;
+  padding: var(--Spacing-3) var(--Spacing-3-5);
+  padding-left: var(--Spacing-4);
+  background-color: transparent;
+  border: none;
+  color: var(--Text-Medium);
+  cursor: pointer;
+  text-align: left;
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  transition: background-color var(--Motion-Duration-Discreet-Short) var(--Motion-Easing-Standard);
+}
+
+.variant:hover {
+  background-color: var(--Surface-Minimal);
+}
+
+.variant[data-selected] {
+  background-color: var(--Primary-Subtle, var(--Surface-Subtle));
+  color: var(--Primary-TintedA11y, var(--Text-High));
+}
+
+.variant:focus {
+  outline: none;
+}
+
+.variant:focus-visible {
+  outline: var(--Focus-Outline-Width) solid var(--Focus-Outline);
+  outline-offset: calc(-1 * var(--Stroke-XL));
+}
+
+.variantName {
+  flex: 1;
+  font-size: var(--Body-M-FontSize);
+  line-height: var(--Body-M-LineHeight);
+  font-weight: var(--Body-FontWeight-Low);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ─── Empty state ──────────────────────────────────────────────────────── */
+
+.noResults {
+  padding: var(--Spacing-4) var(--Spacing-3-5);
+  text-align: center;
+  color: var(--Text-Medium);
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  font-weight: var(--Body-FontWeight-Low);
+}

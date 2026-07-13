@@ -1,0 +1,69 @@
+.section {
+  scroll-margin-top: 96px;
+}
+
+.title {
+  margin: 0;
+}
+
+.subtitle {
+  margin-top: 4px;
+  margin-bottom: 16px;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.row {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.rowLabel {
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.rowContent {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  max-width: 480px;
+}
+
+.inlineCluster {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.bottomNavDemo {
+  width: 100%;
+  max-width: 420px;
+  border: 1px solid var(--Border-Subtle, #e8e8e8);
+  border-radius: var(--Shape-4);
+  overflow: hidden;
+}
+
+.logoMark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  font-weight: 700;
+  font-size: 14px;
+}

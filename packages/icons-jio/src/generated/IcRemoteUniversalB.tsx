@@ -1,0 +1,30 @@
+import React, { forwardRef } from 'react';
+import type { IconComponentProps } from '../iconProps';
+
+export const IcRemoteUniversalB = forwardRef<SVGSVGElement, IconComponentProps>(function IcRemoteUniversalB(
+  { size = 24, width, height, color = 'currentColor', className, style, ...props },
+  ref,
+) {
+  const dim = width ?? height ?? size;
+  return (
+    <svg
+      ref={ref}
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      width={width ?? dim}
+      height={height ?? dim}
+      color={color}
+      className={className}
+      style={style}
+      {...props}
+    >
+      <path
+            fill="currentColor"
+            d="M12.5 14H11v1h1.5a.5.5 0 0 0 0-1m3.62-11.12A3 3 0 0 0 14 2h-4a3 3 0 0 0-3 3v14a3 3 0 0 0 3 3h4a3 3 0 0 0 3-3V5a3 3 0 0 0-.88-2.12M9 4.8a1 1 0 0 1 .8-.8 1 1 0 0 1 .58.06.94.94 0 0 1 .45.36 1 1 0 0 1-1.39 1.41.94.94 0 0 1-.36-.45A1 1 0 0 1 9 4.8m.42 5a.94.94 0 0 1-.36-.45A1 1 0 0 1 9 8.8a1 1 0 0 1 .8-.8 1 1 0 0 1 .58.06.94.94 0 0 1 .45.36 1 1 0 0 1-1.39 1.41zM14 16.5a1.5 1.5 0 0 1-1.5 1.5h-2a.5.5 0 0 1-.5-.5v-4a.5.5 0 0 1 .5-.5h2a1.5 1.5 0 0 1 1.5 1.5c0 .37-.139.728-.39 1 .25.273.389.63.39 1m.71-6.79a1 1 0 0 1-1.27.12.94.94 0 0 1-.36-.45A1 1 0 0 1 13 8.8a1 1 0 0 1 .8-.8 1 1 0 0 1 .58.06.94.94 0 0 1 .45.36 1 1 0 0 1-.12 1.27zm0-4a1 1 0 0 1-1.27.12.94.94 0 0 1-.36-.45A1 1 0 0 1 13 4.8a1 1 0 0 1 .8-.8 1 1 0 0 1 .58.06.94.94 0 0 1 .45.36 1 1 0 0 1-.12 1.27zM12.5 16H11v1h1.5a.5.5 0 0 0 0-1"
+          />
+    </svg>
+  );
+});
+
+IcRemoteUniversalB.displayName = 'IcRemoteUniversalB';

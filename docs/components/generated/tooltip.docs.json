@@ -1,0 +1,396 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Tooltip",
+  "generatedAt": "2026-01-01T00:00:00.000Z",
+  "machineReadable": true,
+  "intentAndPurpose": {
+    "intent": {
+      "value": "Floating hover / focus label that attaches to a trigger element. Supports the Figma position alias (top/topStart/topEnd/...), Base UI side+align, controlled/uncontrolled open state, arrow, portal, and configurable delay.",
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "taskContexts": {
+      "value": [
+        "tooltip",
+        "hint",
+        "popup",
+        "hover",
+        "overlay"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "sentiments": {
+      "value": [
+        "neutral"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "compositionRules": {
+    "requires": {
+      "value": [
+        "children",
+        "content"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "allows": {
+      "value": [],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "forbids": {
+      "value": [],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "default",
+        "useWhen": {
+          "value": [
+            "Default"
+          ],
+          "attribution": {
+            "source": "inferred"
+          }
+        }
+      }
+    ]
+  },
+  "relationshipsAndDependencies": {
+    "related": {
+      "value": [],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "contextSignals": {
+    "density": {
+      "value": [
+        "compact",
+        "default",
+        "open"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "modality": {
+      "value": [
+        "desktop",
+        "mobile"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "brand": {
+      "value": [
+        "theme-scope aware",
+        "recipe-driven"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "mode": {
+      "value": [
+        "light",
+        "dark",
+        "surface-context"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "observabilityHooks": {
+    "track": {
+      "value": [],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "health": {
+      "value": [
+        "a11y_violations"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "props": [
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "required": true,
+      "description": "The trigger element the tooltip attaches to"
+    },
+    {
+      "name": "content",
+      "type": "ReactNode",
+      "required": true,
+      "description": "Text or content displayed inside the tooltip"
+    },
+    {
+      "name": "align",
+      "type": "TooltipAlign",
+      "required": false,
+      "description": "Alignment along the side axis"
+    },
+    {
+      "name": "arrow",
+      "type": "boolean",
+      "required": false,
+      "description": "Whether to show the arrow/tip pointing to the trigger"
+    },
+    {
+      "name": "closeDelay",
+      "type": "number",
+      "required": false,
+      "description": "Delay before hiding (ms)"
+    },
+    {
+      "name": "defaultOpen",
+      "type": "boolean",
+      "required": false,
+      "description": "Default open state (uncontrolled)"
+    },
+    {
+      "name": "delay",
+      "type": "number",
+      "required": false,
+      "description": "Delay before showing (ms)"
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "required": false,
+      "description": "Whether tooltip is disabled"
+    },
+    {
+      "name": "hoverable",
+      "type": "boolean",
+      "required": false,
+      "description": "Whether the tooltip contents can be hovered without closing"
+    },
+    {
+      "name": "maxWidth",
+      "type": "number | string",
+      "required": false,
+      "description": "Maximum width of the tooltip; when set, copy wraps inside that width (default popup is single-line nowrap)."
+    },
+    {
+      "name": "onOpenChange",
+      "type": "(open: boolean) => void",
+      "required": false,
+      "description": "Called when the tooltip opens or closes"
+    },
+    {
+      "name": "open",
+      "type": "boolean",
+      "required": false,
+      "description": "Whether the tooltip is open (controlled)"
+    },
+    {
+      "name": "portal",
+      "type": "boolean",
+      "required": false,
+      "description": "Reserved for API compatibility. The popup always uses Base UI’s default `Tooltip.Portal` target (`document.body`). Custom portal containers were removed because they reliably clip inside overflow/transform ancestors."
+    },
+    {
+      "name": "position",
+      "type": "TooltipPosition",
+      "required": false,
+      "description": "Convenience position prop matching Figma API. Maps to side+align internally. If both `position` and `side` are provided, `side`/`align` take precedence."
+    },
+    {
+      "name": "side",
+      "type": "TooltipSide",
+      "required": false,
+      "description": "Which side of the trigger to position against"
+    },
+    {
+      "name": "sideOffset",
+      "type": "number",
+      "required": false,
+      "description": "Distance from the trigger in pixels"
+    },
+    {
+      "name": "subtle",
+      "type": "boolean",
+      "required": false,
+      "description": "Force subtle motion (Motion Foundations a11y level): faster Subtle durations/easings and opacity-only animation — no transform/translate. Use this to preview reduced motion without changing OS settings. `prefers-reduced-motion: reduce` triggers the same path automatically."
+    },
+    {
+      "name": "trigger",
+      "type": "TooltipTrigger",
+      "required": false,
+      "description": "How the tooltip is triggered"
+    },
+    {
+      "name": "zIndex",
+      "type": "number",
+      "required": false,
+      "description": "Custom z-index for the tooltip"
+    }
+  ],
+  "slots": [
+    {
+      "name": "children",
+      "types": [],
+      "tokens": []
+    },
+    {
+      "name": "content",
+      "types": [
+        "Text",
+        "Icon"
+      ],
+      "tokens": []
+    }
+  ],
+  "propsSchema": {
+    "$id": "jds.docs.tooltip",
+    "type": "object",
+    "properties": {
+      "children": {
+        "description": "The trigger element the tooltip attaches to"
+      },
+      "content": {
+        "description": "Text or content displayed inside the tooltip"
+      },
+      "align": {
+        "enum": [
+          "start",
+          "center",
+          "end"
+        ],
+        "description": "Alignment along the side axis"
+      },
+      "arrow": {
+        "type": "boolean",
+        "description": "Whether to show the arrow/tip pointing to the trigger"
+      },
+      "closeDelay": {
+        "type": "number",
+        "description": "Delay before hiding (ms)"
+      },
+      "defaultOpen": {
+        "type": "boolean",
+        "description": "Default open state (uncontrolled)"
+      },
+      "delay": {
+        "type": "number",
+        "description": "Delay before showing (ms)"
+      },
+      "disabled": {
+        "type": "boolean",
+        "description": "Whether tooltip is disabled"
+      },
+      "hoverable": {
+        "type": "boolean",
+        "description": "Whether the tooltip contents can be hovered without closing"
+      },
+      "maxWidth": {
+        "description": "Maximum width of the tooltip; when set, copy wraps inside that width (default popup is single-line nowrap)."
+      },
+      "onOpenChange": {
+        "description": "Called when the tooltip opens or closes"
+      },
+      "open": {
+        "type": "boolean",
+        "description": "Whether the tooltip is open (controlled)"
+      },
+      "portal": {
+        "type": "boolean",
+        "description": "Reserved for API compatibility. The popup always uses Base UI’s default `Tooltip.Portal` target (`document.body`). Custom portal containers were removed because they reliably clip inside overflow/transform ancestors."
+      },
+      "position": {
+        "enum": [
+          "top",
+          "topStart",
+          "topEnd",
+          "bottom",
+          "bottomStart",
+          "bottomEnd",
+          "left",
+          "leftStart",
+          "leftEnd",
+          "right",
+          "rightStart",
+          "rightEnd"
+        ],
+        "description": "Convenience position prop matching Figma API. Maps to side+align internally. If both `position` and `side` are provided, `side`/`align` take precedence."
+      },
+      "side": {
+        "enum": [
+          "top",
+          "bottom",
+          "left",
+          "right"
+        ],
+        "description": "Which side of the trigger to position against"
+      },
+      "sideOffset": {
+        "type": "number",
+        "description": "Distance from the trigger in pixels"
+      },
+      "subtle": {
+        "type": "boolean",
+        "description": "Force subtle motion (Motion Foundations a11y level): faster Subtle durations/easings and opacity-only animation — no transform/translate. Use this to preview reduced motion without changing OS settings. `prefers-reduced-motion: reduce` triggers the same path automatically."
+      },
+      "trigger": {
+        "enum": [
+          "hover",
+          "click",
+          "focus",
+          "manual"
+        ],
+        "description": "How the tooltip is triggered"
+      },
+      "zIndex": {
+        "type": "number",
+        "description": "Custom z-index for the tooltip"
+      }
+    },
+    "required": [
+      "children",
+      "content"
+    ]
+  },
+  "codeSnippets": [
+    {
+      "id": "tooltip-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { Tooltip } from '@oneui/ui';\n\n<Tooltip />"
+    },
+    {
+      "id": "tooltip-recipe-decisions",
+      "title": "Recipe Decisions",
+      "language": "json",
+      "code": "{\n  \"component\": \"Tooltip\",\n  \"decisions\": [\n    \"Shape\",\n    \"Padding density\"\n  ]\n}"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "tooltip"
+  ],
+  "generatedMarkdown": "# Tooltip Machine-Readable Documentation\n\n_Generated from source metadata. Do not edit manually._\n\n## Intent and Purpose\n\n- **Intent**: Floating hover / focus label that attaches to a trigger element. Supports the Figma position alias (top/topStart/topEnd/...), Base UI side+align, controlled/uncontrolled open state, arrow, portal, and configurable delay.\n- **Task contexts**: tooltip, hint, popup, hover, overlay\n- **Sentiments**: neutral\n\n## Composition Rules\n\n- **Requires**: children, content\n- **Allows**: \n- **Forbids**: \n\n## Variant Logic\n\n- **default**: use when Default\n\n## Relationships and Dependencies\n\n- **Related**: \n- **Escalates to**: -\n- **Degrades to**: -\n- **Groups with**: -\n\n## Context Signals\n\n- **Density**: compact, default, open\n- **Modality**: desktop, mobile\n- **Brand**: theme-scope aware, recipe-driven\n- **Mode**: light, dark, surface-context\n\n## Observability Hooks\n\n- **Track**: \n- **Health**: a11y_violations\n\n## Props\n\n| Prop | Type | Required | Default | Description |\n| --- | --- | --- | --- | --- |\n| `children` | `ReactNode` | Yes | - | The trigger element the tooltip attaches to |\n| `content` | `ReactNode` | Yes | - | Text or content displayed inside the tooltip |\n| `align` | `TooltipAlign` | No | - | Alignment along the side axis |\n| `arrow` | `boolean` | No | - | Whether to show the arrow/tip pointing to the trigger |\n| `closeDelay` | `number` | No | - | Delay before hiding (ms) |\n| `defaultOpen` | `boolean` | No | - | Default open state (uncontrolled) |\n| `delay` | `number` | No | - | Delay before showing (ms) |\n| `disabled` | `boolean` | No | - | Whether tooltip is disabled |\n| `hoverable` | `boolean` | No | - | Whether the tooltip contents can be hovered without closing |\n| `maxWidth` | `number | string` | No | - | Maximum width of the tooltip; when set, copy wraps inside that width (default popup is single-line nowrap). |\n| `onOpenChange` | `(open: boolean) => void` | No | - | Called when the tooltip opens or closes |\n| `open` | `boolean` | No | - | Whether the tooltip is open (controlled) |\n| `portal` | `boolean` | No | - | Reserved for API compatibility. The popup always uses Base UI’s default `Tooltip.Portal` target (`document.body`). Custom portal containers were removed because they reliably clip inside overflow/transform ancestors. |\n| `position` | `TooltipPosition` | No | - | Convenience position prop matching Figma API. Maps to side+align internally. If both `position` and `side` are provided, `side`/`align` take precedence. |\n| `side` | `TooltipSide` | No | - | Which side of the trigger to position against |\n| `sideOffset` | `number` | No | - | Distance from the trigger in pixels |\n| `subtle` | `boolean` | No | - | Force subtle motion (Motion Foundations a11y level): faster Subtle durations/easings and opacity-only animation — no transform/translate. Use this to preview reduced motion without changing OS settings. `prefers-reduced-motion: reduce` triggers the same path automatically. |\n| `trigger` | `TooltipTrigger` | No | - | How the tooltip is triggered |\n| `zIndex` | `number` | No | - | Custom z-index for the tooltip |\n\n## Slots\n\n| Slot | Types | Tokens |\n| --- | --- | --- |\n| `children` |  |  |\n| `content` | Text, Icon |  |\n\n## Code Snippets\n\n### Basic Usage\n\n```tsx\nimport { Tooltip } from '@oneui/ui';\n\n<Tooltip />\n```\n\n### Recipe Decisions\n\n```json\n{\n  \"component\": \"Tooltip\",\n  \"decisions\": [\n    \"Shape\",\n    \"Padding density\"\n  ]\n}\n```\n"
+}

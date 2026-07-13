@@ -1,0 +1,77 @@
+/**
+ * CanvasControlsCluster.module.css
+ *
+ * Bottom-centre floating pill. Sits above the status bar, clear of the
+ * right-side chat panel.
+ */
+
+.cluster {
+  position: absolute;
+  bottom: var(--Spacing-4-5);
+  left: 50%;
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--Spacing-2-5);
+  padding: var(--Spacing-2) var(--Spacing-3-5);
+  background: var(--Surface-Elevated, var(--Surface-Main));
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+  border-radius: var(--Shape-Pill);
+  box-shadow: var(--Elevation-2, 0 2px 12px rgba(0, 0, 0, 0.08));
+  font-family: var(--Label-FontFamily, var(--Typography-Font-Text));
+  color: var(--Text-High);
+  z-index: 420;
+}
+
+.hiddenFileInput {
+  display: none;
+}
+
+.group {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--Spacing-1-5);
+}
+
+/* Every tool in the cluster — no border, no outline, just the icon. The
+   pill container already frames the row; button-level strokes only add
+   visual noise. */
+.toolBtn {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  transition: background-color var(--Motion-Duration-Discreet-Short, 140ms)
+    var(--Motion-Easing-Transition, ease) !important;
+}
+
+.toolBtn:hover {
+  background: var(--Neutral-Minimal) !important;
+}
+
+.toolBtn[data-pressed='true'],
+.toolBtn[aria-pressed='true'],
+.toolBtn[data-active] {
+  background: var(--Neutral-Subtle) !important;
+  color: var(--Text-High) !important;
+}
+
+.zoomReadout {
+  min-width: calc(var(--Spacing-8));
+  text-align: center;
+  border: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+.zoomReadout:hover {
+  background: var(--Neutral-Minimal) !important;
+}
+
+.divider {
+  width: var(--Stroke-S);
+  height: var(--Spacing-4-5);
+  background: var(--Border-Subtle);
+  flex-shrink: 0;
+  margin: 0 var(--Spacing-1-5);
+}

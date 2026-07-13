@@ -1,0 +1,82 @@
+/**
+ * BreakpointEditor.module.css
+ * Each row is a single horizontal line: checkbox, a flexing name field,
+ * a fixed-width dimensions cluster on the right, and an icon-button
+ * remove. Alignment with the DIN 1450 / Density field grids above is
+ * provided by the shared left/right edges of the rowBody (not by
+ * matching internal columns — the dimensions cluster for non-responsive
+ * platforms is too wide to fit in a single 1fr slot).
+ */
+
+.editor {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-4);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-2);
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-3-5);
+  min-width: 0;
+}
+
+.rowInactive {
+  opacity: var(--Disabled-Opacity);
+}
+
+.nameField {
+  flex: 1;
+  min-width: 0;
+}
+
+.dimensions {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-3);
+  flex-shrink: 0;
+}
+
+/* Width + height inputs use a fixed compact width. Sized to comfortably
+   fit 4-digit values (e.g. "1920") plus the `px` unit affix without
+   truncating. */
+.numericInput {
+  width: var(--Spacing-32);
+  flex-shrink: 0;
+}
+
+.dimensionsSeparator {
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  color: var(--Text-Low);
+  flex-shrink: 0;
+}
+
+/* Unit suffix inside the width input (end slot). */
+.unitAffix {
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  color: var(--Text-Low);
+  font-variant-numeric: tabular-nums;
+}
+
+/*
+ * Units <Select> gets an explicit narrow width + flex-shrink: 0. Without
+ * this the Select's default `width: 100%` beats its flex siblings' basis
+ * and steals the whole cluster.
+ */
+.unitsSelect {
+  width: var(--Spacing-18);
+  flex-shrink: 0;
+}
+
+.addRow {
+  display: flex;
+  align-items: center;
+}

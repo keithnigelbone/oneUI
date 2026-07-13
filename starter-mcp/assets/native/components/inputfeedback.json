@@ -1,0 +1,207 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "InputFeedback",
+  "generatedAt": "2026-07-09T13:07:37.420Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "Validation / feedback row under an input. variant = semantic role, attention = low(text)/medium(tint)/high(fill), size s/m/l. Negative announces as assertive alert; others as polite status. customIcon overrides the variant-default icon. Empty message renders nothing."
+  },
+  "compositionRules": {
+    "requires": [],
+    "allows": [],
+    "forbids": [],
+    "childKind": "fixed-slots"
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "negative"
+      },
+      {
+        "name": "positive"
+      },
+      {
+        "name": "warning"
+      },
+      {
+        "name": "informative"
+      }
+    ]
+  },
+  "props": [
+    {
+      "name": "variant",
+      "type": "'negative' | 'positive' | 'warning' | 'informative'",
+      "required": false,
+      "defaultValue": "negative",
+      "description": "Semantic colour role + default icon."
+    },
+    {
+      "name": "attention",
+      "type": "'low' | 'medium' | 'high'",
+      "required": false,
+      "defaultValue": "low",
+      "description": "low = text only, medium = tinted, high = filled."
+    },
+    {
+      "name": "size",
+      "type": "'s' | 'm' | 'l'",
+      "required": false,
+      "defaultValue": "m",
+      "description": ""
+    },
+    {
+      "name": "feedback_message",
+      "type": "string",
+      "required": false,
+      "description": "Primary copy. Falls back to `children` when omitted."
+    },
+    {
+      "name": "customIcon",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Overrides the variant-default icon. MUST be a JDS <Icon> / RN-SVG component. — [warn] Pass a JDS <Icon> component; native has no semantic icon-name catalogue."
+    },
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Rich content when feedback_message is not set."
+    },
+    {
+      "name": "role",
+      "type": "'alert' | 'status' | 'none'",
+      "required": false,
+      "description": "Overrides the default role ('alert' for negative, 'status' otherwise)."
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": false,
+      "description": "Accessible name override; falls back to the message."
+    },
+    {
+      "name": "aria-describedby",
+      "type": "string",
+      "required": false,
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.kb.rn.InputFeedback",
+    "type": "object",
+    "properties": {
+      "variant": {
+        "enum": [
+          "negative",
+          "positive",
+          "warning",
+          "informative"
+        ],
+        "default": "negative",
+        "description": "Semantic colour role + default icon."
+      },
+      "attention": {
+        "enum": [
+          "low",
+          "medium",
+          "high"
+        ],
+        "default": "low",
+        "description": "low = text only, medium = tinted, high = filled."
+      },
+      "size": {
+        "enum": [
+          "s",
+          "m",
+          "l"
+        ],
+        "default": "m"
+      },
+      "feedback_message": {
+        "type": "string",
+        "description": "Primary copy. Falls back to `children` when omitted."
+      },
+      "customIcon": {
+        "description": "Overrides the variant-default icon. MUST be a JDS <Icon> / RN-SVG component.",
+        "x-jds-suggestion": "Pass a JDS <Icon> component; native has no semantic icon-name catalogue.",
+        "x-jds-severity": "warn"
+      },
+      "children": {
+        "description": "Rich content when feedback_message is not set."
+      },
+      "role": {
+        "enum": [
+          "alert",
+          "status",
+          "none"
+        ],
+        "description": "Overrides the default role ('alert' for negative, 'status' otherwise)."
+      },
+      "aria-label": {
+        "type": "string",
+        "description": "Accessible name override; falls back to the message."
+      },
+      "aria-describedby": {
+        "type": "string"
+      }
+    }
+  },
+  "tokens": {
+    "color": [
+      "negative",
+      "positive",
+      "warning",
+      "informative"
+    ],
+    "surface": [
+      "bold",
+      "subtle"
+    ],
+    "typography": [
+      "body.S",
+      "body.M",
+      "body.L"
+    ]
+  },
+  "a11y": {
+    "accessibilityRole": "text",
+    "accessibleNameSource": "children",
+    "minTouchTarget": 44,
+    "honorsBoldText": true,
+    "honorsScreenReader": true
+  },
+  "renderHints": {
+    "baseElement": "View",
+    "animatedOn": [],
+    "honorsReduceMotion": false,
+    "readsFromSurfaceContext": true
+  },
+  "figma": {
+    "componentKey": "jds-input-feedback-v4",
+    "keyHistory": [],
+    "variantProperties": {
+      "Component": "InputFeedback"
+    }
+  },
+  "codeSnippets": [
+    {
+      "id": "import-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { InputFeedback } from '@oneui/ui-native';\n\n<InputFeedback />"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "inputfeedback",
+    "form",
+    "feedback",
+    "validation",
+    "surface-aware"
+  ],
+  "importPath": "@oneui/ui-native"
+}

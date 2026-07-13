@@ -1,0 +1,142 @@
+/**
+ * RadioField Figma validation — same matrix shell as Radio (`RadioFigmaValidationShowcase.module.css`).
+ * Single 2×6 grid: checked × readOnly × size (M, S, L per band). Cells fit integrated label + description.
+ */
+.page {
+  box-sizing: border-box;
+  padding: 0;
+  max-width: 100%;
+}
+
+.title {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Headline-L-FontSize);
+  line-height: var(--Headline-L-LineHeight);
+  font-weight: var(--Headline-L-FontWeight);
+  margin: 0 0 var(--Spacing-S);
+}
+
+.metaLine {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  font-weight: var(--Body-FontWeight-Low);
+  color: var(--Text-Medium);
+  margin: 0 0 var(--Spacing-L);
+  overflow-wrap: anywhere;
+}
+
+.figmaCaption {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Headline-M-FontSize);
+  line-height: var(--Headline-M-LineHeight);
+  font-weight: var(--Headline-M-FontWeight);
+  color: var(--Sparkle-High);
+  margin: 0 0 var(--Spacing-L);
+  text-align: left;
+}
+
+.figmaCaptionMark {
+  color: var(--Sparkle-High);
+}
+
+.matrixSection {
+  margin-bottom: var(--Spacing-3XL);
+}
+
+.matrixSection:last-child {
+  margin-bottom: 0;
+}
+
+.tableWrap {
+  overflow: auto;
+  max-width: 100%;
+  border-radius: var(--Shape-L);
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+  background: var(--Surface-Minimal);
+  padding: var(--Spacing-2XL);
+  box-sizing: border-box;
+}
+
+.gridTable {
+  border-collapse: collapse;
+  width: 100%;
+  table-layout: fixed;
+  font-family: var(--Typography-Font-Primary);
+}
+
+.gridTable th,
+.gridTable td {
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+  padding: var(--Spacing-M) var(--Spacing-L);
+  vertical-align: top;
+  text-align: center;
+}
+
+.cornerHeader {
+  text-align: left;
+  width: 14%;
+  background: var(--Surface-Default);
+  font-size: var(--Label-S-FontSize);
+  line-height: var(--Label-S-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+}
+
+.columnHeader {
+  font-size: var(--Label-S-FontSize);
+  line-height: var(--Label-S-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+  background: var(--Surface-Default);
+}
+
+.columnHeaderGroup {
+  text-align: center;
+  font-size: var(--Label-S-FontSize);
+  line-height: var(--Label-S-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+  background: var(--Surface-Minimal);
+}
+
+.rowHeader {
+  text-align: left;
+  background: var(--Surface-Default);
+}
+
+.rowPrimary {
+  display: block;
+  font-size: var(--Label-S-FontSize);
+  line-height: var(--Label-S-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+  color: var(--Text-High);
+}
+
+.rowSecondary {
+  display: block;
+  margin-top: var(--Spacing-6XS);
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Low);
+  color: var(--Text-Low);
+  overflow-wrap: anywhere;
+}
+
+.cell {
+  min-width: 0;
+  text-align: left;
+  background: var(--Surface-Default);
+}
+
+.cellInner {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+  min-width: 0;
+  min-height: var(--Spacing-10);
+}
+
+.fieldAnchor {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+}

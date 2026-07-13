@@ -1,0 +1,30 @@
+import React, { forwardRef } from 'react';
+import type { IconComponentProps } from '../iconProps';
+
+export const IcProfileFemale = forwardRef<SVGSVGElement, IconComponentProps>(function IcProfileFemale(
+  { size = 24, width, height, color = 'currentColor', className, style, ...props },
+  ref,
+) {
+  const dim = width ?? height ?? size;
+  return (
+    <svg
+      ref={ref}
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      width={width ?? dim}
+      height={height ?? dim}
+      color={color}
+      className={className}
+      style={style}
+      {...props}
+    >
+      <path
+            fill="currentColor"
+            d="M12 12a8 8 0 0 0-8 8 2 2 0 0 0 2 2h12a2 2 0 0 0 2-2 8 8 0 0 0-8-8m0-1a6 6 0 0 0 5.2-2.6l.3-.53-.41-.46a5.3 5.3 0 0 1-.9-1.67C15.79 4.45 15.05 2.05 12 2 9 2 8.22 4.45 7.83 5.74a5 5 0 0 1-.92 1.66l-.41.47.31.53A6 6 0 0 0 12 11"
+          />
+    </svg>
+  );
+});
+
+IcProfileFemale.displayName = 'IcProfileFemale';

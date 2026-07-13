@@ -1,0 +1,189 @@
+/**
+ * Account.module.css
+ *
+ * Shared styles for the profile menu (avatar dropdown) and the Account
+ * modal. Token-only styling per the design-system contract.
+ */
+
+/* ---------------------------------------------------------------- menu -- */
+
+/*
+ * Header sits inside the DS Menu popup (padding 0 horizontal). It gets the
+ * same horizontal padding as the menu items (Spacing-4) so the avatar/text
+ * column aligns with the item icons/labels below, and the DS Menu.Separator
+ * (which is full-bleed) reads as a true edge-to-edge divider.
+ */
+.menuHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-3);
+  padding: var(--Spacing-3) var(--Spacing-4);
+  min-inline-size: var(--Spacing-40);
+}
+
+.menuIdentity {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.menuName {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Label-S-FontSize);
+  line-height: var(--Label-S-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+  color: var(--Text-High);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.menuEmail {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Low);
+  color: var(--Text-Medium);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.menuItemInner {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-3);
+  color: var(--Text-High);
+}
+
+/* --------------------------------------------------------------- modal -- */
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-6);
+  padding-block: var(--Spacing-2);
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-4);
+}
+
+/*
+ * Section divider bled to the modal edges. The Modal body is padded by
+ * Spacing-4 horizontally; the negative inline margin cancels it so the DS
+ * Divider spans the full modal width.
+ */
+.bleedDivider {
+  margin-inline: calc(-1 * var(--Spacing-4));
+}
+
+.sectionTitle {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Title-S-FontSize, var(--Label-S-FontSize));
+  line-height: var(--Title-S-LineHeight, var(--Label-S-LineHeight));
+  font-weight: var(--Title-S-FontWeight, var(--Label-FontWeight-Medium));
+  color: var(--Text-High);
+  margin: 0;
+}
+
+.sectionHint {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  font-weight: var(--Body-FontWeight-Low);
+  color: var(--Text-Medium);
+  margin: var(--Spacing-1) 0 0;
+}
+
+/* Identity card at the top of the Profile section: avatar + name + email. */
+.identityRow {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-4);
+}
+
+.identityText {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-0-5);
+  min-width: 0;
+}
+
+.identityName {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Title-S-FontSize, var(--Body-M-FontSize));
+  line-height: var(--Title-S-LineHeight, var(--Body-M-LineHeight));
+  font-weight: var(--Title-S-FontWeight, var(--Body-FontWeight-High));
+  color: var(--Text-High);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.identityEmail {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  font-weight: var(--Body-FontWeight-Low);
+  color: var(--Text-Medium);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.inlineRow {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-2);
+}
+
+.inlineRow > :first-child {
+  flex: 1;
+  min-width: 0;
+}
+
+.passwordGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--Spacing-3);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-1-5);
+}
+
+.fieldLabel {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+  color: var(--Text-Medium);
+}
+
+.actionRow {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.error {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Low);
+  color: var(--Negative-TintedA11y);
+  margin: 0;
+}
+
+.success {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Low);
+  color: var(--Positive-TintedA11y);
+  margin: 0;
+}

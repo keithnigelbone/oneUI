@@ -1,0 +1,51 @@
+/**
+ * OwnerSetupBanner.module.css
+ *
+ * Token-only styling for the one-time "Become owner" first-run banner. The
+ * <Surface mode="subtle" appearance="informative"> cascade supplies fill +
+ * content colors; this module owns layout only. (Formerly shared the
+ * InvitesBanner stylesheet, which moved to a toast.)
+ */
+
+.banner {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--Spacing-3);
+  padding: var(--Spacing-3) var(--Spacing-4);
+  border-radius: var(--Shape-3);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.rows {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-2);
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--Spacing-3);
+  flex-wrap: wrap;
+}
+
+.text {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  font-weight: var(--Body-FontWeight-Low);
+  color: var(--Text-High);
+}
+
+.error {
+  flex-basis: 100%;
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Low);
+  color: var(--Negative-High);
+}

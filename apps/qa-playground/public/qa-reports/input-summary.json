@@ -1,0 +1,1212 @@
+{
+  "ok": false,
+  "slug": "input",
+  "message": "input QA Playwright run had failures — 2026-06-23T09:22:22.439Z",
+  "suites": {
+    "accessibility": {
+      "suite": "accessibility",
+      "passed": 93,
+      "failed": 1,
+      "skipped": 0,
+      "logs": [
+        "94 test(s) in Playwright report for accessibility.",
+        "Axe: scan completed — 0 violation rules reported."
+      ],
+      "errors": [
+        "[a11y] BUG-INPUT-001 — feedback state control exposes aria-invalid=\"true\": Error: expect(locator).toHaveAttribute(expected) failed"
+      ],
+      "cases": [
+        {
+          "name": "[a11y] Full page WCAG 2.1 AA scan has no serious or critical issues (report saved)",
+          "status": "passed",
+          "durationMs": 4651
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — Default band",
+          "status": "passed",
+          "durationMs": 4154,
+          "componentBand": "input-qa-default"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — Placeholder band",
+          "status": "passed",
+          "durationMs": 4965,
+          "componentBand": "input-qa-placeholder"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — Size (S · M · L · XS) band",
+          "status": "passed",
+          "durationMs": 4513,
+          "componentBand": "input-qa-size"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — Attention band",
+          "status": "passed",
+          "durationMs": 4537,
+          "componentBand": "input-qa-attention"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — Appearance (colour roles) band",
+          "status": "passed",
+          "durationMs": 4216,
+          "componentBand": "input-qa-appearance"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — Shape band",
+          "status": "passed",
+          "durationMs": 7128,
+          "componentBand": "input-qa-shape"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — States (idle · filled · readonly · disabled · feedback) band",
+          "status": "passed",
+          "durationMs": 4148,
+          "componentBand": "input-qa-states"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — Adornments band",
+          "status": "passed",
+          "durationMs": 4061,
+          "componentBand": "input-qa-adornments"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — Start/end slots band",
+          "status": "passed",
+          "durationMs": 4437,
+          "componentBand": "input-qa-slots"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — HTML input types band",
+          "status": "passed",
+          "durationMs": 2970,
+          "componentBand": "input-qa-types"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — Validation (max length · pattern) band",
+          "status": "passed",
+          "durationMs": 3210,
+          "componentBand": "input-qa-validation"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — Layout (full width · autoFocus) band",
+          "status": "passed",
+          "durationMs": 3344,
+          "componentBand": "input-qa-layout"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — Label association band",
+          "status": "passed",
+          "durationMs": 3061,
+          "componentBand": "input-qa-labeled"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — Figma combination matrix band",
+          "status": "passed",
+          "durationMs": 3299,
+          "componentBand": "input-qa-combos"
+        },
+        {
+          "name": "[a11y] Control \"Default\": WCAG 2.1 AA scan has no serious or critical issues",
+          "status": "passed",
+          "durationMs": 4770
+        },
+        {
+          "name": "[a11y] Control \"Placeholder\": WCAG 2.1 AA scan has no serious or critical issues",
+          "status": "passed",
+          "durationMs": 4588
+        },
+        {
+          "name": "[a11y] Control \"Labeled\": WCAG 2.1 AA scan has no serious or critical issues",
+          "status": "passed",
+          "durationMs": 4689
+        },
+        {
+          "name": "[a11y] Control \"Disabled\": WCAG 2.1 AA scan has no serious or critical issues",
+          "status": "passed",
+          "durationMs": 4259
+        },
+        {
+          "name": "[a11y] Control \"Readonly\": WCAG 2.1 AA scan has no serious or critical issues",
+          "status": "passed",
+          "durationMs": 3427
+        },
+        {
+          "name": "[a11y] Control \"Error\": WCAG 2.1 AA scan has no serious or critical issues",
+          "status": "passed",
+          "durationMs": 4598
+        },
+        {
+          "name": "[a11y] Control \"Required\": WCAG 2.1 AA scan has no serious or critical issues",
+          "status": "passed",
+          "durationMs": 4896
+        },
+        {
+          "name": "[a11y] Control \"State Filled\": WCAG 2.1 AA scan has no serious or critical issues",
+          "status": "passed",
+          "durationMs": 4654
+        },
+        {
+          "name": "[a11y] Control \"Attention High\": WCAG 2.1 AA scan has no serious or critical issues",
+          "status": "passed",
+          "durationMs": 4627
+        },
+        {
+          "name": "[a11y] Control \"Appearance Primary\": WCAG 2.1 AA scan has no serious or critical issues",
+          "status": "passed",
+          "durationMs": 4303
+        },
+        {
+          "name": "[a11y] Control \"Shape Pill\": WCAG 2.1 AA scan has no serious or critical issues",
+          "status": "passed",
+          "durationMs": 4322
+        },
+        {
+          "name": "[a11y] Control \"Start Adornment\": WCAG 2.1 AA scan has no serious or critical issues",
+          "status": "passed",
+          "durationMs": 4264
+        },
+        {
+          "name": "[a11y] Control \"End Adornment\": WCAG 2.1 AA scan has no serious or critical issues",
+          "status": "passed",
+          "durationMs": 4645
+        },
+        {
+          "name": "[a11y] Control \"Slot Start Icon\": WCAG 2.1 AA scan has no serious or critical issues",
+          "status": "passed",
+          "durationMs": 4811
+        },
+        {
+          "name": "[a11y] Control \"Type Password\": WCAG 2.1 AA scan has no serious or critical issues",
+          "status": "passed",
+          "durationMs": 4222
+        },
+        {
+          "name": "[a11y] Control \"Type Text\": WCAG 2.1 AA scan has no serious or critical issues",
+          "status": "passed",
+          "durationMs": 3565
+        },
+        {
+          "name": "[a11y] Control \"Fullwidth\": WCAG 2.1 AA scan has no serious or critical issues",
+          "status": "passed",
+          "durationMs": 3986
+        },
+        {
+          "name": "[a11y] Size S input can receive keyboard focus",
+          "status": "passed",
+          "durationMs": 3441
+        },
+        {
+          "name": "[a11y] Size M input can receive keyboard focus",
+          "status": "passed",
+          "durationMs": 3362
+        },
+        {
+          "name": "[a11y] Size L input can receive keyboard focus",
+          "status": "passed",
+          "durationMs": 3213
+        },
+        {
+          "name": "[a11y] Attention medium input is visible",
+          "status": "passed",
+          "durationMs": 2746
+        },
+        {
+          "name": "[a11y] Attention high input is visible",
+          "status": "passed",
+          "durationMs": 3832
+        },
+        {
+          "name": "[a11y] Appearance auto input is visible",
+          "status": "passed",
+          "durationMs": 3918
+        },
+        {
+          "name": "[a11y] Appearance neutral input is visible",
+          "status": "passed",
+          "durationMs": 4572
+        },
+        {
+          "name": "[a11y] Appearance primary input is visible",
+          "status": "passed",
+          "durationMs": 4594
+        },
+        {
+          "name": "[a11y] Appearance secondary input is visible",
+          "status": "passed",
+          "durationMs": 4132
+        },
+        {
+          "name": "[a11y] Appearance sparkle input is visible",
+          "status": "passed",
+          "durationMs": 3431
+        },
+        {
+          "name": "[a11y] Appearance negative input is visible",
+          "status": "passed",
+          "durationMs": 3416
+        },
+        {
+          "name": "[a11y] Appearance positive input is visible",
+          "status": "passed",
+          "durationMs": 3557
+        },
+        {
+          "name": "[a11y] Appearance warning input is visible",
+          "status": "passed",
+          "durationMs": 3351
+        },
+        {
+          "name": "[a11y] Appearance informative input is visible",
+          "status": "passed",
+          "durationMs": 3391
+        },
+        {
+          "name": "[a11y] Shape default input is visible",
+          "status": "passed",
+          "durationMs": 3590
+        },
+        {
+          "name": "[a11y] Shape pill input is visible",
+          "status": "passed",
+          "durationMs": 3600
+        },
+        {
+          "name": "[a11y] State idle input is visible",
+          "status": "passed",
+          "durationMs": 4160
+        },
+        {
+          "name": "[a11y] State filled input is visible",
+          "status": "passed",
+          "durationMs": 4106
+        },
+        {
+          "name": "[a11y] State readonly input is visible",
+          "status": "passed",
+          "durationMs": 4400
+        },
+        {
+          "name": "[a11y] State disabled input is visible",
+          "status": "passed",
+          "durationMs": 3816
+        },
+        {
+          "name": "[a11y] State feedback input is visible",
+          "status": "passed",
+          "durationMs": 4041
+        },
+        {
+          "name": "[a11y] Feedback state shell exposes data-invalid for error styling",
+          "status": "passed",
+          "durationMs": 3689
+        },
+        {
+          "name": "[a11y] BUG-INPUT-001 — feedback state control exposes aria-invalid=\"true\"",
+          "status": "failed",
+          "durationMs": 9035,
+          "error": "Error: expect(locator).toHaveAttribute(expected) failed"
+        },
+        {
+          "name": "[a11y] axe label rule — Test Scenarios page",
+          "status": "passed",
+          "durationMs": 4022
+        },
+        {
+          "name": "[a11y] Placeholder example is visible",
+          "status": "passed",
+          "durationMs": 3215
+        },
+        {
+          "name": "[a11y] Labeled input exposes accessible name matching visible label “Email”",
+          "status": "passed",
+          "durationMs": 3392
+        },
+        {
+          "name": "[a11y] Disabled state input is disabled",
+          "status": "passed",
+          "durationMs": 2751
+        },
+        {
+          "name": "[a11y] Readonly state input has the readonly attribute",
+          "status": "passed",
+          "durationMs": 2492
+        },
+        {
+          "name": "[a11y] Required input exposes required or aria-required",
+          "status": "passed",
+          "durationMs": 3126
+        },
+        {
+          "name": "[a11y] Start adornment example is visible",
+          "status": "passed",
+          "durationMs": 2972
+        },
+        {
+          "name": "[a11y] End adornment example is visible",
+          "status": "passed",
+          "durationMs": 3066
+        },
+        {
+          "name": "[a11y] HTML type text control is visible",
+          "status": "passed",
+          "durationMs": 2922
+        },
+        {
+          "name": "[a11y] HTML type email control is visible",
+          "status": "passed",
+          "durationMs": 2789
+        },
+        {
+          "name": "[a11y] HTML type number control is visible",
+          "status": "passed",
+          "durationMs": 2759
+        },
+        {
+          "name": "[a11y] HTML type tel control is visible",
+          "status": "passed",
+          "durationMs": 3127
+        },
+        {
+          "name": "[a11y] HTML type search control is visible",
+          "status": "passed",
+          "durationMs": 2633
+        },
+        {
+          "name": "[a11y] Max length validation example is visible",
+          "status": "passed",
+          "durationMs": 3138
+        },
+        {
+          "name": "[a11y] Pattern validation example is visible",
+          "status": "passed",
+          "durationMs": 3235
+        },
+        {
+          "name": "[a11y] Full width layout example is visible",
+          "status": "passed",
+          "durationMs": 2983
+        },
+        {
+          "name": "[a11y] Autofocus layout example is visible",
+          "status": "passed",
+          "durationMs": 2265
+        },
+        {
+          "name": "[a11y] Start slot (icon) example is visible",
+          "status": "passed",
+          "durationMs": 2806
+        },
+        {
+          "name": "[a11y] Start slot (iconbutton) example is visible",
+          "status": "passed",
+          "durationMs": 3139
+        },
+        {
+          "name": "[a11y] Start slot (avatar) example is visible",
+          "status": "passed",
+          "durationMs": 3120
+        },
+        {
+          "name": "[a11y] Start slot (image) example is visible",
+          "status": "passed",
+          "durationMs": 3225
+        },
+        {
+          "name": "[a11y] Start slot (chipgroup) example is visible",
+          "status": "passed",
+          "durationMs": 2654
+        },
+        {
+          "name": "[a11y] Start slot (text) example is visible",
+          "status": "passed",
+          "durationMs": 3151
+        },
+        {
+          "name": "[a11y] Second start slot (text) example is visible",
+          "status": "passed",
+          "durationMs": 3611
+        },
+        {
+          "name": "[a11y] End slot (iconbutton) example is visible",
+          "status": "passed",
+          "durationMs": 3486
+        },
+        {
+          "name": "[a11y] End slot (icon) example is visible",
+          "status": "passed",
+          "durationMs": 3425
+        },
+        {
+          "name": "[a11y] End slot (button) example is visible",
+          "status": "passed",
+          "durationMs": 3074
+        },
+        {
+          "name": "[a11y] End slot (text) example is visible",
+          "status": "passed",
+          "durationMs": 2865
+        },
+        {
+          "name": "[a11y] Second end slot (text) example is visible",
+          "status": "passed",
+          "durationMs": 2842
+        },
+        {
+          "name": "[a11y] Second end slot (icon) example is visible",
+          "status": "passed",
+          "durationMs": 3463
+        },
+        {
+          "name": "[a11y] Second end slot (iconbutton) example is visible",
+          "status": "passed",
+          "durationMs": 4135
+        },
+        {
+          "name": "[a11y] Default input can receive keyboard focus",
+          "status": "passed",
+          "durationMs": 3397
+        },
+        {
+          "name": "[a11y] Tabbing past the default input does not trap focus in the field",
+          "status": "passed",
+          "durationMs": 3305
+        },
+        {
+          "name": "[a11y] Focused default input shows a visible focus indicator",
+          "status": "passed",
+          "durationMs": 3647
+        },
+        {
+          "name": "[a11y] ARIA validity rules — Test Scenarios page",
+          "status": "passed",
+          "durationMs": 3581
+        },
+        {
+          "name": "[a11y] Password field uses type password",
+          "status": "passed",
+          "durationMs": 2916
+        },
+        {
+          "name": "[a11y] Document has a non-empty lang attribute on the html element",
+          "status": "passed",
+          "durationMs": 3000
+        },
+        {
+          "name": "[a11y] Figma XS size row passes axe when scoped to the control",
+          "status": "passed",
+          "durationMs": 3219
+        },
+        {
+          "name": "[a11y] Reflow at 320px — story bands fit without horizontal scroll",
+          "status": "passed",
+          "durationMs": 5958
+        }
+      ],
+      "axe": {
+        "violations": []
+      }
+    },
+    "functional": {
+      "suite": "functional",
+      "passed": 133,
+      "failed": 2,
+      "skipped": 0,
+      "logs": [
+        "135 test(s) in Playwright report for functional."
+      ],
+      "errors": [
+        "6.5 — BUG-INPUT-001: feedback/error state exposes aria-invalid on control: Error: errorHighlight must set aria-invalid=\"true\" for assistive tech (WCAG 4.1.2)",
+        "[fn] Feedback state marks shell invalid and exposes aria-invalid on control: BUG-INPUT-001: errorHighlight must set aria-invalid on the control"
+      ],
+      "cases": [
+        {
+          "name": "1.1 — Page loads without console errors; default input mounts",
+          "status": "passed",
+          "durationMs": 9697
+        },
+        {
+          "name": "1.2 — Every Test Scenarios `data-testid` is visible",
+          "status": "passed",
+          "durationMs": 6421
+        },
+        {
+          "name": "1.3 — Every `data-section` band is visible",
+          "status": "passed",
+          "durationMs": 3450
+        },
+        {
+          "name": "2.1 — Default input is enabled text control",
+          "status": "passed",
+          "durationMs": 1867
+        },
+        {
+          "name": "2.1 — Each HTML type exposes matching type attribute",
+          "status": "passed",
+          "durationMs": 3364
+        },
+        {
+          "name": "2.1 — Pill shape shell differs from default shape border-radius",
+          "status": "passed",
+          "durationMs": 3640
+        },
+        {
+          "name": "2.2 — Size S ≤ M ≤ L shell heights scale progressively",
+          "status": "passed",
+          "durationMs": 3837
+        },
+        {
+          "name": "3.1 — Click focuses default input and accepts typing",
+          "status": "passed",
+          "durationMs": 3997
+        },
+        {
+          "name": "3.2 — Disabled input does not receive focus on click",
+          "status": "passed",
+          "durationMs": 2940
+        },
+        {
+          "name": "3.3 — Readonly input keeps value after click and typing attempt",
+          "status": "passed",
+          "durationMs": 2995
+        },
+        {
+          "name": "3.4 — Click outside blurs focused input",
+          "status": "passed",
+          "durationMs": 3470
+        },
+        {
+          "name": "4.1 — Tab reaches default input from page chrome",
+          "status": "passed",
+          "durationMs": 2791
+        },
+        {
+          "name": "4.1 — Disabled input is not focused when tabbing through states band",
+          "status": "passed",
+          "durationMs": 2806
+        },
+        {
+          "name": "4.2 — Enter key keeps input visible with value intact",
+          "status": "passed",
+          "durationMs": 2904
+        },
+        {
+          "name": "4.3 — Space key inserts a space character while focused",
+          "status": "passed",
+          "durationMs": 3277
+        },
+        {
+          "name": "4.4 — ArrowLeft and ArrowRight move text cursor",
+          "status": "passed",
+          "durationMs": 2925
+        },
+        {
+          "name": "4.5 — Home and End keys move cursor to start and end",
+          "status": "passed",
+          "durationMs": 2794
+        },
+        {
+          "name": "4.6 — Escape does not remove input from DOM",
+          "status": "passed",
+          "durationMs": 2933
+        },
+        {
+          "name": "4.7 — Tab through page does not trap focus inside default input",
+          "status": "passed",
+          "durationMs": 3494
+        },
+        {
+          "name": "5.1 — Click focuses default input",
+          "status": "passed",
+          "durationMs": 4201
+        },
+        {
+          "name": "5.2 — Focused default input shows visible focus indicator",
+          "status": "passed",
+          "durationMs": 4197
+        },
+        {
+          "name": "5.3 — Label click moves focus to associated input (logical order)",
+          "status": "passed",
+          "durationMs": 4366
+        },
+        {
+          "name": "5.4 — Blur removes focus from input after Tab away",
+          "status": "passed",
+          "durationMs": 4182
+        },
+        {
+          "name": "5.5 — autoFocus input receives focus on page load",
+          "status": "passed",
+          "durationMs": 6786
+        },
+        {
+          "name": "6.1 — Idle state renders empty enabled input",
+          "status": "passed",
+          "durationMs": 3925
+        },
+        {
+          "name": "6.2 — Filled state shows preset value",
+          "status": "passed",
+          "durationMs": 5240
+        },
+        {
+          "name": "6.3 — Disabled state is not editable and not focusable",
+          "status": "passed",
+          "durationMs": 5544
+        },
+        {
+          "name": "6.4 — Readonly state can focus but rejects edits",
+          "status": "passed",
+          "durationMs": 3900
+        },
+        {
+          "name": "6.5 — BUG-INPUT-001: feedback/error state exposes aria-invalid on control",
+          "status": "failed",
+          "durationMs": 8093,
+          "error": "Error: errorHighlight must set aria-invalid=\"true\" for assistive tech (WCAG 4.1.2)"
+        },
+        {
+          "name": "6.6 — Loading state (N/A)",
+          "status": "passed",
+          "durationMs": 1369
+        },
+        {
+          "name": "7.1 — Each start slot variant renders visible input",
+          "status": "passed",
+          "durationMs": 1208
+        },
+        {
+          "name": "7.2 — Each end slot variant renders visible input",
+          "status": "passed",
+          "durationMs": 4149
+        },
+        {
+          "name": "7.3 — Dual start and dual end slot rows render",
+          "status": "passed",
+          "durationMs": 3781
+        },
+        {
+          "name": "7.4 — Start icon slot row includes visible SVG icon",
+          "status": "passed",
+          "durationMs": 2835
+        },
+        {
+          "name": "8.1 — Password visibility toggle switches input type password ↔ text",
+          "status": "passed",
+          "durationMs": 2815
+        },
+        {
+          "name": "8.2 — Single select (N/A)",
+          "status": "passed",
+          "durationMs": 3468
+        },
+        {
+          "name": "8.3 — Indeterminate (N/A)",
+          "status": "passed",
+          "durationMs": 2511
+        },
+        {
+          "name": "9.1 — Type, special characters, and clear",
+          "status": "passed",
+          "durationMs": 2839
+        },
+        {
+          "name": "9.2 — Backspace, Delete, and arrow cursor movement",
+          "status": "passed",
+          "durationMs": 2301
+        },
+        {
+          "name": "9.3 — Max length demo enforces ten characters in showcase handler",
+          "status": "passed",
+          "durationMs": 2645
+        },
+        {
+          "name": "9.3 — Number input accepts digits",
+          "status": "passed",
+          "durationMs": 3279
+        },
+        {
+          "name": "9.4 — Copy and paste via keyboard",
+          "status": "passed",
+          "durationMs": 2908
+        },
+        {
+          "name": "10.1 — errorHighlight without invalid shell does not set data-invalid",
+          "status": "passed",
+          "durationMs": 2930
+        },
+        {
+          "name": "10.2 — errorHighlight with feedback state sets shell data-invalid",
+          "status": "passed",
+          "durationMs": 3255
+        },
+        {
+          "name": "10.3 — Loading overrides (N/A)",
+          "status": "passed",
+          "durationMs": 2960
+        },
+        {
+          "name": "11.1 — Placeholder text is non-empty on placeholder example",
+          "status": "passed",
+          "durationMs": 4853
+        },
+        {
+          "name": "11.1 — Labeled input associates visible “Email” label text",
+          "status": "passed",
+          "durationMs": 5308
+        },
+        {
+          "name": "11.2 — Start adornment band renders prefix text",
+          "status": "passed",
+          "durationMs": 4443
+        },
+        {
+          "name": "11.3 — Progress value (N/A)",
+          "status": "passed",
+          "durationMs": 3905
+        },
+        {
+          "name": "12.1 — Full-width input spans its layout band",
+          "status": "passed",
+          "durationMs": 4342
+        },
+        {
+          "name": "12.2 — At 320px viewport, story bands fit without horizontal scroll",
+          "status": "passed",
+          "durationMs": 8522
+        },
+        {
+          "name": "12.2b — Default input visible at 1440px viewport",
+          "status": "passed",
+          "durationMs": 8847
+        },
+        {
+          "name": "12.3 — Size band lays out S, M, L horizontally in DOM order",
+          "status": "passed",
+          "durationMs": 3430
+        },
+        {
+          "name": "13.1 — After dark theme, all scenario sections remain visible",
+          "status": "passed",
+          "durationMs": 3922
+        },
+        {
+          "name": "13.1 — Default input remains visible in dark mode",
+          "status": "passed",
+          "durationMs": 1607
+        },
+        {
+          "name": "Smoke — Page heading reads “Input”",
+          "status": "passed",
+          "durationMs": 1333
+        },
+        {
+          "name": "Smoke — Default input visible and accepts text",
+          "status": "passed",
+          "durationMs": 1319
+        },
+        {
+          "name": "Smoke — Manifest testid count in showcase scope",
+          "status": "passed",
+          "durationMs": 1300
+        },
+        {
+          "name": "[fn] Shows Input page heading",
+          "status": "passed",
+          "durationMs": 3462
+        },
+        {
+          "name": "[fn] All showcase sections render without error",
+          "status": "passed",
+          "durationMs": 2922
+        },
+        {
+          "name": "[fn] Default input renders and accepts typing",
+          "status": "passed",
+          "durationMs": 3807
+        },
+        {
+          "name": "[fn] Size S renders",
+          "status": "passed",
+          "durationMs": 3608
+        },
+        {
+          "name": "[fn] Size M renders",
+          "status": "passed",
+          "durationMs": 3870
+        },
+        {
+          "name": "[fn] Size L renders",
+          "status": "passed",
+          "durationMs": 3103
+        },
+        {
+          "name": "[fn] Size S height is less than or equal to size M",
+          "status": "passed",
+          "durationMs": 2773
+        },
+        {
+          "name": "[fn] Legacy size alias \"small\" renders",
+          "status": "passed",
+          "durationMs": 2938
+        },
+        {
+          "name": "[fn] Legacy size alias \"medium\" renders",
+          "status": "passed",
+          "durationMs": 3609
+        },
+        {
+          "name": "[fn] Legacy size alias \"large\" renders",
+          "status": "passed",
+          "durationMs": 2778
+        },
+        {
+          "name": "[fn] Attention medium renders",
+          "status": "passed",
+          "durationMs": 2662
+        },
+        {
+          "name": "[fn] Attention high renders",
+          "status": "passed",
+          "durationMs": 2925
+        },
+        {
+          "name": "[fn] Appearance auto renders",
+          "status": "passed",
+          "durationMs": 3404
+        },
+        {
+          "name": "[fn] Appearance neutral renders",
+          "status": "passed",
+          "durationMs": 2704
+        },
+        {
+          "name": "[fn] Appearance primary renders",
+          "status": "passed",
+          "durationMs": 2748
+        },
+        {
+          "name": "[fn] Appearance secondary renders",
+          "status": "passed",
+          "durationMs": 2908
+        },
+        {
+          "name": "[fn] Appearance sparkle renders",
+          "status": "passed",
+          "durationMs": 3552
+        },
+        {
+          "name": "[fn] Appearance negative renders",
+          "status": "passed",
+          "durationMs": 4230
+        },
+        {
+          "name": "[fn] Appearance positive renders",
+          "status": "passed",
+          "durationMs": 4692
+        },
+        {
+          "name": "[fn] Appearance warning renders",
+          "status": "passed",
+          "durationMs": 4065
+        },
+        {
+          "name": "[fn] Appearance informative renders",
+          "status": "passed",
+          "durationMs": 4023
+        },
+        {
+          "name": "[fn] Shape default renders",
+          "status": "passed",
+          "durationMs": 3966
+        },
+        {
+          "name": "[fn] Shape pill renders",
+          "status": "passed",
+          "durationMs": 3958
+        },
+        {
+          "name": "[fn] State idle renders",
+          "status": "passed",
+          "durationMs": 4404
+        },
+        {
+          "name": "[fn] State filled renders",
+          "status": "passed",
+          "durationMs": 6268
+        },
+        {
+          "name": "[fn] State readonly renders",
+          "status": "passed",
+          "durationMs": 4178
+        },
+        {
+          "name": "[fn] State disabled renders",
+          "status": "passed",
+          "durationMs": 3579
+        },
+        {
+          "name": "[fn] State feedback renders",
+          "status": "passed",
+          "durationMs": 3764
+        },
+        {
+          "name": "[fn] Filled state shows preset value",
+          "status": "passed",
+          "durationMs": 2819
+        },
+        {
+          "name": "[fn] Disabled state rejects focus and typing",
+          "status": "passed",
+          "durationMs": 3817
+        },
+        {
+          "name": "[fn] Read-only state keeps value when typing",
+          "status": "passed",
+          "durationMs": 3976
+        },
+        {
+          "name": "[fn] Feedback state marks shell invalid and exposes aria-invalid on control",
+          "status": "failed",
+          "durationMs": 8962,
+          "error": "BUG-INPUT-001: errorHighlight must set aria-invalid on the control"
+        },
+        {
+          "name": "[fn] Required input exposes the required attribute",
+          "status": "passed",
+          "durationMs": 5471
+        },
+        {
+          "name": "[fn] Start slot (icon) renders",
+          "status": "passed",
+          "durationMs": 3972
+        },
+        {
+          "name": "[fn] Start slot (iconbutton) renders",
+          "status": "passed",
+          "durationMs": 4216
+        },
+        {
+          "name": "[fn] Start slot (avatar) renders",
+          "status": "passed",
+          "durationMs": 3866
+        },
+        {
+          "name": "[fn] Start slot (image) renders",
+          "status": "passed",
+          "durationMs": 3842
+        },
+        {
+          "name": "[fn] Start slot (chipgroup) renders",
+          "status": "passed",
+          "durationMs": 4503
+        },
+        {
+          "name": "[fn] Start slot (text) renders",
+          "status": "passed",
+          "durationMs": 6305
+        },
+        {
+          "name": "[fn] Second start slot (text) renders",
+          "status": "passed",
+          "durationMs": 3835
+        },
+        {
+          "name": "[fn] End slot (iconbutton) renders",
+          "status": "passed",
+          "durationMs": 3418
+        },
+        {
+          "name": "[fn] End slot (icon) renders",
+          "status": "passed",
+          "durationMs": 2553
+        },
+        {
+          "name": "[fn] End slot (button) renders",
+          "status": "passed",
+          "durationMs": 1737
+        },
+        {
+          "name": "[fn] End slot (text) renders",
+          "status": "passed",
+          "durationMs": 1450
+        },
+        {
+          "name": "[fn] Second end slot (text) renders",
+          "status": "passed",
+          "durationMs": 1476
+        },
+        {
+          "name": "[fn] Second end slot (icon) renders",
+          "status": "passed",
+          "durationMs": 1452
+        },
+        {
+          "name": "[fn] Second end slot (iconbutton) renders",
+          "status": "passed",
+          "durationMs": 1359
+        },
+        {
+          "name": "[fn] Password type masks value and visibility toggle works",
+          "status": "passed",
+          "durationMs": 1202
+        },
+        {
+          "name": "[fn] HTML input type \"text\" renders",
+          "status": "passed",
+          "durationMs": 1181
+        },
+        {
+          "name": "[fn] HTML input type \"email\" renders",
+          "status": "passed",
+          "durationMs": 1310
+        },
+        {
+          "name": "[fn] HTML input type \"number\" renders",
+          "status": "passed",
+          "durationMs": 1146
+        },
+        {
+          "name": "[fn] HTML input type \"tel\" renders",
+          "status": "passed",
+          "durationMs": 1115
+        },
+        {
+          "name": "[fn] HTML input type \"search\" renders",
+          "status": "passed",
+          "durationMs": 1262
+        },
+        {
+          "name": "[fn] Email type accepts a valid email string",
+          "status": "passed",
+          "durationMs": 1463
+        },
+        {
+          "name": "[fn] Number type accepts numeric values",
+          "status": "passed",
+          "durationMs": 3003
+        },
+        {
+          "name": "[fn] Placeholder text is present when the field is empty",
+          "status": "passed",
+          "durationMs": 2679
+        },
+        {
+          "name": "[fn] Input accepts special characters",
+          "status": "passed",
+          "durationMs": 3563
+        },
+        {
+          "name": "[fn] Input can be cleared",
+          "status": "passed",
+          "durationMs": 4217
+        },
+        {
+          "name": "[fn] Keyboard typing fills the field character by character",
+          "status": "passed",
+          "durationMs": 3960
+        },
+        {
+          "name": "[fn] Max length demo truncates input to ten characters",
+          "status": "passed",
+          "durationMs": 3131
+        },
+        {
+          "name": "[fn] Pattern validation demo input renders",
+          "status": "passed",
+          "durationMs": 2891
+        },
+        {
+          "name": "[fn] Start adornment example is visible",
+          "status": "passed",
+          "durationMs": 3625
+        },
+        {
+          "name": "[fn] End adornment example is visible",
+          "status": "passed",
+          "durationMs": 2566
+        },
+        {
+          "name": "[fn] Full-width layout example is visible",
+          "status": "passed",
+          "durationMs": 2802
+        },
+        {
+          "name": "[fn] Auto-focus example receives focus when focused explicitly",
+          "status": "passed",
+          "durationMs": 2713
+        },
+        {
+          "name": "[fn] Clicking the visible label moves focus to the associated input",
+          "status": "passed",
+          "durationMs": 2766
+        },
+        {
+          "name": "[fn] Clicking the input focuses it",
+          "status": "passed",
+          "durationMs": 2410
+        },
+        {
+          "name": "[fn] Tabbing away blurs the input",
+          "status": "passed",
+          "durationMs": 2695
+        },
+        {
+          "name": "[fn] Read-only input can receive focus",
+          "status": "passed",
+          "durationMs": 2905
+        },
+        {
+          "name": "[fn] Read-only input exposes the readonly attribute",
+          "status": "passed",
+          "durationMs": 3255
+        },
+        {
+          "name": "[fn] Default input shows a visible focus indicator when focused",
+          "status": "passed",
+          "durationMs": 3063
+        },
+        {
+          "name": "[fn] Backspace removes the last character",
+          "status": "passed",
+          "durationMs": 4822
+        },
+        {
+          "name": "[fn] Enter key does not hide or break the input",
+          "status": "passed",
+          "durationMs": 4886
+        },
+        {
+          "name": "[fn] Escape key does not remove the input",
+          "status": "passed",
+          "durationMs": 4533
+        },
+        {
+          "name": "[fn] Many input variants with data-testid are visible on the page",
+          "status": "passed",
+          "durationMs": 3721
+        },
+        {
+          "name": "[fn] Figma combination matrix renders every row",
+          "status": "passed",
+          "durationMs": 3922
+        },
+        {
+          "name": "[fn] Figma XS size coerces to small and renders",
+          "status": "passed",
+          "durationMs": 3972
+        }
+      ]
+    },
+    "performance": {
+      "suite": "performance",
+      "passed": 0,
+      "failed": 0,
+      "skipped": 0,
+      "logs": [
+        "Performance suite is not executed in apps/qa-playground input Playwright bundle."
+      ],
+      "errors": []
+    }
+  }
+}

@@ -1,0 +1,316 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Tooltip",
+  "generatedAt": "2026-01-01T00:00:00.000Z",
+  "machineReadable": true,
+  "intentAndPurpose": {
+    "intent": "Floating hover / focus label that attaches to a trigger element. Supports the Figma position alias (top/topStart/topEnd/...), Base UI side+align, controlled/uncontrolled open state, arrow, portal, and configurable delay.",
+    "taskContexts": [
+      "tooltip",
+      "hint",
+      "popup",
+      "hover",
+      "overlay"
+    ],
+    "sentiments": [
+      "neutral"
+    ]
+  },
+  "compositionRules": {
+    "requires": [
+      "children",
+      "content"
+    ],
+    "allows": [],
+    "forbids": []
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "default",
+        "useWhen": [
+          "Default"
+        ]
+      }
+    ]
+  },
+  "relationshipsAndDependencies": {
+    "related": []
+  },
+  "contextSignals": {
+    "density": [
+      "compact",
+      "default",
+      "open"
+    ],
+    "modality": [
+      "desktop",
+      "mobile"
+    ],
+    "brand": [
+      "theme-scope aware",
+      "recipe-driven"
+    ],
+    "mode": [
+      "light",
+      "dark",
+      "surface-context"
+    ]
+  },
+  "observabilityHooks": {
+    "track": [],
+    "health": [
+      "a11y_violations"
+    ]
+  },
+  "props": [
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "required": true,
+      "description": "The trigger element the tooltip attaches to"
+    },
+    {
+      "name": "content",
+      "type": "ReactNode",
+      "required": true,
+      "description": "Text or content displayed inside the tooltip"
+    },
+    {
+      "name": "align",
+      "type": "TooltipAlign",
+      "required": false,
+      "description": "Alignment along the side axis"
+    },
+    {
+      "name": "arrow",
+      "type": "boolean",
+      "required": false,
+      "description": "Whether to show the arrow/tip pointing to the trigger"
+    },
+    {
+      "name": "closeDelay",
+      "type": "number",
+      "required": false,
+      "description": "Delay before hiding (ms)"
+    },
+    {
+      "name": "defaultOpen",
+      "type": "boolean",
+      "required": false,
+      "description": "Default open state (uncontrolled)"
+    },
+    {
+      "name": "delay",
+      "type": "number",
+      "required": false,
+      "description": "Delay before showing (ms)"
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "required": false,
+      "description": "Whether tooltip is disabled"
+    },
+    {
+      "name": "hoverable",
+      "type": "boolean",
+      "required": false,
+      "description": "Whether the tooltip contents can be hovered without closing"
+    },
+    {
+      "name": "maxWidth",
+      "type": "number | string",
+      "required": false,
+      "description": "Maximum width of the tooltip container"
+    },
+    {
+      "name": "onOpenChange",
+      "type": "(open: boolean) => void",
+      "required": false,
+      "description": "Called when the tooltip opens or closes"
+    },
+    {
+      "name": "open",
+      "type": "boolean",
+      "required": false,
+      "description": "Whether the tooltip is open (controlled)"
+    },
+    {
+      "name": "portal",
+      "type": "boolean",
+      "required": false,
+      "description": "Whether to render in a portal outside the DOM hierarchy"
+    },
+    {
+      "name": "position",
+      "type": "TooltipPosition",
+      "required": false,
+      "description": "Convenience position prop matching Figma API. Maps to side+align internally. If both `position` and `side` are provided, `side`/`align` take precedence."
+    },
+    {
+      "name": "side",
+      "type": "TooltipSide",
+      "required": false,
+      "description": "Which side of the trigger to position against"
+    },
+    {
+      "name": "sideOffset",
+      "type": "number",
+      "required": false,
+      "description": "Distance from the trigger in pixels"
+    },
+    {
+      "name": "trigger",
+      "type": "TooltipTrigger",
+      "required": false,
+      "description": "How the tooltip is triggered"
+    },
+    {
+      "name": "zIndex",
+      "type": "number",
+      "required": false,
+      "description": "Custom z-index for the tooltip"
+    }
+  ],
+  "slots": [
+    {
+      "name": "children",
+      "types": [],
+      "tokens": []
+    },
+    {
+      "name": "content",
+      "types": [
+        "Text",
+        "Icon"
+      ],
+      "tokens": []
+    }
+  ],
+  "propsSchema": {
+    "$id": "jds.docs.tooltip",
+    "type": "object",
+    "properties": {
+      "children": {
+        "description": "The trigger element the tooltip attaches to"
+      },
+      "content": {
+        "description": "Text or content displayed inside the tooltip"
+      },
+      "align": {
+        "enum": [
+          "start",
+          "center",
+          "end"
+        ],
+        "description": "Alignment along the side axis"
+      },
+      "arrow": {
+        "type": "boolean",
+        "description": "Whether to show the arrow/tip pointing to the trigger"
+      },
+      "closeDelay": {
+        "type": "number",
+        "description": "Delay before hiding (ms)"
+      },
+      "defaultOpen": {
+        "type": "boolean",
+        "description": "Default open state (uncontrolled)"
+      },
+      "delay": {
+        "type": "number",
+        "description": "Delay before showing (ms)"
+      },
+      "disabled": {
+        "type": "boolean",
+        "description": "Whether tooltip is disabled"
+      },
+      "hoverable": {
+        "type": "boolean",
+        "description": "Whether the tooltip contents can be hovered without closing"
+      },
+      "maxWidth": {
+        "description": "Maximum width of the tooltip container"
+      },
+      "onOpenChange": {
+        "description": "Called when the tooltip opens or closes"
+      },
+      "open": {
+        "type": "boolean",
+        "description": "Whether the tooltip is open (controlled)"
+      },
+      "portal": {
+        "type": "boolean",
+        "description": "Whether to render in a portal outside the DOM hierarchy"
+      },
+      "position": {
+        "enum": [
+          "top",
+          "topStart",
+          "topEnd",
+          "bottom",
+          "bottomStart",
+          "bottomEnd",
+          "left",
+          "leftStart",
+          "leftEnd",
+          "right",
+          "rightStart",
+          "rightEnd"
+        ],
+        "description": "Convenience position prop matching Figma API. Maps to side+align internally. If both `position` and `side` are provided, `side`/`align` take precedence."
+      },
+      "side": {
+        "enum": [
+          "top",
+          "bottom",
+          "left",
+          "right"
+        ],
+        "description": "Which side of the trigger to position against"
+      },
+      "sideOffset": {
+        "type": "number",
+        "description": "Distance from the trigger in pixels"
+      },
+      "trigger": {
+        "enum": [
+          "hover",
+          "click",
+          "focus",
+          "manual"
+        ],
+        "description": "How the tooltip is triggered"
+      },
+      "zIndex": {
+        "type": "number",
+        "description": "Custom z-index for the tooltip"
+      }
+    },
+    "required": [
+      "children",
+      "content"
+    ]
+  },
+  "codeSnippets": [
+    {
+      "id": "tooltip-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { Tooltip } from '@oneui/ui';\n\n<Tooltip />"
+    },
+    {
+      "id": "tooltip-recipe-decisions",
+      "title": "Recipe Decisions",
+      "language": "json",
+      "code": "{\n  \"component\": \"Tooltip\",\n  \"decisions\": [\n    \"Shape\",\n    \"Padding density\"\n  ]\n}"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "tooltip"
+  ],
+  "importPath": "@jds4/oneui-react"
+}

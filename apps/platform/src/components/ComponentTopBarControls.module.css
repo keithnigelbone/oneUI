@@ -1,0 +1,44 @@
+/**
+ * ComponentTopBarControls.module.css
+ *
+ * Styling for component controls that appear in the TopBar trailing slot.
+ * Interaction states match LeftNav/SecondaryNav:
+ *   hover  → Surface-Ghost + Text-High
+ *   active → Surface-Minimal + Text-High
+ *   shape  → Shape-M everywhere
+ */
+
+/* ========================================
+   UTILITY BUTTONS (Storybook link, etc.)
+   ======================================== */
+
+.controlButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--Spacing-3);
+  padding: var(--Spacing-2);
+  border-radius: var(--Shape-4);
+  background-color: transparent;
+  border: none;
+  color: var(--Text-Low);
+  cursor: pointer;
+  transition:
+    color var(--Motion-Duration-Discreet-Short) var(--Motion-Easing-Standard),
+    background-color var(--Motion-Duration-Discreet-Short) var(--Motion-Easing-Standard);
+  font-family: var(--Label-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Label-S-FontSize);
+  font-weight: var(--Label-FontWeight-Medium);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.controlButton:hover {
+  color: var(--Text-High);
+  background-color: var(--Surface-Ghost);
+}
+
+.controlButton:focus-visible {
+  outline: var(--Focus-Outline-Width) solid var(--Focus-Outline);
+  outline-offset: var(--Focus-Outline-Offset, var(--Stroke-XL));
+}

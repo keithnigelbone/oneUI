@@ -1,0 +1,603 @@
+{
+  "ok": true,
+  "slug": "radio",
+  "message": "radio QA Playwright run OK — 2026-06-23T09:33:51.615Z",
+  "suites": {
+    "accessibility": {
+      "suite": "accessibility",
+      "passed": 36,
+      "failed": 0,
+      "skipped": 0,
+      "logs": [
+        "36 test(s) in Playwright report for accessibility.",
+        "Axe: 1 violation rule(s) reported."
+      ],
+      "errors": [],
+      "cases": [
+        {
+          "name": "[a11y] WCAG 2.1 AA tag scan + JSON artefact + HTML report",
+          "status": "passed",
+          "durationMs": 5833
+        },
+        {
+          "name": "[a11y] data-section=\"radio-qa-default\" — WCAG tags, zero serious/critical",
+          "status": "passed",
+          "durationMs": 4050
+        },
+        {
+          "name": "[a11y] data-section=\"radio-qa-size\" — WCAG tags, zero serious/critical",
+          "status": "passed",
+          "durationMs": 4517
+        },
+        {
+          "name": "[a11y] data-section=\"radio-qa-appearance\" — WCAG tags, zero serious/critical",
+          "status": "passed",
+          "durationMs": 5217
+        },
+        {
+          "name": "[a11y] data-section=\"radio-qa-accent\" — WCAG tags, zero serious/critical",
+          "status": "passed",
+          "durationMs": 5100
+        },
+        {
+          "name": "[a11y] data-section=\"radio-qa-selected\" — WCAG tags, zero serious/critical",
+          "status": "passed",
+          "durationMs": 3644
+        },
+        {
+          "name": "[a11y] data-section=\"radio-qa-readonly\" — WCAG tags, zero serious/critical",
+          "status": "passed",
+          "durationMs": 4095
+        },
+        {
+          "name": "[a11y] data-section=\"radio-qa-disabled\" — WCAG tags, zero serious/critical",
+          "status": "passed",
+          "durationMs": 4064
+        },
+        {
+          "name": "[a11y] data-section=\"radio-qa-combos\" — WCAG tags, zero serious/critical",
+          "status": "passed",
+          "durationMs": 4060
+        },
+        {
+          "name": "[a11y] Section 508 tag run — zero serious/critical",
+          "status": "passed",
+          "durationMs": 3722
+        },
+        {
+          "name": "[a11y] non-text-contrast rule — zero serious/critical (if rule exists)",
+          "status": "passed",
+          "durationMs": 2597
+        },
+        {
+          "name": "[a11y] label rule — zero serious/critical",
+          "status": "passed",
+          "durationMs": 3633
+        },
+        {
+          "name": "[a11y] ARIA validity rules — zero serious/critical",
+          "status": "passed",
+          "durationMs": 4443
+        },
+        {
+          "name": "[a11y] name rules (buttons / images / links) — zero serious/critical",
+          "status": "passed",
+          "durationMs": 3743
+        },
+        {
+          "name": "[a11y] scrollable regions focusable — zero serious/critical",
+          "status": "passed",
+          "durationMs": 3978
+        },
+        {
+          "name": "[a11y] images: if present, every <img> has alt attribute",
+          "status": "passed",
+          "durationMs": 2927
+        },
+        {
+          "name": "[a11y] SVG icons: aria-label, aria-hidden, role, or title",
+          "status": "passed",
+          "durationMs": 2192
+        },
+        {
+          "name": "[a11y] page lang on <html>",
+          "status": "passed",
+          "durationMs": 2952
+        },
+        {
+          "name": "[a11y] Reflow at 320px — showcase regions fit without horizontal overflow inside bands",
+          "status": "passed",
+          "durationMs": 5421
+        },
+        {
+          "name": "[a11y] resize: 200% zoom — showcase radios remain visible",
+          "status": "passed",
+          "durationMs": 3768
+        },
+        {
+          "name": "[a11y] Tab reaches a focusable control",
+          "status": "passed",
+          "durationMs": 3319
+        },
+        {
+          "name": "[a11y] no keyboard trap (Tab cycle advances)",
+          "status": "passed",
+          "durationMs": 3216
+        },
+        {
+          "name": "[a11y] focused element shows outline or box-shadow",
+          "status": "passed",
+          "durationMs": 2943
+        },
+        {
+          "name": "[a11y] focus order: Tab visits multiple distinct focus targets",
+          "status": "passed",
+          "durationMs": 3294
+        },
+        {
+          "name": "[a11y] skip link: if present, first Tab target is visible",
+          "status": "passed",
+          "durationMs": 3017
+        },
+        {
+          "name": "Mode select activates with Enter when focused",
+          "status": "passed",
+          "durationMs": 3372
+        },
+        {
+          "name": "Mode select activates with Space when focused",
+          "status": "passed",
+          "durationMs": 3150
+        },
+        {
+          "name": "[a11y] Default first radio: role radio + accessible name",
+          "status": "passed",
+          "durationMs": 3006
+        },
+        {
+          "name": "[a11y] radio-size-M: role radio + accessible name",
+          "status": "passed",
+          "durationMs": 3036
+        },
+        {
+          "name": "[a11y] radio-appearance-primary-off: role radio + accessible name",
+          "status": "passed",
+          "durationMs": 2969
+        },
+        {
+          "name": "[a11y] every radio has non-empty accessible name",
+          "status": "passed",
+          "durationMs": 3764
+        },
+        {
+          "name": "[a11y] disabled group exposes aria-disabled on radios",
+          "status": "passed",
+          "durationMs": 2882
+        },
+        {
+          "name": "[a11y] read-only group exposes aria-readonly on radios",
+          "status": "passed",
+          "durationMs": 3030
+        },
+        {
+          "name": "[a11y] ArrowDown from default first radio moves selection within group",
+          "status": "passed",
+          "durationMs": 2721
+        },
+        {
+          "name": "[a11y] error / validity axe rules — zero serious/critical",
+          "status": "passed",
+          "durationMs": 3267
+        },
+        {
+          "name": "[a11y] aria-live-region-content rule if available",
+          "status": "passed",
+          "durationMs": 2866
+        }
+      ],
+      "axe": {
+        "violations": [
+          {
+            "id": "color-contrast",
+            "impact": "serious",
+            "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+            "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/color-contrast?application=playwright",
+            "nodes": 10
+          }
+        ]
+      }
+    },
+    "functional": {
+      "suite": "functional",
+      "passed": 72,
+      "failed": 0,
+      "skipped": 2,
+      "logs": [
+        "74 test(s) in Playwright report for functional."
+      ],
+      "errors": [],
+      "cases": [
+        {
+          "name": "1.1 — Page loads without console errors",
+          "status": "passed",
+          "durationMs": 4378
+        },
+        {
+          "name": "1.1 — Default radio renders with role radio",
+          "status": "passed",
+          "durationMs": 2391
+        },
+        {
+          "name": "1.2 — Every playground data-testid is visible",
+          "status": "passed",
+          "durationMs": 3411
+        },
+        {
+          "name": "1.3 — Every data-section band is visible",
+          "status": "passed",
+          "durationMs": 3068
+        },
+        {
+          "name": "2.1 — Size S renders",
+          "status": "passed",
+          "durationMs": 3001
+        },
+        {
+          "name": "2.1 — Size M renders",
+          "status": "passed",
+          "durationMs": 2888
+        },
+        {
+          "name": "2.1 — Size L renders",
+          "status": "passed",
+          "durationMs": 2833
+        },
+        {
+          "name": "2.2 — Size S/M/L scale progressively (width and height)",
+          "status": "passed",
+          "durationMs": 2972
+        },
+        {
+          "name": "2.1 — Legacy size alias \"small\" renders",
+          "status": "passed",
+          "durationMs": 2806
+        },
+        {
+          "name": "2.1 — Legacy size alias \"medium\" renders",
+          "status": "passed",
+          "durationMs": 2955
+        },
+        {
+          "name": "2.1 — Legacy size alias \"large\" renders",
+          "status": "passed",
+          "durationMs": 4052
+        },
+        {
+          "name": "2.1 — Appearance auto off/on pair renders",
+          "status": "passed",
+          "durationMs": 3649
+        },
+        {
+          "name": "2.1 — Appearance neutral off/on pair renders",
+          "status": "passed",
+          "durationMs": 3160
+        },
+        {
+          "name": "2.1 — Appearance primary off/on pair renders",
+          "status": "passed",
+          "durationMs": 2476
+        },
+        {
+          "name": "2.1 — Appearance secondary off/on pair renders",
+          "status": "passed",
+          "durationMs": 2387
+        },
+        {
+          "name": "2.1 — Appearance sparkle off/on pair renders",
+          "status": "passed",
+          "durationMs": 2866
+        },
+        {
+          "name": "2.1 — Appearance negative off/on pair renders",
+          "status": "passed",
+          "durationMs": 2665
+        },
+        {
+          "name": "2.1 — Appearance positive off/on pair renders",
+          "status": "passed",
+          "durationMs": 2192
+        },
+        {
+          "name": "2.1 — Appearance warning off/on pair renders",
+          "status": "passed",
+          "durationMs": 2714
+        },
+        {
+          "name": "2.1 — Appearance informative off/on pair renders",
+          "status": "passed",
+          "durationMs": 2947
+        },
+        {
+          "name": "2.1 — Accent primary pair renders",
+          "status": "passed",
+          "durationMs": 2885
+        },
+        {
+          "name": "2.1 — Accent secondary pair renders",
+          "status": "passed",
+          "durationMs": 3013
+        },
+        {
+          "name": "2.1 — Accent sparkle pair renders",
+          "status": "passed",
+          "durationMs": 2881
+        },
+        {
+          "name": "3.1 — Click selects radio and updates aria-checked",
+          "status": "passed",
+          "durationMs": 2857
+        },
+        {
+          "name": "3.2 — Disabled group ignores click on sibling",
+          "status": "passed",
+          "durationMs": 3490
+        },
+        {
+          "name": "3.3 — Read-only group keeps selection after click on sibling",
+          "status": "passed",
+          "durationMs": 3987
+        },
+        {
+          "name": "3.4 — Click outside removes focus from radio",
+          "status": "passed",
+          "durationMs": 3288
+        },
+        {
+          "name": "4.1 — Tab reaches default group radios",
+          "status": "passed",
+          "durationMs": 15751
+        },
+        {
+          "name": "4.2 — Space selects focused radio in default group",
+          "status": "passed",
+          "durationMs": 1703
+        },
+        {
+          "name": "4.4 — ArrowDown moves selection in default vertical group",
+          "status": "passed",
+          "durationMs": 1652
+        },
+        {
+          "name": "4.5 — Home moves focus to first radio in default group",
+          "status": "skipped",
+          "durationMs": 0
+        },
+        {
+          "name": "4.5 — End moves focus to last radio in default group",
+          "status": "skipped",
+          "durationMs": 0
+        },
+        {
+          "name": "4.6 — Escape does not remove radios (no overlay)",
+          "status": "passed",
+          "durationMs": 1692
+        },
+        {
+          "name": "4.7 — Repeated Tab visits multiple distinct focus targets (no single-element trap)",
+          "status": "passed",
+          "durationMs": 2930
+        },
+        {
+          "name": "5.1 — Click focuses radio control",
+          "status": "passed",
+          "durationMs": 2737
+        },
+        {
+          "name": "5.2 — Focus indicator visible on keyboard focus",
+          "status": "passed",
+          "durationMs": 2710
+        },
+        {
+          "name": "5.4 — Blur removes focus",
+          "status": "passed",
+          "durationMs": 2873
+        },
+        {
+          "name": "5.3 — Read-only radio can receive focus",
+          "status": "passed",
+          "durationMs": 2793
+        },
+        {
+          "name": "6.1 — Default group first option is selected",
+          "status": "passed",
+          "durationMs": 2894
+        },
+        {
+          "name": "6.2 — Selected true control is checked",
+          "status": "passed",
+          "durationMs": 3599
+        },
+        {
+          "name": "6.3 — Disabled group marks controls disabled",
+          "status": "passed",
+          "durationMs": 3922
+        },
+        {
+          "name": "6.4 — Read-only group selection is stable",
+          "status": "passed",
+          "durationMs": 3360
+        },
+        {
+          "name": "6.5 — Error state (N/A)",
+          "status": "passed",
+          "durationMs": 3292
+        },
+        {
+          "name": "6.6 — Loading state (N/A)",
+          "status": "passed",
+          "durationMs": 2524
+        },
+        {
+          "name": "7.x — Radio has no start/end/icon slots",
+          "status": "passed",
+          "durationMs": 1921
+        },
+        {
+          "name": "8.1 — Toggle on/off (N/A)",
+          "status": "passed",
+          "durationMs": 2447
+        },
+        {
+          "name": "8.2 — Only one option selected at a time in default group",
+          "status": "passed",
+          "durationMs": 2813
+        },
+        {
+          "name": "8.2 — Selecting third option deselects first",
+          "status": "passed",
+          "durationMs": 2066
+        },
+        {
+          "name": "9.x — Not a text input",
+          "status": "passed",
+          "durationMs": 2790
+        },
+        {
+          "name": "10.1 — Group readOnly prevents selection change",
+          "status": "passed",
+          "durationMs": 2823
+        },
+        {
+          "name": "10.1 — Group disabled prevents selection change",
+          "status": "passed",
+          "durationMs": 2889
+        },
+        {
+          "name": "11.1 — Default radio exposes visible label text",
+          "status": "passed",
+          "durationMs": 2808
+        },
+        {
+          "name": "11.1 — Size row documents S/M/L captions",
+          "status": "passed",
+          "durationMs": 2856
+        },
+        {
+          "name": "12.1 — fullWidth (N/A)",
+          "status": "passed",
+          "durationMs": 2844
+        },
+        {
+          "name": "12.2 — At 320px viewport, each scenario band fits without horizontal scroll",
+          "status": "passed",
+          "durationMs": 7531
+        },
+        {
+          "name": "12.2 — Visible at 1440px viewport",
+          "status": "passed",
+          "durationMs": 5577
+        },
+        {
+          "name": "12.3 — Default group stacks options vertically",
+          "status": "passed",
+          "durationMs": 2960
+        },
+        {
+          "name": "13.1 — All sections visible after theme toggle",
+          "status": "passed",
+          "durationMs": 3786
+        },
+        {
+          "name": "13.1 — Appearance primary selected visible in dark mode",
+          "status": "passed",
+          "durationMs": 5363
+        },
+        {
+          "name": "Figma combination matrix renders every row",
+          "status": "passed",
+          "durationMs": 1784
+        },
+        {
+          "name": "Smoke — Page heading reads “Radio”",
+          "status": "passed",
+          "durationMs": 1749
+        },
+        {
+          "name": "Smoke — Default radio is visible and checked",
+          "status": "passed",
+          "durationMs": 1600
+        },
+        {
+          "name": "[fn] shows Radio page heading",
+          "status": "passed",
+          "durationMs": 2783
+        },
+        {
+          "name": "[fn] theme toggle updates label",
+          "status": "passed",
+          "durationMs": 2994
+        },
+        {
+          "name": "[fn] scenario tabs are present",
+          "status": "passed",
+          "durationMs": 2638
+        },
+        {
+          "name": "[fn] Default story first radio is visible",
+          "status": "passed",
+          "durationMs": 2686
+        },
+        {
+          "name": "[fn] Default group — selecting second option moves selection",
+          "status": "passed",
+          "durationMs": 2925
+        },
+        {
+          "name": "[fn] Size row — S / M / L radios visible",
+          "status": "passed",
+          "durationMs": 2577
+        },
+        {
+          "name": "[fn] Selected band — empty group has no selection; defaultValue group has selection",
+          "status": "passed",
+          "durationMs": 2977
+        },
+        {
+          "name": "[fn] Read-only selected group — clicking sibling does not change selection",
+          "status": "passed",
+          "durationMs": 3977
+        },
+        {
+          "name": "[fn] Disabled group — cannot move selection to second option",
+          "status": "passed",
+          "durationMs": 3808
+        },
+        {
+          "name": "[fn] Appearance matrix — primary row radios visible",
+          "status": "passed",
+          "durationMs": 3105
+        },
+        {
+          "name": "[fn] Accent row — primary accent pair visible",
+          "status": "passed",
+          "durationMs": 3032
+        },
+        {
+          "name": "[fn] Combination matrix renders all combo rows",
+          "status": "passed",
+          "durationMs": 2563
+        }
+      ]
+    },
+    "performance": {
+      "suite": "performance",
+      "passed": 0,
+      "failed": 0,
+      "skipped": 0,
+      "logs": [
+        "Performance suite is not executed in apps/qa-playground radio Playwright bundle."
+      ],
+      "errors": []
+    }
+  }
+}

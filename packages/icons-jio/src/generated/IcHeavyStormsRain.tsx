@@ -1,0 +1,30 @@
+import React, { forwardRef } from 'react';
+import type { IconComponentProps } from '../iconProps';
+
+export const IcHeavyStormsRain = forwardRef<SVGSVGElement, IconComponentProps>(function IcHeavyStormsRain(
+  { size = 24, width, height, color = 'currentColor', className, style, ...props },
+  ref,
+) {
+  const dim = width ?? height ?? size;
+  return (
+    <svg
+      ref={ref}
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      width={width ?? dim}
+      height={height ?? dim}
+      color={color}
+      className={className}
+      style={style}
+      {...props}
+    >
+      <path
+            fill="currentColor"
+            d="M7.6 15.2c-.44-.33-1.07-.24-1.4.2l-3 4c-.33.44-.24 1.07.2 1.4.18.13.39.2.6.2.3 0 .6-.14.8-.4l3-4c.33-.44.24-1.07-.2-1.4m2.6.2-3 4c-.33.44-.24 1.07.2 1.4.18.13.39.2.6.2.3 0 .6-.14.8-.4l3-4c.33-.44.24-1.07-.2-1.4s-1.07-.24-1.4.2M6 13h4c0-2.76 2.24-5 5-5a3.01 3.01 0 0 1 2.83 4h2.39c.48-.53.78-1.23.78-2 0-1.13-.64-2.11-1.56-2.62.03-.21.06-.42.06-.63C19.5 4.13 17.37 2 14.75 2c-1.64 0-3.08.83-3.93 2.09A3.7 3.7 0 0 0 10 4a3.98 3.98 0 0 0-3.86 3.01C6.09 7.01 6.05 7 6 7c-1.66 0-3 1.34-3 3s1.34 3 3 3m15 1h-6c-.55 0-1-.45-1-1s.45-1 1-1 1-.45 1-1-.45-1-1-1c-1.65 0-3 1.35-3 3s1.35 3 3 3h6c.55 0 1-.45 1-1s-.45-1-1-1m-2 3h-5c-.55 0-1 .45-1 1s.45 1 1 1h5c.55 0 1-.45 1-1s-.45-1-1-1"
+          />
+    </svg>
+  );
+});
+
+IcHeavyStormsRain.displayName = 'IcHeavyStormsRain';

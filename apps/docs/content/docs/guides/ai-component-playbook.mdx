@@ -1,0 +1,54 @@
+---
+title: AI Component Playbook
+description: Rules for agents and adopters generating OneUI component code for the Jio web alpha.
+---
+
+Use this playbook when an AI agent composes UI with OneUI components. The goal is predictable, token-safe output that can move to other brands later.
+
+## Required Context
+
+Agents should load these sources before generating component code:
+
+- `packages/ui/src/registry/jioAlphaCatalog.ts`
+- `docs/components/generated/*.docs.json`
+- `docs/exports/jio.DESIGN.md`
+- `docs/component-adoption-readiness.md`
+
+If a requested component is not in `JIO_WEB_ALPHA_COMPONENTS`, ask whether to use an alpha-supported alternative or proceed with an experimental component.
+
+## Import Rules
+
+Use path imports:
+
+```ts
+import { Button } from '@oneui/ui/components/Button';
+import { Surface } from '@oneui/ui/components/Surface';
+```
+
+Do not import from the `@oneui/ui` root barrel in generated app code.
+
+## Surface Rules
+
+Use `<Surface mode="...">` for any non-default background that contains interactive or text content. Do not generate raw containers with manual background styling around components.
+
+## Token Rules
+
+- Use role-explicit tokens such as `--Primary-Bold`, `--Primary-Subtle`, `--Primary-TintedA11y`, and `--Primary-Bold-High`.
+- Use role typography tokens such as `--Body-M-FontSize` and `--Label-S-LineHeight`.
+- Do not author legacy `--{Role}-FG-*`, `--{Role}-BG-*`, `--Surface-Bold`, `--Text-High`, `--Typography-Size-*`, or `--Typography-Weight-*` tokens.
+- Do not hardcode colors, spacing, font sizes, radii, or shadows.
+
+## Attention Mapping
+
+- High attention: `Button variant="bold" appearance="primary"`.
+- Medium attention: `Button variant="subtle"`.
+- Low attention: `Button variant="ghost" appearance="neutral"`.
+
+Use `Surface mode="bold"` rarely: hero sections, branded calls to action, or editorial carousel slides. Most layouts should remain on `default` surfaces.
+
+## Accessibility
+
+- Use `start` and `end` for inline content slots.
+- Give icon-only controls an explicit `aria-label`.
+- Tooltip content does not replace an accessible name.
+- Dialog examples require a title.

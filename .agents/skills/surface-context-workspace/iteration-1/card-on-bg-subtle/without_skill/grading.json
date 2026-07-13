@@ -1,0 +1,26 @@
+{
+  "eval_id": 2,
+  "run_type": "without_skill",
+  "expectations": [
+    {
+      "text": "lists-on-colour-tokens",
+      "passed": true,
+      "evidence": "Lists all 9 on-colour tokens per role with correct names and purposes, plus surface fill, FG-Bold, and BG-Subtle tokens"
+    },
+    {
+      "text": "mentions-on-subtle-context",
+      "passed": true,
+      "evidence": "States 'on-subtle on-colour context' and compares parameters with on-default in a table"
+    },
+    {
+      "text": "explains-differences-from-default",
+      "passed": true,
+      "evidence": "Detailed comparison: stroke offset +10 vs +8, asymmetric Accent-A11y, BG-Subtle remapping to state-layer hover hex, no bold inversion, per-variant behavior table"
+    },
+    {
+      "text": "uses-correct-token-names",
+      "passed": true,
+      "evidence": "Uses --{Role}-Default-High, --{Role}-Default-Medium-Stroke naming convention throughout. Full inventory listing all 16 tokens per role in the context block"
+    }
+  ]
+}

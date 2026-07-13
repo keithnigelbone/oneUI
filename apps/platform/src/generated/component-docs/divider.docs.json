@@ -1,0 +1,330 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Divider",
+  "generatedAt": "2026-01-01T00:00:00.000Z",
+  "machineReadable": true,
+  "intentAndPurpose": {
+    "intent": {
+      "value": "Visual separator between sections, list items, or content groups.",
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "taskContexts": {
+      "value": [
+        "section-separation",
+        "list-item-separation",
+        "content-grouping"
+      ],
+      "attribution": {
+        "source": "authored"
+      }
+    },
+    "sentiments": {
+      "value": [
+        "neutral"
+      ],
+      "attribution": {
+        "source": "authored"
+      }
+    }
+  },
+  "compositionRules": {
+    "requires": {
+      "value": [
+        "orientation context"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "allows": {
+      "value": [
+        "label or icon slot",
+        "round caps"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "forbids": {
+      "value": [
+        "interactive content",
+        "non-separator use"
+      ],
+      "attribution": {
+        "source": "authored"
+      }
+    }
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "low attention",
+        "useWhen": {
+          "value": [
+            "subtle content separation (default)"
+          ],
+          "attribution": {
+            "source": "inferred"
+          }
+        }
+      },
+      {
+        "name": "medium attention",
+        "useWhen": {
+          "value": [
+            "prominent section boundary"
+          ],
+          "attribution": {
+            "source": "inferred"
+          }
+        }
+      },
+      {
+        "name": "high attention",
+        "useWhen": {
+          "value": [
+            "strong separator between major sections"
+          ],
+          "attribution": {
+            "source": "inferred"
+          }
+        }
+      }
+    ]
+  },
+  "relationshipsAndDependencies": {
+    "related": {
+      "value": [
+        "ContentBlock",
+        "List"
+      ],
+      "attribution": {
+        "source": "authored"
+      }
+    }
+  },
+  "contextSignals": {
+    "density": {
+      "value": [
+        "compact",
+        "default",
+        "open"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "modality": {
+      "value": [
+        "desktop",
+        "mobile"
+      ],
+      "attribution": {
+        "source": "authored"
+      }
+    },
+    "brand": {
+      "value": [
+        "theme-scope aware"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "mode": {
+      "value": [
+        "light",
+        "dark"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "observabilityHooks": {
+    "track": {
+      "value": [],
+      "attribution": {
+        "source": "authored"
+      }
+    },
+    "health": {
+      "value": [
+        "a11y_violations"
+      ],
+      "attribution": {
+        "source": "authored"
+      }
+    }
+  },
+  "props": [
+    {
+      "name": "appearance",
+      "type": "DividerAppearance",
+      "required": false,
+      "description": "Multi-accent appearance role. 'auto' resolves to 'neutral'. Default: 'auto'"
+    },
+    {
+      "name": "attention",
+      "type": "DividerAttention",
+      "required": false,
+      "description": "Prominence level — drives stroke tier and centre Icon/Text emphasis. Default: 'low'"
+    },
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Centre content — plain string/number (auto-wrapped in Label XS Medium `<Text />`), `<Icon />`, or `<Text />`. Divider merges `appearance` / `attention` onto `Icon` / `Text` when those props are unset on the child. Omit for a bare separator."
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "required": false,
+      "description": "Additional class name"
+    },
+    {
+      "name": "contentAlign",
+      "type": "DividerContentAlign",
+      "required": false,
+      "description": "Position of the centre content. Default: 'center'"
+    },
+    {
+      "name": "data-testid",
+      "type": "string",
+      "required": false,
+      "description": "Test automation id — forwarded to the root separator element only."
+    },
+    {
+      "name": "orientation",
+      "type": "DividerOrientation",
+      "required": false,
+      "description": "Component orientation. Default: 'horizontal'"
+    },
+    {
+      "name": "roundCaps",
+      "type": "boolean",
+      "required": false,
+      "description": "Rounded stroke ends. Default: false"
+    },
+    {
+      "name": "size",
+      "type": "DividerSize",
+      "required": false,
+      "description": "Stroke width of the divider. Default: 'm'"
+    },
+    {
+      "name": "style",
+      "type": "CSSProperties",
+      "required": false,
+      "description": "Inline styles"
+    }
+  ],
+  "slots": [
+    {
+      "name": "children",
+      "types": [
+        "ReactNode",
+        "Icon",
+        "Text"
+      ],
+      "tokens": []
+    }
+  ],
+  "propsSchema": {
+    "$id": "jds.docs.divider",
+    "type": "object",
+    "properties": {
+      "appearance": {
+        "enum": [
+          "auto",
+          "primary",
+          "secondary",
+          "neutral",
+          "sparkle",
+          "positive",
+          "negative",
+          "warning",
+          "informative"
+        ],
+        "description": "Multi-accent appearance role. 'auto' resolves to 'neutral'. Default: 'auto'"
+      },
+      "attention": {
+        "enum": [
+          "high",
+          "medium",
+          "low"
+        ],
+        "description": "Prominence level — drives stroke tier and centre Icon/Text emphasis. Default: 'low'"
+      },
+      "children": {
+        "description": "Centre content — plain string/number (auto-wrapped in Label XS Medium `<Text />`), `<Icon />`, or `<Text />`. Divider merges `appearance` / `attention` onto `Icon` / `Text` when those props are unset on the child. Omit for a bare separator."
+      },
+      "className": {
+        "type": "string",
+        "description": "Additional class name"
+      },
+      "contentAlign": {
+        "enum": [
+          "center",
+          "start",
+          "end"
+        ],
+        "description": "Position of the centre content. Default: 'center'"
+      },
+      "data-testid": {
+        "type": "string",
+        "description": "Test automation id — forwarded to the root separator element only."
+      },
+      "orientation": {
+        "enum": [
+          "horizontal",
+          "vertical"
+        ],
+        "description": "Component orientation. Default: 'horizontal'"
+      },
+      "roundCaps": {
+        "type": "boolean",
+        "description": "Rounded stroke ends. Default: false"
+      },
+      "size": {
+        "enum": [
+          "s",
+          "m",
+          "l"
+        ],
+        "description": "Stroke width of the divider. Default: 'm'"
+      },
+      "style": {
+        "description": "Inline styles"
+      }
+    }
+  },
+  "codeSnippets": [
+    {
+      "id": "divider-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { Divider } from '@oneui/ui';\n\n<Divider />"
+    },
+    {
+      "id": "divider-with-text",
+      "title": "With Text",
+      "language": "tsx",
+      "code": "import { Divider, Text } from '@oneui/ui';\n\n<Divider content={<Text variant=\"label\" size=\"S\" weight=\"medium\" text=\"Or\" />} />"
+    },
+    {
+      "id": "divider-vertical",
+      "title": "Vertical",
+      "language": "tsx",
+      "code": "<Divider orientation=\"vertical\" />"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "divider"
+  ],
+  "generatedMarkdown": "# Divider Machine-Readable Documentation\n\n_Generated from source metadata. Do not edit manually._\n\n## Intent and Purpose\n\n- **Intent**: Visual separator between sections, list items, or content groups.\n- **Task contexts**: section-separation, list-item-separation, content-grouping\n- **Sentiments**: neutral\n\n## Composition Rules\n\n- **Requires**: orientation context\n- **Allows**: label or icon slot, round caps\n- **Forbids**: interactive content, non-separator use\n\n## Variant Logic\n\n- **low attention**: use when subtle content separation (default)\n- **medium attention**: use when prominent section boundary\n- **high attention**: use when strong separator between major sections\n\n## Relationships and Dependencies\n\n- **Related**: ContentBlock, List\n- **Escalates to**: -\n- **Degrades to**: -\n- **Groups with**: -\n\n## Context Signals\n\n- **Density**: compact, default, open\n- **Modality**: desktop, mobile\n- **Brand**: theme-scope aware\n- **Mode**: light, dark\n\n## Observability Hooks\n\n- **Track**: \n- **Health**: a11y_violations\n\n## Props\n\n| Prop | Type | Required | Default | Description |\n| --- | --- | --- | --- | --- |\n| `appearance` | `DividerAppearance` | No | - | Multi-accent appearance role. 'auto' resolves to 'neutral'. Default: 'auto' |\n| `attention` | `DividerAttention` | No | - | Prominence level — drives stroke tier and centre Icon/Text emphasis. Default: 'low' |\n| `children` | `ReactNode` | No | - | Centre content — plain string/number (auto-wrapped in Label XS Medium `<Text />`), `<Icon />`, or `<Text />`. Divider merges `appearance` / `attention` onto `Icon` / `Text` when those props are unset on the child. Omit for a bare separator. |\n| `className` | `string` | No | - | Additional class name |\n| `contentAlign` | `DividerContentAlign` | No | - | Position of the centre content. Default: 'center' |\n| `data-testid` | `string` | No | - | Test automation id — forwarded to the root separator element only. |\n| `orientation` | `DividerOrientation` | No | - | Component orientation. Default: 'horizontal' |\n| `roundCaps` | `boolean` | No | - | Rounded stroke ends. Default: false |\n| `size` | `DividerSize` | No | - | Stroke width of the divider. Default: 'm' |\n| `style` | `CSSProperties` | No | - | Inline styles |\n\n## Slots\n\n| Slot | Types | Tokens |\n| --- | --- | --- |\n| `children` | ReactNode, Icon, Text |  |\n\n## Code Snippets\n\n### Basic Usage\n\n```tsx\nimport { Divider } from '@oneui/ui';\n\n<Divider />\n```\n\n### With Text\n\n```tsx\nimport { Divider, Text } from '@oneui/ui';\n\n<Divider content={<Text variant=\"label\" size=\"S\" weight=\"medium\" text=\"Or\" />} />\n```\n\n### Vertical\n\n```tsx\n<Divider orientation=\"vertical\" />\n```\n"
+}

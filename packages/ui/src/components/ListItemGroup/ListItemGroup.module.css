@@ -1,0 +1,35 @@
+/**
+ * ListItemGroup.module.css
+ * Token-only styling for the ListItemGroup layout shell.
+ *
+ * The group renders NO stroke or background of its own — the stroke around
+ * each group in the Figma reference is documentation artwork, not component chrome.
+ * Inter-row dividers are owned by each <ListItem> via its `divider` prop.
+ */
+
+.root {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: transparent;
+  box-sizing: border-box;
+}
+
+/* Top section divider — edge-to-edge hairline above the first row.
+   Rendered via ::before so it doesn't eat list-item child indices. */
+.root[data-section-divider]::before {
+  content: '';
+  display: block;
+  height: var(--ListItemGroup-dividerThickness, var(--Stroke-S, var(--Border-Thin-Width, 1px)));
+  background-color: var(--ListItemGroup-dividerColor, var(--Neutral-Stroke-Low, var(--Border-Subtle)));
+}
+
+/* Inset frame — rounded corners + horizontal margin.
+   `overflow: hidden` clips the first/last rows' fills to the group's radius
+   so selected=medium/high backgrounds don't square off the corners. */
+.root[data-container="inset"] {
+  margin-inline: var(--ListItemGroup-insetMargin, var(--Spacing-3));
+  border-radius: var(--ListItemGroup-borderRadius, var(--Shape-2));
+  overflow: hidden;
+  width: auto;
+}

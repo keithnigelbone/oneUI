@@ -1,0 +1,274 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "CircularProgressIndicator",
+  "generatedAt": "2026-01-01T00:00:00.000Z",
+  "machineReadable": true,
+  "intentAndPurpose": {
+    "intent": "Circular progress arc. Determinate variant renders an arc proportional to `value`; indeterminate renders a spinning animation. Optional center content (icon or auto percentage). 10 t-shirt sizes. Multi-accent appearance roles.",
+    "taskContexts": [
+      "progress",
+      "loading",
+      "spinner",
+      "circular",
+      "indicator"
+    ],
+    "sentiments": [
+      "neutral"
+    ]
+  },
+  "compositionRules": {
+    "requires": [],
+    "allows": [],
+    "forbids": []
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "determinate",
+        "useWhen": [
+          "Determinate"
+        ]
+      },
+      {
+        "name": "indeterminate",
+        "useWhen": [
+          "Indeterminate"
+        ]
+      }
+    ]
+  },
+  "relationshipsAndDependencies": {
+    "related": []
+  },
+  "contextSignals": {
+    "density": [
+      "compact",
+      "default",
+      "open"
+    ],
+    "modality": [
+      "desktop",
+      "mobile"
+    ],
+    "brand": [
+      "theme-scope aware",
+      "recipe-driven"
+    ],
+    "mode": [
+      "light",
+      "dark",
+      "surface-context"
+    ]
+  },
+  "observabilityHooks": {
+    "track": [],
+    "health": [
+      "a11y_violations"
+    ]
+  },
+  "props": [
+    {
+      "name": "animate",
+      "type": "boolean",
+      "required": false,
+      "description": "Enable entry + exit animations. Default: false (opt-in). Pair with `show` for controlled visibility."
+    },
+    {
+      "name": "appearance",
+      "type": "CircularProgressIndicatorAppearance",
+      "required": false,
+      "description": "Multi-accent appearance role. 'auto' resolves to 'primary'. Default: 'auto'."
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": false,
+      "description": "Accessible label for screen readers"
+    },
+    {
+      "name": "aria-labelledby",
+      "type": "string",
+      "required": false,
+      "description": "ID of element that labels this progress indicator"
+    },
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Children rendered as icon when content='icon'"
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "required": false,
+      "description": "Additional class name"
+    },
+    {
+      "name": "content",
+      "type": "CircularProgressIndicatorContent",
+      "required": false,
+      "description": "Center content: 'none'=empty, 'icon'=render children as icon, 'text'=auto percentage label. Default: 'none'."
+    },
+    {
+      "name": "data-testid",
+      "type": "string",
+      "required": false,
+      "description": "Optional test hook — forwarded to the root visual container (the ring wrapper)."
+    },
+    {
+      "name": "max",
+      "type": "number",
+      "required": false,
+      "description": "Maximum value. Default: 100."
+    },
+    {
+      "name": "min",
+      "type": "number",
+      "required": false,
+      "description": "Minimum value. Default: 0."
+    },
+    {
+      "name": "show",
+      "type": "boolean",
+      "required": false,
+      "description": "Controlled visibility. When `animate` is true, toggling `show` triggers entry or exit. Default: true."
+    },
+    {
+      "name": "size",
+      "type": "CircularProgressIndicatorSize",
+      "required": false,
+      "description": "Size preset — maps to spacing dimension tokens. Default: 'M'."
+    },
+    {
+      "name": "style",
+      "type": "CSSProperties",
+      "required": false,
+      "description": "Inline styles"
+    },
+    {
+      "name": "value",
+      "type": "number",
+      "required": false,
+      "description": "Current progress value (determinate only)"
+    },
+    {
+      "name": "variant",
+      "type": "CircularProgressIndicatorVariant",
+      "required": false,
+      "description": "Determinate shows arc proportional to value; indeterminate shows spinning animation. Default: 'determinate'."
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.docs.circular-progress-indicator",
+    "type": "object",
+    "properties": {
+      "animate": {
+        "type": "boolean",
+        "description": "Enable entry + exit animations. Default: false (opt-in). Pair with `show` for controlled visibility."
+      },
+      "appearance": {
+        "enum": [
+          "auto",
+          "primary",
+          "secondary",
+          "sparkle",
+          "neutral",
+          "positive",
+          "negative",
+          "warning",
+          "informative"
+        ],
+        "description": "Multi-accent appearance role. 'auto' resolves to 'primary'. Default: 'auto'."
+      },
+      "aria-label": {
+        "type": "string",
+        "description": "Accessible label for screen readers"
+      },
+      "aria-labelledby": {
+        "type": "string",
+        "description": "ID of element that labels this progress indicator"
+      },
+      "children": {
+        "description": "Children rendered as icon when content='icon'"
+      },
+      "className": {
+        "type": "string",
+        "description": "Additional class name"
+      },
+      "content": {
+        "enum": [
+          "none",
+          "icon",
+          "text"
+        ],
+        "description": "Center content: 'none'=empty, 'icon'=render children as icon, 'text'=auto percentage label. Default: 'none'."
+      },
+      "data-testid": {
+        "type": "string",
+        "description": "Optional test hook — forwarded to the root visual container (the ring wrapper)."
+      },
+      "max": {
+        "type": "number",
+        "description": "Maximum value. Default: 100."
+      },
+      "min": {
+        "type": "number",
+        "description": "Minimum value. Default: 0."
+      },
+      "show": {
+        "type": "boolean",
+        "description": "Controlled visibility. When `animate` is true, toggling `show` triggers entry or exit. Default: true."
+      },
+      "size": {
+        "enum": [
+          "2XS",
+          "XS",
+          "S",
+          "M",
+          "L",
+          "XL",
+          "2XL",
+          "3XL",
+          "4XL",
+          "5XL"
+        ],
+        "description": "Size preset — maps to spacing dimension tokens. Default: 'M'."
+      },
+      "style": {
+        "description": "Inline styles"
+      },
+      "value": {
+        "type": "number",
+        "description": "Current progress value (determinate only)"
+      },
+      "variant": {
+        "enum": [
+          "determinate",
+          "indeterminate"
+        ],
+        "description": "Determinate shows arc proportional to value; indeterminate shows spinning animation. Default: 'determinate'."
+      }
+    }
+  },
+  "codeSnippets": [
+    {
+      "id": "circular-progress-indicator-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { CircularProgressIndicator } from '@oneui/ui';\n\n<CircularProgressIndicator />"
+    },
+    {
+      "id": "circular-progress-indicator-recipe-decisions",
+      "title": "Recipe Decisions",
+      "language": "json",
+      "code": "{\n  \"component\": \"CircularProgressIndicator\",\n  \"decisions\": [\n    \"Center content\"\n  ]\n}"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "circular-progress-indicator"
+  ],
+  "importPath": "@jds4/oneui-react"
+}

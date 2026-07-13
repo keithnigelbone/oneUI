@@ -1,0 +1,82 @@
+/**
+ * ContentBlock.module.css
+ *
+ * Token-only layout for the marketing content block. Typography colours and
+ * font metrics come from role tokens (applied in TS) or CSS variables here.
+ *
+ * The root element renders at its intrinsic (hug-content) size. Positioning
+ * within the artboard frame is handled by the tldraw shape x/y, NOT by CSS.
+ */
+
+.root {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.alignStart {
+  align-items: flex-start;
+}
+
+.alignCenter {
+  align-items: center;
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: var(--ContentBlock-maxWidthPercent, 100%);
+}
+
+.textAlignStart {
+  text-align: start;
+}
+
+.textAlignCenter {
+  text-align: center;
+}
+
+.textStack {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.context {
+  margin: 0;
+  width: 100%;
+  font-family: var(--Label-FontFamily, var(--Typography-Font-Text));
+  color: var(--ContentBlock-contextColor, var(--Text-High));
+}
+
+.headline {
+  margin: 0;
+  width: 100%;
+  font-family: var(--Headline-FontFamily, var(--Typography-Font-Text));
+  color: var(--ContentBlock-headlineColor, var(--Text-High));
+}
+
+.body {
+  margin: 0;
+  width: 100%;
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  /* Reinforce weight so canvas/tldraw wrappers never inherit headline/context weight */
+  font-weight: var(--Body-FontWeight-Medium, var(--Typography-Weight-Medium));
+  color: var(--ContentBlock-bodyColor, var(--Text-Medium));
+}
+
+.ctaRow {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.ctaRow.textAlignCenter {
+  justify-content: center;
+}

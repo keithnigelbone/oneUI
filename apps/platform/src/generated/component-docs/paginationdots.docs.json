@@ -1,0 +1,295 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "PaginationDots",
+  "generatedAt": "2026-01-01T00:00:00.000Z",
+  "machineReadable": true,
+  "intentAndPurpose": {
+    "intent": {
+      "value": "Windowed pagination indicator for carousels and multi-page content. Shows a fixed window of dots that scroll with the active index. Edge dots shrink to signal more content on either side. Supports loop (infinite) and non-loop (end-grow) modes. Fully accessible: roving tabindex, keyboard nav, aria-selected.",
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "taskContexts": {
+      "value": [
+        "pagination",
+        "carousel",
+        "indicator",
+        "navigation",
+        "dots"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "sentiments": {
+      "value": [
+        "neutral"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "compositionRules": {
+    "requires": {
+      "value": [],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "allows": {
+      "value": [],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "forbids": {
+      "value": [],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "non-loop",
+        "useWhen": {
+          "value": [
+            "Non-loop"
+          ],
+          "attribution": {
+            "source": "inferred"
+          }
+        }
+      },
+      {
+        "name": "loop",
+        "useWhen": {
+          "value": [
+            "Loop"
+          ],
+          "attribution": {
+            "source": "inferred"
+          }
+        }
+      }
+    ]
+  },
+  "relationshipsAndDependencies": {
+    "related": {
+      "value": [],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "contextSignals": {
+    "density": {
+      "value": [
+        "compact",
+        "default",
+        "open"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "modality": {
+      "value": [
+        "desktop",
+        "mobile"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "brand": {
+      "value": [
+        "theme-scope aware",
+        "recipe-driven"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "mode": {
+      "value": [
+        "light",
+        "dark",
+        "surface-context"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "observabilityHooks": {
+    "track": {
+      "value": [],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "health": {
+      "value": [
+        "a11y_violations"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "props": [
+    {
+      "name": "pageCount",
+      "type": "number",
+      "required": true,
+      "description": "Total number of pages / items. Required."
+    },
+    {
+      "name": "activeIndex",
+      "type": "number",
+      "required": false,
+      "description": "Controlled active index."
+    },
+    {
+      "name": "appearance",
+      "type": "PaginationDotsAppearance",
+      "required": false,
+      "description": "Multi-accent appearance role. `auto` resolves to `primary`. Default: `primary`."
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": false,
+      "description": "Accessible label for the tablist root."
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "required": false,
+      "description": "Additional class name applied to the root."
+    },
+    {
+      "name": "data-testid",
+      "type": "string",
+      "required": false,
+      "description": "Stable anchor for Playwright / QA harnesses (applied to the tablist / status root)."
+    },
+    {
+      "name": "defaultActiveIndex",
+      "type": "number",
+      "required": false,
+      "description": "Default active index when uncontrolled."
+    },
+    {
+      "name": "loop",
+      "type": "boolean",
+      "required": false,
+      "description": "Loop mode. `true` = infinite windowed scroll, window always centered on active, last → 0 wraps seamlessly. `false` = finite sequence, window clamps at the edges, last dot grows full size when the user approaches the end. Default: `false`."
+    },
+    {
+      "name": "onActiveIndexChange",
+      "type": "(index: number) => void",
+      "required": false,
+      "description": "Fires when the active index changes (via click, keyboard, or controlled update)."
+    },
+    {
+      "name": "readOnly",
+      "type": "boolean",
+      "required": false,
+      "description": "When true, disables all interaction (clicks, keyboard) and renders as a read-only live-region indicator (`role=\"status\"`, `aria-live=\"polite\"`). Use for components that purely mirror a parent carousel's state."
+    },
+    {
+      "name": "style",
+      "type": "CSSProperties",
+      "required": false,
+      "description": "Inline styles applied to the root."
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.docs.pagination-dots",
+    "type": "object",
+    "properties": {
+      "pageCount": {
+        "type": "number",
+        "description": "Total number of pages / items. Required."
+      },
+      "activeIndex": {
+        "type": "number",
+        "description": "Controlled active index."
+      },
+      "appearance": {
+        "enum": [
+          "auto",
+          "primary",
+          "secondary",
+          "neutral",
+          "sparkle",
+          "brand-bg",
+          "positive",
+          "negative",
+          "warning",
+          "informative"
+        ],
+        "description": "Multi-accent appearance role. `auto` resolves to `primary`. Default: `primary`."
+      },
+      "aria-label": {
+        "type": "string",
+        "description": "Accessible label for the tablist root."
+      },
+      "className": {
+        "type": "string",
+        "description": "Additional class name applied to the root."
+      },
+      "data-testid": {
+        "type": "string",
+        "description": "Stable anchor for Playwright / QA harnesses (applied to the tablist / status root)."
+      },
+      "defaultActiveIndex": {
+        "type": "number",
+        "description": "Default active index when uncontrolled."
+      },
+      "loop": {
+        "type": "boolean",
+        "description": "Loop mode. `true` = infinite windowed scroll, window always centered on active, last → 0 wraps seamlessly. `false` = finite sequence, window clamps at the edges, last dot grows full size when the user approaches the end. Default: `false`."
+      },
+      "onActiveIndexChange": {
+        "description": "Fires when the active index changes (via click, keyboard, or controlled update)."
+      },
+      "readOnly": {
+        "type": "boolean",
+        "description": "When true, disables all interaction (clicks, keyboard) and renders as a read-only live-region indicator (`role=\"status\"`, `aria-live=\"polite\"`). Use for components that purely mirror a parent carousel's state."
+      },
+      "style": {
+        "description": "Inline styles applied to the root."
+      }
+    },
+    "required": [
+      "pageCount"
+    ]
+  },
+  "codeSnippets": [
+    {
+      "id": "pagination-dots-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { PaginationDots } from '@oneui/ui';\n\n<PaginationDots />"
+    },
+    {
+      "id": "pagination-dots-recipe-decisions",
+      "title": "Recipe Decisions",
+      "language": "json",
+      "code": "{\n  \"component\": \"PaginationDots\",\n  \"decisions\": [\n    \"Shape\"\n  ]\n}"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "pagination-dots"
+  ],
+  "generatedMarkdown": "# PaginationDots Machine-Readable Documentation\n\n_Generated from source metadata. Do not edit manually._\n\n## Intent and Purpose\n\n- **Intent**: Windowed pagination indicator for carousels and multi-page content. Shows a fixed window of dots that scroll with the active index. Edge dots shrink to signal more content on either side. Supports loop (infinite) and non-loop (end-grow) modes. Fully accessible: roving tabindex, keyboard nav, aria-selected.\n- **Task contexts**: pagination, carousel, indicator, navigation, dots\n- **Sentiments**: neutral\n\n## Composition Rules\n\n- **Requires**: \n- **Allows**: \n- **Forbids**: \n\n## Variant Logic\n\n- **non-loop**: use when Non-loop\n- **loop**: use when Loop\n\n## Relationships and Dependencies\n\n- **Related**: \n- **Escalates to**: -\n- **Degrades to**: -\n- **Groups with**: -\n\n## Context Signals\n\n- **Density**: compact, default, open\n- **Modality**: desktop, mobile\n- **Brand**: theme-scope aware, recipe-driven\n- **Mode**: light, dark, surface-context\n\n## Observability Hooks\n\n- **Track**: \n- **Health**: a11y_violations\n\n## Props\n\n| Prop | Type | Required | Default | Description |\n| --- | --- | --- | --- | --- |\n| `pageCount` | `number` | Yes | - | Total number of pages / items. Required. |\n| `activeIndex` | `number` | No | - | Controlled active index. |\n| `appearance` | `PaginationDotsAppearance` | No | - | Multi-accent appearance role. `auto` resolves to `primary`. Default: `primary`. |\n| `aria-label` | `string` | No | - | Accessible label for the tablist root. |\n| `className` | `string` | No | - | Additional class name applied to the root. |\n| `data-testid` | `string` | No | - | Stable anchor for Playwright / QA harnesses (applied to the tablist / status root). |\n| `defaultActiveIndex` | `number` | No | - | Default active index when uncontrolled. |\n| `loop` | `boolean` | No | - | Loop mode. `true` = infinite windowed scroll, window always centered on active, last → 0 wraps seamlessly. `false` = finite sequence, window clamps at the edges, last dot grows full size when the user approaches the end. Default: `false`. |\n| `onActiveIndexChange` | `(index: number) => void` | No | - | Fires when the active index changes (via click, keyboard, or controlled update). |\n| `readOnly` | `boolean` | No | - | When true, disables all interaction (clicks, keyboard) and renders as a read-only live-region indicator (`role=\"status\"`, `aria-live=\"polite\"`). Use for components that purely mirror a parent carousel's state. |\n| `style` | `CSSProperties` | No | - | Inline styles applied to the root. |\n\n## Slots\n\n| Slot | Types | Tokens |\n| --- | --- | --- |\n\n\n## Code Snippets\n\n### Basic Usage\n\n```tsx\nimport { PaginationDots } from '@oneui/ui';\n\n<PaginationDots />\n```\n\n### Recipe Decisions\n\n```json\n{\n  \"component\": \"PaginationDots\",\n  \"decisions\": [\n    \"Shape\"\n  ]\n}\n```\n"
+}

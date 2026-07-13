@@ -1,0 +1,30 @@
+import React, { forwardRef } from 'react';
+import type { IconComponentProps } from '../iconProps';
+
+export const IcDayNight = forwardRef<SVGSVGElement, IconComponentProps>(function IcDayNight(
+  { size = 24, width, height, color = 'currentColor', className, style, ...props },
+  ref,
+) {
+  const dim = width ?? height ?? size;
+  return (
+    <svg
+      ref={ref}
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      width={width ?? dim}
+      height={height ?? dim}
+      color={color}
+      className={className}
+      style={style}
+      {...props}
+    >
+      <path
+            fill="currentColor"
+            d="M6.34 7.76c.192.183.445.286.71.29a1 1 0 0 0 1-1 1.05 1.05 0 0 0-.29-.71l-.71-.7a1 1 0 0 0-.71-.3 1 1 0 0 0-.921 1.385 1 1 0 0 0 .221.325zM12 6a1 1 0 0 0 1-1V4a1 1 0 0 0-2 0v1a1 1 0 0 0 1 1m-6 6a1 1 0 0 0-1-1H4a1 1 0 0 0 0 2h1a1 1 0 0 0 1-1m11-3.95a1.05 1.05 0 0 0 .71-.29l.7-.71a1 1 0 0 0 .3-.71 1 1 0 0 0-1.385-.921A1 1 0 0 0 17 5.64l-.71.7a1.05 1.05 0 0 0-.29.71 1 1 0 0 0 1 1m3.76 3.24A1 1 0 0 0 20 11h-1a1 1 0 0 0 0 2h1a1 1 0 0 0 .71-1.71zm-3.05 4.95A1.05 1.05 0 0 0 17 16a1 1 0 0 0-1 1c.004.265.107.518.29.71l.71.7a1 1 0 0 0 .71.3 1 1 0 0 0 .921-1.385A1 1 0 0 0 18.41 17zM12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10m0 8a3 3 0 0 1-.47-5.95A3.93 3.93 0 0 0 11 11a4 4 0 0 0 2.38 3.65A2.94 2.94 0 0 1 12 15m-4.95 1a1.05 1.05 0 0 0-.71.29l-.7.71a1 1 0 0 0-.3.71 1 1 0 0 0 1.385.921 1 1 0 0 0 .325-.221l.71-.7a1.05 1.05 0 0 0 .29-.71 1 1 0 0 0-1-1M12 18a1 1 0 0 0-1 1v1a1 1 0 0 0 2 0v-1a1 1 0 0 0-1-1"
+          />
+    </svg>
+  );
+});
+
+IcDayNight.displayName = 'IcDayNight';

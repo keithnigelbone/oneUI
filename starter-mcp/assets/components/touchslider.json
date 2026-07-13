@@ -1,0 +1,326 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "TouchSlider",
+  "generatedAt": "2026-01-01T00:00:00.000Z",
+  "machineReadable": true,
+  "intentAndPurpose": {
+    "intent": "Chunky fingertip-friendly slider. The track is the tap target; the fill represents the value. Ideal for touch devices, TV remotes, and large-target contexts.",
+    "taskContexts": [],
+    "sentiments": [
+      "neutral"
+    ]
+  },
+  "compositionRules": {
+    "requires": [],
+    "allows": [
+      "start",
+      "end"
+    ],
+    "forbids": []
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "rounded",
+        "useWhen": [
+          "Rounded"
+        ]
+      },
+      {
+        "name": "sharp",
+        "useWhen": [
+          "Sharp"
+        ]
+      }
+    ]
+  },
+  "relationshipsAndDependencies": {
+    "related": []
+  },
+  "contextSignals": {
+    "density": [
+      "compact",
+      "default",
+      "open"
+    ],
+    "modality": [
+      "desktop",
+      "mobile"
+    ],
+    "brand": [
+      "theme-scope aware",
+      "recipe-driven"
+    ],
+    "mode": [
+      "light",
+      "dark",
+      "surface-context"
+    ]
+  },
+  "observabilityHooks": {
+    "track": [],
+    "health": [
+      "a11y_violations"
+    ]
+  },
+  "props": [
+    {
+      "name": "appearance",
+      "type": "TouchSliderAppearance",
+      "required": false,
+      "description": "appearance property"
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": false,
+      "description": "aria-label property"
+    },
+    {
+      "name": "aria-labelledby",
+      "type": "string",
+      "required": false,
+      "description": "aria-labelledby property"
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "required": false,
+      "description": "className property"
+    },
+    {
+      "name": "defaultValue",
+      "type": "number | number[]",
+      "required": false,
+      "description": "defaultValue property"
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "required": false,
+      "description": "disabled property"
+    },
+    {
+      "name": "end",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Optional node rendered after the track (e.g. an icon). 30×30 slot."
+    },
+    {
+      "name": "form",
+      "type": "string",
+      "required": false,
+      "description": "form property"
+    },
+    {
+      "name": "largeStep",
+      "type": "number",
+      "required": false,
+      "description": "largeStep property"
+    },
+    {
+      "name": "max",
+      "type": "number",
+      "required": false,
+      "description": "max property"
+    },
+    {
+      "name": "min",
+      "type": "number",
+      "required": false,
+      "description": "min property"
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "required": false,
+      "description": "name property"
+    },
+    {
+      "name": "onValueChange",
+      "type": "(value: number | number[]) => void",
+      "required": false,
+      "description": "onValueChange property"
+    },
+    {
+      "name": "onValueCommitted",
+      "type": "(value: number | number[]) => void",
+      "required": false,
+      "description": "onValueCommitted property"
+    },
+    {
+      "name": "orientation",
+      "type": "TouchSliderOrientation",
+      "required": false,
+      "description": "orientation property"
+    },
+    {
+      "name": "progressStyle",
+      "type": "TouchSliderProgressStyle",
+      "required": false,
+      "description": "progressStyle property"
+    },
+    {
+      "name": "readOnly",
+      "type": "boolean",
+      "required": false,
+      "description": "readOnly property"
+    },
+    {
+      "name": "start",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Optional node rendered before the track (e.g. an icon). 30×30 slot."
+    },
+    {
+      "name": "step",
+      "type": "number",
+      "required": false,
+      "description": "step property"
+    },
+    {
+      "name": "style",
+      "type": "CSSProperties",
+      "required": false,
+      "description": "style property"
+    },
+    {
+      "name": "value",
+      "type": "number | number[]",
+      "required": false,
+      "description": "value property"
+    }
+  ],
+  "slots": [
+    {
+      "name": "start",
+      "types": [],
+      "tokens": []
+    },
+    {
+      "name": "end",
+      "types": [],
+      "tokens": []
+    }
+  ],
+  "propsSchema": {
+    "$id": "jds.docs.touch-slider",
+    "type": "object",
+    "properties": {
+      "appearance": {
+        "enum": [
+          "auto",
+          "primary",
+          "secondary",
+          "neutral",
+          "sparkle",
+          "brand-bg",
+          "positive",
+          "negative",
+          "warning",
+          "informative"
+        ],
+        "description": "appearance property"
+      },
+      "aria-label": {
+        "type": "string",
+        "description": "aria-label property"
+      },
+      "aria-labelledby": {
+        "type": "string",
+        "description": "aria-labelledby property"
+      },
+      "className": {
+        "type": "string",
+        "description": "className property"
+      },
+      "defaultValue": {
+        "description": "defaultValue property"
+      },
+      "disabled": {
+        "type": "boolean",
+        "description": "disabled property"
+      },
+      "end": {
+        "description": "Optional node rendered after the track (e.g. an icon). 30×30 slot."
+      },
+      "form": {
+        "type": "string",
+        "description": "form property"
+      },
+      "largeStep": {
+        "type": "number",
+        "description": "largeStep property"
+      },
+      "max": {
+        "type": "number",
+        "description": "max property"
+      },
+      "min": {
+        "type": "number",
+        "description": "min property"
+      },
+      "name": {
+        "type": "string",
+        "description": "name property"
+      },
+      "onValueChange": {
+        "description": "onValueChange property"
+      },
+      "onValueCommitted": {
+        "description": "onValueCommitted property"
+      },
+      "orientation": {
+        "enum": [
+          "horizontal",
+          "vertical"
+        ],
+        "description": "orientation property"
+      },
+      "progressStyle": {
+        "enum": [
+          "rounded",
+          "sharp"
+        ],
+        "description": "progressStyle property"
+      },
+      "readOnly": {
+        "type": "boolean",
+        "description": "readOnly property"
+      },
+      "start": {
+        "description": "Optional node rendered before the track (e.g. an icon). 30×30 slot."
+      },
+      "step": {
+        "type": "number",
+        "description": "step property"
+      },
+      "style": {
+        "description": "style property"
+      },
+      "value": {
+        "description": "value property"
+      }
+    }
+  },
+  "codeSnippets": [
+    {
+      "id": "touch-slider-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { TouchSlider } from '@oneui/ui';\n\n<TouchSlider />"
+    },
+    {
+      "id": "touch-slider-recipe-decisions",
+      "title": "Recipe Decisions",
+      "language": "json",
+      "code": "{\n  \"component\": \"TouchSlider\",\n  \"decisions\": [\n    \"Shape\"\n  ]\n}"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "touch-slider"
+  ],
+  "importPath": "@jds4/oneui-react"
+}

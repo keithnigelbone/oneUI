@@ -1,0 +1,103 @@
+/*
+ * ComposerContextMenu.module.css
+ *
+ * Token-only styling for the composer context-menu trigger button + its popover
+ * menu body (LAB-02 zero-literals). The trigger is a compact pill that summarises
+ * the generation context; the menu body hosts the stacked `ComposerControlStrip`.
+ *
+ * Typography uses role-explicit V2 tokens with matching line-height +
+ * `font-family: var(--Typography-Font-Primary)` (CLAUDE.md MANDATORY). Surface
+ * context: the trigger uses the neutral subtle fill so it reads as a quiet,
+ * secondary control inside whatever Surface the composer sits on — never a
+ * hardcoded background.
+ */
+
+/* The trigger pill: icon · summary · chevron, on a subtle neutral fill with a
+ * pill radius (matches the composer's other inline affordances). */
+.trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--Spacing-1-5);
+  max-width: 100%;
+  padding: var(--Spacing-1-5) var(--Spacing-2-5);
+  border: var(--Stroke-S) solid var(--Border-Subtle);
+  border-radius: var(--Shape-Pill);
+  background: var(--Neutral-Subtle);
+  color: var(--Text-High);
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Label-S-FontSize);
+  font-weight: var(--Label-FontWeight-Medium);
+  line-height: var(--Label-S-LineHeight);
+  cursor: pointer;
+  box-sizing: border-box;
+  transition:
+    background var(--Motion-Duration-S) ease,
+    border-color var(--Motion-Duration-S) ease;
+}
+
+.trigger:hover {
+  background: var(--Neutral-Subtle-Hover, var(--Neutral-Subtle));
+}
+
+.trigger:disabled {
+  opacity: var(--Disabled-Opacity);
+  cursor: not-allowed;
+}
+
+/* No real brand resolved yet — nudge the user with the negative role's stroke so
+ * the "context not set" state reads as a must-fill cue (context-aware, no literal
+ * colour). */
+.trigger[data-incomplete='true'] {
+  border-color: var(--Negative-Stroke-Medium, var(--Border-Subtle));
+  color: var(--Text-Medium);
+}
+
+/* Focus halo (CLAUDE.md Focus Halo pattern): inner gap adapts to the host
+ * Surface via --Surface-Halo-Gap, never --Surface-Main directly. */
+.trigger:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 var(--Stroke-XL) var(--Surface-Halo-Gap, var(--Surface-Main)),
+    0 0 0 var(--Focus-Outline-Width) var(--Focus-Outline);
+}
+
+.icon {
+  flex: 0 0 auto;
+  color: var(--Text-Medium);
+}
+
+/* Summary text truncates rather than overflowing the composer. */
+.summary {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.chevron {
+  flex: 0 0 auto;
+  color: var(--Text-Medium);
+  transition: transform var(--Motion-Duration-S) ease;
+}
+
+.chevron[data-open='true'] {
+  transform: rotate(180deg);
+}
+
+/* The menu body inside the popover popup. The Popover's own popup owns the
+ * elevated surface + radius; this just sizes + pads the stacked strip. */
+.popup {
+  --Popover-Max-Width: min(calc(var(--Spacing-40) * 2), 90vw);
+  padding: var(--Spacing-2);
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  width: min(calc(var(--Spacing-40) * 2), 90vw);
+  min-width: 0;
+  max-width: 100%;
+  padding: 0;
+  box-sizing: border-box;
+}

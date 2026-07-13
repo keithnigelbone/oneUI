@@ -1,0 +1,30 @@
+import React, { forwardRef } from 'react';
+import type { IconComponentProps } from '../iconProps';
+
+export const IcLiver = forwardRef<SVGSVGElement, IconComponentProps>(function IcLiver(
+  { size = 24, width, height, color = 'currentColor', className, style, ...props },
+  ref,
+) {
+  const dim = width ?? height ?? size;
+  return (
+    <svg
+      ref={ref}
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      width={width ?? dim}
+      height={height ?? dim}
+      color={color}
+      className={className}
+      style={style}
+      {...props}
+    >
+      <path
+            fill="currentColor"
+            d="M20.5 6H18V4c0-.55-.45-1-1-1s-1 .45-1 1v8c2.76 0 5-2.24 5-5v-.5c0-.28-.22-.5-.5-.5M16.45 16.11a2.6 2.6 0 0 1-1.42-1.86c-.4.64-.91 1.21-1.51 1.68.36.7.98 1.44 2.03 1.97a1.007 1.007 0 0 0 1.35-.44.993.993 0 0 0-.45-1.34zM13 6H6C4.34 6 3 7.27 3 8.83v7.28c0 .14.02.28.05.42.01.04.03.08.04.13.03.09.06.17.1.26.02.05.05.09.08.13.04.07.09.14.14.21a2.81 2.81 0 0 0 .29.29c.04.03.08.07.13.1.07.05.15.09.23.13.04.02.09.05.13.07.09.04.19.07.29.1.03 0 .07.02.1.03.14.03.28.04.42.04q.24 0 .48-.06c1.14-.28 2.39-.79 3.1-1.75.16-.22.35-.41.58-.56s.55-.27.83-.31c-.02.01.07-.02 0 0V17c0 .06-.05 1.42-1.45 2.12-.49.25-.69.85-.45 1.34a1.007 1.007 0 0 0 1.35.44c2.52-1.26 2.55-3.79 2.55-3.89v-2.47c1.22-.83 2-2.17 2-3.66V7.02c0-.55-.45-1-1-1z"
+          />
+    </svg>
+  );
+});
+
+IcLiver.displayName = 'IcLiver';

@@ -1,0 +1,50 @@
+name: Sync DESIGN.md exports
+
+on:
+  schedule:
+    # Every 6 hours, on the hour. Picks up Convex foundation drift from
+    # designers without requiring them to run git locally.
+    - cron: '0 */6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    name: Snapshot active brands → docs/exports/
+    runs-on: [self-hosted, linux]
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.15.9
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Snapshot DESIGN.md exports
+        run: pnpm designmd:export:all
+        env:
+          NEXT_PUBLIC_CONVEX_URL: ${{ secrets.CONVEX_URL }}
+
+      - name: Commit and push if changed
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: 'chore(designmd): sync DESIGN.md exports [skip ci]'
+          file_pattern: 'docs/exports/*.DESIGN.md'
+          commit_user_name: 'oneui-studio-bot'
+          commit_user_email: 'bot@oneui-studio.local'

@@ -1,0 +1,121 @@
+.backdrop {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--Surface-Default);
+  opacity: 1;
+  z-index: 100;
+}
+
+.backdrop::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: var(--Surface-Default);
+  opacity: 0.8;
+}
+
+.dialog {
+  position: relative;
+  background: var(--Surface-Default);
+  border-radius: var(--Shape-4);
+  padding: var(--Spacing-4-5);
+  box-shadow: var(--Elevation-3);
+  min-width: var(--Spacing-28);
+  max-width: var(--Spacing-40);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-4);
+}
+
+.title {
+  font-size: var(--Title-S-FontSize);
+  font-weight: var(--Title-S-FontWeight);
+  color: var(--Text-High);
+  margin: 0;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-0-5);
+}
+
+.fieldLabel {
+  font-size: var(--Label-S-FontSize);
+  font-weight: var(--Label-FontWeight-High);
+  color: var(--Text-Medium);
+}
+
+.input {
+  border: var(--Stroke-M) solid var(--Neutral-Stroke-Medium);
+  border-radius: var(--Shape-2);
+  padding: var(--Spacing-1) var(--Spacing-3);
+  font-size: var(--Body-S-FontSize);
+  font-family: var(--Typography-Font-Code);
+  color: var(--Text-High);
+  background: var(--Surface-Default);
+}
+
+.input:read-only {
+  color: var(--Text-Low);
+  cursor: default;
+}
+
+.input:focus-visible {
+  outline: var(--Stroke-M) solid var(--Primary-Tinted);
+  outline-offset: var(--Stroke-S);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--Spacing-3);
+  padding-top: var(--Spacing-3);
+}
+
+.cancelButton {
+  background: transparent;
+  color: var(--Text-Medium);
+  border: var(--Stroke-M) solid var(--Neutral-Stroke-Medium);
+  border-radius: var(--Shape-Pill);
+  padding: var(--Spacing-1) var(--Spacing-5);
+  font-size: var(--Label-M-FontSize);
+  font-weight: var(--Label-FontWeight-High);
+  cursor: pointer;
+  transition: background-color var(--Motion-Duration-Discreet-Short) ease;
+}
+
+.cancelButton:hover {
+  background-color: var(--Neutral-Hover);
+}
+
+.cancelButton:focus-visible {
+  outline: var(--Stroke-M) solid var(--Primary-Tinted);
+  outline-offset: var(--Stroke-S);
+}
+
+.saveButton {
+  background-color: var(--Primary-Bold);
+  color: var(--Primary-Bold-High);
+  border: none;
+  border-radius: var(--Shape-Pill);
+  padding: var(--Spacing-1) var(--Spacing-5);
+  font-size: var(--Label-M-FontSize);
+  font-weight: var(--Label-FontWeight-High);
+  cursor: pointer;
+  transition: background-color var(--Motion-Duration-Discreet-Short) ease;
+}
+
+.saveButton:hover {
+  background-color: var(--Primary-Bold-Hover);
+}
+
+.saveButton:focus-visible {
+  outline: var(--Stroke-M) solid var(--Primary-Tinted);
+  outline-offset: var(--Stroke-S);
+}

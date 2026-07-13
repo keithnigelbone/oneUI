@@ -1,0 +1,30 @@
+import React, { forwardRef } from 'react';
+import type { IconComponentProps } from '../iconProps';
+
+export const IcCough = forwardRef<SVGSVGElement, IconComponentProps>(function IcCough(
+  { size = 24, width, height, color = 'currentColor', className, style, ...props },
+  ref,
+) {
+  const dim = width ?? height ?? size;
+  return (
+    <svg
+      ref={ref}
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      width={width ?? dim}
+      height={height ?? dim}
+      color={color}
+      className={className}
+      style={style}
+      {...props}
+    >
+      <path
+            fill="currentColor"
+            d="M6 16c0-.55-.45-1-1-1H3c-.55 0-1 .45-1 1s.45 1 1 1h2c.55 0 1-.45 1-1m-.71 1.79-1.5 1.5a.996.996 0 0 0 .71 1.7c.26 0 .51-.1.71-.29l1.5-1.5a.996.996 0 1 0-1.41-1.41zM13.5 3A6.5 6.5 0 0 0 7 9.5l-1.55 3.49c-.24.54.04 1.17.6 1.35l1.96.65v1c0 1.1.9 2 2 2h1v2c0 .55.45 1 1 1h5c.55 0 1-.45 1-1v-5.82c1.23-1.18 2-2.84 2-4.68a6.5 6.5 0 0 0-6.5-6.5z"
+          />
+    </svg>
+  );
+});
+
+IcCough.displayName = 'IcCough';

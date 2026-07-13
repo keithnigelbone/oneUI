@@ -1,0 +1,72 @@
+{
+  "name": "@jds/kb-core",
+  "version": "5.0.0-wip.0",
+  "private": false,
+  "description": "JDS shared knowledge-base core: tokens, roles, surfaces, brands, invariants, schema versions. Consumed as a strict peerDep by every @jds/kb-<sdk> package and by downstream AI code-generation tools.",
+  "license": "UNLICENSED",
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "import": "./src/index.ts"
+    },
+    "./node": {
+      "types": "./src/brands/discovery.ts",
+      "import": "./src/brands/discovery.ts"
+    },
+    "./types/*": "./src/types/*.ts",
+    "./composition": "./src/composition/compile.ts",
+    "./schemas": "./src/schemas/index.ts",
+    "./dist/index.js": "./dist/index.js",
+    "./invariants.json": "./dist/invariants.json",
+    "./brands/*": "./dist/brands/*.json",
+    "./manifest.json": "./dist/manifest.json"
+  },
+  "publishConfig": {
+    "main": "./dist/index.cjs",
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "registry": "https://jfrog.jio.com/artifactory/api/npm/npm-jds/",
+    "access": "restricted",
+    "exports": {
+      ".": {
+        "types": "./dist/index.d.ts",
+        "import": "./dist/index.js",
+        "require": "./dist/index.cjs"
+      },
+      "./node": {
+        "types": "./dist/node.d.ts",
+        "import": "./dist/node.js",
+        "require": "./dist/node.cjs"
+      },
+      "./types/*": {
+        "types": "./dist/types/*.d.ts",
+        "import": "./dist/types/*.js",
+        "require": "./dist/types/*.cjs"
+      },
+      "./invariants.json": "./dist/invariants.json",
+      "./brands/*": "./dist/brands/*.json",
+      "./manifest.json": "./dist/manifest.json"
+    }
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "build": "tsup && pnpm run build:variables",
+    "build:variables": "tsx scripts/build-figma-variables.ts",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.5",
+    "ajv": "^8.17.1",
+    "tsup": "^8.0.0",
+    "typescript": "^5.7.2",
+    "vitest": "^2.0.0"
+  }
+}

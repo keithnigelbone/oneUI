@@ -1,0 +1,61 @@
+/**
+ * LIGHT THEME
+ * Clean, minimal light mode appearance
+ * Uses neutral colors with brand accent for a professional look
+ *
+ * Surface naming follows Rang De convention:
+ * - Default: Base/background (step 2500)
+ * - Minimal: +1 step darker (step 2400)
+ * - Subtle: +2 steps darker (step 2300)
+ * - Bold: High contrast (step ~1300)
+ * - Elevated: Same as default + shadow
+ */
+
+@layer theme {
+[data-mode='light'] {
+  /* Surface tokens (Rang De naming) */
+  --Surface-Default: oklch(100% 0 0);
+  --Surface-Minimal: oklch(97% 0 0);
+  --Surface-Subtle: oklch(94% 0 0);
+  --Surface-Bold: oklch(25% 0 0);
+  --Surface-Elevated: oklch(100% 0 0);
+
+  /* Legacy aliases */
+  --Surface-Main: var(--Surface-Default);
+  --Surface-Ghost: var(--Surface-Minimal);
+
+  /* Text tokens - High contrast, readable */
+  --Text-High: oklch(15% 0 0);
+  --Text-Medium: oklch(45% 0 0);
+  --Text-Low: oklch(65% 0 0);
+  --Text-OnBold-High: oklch(98% 0 0);
+
+  /* Text on surface tokens (Rang De) */
+  /* On Default/Minimal/Subtle/Elevated (light surfaces) */
+  --Text-On-Default-High: oklch(15% 0 0);      /* Step 200 at 100% */
+  --Text-On-Default-Medium: oklch(35% 0 0);    /* Step 200 at ~78% blended */
+  --Text-On-Default-Low: oklch(48% 0 0);       /* Step 200 at ~56% for 4.5:1 */
+  --Text-On-Minimal-High: var(--Text-On-Default-High);
+  --Text-On-Minimal-Medium: var(--Text-On-Default-Medium);
+  --Text-On-Minimal-Low: var(--Text-On-Default-Low);
+  --Text-On-Subtle-High: var(--Text-On-Default-High);
+  --Text-On-Subtle-Medium: var(--Text-On-Default-Medium);
+  --Text-On-Subtle-Low: var(--Text-On-Default-Low);
+  --Text-On-Elevated-High: var(--Text-On-Default-High);
+  --Text-On-Elevated-Medium: var(--Text-On-Default-Medium);
+  --Text-On-Elevated-Low: var(--Text-On-Default-Low);
+
+  /* On Bold surface (dark surface) */
+  --Text-On-Bold-High: oklch(98% 0 0);         /* Step 2500 at 100% */
+  --Text-On-Bold-Medium: oklch(85% 0 0);       /* Blended midpoint */
+  --Text-On-Bold-Low: oklch(75% 0 0);          /* Minimum 4.5:1 */
+
+  /* Border tokens (neutral low/medium stroke) */
+  --Border-Subtle: oklch(88% 0 0);
+  --Border-Default: oklch(82% 0 0);
+
+  /* Material tokens - Light mode defaults (explicit) */
+  --Material-Glass-Tint: var(--Material-Glass-Tint-Light);
+  --Material-Glass-Border: var(--Material-Glass-Border-Light);
+}
+} /* @layer theme */

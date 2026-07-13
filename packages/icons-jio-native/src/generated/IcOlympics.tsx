@@ -1,0 +1,13 @@
+import React from 'react';
+import Svg, { Path, type SvgProps } from 'react-native-svg';
+export function IcOlympics(props: SvgProps) {
+  const fill = String(props.fill ?? '#000000');
+  return (
+    <Svg viewBox="0 0 24 24" fill="none" {...props}>
+      <Path
+            fill={fill}
+            d="M16.71 12.29A1 1 0 0 0 16 12H8a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h.72L10 21.24a1 1 0 0 0 1 .76h2a1 1 0 0 0 1-.76L15.28 16H16a1 1 0 0 0 1-1v-2a1 1 0 0 0-.29-.71M8.15 10H9c0-2 1.72-1.11 2-3.28a.53.53 0 0 1 .66-.42C13.81 6.89 14 9 14 10h1a1 1 0 0 0 1-1 8.12 8.12 0 0 0-4.6-6.84 1 1 0 0 0-1.48 1.01c.39 2.12-2.06 3.32-2.75 5.62A1 1 0 0 0 8.15 10"
+          />
+    </Svg>
+  );
+}

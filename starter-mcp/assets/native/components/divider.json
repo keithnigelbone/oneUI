@@ -1,0 +1,187 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Divider",
+  "generatedAt": "2026-07-09T13:07:37.411Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "Horizontal or vertical separator with an optional inline label (string) or JDS <Icon>. Stroke weight scales with size; attention sets the stroke emphasis. Decorative line is aria-hidden; wrapper is role=\"separator\". appearance=\"auto\" → neutral."
+  },
+  "compositionRules": {
+    "requires": [],
+    "allows": [],
+    "forbids": [],
+    "childKind": "fixed-slots"
+  },
+  "props": [
+    {
+      "name": "orientation",
+      "type": "'horizontal' | 'vertical'",
+      "required": false,
+      "defaultValue": "horizontal",
+      "description": ""
+    },
+    {
+      "name": "size",
+      "type": "'s' | 'm' | 'l'",
+      "required": false,
+      "defaultValue": "m",
+      "description": "Drives stroke weight."
+    },
+    {
+      "name": "contentAlign",
+      "type": "'center' | 'start' | 'end'",
+      "required": false,
+      "defaultValue": "center",
+      "description": "Placement of the inline content along the line."
+    },
+    {
+      "name": "appearance",
+      "type": "'auto' | 'primary' | 'secondary' | 'neutral' | 'sparkle' | 'positive' | 'negative' | 'warning' | 'informative'",
+      "required": false,
+      "defaultValue": "auto",
+      "description": "Stroke colour role, resolved against the parent <Surface>. 'auto' → neutral."
+    },
+    {
+      "name": "attention",
+      "type": "'high' | 'medium' | 'low'",
+      "required": false,
+      "defaultValue": "low",
+      "description": "Stroke emphasis (high/medium/low) → content stroke token."
+    },
+    {
+      "name": "roundCaps",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": "Pill-rounded line caps (tokens.shape.Pill)."
+    },
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Optional inline content. MUST be a string (→ label) or a JDS <Icon>. Other nodes render no content. — [warn] Divider content is a string label or a JDS <Icon>. A bare <Svg> or arbitrary node is ignored by the content resolver."
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.kb.rn.Divider",
+    "type": "object",
+    "properties": {
+      "orientation": {
+        "enum": [
+          "horizontal",
+          "vertical"
+        ],
+        "default": "horizontal"
+      },
+      "size": {
+        "enum": [
+          "s",
+          "m",
+          "l"
+        ],
+        "default": "m",
+        "description": "Drives stroke weight."
+      },
+      "contentAlign": {
+        "enum": [
+          "center",
+          "start",
+          "end"
+        ],
+        "default": "center",
+        "description": "Placement of the inline content along the line."
+      },
+      "appearance": {
+        "enum": [
+          "auto",
+          "primary",
+          "secondary",
+          "neutral",
+          "sparkle",
+          "positive",
+          "negative",
+          "warning",
+          "informative"
+        ],
+        "default": "auto",
+        "description": "Stroke colour role, resolved against the parent <Surface>. 'auto' → neutral."
+      },
+      "attention": {
+        "enum": [
+          "high",
+          "medium",
+          "low"
+        ],
+        "default": "low",
+        "description": "Stroke emphasis (high/medium/low) → content stroke token."
+      },
+      "roundCaps": {
+        "type": "boolean",
+        "default": false,
+        "description": "Pill-rounded line caps (tokens.shape.Pill)."
+      },
+      "children": {
+        "description": "Optional inline content. MUST be a string (→ label) or a JDS <Icon>. Other nodes render no content.",
+        "x-jds-suggestion": "Divider content is a string label or a JDS <Icon>. A bare <Svg> or arbitrary node is ignored by the content resolver.",
+        "x-jds-severity": "warn"
+      }
+    }
+  },
+  "tokens": {
+    "color": [
+      "primary",
+      "secondary",
+      "neutral",
+      "sparkle",
+      "positive",
+      "negative",
+      "warning",
+      "informative"
+    ],
+    "typography": [
+      "label.XS"
+    ],
+    "shape": [
+      "pill"
+    ]
+  },
+  "a11y": {
+    "accessibilityRole": "none",
+    "accessibleNameSource": "children",
+    "minTouchTarget": 44,
+    "honorsBoldText": true,
+    "honorsScreenReader": true
+  },
+  "renderHints": {
+    "baseElement": "View",
+    "animatedOn": [],
+    "honorsReduceMotion": false,
+    "readsFromSurfaceContext": true
+  },
+  "figma": {
+    "componentKey": "jds-divider-v4",
+    "keyHistory": [],
+    "variantProperties": {
+      "Component": "Divider"
+    }
+  },
+  "codeSnippets": [
+    {
+      "id": "import-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { Divider } from '@oneui/ui-native';\n\n<Divider />"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "divider",
+    "layout",
+    "separator",
+    "surface-aware"
+  ],
+  "importPath": "@oneui/ui-native"
+}

@@ -1,0 +1,158 @@
+/**
+ * InputFeedback.module.css
+ *
+ * Validation/contextual feedback message for inputs.
+ * 3 attention levels × 4 semantic variants × 3 sizes.
+ * Figma `.DNA/InputFeedback` (3450:1388): gap spacing/1; icon 12 / 16 / 20 (S/M/L);
+ * padding and radius scale by `data-size`.
+ *
+ * Enter / exit motion: InputField.feedbackSlot (see InputField.module.css).
+ *
+ * Verified by: pnpm check:literals
+ */
+
+.feedback {
+  display: flex;
+  align-items: center;
+  gap: var(--InputFeedback-gap, var(--Spacing-1));
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.feedback[data-size='8'] {
+  border-radius: var(--InputFeedback-borderRadius-s, var(--Shape-1-5));
+  font-size: var(--InputFeedback-fontSize-8, var(--Body-XS-FontSize));
+  line-height: var(--InputFeedback-lineHeight-8, var(--Body-XS-LineHeight));
+}
+
+.feedback[data-size='10'] {
+  border-radius: var(--InputFeedback-borderRadius-m, var(--Shape-2));
+  font-size: var(--InputFeedback-fontSize-10, var(--Body-XS-FontSize));
+  line-height: var(--InputFeedback-lineHeight-10, var(--Body-XS-LineHeight));
+}
+
+.feedback[data-size='12'] {
+  border-radius: var(--InputFeedback-borderRadius-l, var(--Shape-2-5));
+  font-size: var(--InputFeedback-fontSize-12, var(--Body-S-FontSize));
+  line-height: var(--InputFeedback-lineHeight-12, var(--Body-S-LineHeight));
+}
+
+/* ========================================
+   ATTENTION: LOW — text only, no background/border
+   ======================================== */
+
+.attentionLow {
+  padding: var(--Spacing-0);
+  background: transparent;
+  border: none;
+}
+
+/* ========================================
+   ATTENTION: MEDIUM — subtle fill, no stroke (radius still from `.feedback`)
+   ======================================== */
+
+.attentionMedium {
+  background-color: var(--_fb-subtle);
+  border: none;
+}
+
+.feedback[data-size='8'].attentionMedium,
+.feedback[data-size='8'].attentionHigh {
+  padding: var(--Spacing-1) var(--Spacing-1-5) var(--Spacing-1) var(--Spacing-1);
+}
+
+.feedback[data-size='10'].attentionMedium,
+.feedback[data-size='10'].attentionHigh {
+  padding: var(--Spacing-1-5) var(--Spacing-2) var(--Spacing-1-5) var(--Spacing-1-5);
+}
+
+.feedback[data-size='12'].attentionMedium,
+.feedback[data-size='12'].attentionHigh {
+  padding: var(--Spacing-2) var(--Spacing-3) var(--Spacing-2) var(--Spacing-2);
+}
+
+/* ========================================
+   ATTENTION: HIGH — filled (Figma “strong”)
+   ======================================== */
+
+.attentionHigh {
+  background-color: var(--_fb-bold);
+  border: none;
+}
+
+/* ========================================
+   SEMANTIC VARIANTS — Negative / Positive / Warning / Informative
+   Each sets icon (via `Icon` appearance) and subtle/bold fills. Message copy
+   stays default surface text (`--Text-High`) except on high attention fills.
+   ======================================== */
+
+/* --- Negative (red) --- */
+.variantNegative {
+  --_fb-bold: var(--Negative-Bold, var(--Surface-Bold));
+  --_fb-bold-high: var(--Negative-Bold-High, var(--Text-OnBold-High));
+  --_fb-subtle: var(--Negative-Subtle, var(--Surface-Subtle));
+}
+
+/* --- Positive (green) --- */
+.variantPositive {
+  --_fb-bold: var(--Positive-Bold, var(--Surface-Bold));
+  --_fb-bold-high: var(--Positive-Bold-High, var(--Text-OnBold-High));
+  --_fb-subtle: var(--Positive-Subtle, var(--Surface-Subtle));
+}
+
+/* --- Warning (orange) --- */
+.variantWarning {
+  --_fb-bold: var(--Warning-Bold, var(--Surface-Bold));
+  --_fb-bold-high: var(--Warning-Bold-High, var(--Text-OnBold-High));
+  --_fb-subtle: var(--Warning-Subtle, var(--Surface-Subtle));
+}
+
+/* --- Informative (blue) --- */
+.variantInformative {
+  --_fb-bold: var(--Informative-Bold, var(--Surface-Bold));
+  --_fb-bold-high: var(--Informative-Bold-High, var(--Text-OnBold-High));
+  --_fb-subtle: var(--Informative-Subtle, var(--Surface-Subtle));
+}
+
+/* ========================================
+   ICON (decorative — meaning is in message + live region)
+   ======================================== */
+
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* ========================================
+   MESSAGE TEXT
+   ======================================== */
+
+.message {
+  flex: 1 1 0%;
+  min-width: 0;
+  font-family: var(--InputFeedback-fontFamily, var(--Body-FontFamily, var(--Typography-Font-Primary, inherit)));
+  font-weight: var(--InputFeedback-fontWeight, var(--Body-FontWeight-Low));
+  color: var(--InputFeedback-message-color, var(--Text-High));
+}
+
+/* Base UI `Field.Error` mounted inside negative feedback (InputField native validation). */
+.fieldErrorRoot {
+  flex: 1 1 0%;
+  min-width: 0;
+  margin: 0;
+  font-family: var(--InputFeedback-fontFamily, var(--Body-FontFamily, var(--Typography-Font-Primary, inherit)));
+  font-weight: var(--InputFeedback-fontWeight, var(--Body-FontWeight-Low));
+  color: var(--InputFeedback-fieldError-color, var(--Negative-TintedA11y, var(--Surface-Bold)));
+}
+
+.fieldErrorRoot ul {
+  margin: 0;
+  padding-inline-start: var(--Spacing-3);
+}
+
+/* On saturated fill, use role on-bold text (not page `--Text-High`). */
+.attentionHigh .message {
+  color: var(--InputFeedback-message-color-on-bold, var(--_fb-bold-high));
+}

@@ -1,0 +1,30 @@
+import React, { forwardRef } from 'react';
+import type { IconComponentProps } from '../iconProps';
+
+export const IcHdr = forwardRef<SVGSVGElement, IconComponentProps>(function IcHdr(
+  { size = 24, width, height, color = 'currentColor', className, style, ...props },
+  ref,
+) {
+  const dim = width ?? height ?? size;
+  return (
+    <svg
+      ref={ref}
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      width={width ?? dim}
+      height={height ?? dim}
+      color={color}
+      className={className}
+      style={style}
+      {...props}
+    >
+      <path
+            fill="currentColor"
+            d="M7 8a1 1 0 0 0-1 1v2H4V9a1 1 0 0 0-2 0v6a1 1 0 1 0 2 0v-2h2v2a1 1 0 1 0 2 0V9a1 1 0 0 0-1-1m14.16 5.08A3 3 0 0 0 19 8h-2a1 1 0 0 0-1 1v6a1 1 0 0 0 2 0v-1h1q.18.015.36 0l.75 1.49A1 1 0 0 0 21 16a.93.93 0 0 0 .45-.11 1 1 0 0 0 .44-1.34zM19 12h-1v-2h1a1 1 0 0 1 0 2m-7-4h-2a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2c1 0 3-.84 3-4s-2-4-3-4m0 6h-1v-4h1c.17 0 1 .16 1 2s-.83 2-1 2"
+          />
+    </svg>
+  );
+});
+
+IcHdr.displayName = 'IcHdr';

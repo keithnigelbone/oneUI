@@ -1,0 +1,30 @@
+import React, { forwardRef } from 'react';
+import type { IconComponentProps } from '../iconProps';
+
+export const IcDthSignal = forwardRef<SVGSVGElement, IconComponentProps>(function IcDthSignal(
+  { size = 24, width, height, color = 'currentColor', className, style, ...props },
+  ref,
+) {
+  const dim = width ?? height ?? size;
+  return (
+    <svg
+      ref={ref}
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      width={width ?? dim}
+      height={height ?? dim}
+      color={color}
+      className={className}
+      style={style}
+      {...props}
+    >
+      <path
+            fill="currentColor"
+            d="M7.05 5.64a1 1 0 0 0-1.41 0 9 9 0 1 0 12.72 12.72 1 1 0 0 0 .3-.7 1 1 0 0 0-.3-.71zm6.07-2.56a1.007 1.007 0 1 0-.24 2 7 7 0 0 1 6.06 6.06 1 1 0 0 0 1 .88h.12a1 1 0 0 0 .87-1.11 9 9 0 0 0-7.81-7.83m1.77 8.17a1 1 0 0 0 1 .75h.25a1 1 0 0 0 .72-1.22 5 5 0 0 0-3.58-3.58 1.002 1.002 0 1 0-.5 1.94 3 3 0 0 1 2.11 2.11"
+          />
+    </svg>
+  );
+});
+
+IcDthSignal.displayName = 'IcDthSignal';

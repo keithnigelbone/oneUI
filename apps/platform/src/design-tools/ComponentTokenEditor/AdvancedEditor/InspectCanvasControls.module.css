@@ -1,0 +1,73 @@
+/**
+ * InspectCanvasControls.module.css
+ *
+ * Floating toggle panel for Inspect mode.
+ * Simple positioned div (no portal) to avoid Select conflicts.
+ * Toggle selectors now use ToggleGroup component (consistent with foundation pages).
+ * Token-only styling (zero literals).
+ */
+
+/* Trigger button — positioned absolute bottom-right in canvas */
+.trigger {
+  position: absolute;
+  bottom: var(--Spacing-3-5);
+  right: var(--Spacing-3-5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--Spacing-10);
+  height: var(--Spacing-10);
+  border-radius: var(--Shape-Pill);
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+  background-color: var(--Surface-Main);
+  color: var(--Text-Medium);
+  cursor: pointer;
+  transition: all var(--Motion-Duration-Discreet-Short);
+  box-shadow: var(--Elevation-2);
+  padding: var(--Spacing-3);
+  z-index: 2;
+}
+
+.trigger:hover {
+  background-color: var(--Surface-Subtle);
+  color: var(--Text-High);
+  box-shadow: var(--Elevation-3);
+}
+
+.trigger[data-active] {
+  background-color: var(--Primary-Bold, var(--Surface-Bold));
+  color: var(--Primary-Bold-High, var(--Text-OnBold-High));
+}
+
+/* Panel — anchored above the trigger, bottom-right aligned */
+.panel {
+  position: absolute;
+  bottom: calc(var(--Spacing-10) + var(--Spacing-3-5) + var(--Spacing-3));
+  right: var(--Spacing-3-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-3);
+  /* INTENTIONAL-LITERAL: inspect panel min/max-width — layout geometry constants, no dimension token at these values */
+  min-width: 280px;
+  max-width: 340px;
+  padding: var(--Spacing-3-5);
+  background-color: var(--Surface-Elevated);
+  border-radius: var(--Shape-4-5);
+  box-shadow: var(--Elevation-3);
+  outline: var(--Stroke-M) solid var(--Border-Subtle);
+  z-index: 2;
+}
+
+/* Control group: label + control */
+.controlGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-2);
+}
+
+.controlLabel {
+  font-size: var(--Label-XS-FontSize);
+  font-weight: var(--Body-FontWeight-Medium);
+  color: var(--Text-High);
+  text-transform: lowercase;
+}

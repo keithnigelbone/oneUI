@@ -1,0 +1,577 @@
+/**
+ * SelectableButton.module.css
+ *
+ * CRITICAL: This file demonstrates the ZERO LITERALS rule
+ * ALL styling uses design tokens ONLY
+ *
+ * Architecture: Role-agnostic intermediate variables (--_sb-*)
+ * - Default = Primary role
+ * - Appearance classes remap --_sb-* to other roles
+ * - UNSELECTED state: always muted ghost (transparent bg, medium text, low-stroke border)
+ * - SELECTED state ([data-pressed]): driven by data-attention attribute
+ *   - high  → bold fill (fg-bold bg, on-bold-high text)
+ *   - medium → subtle fill (bg-subtle bg, accent text)
+ *   - low   → ghost with accent border (transparent bg, accent text, fg-bold border)
+ * - contained=false: strips all container styles (border, bg, padding, min-height)
+ *
+ * Verified by: pnpm check:literals
+ */
+
+.selectableButton {
+  /* ========================================
+     INTERMEDIATE VARIABLES — default = Primary role
+     Remapped by appearance classes below
+     ======================================== */
+  --_sb-bold: var(--SelectableButton-roleBold, var(--Primary-Bold, var(--Surface-Bold)));
+  --_sb-bold-high: var(--SelectableButton-roleBoldHigh, var(--Primary-Bold-TintedA11y, var(--Primary-Bold-High, var(--Text-OnBold-High))));
+  --_sb-bold-hover: var(--SelectableButton-roleBoldHover, var(--Primary-Bold-Hover, var(--Surface-Bold-Hover)));
+  /* Metallic material assignment — emitted by the brand engine only when the
+     role has an ACTIVE metal assigned; otherwise guaranteed-invalid and every
+     consumer falls back to the standard bold chain (zero visual change). */
+  --_sb-material-fill: var(--SelectableButton-roleMaterialFill, var(--Primary-Material-Fill));
+  --_sb-material-text: var(--SelectableButton-roleMaterialText, var(--Primary-Material-Text));
+  --_sb-subtle: var(--SelectableButton-roleSubtle, var(--Primary-Subtle, var(--Surface-Subtle)));
+  --_sb-subtle-hover: var(--SelectableButton-roleSubtleHover, var(--Primary-Subtle-Hover, var(--Surface-Subtle-Hover)));
+  --_sb-default-accent-a11y: var(--SelectableButton-roleTintedA11y, var(--Primary-TintedA11y, var(--Primary-Tinted, var(--Surface-Bold))));
+  --_sb-default-medium-text: var(--SelectableButton-roleMediumText, var(--Primary-Medium-Text, var(--Text-Medium)));
+  --_sb-default-low-stroke: var(--SelectableButton-roleStrokeLow, var(--Primary-Stroke-Low, var(--Surface-Bold)));
+  --_sb-default-hover: var(--SelectableButton-roleHover, var(--Primary-Hover, var(--Surface-Minimal)));
+
+  /* ========================================
+     SHAPE
+     ======================================== */
+  --_sb-radius: var(--SelectableButton-borderRadius, var(--Shape-Pill));
+  border-top-left-radius: var(--SelectableButton-ornament-radius-left, var(--_sb-radius));
+  border-bottom-left-radius: var(--SelectableButton-ornament-radius-left, var(--_sb-radius));
+  border-top-right-radius: var(--SelectableButton-ornament-radius-right, var(--_sb-radius));
+  border-bottom-right-radius: var(--SelectableButton-ornament-radius-right, var(--_sb-radius));
+
+  /* ========================================
+     BASE STYLES — UNSELECTED (always muted ghost)
+     ======================================== */
+  --_sb-bg: var(--SelectableButton-backgroundColor, transparent);
+  background-color: var(--_sb-bg);
+  color: var(--SelectableButton-textColor, var(--_sb-default-medium-text));
+  border: var(--Stroke-M) solid var(--SelectableButton-borderColor, var(--_sb-default-low-stroke));
+
+  /* ========================================
+     LAYOUT
+     ======================================== */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  box-sizing: border-box;
+  cursor: pointer;
+  position: relative;
+  margin-left: var(--SelectableButton-ornament-width-left, var(--Spacing-0));
+  margin-right: var(--SelectableButton-ornament-width-right, var(--Spacing-0));
+  clip-path: var(--SelectableButton-cssDecorationClipPath, none);
+
+  /* ========================================
+     TYPOGRAPHY — Label role tokens
+     ======================================== */
+  font-family: var(--SelectableButton-fontFamily, var(--Label-FontFamily, var(--Typography-Font-Primary, inherit)));
+  font-weight: var(--SelectableButton-fontWeight, var(--Label-FontWeight-High));
+  text-transform: var(--SelectableButton-textTransform, none);
+  letter-spacing: var(--SelectableButton-letterSpacing, normal);
+  font-optical-sizing: var(--SelectableButton-fontOpticalSizing, var(--Label-FontOpticalSizing, auto));
+  font-variation-settings: var(--SelectableButton-fontVariationSettings, var(--Label-OpszVariation, normal));
+
+  /* ========================================
+     MOTION
+     ======================================== */
+  transition-property: background-color, color, border-color, box-shadow;
+  transition-duration: var(--SelectableButton-transitionDuration, var(--Motion-Duration-M));
+  transition-timing-function: var(--SelectableButton-transitionEasing, var(--Motion-Easing-Transition-Moderate));
+}
+
+.selectableButton::after {
+  content: '';
+  position: absolute;
+  inset: var(--Spacing-0);
+  box-sizing: border-box;
+  pointer-events: none;
+  border-radius: inherit;
+  clip-path: var(--SelectableButton-cssDecorationClipPath, none);
+  border-style: var(--SelectableButton-cssDecorationStrokeStyle, solid);
+  border-color: var(--SelectableButton-cssDecorationColor, currentColor);
+  border-width:
+    var(--SelectableButton-cssDecorationInsetStrokeWidth, var(--Spacing-0))
+    var(--SelectableButton-cssDecorationInsetStrokeWidth, var(--Spacing-0))
+    var(--SelectableButton-cssDecorationInsetStrokeWidth, var(--SelectableButton-cssDecorationUnderlineWidth, var(--Spacing-0)))
+    var(--SelectableButton-cssDecorationInsetStrokeWidth, var(--Spacing-0));
+}
+
+/* ========================================
+   APPEARANCE — role-agnostic intermediate variable remapping
+   Adding a new appearance = 1 new class with 9 remappings
+   ======================================== */
+
+.appearancePrimary {
+  --_sb-bold: var(--Primary-Bold, var(--Surface-Bold));
+  --_sb-material-fill: var(--Primary-Material-Fill);
+  --_sb-material-text: var(--Primary-Material-Text);
+  --_sb-bold-high: var(--Primary-Bold-TintedA11y, var(--Primary-Bold-High, var(--Text-OnBold-High)));
+  --_sb-bold-hover: var(--Primary-Bold-Hover, var(--Surface-Bold-Hover));
+  --_sb-subtle: var(--Primary-Subtle, var(--Surface-Subtle));
+  --_sb-subtle-hover: var(--Primary-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_sb-default-accent-a11y: var(--Primary-TintedA11y, var(--Primary-Tinted, var(--Surface-Bold)));
+  --_sb-default-medium-text: var(--Primary-Medium-Text, var(--Text-Medium));
+  --_sb-default-low-stroke: var(--Primary-Stroke-Low, var(--Surface-Bold));
+  --_sb-default-hover: var(--Primary-Hover, var(--Surface-Minimal));
+}
+
+.appearanceNeutral {
+  --_sb-bold: var(--Neutral-Bold, var(--Surface-Bold));
+  --_sb-material-fill: var(--Neutral-Material-Fill);
+  --_sb-material-text: var(--Neutral-Material-Text);
+  --_sb-bold-high: var(--Neutral-Bold-TintedA11y, var(--Neutral-Bold-High, var(--Text-OnBold-High)));
+  --_sb-bold-hover: var(--Neutral-Bold-Hover, var(--Surface-Bold-Hover));
+  --_sb-subtle: var(--Neutral-Subtle, var(--Surface-Subtle));
+  --_sb-subtle-hover: var(--Neutral-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_sb-default-accent-a11y: var(--Neutral-TintedA11y, var(--Neutral-Tinted, var(--Surface-Bold)));
+  --_sb-default-medium-text: var(--Neutral-Medium-Text, var(--Text-Medium));
+  --_sb-default-low-stroke: var(--Neutral-Stroke-Low, var(--Surface-Bold));
+  --_sb-default-hover: var(--Neutral-Hover, var(--Surface-Minimal));
+}
+
+.appearanceSecondary {
+  --_sb-bold: var(--Secondary-Bold, var(--Surface-Bold));
+  --_sb-material-fill: var(--Secondary-Material-Fill);
+  --_sb-material-text: var(--Secondary-Material-Text);
+  --_sb-bold-high: var(--Secondary-Bold-TintedA11y, var(--Secondary-Bold-High, var(--Text-OnBold-High)));
+  --_sb-bold-hover: var(--Secondary-Bold-Hover, var(--Surface-Bold-Hover));
+  --_sb-subtle: var(--Secondary-Subtle, var(--Surface-Subtle));
+  --_sb-subtle-hover: var(--Secondary-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_sb-default-accent-a11y: var(--Secondary-TintedA11y, var(--Secondary-Tinted, var(--Surface-Bold)));
+  --_sb-default-medium-text: var(--Secondary-Medium-Text, var(--Text-Medium));
+  --_sb-default-low-stroke: var(--Secondary-Stroke-Low, var(--Surface-Bold));
+  --_sb-default-hover: var(--Secondary-Hover, var(--Surface-Minimal));
+}
+
+.appearanceSparkle {
+  --_sb-bold: var(--Sparkle-Bold, var(--Surface-Bold));
+  --_sb-material-fill: var(--Sparkle-Material-Fill);
+  --_sb-material-text: var(--Sparkle-Material-Text);
+  --_sb-bold-high: var(--Sparkle-Bold-TintedA11y, var(--Sparkle-Bold-High, var(--Text-OnBold-High)));
+  --_sb-bold-hover: var(--Sparkle-Bold-Hover, var(--Surface-Bold-Hover));
+  --_sb-subtle: var(--Sparkle-Subtle, var(--Surface-Subtle));
+  --_sb-subtle-hover: var(--Sparkle-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_sb-default-accent-a11y: var(--Sparkle-TintedA11y, var(--Sparkle-Tinted, var(--Surface-Bold)));
+  --_sb-default-medium-text: var(--Sparkle-Medium-Text, var(--Text-Medium));
+  --_sb-default-low-stroke: var(--Sparkle-Stroke-Low, var(--Surface-Bold));
+  --_sb-default-hover: var(--Sparkle-Hover, var(--Surface-Minimal));
+}
+
+.appearanceBrandBg {
+  --_sb-bold: var(--Brand-Bg-Bold, var(--Surface-Bold));
+  --_sb-material-fill: var(--Brand-Bg-Material-Fill);
+  --_sb-material-text: var(--Brand-Bg-Material-Text);
+  --_sb-bold-high: var(--Brand-Bg-Bold-TintedA11y, var(--Brand-Bg-Bold-High, var(--Text-OnBold-High)));
+  --_sb-bold-hover: var(--Brand-Bg-Bold-Hover, var(--Surface-Bold-Hover));
+  --_sb-subtle: var(--Brand-Bg-Subtle, var(--Surface-Subtle));
+  --_sb-subtle-hover: var(--Brand-Bg-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_sb-default-accent-a11y: var(--Brand-Bg-TintedA11y, var(--Brand-Bg-Tinted, var(--Surface-Bold)));
+  --_sb-default-medium-text: var(--Brand-Bg-Medium-Text, var(--Text-Medium));
+  --_sb-default-low-stroke: var(--Brand-Bg-Stroke-Low, var(--Surface-Bold));
+  --_sb-default-hover: var(--Brand-Bg-Hover, var(--Surface-Minimal));
+}
+
+.appearancePositive {
+  --_sb-bold: var(--Positive-Bold, var(--Surface-Bold));
+  --_sb-material-fill: var(--Positive-Material-Fill);
+  --_sb-material-text: var(--Positive-Material-Text);
+  --_sb-bold-high: var(--Positive-Bold-TintedA11y, var(--Positive-Bold-High, var(--Text-OnBold-High)));
+  --_sb-bold-hover: var(--Positive-Bold-Hover, var(--Surface-Bold-Hover));
+  --_sb-subtle: var(--Positive-Subtle, var(--Surface-Subtle));
+  --_sb-subtle-hover: var(--Positive-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_sb-default-accent-a11y: var(--Positive-TintedA11y, var(--Positive-Tinted, var(--Surface-Bold)));
+  --_sb-default-medium-text: var(--Positive-Medium-Text, var(--Text-Medium));
+  --_sb-default-low-stroke: var(--Positive-Stroke-Low, var(--Surface-Bold));
+  --_sb-default-hover: var(--Positive-Hover, var(--Surface-Minimal));
+}
+
+.appearanceNegative {
+  --_sb-bold: var(--Negative-Bold, var(--Surface-Bold));
+  --_sb-material-fill: var(--Negative-Material-Fill);
+  --_sb-material-text: var(--Negative-Material-Text);
+  --_sb-bold-high: var(--Negative-Bold-TintedA11y, var(--Negative-Bold-High, var(--Text-OnBold-High)));
+  --_sb-bold-hover: var(--Negative-Bold-Hover, var(--Surface-Bold-Hover));
+  --_sb-subtle: var(--Negative-Subtle, var(--Surface-Subtle));
+  --_sb-subtle-hover: var(--Negative-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_sb-default-accent-a11y: var(--Negative-TintedA11y, var(--Negative-Tinted, var(--Surface-Bold)));
+  --_sb-default-medium-text: var(--Negative-Medium-Text, var(--Text-Medium));
+  --_sb-default-low-stroke: var(--Negative-Stroke-Low, var(--Surface-Bold));
+  --_sb-default-hover: var(--Negative-Hover, var(--Surface-Minimal));
+}
+
+.appearanceWarning {
+  --_sb-bold: var(--Warning-Bold, var(--Surface-Bold));
+  --_sb-material-fill: var(--Warning-Material-Fill);
+  --_sb-material-text: var(--Warning-Material-Text);
+  --_sb-bold-high: var(--Warning-Bold-TintedA11y, var(--Warning-Bold-High, var(--Text-OnBold-High)));
+  --_sb-bold-hover: var(--Warning-Bold-Hover, var(--Surface-Bold-Hover));
+  --_sb-subtle: var(--Warning-Subtle, var(--Surface-Subtle));
+  --_sb-subtle-hover: var(--Warning-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_sb-default-accent-a11y: var(--Warning-TintedA11y, var(--Warning-Tinted, var(--Surface-Bold)));
+  --_sb-default-medium-text: var(--Warning-Medium-Text, var(--Text-Medium));
+  --_sb-default-low-stroke: var(--Warning-Stroke-Low, var(--Surface-Bold));
+  --_sb-default-hover: var(--Warning-Hover, var(--Surface-Minimal));
+}
+
+.appearanceInformative {
+  --_sb-bold: var(--Informative-Bold, var(--Surface-Bold));
+  --_sb-material-fill: var(--Informative-Material-Fill);
+  --_sb-material-text: var(--Informative-Material-Text);
+  --_sb-bold-high: var(--Informative-Bold-TintedA11y, var(--Informative-Bold-High, var(--Text-OnBold-High)));
+  --_sb-bold-hover: var(--Informative-Bold-Hover, var(--Surface-Bold-Hover));
+  --_sb-subtle: var(--Informative-Subtle, var(--Surface-Subtle));
+  --_sb-subtle-hover: var(--Informative-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_sb-default-accent-a11y: var(--Informative-TintedA11y, var(--Informative-Tinted, var(--Surface-Bold)));
+  --_sb-default-medium-text: var(--Informative-Medium-Text, var(--Text-Medium));
+  --_sb-default-low-stroke: var(--Informative-Stroke-Low, var(--Surface-Bold));
+  --_sb-default-hover: var(--Informative-Hover, var(--Surface-Minimal));
+}
+
+/* ========================================
+   SELECTED STATES — driven by data-attention + [data-pressed]
+   Base UI Toggle sets [data-pressed] when selected.
+   ======================================== */
+
+/* HIGH attention selected: bold fill (solid accent bg, on-bold-high text) */
+.selectableButton[data-pressed][data-attention="high"] {
+  /* `background` (not background-color) — the material fill is a gradient image. */
+  --_sb-bg: var(--SelectableButton-backgroundColor-selected-high, var(--_sb-material-fill, var(--_sb-bold)));
+  background: var(--_sb-bg);
+  color: var(--SelectableButton-textColor-selected-high, var(--_sb-material-text, var(--_sb-bold-high)));
+  border-color: transparent;
+}
+
+/* MEDIUM attention selected: subtle fill (tinted bg, accent text) */
+.selectableButton[data-pressed][data-attention="medium"] {
+  --_sb-bg: var(--SelectableButton-backgroundColor-selected-medium, var(--_sb-subtle));
+  background-color: var(--_sb-bg);
+  color: var(--SelectableButton-textColor-selected-medium, var(--_sb-default-accent-a11y));
+  border-color: transparent;
+}
+
+/* LOW attention selected: ghost with bold accent border */
+.selectableButton[data-pressed][data-attention="low"] {
+  --_sb-bg: transparent;
+  background-color: var(--_sb-bg);
+  color: var(--SelectableButton-textColor-selected-low, var(--_sb-default-accent-a11y));
+  border-color: var(--SelectableButton-borderColor-selected-low, var(--_sb-bold));
+}
+
+/* ========================================
+   SIZES — via data-size attribute selectors
+   ======================================== */
+
+.selectableButton[data-size="xs"] {
+  --_sb-min-h: var(--SelectableButton-minHeight-xs, var(--Spacing-4-5));
+  min-height: var(--_sb-min-h);
+  padding-top: var(--SelectableButton-paddingVertical-xs, var(--Spacing-0-5));
+  padding-bottom: var(--SelectableButton-paddingVertical-xs, var(--Spacing-0-5));
+  padding-left: var(--SelectableButton-paddingHorizontal-xs, var(--Spacing-4));
+  padding-right: var(--SelectableButton-paddingHorizontal-xs, var(--Spacing-4));
+  gap: var(--SelectableButton-gap-xs, var(--Spacing-1));
+  font-size: var(--SelectableButton-fontSize-xs, var(--Label-XS-FontSize));
+  line-height: var(--SelectableButton-lineHeight-xs, var(--Label-XS-LineHeight));
+}
+
+.selectableButton[data-size="s"] {
+  --_sb-min-h: var(--SelectableButton-minHeight-s, var(--Spacing-8));
+  min-height: var(--_sb-min-h);
+  padding-top: var(--SelectableButton-paddingVertical-s, var(--Spacing-0-5));
+  padding-bottom: var(--SelectableButton-paddingVertical-s, var(--Spacing-0-5));
+  padding-left: var(--SelectableButton-paddingHorizontal-s, var(--Spacing-4));
+  padding-right: var(--SelectableButton-paddingHorizontal-s, var(--Spacing-4));
+  gap: var(--SelectableButton-gap-s, var(--Spacing-1));
+  font-size: var(--SelectableButton-fontSize-s, var(--Label-S-FontSize));
+  line-height: var(--SelectableButton-lineHeight-s, var(--Label-S-LineHeight));
+}
+
+.selectableButton[data-size="m"] {
+  --_sb-min-h: var(--SelectableButton-minHeight-m, var(--Spacing-10));
+  min-height: var(--_sb-min-h);
+  padding-top: var(--SelectableButton-paddingVertical-m, var(--Spacing-1));
+  padding-bottom: var(--SelectableButton-paddingVertical-m, var(--Spacing-1));
+  padding-left: var(--SelectableButton-paddingHorizontal-m, var(--Spacing-5));
+  padding-right: var(--SelectableButton-paddingHorizontal-m, var(--Spacing-5));
+  gap: var(--SelectableButton-gap-m, var(--Spacing-1-5));
+  font-size: var(--SelectableButton-fontSize-m, var(--Label-M-FontSize));
+  line-height: var(--SelectableButton-lineHeight-m, var(--Label-M-LineHeight));
+}
+
+.selectableButton[data-size="l"] {
+  --_sb-min-h: var(--SelectableButton-minHeight-l, var(--Spacing-12));
+  min-height: var(--_sb-min-h);
+  padding-top: var(--SelectableButton-paddingVertical-l, var(--Spacing-2));
+  padding-bottom: var(--SelectableButton-paddingVertical-l, var(--Spacing-2));
+  padding-left: var(--SelectableButton-paddingHorizontal-l, var(--Spacing-6));
+  padding-right: var(--SelectableButton-paddingHorizontal-l, var(--Spacing-6));
+  gap: var(--SelectableButton-gap-l, var(--Spacing-1-5));
+  font-size: var(--SelectableButton-fontSize-l, var(--Label-L-FontSize));
+  line-height: var(--SelectableButton-lineHeight-l, var(--Label-L-LineHeight));
+}
+
+/* ========================================
+   CONDENSED MODE — reduces height + padding, same typography
+   Only meaningful when contained=true (data-contained="true").
+   CSS selects both since condensed is only set when contained=true via hook.
+   ======================================== */
+
+.selectableButton[data-condensed][data-size="xs"] {
+  --_sb-min-h: var(--SelectableButton-minHeight-xs-condensed, var(--Spacing-1-5));
+  min-height: var(--_sb-min-h);
+  padding-left: var(--SelectableButton-paddingHorizontal-xs-condensed, var(--Spacing-2-5));
+  padding-right: var(--SelectableButton-paddingHorizontal-xs-condensed, var(--Spacing-2-5));
+}
+
+.selectableButton[data-condensed][data-size="s"] {
+  --_sb-min-h: var(--SelectableButton-minHeight-s-condensed, var(--Spacing-4-5));
+  min-height: var(--_sb-min-h);
+  padding-left: var(--SelectableButton-paddingHorizontal-s-condensed, var(--Spacing-2-5));
+  padding-right: var(--SelectableButton-paddingHorizontal-s-condensed, var(--Spacing-2-5));
+}
+
+.selectableButton[data-condensed][data-size="m"] {
+  --_sb-min-h: var(--SelectableButton-minHeight-m-condensed, var(--Spacing-6));
+  min-height: var(--_sb-min-h);
+  padding-left: var(--SelectableButton-paddingHorizontal-m-condensed, var(--Spacing-3));
+  padding-right: var(--SelectableButton-paddingHorizontal-m-condensed, var(--Spacing-3));
+}
+
+.selectableButton[data-condensed][data-size="l"] {
+  --_sb-min-h: var(--SelectableButton-minHeight-l-condensed, var(--Spacing-8));
+  min-height: var(--_sb-min-h);
+  padding-left: var(--SelectableButton-paddingHorizontal-l-condensed, var(--Spacing-3-5));
+  padding-right: var(--SelectableButton-paddingHorizontal-l-condensed, var(--Spacing-3-5));
+}
+
+/* ========================================
+   SLOT-AWARE PADDING — reduced padding when start/end icons present
+   Uses :has() for CSS-only slot detection
+   ======================================== */
+
+.selectableButton[data-size="xs"]:has(.start) {
+  padding-left: var(--SelectableButton-paddingHorizontalStart-xs-slot, var(--Spacing-1));
+}
+.selectableButton[data-size="xs"]:has(.end) {
+  padding-right: var(--SelectableButton-paddingHorizontalEnd-xs-slot, var(--Spacing-1));
+}
+
+.selectableButton[data-size="s"]:has(.start) {
+  padding-left: var(--SelectableButton-paddingHorizontalStart-s-slot, var(--Spacing-3));
+}
+.selectableButton[data-size="s"]:has(.end) {
+  padding-right: var(--SelectableButton-paddingHorizontalEnd-s-slot, var(--Spacing-3));
+}
+
+.selectableButton[data-size="m"]:has(.start) {
+  padding-left: var(--SelectableButton-paddingHorizontalStart-m-slot, var(--Spacing-4));
+}
+.selectableButton[data-size="m"]:has(.end) {
+  padding-right: var(--SelectableButton-paddingHorizontalEnd-m-slot, var(--Spacing-4));
+}
+
+.selectableButton[data-size="l"]:has(.start) {
+  padding-left: var(--SelectableButton-paddingHorizontalStart-l-slot, var(--Spacing-5));
+}
+.selectableButton[data-size="l"]:has(.end) {
+  padding-right: var(--SelectableButton-paddingHorizontalEnd-l-slot, var(--Spacing-5));
+}
+
+/* ========================================
+   FULL WIDTH
+   ======================================== */
+
+.fullWidth {
+  width: var(--SelectableButton-fullWidth, 100%);
+}
+
+/* ========================================
+   CONTAINED=FALSE — inline text/icon only
+   Strips all container styles. condensed/fullWidth do not apply.
+   ======================================== */
+
+.selectableButton[data-contained="false"] {
+  --_sb-bg: transparent;
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+  min-height: 0;
+  padding: 0;
+}
+
+/* Unselected contained=false: muted text */
+.selectableButton[data-contained="false"]:not([data-pressed]) {
+  color: var(--SelectableButton-textColor-uncontained, var(--_sb-default-medium-text));
+}
+
+/* Selected contained=false: accent text, bolder weight */
+.selectableButton[data-contained="false"][data-pressed] {
+  color: var(--SelectableButton-textColor-uncontained-selected, var(--_sb-default-accent-a11y));
+  font-weight: var(--SelectableButton-fontWeight-uncontained-selected, var(--Label-FontWeight-High));
+}
+
+/* ========================================
+   HOVER STATES
+   ======================================== */
+
+/* Hover unselected — subtle bg tint */
+.selectableButton:hover:not([data-disabled]):not([data-contained="false"]) {
+  --_sb-bg: var(--SelectableButton-backgroundColor-hover, var(--_sb-default-hover));
+  background-color: var(--_sb-bg);
+}
+
+/* Hover selected high — fg-bold-hover */
+.selectableButton[data-pressed][data-attention="high"]:hover:not([data-disabled]) {
+  --_sb-bg: var(--SelectableButton-backgroundColor-selected-high-hover, var(--_sb-material-fill, var(--_sb-bold-hover)));
+  background: var(--_sb-bg);
+}
+
+/* Hover selected medium — bg-subtle-hover */
+.selectableButton[data-pressed][data-attention="medium"]:hover:not([data-disabled]) {
+  --_sb-bg: var(--SelectableButton-backgroundColor-selected-medium-hover, var(--_sb-subtle-hover));
+  background-color: var(--_sb-bg);
+}
+
+/* Hover selected low — default hover (transparent to slight tint) */
+.selectableButton[data-pressed][data-attention="low"]:hover:not([data-disabled]) {
+  --_sb-bg: var(--SelectableButton-backgroundColor-selected-low-hover, var(--_sb-default-hover));
+  background-color: var(--_sb-bg);
+}
+
+/* ========================================
+   DISABLED + LOADING
+   ======================================== */
+
+.selectableButton[data-disabled] {
+  opacity: var(--Disabled-Opacity);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.selectableButton[data-loading] {
+  opacity: var(--Loading-Opacity, var(--Disabled-Opacity));
+  pointer-events: none;
+}
+
+/* ========================================
+   FOCUS RING — double box-shadow (inner surface + outer brand)
+   ======================================== */
+
+.selectableButton:focus {
+  outline: none;
+}
+
+.selectableButton:focus-visible,
+:global([data-force-state="focus"]) .selectableButton {
+  box-shadow:
+    0 0 0 var(--Stroke-XL) var(--Surface-Halo-Gap, var(--Surface-Main)),
+    0 0 0 calc(var(--Stroke-XL) + var(--Focus-Outline-Width)) var(--Focus-Outline);
+}
+
+/* ========================================
+   SLOT COLOR PROPAGATION
+   Adapts icon/sub-component colors based on selected state
+   ======================================== */
+
+/* Base slot remapping — sub-components inherit the button's appearance role */
+.selectableButton .start,
+.selectableButton .end {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  /* Slot Icons read --Icon-color before role tokens; mirror label colour per state. */
+  color: inherit;
+  --Icon-color: currentColor;
+  --Primary-Bold: var(--_sb-bold);
+  --Primary-Bold-High: var(--_sb-bold-high);
+  --Primary-Subtle: var(--_sb-subtle);
+  --Primary-TintedA11y: var(--_sb-default-accent-a11y);
+  --Primary-Stroke-Low: var(--_sb-default-low-stroke);
+  --Neutral-Bold: var(--_sb-bold);
+  --Neutral-Bold-High: var(--_sb-bold-high);
+}
+
+/* Unselected slots: muted icon color */
+.selectableButton:not([data-pressed]) .start,
+.selectableButton:not([data-pressed]) .end {
+  --Neutral-High: var(--_sb-default-medium-text);
+  --Text-High: var(--_sb-default-medium-text);
+}
+
+/* Selected high — slots get on-bold-high (white on filled bg) */
+.selectableButton[data-pressed][data-attention="high"] .start,
+.selectableButton[data-pressed][data-attention="high"] .end {
+  --Neutral-High: var(--_sb-bold-high);
+  --Neutral-Medium-Text: var(--_sb-bold-high);
+  --Text-High: var(--_sb-bold-high);
+  --Text-Medium: var(--_sb-bold-high);
+  --Primary-Bold: var(--_sb-bold-high);
+  --Primary-Bold-High: var(--_sb-bold);
+}
+
+/* Selected medium/low — slots get accent color */
+.selectableButton[data-pressed][data-attention="medium"] .start,
+.selectableButton[data-pressed][data-attention="medium"] .end,
+.selectableButton[data-pressed][data-attention="low"] .start,
+.selectableButton[data-pressed][data-attention="low"] .end {
+  --Neutral-High: var(--_sb-default-accent-a11y);
+  --Text-High: var(--_sb-default-accent-a11y);
+}
+
+/* SVG icon sizing per slot — CSS governs icon dimensions; do NOT set inline size on SVG */
+.selectableButton[data-size="xs"] .start svg,
+.selectableButton[data-size="xs"] .end svg {
+  display: block;
+  width: var(--SelectableButton-iconSize-xs, var(--Spacing-3-5));
+  height: var(--SelectableButton-iconSize-xs, var(--Spacing-3-5));
+}
+
+.selectableButton[data-size="s"] .start svg,
+.selectableButton[data-size="s"] .end svg {
+  display: block;
+  width: var(--SelectableButton-iconSize-s, var(--Spacing-4));
+  height: var(--SelectableButton-iconSize-s, var(--Spacing-4));
+}
+
+.selectableButton[data-size="m"] .start svg,
+.selectableButton[data-size="m"] .end svg {
+  display: block;
+  width: var(--SelectableButton-iconSize-m, var(--Spacing-5));
+  height: var(--SelectableButton-iconSize-m, var(--Spacing-5));
+}
+
+.selectableButton[data-size="l"] .start svg,
+.selectableButton[data-size="l"] .end svg {
+  display: block;
+  width: var(--SelectableButton-iconSize-l, var(--Spacing-6));
+  height: var(--SelectableButton-iconSize-l, var(--Spacing-6));
+}
+
+/* contained=false — icon matches line-height of text (1em relative to font-size) */
+.selectableButton[data-contained="false"] .start svg,
+.selectableButton[data-contained="false"] .end svg {
+  display: block;
+  width: var(--SelectableButton-iconSize-uncontained, 1em);
+  height: var(--SelectableButton-iconSize-uncontained, 1em);
+}
+
+.selectableButton .label {
+  display: flex;
+  align-items: center;
+}
+
+/**
+ * ========================================
+ * IMPORTANT: NO LITERALS IN THIS FILE
+ * ========================================
+ *
+ * All values MUST come from --Token-Name variables
+ * defined in @oneui/tokens CSS files
+ */

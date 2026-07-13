@@ -1,0 +1,154 @@
+/**
+ * PaddingInspector.module.css
+ *
+ * Hover-driven design inspector overlay.
+ * Very compact labels — does not obscure the component.
+ *
+ * INTENTIONAL-LITERAL: This entire file uses OkLCH category-coded colors and micro pixel sizes
+ * for the debug inspector overlay UI. These are debug-only visualization values with no
+ * semantic token equivalents. Each section is marked below.
+ */
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* ── Dashed outline around hovered element ── */
+/* INTENTIONAL-LITERAL: oklch outline color — debug inspector category-coded blue, no semantic token */
+.outline {
+  position: absolute;
+  border: 1px dashed oklch(0.55 0.2 260);
+  box-sizing: border-box;
+  pointer-events: none;
+  transition: all 80ms ease-out;
+}
+
+/* ── Combined tag + dimensions label (above element) ── */
+/* INTENTIONAL-LITERAL: tag label uses oklch blue, micro font-size/padding/border-radius — inspector micro UI, no token equivalents */
+.tagLabel {
+  position: absolute;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background-color: oklch(0.42 0.18 260);
+  color: oklch(0.98 0 0);
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.3;
+  white-space: nowrap;
+  z-index: 13;
+}
+
+/* INTENTIONAL-LITERAL: tagDim uses sub-token font-weight and micro margin — inspector micro UI */
+.tagDim {
+  opacity: 0.7;
+  font-weight: 500;
+  margin-left: 2px;
+}
+
+/* ── Padding tint (very subtle, inside element) ── */
+/* INTENTIONAL-LITERAL: oklch green tint — debug inspector padding category color, no semantic token */
+.padEdge {
+  position: absolute;
+  background-color: oklch(0.7 0.1 165 / 0.12);
+  pointer-events: none;
+}
+
+/* ── Padding value labels (inside, very small) ── */
+/* INTENTIONAL-LITERAL: padLabel uses oklch green, 9px font, 2px radius — inspector micro UI, no token equivalents */
+.padLabel {
+  position: absolute;
+  padding: 0 3px;
+  border-radius: 2px;
+  background-color: oklch(0.38 0.1 165 / 0.85);
+  color: oklch(0.98 0 0);
+  font-size: 9px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.4;
+  white-space: nowrap;
+  z-index: 12;
+}
+
+/* ── Gap indicators between siblings ── */
+/* INTENTIONAL-LITERAL: gapEdge uses oklch orange — debug inspector gap category color, no semantic token */
+.gapEdge {
+  position: absolute;
+  background-color: oklch(0.7 0.14 50 / 0.1);
+  border-left: 1px dashed oklch(0.55 0.14 50 / 0.5);
+  border-right: 1px dashed oklch(0.55 0.14 50 / 0.5);
+  pointer-events: none;
+}
+
+/* INTENTIONAL-LITERAL: gapLabel uses oklch orange, 9px font, 2px radius — inspector micro UI, no token equivalents */
+.gapLabel {
+  position: absolute;
+  padding: 0 3px;
+  border-radius: 2px;
+  background-color: oklch(0.42 0.14 50 / 0.85);
+  color: oklch(0.98 0 0);
+  font-size: 9px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.4;
+  white-space: nowrap;
+  z-index: 12;
+}
+
+/* ── Properties panel (compact dark tooltip) ── */
+/* INTENTIONAL-LITERAL: panel uses oklch dark bg, micro padding/border-radius, min/max-width — inspector tooltip micro UI, no token equivalents */
+.panel {
+  position: absolute;
+  min-width: 130px;
+  max-width: 220px;
+  background-color: oklch(0.16 0.01 260 / 0.94);
+  border-radius: 6px;
+  padding: 6px 9px;
+  pointer-events: none;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 8px oklch(0 0 0 / 0.3);
+}
+
+/* INTENTIONAL-LITERAL: panelRow uses 11px font — inspector micro UI, no typography token at this size */
+.panelRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+/* INTENTIONAL-LITERAL: panelKey color is oklch neutral — inspector label color, no semantic token */
+.panelKey {
+  color: oklch(0.6 0 0);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* INTENTIONAL-LITERAL: panelVal uses oklch neutral text, sub-token font-weight, max-width — inspector value display micro UI */
+.panelVal {
+  color: oklch(0.88 0 0);
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 130px;
+  text-align: right;
+}
+
+/* Category-coded value colors */
+/* INTENTIONAL-LITERAL: all panelVal[data-cat] colors are debug inspector category-coding — dim=blue, pad=green, gap=orange, shape=yellow, typo=purple, color=pink — no semantic token equivalents */
+.panelVal[data-cat='dim']   { color: oklch(0.78 0.12 260); }
+.panelVal[data-cat='pad']   { color: oklch(0.78 0.1 165); }
+.panelVal[data-cat='gap']   { color: oklch(0.78 0.12 50); }
+.panelVal[data-cat='shape'] { color: oklch(0.78 0.1 85); }
+.panelVal[data-cat='typo']  { color: oklch(0.78 0.1 280); }
+.panelVal[data-cat='color'] { color: oklch(0.78 0.12 330); }

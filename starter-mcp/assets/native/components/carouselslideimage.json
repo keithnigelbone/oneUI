@@ -1,0 +1,117 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "CarouselSlideImage",
+  "generatedAt": "2026-07-09T13:07:37.428Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "A slide's media. `scrim=true` overlays the default bottom-fade Scrim; pass a ScrimProps object to customize."
+  },
+  "compositionRules": {
+    "requires": [
+      "src",
+      "alt"
+    ],
+    "allows": [],
+    "forbids": [],
+    "childKind": "leaf"
+  },
+  "props": [
+    {
+      "name": "src",
+      "type": "string",
+      "required": true,
+      "description": "Remote URL or bundled require() asset."
+    },
+    {
+      "name": "alt",
+      "type": "string",
+      "required": true,
+      "description": ""
+    },
+    {
+      "name": "aspectRatio",
+      "type": "'1:2' | '9:16' | '3:4' | '1:1' | '4:3' | '5:3' | '16:9' | '2:1' | '21:9' | 'flexible'",
+      "required": false,
+      "description": "Overrides the Carousel root aspectRatio for this slide."
+    },
+    {
+      "name": "scrim",
+      "type": "ReactNode",
+      "required": false,
+      "description": "true → default bottom/XL/high/gradient Scrim; or a ScrimProps object for a custom one."
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.kb.rn.CarouselSlideImage",
+    "type": "object",
+    "required": [
+      "src",
+      "alt"
+    ],
+    "properties": {
+      "src": {
+        "type": "string",
+        "description": "Remote URL or bundled require() asset."
+      },
+      "alt": {
+        "type": "string"
+      },
+      "aspectRatio": {
+        "enum": [
+          "1:2",
+          "9:16",
+          "3:4",
+          "1:1",
+          "4:3",
+          "5:3",
+          "16:9",
+          "2:1",
+          "21:9",
+          "flexible"
+        ],
+        "description": "Overrides the Carousel root aspectRatio for this slide."
+      },
+      "scrim": {
+        "description": "true → default bottom/XL/high/gradient Scrim; or a ScrimProps object for a custom one."
+      }
+    }
+  },
+  "tokens": {
+    "spacing": []
+  },
+  "a11y": {
+    "accessibilityRole": "image",
+    "accessibleNameSource": "children",
+    "minTouchTarget": 44,
+    "honorsBoldText": false,
+    "honorsScreenReader": true
+  },
+  "renderHints": {
+    "baseElement": "Image",
+    "animatedOn": [],
+    "honorsReduceMotion": false,
+    "readsFromSurfaceContext": false
+  },
+  "figma": {
+    "componentKey": "jds-carousel-slide-image-v1",
+    "keyHistory": []
+  },
+  "codeSnippets": [
+    {
+      "id": "import-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { CarouselSlideImage } from '@oneui/ui-native';\n\n<CarouselSlideImage />"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "carouselslideimage",
+    "carousel",
+    "media"
+  ],
+  "importPath": "@oneui/ui-native"
+}

@@ -1,0 +1,27 @@
+/**
+ * VariationsPanel.module.css
+ *
+ * Controls panel for variation comparison mode.
+ * Toggle selectors now use ToggleGroup component (consistent with foundation pages).
+ * Token-only styling (zero literals).
+ */
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-3-5);
+}
+
+/* Section group: label + controls */
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-2);
+}
+
+.sectionLabel {
+  font-size: var(--Label-2XS-FontSize);
+  font-weight: var(--Body-FontWeight-Medium);
+  color: var(--Text-High);
+  text-transform: lowercase;
+}

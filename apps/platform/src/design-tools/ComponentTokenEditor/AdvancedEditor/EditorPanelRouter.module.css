@@ -1,0 +1,137 @@
+/**
+ * EditorPanelRouter.module.css
+ *
+ * Floating overlay panel — vertically centered next to toolbar pill.
+ * Token-only styling (zero literals).
+ */
+
+/* Outer container — floating panel, vertically centered with toolbar */
+.router {
+  position: absolute;
+  right: calc(var(--Spacing-4) + var(--Spacing-8) + var(--Spacing-2) * 2 + var(--Spacing-3-5));
+  top: 50%;
+  transform: translateY(-50%);
+  width: clamp(280px, 22vw, 360px);
+  min-width: 0;
+  max-height: calc(100dvh - var(--Spacing-8) * 2);
+  background-color: var(--Surface-Elevated);
+  border-radius: var(--Shape-4-5);
+  box-shadow: var(--Elevation-3);
+  outline: var(--Stroke-M) solid var(--Border-Subtle);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 2;
+}
+
+/* Header: section name + conditional save status + actions */
+.routerHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-3);
+  padding: var(--Spacing-3) var(--Spacing-4);
+  border-bottom: var(--Stroke-M) solid var(--Border-Subtle);
+  flex-shrink: 0;
+}
+
+.headerTitle {
+  flex: 1;
+  min-width: 0;
+}
+
+.componentName {
+  font-size: var(--Body-S-FontSize);
+  font-weight: var(--Body-FontWeight-High);
+  color: var(--Text-High);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Save status — fixed-size dot that never causes layout shifts */
+/* INTENTIONAL-LITERAL: status dot is 5×5px — sub-token precision micro indicator, no Spacing token at this scale */
+.saveStatus {
+  width: 5px;
+  height: 5px;
+  border-radius: var(--Shape-Pill);
+  background-color: transparent;
+  flex-shrink: 0;
+  transition: background-color var(--Motion-Duration-Discreet-Short);
+  font-size: 0;
+  line-height: 0;
+  overflow: hidden;
+}
+
+.saveStatus[data-status="saving"] {
+  background-color: var(--Text-Low);
+  animation: pulse 1s ease-in-out infinite;
+}
+
+.saveStatus[data-status="dirty"] {
+  background-color: var(--Surface-Bold);
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+/* Scrollable content area */
+.routerContent {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0;
+  min-height: 0;
+  scrollbar-width: none;
+}
+
+/* INTENTIONAL-LITERAL: webkit scrollbar thumb width — sub-token precision, no Spacing token at this scale */
+.routerContent::-webkit-scrollbar {
+  width: 4px;
+}
+
+.routerContent::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.routerContent::-webkit-scrollbar-thumb {
+  background: transparent;
+  border-radius: var(--Shape-Pill);
+}
+
+.routerContent:hover::-webkit-scrollbar-thumb {
+  background: var(--Border-Subtle);
+}
+
+.routerContent:hover {
+  scrollbar-width: thin;
+}
+
+/* Control label — shared between router-level controls */
+.controlLabel {
+  font-size: var(--Label-XS-FontSize);
+  font-weight: var(--Body-FontWeight-Medium);
+  color: var(--Text-High);
+  text-transform: lowercase;
+}
+
+/* Theming section content padding */
+.sectionContent {
+  padding: var(--Spacing-3-5) var(--Spacing-4);
+}
+
+/* Font family control inside theming panel */
+.fontFamilyControl {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-2);
+  margin-bottom: var(--Spacing-3);
+}
+
+/* Controls panel — preview controls from InspectCanvasControls */
+.controlsContent {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-3);
+  padding: var(--Spacing-3-5) var(--Spacing-4);
+}

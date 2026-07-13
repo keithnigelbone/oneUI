@@ -1,0 +1,311 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Image",
+  "generatedAt": "2026-01-01T00:00:00.000Z",
+  "machineReadable": true,
+  "intentAndPurpose": {
+    "intent": "Display an image with aspect ratio presets, loading states, and optional interactive overlay.",
+    "taskContexts": [
+      "content-image",
+      "product-photo",
+      "thumbnail",
+      "hero-banner",
+      "gallery-item"
+    ],
+    "sentiments": [
+      "neutral"
+    ]
+  },
+  "compositionRules": {
+    "requires": [
+      "src (required)",
+      "alt text (required)"
+    ],
+    "allows": [
+      "aspect ratio preset",
+      "interactive mode with click handler",
+      "custom fallback on error"
+    ],
+    "forbids": [
+      "decorative images without alt=\"\"",
+      "interactive mode without aria-label"
+    ]
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "static",
+        "useWhen": [
+          "display-only image content"
+        ]
+      },
+      {
+        "name": "interactive",
+        "useWhen": [
+          "clickable image with state layer and focus ring"
+        ]
+      }
+    ]
+  },
+  "relationshipsAndDependencies": {
+    "related": [
+      "Avatar",
+      "Logo"
+    ]
+  },
+  "contextSignals": {
+    "density": [
+      "compact",
+      "default",
+      "open"
+    ],
+    "modality": [
+      "desktop",
+      "mobile"
+    ],
+    "brand": [
+      "theme-scope aware",
+      "recipe-driven"
+    ],
+    "mode": [
+      "light",
+      "dark"
+    ]
+  },
+  "observabilityHooks": {
+    "track": [
+      "click",
+      "impression"
+    ],
+    "health": [
+      "a11y_violations",
+      "image_load_failure_rate"
+    ]
+  },
+  "props": [
+    {
+      "name": "alt",
+      "type": "string",
+      "required": true,
+      "description": "Accessible alt text (required)"
+    },
+    {
+      "name": "src",
+      "type": "string",
+      "required": true,
+      "description": "Image source URL (required)"
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": false,
+      "description": "Accessible label for interactive images"
+    },
+    {
+      "name": "aspectRatio",
+      "type": "ImageAspectRatio",
+      "required": false,
+      "description": "Aspect ratio preset. Default: 'auto'"
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "required": false,
+      "description": "Additional class name"
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "required": false,
+      "description": "Reduces opacity. Default: false"
+    },
+    {
+      "name": "fallback",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Custom error fallback content"
+    },
+    {
+      "name": "height",
+      "type": "string | number",
+      "required": false,
+      "description": "Container height"
+    },
+    {
+      "name": "interactive",
+      "type": "boolean",
+      "required": false,
+      "description": "When true: state layer overlay + focus ring + clickable. Default: false"
+    },
+    {
+      "name": "loading",
+      "type": "ImageLoadingStrategy",
+      "required": false,
+      "description": "Browser native loading strategy. Default: 'lazy'"
+    },
+    {
+      "name": "objectFit",
+      "type": "ImageObjectFit",
+      "required": false,
+      "description": "CSS object-fit for the image. Default: 'cover'"
+    },
+    {
+      "name": "objectPosition",
+      "type": "string",
+      "required": false,
+      "description": "CSS object-position. Default: 'center'"
+    },
+    {
+      "name": "onClick",
+      "type": "() => void",
+      "required": false,
+      "description": "Web alias for onPress"
+    },
+    {
+      "name": "onError",
+      "type": "() => void",
+      "required": false,
+      "description": "Image error callback"
+    },
+    {
+      "name": "onLoad",
+      "type": "() => void",
+      "required": false,
+      "description": "Image loaded callback"
+    },
+    {
+      "name": "onPress",
+      "type": "() => void",
+      "required": false,
+      "description": "Click handler (interactive only)"
+    },
+    {
+      "name": "style",
+      "type": "CSSProperties",
+      "required": false,
+      "description": "Inline styles"
+    },
+    {
+      "name": "width",
+      "type": "string | number",
+      "required": false,
+      "description": "Container width"
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.docs.image",
+    "type": "object",
+    "properties": {
+      "alt": {
+        "type": "string",
+        "description": "Accessible alt text (required)"
+      },
+      "src": {
+        "type": "string",
+        "description": "Image source URL (required)"
+      },
+      "aria-label": {
+        "type": "string",
+        "description": "Accessible label for interactive images"
+      },
+      "aspectRatio": {
+        "enum": [
+          "auto",
+          "1:1",
+          "1:2",
+          "2:1",
+          "2:3",
+          "3:2",
+          "3:4",
+          "4:3",
+          "9:16",
+          "16:9"
+        ],
+        "description": "Aspect ratio preset. Default: 'auto'"
+      },
+      "className": {
+        "type": "string",
+        "description": "Additional class name"
+      },
+      "disabled": {
+        "type": "boolean",
+        "description": "Reduces opacity. Default: false"
+      },
+      "fallback": {
+        "description": "Custom error fallback content"
+      },
+      "height": {
+        "description": "Container height"
+      },
+      "interactive": {
+        "type": "boolean",
+        "description": "When true: state layer overlay + focus ring + clickable. Default: false"
+      },
+      "loading": {
+        "description": "Browser native loading strategy. Default: 'lazy'"
+      },
+      "objectFit": {
+        "enum": [
+          "cover",
+          "contain",
+          "fill",
+          "none"
+        ],
+        "description": "CSS object-fit for the image. Default: 'cover'"
+      },
+      "objectPosition": {
+        "type": "string",
+        "description": "CSS object-position. Default: 'center'"
+      },
+      "onClick": {
+        "description": "Web alias for onPress"
+      },
+      "onError": {
+        "description": "Image error callback"
+      },
+      "onLoad": {
+        "description": "Image loaded callback"
+      },
+      "onPress": {
+        "description": "Click handler (interactive only)"
+      },
+      "style": {
+        "description": "Inline styles"
+      },
+      "width": {
+        "description": "Container width"
+      }
+    },
+    "required": [
+      "alt",
+      "src"
+    ]
+  },
+  "codeSnippets": [
+    {
+      "id": "image-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { Image } from '@oneui/ui';\n\n<Image src=\"/photo.jpg\" alt=\"Product shot\" />"
+    },
+    {
+      "id": "image-aspect-ratio",
+      "title": "With Aspect Ratio",
+      "language": "tsx",
+      "code": "<Image src=\"/banner.jpg\" alt=\"Hero banner\" aspectRatio=\"16:9\" />"
+    },
+    {
+      "id": "image-recipe-decisions",
+      "title": "Recipe Decisions",
+      "language": "json",
+      "code": "{\n  \"component\": \"Image\",\n  \"decisions\": [\n    \"Shape\"\n  ]\n}"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "image"
+  ],
+  "importPath": "@jds4/oneui-react"
+}

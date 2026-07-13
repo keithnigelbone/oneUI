@@ -1,0 +1,159 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "InputDynamicText",
+  "generatedAt": "2026-07-09T13:07:37.421Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "Helper row under an input — leading copy (e.g. char counter) + optional trailing low-attention condensed Button. Hides when both empty. Leading copy supports a live region for dynamic updates. Three sizes (s/m/l)."
+  },
+  "compositionRules": {
+    "requires": [],
+    "allows": [],
+    "forbids": [],
+    "childKind": "leaf"
+  },
+  "props": [
+    {
+      "name": "content",
+      "type": "string",
+      "required": false,
+      "description": "Leading copy (Body / Text-Medium). Rendered when non-empty."
+    },
+    {
+      "name": "end",
+      "type": "string",
+      "required": false,
+      "description": "Trailing action label — rendered as a low-attention condensed Button."
+    },
+    {
+      "name": "size",
+      "type": "'s' | 'm' | 'l'",
+      "required": false,
+      "defaultValue": "m",
+      "description": "Maps copy to Body XS/S/M and the trailing Button to s/m/l."
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": "Disables the trailing Button and dims the copy to Text-Low."
+    },
+    {
+      "name": "aria-live",
+      "type": "'off' | 'polite' | 'assertive'",
+      "required": false,
+      "description": "Live region for the leading copy (e.g. char-count updates)."
+    },
+    {
+      "name": "onEndClick",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Handler for the trailing Button."
+    },
+    {
+      "name": "endAriaLabel",
+      "type": "string",
+      "required": false,
+      "description": "Accessible name override for the trailing control."
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.kb.rn.InputDynamicText",
+    "type": "object",
+    "properties": {
+      "content": {
+        "type": "string",
+        "description": "Leading copy (Body / Text-Medium). Rendered when non-empty."
+      },
+      "end": {
+        "type": "string",
+        "description": "Trailing action label — rendered as a low-attention condensed Button."
+      },
+      "size": {
+        "enum": [
+          "s",
+          "m",
+          "l"
+        ],
+        "default": "m",
+        "description": "Maps copy to Body XS/S/M and the trailing Button to s/m/l."
+      },
+      "disabled": {
+        "type": "boolean",
+        "default": false,
+        "description": "Disables the trailing Button and dims the copy to Text-Low."
+      },
+      "aria-live": {
+        "enum": [
+          "off",
+          "polite",
+          "assertive"
+        ],
+        "description": "Live region for the leading copy (e.g. char-count updates)."
+      },
+      "onEndClick": {
+        "description": "Handler for the trailing Button."
+      },
+      "endAriaLabel": {
+        "type": "string",
+        "description": "Accessible name override for the trailing control."
+      }
+    }
+  },
+  "tokens": {
+    "color": [
+      "neutral",
+      "primary"
+    ],
+    "typography": [
+      "body.XS",
+      "body.S",
+      "body.M",
+      "label.S",
+      "label.M"
+    ]
+  },
+  "a11y": {
+    "accessibilityRole": "text",
+    "accessibilityState": [
+      "disabled"
+    ],
+    "accessibleNameSource": "children",
+    "minTouchTarget": 44,
+    "honorsBoldText": true,
+    "honorsScreenReader": true
+  },
+  "renderHints": {
+    "baseElement": "View",
+    "animatedOn": [],
+    "honorsReduceMotion": false,
+    "readsFromSurfaceContext": true
+  },
+  "figma": {
+    "componentKey": "jds-input-dynamic-text-v4",
+    "keyHistory": [],
+    "variantProperties": {
+      "Component": "InputDynamicText"
+    }
+  },
+  "codeSnippets": [
+    {
+      "id": "import-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { InputDynamicText } from '@oneui/ui-native';\n\n<InputDynamicText />"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "inputdynamictext",
+    "form",
+    "helper",
+    "input"
+  ],
+  "importPath": "@oneui/ui-native"
+}

@@ -1,0 +1,171 @@
+name: Native Version Bump
+
+# Two roles, one workflow:
+#
+#   • PR (dev → main): runs the BUILD GATE only. If the RN build fails the check
+#     fails — make this job a REQUIRED status check on `main` so a broken build
+#     blocks the merge. The version bump never runs on a PR.
+#   • Push to `main` (post-merge): runs the build gate AND, when the commit
+#     SUBJECT contains the entry keyword `[react-native]`, the version bump.
+#     Without `[react-native]` the build still runs but the bump is skipped and
+#     the job finishes successfully.
+#   • Manual (workflow_dispatch): build gate + bump, but the bump still requires
+#     [react-native] in the latest commit subject (no bypass).
+#
+# When the bump runs it targets AFFECTED React Native packages, driven either by
+# the `bumpLevel` input or (when that is `auto`) by a version keyword in the
+# commit SUBJECT:
+#
+#   [breaking] → major      [feat] → minor      [fix] → patch      (none → skip)
+#
+# ── What "affected" means ────────────────────────────────────────────────────
+# This repo uses Turbo (not Nx). `turbo ls --affected` computes the set of
+# workspace packages touched by the merge diff (directly, or transitively via a
+# changed workspace dependency such as @oneui/shared / @oneui/tokens). That set
+# is then INTERSECTED with the three publishable RN packages:
+#
+#   @oneui/ui-native            (packages/ui-native)
+#   @oneui/icons-jio-native     (packages/icons-jio-native)
+#   @oneui/create-native-app    (packages/create-oneui-native-app)
+#
+# Only these three are ever bumped. A change to a shared workspace dep that
+# Turbo marks ui-native affected bumps ui-native — never the shared package.
+# The three have no inter-dependencies, so there is no cascade bump to do.
+#
+# ── Version math ─────────────────────────────────────────────────────────────
+# The bump is PRERELEASE-AWARE (semver pre* semantics), so alpha packages stay
+# in their channel instead of graduating. For a prerelease version (keeps the
+# existing identifier, e.g. `alpha`):
+#   from 0.1.0-alpha.5:  [fix] → 0.1.0-alpha.6   (bump prerelease counter)
+#                        [feat] → 0.2.0-alpha.0  (preminor, reset counter)
+#                        [breaking] → 1.0.0-alpha.0  (premajor, reset counter)
+# For a plain/stable version it is a normal core bump:
+#   from 1.4.2:          [fix] → 1.4.3   [feat] → 1.5.0   [breaking] → 2.0.0
+# (npm's own `npm version patch|minor` would collapse a prerelease straight to
+#  0.1.0 — surprising — so the increment is computed explicitly instead.)
+#
+# ── Loop safety ───────────────────────────────────────────────────────────────
+# The bump commit is pushed back to main with [skip ci]. It cannot start another
+# run because: (a) pushes made with the default GITHUB_TOKEN do not retrigger
+# workflows, and (b) its subject ("chore: bump RN package versions …") lacks the
+# `[react-native]` entry keyword, so the job would skip anyway.
+#
+# NOTE: if branch protection blocks direct pushes by GITHUB_TOKEN, swap the
+# checkout `token:` for a PAT / GitHub App token with bypass rights (see the
+# checkout step below). This workflow only bumps + commits; it does not build or
+# publish — that is handled separately by release-native.yml.
+
+on:
+  # PR dev → main: runs the BUILD GATE as a merge check (make it a required
+  # status check on main so a broken RN build blocks the merge). The bump never
+  # runs on a PR — see the entry-check step.
+  pull_request:
+    branches: [main]
+  # Push to main (post-merge): build gate + version bump, when the commit carries
+  # the [react-native] keyword.
+  push:
+    branches: [main]
+  # Manual runs are still gated by [react-native] in the latest commit subject.
+  workflow_dispatch:
+    inputs:
+      bumpLevel:
+        description: 'Version bump (auto = read keyword from latest commit subject)'
+        type: choice
+        options: [auto, major, minor, patch, none]
+        default: auto
+      baseRef:
+        description: 'Base git ref for affected detection (blank = previous commit)'
+        type: string
+        default: ''
+
+permissions:
+  contents: write
+
+concurrency:
+  group: native-version-bump-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  version-bump:
+    name: Bump affected RN package versions
+    runs-on: [self-hosted, linux]
+    timeout-minutes: 20
+    # The job ALWAYS runs so the build gate acts as a PR merge check. The
+    # [react-native] entry check (a step after the build) decides whether the
+    # bump runs — it never fails the job, so a keyword-less run finishes green.
+    # The bump logic uses bash features ([[ =~ ]], BASH_REMATCH, arrays, <<<).
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+        with:
+          # Full history so Turbo can diff the merge against its base commit.
+          fetch-depth: 0
+          # persist-credentials (default true) keeps the token for the push
+          # back. To push through branch protection, replace with a PAT:
+          #   token: ${{ secrets.RELEASE_BOT_PAT }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Use Node.js 20
+        uses: actions/setup-node@v5
+        with:
+          node-version: 20
+
+      - name: Enable pnpm
+        run: |
+          set -euo pipefail
+          corepack enable
+          corepack prepare pnpm@9.15.9 --activate
+          node --version
+          pnpm --version
+
+      - name: Install dependencies
+        # Needed so `pnpm exec turbo` is available for affected detection.
+        run: pnpm install --frozen-lockfile
+
+      # Build gate: compile all three RN packages (Turbo also builds their
+      # workspace deps @oneui/shared / @oneui/tokens first). ui-native's `build`
+      # additionally runs check:release. If any build fails this step exits
+      # non-zero, the job stops here, and NO version is bumped or committed.
+      - name: Build RN packages (gate)
+        env:
+          NODE_OPTIONS: '--max-old-space-size=8192'
+        run: pnpm exec turbo run build --filter=@oneui/ui-native --filter=@oneui/icons-jio-native --filter=@oneui/create-native-app
+
+      # Entry check — decides (AFTER the build gate) whether the bump runs.
+      # ONLY the [react-native] keyword triggers a bump: proceed=true only when
+      # the latest commit SUBJECT contains [react-native] (applies to push and
+      # manual runs alike — there is no manual bypass). On a pull_request it is
+      # always false — the PR only runs the build gate; the bump happens
+      # post-merge on the push to main. A false result skips the bump step but
+      # the job still finishes successfully.
+      - name: Entry check ([react-native])
+        id: entry
+        run: |
+          set -euo pipefail
+          EVENT="${{ github.event_name }}"
+          if [ "$EVENT" = "pull_request" ]; then
+            echo "Pull request — build gate only, skipping bump."
+            echo "proceed=false" >> "$GITHUB_OUTPUT"
+          elif git log -1 --pretty=%s | grep -q '\[react-native\]'; then
+            echo "[react-native] found in commit subject — proceeding with bump."
+            echo "proceed=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "No [react-native] in the commit subject (event: $EVENT) — build gate only, skipping bump."
+            echo "proceed=false" >> "$GITHUB_OUTPUT"
+            echo "Build gate passed; no [react-native] keyword — version bump skipped." >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      # All logic lives in .github/scripts/native-version-bump.sh so the run log
+      # shows only this invocation line, not the whole script body. Runs only
+      # when the entry check passed (never on a pull_request).
+      - name: Detect affected RN packages, bump versions, and commit
+        if: steps.entry.outputs.proceed == 'true'
+        env:
+          BUMP_LEVEL_INPUT: ${{ github.event.inputs.bumpLevel }}
+          BASE_REF_INPUT: ${{ github.event.inputs.baseRef }}
+          BEFORE_SHA: ${{ github.event.before }}
+        run: bash .github/scripts/native-version-bump.sh

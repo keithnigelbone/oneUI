@@ -1,0 +1,30 @@
+import React, { forwardRef } from 'react';
+import type { IconComponentProps } from '../iconProps';
+
+export const IcLanOutput = forwardRef<SVGSVGElement, IconComponentProps>(function IcLanOutput(
+  { size = 24, width, height, color = 'currentColor', className, style, ...props },
+  ref,
+) {
+  const dim = width ?? height ?? size;
+  return (
+    <svg
+      ref={ref}
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      width={width ?? dim}
+      height={height ?? dim}
+      color={color}
+      className={className}
+      style={style}
+      {...props}
+    >
+      <path
+            fill="currentColor"
+            d="M19.313 3H4.688C3.754 3 3 3.754 3 4.688v11.25c0 .933.754 1.687 1.688 1.687s1.687.754 1.687 1.688S7.129 21 8.063 21h7.874c.934 0 1.688-.754 1.688-1.687 0-.934.754-1.688 1.688-1.688S21 16.871 21 15.938V4.688C21 3.754 20.246 3 19.313 3M8.625 10.875C8.625 11.494 8.119 12 7.5 12a1.13 1.13 0 0 1-1.125-1.125V7.5c0-.619.506-1.125 1.125-1.125s1.125.506 1.125 1.125zm4.489 0c0 .619-.507 1.125-1.125 1.125a1.13 1.13 0 0 1-1.125-1.125V7.5c0-.619.506-1.125 1.125-1.125.618 0 1.125.506 1.125 1.125zm4.511 0c0 .619-.506 1.125-1.125 1.125a1.13 1.13 0 0 1-1.125-1.125V7.5c0-.619.506-1.125 1.125-1.125s1.125.506 1.125 1.125z"
+          />
+    </svg>
+  );
+});
+
+IcLanOutput.displayName = 'IcLanOutput';

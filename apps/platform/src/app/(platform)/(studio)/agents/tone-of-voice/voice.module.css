@@ -1,0 +1,121 @@
+/**
+ * voice.module.css
+ * Shared styles for voice & tone pages.
+ * Uses foundation page patterns — property rows, chip grids, inline editing.
+ */
+
+/* Property list — rows within FoundationCard */
+.propertyList {
+  display: flex;
+  flex-direction: column;
+}
+
+.propertyRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--Spacing-3-5) 0;
+  border-bottom: var(--Stroke-M) solid var(--Border-Subtle);
+}
+
+.propertyRow:last-child {
+  border-bottom: none;
+}
+
+.propertyLabel {
+  font-size: var(--Body-M-FontSize);
+  color: var(--Text-Medium);
+}
+
+.propertyValue {
+  font-size: var(--Body-M-FontSize);
+  font-weight: var(--Body-FontWeight-Medium);
+  color: var(--Text-High);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Neutral input override — focus ring uses neutral instead of primary */
+.neutralInput input:focus {
+  box-shadow: 0 0 0 var(--Stroke-M) var(--Neutral-TintedA11y);
+}
+
+/* Dialog content */
+.dialogBody {
+  margin-bottom: var(--Spacing-5);
+}
+
+.dialogBody input:focus {
+  box-shadow: 0 0 0 var(--Stroke-M) var(--Neutral-TintedA11y);
+}
+
+.dialogActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--Spacing-3-5);
+}
+
+/* Slider grid */
+.sliderGrid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-4-5);
+}
+
+/* Chip grid — forbidden words */
+.chipGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--Spacing-2);
+  margin-bottom: var(--Spacing-4);
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--Spacing-1-5);
+  padding: var(--Spacing-1-5) var(--Spacing-3);
+  background-color: color-mix(in oklch, var(--Text-Low) 8%, var(--Surface-Main));
+  color: var(--Text-Medium);
+  border-radius: var(--Shape-Pill);
+  font-size: var(--Label-S-FontSize);
+  font-weight: var(--Label-FontWeight-Medium);
+  border: var(--Stroke-M) solid color-mix(in oklch, var(--Text-Low) 12%, transparent);
+}
+
+.chipRemove {
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  font-size: var(--Body-S-FontSize);
+  padding: 0 2px;
+  opacity: 0.5;
+  line-height: 1;
+  transition: opacity var(--Motion-Duration-Discreet-Short);
+}
+
+.chipRemove:hover {
+  opacity: 1;
+}
+
+/* Add row */
+.addRow {
+  display: flex;
+  gap: var(--Spacing-3);
+  align-items: center;
+}
+
+/* Shared empty/placeholder */
+.empty {
+  font-size: var(--Body-M-FontSize);
+  color: var(--Text-Medium);
+  text-align: center;
+  padding: var(--Spacing-7) 0;
+}
+
+.placeholder {
+  font-size: var(--Body-S-FontSize);
+  color: var(--Text-Low);
+  text-align: center;
+  padding: var(--Spacing-6) 0;
+}

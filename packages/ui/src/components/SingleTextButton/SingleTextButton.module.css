@@ -1,0 +1,442 @@
+/**
+ * SingleTextButton.module.css
+ *
+ * CRITICAL: This file demonstrates the ZERO LITERALS rule
+ * ALL styling uses design tokens ONLY
+ *
+ * Architecture: Role-agnostic intermediate variables (--_stb-*).
+ * - Default = Primary role.
+ * - Appearance classes remap --_stb-* to other roles.
+ * - Variant (data-variant) consumes the intermediate vars — no per-appearance
+ *   variant duplication.
+ *   - bold (attention=high)   → bold fill + on-bold text
+ *   - subtle (attention=medium) → subtle fill + tinted-a11y text
+ *   - ghost (attention=low)   → transparent fill + tinted-a11y text
+ * - Circular by default (aspect-ratio: 1) — shape customisable per brand.
+ * - Loading: spinner replaces text.
+ *
+ * Verified by: pnpm check:literals
+ */
+
+.singleTextButton {
+  /* ========================================
+     INTERMEDIATE VARIABLES — default = Primary role.
+     Remapped by appearance classes below.
+     ======================================== */
+  --_stb-bold: var(--SingleTextButton-roleBold, var(--Primary-Bold, var(--Surface-Bold)));
+  --_stb-bold-high: var(--SingleTextButton-roleBoldHigh, var(--Primary-Bold-TintedA11y, var(--Primary-Bold-High, var(--Text-OnBold-High))));
+  --_stb-bold-hover: var(--SingleTextButton-roleBoldHover, var(--Primary-Bold-Hover, var(--Surface-Bold-Hover)));
+  --_stb-bold-pressed: var(--SingleTextButton-roleBoldPressed, var(--Primary-Bold-Pressed, var(--Surface-Bold-Pressed)));
+  --_stb-subtle: var(--SingleTextButton-roleSubtle, var(--Primary-Subtle, var(--Surface-Subtle)));
+  --_stb-subtle-hover: var(--SingleTextButton-roleSubtleHover, var(--Primary-Subtle-Hover, var(--Surface-Subtle-Hover)));
+  --_stb-subtle-pressed: var(--SingleTextButton-roleSubtlePressed, var(--Primary-Subtle-Pressed, var(--Surface-Subtle-Pressed)));
+  --_stb-default-accent-a11y: var(--SingleTextButton-roleTintedA11y, var(--Primary-TintedA11y, var(--Primary-Tinted, var(--Surface-Bold))));
+  --_stb-default-hover: var(--SingleTextButton-roleHover, var(--Primary-Hover, var(--Surface-Minimal)));
+  --_stb-default-pressed: var(--SingleTextButton-rolePressed, var(--Primary-Pressed, var(--Surface-Subtle)));
+
+  /* ========================================
+     SHAPE — pill by default, brand-overridable.
+     ======================================== */
+  border-radius: var(--SingleTextButton-borderRadius, var(--Shape-Pill));
+
+  /* ========================================
+     BASE LAYOUT — circular (matches Figma).
+     fullWidth class overrides aspect-ratio.
+     ======================================== */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  box-sizing: border-box;
+  cursor: pointer;
+  position: relative;
+  aspect-ratio: 1;
+  border: none;
+  clip-path: var(--SingleTextButton-cssDecorationClipPath, none);
+
+  /* ========================================
+     TYPOGRAPHY — Label role tokens (matches sibling components).
+     ======================================== */
+  font-family: var(--SingleTextButton-fontFamily, var(--Label-FontFamily, var(--Typography-Font-Primary, inherit)));
+  font-weight: var(--SingleTextButton-fontWeight, var(--Label-FontWeight-High));
+  text-transform: var(--SingleTextButton-textTransform, none);
+  letter-spacing: var(--SingleTextButton-letterSpacing, normal);
+
+  /* ========================================
+     MOTION
+     ======================================== */
+  transition-property: background-color, color, border-color, box-shadow, transform;
+  transition-duration: var(--SingleTextButton-transitionDuration, var(--Motion-Duration-M));
+  transition-timing-function: var(--SingleTextButton-transitionEasing, var(--Motion-Easing-Transition-Moderate));
+}
+
+.singleTextButton::after {
+  content: '';
+  position: absolute;
+  inset: var(--Spacing-0);
+  box-sizing: border-box;
+  pointer-events: none;
+  border-radius: inherit;
+  clip-path: var(--SingleTextButton-cssDecorationClipPath, none);
+  border-style: var(--SingleTextButton-cssDecorationStrokeStyle, solid);
+  border-color: var(--SingleTextButton-cssDecorationColor, currentColor);
+  border-width:
+    var(--SingleTextButton-cssDecorationInsetStrokeWidth, var(--Spacing-0))
+    var(--SingleTextButton-cssDecorationInsetStrokeWidth, var(--Spacing-0))
+    var(--SingleTextButton-cssDecorationInsetStrokeWidth, var(--SingleTextButton-cssDecorationUnderlineWidth, var(--Spacing-0)))
+    var(--SingleTextButton-cssDecorationInsetStrokeWidth, var(--Spacing-0));
+}
+
+/* ========================================
+   APPEARANCE — role-agnostic intermediate variable remapping.
+   Adding a new appearance = 1 new class with 10 remappings.
+   ======================================== */
+
+.appearancePrimary {
+  --_stb-bold: var(--Primary-Bold, var(--Surface-Bold));
+  --_stb-bold-high: var(--Primary-Bold-TintedA11y, var(--Primary-Bold-High, var(--Text-OnBold-High)));
+  --_stb-bold-hover: var(--Primary-Bold-Hover, var(--Surface-Bold-Hover));
+  --_stb-bold-pressed: var(--Primary-Bold-Pressed, var(--Surface-Bold-Pressed));
+  --_stb-subtle: var(--Primary-Subtle, var(--Surface-Subtle));
+  --_stb-subtle-hover: var(--Primary-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_stb-subtle-pressed: var(--Primary-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+  --_stb-default-accent-a11y: var(--Primary-TintedA11y, var(--Primary-Tinted, var(--Surface-Bold)));
+  --_stb-default-hover: var(--Primary-Hover, var(--Surface-Minimal));
+  --_stb-default-pressed: var(--Primary-Pressed, var(--Surface-Subtle));
+}
+
+.appearanceNeutral {
+  --_stb-bold: var(--Neutral-Bold, var(--Surface-Bold));
+  --_stb-bold-high: var(--Neutral-Bold-TintedA11y, var(--Neutral-Bold-High, var(--Text-OnBold-High)));
+  --_stb-bold-hover: var(--Neutral-Bold-Hover, var(--Surface-Bold-Hover));
+  --_stb-bold-pressed: var(--Neutral-Bold-Pressed, var(--Surface-Bold-Pressed));
+  --_stb-subtle: var(--Neutral-Subtle, var(--Surface-Subtle));
+  --_stb-subtle-hover: var(--Neutral-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_stb-subtle-pressed: var(--Neutral-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+  --_stb-default-accent-a11y: var(--Neutral-TintedA11y, var(--Neutral-Tinted, var(--Surface-Bold)));
+  --_stb-default-hover: var(--Neutral-Hover, var(--Surface-Minimal));
+  --_stb-default-pressed: var(--Neutral-Pressed, var(--Surface-Subtle));
+}
+
+.appearanceSecondary {
+  --_stb-bold: var(--Secondary-Bold, var(--Surface-Bold));
+  --_stb-bold-high: var(--Secondary-Bold-TintedA11y, var(--Secondary-Bold-High, var(--Text-OnBold-High)));
+  --_stb-bold-hover: var(--Secondary-Bold-Hover, var(--Surface-Bold-Hover));
+  --_stb-bold-pressed: var(--Secondary-Bold-Pressed, var(--Surface-Bold-Pressed));
+  --_stb-subtle: var(--Secondary-Subtle, var(--Surface-Subtle));
+  --_stb-subtle-hover: var(--Secondary-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_stb-subtle-pressed: var(--Secondary-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+  --_stb-default-accent-a11y: var(--Secondary-TintedA11y, var(--Secondary-Tinted, var(--Surface-Bold)));
+  --_stb-default-hover: var(--Secondary-Hover, var(--Surface-Minimal));
+  --_stb-default-pressed: var(--Secondary-Pressed, var(--Surface-Subtle));
+}
+
+.appearanceTertiary {
+  --_stb-bold: var(--Tertiary-Bold, var(--Surface-Bold));
+  --_stb-bold-high: var(--Tertiary-Bold-TintedA11y, var(--Tertiary-Bold-High, var(--Text-OnBold-High)));
+  --_stb-bold-hover: var(--Tertiary-Bold-Hover, var(--Surface-Bold-Hover));
+  --_stb-bold-pressed: var(--Tertiary-Bold-Pressed, var(--Surface-Bold-Pressed));
+  --_stb-subtle: var(--Tertiary-Subtle, var(--Surface-Subtle));
+  --_stb-subtle-hover: var(--Tertiary-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_stb-subtle-pressed: var(--Tertiary-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+  --_stb-default-accent-a11y: var(--Tertiary-TintedA11y, var(--Tertiary-Tinted, var(--Surface-Bold)));
+  --_stb-default-hover: var(--Tertiary-Hover, var(--Surface-Minimal));
+  --_stb-default-pressed: var(--Tertiary-Pressed, var(--Surface-Subtle));
+}
+
+.appearanceQuaternary {
+  --_stb-bold: var(--Quaternary-Bold, var(--Surface-Bold));
+  --_stb-bold-high: var(--Quaternary-Bold-TintedA11y, var(--Quaternary-Bold-High, var(--Text-OnBold-High)));
+  --_stb-bold-hover: var(--Quaternary-Bold-Hover, var(--Surface-Bold-Hover));
+  --_stb-bold-pressed: var(--Quaternary-Bold-Pressed, var(--Surface-Bold-Pressed));
+  --_stb-subtle: var(--Quaternary-Subtle, var(--Surface-Subtle));
+  --_stb-subtle-hover: var(--Quaternary-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_stb-subtle-pressed: var(--Quaternary-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+  --_stb-default-accent-a11y: var(--Quaternary-TintedA11y, var(--Quaternary-Tinted, var(--Surface-Bold)));
+  --_stb-default-hover: var(--Quaternary-Hover, var(--Surface-Minimal));
+  --_stb-default-pressed: var(--Quaternary-Pressed, var(--Surface-Subtle));
+}
+
+.appearanceSparkle {
+  --_stb-bold: var(--Sparkle-Bold, var(--Surface-Bold));
+  --_stb-bold-high: var(--Sparkle-Bold-TintedA11y, var(--Sparkle-Bold-High, var(--Text-OnBold-High)));
+  --_stb-bold-hover: var(--Sparkle-Bold-Hover, var(--Surface-Bold-Hover));
+  --_stb-bold-pressed: var(--Sparkle-Bold-Pressed, var(--Surface-Bold-Pressed));
+  --_stb-subtle: var(--Sparkle-Subtle, var(--Surface-Subtle));
+  --_stb-subtle-hover: var(--Sparkle-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_stb-subtle-pressed: var(--Sparkle-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+  --_stb-default-accent-a11y: var(--Sparkle-TintedA11y, var(--Sparkle-Tinted, var(--Surface-Bold)));
+  --_stb-default-hover: var(--Sparkle-Hover, var(--Surface-Minimal));
+  --_stb-default-pressed: var(--Sparkle-Pressed, var(--Surface-Subtle));
+}
+
+.appearanceBrandBg {
+  --_stb-bold: var(--Brand-Bg-Bold, var(--Surface-Bold));
+  --_stb-bold-high: var(--Brand-Bg-Bold-TintedA11y, var(--Brand-Bg-Bold-High, var(--Text-OnBold-High)));
+  --_stb-bold-hover: var(--Brand-Bg-Bold-Hover, var(--Surface-Bold-Hover));
+  --_stb-bold-pressed: var(--Brand-Bg-Bold-Pressed, var(--Surface-Bold-Pressed));
+  --_stb-subtle: var(--Brand-Bg-Subtle, var(--Surface-Subtle));
+  --_stb-subtle-hover: var(--Brand-Bg-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_stb-subtle-pressed: var(--Brand-Bg-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+  --_stb-default-accent-a11y: var(--Brand-Bg-TintedA11y, var(--Brand-Bg-Tinted, var(--Surface-Bold)));
+  --_stb-default-hover: var(--Brand-Bg-Hover, var(--Surface-Minimal));
+  --_stb-default-pressed: var(--Brand-Bg-Pressed, var(--Surface-Subtle));
+}
+
+.appearancePositive {
+  --_stb-bold: var(--Positive-Bold, var(--Surface-Bold));
+  --_stb-bold-high: var(--Positive-Bold-TintedA11y, var(--Positive-Bold-High, var(--Text-OnBold-High)));
+  --_stb-bold-hover: var(--Positive-Bold-Hover, var(--Surface-Bold-Hover));
+  --_stb-bold-pressed: var(--Positive-Bold-Pressed, var(--Surface-Bold-Pressed));
+  --_stb-subtle: var(--Positive-Subtle, var(--Surface-Subtle));
+  --_stb-subtle-hover: var(--Positive-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_stb-subtle-pressed: var(--Positive-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+  --_stb-default-accent-a11y: var(--Positive-TintedA11y, var(--Positive-Tinted, var(--Surface-Bold)));
+  --_stb-default-hover: var(--Positive-Hover, var(--Surface-Minimal));
+  --_stb-default-pressed: var(--Positive-Pressed, var(--Surface-Subtle));
+}
+
+.appearanceNegative {
+  --_stb-bold: var(--Negative-Bold, var(--Surface-Bold));
+  --_stb-bold-high: var(--Negative-Bold-TintedA11y, var(--Negative-Bold-High, var(--Text-OnBold-High)));
+  --_stb-bold-hover: var(--Negative-Bold-Hover, var(--Surface-Bold-Hover));
+  --_stb-bold-pressed: var(--Negative-Bold-Pressed, var(--Surface-Bold-Pressed));
+  --_stb-subtle: var(--Negative-Subtle, var(--Surface-Subtle));
+  --_stb-subtle-hover: var(--Negative-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_stb-subtle-pressed: var(--Negative-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+  --_stb-default-accent-a11y: var(--Negative-TintedA11y, var(--Negative-Tinted, var(--Surface-Bold)));
+  --_stb-default-hover: var(--Negative-Hover, var(--Surface-Minimal));
+  --_stb-default-pressed: var(--Negative-Pressed, var(--Surface-Subtle));
+}
+
+.appearanceWarning {
+  --_stb-bold: var(--Warning-Bold, var(--Surface-Bold));
+  --_stb-bold-high: var(--Warning-Bold-TintedA11y, var(--Warning-Bold-High, var(--Text-OnBold-High)));
+  --_stb-bold-hover: var(--Warning-Bold-Hover, var(--Surface-Bold-Hover));
+  --_stb-bold-pressed: var(--Warning-Bold-Pressed, var(--Surface-Bold-Pressed));
+  --_stb-subtle: var(--Warning-Subtle, var(--Surface-Subtle));
+  --_stb-subtle-hover: var(--Warning-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_stb-subtle-pressed: var(--Warning-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+  --_stb-default-accent-a11y: var(--Warning-TintedA11y, var(--Warning-Tinted, var(--Surface-Bold)));
+  --_stb-default-hover: var(--Warning-Hover, var(--Surface-Minimal));
+  --_stb-default-pressed: var(--Warning-Pressed, var(--Surface-Subtle));
+}
+
+.appearanceInformative {
+  --_stb-bold: var(--Informative-Bold, var(--Surface-Bold));
+  --_stb-bold-high: var(--Informative-Bold-TintedA11y, var(--Informative-Bold-High, var(--Text-OnBold-High)));
+  --_stb-bold-hover: var(--Informative-Bold-Hover, var(--Surface-Bold-Hover));
+  --_stb-bold-pressed: var(--Informative-Bold-Pressed, var(--Surface-Bold-Pressed));
+  --_stb-subtle: var(--Informative-Subtle, var(--Surface-Subtle));
+  --_stb-subtle-hover: var(--Informative-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_stb-subtle-pressed: var(--Informative-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+  --_stb-default-accent-a11y: var(--Informative-TintedA11y, var(--Informative-Tinted, var(--Surface-Bold)));
+  --_stb-default-hover: var(--Informative-Hover, var(--Surface-Minimal));
+  --_stb-default-pressed: var(--Informative-Pressed, var(--Surface-Subtle));
+}
+
+/* ========================================
+   VARIANTS — driven by data-attention (consume intermediate vars, zero duplication).
+   ======================================== */
+
+/* HIGH attention → bold fill */
+.singleTextButton[data-attention="high"] {
+  background-color: var(--SingleTextButton-backgroundColor-high, var(--_stb-bold));
+  color: var(--SingleTextButton-textColor-high, var(--_stb-bold-high));
+}
+
+/* MEDIUM attention → subtle fill */
+.singleTextButton[data-attention="medium"] {
+  background-color: var(--SingleTextButton-backgroundColor-medium, var(--_stb-subtle));
+  color: var(--SingleTextButton-textColor-medium, var(--_stb-default-accent-a11y));
+}
+
+/* LOW attention → ghost (transparent fill, accent text) */
+.singleTextButton[data-attention="low"] {
+  background-color: var(--SingleTextButton-backgroundColor-low, transparent);
+  color: var(--SingleTextButton-textColor-low, var(--_stb-default-accent-a11y));
+}
+
+/* ========================================
+   SIZES — S/M/L only (no XS) via data-size attribute selectors.
+   ======================================== */
+
+.singleTextButton[data-size="s"] {
+  min-height: var(--SingleTextButton-minHeight-s, var(--Spacing-8));
+  min-width: var(--SingleTextButton-minHeight-s, var(--Spacing-8));
+  padding: var(--SingleTextButton-padding-s, var(--Spacing-0-5));
+  font-size: var(--SingleTextButton-fontSize-s, var(--Label-S-FontSize));
+  line-height: var(--SingleTextButton-lineHeight-s, var(--Label-S-LineHeight));
+}
+
+.singleTextButton[data-size="m"] {
+  min-height: var(--SingleTextButton-minHeight-m, var(--Spacing-10));
+  min-width: var(--SingleTextButton-minHeight-m, var(--Spacing-10));
+  padding: var(--SingleTextButton-padding-m, var(--Spacing-1));
+  font-size: var(--SingleTextButton-fontSize-m, var(--Label-M-FontSize));
+  line-height: var(--SingleTextButton-lineHeight-m, var(--Label-M-LineHeight));
+}
+
+.singleTextButton[data-size="l"] {
+  min-height: var(--SingleTextButton-minHeight-l, var(--Spacing-12));
+  min-width: var(--SingleTextButton-minHeight-l, var(--Spacing-12));
+  padding: var(--SingleTextButton-padding-l, var(--Spacing-2));
+  font-size: var(--SingleTextButton-fontSize-l, var(--Label-L-FontSize));
+  line-height: var(--SingleTextButton-lineHeight-l, var(--Label-L-LineHeight));
+}
+
+/* ========================================
+   CONDENSED MODE — reduces height + padding, same typography.
+   ======================================== */
+
+.singleTextButton[data-condensed][data-size="s"] {
+  min-height: var(--SingleTextButton-minHeight-s-condensed, var(--Spacing-4-5));
+  min-width: var(--SingleTextButton-minHeight-s-condensed, var(--Spacing-4-5));
+  padding: var(--SingleTextButton-padding-s-condensed, var(--Spacing-0-5));
+}
+
+.singleTextButton[data-condensed][data-size="m"] {
+  min-height: var(--SingleTextButton-minHeight-m-condensed, var(--Spacing-6));
+  min-width: var(--SingleTextButton-minHeight-m-condensed, var(--Spacing-6));
+  padding: var(--SingleTextButton-padding-m-condensed, var(--Spacing-0-5));
+}
+
+.singleTextButton[data-condensed][data-size="l"] {
+  min-height: var(--SingleTextButton-minHeight-l-condensed, var(--Spacing-8));
+  min-width: var(--SingleTextButton-minHeight-l-condensed, var(--Spacing-8));
+  padding: var(--SingleTextButton-padding-l-condensed, var(--Spacing-0-5));
+}
+
+/* ========================================
+   FULL WIDTH — overrides circular shape.
+   ======================================== */
+
+.fullWidth {
+  width: var(--SingleTextButton-fullWidth, 100%);
+  aspect-ratio: auto;
+}
+
+/* ========================================
+   HOVER STATES — per attention level.
+   ======================================== */
+
+.singleTextButton[data-attention="high"]:hover:not([data-disabled]) {
+  background-color: var(--SingleTextButton-backgroundColor-high-hover, var(--_stb-bold-hover));
+}
+
+.singleTextButton[data-attention="medium"]:hover:not([data-disabled]) {
+  background-color: var(--SingleTextButton-backgroundColor-medium-hover, var(--_stb-subtle-hover));
+}
+
+.singleTextButton[data-attention="low"]:hover:not([data-disabled]) {
+  background-color: var(--SingleTextButton-backgroundColor-low-hover, var(--_stb-default-hover));
+}
+
+/* ========================================
+   PRESSED STATES — per attention level.
+   ======================================== */
+
+.singleTextButton[data-attention="high"]:active:not([data-disabled]) {
+  background-color: var(--SingleTextButton-backgroundColor-high-pressed, var(--_stb-bold-pressed));
+}
+
+.singleTextButton[data-attention="medium"]:active:not([data-disabled]) {
+  background-color: var(--SingleTextButton-backgroundColor-medium-pressed, var(--_stb-subtle-pressed));
+}
+
+.singleTextButton[data-attention="low"]:active:not([data-disabled]) {
+  background-color: var(--SingleTextButton-backgroundColor-low-pressed, var(--_stb-default-pressed));
+}
+
+/* Tap scale — Convex motion foundations. */
+.singleTextButton:active:not([data-disabled]) {
+  transform: scale(calc(1 - var(--Motion-Tap-Scale-Default, 3) / 100));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .singleTextButton:active:not([data-disabled]) {
+    transform: none;
+  }
+}
+
+/* ========================================
+   DISABLED + LOADING
+   ======================================== */
+
+.singleTextButton[data-disabled],
+.singleTextButton:disabled {
+  opacity: var(--Disabled-Opacity);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.singleTextButton[data-loading] {
+  opacity: var(--Loading-Opacity, var(--Disabled-Opacity));
+  pointer-events: none;
+}
+
+/* ========================================
+   FOCUS RING — double box-shadow (inner surface halo + outer brand outline).
+   Matches CLAUDE.md focus halo pattern (--Surface-Halo-Gap, --Focus-Outline).
+   ======================================== */
+
+.singleTextButton:focus {
+  outline: none;
+}
+
+.singleTextButton:focus-visible,
+:global([data-force-state="focus"]) .singleTextButton {
+  box-shadow:
+    0 0 0 var(--Stroke-XL) var(--Surface-Halo-Gap, var(--Surface-Main)),
+    0 0 0 calc(var(--Stroke-XL) + var(--Focus-Outline-Width)) var(--Focus-Outline);
+}
+
+/* ========================================
+   LABEL
+   ======================================== */
+
+.label {
+  display: flex;
+  align-items: center;
+}
+
+/* ========================================
+   LOADING SPINNER — replaces label when loading.
+   Uses <CircularProgressIndicator variant="indeterminate"> for the animated
+   arc. CPI owns its own rotation keyframes, so this wrapper is purely
+   layout. `color: inherit` keeps the spinner stroke in sync with the
+   button's attention-driven text colour automatically.
+   ======================================== */
+
+.spinner {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: inherit;
+
+  /* Force the CPI indicator stroke to follow the button's resolved text
+     colour (which already adapts per attention: bold-high on high, accent
+     on medium/low). Without this override, CPI uses --{Role}-Bold for the
+     indicator, which on attention="high" would paint purple on a purple
+     button fill — invisible. currentColor reads the inherited `color`
+     above, so the spinner always matches the label it replaces. */
+  --CircularProgressIndicator-indicatorColor: currentColor;
+
+  /* Hide the CPI track ring inside the button. The track is meant for
+     determinate progress (where it shows the remainder of the bar); for
+     indeterminate-inside-a-button it adds a second tinted circle on top
+     of the button's own fill, producing a visible halo because stroke
+     anti-aliasing makes equal-coloured layers render with a 1px seam.
+     Transparent track = just the rotating arc, cleanly coloured by the
+     button's text token. */
+  --CircularProgressIndicator-trackColor: transparent;
+}
+
+/**
+ * ========================================
+ * IMPORTANT: NO LITERALS IN THIS FILE
+ * ========================================
+ *
+ * All values MUST come from --Token-Name variables
+ * defined in @oneui/tokens CSS files.
+ */

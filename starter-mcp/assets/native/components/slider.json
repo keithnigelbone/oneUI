@@ -1,0 +1,331 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Slider",
+  "generatedAt": "2026-07-09T13:07:37.423Z",
+  "machineReadable": true,
+  "status": "beta",
+  "intentAndPurpose": {
+    "intent": "Draggable value slider — single thumb (number) or range (number[]). Optional tick marks, tooltip, and leading/trailing icon slots."
+  },
+  "compositionRules": {
+    "requires": [],
+    "allows": [],
+    "forbids": [],
+    "childKind": "fixed-slots"
+  },
+  "props": [
+    {
+      "name": "value",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Current value (controlled) — a number, or number[] for a range slider."
+    },
+    {
+      "name": "defaultValue",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Default value (uncontrolled) — same shape as `value`."
+    },
+    {
+      "name": "onValueChange",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Called as the user drags."
+    },
+    {
+      "name": "onValueCommitted",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Called when the user releases / commits the value."
+    },
+    {
+      "name": "min",
+      "type": "number",
+      "required": false,
+      "defaultValue": "0",
+      "description": ""
+    },
+    {
+      "name": "max",
+      "type": "number",
+      "required": false,
+      "defaultValue": "100",
+      "description": ""
+    },
+    {
+      "name": "step",
+      "type": "number",
+      "required": false,
+      "defaultValue": "1",
+      "description": ""
+    },
+    {
+      "name": "largeStep",
+      "type": "number",
+      "required": false,
+      "defaultValue": "10",
+      "description": ""
+    },
+    {
+      "name": "minStepsBetweenValues",
+      "type": "number",
+      "required": false,
+      "description": "Minimum step gap enforced between thumbs on a range slider."
+    },
+    {
+      "name": "appearance",
+      "type": "'auto' | 'primary' | 'secondary' | 'neutral' | 'sparkle' | 'brand-bg' | 'positive' | 'negative' | 'warning' | 'informative'",
+      "required": false,
+      "defaultValue": "auto",
+      "description": ""
+    },
+    {
+      "name": "orientation",
+      "type": "'horizontal' | 'vertical'",
+      "required": false,
+      "defaultValue": "horizontal",
+      "description": ""
+    },
+    {
+      "name": "size",
+      "type": "'s' | 'm' | 'l'",
+      "required": false,
+      "defaultValue": "m",
+      "description": ""
+    },
+    {
+      "name": "knobStyle",
+      "type": "'inside' | 'outside'",
+      "required": false,
+      "defaultValue": "outside",
+      "description": ""
+    },
+    {
+      "name": "showTooltip",
+      "type": "ReactNode",
+      "required": false,
+      "description": "\"auto\" (default, drag + focus) | \"always\" | false."
+    },
+    {
+      "name": "formatValue",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Formatter for the tooltip value: (value, index) => string."
+    },
+    {
+      "name": "showSteps",
+      "type": "boolean",
+      "required": false,
+      "description": "Render tick marks at every step."
+    },
+    {
+      "name": "stepLabels",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Optional labels rendered under step marks (ReactNode[])."
+    },
+    {
+      "name": "snapToSteps",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "true",
+      "description": "When true (default) the thumb snaps to exact step positions; when false, dragging is continuous but tick marks still appear at step positions."
+    },
+    {
+      "name": "start",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Node rendered at the start of the slider (e.g. an IconButton). ~30×30 slot."
+    },
+    {
+      "name": "end",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Node rendered at the end of the slider (e.g. an IconButton). ~30×30 slot."
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "readOnly",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "ariaLabels",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Per-thumb aria-label for range sliders (array indexed by thumb)."
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.kb.rn.Slider",
+    "type": "object",
+    "properties": {
+      "value": {
+        "description": "Current value (controlled) — a number, or number[] for a range slider."
+      },
+      "defaultValue": {
+        "description": "Default value (uncontrolled) — same shape as `value`."
+      },
+      "onValueChange": {
+        "description": "Called as the user drags."
+      },
+      "onValueCommitted": {
+        "description": "Called when the user releases / commits the value."
+      },
+      "min": {
+        "type": "number",
+        "default": 0
+      },
+      "max": {
+        "type": "number",
+        "default": 100
+      },
+      "step": {
+        "type": "number",
+        "default": 1
+      },
+      "largeStep": {
+        "type": "number",
+        "default": 10
+      },
+      "minStepsBetweenValues": {
+        "type": "number",
+        "description": "Minimum step gap enforced between thumbs on a range slider."
+      },
+      "appearance": {
+        "enum": [
+          "auto",
+          "primary",
+          "secondary",
+          "neutral",
+          "sparkle",
+          "brand-bg",
+          "positive",
+          "negative",
+          "warning",
+          "informative"
+        ],
+        "default": "auto"
+      },
+      "orientation": {
+        "enum": [
+          "horizontal",
+          "vertical"
+        ],
+        "default": "horizontal"
+      },
+      "size": {
+        "enum": [
+          "s",
+          "m",
+          "l"
+        ],
+        "default": "m"
+      },
+      "knobStyle": {
+        "enum": [
+          "inside",
+          "outside"
+        ],
+        "default": "outside"
+      },
+      "showTooltip": {
+        "description": "\"auto\" (default, drag + focus) | \"always\" | false."
+      },
+      "formatValue": {
+        "description": "Formatter for the tooltip value: (value, index) => string."
+      },
+      "showSteps": {
+        "type": "boolean",
+        "description": "Render tick marks at every step."
+      },
+      "stepLabels": {
+        "description": "Optional labels rendered under step marks (ReactNode[])."
+      },
+      "snapToSteps": {
+        "type": "boolean",
+        "default": true,
+        "description": "When true (default) the thumb snaps to exact step positions; when false, dragging is continuous but tick marks still appear at step positions."
+      },
+      "start": {
+        "description": "Node rendered at the start of the slider (e.g. an IconButton). ~30×30 slot."
+      },
+      "end": {
+        "description": "Node rendered at the end of the slider (e.g. an IconButton). ~30×30 slot."
+      },
+      "disabled": {
+        "type": "boolean",
+        "default": false
+      },
+      "readOnly": {
+        "type": "boolean",
+        "default": false
+      },
+      "ariaLabels": {
+        "description": "Per-thumb aria-label for range sliders (array indexed by thumb)."
+      }
+    }
+  },
+  "tokens": {
+    "color": [
+      "primary",
+      "secondary",
+      "neutral",
+      "sparkle",
+      "brand-bg",
+      "positive",
+      "negative",
+      "warning",
+      "informative"
+    ],
+    "surface": []
+  },
+  "a11y": {
+    "accessibilityRole": "adjustable",
+    "accessibleNameSource": "aria-label",
+    "minTouchTarget": 44,
+    "honorsBoldText": false,
+    "honorsScreenReader": true
+  },
+  "renderHints": {
+    "baseElement": "View",
+    "animatedOn": [
+      "press"
+    ],
+    "honorsReduceMotion": true,
+    "readsFromSurfaceContext": true
+  },
+  "figma": {
+    "componentKey": "jds-slider-v4",
+    "keyHistory": [],
+    "variantProperties": {
+      "Component": "Slider"
+    }
+  },
+  "codeSnippets": [
+    {
+      "id": "import-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { Slider } from '@oneui/ui-native';\n\n<Slider />"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "slider",
+    "form",
+    "input",
+    "slider"
+  ],
+  "importPath": "@oneui/ui-native"
+}

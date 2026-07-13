@@ -1,0 +1,47 @@
+/**
+ * GRID - Per-Breakpoint Column Count + Max-Width
+ *
+ * --Grid-Columns and --Grid-MaxWidth are per-breakpoint (not density-scaled).
+ * Column count is a layout choice, not a spacing scale, so it doesn't shift
+ * with compact/open density.
+ *
+ * --Grid-Margin and --Grid-Gutter live in scale.css (they ARE density-scaled).
+ *
+ * Static resolution via @media (zero-JS first paint). `[data-Breakpoint="S|M|L"]`
+ * lets ScopedPlatform force a subtree.
+ *
+ * Import order: After scale.css, before primitives.css.
+ *
+ * Brand overrides emit via @layer brand through the useBrandCSS engine
+ * (see gridCSS.ts + tokenManifest.ts --Grid- family).
+ */
+
+@layer base {
+
+  /* Fallback — S */
+  :root {
+    --Grid-Columns: 4;
+    --Grid-MaxWidth: none;
+  }
+
+  /* Static @media (zero-JS) */
+  @media (min-width: 620px) and (max-width: 990px) {
+    :root {
+      --Grid-Columns: 8;
+      --Grid-MaxWidth: none;
+    }
+  }
+
+  @media (min-width: 991px) {
+    :root {
+      --Grid-Columns: 12;
+      --Grid-MaxWidth: 1280px;
+    }
+  }
+
+  /* Forced-scope overrides (ScopedPlatform) */
+  [data-Breakpoint="S"] { --Grid-Columns: 4;  --Grid-MaxWidth: none; }
+  [data-Breakpoint="M"] { --Grid-Columns: 8;  --Grid-MaxWidth: none; }
+  [data-Breakpoint="L"] { --Grid-Columns: 12; --Grid-MaxWidth: 1280px; }
+
+}

@@ -1,0 +1,38 @@
+.searchRow {
+  max-width: 480px;
+  margin-bottom: var(--Spacing-3);
+}
+
+.searchRow :global(label) {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.grid {
+  margin-top: var(--Spacing-4);
+}
+
+.imageWrap {
+  position: relative;
+  border-radius: var(--Shape-3);
+  overflow: hidden;
+}
+
+.wishlistAnchor {
+  position: absolute;
+  top: var(--Spacing-2);
+  right: var(--Spacing-2);
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 999px;
+}
+
+.pagination {
+  margin-top: var(--Spacing-5);
+}

@@ -1,0 +1,49 @@
+{
+  "name": "@oneui/qa-native",
+  "version": "0.1.0",
+  "private": true,
+  "main": "index.ts",
+  "scripts": {
+    "dev": "expo start --localhost",
+    "ios": "bash scripts/start-ios.sh",
+    "ios:open": "xcrun simctl openurl booted exp://localhost:${METRO_PORT:-8081}",
+    "android": "bash scripts/start-android.sh",
+    "all": "bash scripts/start-all.sh",
+    "web": "expo start --web",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:native:report": "vitest run --reporter=verbose --reporter=json --outputFile.json=test-results/native-all.json",
+    "visual:gen": "node ../../node_modules/tsx/dist/cli.mjs visual/generate.mts",
+    "visual:capture": "bash visual/capture.sh",
+    "visual:run": "bash visual/capture.sh --upload",
+    "visual:upload": "node ../../node_modules/tsx/dist/cli.mjs visual/upload.mts",
+    "visual": "pnpm run visual:gen && pnpm run visual:run"
+  },
+  "dependencies": {
+    "@jds/core-icons--react-native": "file:./vendor/jds-core-icons--react-native-0.0.5.tgz",
+    "@oneui/shared": "workspace:*",
+    "@oneui/tokens": "workspace:*",
+    "@oneui/ui": "workspace:*",
+    "@oneui/ui-native": "workspace:*",
+    "@react-navigation/native": "^7.0.0",
+    "@react-navigation/native-stack": "^7.0.0",
+    "expo": "~54.0.0",
+    "expo-font": "~14.0.11",
+    "expo-status-bar": "~3.0.9",
+    "react": "19.1.0",
+    "react-native": "0.81.5",
+    "react-native-gesture-handler": "~2.28.0",
+    "react-native-safe-area-context": "~5.6.0",
+    "react-native-screens": "~4.16.0",
+    "react-native-svg": "15.12.1"
+  },
+  "devDependencies": {
+    "@applitools/eyes-images": "4.31.44",
+    "@babel/core": "^7.25.0",
+    "@testing-library/react-native": "^12.9.0",
+    "@types/react": "~19.1.10",
+    "react-test-renderer": "19.1.0",
+    "typescript": "^5.7.2",
+    "vitest": "^2.0.0"
+  }
+}

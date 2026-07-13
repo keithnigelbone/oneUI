@@ -1,0 +1,56 @@
+/**
+ * AdvancedEditor.module.css
+ *
+ * Layout for the Advanced Token Editor.
+ * Fills entire content area edge-to-edge.
+ * Token-only styling (zero literals).
+ */
+
+.editor {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  /* Use fixed height based on viewport minus shell chrome */
+  height: calc(100vh - var(--Component-Height-TopBar) - 1px);
+  /* Override Shell's contentInner constraints */
+  max-width: none !important;
+  align-self: stretch !important;
+  background-color: var(--Surface-Main);
+  border-radius: 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.editorBody {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  min-width: 0;
+  overflow: hidden;
+  position: relative;
+  background-color: var(--Surface-Main);
+}
+
+/* Right toolbar — floating pill, vertically centered on right edge of canvas */
+.rightToolbar {
+  position: absolute;
+  right: var(--Spacing-4);
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-1-5);
+  padding: var(--Spacing-2);
+  background-color: var(--Surface-Main);
+  border-radius: var(--Shape-Pill);
+  outline: var(--Stroke-M) solid var(--Border-Subtle);
+  align-items: center;
+  z-index: 3;
+  box-shadow: var(--Elevation-2);
+}
+
+/* Toolbar icons inherit IconButton's pill default — no override needed.
+   This class is kept for layout/sizing hooks if added later. */
+.toolbarIcon {
+  --IconButton-borderRadius: var(--Shape-Pill);
+}

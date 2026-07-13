@@ -1,0 +1,1540 @@
+/**
+ * playground.module.css
+ *
+ * Composition playground — mirrors the Voice Playground layout and styling
+ * exactly. Same chat pattern, same message bubbles, same validation card.
+ * All values use design tokens. No literals.
+ */
+
+/* ── Layout ─────────────────────────────────────────────────────────────── */
+
+/* ── Split layout ──────────────────────────────────────────────────────── */
+
+/*
+ * Split layout — fills the route's real content pane. The shell already
+ * accounts for left and secondary navigation, so this layer must not add
+ * those offsets again or the chat axis drifts out of centre.
+ */
+.splitLayout {
+  display: grid;
+  --playground-chat-min: calc(var(--Spacing-40) * 2.6);
+  --playground-canvas-min: calc(var(--Spacing-40) * 3);
+  --playground-divider-width: var(--Stroke-M);
+  /*
+   * Default split is proportional: the chat pane keeps a readable minimum,
+   * then shares width with the canvas so the whole workspace breathes with
+   * the available viewport. Manual divider drags pin --playground-chat-width.
+   */
+  grid-template-columns:
+    minmax(var(--playground-chat-min), 36%)
+    var(--playground-divider-width)
+    minmax(var(--playground-canvas-min), 1fr);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  overflow: hidden;
+  background-color: var(--Surface-Main);
+  animation: workspaceReveal var(--Motion-Duration-Expressive-Medium, var(--Motion-Duration-M)) var(--Motion-Easing-Transition, var(--Motion-Easing-Transition-Moderate));
+}
+
+.splitLayout[data-chat-width='pinned'] {
+  grid-template-columns:
+    minmax(var(--playground-chat-min), var(--playground-chat-width))
+    var(--playground-divider-width)
+    minmax(var(--playground-canvas-min), 1fr);
+}
+
+.splitLayout[data-resizing='true'] {
+  cursor: col-resize;
+  user-select: none;
+}
+
+.splitLayout .canvasPanel {
+  animation: canvasPanelEnter var(--Motion-Duration-Expressive-Medium, var(--Motion-Duration-M)) var(--Motion-Easing-Transition, var(--Motion-Easing-Transition-Moderate));
+}
+
+.splitLayout .chatHalf {
+  animation: chatRailSettle var(--Motion-Duration-Expressive-Medium, var(--Motion-Duration-M)) var(--Motion-Easing-Transition, var(--Motion-Easing-Transition-Moderate));
+}
+
+.chatFirstLayout {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  padding: var(--Spacing-7) var(--Spacing-Margin);
+  background-color: var(--Surface-Main);
+}
+
+.chat {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 80px);
+  overflow: hidden;
+}
+
+.chatHalf {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  height: 100%;
+  overflow: hidden;
+  padding-inline: var(--Spacing-3-5);
+}
+
+/*
+ * ChatSurface fills the chatHalf column-width while its inner
+ * .conversation/.empty caps the readable column at 560px and centers
+ * via auto margins. Constraining the chatHalf to align-items: center
+ * on the cross-axis keeps the chat content visually centered inside
+ * the panel even when ChatSurface itself stretches.
+ */
+.chatHalf > * {
+  width: 100%;
+  max-width: calc(var(--Spacing-40) * 5);
+}
+
+.chatSurfaceSplit {
+  min-height: 100%;
+  padding-block: var(--Spacing-4);
+  padding-inline: var(--Spacing-3-5);
+}
+
+.splitDivider {
+  width: var(--playground-divider-width);
+  min-width: var(--playground-divider-width);
+  height: 100%;
+  padding: 0;
+  border: none;
+  background: var(--Border-Subtle);
+  cursor: col-resize;
+  transition:
+    background-color var(--Motion-Duration-Discreet-Short),
+    box-shadow var(--Motion-Duration-Discreet-Short);
+}
+
+.splitDivider:hover,
+.splitDivider:focus-visible {
+  outline: none;
+  background: var(--Primary-TintedA11y);
+  box-shadow:
+    calc(-1 * var(--Stroke-M)) 0 0 var(--Primary-Subtle),
+    var(--Stroke-M) 0 0 var(--Primary-Subtle);
+}
+
+/* Match the chat content column (ChatSurface .conversation/.empty caps at
+   720px) so the chat half itself sits on the same centered axis as the
+   messages, composer, and prompt-settings bar. Without this the half
+   stretches edge-to-edge and the bubbles read as offset to the right
+   even though they're technically centered within the wider area. */
+.chatFirstLayout .chatHalf {
+  width: 100%;
+  max-width: calc(var(--Spacing-40) * 5);
+  margin-inline: auto;
+  border-right: none;
+}
+
+@keyframes workspaceReveal {
+  from {
+    background-color: var(--Surface-Main);
+  }
+  to {
+    background-color: var(--Surface-Main);
+  }
+}
+
+@keyframes canvasPanelEnter {
+  from {
+    opacity: 0;
+    transform: translateX(var(--Spacing-18));
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes chatRailSettle {
+  from {
+    border-right-color: transparent;
+  }
+  to {
+    border-right-color: var(--Border-Subtle);
+  }
+}
+
+/* ── Canvas panel (right side in split view) ──────────────────────────── */
+
+.canvasPanel {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.canvasHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--Spacing-3-5) var(--Spacing-4);
+  border-bottom: var(--Stroke-M) solid var(--Border-Subtle);
+  flex-shrink: 0;
+}
+
+.canvasTitle {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-3-5);
+  margin: 0;
+  color: var(--Primary-High);
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Title-M-FontSize);
+  line-height: var(--Title-M-LineHeight);
+  font-weight: var(--Title-M-FontWeight);
+}
+
+.canvasBody {
+  flex: 1;
+  overflow: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--Spacing-4-5);
+  background-color: var(--Neutral-Minimal, var(--Surface-Subtle));
+}
+
+.canvasDevice {
+  background-color: var(--Surface-Main);
+  border-radius: var(--Shape-4-5);
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+  box-shadow: var(--Elevation-2);
+  overflow: hidden;
+}
+
+/* Mobile — phone proportions, fixed height centered in canvas */
+.canvasDevice[data-context="mobile-app"] {
+  width: 390px;
+  height: 844px;
+  max-height: calc(100vh - 180px);
+  overflow-y: auto;
+}
+
+/* Web / Marketing — wide */
+.canvasDevice[data-context="web-app"],
+.canvasDevice[data-context="marketing-page"] {
+  width: 100%;
+  max-width: 800px;
+  min-height: 480px;
+}
+
+/* Social — square */
+.canvasDevice[data-context="social-post"] {
+  width: 400px;
+  height: 400px;
+}
+
+/* Print — A4 */
+.canvasDevice[data-context="print"] {
+  width: 400px;
+  min-height: 565px;
+}
+
+/* Outdoor — billboard */
+.canvasDevice[data-context="outdoor"] {
+  width: 100%;
+  max-width: 700px;
+  height: 350px;
+}
+
+/* ── Compact AST card (shown in chat when split view is active) ──────── */
+
+.astCompact {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-3-5);
+  padding: var(--Spacing-3) var(--Spacing-4);
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+  border-radius: var(--Shape-4);
+  background-color: var(--Surface-Main);
+}
+
+/* ── Clear button row ──────────────────────────────────────────────────── */
+
+.clearRow {
+  display: flex;
+  justify-content: flex-end;
+  flex-shrink: 0;
+}
+
+/* ── Messages container ─────────────────────────────────────────────────── */
+
+.messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--Spacing-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-4);
+}
+
+/* ── Message row ────────────────────────────────────────────────────────── */
+
+.row {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--Spacing-3);
+  max-width: 85%;
+}
+
+.rowUser {
+  align-self: flex-end;
+  flex-direction: row-reverse;
+}
+
+.rowAi {
+  align-self: flex-start;
+}
+
+/* ── Avatars ────────────────────────────────────────────────────────────── */
+
+.avatarAi {
+  flex-shrink: 0;
+  height: var(--Body-M-LineHeight);
+  display: flex;
+  align-items: center;
+}
+
+/* ── Bubbles (matching voice playground exactly) ──────────────────────── */
+
+.bubbleUser {
+  background: var(--Primary-Bold, var(--Surface-Bold));
+  color: var(--Primary-Bold-High, var(--Text-OnBold-High));
+  padding: var(--Spacing-3) var(--Spacing-4);
+  border-radius: var(--Shape-4);
+  border-bottom-right-radius: var(--Shape-2);
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Body-M-FontSize);
+  font-weight: var(--Body-FontWeight-Low, 400);
+  line-height: var(--Body-M-LineHeight);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.bubbleAi {
+  background: transparent;
+  color: var(--Primary-High, var(--Text-High));
+  padding: 0;
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Body-M-FontSize);
+  font-weight: var(--Body-FontWeight-Low, 400);
+  line-height: var(--Body-M-LineHeight);
+  white-space: pre-wrap;
+  word-break: break-word;
+  max-width: 100%;
+}
+
+.bubbleError {
+  color: var(--Negative-TintedA11y);
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Body-M-FontSize);
+  line-height: var(--Body-M-LineHeight);
+}
+
+/* ── AST result inside assistant bubble ────────────────────────────────── */
+
+.astResult {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-3-5);
+  width: 100%;
+}
+
+.astResultHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--Spacing-4);
+}
+
+.astActions {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-3);
+}
+
+.viewToggle {
+  display: flex;
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+  border-radius: var(--Shape-Pill);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.feedbackGroup {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--Spacing-2);
+  flex-shrink: 0;
+}
+
+.viewToggleBtn {
+  background: transparent;
+  border: none;
+  padding: var(--Spacing-1) var(--Spacing-3-5);
+  font-family: var(--Label-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+  color: var(--Text-Medium);
+  cursor: pointer;
+  transition: background-color var(--Motion-Duration-Discreet-Short),
+              color var(--Motion-Duration-Discreet-Short);
+}
+
+.viewToggleBtn:hover {
+  background-color: var(--Surface-Subtle);
+}
+
+.viewToggleBtn[data-active="true"] {
+  background-color: var(--Primary-Bold);
+  color: var(--Primary-Bold-High);
+}
+
+/* ── Device frame — simulates target platform ─────────────────────────── */
+
+.deviceFrame {
+  display: flex;
+  justify-content: center;
+  padding: var(--Spacing-4);
+  background-color: var(--Neutral-Minimal, var(--Surface-Subtle));
+  border-radius: var(--Shape-4-5);
+  overflow: hidden;
+}
+
+.deviceScreen {
+  background-color: var(--Surface-Main);
+  border-radius: var(--Shape-4-5);
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+  box-shadow: var(--Elevation-2);
+  overflow: hidden;
+  transform-origin: top center;
+}
+
+/* Mobile (default) — phone-like proportions, scaled to fit */
+.deviceFrame[data-context="mobile-app"] .deviceScreen {
+  width: 390px;
+  height: 844px;
+  transform: scale(0.55);
+  margin-bottom: -380px;
+}
+
+/* Web — wider responsive view */
+.deviceFrame[data-context="web-app"] .deviceScreen {
+  width: 100%;
+  max-width: 720px;
+  height: 480px;
+}
+
+/* Marketing — wide, scroll-friendly */
+.deviceFrame[data-context="marketing-page"] .deviceScreen {
+  width: 100%;
+  max-width: 720px;
+  height: 480px;
+}
+
+/* Social — square */
+.deviceFrame[data-context="social-post"] .deviceScreen {
+  width: 360px;
+  height: 360px;
+}
+
+/* Print — A4-like proportions */
+.deviceFrame[data-context="print"] .deviceScreen {
+  width: 360px;
+  height: 509px;
+}
+
+/* Outdoor — wide billboard proportions */
+.deviceFrame[data-context="outdoor"] .deviceScreen {
+  width: 100%;
+  max-width: 640px;
+  height: 320px;
+}
+
+.astName {
+  font-family: var(--Title-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Title-S-FontSize);
+  line-height: var(--Title-S-LineHeight);
+  font-weight: var(--Title-S-FontWeight);
+  color: var(--Text-High);
+}
+
+.astMeta {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-3-5);
+  font-family: var(--Label-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  color: var(--Text-Medium);
+}
+
+.astCode {
+  font-family: var(--Typography-Font-Code, monospace);
+  font-size: var(--Code-S-FontSize, var(--Body-S-FontSize));
+  line-height: var(--Code-S-LineHeight, var(--Body-S-LineHeight));
+  color: var(--Text-High);
+  background-color: var(--Neutral-Minimal, var(--Surface-Subtle));
+  border-radius: var(--Shape-4);
+  padding: var(--Spacing-3-5) var(--Spacing-4);
+  overflow-x: auto;
+  max-height: 400px;
+  white-space: pre;
+  margin: 0;
+}
+
+/* IDE-style code surface — dark, full-bleed inside the stage.
+   Tokens are colored via child spans emitted by JsonHighlighter. */
+.codeIde {
+  flex: 1;
+  width: 100%;
+  margin: 0;
+  padding: var(--Spacing-4-5) var(--Spacing-5);
+  overflow: auto;
+  background: var(--Neutral-Bold);
+  color: var(--Neutral-Bold-High);
+  font-family: var(--Typography-Font-Code, 'JetBrains Mono', 'Fira Code', monospace);
+  font-size: var(--Code-M-FontSize, 13px);
+  line-height: var(--Code-M-LineHeight, 1.6);
+  white-space: pre;
+  tab-size: 2;
+}
+
+.codeIde .tokKey     { color: var(--Informative-Bold-TintedA11y); }
+.codeIde .tokString  { color: var(--Positive-Bold-TintedA11y); }
+.codeIde .tokNumber  { color: var(--Warning-Bold-TintedA11y); }
+.codeIde .tokBoolean { color: var(--Sparkle-Bold-TintedA11y); }
+.codeIde .tokNull    { color: var(--Negative-Bold-TintedA11y); }
+.codeIde .tokPunct   { color: var(--Neutral-Bold-Medium); }
+
+/* TSX-mode tokens — colour scheme matches the Tokyo Night palette used
+   above so the JSON view and the TSX view feel like one IDE. */
+.codeIde .tokComment { color: var(--Neutral-Bold-Medium); font-style: italic; }
+.codeIde .tokKeyword { color: var(--Sparkle-Bold-TintedA11y); }
+.codeIde .tokTag     { color: var(--Negative-Bold-TintedA11y); }
+.codeIde .tokAttr    { color: var(--Informative-Bold-TintedA11y); }
+
+/* Fade-in animation */
+.rowAnimated {
+  animation: messageIn var(--Motion-Duration-Discreet-Medium, 150ms) ease-out;
+}
+
+@keyframes messageIn {
+  from {
+    opacity: 0;
+    transform: translateY(var(--Spacing-3));
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Loading dots (matching voice playground exactly) ─────────────────── */
+
+.dots {
+  display: flex;
+  gap: var(--Spacing-1);
+  padding: var(--Spacing-3) 0;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--Shape-Pill);
+  background: var(--Primary-Low, var(--Text-Low));
+  animation: dotPulse 1.4s infinite;
+}
+
+.dot:nth-child(2) { animation-delay: 0.2s; }
+.dot:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes dotPulse {
+  0%, 80%, 100% { opacity: 0.3; transform: scale(0.8); }
+  40% { opacity: 1; transform: scale(1); }
+}
+
+/* ── Validation card (mirrors voice tone guard card exactly) ──────────── */
+
+.guardCard {
+  align-self: flex-start;
+  max-width: 85%;
+  margin-left: 32px;
+  padding: var(--Spacing-3-5) var(--Spacing-4);
+  background-color: transparent;
+  border: var(--Stroke-M) solid var(--Neutral-Stroke-Low, var(--Border-Subtle));
+  border-radius: var(--Shape-4);
+}
+
+.guardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: var(--Spacing-3);
+  margin-bottom: var(--Spacing-3);
+  border-bottom: var(--Stroke-M) solid var(--Neutral-Stroke-Low, var(--Border-Subtle));
+}
+
+.guardLabel {
+  font-family: var(--Label-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+  color: var(--Primary-Medium-Text, var(--Text-Medium));
+}
+
+.guardChecks {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-1-5);
+}
+
+.guardRow {
+  display: flex;
+  align-items: baseline;
+  gap: var(--Spacing-2);
+  font-family: var(--Label-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+}
+
+.guardPass {
+  color: var(--Positive-TintedA11y);
+  font-weight: var(--Label-FontWeight-Medium);
+  width: 14px;
+  flex-shrink: 0;
+}
+
+.guardFail {
+  color: var(--Negative-TintedA11y);
+  font-weight: var(--Label-FontWeight-Medium);
+  width: 14px;
+  flex-shrink: 0;
+}
+
+.guardWarn {
+  color: var(--Warning-TintedA11y);
+  font-weight: var(--Label-FontWeight-Medium);
+  width: 14px;
+  flex-shrink: 0;
+}
+
+.guardName {
+  color: var(--Primary-Medium-Text, var(--Text-Medium));
+}
+
+.guardDetail {
+  color: var(--Primary-Low, var(--Text-Low));
+}
+
+/* ── Feedback row (inside validation card) ─────────────────────────────── */
+
+.feedbackRow {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-3);
+  margin-top: var(--Spacing-3);
+  padding-top: var(--Spacing-3);
+  border-top: var(--Stroke-M) solid var(--Neutral-Stroke-Low, var(--Border-Subtle));
+}
+
+.feedbackLabel {
+  font-family: var(--Label-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  color: var(--Text-Low);
+}
+
+/* ── Empty state ────────────────────────────────────────────────────────── */
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin: auto 0;
+  padding: var(--Spacing-7) var(--Spacing-4-5);
+}
+
+.emptyTitle {
+  font-family: var(--Headline-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Headline-L-FontSize);
+  line-height: var(--Headline-L-LineHeight);
+  font-weight: var(--Headline-L-FontWeight);
+  color: var(--Primary-High, var(--Text-High));
+  margin: 0 0 var(--Spacing-2-5) 0;
+}
+
+.emptyBody {
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Body-M-FontSize);
+  line-height: var(--Body-M-LineHeight);
+  font-weight: var(--Body-FontWeight-Low);
+  color: var(--Primary-Medium-Text, var(--Text-Medium));
+  max-width: 420px;
+  margin: 0 0 var(--Spacing-5) 0;
+}
+
+.pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--Spacing-2);
+  justify-content: center;
+  max-width: 640px;
+}
+
+/* pill class is applied via className prop on Button components */
+
+/* ── Context select (compact, inside ChatComposer action bar) ─────────── */
+
+.contextSelect {
+  background: transparent;
+  border: none;
+  font-family: var(--Label-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+  color: var(--Text-Medium);
+  cursor: pointer;
+  padding: var(--Spacing-1) var(--Spacing-2);
+  border-radius: var(--Shape-2);
+  outline: none;
+}
+
+.contextSelect:hover {
+  color: var(--Text-High);
+  background-color: var(--Surface-Subtle);
+}
+
+.contextSelect:focus {
+  color: var(--Text-High);
+}
+
+/* ── Chat-first playground chrome ─────────────────────────────────────── */
+
+.greeting {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: calc(var(--Spacing-40) * 8);
+  text-align: center;
+}
+
+.splitLayout .greeting {
+  max-width: 100%;
+  padding-inline: var(--Spacing-4);
+}
+
+.greetingIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--Spacing-3-5);
+  color: var(--Primary-TintedA11y);
+}
+
+.greetingIcon svg {
+  width: var(--Spacing-7);
+  height: var(--Spacing-7);
+}
+
+.greetingTitle {
+  margin: 0;
+  color: var(--Primary-High);
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Headline-M-FontSize);
+  line-height: var(--Headline-M-LineHeight);
+  font-weight: var(--Headline-M-FontWeight);
+}
+
+.greetingBody {
+  margin: var(--Spacing-2) 0 0;
+  color: var(--Primary-Medium-Text);
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  font-weight: var(--Body-FontWeight-Low);
+  max-width: calc(var(--Spacing-40) * 3);
+}
+
+.greetingSuggestions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--Spacing-3);
+  margin-top: var(--Spacing-4);
+}
+
+.composerSettingsStack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-3);
+  width: 100%;
+  padding-top: var(--Spacing-2);
+  padding-bottom: var(--Spacing-3-5);
+}
+
+.promptSettingsBar {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  justify-content: start;
+  gap: var(--Spacing-3);
+  width: 100%;
+  padding: 0;
+  color: var(--Primary-Medium-Text);
+}
+
+/*
+ * One row, no wrap — the selects flex-share whatever width the composer
+ * column gives us so the bar always fits below the input even at the
+ * narrow chat panel width in split-layout mode.
+ */
+.promptSettingsMain {
+  display: grid;
+  grid-template-columns: max-content max-content;
+  align-items: center;
+  gap: var(--Spacing-5);
+  min-width: 0;
+}
+
+/*
+ * Selects: flex-share the row equally, but cap the maximum width so a
+ * very wide composer doesn't stretch a 1-word dropdown into a banner.
+ * `.promptSelect` is forwarded to the Select trigger via the `className`
+ * prop so the rule applies directly to the trigger button.
+ */
+.promptSelect {
+  width: auto;
+  min-width: 0;
+  max-width: calc(var(--Spacing-40) * 0.86);
+  --Select-borderWidth: 0;
+  --Select-backgroundColor: transparent;
+  --Select-hoverBackgroundColor: var(--Primary-Subtle);
+  --Select-textColor: var(--Primary-Medium-Text);
+  --Select-hoverTextColor: var(--Primary-High);
+  --Select-borderRadius: var(--Shape-2);
+  --Select-justifyContent: flex-start;
+  --Select-triggerGap: var(--Spacing-2-5);
+  --Select-valueFlex: 0 1 auto;
+  --Select-valueGap: var(--Spacing-2);
+}
+
+.promptSettingsActions {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-3);
+  flex-wrap: wrap;
+  min-width: 0;
+  flex: 0 1 auto;
+  justify-content: flex-end;
+}
+
+.promptSettingsActions > label {
+  flex: 0 0 auto;
+}
+
+@media (max-width: 48rem) {
+  .promptSettingsBar {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .promptSettingsActions {
+    justify-content: flex-start;
+  }
+}
+
+.composerTrailing {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-2);
+}
+
+.promptError {
+  width: 100%;
+  color: var(--Negative-TintedA11y);
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+}
+
+.gateErrorCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-3);
+  padding: var(--Spacing-4);
+  border-radius: var(--Shape-4);
+  background: var(--Negative-Subtle);
+  color: var(--Negative-High);
+  font-family: var(--Typography-Font-Primary);
+  white-space: normal;
+}
+
+.gateErrorHeader {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--Spacing-3);
+}
+
+.gateErrorCopy {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-1);
+  min-width: 0;
+}
+
+.gateErrorCopy strong {
+  color: var(--Negative-High);
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Label-S-FontSize);
+  line-height: var(--Label-S-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+}
+
+.gateErrorCopy span,
+.gateErrorList {
+  color: var(--Negative-Medium-Text);
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  font-weight: var(--Body-FontWeight-Low);
+}
+
+.gateErrorList {
+  margin: 0;
+  padding-inline-start: var(--Spacing-4);
+}
+
+.gateErrorActions {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.gateErrorDetails {
+  margin: 0;
+  max-height: calc(var(--Spacing-40) * 2);
+  overflow: auto;
+  padding: var(--Spacing-3);
+  border-radius: var(--Shape-3);
+  background: var(--Surface-Default);
+  color: var(--Primary-High);
+  font-family: var(--Typography-Font-Code);
+  font-size: var(--Code-S-FontSize);
+  line-height: var(--Code-S-LineHeight);
+  font-weight: var(--Code-FontWeight-Low);
+  white-space: pre-wrap;
+}
+
+/* ── Input area (matching voice playground exactly) ───────────────────── */
+
+.inputArea {
+  padding: var(--Spacing-3-5) var(--Spacing-4) var(--Spacing-4);
+  flex-shrink: 0;
+}
+
+/* ── Guard state (no brand) ────────────────────────────────────────────── */
+
+.guardState {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - 120px);
+}
+
+.guardText {
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Body-M-FontSize);
+  line-height: var(--Body-M-LineHeight);
+  color: var(--Text-Medium);
+}
+
+/* ── Playground v2 — artifact-first canvas panel ───────────────────────── */
+
+.canvasHeaderLeft {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-3-5);
+  min-width: 0;
+}
+
+.canvasHeaderRight {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-3-5);
+  flex-shrink: 0;
+}
+
+.devicePicker {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--Spacing-3);
+}
+
+.devicePickerCustom {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--Spacing-2);
+}
+
+.devicePickerInput {
+  width: var(--Spacing-14);
+}
+
+.devicePickerUnit {
+  color: var(--Text-Low);
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+}
+
+.canvasInlineError {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--Spacing-3-5);
+  padding: var(--Spacing-3) var(--Spacing-4);
+  border-bottom: var(--Stroke-M) solid var(--Negative-Stroke-Low);
+  background-color: var(--Negative-Subtle);
+  color: var(--Negative-TintedA11y);
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+}
+
+.versionSelector {
+  display: inline-flex;
+}
+
+.versionSelect {
+  min-width: var(--Spacing-14);
+}
+
+.actionMenuWrap {
+  position: relative;
+}
+
+.actionMenu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: var(--Spacing-1-5);
+  background: var(--Surface-Main);
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+  border-radius: var(--Shape-3-5);
+  box-shadow: var(--Elevation-3);
+  min-width: 180px;
+  z-index: 10;
+  overflow: hidden;
+}
+
+.actionMenuItem {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: none;
+  padding: var(--Spacing-3) var(--Spacing-3-5);
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  color: var(--Text-High);
+  cursor: pointer;
+}
+
+.actionMenuItem:hover {
+  background: var(--Surface-Subtle);
+}
+
+.actionMenuItem:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/*
+ * Stage — the centred canvas area that holds the rendered composition.
+ * A neutral backdrop (subtle) keeps focus on the artifact. The device frame
+ * centres and floats with a soft shadow, mirroring Figma-style canvases.
+ */
+.canvasStage {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: var(--Spacing-5);
+  /*
+   * Tool chrome — intentionally neutral, brand-independent. `--Surface-Subtle`
+   * remaps to a brand-tinted surface per foundation; the stage wrapper around
+   * a composition must stay out of that cascade so the composition itself is
+   * the only place colour lives. Using Neutral-Minimal (an always-neutral
+   * grey) and falling back to a plain hex for pre-brand-CSS render.
+   */
+  background: var(--Neutral-Minimal);
+}
+
+.canvasStage:has(.canvasDeviceFrame[data-resizing='true']) {
+  cursor: nwse-resize;
+  user-select: none;
+}
+
+/* Code view fills the stage edge-to-edge on a dark IDE surface. */
+.canvasStage[data-view="code"] {
+  align-items: stretch;
+  padding: 0;
+  background: var(--Neutral-Bold);
+}
+
+.codeViewWrap {
+  position: relative;
+  flex: 1;
+  width: 100%;
+  min-height: 0;
+}
+
+.codeToolbar {
+  position: absolute;
+  top: var(--Spacing-3);
+  right: var(--Spacing-4);
+  z-index: 5;
+  display: inline-flex;
+  gap: var(--Spacing-2);
+}
+
+.canvasDeviceFrame {
+  position: relative;
+  background: var(--Surface-Main);
+  border-radius: var(--Shape-4-5);
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+  box-shadow: var(--Elevation-2);
+  overflow: hidden;
+  max-width: 100%;
+  min-height: calc(var(--Spacing-40) * 3.5);
+}
+
+.deviceResizeHandle {
+  position: absolute;
+  right: var(--Spacing-2-5);
+  bottom: var(--Spacing-2-5);
+  width: var(--Spacing-4-5);
+  height: var(--Spacing-4-5);
+  padding: 0;
+  border: var(--Stroke-M) solid var(--Surface-Halo-Gap, var(--Surface-Main));
+  border-radius: var(--Shape-Pill);
+  background: var(--Primary-TintedA11y);
+  color: var(--Primary-Bold-High);
+  cursor: nwse-resize;
+  z-index: 12;
+  box-shadow: var(--Elevation-2);
+}
+
+.deviceResizeHandle::before {
+  content: '';
+  position: absolute;
+  inset: var(--Spacing-1);
+  border-right: var(--Stroke-S) solid currentColor;
+  border-bottom: var(--Stroke-S) solid currentColor;
+}
+
+.deviceResizeHandle:hover,
+.deviceResizeHandle:focus-visible {
+  outline: none;
+  background: var(--Primary-Bold);
+}
+
+/*
+ * Click-to-select outline. The CanvasPanel click handler walks up to the
+ * nearest `[data-ast-node-id]` and paints `data-oneui-selected="true"` on
+ * the matching DOM element. The outline uses `outline` (not `border`) so
+ * it doesn't shift layout and overlays the component's existing borders.
+ *
+ * `outline-offset: 2px` keeps the marker outside the component so tinted
+ * surfaces and rounded corners stay crisp underneath.
+ */
+.canvasDeviceFrame [data-oneui-selected="true"] {
+  outline: var(--Stroke-M) solid var(--Informative-Tinted);
+  outline-offset: 2px;
+  border-radius: inherit;
+  position: relative;
+  z-index: 1;
+}
+
+.sandpackFrame {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.sandpackPreview {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.sandpackStatus {
+  padding: var(--Spacing-4);
+  color: var(--Text-Medium);
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+}
+
+.sandpackStatusError {
+  color: var(--Negative-TintedA11y);
+}
+
+.sandpackThemeToggle {
+  position: absolute;
+  top: var(--Spacing-3-5);
+  right: var(--Spacing-3-5);
+  z-index: 10;
+}
+
+.selfHealBadge {
+  position: absolute;
+  top: var(--Spacing-3-5);
+  left: var(--Spacing-3-5);
+  z-index: 10;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--Spacing-3);
+}
+
+.selfHealRepairing {
+  padding: var(--Spacing-2) var(--Spacing-3);
+  border-radius: var(--Shape-Pill);
+  background: var(--Warning-Subtle);
+  color: var(--Warning-TintedA11y);
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+}
+
+.selfHealFailed {
+  box-shadow: var(--Elevation-1);
+}
+
+.selfHealDot {
+  width: var(--Spacing-1-5);
+  height: var(--Spacing-1-5);
+  border-radius: var(--Shape-Pill);
+  background: currentColor;
+  display: inline-block;
+}
+
+.pinnedCodeElement {
+  position: absolute;
+  bottom: var(--Spacing-3-5);
+  left: var(--Spacing-3-5);
+  z-index: 11;
+}
+
+.pinnedCodeMeta {
+  color: var(--Primary-Low);
+}
+
+.canvasFooter {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-3-5);
+  padding: var(--Spacing-3) var(--Spacing-4);
+  border-top: var(--Stroke-M) solid var(--Border-Subtle);
+  overflow-x: auto;
+  flex-shrink: 0;
+}
+
+.canvasFooterLabel {
+  font-family: var(--Label-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Label-XS-FontSize);
+  color: var(--Text-Low);
+  flex-shrink: 0;
+}
+
+.canvasFooterChips {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-3);
+}
+
+/*
+ * Retrieval trace drawer — appears at the very bottom of the canvas panel.
+ * Closed state is a single-line header so it doesn't compete with the
+ * References footer visually. Open state shrinks to max 40vh and scrolls
+ * so a long trace can't push the canvas off-screen.
+ */
+
+.retrievalTrace {
+  display: flex;
+  flex-direction: column;
+  border-top: var(--Stroke-M) solid var(--Border-Subtle);
+  flex-shrink: 0;
+  max-height: 40vh;
+  overflow: auto;
+}
+
+/* Wrap for the on-demand critique panel — same containment rules as the
+   retrieval-trace drawer so it cannot push the canvas off-screen. */
+.critiqueWrap {
+  display: flex;
+  flex-direction: column;
+  padding: var(--Spacing-4);
+  border-top: var(--Stroke-M) solid var(--Border-Subtle);
+  flex-shrink: 0;
+  max-height: 50vh;
+  overflow: auto;
+}
+
+/* Takeover slot — fills the canvas stage when exploration mode is active.
+   Padded so the inner FoundationCard breathes from the stage edges. */
+.stageTakeover {
+  width: 100%;
+  height: 100%;
+  padding: var(--Spacing-4);
+  overflow: auto;
+}
+
+/* Phased generation — skeleton phase emits raw <div data-slot-placeholder>
+   elements as wireframe boxes. The selectors below render them as dashed
+   gray frames with the slot label centred. Scoped to the canvas frame so
+   they never leak into other parts of the studio.
+
+   `:global` is intentional — the renderer inserts these data-attribute
+   elements without our CSS module class hashing. */
+.canvasDeviceFrame :global([data-slot-placeholder='true']) {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--Spacing-24);
+  padding: var(--Spacing-4);
+  background-color: var(--Neutral-Minimal);
+  border: var(--Stroke-S) dashed var(--Neutral-Stroke-Medium);
+  border-radius: var(--Shape-2);
+  color: var(--Text-Medium);
+  font-family: var(--Label-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Label-S-FontSize);
+  font-weight: var(--Label-FontWeight-Medium);
+  line-height: var(--Label-S-LineHeight);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.canvasDeviceFrame :global([data-slot-placeholder='true'])::before {
+  content: attr(data-slot-label);
+  display: block;
+}
+
+.canvasDeviceFrame :global([data-slot-placeholder='true'][data-slot-hint])::after {
+  content: attr(data-slot-hint);
+  display: block;
+  margin-top: var(--Spacing-2);
+  font-size: var(--Body-S-FontSize);
+  font-weight: var(--Body-FontWeight-Low);
+  line-height: var(--Body-S-LineHeight);
+  color: var(--Text-Low);
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.retrievalTraceToggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--Spacing-3);
+  padding: var(--Spacing-3) var(--Spacing-4);
+  background: transparent;
+  border: none;
+  color: var(--Text-Medium);
+  font-family: var(--Label-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Label-S-FontSize);
+  line-height: var(--Label-S-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+  cursor: pointer;
+  text-align: left;
+}
+
+.retrievalTraceToggle:hover {
+  color: var(--Text-High);
+  background: var(--Surface-Fill-Minimal, var(--Primary-Subtle));
+}
+
+/* Empty state — quiet neutral slate. The chat-side greeting handles
+   suggestions; the canvas only confirms there's nothing to render yet. */
+
+.emptyState {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--Spacing-7) var(--Spacing-4-5);
+  margin: auto;
+}
+
+.emptyStateLine {
+  margin: 0;
+  color: var(--Text-Medium);
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Body-M-FontSize);
+  line-height: var(--Body-M-LineHeight);
+  font-weight: var(--Body-FontWeight-Low);
+  text-align: center;
+}
+
+/* Revise pill that appears next to the composer once an AST exists. */
+
+.revisePill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--Spacing-1-5);
+  padding: var(--Spacing-1) var(--Spacing-3);
+  background: var(--Primary-Subtle);
+  color: var(--Primary-High);
+  border: var(--Stroke-S) solid var(--Primary-Stroke-Low);
+  border-radius: var(--Shape-Pill);
+  font-family: var(--Label-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Label-XS-FontSize);
+  cursor: pointer;
+}
+
+.revisePill[data-active="true"] {
+  background: var(--Primary-Bold);
+  color: var(--Primary-Bold-High);
+  border-color: transparent;
+}
+
+/* Mode segmented control: [Single | Explore | Phased] in the composer. */
+
+.modeSwitch {
+  display: inline-flex;
+  align-items: stretch;
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+  border-radius: var(--Shape-Pill);
+  overflow: hidden;
+  flex-shrink: 0;
+  background-color: var(--Surface-Main);
+}
+
+.modeSwitchBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--Spacing-1-5);
+  background: transparent;
+  border: none;
+  padding: var(--Spacing-1) var(--Spacing-3-5);
+  font-family: var(--Label-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+  color: var(--Text-Medium);
+  cursor: pointer;
+  transition: background-color var(--Motion-Duration-Discreet-Short),
+              color var(--Motion-Duration-Discreet-Short);
+}
+
+.modeSwitchBtn:hover:not(:disabled) {
+  background-color: var(--Surface-Subtle);
+  color: var(--Text-High);
+}
+
+.modeSwitchBtn[data-active="true"] {
+  background-color: var(--Primary-Bold);
+  color: var(--Primary-Bold-High);
+}
+
+.modeSwitchBtn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* Phase progress strip — visible only when Phased mode is active. Renders
+   below the composer leading row so the user always knows which phase the
+   next "Run" press will execute. */
+
+.phaseProgress {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-3);
+  margin-top: var(--Spacing-2);
+  padding: var(--Spacing-2) var(--Spacing-3-5);
+  background-color: var(--Primary-Subtle);
+  border-radius: var(--Shape-Pill);
+  flex-wrap: wrap;
+}
+
+.phaseProgressItem {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--Spacing-2);
+}
+
+.phaseStep {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--Spacing-1-5);
+  font-family: var(--Label-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+  color: var(--Text-Low);
+}
+
+.phaseStep[data-state="done"] {
+  color: var(--Positive-TintedA11y);
+}
+
+.phaseStep[data-state="active"] {
+  color: var(--Primary-Bold-High);
+}
+
+.phaseStepDot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: currentColor;
+  opacity: 0.4;
+}
+
+.phaseStep[data-state="done"] .phaseStepDot,
+.phaseStep[data-state="active"] .phaseStepDot {
+  opacity: 1;
+}
+
+.phaseSeparator {
+  color: var(--Text-Low);
+  opacity: 0.5;
+}
+
+/* Canvas-header view-mode select — slightly tighter than the chat selects. */
+
+.viewModeSelect {
+  width: auto;
+  min-width: calc(var(--Spacing-40) * 0.75);
+}
+
+.devicePickerSelect {
+  width: auto;
+  min-width: calc(var(--Spacing-40) * 0.75);
+}

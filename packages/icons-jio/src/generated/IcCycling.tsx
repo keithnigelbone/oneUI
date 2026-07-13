@@ -1,0 +1,34 @@
+import React, { forwardRef } from 'react';
+import type { IconComponentProps } from '../iconProps';
+
+export const IcCycling = forwardRef<SVGSVGElement, IconComponentProps>(function IcCycling(
+  { size = 24, width, height, color = 'currentColor', className, style, ...props },
+  ref,
+) {
+  const dim = width ?? height ?? size;
+  return (
+    <svg
+      ref={ref}
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      width={width ?? dim}
+      height={height ?? dim}
+      color={color}
+      className={className}
+      style={style}
+      {...props}
+    >
+      <path
+            fill="currentColor"
+            d="M15.01 10.94c.38.57 1.01.9 1.69.9h1.51c.55 0 1-.45 1-1s-.45-1-1-1h-1.53l-1.25-1.89a2.02 2.02 0 0 0-2.59-.69L8.98 9.19c-.63.32-1.05.92-1.11 1.63s.24 1.38.8 1.8l2.38 1.79V18c0 .55.45 1 1 1s1-.45 1-1v-3.59c0-.63-.3-1.24-.81-1.62l-2.36-1.82 3.89-1.92 1.25 1.87zM17.69 7.71a1.54 1.54 0 1 0-.001-3.081 1.54 1.54 0 0 0 .001 3.08M5.74 12.89C3.68 12.89 2 14.57 2 16.63s1.68 3.74 3.74 3.74 3.74-1.68 3.74-3.74-1.68-3.74-3.74-3.74m0 5.48a1.741 1.741 0 0 1 0-3.48 1.741 1.741 0 0 1 0 3.48"
+          />
+          <path
+            fill="currentColor"
+            d="M18.26 12.89c-2.06 0-3.74 1.68-3.74 3.74s1.68 3.74 3.74 3.74S22 18.69 22 16.63s-1.68-3.74-3.74-3.74m0 5.48a1.741 1.741 0 0 1 0-3.48 1.741 1.741 0 0 1 0 3.48"
+          />
+    </svg>
+  );
+});
+
+IcCycling.displayName = 'IcCycling';

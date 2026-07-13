@@ -1,0 +1,234 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Icon",
+  "generatedAt": "2026-01-01T00:00:00.000Z",
+  "machineReadable": true,
+  "intentAndPurpose": {
+    "intent": "Render a semantic or custom icon with configurable size, colour role, and emphasis level.",
+    "taskContexts": [
+      "inline-decoration",
+      "button-icon",
+      "status-indicator",
+      "navigation-icon"
+    ],
+    "sentiments": [
+      "neutral",
+      "positive",
+      "negative",
+      "warning",
+      "informative"
+    ]
+  },
+  "compositionRules": {
+    "requires": [
+      "icon prop (semantic name or React element)"
+    ],
+    "allows": [
+      "aria-label for non-decorative use"
+    ],
+    "forbids": [
+      "interactive behaviour (use IconButton instead)",
+      "text content"
+    ]
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "high emphasis",
+        "useWhen": [
+          "primary content icon requiring strongest contrast"
+        ]
+      },
+      {
+        "name": "medium emphasis",
+        "useWhen": [
+          "secondary or supporting icon"
+        ]
+      },
+      {
+        "name": "low emphasis",
+        "useWhen": [
+          "subtle decorative icon"
+        ]
+      }
+    ]
+  },
+  "relationshipsAndDependencies": {
+    "related": [
+      "IconButton",
+      "IconContained",
+      "Button"
+    ]
+  },
+  "contextSignals": {
+    "density": [
+      "compact",
+      "default",
+      "open"
+    ],
+    "modality": [
+      "desktop",
+      "mobile"
+    ],
+    "brand": [
+      "theme-scope aware"
+    ],
+    "mode": [
+      "light",
+      "dark",
+      "surface-context"
+    ]
+  },
+  "observabilityHooks": {
+    "track": [],
+    "health": [
+      "a11y_violations"
+    ]
+  },
+  "props": [
+    {
+      "name": "icon",
+      "type": "SemanticIconName | ReactElement",
+      "required": true,
+      "description": "Icon to display — semantic name or React element"
+    },
+    {
+      "name": "appearance",
+      "type": "IconAppearance",
+      "required": false,
+      "description": "Colour role. Default: 'neutral'"
+    },
+    {
+      "name": "aria-hidden",
+      "type": "boolean",
+      "required": false,
+      "description": "Whether icon is hidden from assistive technology. Default: true (decorative)"
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": false,
+      "description": "Accessible label — if provided, icon is not decorative"
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "required": false,
+      "description": "Additional class name"
+    },
+    {
+      "name": "emphasis",
+      "type": "IconEmphasis",
+      "required": false,
+      "description": "Colour emphasis level. Default: 'high'"
+    },
+    {
+      "name": "size",
+      "type": "IconSize",
+      "required": false,
+      "description": "Size preset (spacing index). Default: '5' (20px)"
+    },
+    {
+      "name": "style",
+      "type": "CSSProperties",
+      "required": false,
+      "description": "Inline styles"
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.docs.icon",
+    "type": "object",
+    "properties": {
+      "icon": {
+        "description": "Icon to display — semantic name or React element"
+      },
+      "appearance": {
+        "enum": [
+          "neutral",
+          "primary",
+          "secondary",
+          "sparkle",
+          "negative",
+          "positive",
+          "warning",
+          "informative"
+        ],
+        "description": "Colour role. Default: 'neutral'"
+      },
+      "aria-hidden": {
+        "type": "boolean",
+        "description": "Whether icon is hidden from assistive technology. Default: true (decorative)"
+      },
+      "aria-label": {
+        "type": "string",
+        "description": "Accessible label — if provided, icon is not decorative"
+      },
+      "className": {
+        "type": "string",
+        "description": "Additional class name"
+      },
+      "emphasis": {
+        "enum": [
+          "high",
+          "medium",
+          "low",
+          "tinted",
+          "tintedA11y"
+        ],
+        "description": "Colour emphasis level. Default: 'high'"
+      },
+      "size": {
+        "enum": [
+          "2",
+          "2.5",
+          "3",
+          "3.5",
+          "4",
+          "4.5",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9",
+          "10",
+          "12",
+          "14",
+          "16",
+          "18",
+          "20",
+          "24",
+          "32",
+          "40"
+        ],
+        "description": "Size preset (spacing index). Default: '5' (20px)"
+      },
+      "style": {
+        "description": "Inline styles"
+      }
+    },
+    "required": [
+      "icon"
+    ]
+  },
+  "codeSnippets": [
+    {
+      "id": "icon-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { Icon } from '@oneui/ui';\n\n<Icon icon=\"check\" />"
+    },
+    {
+      "id": "icon-appearance",
+      "title": "With Appearance",
+      "language": "tsx",
+      "code": "<Icon icon=\"warning\" appearance=\"negative\" emphasis=\"high\" size=\"7\" />"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "icon"
+  ],
+  "importPath": "@jds4/oneui-react"
+}

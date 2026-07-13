@@ -1,0 +1,44 @@
+/**
+ * PreviewCard.module.css
+ * Token-only styling for PreviewCard component
+ * Verified by: pnpm check:literals
+ */
+
+/* Positioner */
+.positioner {
+  z-index: var(--Z-Index-Popover);
+}
+
+/* Popup */
+.popup {
+  box-sizing: border-box;
+  /* Follows the brand Cards family radius; overlay shadow stays fixed so a
+     "flat" card elevation cannot strip the popup's depth cue. */
+  border-radius: var(--Card-borderRadius, var(--Shape-4-5));
+  background-color: var(--Surface-Elevated);
+  color: var(--Text-High);
+  padding: var(--Spacing-4-5);
+  box-shadow: var(--Elevation-3);
+  outline: var(--Stroke-M) solid var(--Border-Subtle);
+  max-width: var(--PreviewCard-Max-Width, var(--Spacing-9));
+  transform-origin: var(--transform-origin);
+  transition: transform var(--Motion-Duration-Expressive-Short) var(--Motion-Easing-Emphasized),
+    opacity var(--Motion-Duration-Expressive-Short) var(--Motion-Easing-Emphasized);
+}
+
+.popup[data-starting-style],
+.popup[data-ending-style] {
+  opacity: 0;
+  transform: scale(0.95);
+}
+
+/* Arrow */
+.arrow {
+  width: var(--Spacing-4);
+  height: var(--Spacing-3);
+}
+
+.arrow > svg {
+  display: block;
+  fill: var(--Surface-Elevated);
+}

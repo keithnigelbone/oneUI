@@ -1,0 +1,989 @@
+{
+  "slug": "chip-group",
+  "runs": [
+    {
+      "savedAt": "2026-06-23T09:09:30.556Z",
+      "report": {
+        "ok": true,
+        "slug": "chip-group",
+        "message": "chip-group QA Playwright run OK — 2026-06-23T06:44:07.530Z",
+        "suites": {
+          "accessibility": {
+            "suite": "accessibility",
+            "passed": 14,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "14 test(s) in Playwright report for accessibility.",
+              "Axe: scan completed — 0 violation rules reported."
+            ],
+            "errors": [],
+            "cases": [
+              {
+                "name": "[a11y] WCAG 2.1 AA tag scan + JSON artefact + HTML report",
+                "status": "passed",
+                "durationMs": 5075
+              },
+              {
+                "name": "[a11y] data-section=\"chip-group-qa-default\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 4535
+              },
+              {
+                "name": "[a11y] data-section=\"chip-group-qa-size\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 4737
+              },
+              {
+                "name": "[a11y] data-section=\"chip-group-qa-container-type\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 4596
+              },
+              {
+                "name": "[a11y] data-section=\"chip-group-qa-events\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 5049
+              },
+              {
+                "name": "[a11y] data-section=\"chip-group-qa-combos\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 4643
+              },
+              {
+                "name": "[a11y] ARIA validity rules — zero serious/critical",
+                "status": "passed",
+                "durationMs": 4454
+              },
+              {
+                "name": "[a11y] keyboard navigation — Arrow keys move focus between chips in group",
+                "status": "passed",
+                "durationMs": 3630
+              },
+              {
+                "name": "[a11y] keyboard navigation — Home and End are not roving keys (focus unchanged)",
+                "status": "passed",
+                "durationMs": 4470
+              },
+              {
+                "name": "[a11y] default group — role group, chips are buttons with aria-pressed",
+                "status": "passed",
+                "durationMs": 4394
+              },
+              {
+                "name": "[a11y] multi-select group — Space toggles aria-pressed",
+                "status": "passed",
+                "durationMs": 5169
+              },
+              {
+                "name": "[a11y] Tab moves focus to a real element",
+                "status": "passed",
+                "durationMs": 4356
+              },
+              {
+                "name": "[a11y] Reflow at 320px — each section fits without horizontal scroll",
+                "status": "passed",
+                "durationMs": 6120
+              },
+              {
+                "name": "[a11y] Figma Validation tab — WCAG tags on matrix root",
+                "status": "passed",
+                "durationMs": 12216
+              }
+            ],
+            "axe": {
+              "violations": []
+            }
+          },
+          "functional": {
+            "suite": "functional",
+            "passed": 74,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "74 test(s) in Playwright report for functional."
+            ],
+            "errors": [],
+            "cases": [
+              {
+                "name": "[fn] default group is visible with 5 chip buttons",
+                "status": "passed",
+                "durationMs": 4789
+              },
+              {
+                "name": "[fn] default group — no chip is selected (aria-pressed=false)",
+                "status": "passed",
+                "durationMs": 3909
+              },
+              {
+                "name": "[fn] default group — single-select: clicking one deselects the previous",
+                "status": "passed",
+                "durationMs": 3923
+              },
+              {
+                "name": "[fn] size M — group visible, all chips have data-size=\"m\"",
+                "status": "passed",
+                "durationMs": 3350
+              },
+              {
+                "name": "[fn] size M — first chip is pre-selected (aria-pressed=true)",
+                "status": "passed",
+                "durationMs": 10693
+              },
+              {
+                "name": "[fn] size S — group visible, all chips have data-size=\"s\"",
+                "status": "passed",
+                "durationMs": 8774
+              },
+              {
+                "name": "[fn] size S — first chip is pre-selected (aria-pressed=true)",
+                "status": "passed",
+                "durationMs": 9053
+              },
+              {
+                "name": "[fn] size L — group visible, all chips have data-size=\"l\"",
+                "status": "passed",
+                "durationMs": 8566
+              },
+              {
+                "name": "[fn] size L — first chip is pre-selected (aria-pressed=true)",
+                "status": "passed",
+                "durationMs": 5239
+              },
+              {
+                "name": "[fn] containerType=inline (wrap=false) — group visible, data-wrap=\"false\" present",
+                "status": "passed",
+                "durationMs": 3907
+              },
+              {
+                "name": "[fn] containerType=wrap (wrap=true) — group visible, no data-wrap=\"false\" attribute",
+                "status": "passed",
+                "durationMs": 3910
+              },
+              {
+                "name": "[fn] containerType=inline — chips do NOT wrap (flex-wrap: nowrap via data-wrap=\"false\")",
+                "status": "passed",
+                "durationMs": 4527
+              },
+              {
+                "name": "[fn] mismatch documented — no containerType prop on ChipGroup DOM element",
+                "status": "passed",
+                "durationMs": 4370
+              },
+              {
+                "name": "[fn] onValueChange — payload has testId and values array",
+                "status": "passed",
+                "durationMs": 4318
+              },
+              {
+                "name": "[fn] onValueChange — selecting chip-0 emits values=[\"chip-0\"]",
+                "status": "passed",
+                "durationMs": 3868
+              },
+              {
+                "name": "[fn] onValueChange — selecting chip-0 then chip-1 emits values containing both",
+                "status": "passed",
+                "durationMs": 3918
+              },
+              {
+                "name": "[fn] onValueChange — selecting chip-0, chip-2, chip-4 emits all three values",
+                "status": "passed",
+                "durationMs": 4905
+              },
+              {
+                "name": "[fn] onValueChange — fired once per click (event count matches click count)",
+                "status": "passed",
+                "durationMs": 4856
+              },
+              {
+                "name": "[fn] onValueChange — deselecting chip-0 removes it from values",
+                "status": "passed",
+                "durationMs": 4858
+              },
+              {
+                "name": "[fn] onValueChange — deselecting one chip from multi-select keeps others",
+                "status": "passed",
+                "durationMs": 3377
+              },
+              {
+                "name": "[fn] onValueChange — Space key selects chip and fires valueChange",
+                "status": "passed",
+                "durationMs": 4709
+              },
+              {
+                "name": "[fn] onValueChange — Enter key selects chip and fires valueChange",
+                "status": "passed",
+                "durationMs": 4425
+              },
+              {
+                "name": "[fn] onValueChange — aria-pressed reflects each value in the emitted array",
+                "status": "passed",
+                "durationMs": 4742
+              },
+              {
+                "name": "[fn] combo M × inline — visible, correct data-size and data-wrap",
+                "status": "passed",
+                "durationMs": 4721
+              },
+              {
+                "name": "[fn] combo M × wrap — visible, correct data-size and data-wrap",
+                "status": "passed",
+                "durationMs": 4544
+              },
+              {
+                "name": "[fn] combo S × inline — visible, correct data-size and data-wrap",
+                "status": "passed",
+                "durationMs": 3654
+              },
+              {
+                "name": "[fn] combo S × wrap — visible, correct data-size and data-wrap",
+                "status": "passed",
+                "durationMs": 3991
+              },
+              {
+                "name": "[fn] combo L × inline — visible, correct data-size and data-wrap",
+                "status": "passed",
+                "durationMs": 4482
+              },
+              {
+                "name": "[fn] combo L × wrap — visible, correct data-size and data-wrap",
+                "status": "passed",
+                "durationMs": 4624
+              },
+              {
+                "name": "[fn] Figma Validation tab — grid renders all size × containerType cells",
+                "status": "passed",
+                "durationMs": 4737
+              },
+              {
+                "name": "[fn] Figma Validation grid — mismatch warning is displayed",
+                "status": "passed",
+                "durationMs": 4247
+              },
+              {
+                "name": "1.1 — Page loads without console errors; default group wrapper mounts",
+                "status": "passed",
+                "durationMs": 6085
+              },
+              {
+                "name": "1.2 — Every Test Scenarios `data-testid` is visible",
+                "status": "passed",
+                "durationMs": 4273
+              },
+              {
+                "name": "1.3 — Every `data-section` band is visible",
+                "status": "passed",
+                "durationMs": 3559
+              },
+              {
+                "name": "1.4 — Default group exposes role=group with five chip buttons",
+                "status": "passed",
+                "durationMs": 3313
+              },
+              {
+                "name": "2.1 — Size S / M / L propagate data-size to every chip",
+                "status": "passed",
+                "durationMs": 3357
+              },
+              {
+                "name": "2.2 — Size S / M / L bounding boxes scale progressively (first chip)",
+                "status": "passed",
+                "durationMs": 2448
+              },
+              {
+                "name": "2.3 — Appearance prop is not exercised in ChipGroup showcase",
+                "status": "passed",
+                "durationMs": 3597
+              },
+              {
+                "name": "3.1 — Single click selects chip and updates aria-pressed",
+                "status": "passed",
+                "durationMs": 3328
+              },
+              {
+                "name": "3.4 — Clicking page heading blurs the focused chip",
+                "status": "passed",
+                "durationMs": 3250
+              },
+              {
+                "name": "3.2 — Disabled chips are not in showcase",
+                "status": "passed",
+                "durationMs": 3450
+              },
+              {
+                "name": "3.3 — Readonly is not part of ChipGroup API",
+                "status": "passed",
+                "durationMs": 3059
+              },
+              {
+                "name": "4.1 — Tab reaches an interactive element on the page",
+                "status": "passed",
+                "durationMs": 3918
+              },
+              {
+                "name": "4.2 — Enter on focused chip toggles selection in multi-select group",
+                "status": "passed",
+                "durationMs": 4056
+              },
+              {
+                "name": "4.3 — Space on focused chip toggles selection in multi-select group",
+                "status": "passed",
+                "durationMs": 3941
+              },
+              {
+                "name": "4.4 — ArrowRight moves roving focus to next chip",
+                "status": "passed",
+                "durationMs": 3895
+              },
+              {
+                "name": "4.4 — ArrowLeft moves roving focus to previous chip",
+                "status": "passed",
+                "durationMs": 3311
+              },
+              {
+                "name": "4.5 — Home is not a roving key (focus unchanged)",
+                "status": "passed",
+                "durationMs": 2616
+              },
+              {
+                "name": "4.5 — End is not a roving key (focus unchanged)",
+                "status": "passed",
+                "durationMs": 3296
+              },
+              {
+                "name": "4.7 — Repeated Tab visits multiple distinct focus targets (no trap)",
+                "status": "passed",
+                "durationMs": 3909
+              },
+              {
+                "name": "4.6 — Escape does not apply to ChipGroup (no overlay)",
+                "status": "passed",
+                "durationMs": 3430
+              },
+              {
+                "name": "5.1 — Click moves focus to the clicked chip",
+                "status": "passed",
+                "durationMs": 3637
+              },
+              {
+                "name": "5.2 — Focused chip shows visible focus ring (computed)",
+                "status": "passed",
+                "durationMs": 2993
+              },
+              {
+                "name": "5.3 — ArrowRight advances focus in reading order",
+                "status": "passed",
+                "durationMs": 3396
+              },
+              {
+                "name": "5.5 — ChipGroup has no autoFocus prop in showcase",
+                "status": "passed",
+                "durationMs": 4895
+              },
+              {
+                "name": "6.1 — Default group starts with no selection",
+                "status": "passed",
+                "durationMs": 5035
+              },
+              {
+                "name": "6.2 — Pre-selected chip in size band has aria-pressed=true",
+                "status": "passed",
+                "durationMs": 5927
+              },
+              {
+                "name": "6.3 — Disabled group state not in showcase",
+                "status": "passed",
+                "durationMs": 6194
+              },
+              {
+                "name": "6.5 — Error state is not part of ChipGroup API",
+                "status": "passed",
+                "durationMs": 5628
+              },
+              {
+                "name": "6.6 — Loading state is not part of ChipGroup API",
+                "status": "passed",
+                "durationMs": 5013
+              },
+              {
+                "name": "7.x — ChipGroup has no start/end slots (children are Chips)",
+                "status": "passed",
+                "durationMs": 4865
+              },
+              {
+                "name": "8.1 — Multi-select: click toggles chip on and off",
+                "status": "passed",
+                "durationMs": 4530
+              },
+              {
+                "name": "8.2 — Single-select: only one chip pressed at a time",
+                "status": "passed",
+                "durationMs": 3650
+              },
+              {
+                "name": "9.x — ChipGroup is not a text input",
+                "status": "passed",
+                "durationMs": 3273
+              },
+              {
+                "name": "10.x — No loading/slot dependency rules in showcase",
+                "status": "passed",
+                "durationMs": 2996
+              },
+              {
+                "name": "11.1 — Each chip exposes accessible name “Label”",
+                "status": "passed",
+                "durationMs": 3315
+              },
+              {
+                "name": "12.2 — At 320px viewport, scenario bands fit without horizontal scroll",
+                "status": "passed",
+                "durationMs": 7958
+              },
+              {
+                "name": "12.2b — Default group visible at 1440px viewport",
+                "status": "passed",
+                "durationMs": 7313
+              },
+              {
+                "name": "12.3 — Default group is horizontal (data-orientation=horizontal)",
+                "status": "passed",
+                "durationMs": 4086
+              },
+              {
+                "name": "12.1 — fullWidth is not a ChipGroup prop",
+                "status": "passed",
+                "durationMs": 4287
+              },
+              {
+                "name": "13.1 — After dark theme, all scenario sections remain visible",
+                "status": "passed",
+                "durationMs": 8155
+              },
+              {
+                "name": "13.1 — Default group chips remain visible in dark mode",
+                "status": "passed",
+                "durationMs": 5161
+              },
+              {
+                "name": "Smoke — Page heading reads “Chip Group”",
+                "status": "passed",
+                "durationMs": 3966
+              },
+              {
+                "name": "Smoke — Test Scenarios tab is active with default group visible",
+                "status": "passed",
+                "durationMs": 3130
+              }
+            ]
+          },
+          "performance": {
+            "suite": "performance",
+            "passed": 0,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "Performance suite is not executed in apps/qa-playground chip-group Playwright bundle."
+            ],
+            "errors": []
+          }
+        }
+      }
+    },
+    {
+      "savedAt": "2026-06-17T07:29:35.393Z",
+      "report": {
+        "ok": false,
+        "slug": "chip-group",
+        "message": "ChipGroup QA Playwright run had failures — 2026-06-04T09:47:22.560Z",
+        "suites": {
+          "accessibility": {
+            "suite": "accessibility",
+            "passed": 13,
+            "failed": 1,
+            "skipped": 0,
+            "logs": [
+              "14 test(s) in Playwright report for accessibility.",
+              "Axe: scan completed — 0 violation rules reported."
+            ],
+            "errors": [
+              "[a11y] keyboard navigation — Home and End move focus to first and last chip: Error: Home should move roving focus to first chip\n\n\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeFocused\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('[data-section=\"chip-group-qa-default\"]').getByTestId('chip-group-default').getByRole('button').first()\nExpected: focused\nReceived: inactive\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Home should move roving focus to first chip with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('[data-section=\"chip-group-qa-default\"]').getByTestId('chip-group-default').getByRole('button').first()\u001b[22m\n\u001b[2m    9 × locator resolved to <button type=\"button\" tabindex=\"-1\" data-size=\"m\" data-variant=\"bold\" aria-pressed=\"false\" aria-disabled=\"false\" data-appearance=\"secondary\" data-unselected-appearance=\"neutral\" class=\"_chip_obpfx_16 _bold_obpfx_332\">…</button>\u001b[22m\n\u001b[2m      - unexpected value \"inactive\"\u001b[22m\n"
+            ],
+            "cases": [
+              {
+                "name": "[a11y] WCAG 2.1 AA tag scan + JSON artefact + HTML report",
+                "status": "passed",
+                "durationMs": 4045
+              },
+              {
+                "name": "[a11y] data-section=\"chip-group-qa-default\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 3582
+              },
+              {
+                "name": "[a11y] data-section=\"chip-group-qa-size\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 3953
+              },
+              {
+                "name": "[a11y] data-section=\"chip-group-qa-container-type\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 3599
+              },
+              {
+                "name": "[a11y] data-section=\"chip-group-qa-events\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 3575
+              },
+              {
+                "name": "[a11y] data-section=\"chip-group-qa-combos\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 3250
+              },
+              {
+                "name": "[a11y] ARIA validity rules — zero serious/critical",
+                "status": "passed",
+                "durationMs": 3210
+              },
+              {
+                "name": "[a11y] keyboard navigation — Arrow keys move focus between chips in group",
+                "status": "passed",
+                "durationMs": 2700
+              },
+              {
+                "name": "[a11y] keyboard navigation — Home and End move focus to first and last chip",
+                "status": "failed",
+                "durationMs": 8026,
+                "error": "Error: Home should move roving focus to first chip\n\n\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeFocused\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('[data-section=\"chip-group-qa-default\"]').getByTestId('chip-group-default').getByRole('button').first()\nExpected: focused\nReceived: inactive\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Home should move roving focus to first chip with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('[data-section=\"chip-group-qa-default\"]').getByTestId('chip-group-default').getByRole('button').first()\u001b[22m\n\u001b[2m    9 × locator resolved to <button type=\"button\" tabindex=\"-1\" data-size=\"m\" data-variant=\"bold\" aria-pressed=\"false\" aria-disabled=\"false\" data-appearance=\"secondary\" data-unselected-appearance=\"neutral\" class=\"_chip_obpfx_16 _bold_obpfx_332\">…</button>\u001b[22m\n\u001b[2m      - unexpected value \"inactive\"\u001b[22m\n"
+              },
+              {
+                "name": "[a11y] default group — role group, chips are buttons with aria-pressed",
+                "status": "passed",
+                "durationMs": 2944
+              },
+              {
+                "name": "[a11y] multi-select group — Space toggles aria-pressed",
+                "status": "passed",
+                "durationMs": 2127
+              },
+              {
+                "name": "[a11y] Tab moves focus to a real element",
+                "status": "passed",
+                "durationMs": 2158
+              },
+              {
+                "name": "[a11y] Reflow at 320px — each section fits without horizontal scroll",
+                "status": "passed",
+                "durationMs": 3429
+              },
+              {
+                "name": "[a11y] Figma Validation tab — WCAG tags on matrix root",
+                "status": "passed",
+                "durationMs": 2992
+              }
+            ],
+            "axe": {
+              "violations": []
+            }
+          },
+          "functional": {
+            "suite": "functional",
+            "passed": 72,
+            "failed": 2,
+            "skipped": 0,
+            "logs": [
+              "74 test(s) in Playwright report for functional."
+            ],
+            "errors": [
+              "4.5 — Home moves focus to first chip: Error: Home should move roving focus to first chip\n\n\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeFocused\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('[data-section=\"chip-group-qa-default\"]').getByTestId('chip-group-default').getByRole('button').first()\nExpected: focused\nReceived: inactive\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Home should move roving focus to first chip with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('[data-section=\"chip-group-qa-default\"]').getByTestId('chip-group-default').getByRole('button').first()\u001b[22m\n\u001b[2m    9 × locator resolved to <button type=\"button\" tabindex=\"-1\" data-size=\"m\" data-variant=\"bold\" aria-pressed=\"false\" aria-disabled=\"false\" data-appearance=\"secondary\" data-unselected-appearance=\"neutral\" class=\"_chip_obpfx_16 _bold_obpfx_332\">…</button>\u001b[22m\n\u001b[2m      - unexpected value \"inactive\"\u001b[22m\n",
+              "4.5 — End moves focus to last chip: Error: End should move roving focus to last chip\n\n\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeFocused\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('[data-section=\"chip-group-qa-default\"]').getByTestId('chip-group-default').getByRole('button').nth(4)\nExpected: focused\nReceived: inactive\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - End should move roving focus to last chip with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('[data-section=\"chip-group-qa-default\"]').getByTestId('chip-group-default').getByRole('button').nth(4)\u001b[22m\n\u001b[2m    9 × locator resolved to <button type=\"button\" tabindex=\"-1\" data-size=\"m\" data-variant=\"bold\" aria-pressed=\"false\" aria-disabled=\"false\" data-appearance=\"secondary\" data-unselected-appearance=\"neutral\" class=\"_chip_obpfx_16 _bold_obpfx_332\">…</button>\u001b[22m\n\u001b[2m      - unexpected value \"inactive\"\u001b[22m\n"
+            ],
+            "cases": [
+              {
+                "name": "[fn] default group is visible with 5 chip buttons",
+                "status": "passed",
+                "durationMs": 1653
+              },
+              {
+                "name": "[fn] default group — no chip is selected (aria-pressed=false)",
+                "status": "passed",
+                "durationMs": 1585
+              },
+              {
+                "name": "[fn] default group — single-select: clicking one deselects the previous",
+                "status": "passed",
+                "durationMs": 1944
+              },
+              {
+                "name": "[fn] size M — group visible, all chips have data-size=\"m\"",
+                "status": "passed",
+                "durationMs": 2169
+              },
+              {
+                "name": "[fn] size M — first chip is pre-selected (aria-pressed=true)",
+                "status": "passed",
+                "durationMs": 1991
+              },
+              {
+                "name": "[fn] size S — group visible, all chips have data-size=\"s\"",
+                "status": "passed",
+                "durationMs": 2053
+              },
+              {
+                "name": "[fn] size S — first chip is pre-selected (aria-pressed=true)",
+                "status": "passed",
+                "durationMs": 1784
+              },
+              {
+                "name": "[fn] size L — group visible, all chips have data-size=\"l\"",
+                "status": "passed",
+                "durationMs": 3269
+              },
+              {
+                "name": "[fn] size L — first chip is pre-selected (aria-pressed=true)",
+                "status": "passed",
+                "durationMs": 2089
+              },
+              {
+                "name": "[fn] containerType=inline (wrap=false) — group visible, data-wrap=\"false\" present",
+                "status": "passed",
+                "durationMs": 2336
+              },
+              {
+                "name": "[fn] containerType=wrap (wrap=true) — group visible, no data-wrap=\"false\" attribute",
+                "status": "passed",
+                "durationMs": 2215
+              },
+              {
+                "name": "[fn] containerType=inline — chips do NOT wrap (flex-wrap: nowrap via data-wrap=\"false\")",
+                "status": "passed",
+                "durationMs": 1908
+              },
+              {
+                "name": "[fn] mismatch documented — no containerType prop on ChipGroup DOM element",
+                "status": "passed",
+                "durationMs": 2550
+              },
+              {
+                "name": "[fn] onValueChange — payload has testId and values array",
+                "status": "passed",
+                "durationMs": 3345
+              },
+              {
+                "name": "[fn] onValueChange — selecting chip-0 emits values=[\"chip-0\"]",
+                "status": "passed",
+                "durationMs": 3127
+              },
+              {
+                "name": "[fn] onValueChange — selecting chip-0 then chip-1 emits values containing both",
+                "status": "passed",
+                "durationMs": 3094
+              },
+              {
+                "name": "[fn] onValueChange — selecting chip-0, chip-2, chip-4 emits all three values",
+                "status": "passed",
+                "durationMs": 2626
+              },
+              {
+                "name": "[fn] onValueChange — fired once per click (event count matches click count)",
+                "status": "passed",
+                "durationMs": 2596
+              },
+              {
+                "name": "[fn] onValueChange — deselecting chip-0 removes it from values",
+                "status": "passed",
+                "durationMs": 2683
+              },
+              {
+                "name": "[fn] onValueChange — deselecting one chip from multi-select keeps others",
+                "status": "passed",
+                "durationMs": 2769
+              },
+              {
+                "name": "[fn] onValueChange — Space key selects chip and fires valueChange",
+                "status": "passed",
+                "durationMs": 2527
+              },
+              {
+                "name": "[fn] onValueChange — Enter key selects chip and fires valueChange",
+                "status": "passed",
+                "durationMs": 2349
+              },
+              {
+                "name": "[fn] onValueChange — aria-pressed reflects each value in the emitted array",
+                "status": "passed",
+                "durationMs": 2515
+              },
+              {
+                "name": "[fn] combo M × inline — visible, correct data-size and data-wrap",
+                "status": "passed",
+                "durationMs": 2700
+              },
+              {
+                "name": "[fn] combo M × wrap — visible, correct data-size and data-wrap",
+                "status": "passed",
+                "durationMs": 2745
+              },
+              {
+                "name": "[fn] combo S × inline — visible, correct data-size and data-wrap",
+                "status": "passed",
+                "durationMs": 2553
+              },
+              {
+                "name": "[fn] combo S × wrap — visible, correct data-size and data-wrap",
+                "status": "passed",
+                "durationMs": 2632
+              },
+              {
+                "name": "[fn] combo L × inline — visible, correct data-size and data-wrap",
+                "status": "passed",
+                "durationMs": 2594
+              },
+              {
+                "name": "[fn] combo L × wrap — visible, correct data-size and data-wrap",
+                "status": "passed",
+                "durationMs": 2956
+              },
+              {
+                "name": "[fn] Figma Validation tab — grid renders all size × containerType cells",
+                "status": "passed",
+                "durationMs": 3044
+              },
+              {
+                "name": "[fn] Figma Validation grid — mismatch warning is displayed",
+                "status": "passed",
+                "durationMs": 3322
+              },
+              {
+                "name": "1.1 — Page loads without console errors; default group wrapper mounts",
+                "status": "passed",
+                "durationMs": 5279
+              },
+              {
+                "name": "1.2 — Every Test Scenarios `data-testid` is visible",
+                "status": "passed",
+                "durationMs": 4145
+              },
+              {
+                "name": "1.3 — Every `data-section` band is visible",
+                "status": "passed",
+                "durationMs": 3230
+              },
+              {
+                "name": "1.4 — Default group exposes role=group with five chip buttons",
+                "status": "passed",
+                "durationMs": 2987
+              },
+              {
+                "name": "2.1 — Size S / M / L propagate data-size to every chip",
+                "status": "passed",
+                "durationMs": 2791
+              },
+              {
+                "name": "2.2 — Size S / M / L bounding boxes scale progressively (first chip)",
+                "status": "passed",
+                "durationMs": 2983
+              },
+              {
+                "name": "2.3 — Appearance prop is not exercised in ChipGroup showcase",
+                "status": "passed",
+                "durationMs": 2920
+              },
+              {
+                "name": "3.1 — Single click selects chip and updates aria-pressed",
+                "status": "passed",
+                "durationMs": 2913
+              },
+              {
+                "name": "3.4 — Clicking page heading blurs the focused chip",
+                "status": "passed",
+                "durationMs": 3084
+              },
+              {
+                "name": "3.2 — Disabled chips are not in showcase",
+                "status": "passed",
+                "durationMs": 3208
+              },
+              {
+                "name": "3.3 — Readonly is not part of ChipGroup API",
+                "status": "passed",
+                "durationMs": 2625
+              },
+              {
+                "name": "4.1 — Tab reaches an interactive element on the page",
+                "status": "passed",
+                "durationMs": 2910
+              },
+              {
+                "name": "4.2 — Enter on focused chip toggles selection in multi-select group",
+                "status": "passed",
+                "durationMs": 3279
+              },
+              {
+                "name": "4.3 — Space on focused chip toggles selection in multi-select group",
+                "status": "passed",
+                "durationMs": 3068
+              },
+              {
+                "name": "4.4 — ArrowRight moves roving focus to next chip",
+                "status": "passed",
+                "durationMs": 3240
+              },
+              {
+                "name": "4.4 — ArrowLeft moves roving focus to previous chip",
+                "status": "passed",
+                "durationMs": 3582
+              },
+              {
+                "name": "4.5 — Home moves focus to first chip",
+                "status": "failed",
+                "durationMs": 8524,
+                "error": "Error: Home should move roving focus to first chip\n\n\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeFocused\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('[data-section=\"chip-group-qa-default\"]').getByTestId('chip-group-default').getByRole('button').first()\nExpected: focused\nReceived: inactive\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Home should move roving focus to first chip with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('[data-section=\"chip-group-qa-default\"]').getByTestId('chip-group-default').getByRole('button').first()\u001b[22m\n\u001b[2m    9 × locator resolved to <button type=\"button\" tabindex=\"-1\" data-size=\"m\" data-variant=\"bold\" aria-pressed=\"false\" aria-disabled=\"false\" data-appearance=\"secondary\" data-unselected-appearance=\"neutral\" class=\"_chip_obpfx_16 _bold_obpfx_332\">…</button>\u001b[22m\n\u001b[2m      - unexpected value \"inactive\"\u001b[22m\n"
+              },
+              {
+                "name": "4.5 — End moves focus to last chip",
+                "status": "failed",
+                "durationMs": 8623,
+                "error": "Error: End should move roving focus to last chip\n\n\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeFocused\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('[data-section=\"chip-group-qa-default\"]').getByTestId('chip-group-default').getByRole('button').nth(4)\nExpected: focused\nReceived: inactive\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - End should move roving focus to last chip with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('[data-section=\"chip-group-qa-default\"]').getByTestId('chip-group-default').getByRole('button').nth(4)\u001b[22m\n\u001b[2m    9 × locator resolved to <button type=\"button\" tabindex=\"-1\" data-size=\"m\" data-variant=\"bold\" aria-pressed=\"false\" aria-disabled=\"false\" data-appearance=\"secondary\" data-unselected-appearance=\"neutral\" class=\"_chip_obpfx_16 _bold_obpfx_332\">…</button>\u001b[22m\n\u001b[2m      - unexpected value \"inactive\"\u001b[22m\n"
+              },
+              {
+                "name": "4.7 — Repeated Tab visits multiple distinct focus targets (no trap)",
+                "status": "passed",
+                "durationMs": 4037
+              },
+              {
+                "name": "4.6 — Escape does not apply to ChipGroup (no overlay)",
+                "status": "passed",
+                "durationMs": 3751
+              },
+              {
+                "name": "5.1 — Click moves focus to the clicked chip",
+                "status": "passed",
+                "durationMs": 1782
+              },
+              {
+                "name": "5.2 — Focused chip shows visible focus ring (computed)",
+                "status": "passed",
+                "durationMs": 1659
+              },
+              {
+                "name": "5.3 — ArrowRight advances focus in reading order",
+                "status": "passed",
+                "durationMs": 1743
+              },
+              {
+                "name": "5.5 — ChipGroup has no autoFocus prop in showcase",
+                "status": "passed",
+                "durationMs": 1458
+              },
+              {
+                "name": "6.1 — Default group starts with no selection",
+                "status": "passed",
+                "durationMs": 1733
+              },
+              {
+                "name": "6.2 — Pre-selected chip in size band has aria-pressed=true",
+                "status": "passed",
+                "durationMs": 1893
+              },
+              {
+                "name": "6.3 — Disabled group state not in showcase",
+                "status": "passed",
+                "durationMs": 1698
+              },
+              {
+                "name": "6.5 — Error state is not part of ChipGroup API",
+                "status": "passed",
+                "durationMs": 1879
+              },
+              {
+                "name": "6.6 — Loading state is not part of ChipGroup API",
+                "status": "passed",
+                "durationMs": 2258
+              },
+              {
+                "name": "7.x — ChipGroup has no start/end slots (children are Chips)",
+                "status": "passed",
+                "durationMs": 2256
+              },
+              {
+                "name": "8.1 — Multi-select: click toggles chip on and off",
+                "status": "passed",
+                "durationMs": 3516
+              },
+              {
+                "name": "8.2 — Single-select: only one chip pressed at a time",
+                "status": "passed",
+                "durationMs": 3610
+              },
+              {
+                "name": "9.x — ChipGroup is not a text input",
+                "status": "passed",
+                "durationMs": 1726
+              },
+              {
+                "name": "10.x — No loading/slot dependency rules in showcase",
+                "status": "passed",
+                "durationMs": 2092
+              },
+              {
+                "name": "11.1 — Each chip exposes accessible name “Label”",
+                "status": "passed",
+                "durationMs": 2424
+              },
+              {
+                "name": "12.2 — At 320px viewport, scenario bands fit without horizontal scroll",
+                "status": "passed",
+                "durationMs": 5512
+              },
+              {
+                "name": "12.2b — Default group visible at 1440px viewport",
+                "status": "passed",
+                "durationMs": 5397
+              },
+              {
+                "name": "12.3 — Default group is horizontal (data-orientation=horizontal)",
+                "status": "passed",
+                "durationMs": 3116
+              },
+              {
+                "name": "12.1 — fullWidth is not a ChipGroup prop",
+                "status": "passed",
+                "durationMs": 2944
+              },
+              {
+                "name": "13.1 — After dark theme, all scenario sections remain visible",
+                "status": "passed",
+                "durationMs": 4532
+              },
+              {
+                "name": "13.1 — Default group chips remain visible in dark mode",
+                "status": "passed",
+                "durationMs": 3049
+              },
+              {
+                "name": "Smoke — Page heading reads “Chip Group”",
+                "status": "passed",
+                "durationMs": 2386
+              },
+              {
+                "name": "Smoke — Test Scenarios tab is active with default group visible",
+                "status": "passed",
+                "durationMs": 1776
+              }
+            ]
+          },
+          "performance": {
+            "suite": "performance",
+            "passed": 0,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "Performance suite is not executed in apps/qa-playground ChipGroup Playwright bundle."
+            ],
+            "errors": []
+          }
+        }
+      }
+    }
+  ]
+}

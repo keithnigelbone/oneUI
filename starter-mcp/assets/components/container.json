@@ -1,0 +1,162 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Container",
+  "generatedAt": "2026-01-01T00:00:00.000Z",
+  "machineReadable": true,
+  "intentAndPurpose": {
+    "intent": "Page-level width container. `fluid` grows with the viewport (default). `fixed` caps at --Grid-MaxWidth per platform and centers. `full-bleed` is edge-to-edge for hero sections and full-width media.",
+    "taskContexts": [
+      "container",
+      "layout",
+      "wrapper",
+      "page-width"
+    ],
+    "sentiments": [
+      "neutral"
+    ]
+  },
+  "compositionRules": {
+    "requires": [],
+    "allows": [],
+    "forbids": []
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "fluid",
+        "useWhen": [
+          "Fluid"
+        ]
+      },
+      {
+        "name": "fixed",
+        "useWhen": [
+          "Fixed"
+        ]
+      },
+      {
+        "name": "full-bleed",
+        "useWhen": [
+          "Full bleed"
+        ]
+      }
+    ]
+  },
+  "relationshipsAndDependencies": {
+    "related": []
+  },
+  "contextSignals": {
+    "density": [
+      "compact",
+      "default",
+      "open"
+    ],
+    "modality": [
+      "desktop",
+      "mobile"
+    ],
+    "brand": [
+      "theme-scope aware",
+      "recipe-driven"
+    ],
+    "mode": [
+      "light",
+      "dark"
+    ]
+  },
+  "observabilityHooks": {
+    "track": [],
+    "health": [
+      "a11y_violations"
+    ]
+  },
+  "props": [
+    {
+      "name": "as",
+      "type": "ElementType",
+      "required": false,
+      "description": "Polymorphic root element on web. Ignored on native."
+    },
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "required": false,
+      "description": "children property"
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "required": false,
+      "description": "Class name (web only)."
+    },
+    {
+      "name": "maxWidth",
+      "type": "string | number",
+      "required": false,
+      "description": "Optional override for the max-width cap (applies only to `fixed`). Accepts a CSS length string (e.g. `'1200px'`) on web or a numeric pixel value on native. Defaults to `--Grid-MaxWidth`."
+    },
+    {
+      "name": "style",
+      "type": "CSSProperties",
+      "required": false,
+      "description": "Inline styles. CSS on web; native ViewStyle is accepted via `as unknown` casts."
+    },
+    {
+      "name": "variant",
+      "type": "ContainerVariant",
+      "required": false,
+      "description": "Layout variant. - `fluid` (default): grows with viewport, always applies `--Grid-Margin`. Use for apps, dashboards, software tools — including ultra-wide (>1920). - `fixed`: capped at `--Grid-MaxWidth` per breakpoint, centered. Use for marketing pages, reading content, forms. - `full-bleed`: no margin, no cap — edge-to-edge. Use for hero sections, full-width media."
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.docs.container",
+    "type": "object",
+    "properties": {
+      "as": {
+        "description": "Polymorphic root element on web. Ignored on native."
+      },
+      "children": {
+        "description": "children property"
+      },
+      "className": {
+        "type": "string",
+        "description": "Class name (web only)."
+      },
+      "maxWidth": {
+        "description": "Optional override for the max-width cap (applies only to `fixed`). Accepts a CSS length string (e.g. `'1200px'`) on web or a numeric pixel value on native. Defaults to `--Grid-MaxWidth`."
+      },
+      "style": {
+        "description": "Inline styles. CSS on web; native ViewStyle is accepted via `as unknown` casts."
+      },
+      "variant": {
+        "enum": [
+          "fluid",
+          "fixed",
+          "full-bleed"
+        ],
+        "description": "Layout variant. - `fluid` (default): grows with viewport, always applies `--Grid-Margin`. Use for apps, dashboards, software tools — including ultra-wide (>1920). - `fixed`: capped at `--Grid-MaxWidth` per breakpoint, centered. Use for marketing pages, reading content, forms. - `full-bleed`: no margin, no cap — edge-to-edge. Use for hero sections, full-width media."
+      }
+    }
+  },
+  "codeSnippets": [
+    {
+      "id": "container-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { Container } from '@oneui/ui';\n\n<Container />"
+    },
+    {
+      "id": "container-recipe-decisions",
+      "title": "Recipe Decisions",
+      "language": "json",
+      "code": "{\n  \"component\": \"Container\",\n  \"decisions\": [\n    \"Width behavior\"\n  ]\n}"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "container"
+  ],
+  "importPath": "@jds4/oneui-react"
+}

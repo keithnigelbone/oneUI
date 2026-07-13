@@ -1,0 +1,84 @@
+.workbench {
+  display: grid;
+  grid-template-columns: minmax(var(--Dimension-f14), var(--Dimension-f16)) minmax(var(--Spacing-0), 1fr);
+  gap: var(--Spacing-6);
+  align-items: start;
+}
+
+.settingsPanel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-4-5);
+  padding-right: var(--Spacing-5);
+}
+
+.levelTable {
+  display: flex;
+  flex-direction: column;
+}
+
+.levelRow {
+  display: grid;
+  grid-template-columns: minmax(var(--Dimension-f10), var(--Dimension-f12)) minmax(var(--Dimension-f13), var(--Dimension-f16)) minmax(var(--Spacing-0), 1fr);
+  align-items: center;
+  gap: var(--Spacing-4);
+  padding: var(--Spacing-3) var(--Spacing-0);
+  border-bottom: var(--Stroke-M) solid var(--Border-Subtle);
+}
+
+.levelHeader {
+  color: var(--Text-Low);
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+}
+
+.levelName {
+  color: var(--Text-Medium);
+  font-family: var(--Typography-Font-Code);
+  font-size: var(--Code-S-FontSize);
+  line-height: var(--Code-S-LineHeight);
+}
+
+.previewCard {
+  width: var(--Dimension-f14);
+  min-height: var(--Dimension-f9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--Shape-4);
+  background-color: var(--Surface-Main);
+}
+
+.previewCard span {
+  color: var(--Text-Medium);
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Low);
+}
+
+.usageText {
+  color: var(--Text-Low);
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  font-weight: var(--Body-FontWeight-Low);
+}
+
+@media (max-width: 768px) {
+  .workbench {
+    grid-template-columns: minmax(var(--Spacing-0), 1fr);
+  }
+
+  .settingsPanel {
+    padding-right: var(--Spacing-0);
+    padding-bottom: var(--Spacing-5);
+    border-bottom: var(--Stroke-M) solid var(--Border-Subtle);
+  }
+
+  .levelRow {
+    grid-template-columns: minmax(var(--Spacing-0), 1fr);
+  }
+}

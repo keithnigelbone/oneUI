@@ -1,0 +1,28 @@
+import React, { forwardRef } from 'react';
+import type { IconComponentProps } from '../iconProps';
+
+export const PlayOutlined = forwardRef<SVGSVGElement, IconComponentProps>(function PlayOutlined(
+  { size = 24, width, height, color = 'currentColor', className, style, ...props },
+  ref,
+) {
+  const dim = width ?? height ?? size;
+  return (
+    <svg
+      ref={ref}
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      width={width ?? dim}
+      height={height ?? dim}
+      color={color}
+      className={className}
+      style={style}
+      {...props}
+    >
+      <path fillRule="evenodd" clipRule="evenodd" d="M16.375 11.134C17.0417 11.5189 17.0417 12.4811 16.375 12.866L10.375 16.3301C9.70833 16.715 8.875 16.2339 8.875 15.4641L8.875 8.53592C8.875 7.76612 9.70833 7.28499 10.375 7.66989L16.375 11.134ZM10.075 8.88233L15.475 12L10.075 15.1177V8.88233Z" fill="currentColor"/>
+      <path fillRule="evenodd" clipRule="evenodd" d="M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12ZM20.8 12C20.8 16.8601 16.8601 20.8 12 20.8C7.13989 20.8 3.2 16.8601 3.2 12C3.2 7.13989 7.13989 3.2 12 3.2C16.8601 3.2 20.8 7.13989 20.8 12Z" fill="currentColor"/>
+    </svg>
+  );
+});
+
+PlayOutlined.displayName = 'PlayOutlined';

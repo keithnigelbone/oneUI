@@ -1,0 +1,315 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Chip",
+  "generatedAt": "2026-07-09T13:07:37.410Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "Interactive selection / filter pill. Three surface-resolved variants (bold / subtle / ghost) inheritable from a parent <ChipGroup>. `attention` is the Figma alias (high→bold, medium→subtle, low→ghost). Selectable (toggle) with optional start/end slots. appearance=\"auto\" → secondary; pill-shaped."
+  },
+  "compositionRules": {
+    "requires": [],
+    "allows": [],
+    "forbids": [],
+    "childKind": "fixed-slots"
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "bold"
+      },
+      {
+        "name": "subtle"
+      },
+      {
+        "name": "ghost"
+      }
+    ]
+  },
+  "props": [
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Label content. String children become the accessible name."
+    },
+    {
+      "name": "size",
+      "type": "'s' | 'm' | 'l'",
+      "required": false,
+      "defaultValue": "m",
+      "description": "Inherited from <ChipGroup> when unset."
+    },
+    {
+      "name": "variant",
+      "type": "'bold' | 'subtle' | 'ghost'",
+      "required": false,
+      "defaultValue": "ghost",
+      "description": "Surface-resolved paint. Inherited from <ChipGroup>; per-chip prop wins."
+    },
+    {
+      "name": "attention",
+      "type": "'high' | 'medium' | 'low'",
+      "required": false,
+      "defaultValue": "low",
+      "description": "Figma alias → variant (high→bold, medium→subtle, low→ghost). Used when `variant` is unset; default low → ghost."
+    },
+    {
+      "name": "appearance",
+      "type": "'auto' | 'primary' | 'secondary' | 'neutral' | 'sparkle' | 'brand-bg' | 'positive' | 'negative' | 'warning' | 'informative'",
+      "required": false,
+      "defaultValue": "auto",
+      "description": "Multi-accent role, resolved against the parent <Surface>. Inherited from <ChipGroup>. Explicit prop wins; unset/'auto' resolves to secondary (or the nearest <Surface appearance>)."
+    },
+    {
+      "name": "selected",
+      "type": "boolean",
+      "required": false,
+      "description": "Selected state (controlled)."
+    },
+    {
+      "name": "defaultSelected",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "onSelectedChange",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Fires with the next selected value on press."
+    },
+    {
+      "name": "value",
+      "type": "string",
+      "required": false,
+      "description": "Identifier read by <ChipGroup> for selection mapping."
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": "Inherited from <ChipGroup> when set."
+    },
+    {
+      "name": "start",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Leading slot — Icon / Avatar."
+    },
+    {
+      "name": "end",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Trailing slot — Icon (e.g. a dismiss affordance)."
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": false,
+      "description": "Recommended when children is not a plain string."
+    },
+    {
+      "name": "backgroundColor",
+      "type": "string",
+      "required": false,
+      "description": "[error] Don't paint directly. Use `appearance` (role) + `variant`/`mode` and wrap in <Surface mode>; the brand cascade picks the right fill."
+    },
+    {
+      "name": "style",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Layout style only. variant + appearance + parent <Surface> drive the fill. — [warn] Chip colour is surface-resolved from `variant` + `appearance`. Don't set backgroundColor / borderColor."
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.kb.rn.Chip",
+    "type": "object",
+    "properties": {
+      "children": {
+        "description": "Label content. String children become the accessible name."
+      },
+      "size": {
+        "enum": [
+          "s",
+          "m",
+          "l"
+        ],
+        "default": "m",
+        "description": "Inherited from <ChipGroup> when unset."
+      },
+      "variant": {
+        "enum": [
+          "bold",
+          "subtle",
+          "ghost"
+        ],
+        "default": "ghost",
+        "description": "Surface-resolved paint. Inherited from <ChipGroup>; per-chip prop wins."
+      },
+      "attention": {
+        "enum": [
+          "high",
+          "medium",
+          "low"
+        ],
+        "default": "low",
+        "description": "Figma alias → variant (high→bold, medium→subtle, low→ghost). Used when `variant` is unset; default low → ghost."
+      },
+      "appearance": {
+        "enum": [
+          "auto",
+          "primary",
+          "secondary",
+          "neutral",
+          "sparkle",
+          "brand-bg",
+          "positive",
+          "negative",
+          "warning",
+          "informative"
+        ],
+        "default": "auto",
+        "description": "Multi-accent role, resolved against the parent <Surface>. Inherited from <ChipGroup>. Explicit prop wins; unset/'auto' resolves to secondary (or the nearest <Surface appearance>)."
+      },
+      "selected": {
+        "type": "boolean",
+        "description": "Selected state (controlled)."
+      },
+      "defaultSelected": {
+        "type": "boolean",
+        "default": false
+      },
+      "onSelectedChange": {
+        "description": "Fires with the next selected value on press."
+      },
+      "value": {
+        "type": "string",
+        "description": "Identifier read by <ChipGroup> for selection mapping."
+      },
+      "disabled": {
+        "type": "boolean",
+        "default": false,
+        "description": "Inherited from <ChipGroup> when set."
+      },
+      "start": {
+        "description": "Leading slot — Icon / Avatar."
+      },
+      "end": {
+        "description": "Trailing slot — Icon (e.g. a dismiss affordance)."
+      },
+      "aria-label": {
+        "type": "string",
+        "description": "Recommended when children is not a plain string."
+      },
+      "backgroundColor": {
+        "type": "string",
+        "not": {
+          "anyOf": [
+            {
+              "pattern": "^#"
+            },
+            {
+              "pattern": "^rgba?\\("
+            },
+            {
+              "pattern": "^hsla?\\("
+            },
+            {
+              "pattern": "^oklch\\("
+            },
+            {
+              "pattern": "^color-mix\\("
+            },
+            {
+              "enum": [
+                "transparent",
+                "inherit"
+              ]
+            }
+          ]
+        },
+        "x-jds-suggestion": "Don't paint directly. Use `appearance` (role) + `variant`/`mode` and wrap in <Surface mode>; the brand cascade picks the right fill.",
+        "x-jds-severity": "error"
+      },
+      "style": {
+        "description": "Layout style only. variant + appearance + parent <Surface> drive the fill.",
+        "x-jds-suggestion": "Chip colour is surface-resolved from `variant` + `appearance`. Don't set backgroundColor / borderColor.",
+        "x-jds-severity": "warn"
+      }
+    }
+  },
+  "tokens": {
+    "color": [
+      "primary",
+      "secondary",
+      "neutral",
+      "sparkle",
+      "brand-bg",
+      "positive",
+      "negative",
+      "warning",
+      "informative"
+    ],
+    "surface": [
+      "bold",
+      "subtle"
+    ],
+    "typography": [
+      "label.S",
+      "label.M",
+      "label.L"
+    ],
+    "shape": [
+      "pill"
+    ]
+  },
+  "a11y": {
+    "accessibilityRole": "button",
+    "accessibilityState": [
+      "selected",
+      "disabled"
+    ],
+    "accessibleNameSource": "children",
+    "minTouchTarget": 44,
+    "honorsBoldText": true,
+    "honorsScreenReader": true
+  },
+  "renderHints": {
+    "baseElement": "Pressable",
+    "animatedOn": [
+      "press"
+    ],
+    "honorsReduceMotion": true,
+    "readsFromSurfaceContext": true
+  },
+  "figma": {
+    "componentKey": "jds-chip-v4",
+    "keyHistory": [],
+    "variantProperties": {
+      "Component": "Chip"
+    }
+  },
+  "codeSnippets": [
+    {
+      "id": "import-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { Chip } from '@oneui/ui-native';\n\n<Chip />"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "chip",
+    "selection",
+    "filter",
+    "interactive",
+    "surface-aware",
+    "inherits-appearance"
+  ],
+  "importPath": "@oneui/ui-native"
+}

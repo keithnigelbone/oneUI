@@ -1,0 +1,399 @@
+/**
+ * SelectableSingleTextButton.module.css
+ *
+ * CRITICAL: This file demonstrates the ZERO LITERALS rule
+ * ALL styling uses design tokens ONLY
+ *
+ * Architecture: Role-agnostic intermediate variables (--_stb-*)
+ * - Default = Primary role
+ * - Appearance classes remap --_stb-* to other roles
+ * - UNSELECTED state: always muted ghost (transparent bg, medium text, low-stroke border)
+ * - SELECTED state ([data-pressed]): driven by data-attention attribute
+ *   - high  → bold fill (fg-bold bg, on-bold-high text)
+ *   - medium → subtle fill (bg-subtle bg, accent text)
+ *   - low   → ghost with accent border (transparent bg, accent text, fg-bold border)
+ * - Circular shape (aspect-ratio: 1) — max 2 characters; shape customisable per brand
+ * - Loading: spinner replaces text
+ *
+ * Verified by: pnpm check:literals
+ */
+
+.selectableSingleTextButton {
+  /* ========================================
+     INTERMEDIATE VARIABLES — default = Primary role
+     Remapped by appearance classes below
+     ======================================== */
+  --_stb-bold: var(--SelectableSingleTextButton-roleBold, var(--Primary-Bold, var(--Surface-Bold)));
+  --_stb-bold-high: var(--SelectableSingleTextButton-roleBoldHigh, var(--Primary-Bold-TintedA11y, var(--Primary-Bold-High, var(--Text-OnBold-High))));
+  --_stb-bold-hover: var(--SelectableSingleTextButton-roleBoldHover, var(--Primary-Bold-Hover, var(--Surface-Bold-Hover)));
+  /* Metallic material assignment — emitted by the brand engine only when the
+     role has an ACTIVE metal assigned; otherwise guaranteed-invalid and every
+     consumer falls back to the standard bold chain (zero visual change). */
+  --_stb-material-fill: var(--SelectableSingleTextButton-roleMaterialFill, var(--Primary-Material-Fill));
+  --_stb-material-text: var(--SelectableSingleTextButton-roleMaterialText, var(--Primary-Material-Text));
+  --_stb-subtle: var(--SelectableSingleTextButton-roleSubtle, var(--Primary-Subtle, var(--Surface-Subtle)));
+  --_stb-subtle-hover: var(--SelectableSingleTextButton-roleSubtleHover, var(--Primary-Subtle-Hover, var(--Surface-Subtle-Hover)));
+  --_stb-default-accent-a11y: var(--SelectableSingleTextButton-roleTintedA11y, var(--Primary-TintedA11y, var(--Primary-Tinted, var(--Surface-Bold))));
+  --_stb-default-medium-text: var(--SelectableSingleTextButton-roleMediumText, var(--Primary-Medium-Text, var(--Text-Medium)));
+  --_stb-default-low-stroke: var(--SelectableSingleTextButton-roleStrokeLow, var(--Primary-Stroke-Low, var(--Surface-Bold)));
+  --_stb-default-hover: var(--SelectableSingleTextButton-roleHover, var(--Primary-Hover, var(--Surface-Minimal)));
+
+  /* ========================================
+     SHAPE
+     ======================================== */
+  border-radius: var(--SelectableSingleTextButton-borderRadius, var(--Shape-Pill));
+
+  /* ========================================
+     BASE STYLES — UNSELECTED (always muted ghost)
+     ======================================== */
+  background-color: var(--SelectableSingleTextButton-backgroundColor, transparent);
+  color: var(--SelectableSingleTextButton-textColor, var(--_stb-default-medium-text));
+  border: var(--Stroke-M) solid var(--SelectableSingleTextButton-borderColor, var(--_stb-default-low-stroke));
+
+  /* ========================================
+     LAYOUT — circular by default (matches Figma)
+     ======================================== */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  box-sizing: border-box;
+  cursor: pointer;
+  position: relative;
+  aspect-ratio: 1;
+  clip-path: var(--SelectableSingleTextButton-cssDecorationClipPath, none);
+
+  /* ========================================
+     TYPOGRAPHY — Label role tokens
+     ======================================== */
+  font-family: var(--SelectableSingleTextButton-fontFamily, var(--Label-FontFamily, var(--Typography-Font-Primary, inherit)));
+  font-weight: var(--SelectableSingleTextButton-fontWeight, var(--Label-FontWeight-High));
+  text-transform: var(--SelectableSingleTextButton-textTransform, none);
+  letter-spacing: var(--SelectableSingleTextButton-letterSpacing, normal);
+
+  /* ========================================
+     MOTION
+     ======================================== */
+  transition-property: background-color, color, border-color, box-shadow;
+  transition-duration: var(--SelectableSingleTextButton-transitionDuration, var(--Motion-Duration-M));
+  transition-timing-function: var(--SelectableSingleTextButton-transitionEasing, var(--Motion-Easing-Transition-Moderate));
+}
+
+.selectableSingleTextButton::after {
+  content: '';
+  position: absolute;
+  inset: var(--Spacing-0);
+  box-sizing: border-box;
+  pointer-events: none;
+  border-radius: inherit;
+  clip-path: var(--SelectableSingleTextButton-cssDecorationClipPath, none);
+  border-style: var(--SelectableSingleTextButton-cssDecorationStrokeStyle, solid);
+  border-color: var(--SelectableSingleTextButton-cssDecorationColor, currentColor);
+  border-width:
+    var(--SelectableSingleTextButton-cssDecorationInsetStrokeWidth, var(--Spacing-0))
+    var(--SelectableSingleTextButton-cssDecorationInsetStrokeWidth, var(--Spacing-0))
+    var(--SelectableSingleTextButton-cssDecorationInsetStrokeWidth, var(--SelectableSingleTextButton-cssDecorationUnderlineWidth, var(--Spacing-0)))
+    var(--SelectableSingleTextButton-cssDecorationInsetStrokeWidth, var(--Spacing-0));
+}
+
+/* ========================================
+   APPEARANCE — role-agnostic intermediate variable remapping
+   Adding a new appearance = 1 new class with 9 remappings
+   ======================================== */
+
+.appearancePrimary {
+  --_stb-bold: var(--Primary-Bold, var(--Surface-Bold));
+  --_stb-material-fill: var(--Primary-Material-Fill);
+  --_stb-material-text: var(--Primary-Material-Text);
+  --_stb-bold-high: var(--Primary-Bold-TintedA11y, var(--Primary-Bold-High, var(--Text-OnBold-High)));
+  --_stb-bold-hover: var(--Primary-Bold-Hover, var(--Surface-Bold-Hover));
+  --_stb-subtle: var(--Primary-Subtle, var(--Surface-Subtle));
+  --_stb-subtle-hover: var(--Primary-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_stb-default-accent-a11y: var(--Primary-TintedA11y, var(--Primary-Tinted, var(--Surface-Bold)));
+  --_stb-default-medium-text: var(--Primary-Medium-Text, var(--Text-Medium));
+  --_stb-default-low-stroke: var(--Primary-Stroke-Low, var(--Surface-Bold));
+  --_stb-default-hover: var(--Primary-Hover, var(--Surface-Minimal));
+}
+
+.appearanceNeutral {
+  --_stb-bold: var(--Neutral-Bold, var(--Surface-Bold));
+  --_stb-material-fill: var(--Neutral-Material-Fill);
+  --_stb-material-text: var(--Neutral-Material-Text);
+  --_stb-bold-high: var(--Neutral-Bold-TintedA11y, var(--Neutral-Bold-High, var(--Text-OnBold-High)));
+  --_stb-bold-hover: var(--Neutral-Bold-Hover, var(--Surface-Bold-Hover));
+  --_stb-subtle: var(--Neutral-Subtle, var(--Surface-Subtle));
+  --_stb-subtle-hover: var(--Neutral-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_stb-default-accent-a11y: var(--Neutral-TintedA11y, var(--Neutral-Tinted, var(--Surface-Bold)));
+  --_stb-default-medium-text: var(--Neutral-Medium-Text, var(--Text-Medium));
+  --_stb-default-low-stroke: var(--Neutral-Stroke-Low, var(--Surface-Bold));
+  --_stb-default-hover: var(--Neutral-Hover, var(--Surface-Minimal));
+}
+
+.appearanceSecondary {
+  --_stb-bold: var(--Secondary-Bold, var(--Surface-Bold));
+  --_stb-material-fill: var(--Secondary-Material-Fill);
+  --_stb-material-text: var(--Secondary-Material-Text);
+  --_stb-bold-high: var(--Secondary-Bold-TintedA11y, var(--Secondary-Bold-High, var(--Text-OnBold-High)));
+  --_stb-bold-hover: var(--Secondary-Bold-Hover, var(--Surface-Bold-Hover));
+  --_stb-subtle: var(--Secondary-Subtle, var(--Surface-Subtle));
+  --_stb-subtle-hover: var(--Secondary-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_stb-default-accent-a11y: var(--Secondary-TintedA11y, var(--Secondary-Tinted, var(--Surface-Bold)));
+  --_stb-default-medium-text: var(--Secondary-Medium-Text, var(--Text-Medium));
+  --_stb-default-low-stroke: var(--Secondary-Stroke-Low, var(--Surface-Bold));
+  --_stb-default-hover: var(--Secondary-Hover, var(--Surface-Minimal));
+}
+
+.appearanceSparkle {
+  --_stb-bold: var(--Sparkle-Bold, var(--Surface-Bold));
+  --_stb-material-fill: var(--Sparkle-Material-Fill);
+  --_stb-material-text: var(--Sparkle-Material-Text);
+  --_stb-bold-high: var(--Sparkle-Bold-TintedA11y, var(--Sparkle-Bold-High, var(--Text-OnBold-High)));
+  --_stb-bold-hover: var(--Sparkle-Bold-Hover, var(--Surface-Bold-Hover));
+  --_stb-subtle: var(--Sparkle-Subtle, var(--Surface-Subtle));
+  --_stb-subtle-hover: var(--Sparkle-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_stb-default-accent-a11y: var(--Sparkle-TintedA11y, var(--Sparkle-Tinted, var(--Surface-Bold)));
+  --_stb-default-medium-text: var(--Sparkle-Medium-Text, var(--Text-Medium));
+  --_stb-default-low-stroke: var(--Sparkle-Stroke-Low, var(--Surface-Bold));
+  --_stb-default-hover: var(--Sparkle-Hover, var(--Surface-Minimal));
+}
+
+.appearanceBrandBg {
+  --_stb-bold: var(--Brand-Bg-Bold, var(--Surface-Bold));
+  --_stb-material-fill: var(--Brand-Bg-Material-Fill);
+  --_stb-material-text: var(--Brand-Bg-Material-Text);
+  --_stb-bold-high: var(--Brand-Bg-Bold-TintedA11y, var(--Brand-Bg-Bold-High, var(--Text-OnBold-High)));
+  --_stb-bold-hover: var(--Brand-Bg-Bold-Hover, var(--Surface-Bold-Hover));
+  --_stb-subtle: var(--Brand-Bg-Subtle, var(--Surface-Subtle));
+  --_stb-subtle-hover: var(--Brand-Bg-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_stb-default-accent-a11y: var(--Brand-Bg-TintedA11y, var(--Brand-Bg-Tinted, var(--Surface-Bold)));
+  --_stb-default-medium-text: var(--Brand-Bg-Medium-Text, var(--Text-Medium));
+  --_stb-default-low-stroke: var(--Brand-Bg-Stroke-Low, var(--Surface-Bold));
+  --_stb-default-hover: var(--Brand-Bg-Hover, var(--Surface-Minimal));
+}
+
+.appearancePositive {
+  --_stb-bold: var(--Positive-Bold, var(--Surface-Bold));
+  --_stb-material-fill: var(--Positive-Material-Fill);
+  --_stb-material-text: var(--Positive-Material-Text);
+  --_stb-bold-high: var(--Positive-Bold-TintedA11y, var(--Positive-Bold-High, var(--Text-OnBold-High)));
+  --_stb-bold-hover: var(--Positive-Bold-Hover, var(--Surface-Bold-Hover));
+  --_stb-subtle: var(--Positive-Subtle, var(--Surface-Subtle));
+  --_stb-subtle-hover: var(--Positive-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_stb-default-accent-a11y: var(--Positive-TintedA11y, var(--Positive-Tinted, var(--Surface-Bold)));
+  --_stb-default-medium-text: var(--Positive-Medium-Text, var(--Text-Medium));
+  --_stb-default-low-stroke: var(--Positive-Stroke-Low, var(--Surface-Bold));
+  --_stb-default-hover: var(--Positive-Hover, var(--Surface-Minimal));
+}
+
+.appearanceNegative {
+  --_stb-bold: var(--Negative-Bold, var(--Surface-Bold));
+  --_stb-material-fill: var(--Negative-Material-Fill);
+  --_stb-material-text: var(--Negative-Material-Text);
+  --_stb-bold-high: var(--Negative-Bold-TintedA11y, var(--Negative-Bold-High, var(--Text-OnBold-High)));
+  --_stb-bold-hover: var(--Negative-Bold-Hover, var(--Surface-Bold-Hover));
+  --_stb-subtle: var(--Negative-Subtle, var(--Surface-Subtle));
+  --_stb-subtle-hover: var(--Negative-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_stb-default-accent-a11y: var(--Negative-TintedA11y, var(--Negative-Tinted, var(--Surface-Bold)));
+  --_stb-default-medium-text: var(--Negative-Medium-Text, var(--Text-Medium));
+  --_stb-default-low-stroke: var(--Negative-Stroke-Low, var(--Surface-Bold));
+  --_stb-default-hover: var(--Negative-Hover, var(--Surface-Minimal));
+}
+
+.appearanceWarning {
+  --_stb-bold: var(--Warning-Bold, var(--Surface-Bold));
+  --_stb-material-fill: var(--Warning-Material-Fill);
+  --_stb-material-text: var(--Warning-Material-Text);
+  --_stb-bold-high: var(--Warning-Bold-TintedA11y, var(--Warning-Bold-High, var(--Text-OnBold-High)));
+  --_stb-bold-hover: var(--Warning-Bold-Hover, var(--Surface-Bold-Hover));
+  --_stb-subtle: var(--Warning-Subtle, var(--Surface-Subtle));
+  --_stb-subtle-hover: var(--Warning-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_stb-default-accent-a11y: var(--Warning-TintedA11y, var(--Warning-Tinted, var(--Surface-Bold)));
+  --_stb-default-medium-text: var(--Warning-Medium-Text, var(--Text-Medium));
+  --_stb-default-low-stroke: var(--Warning-Stroke-Low, var(--Surface-Bold));
+  --_stb-default-hover: var(--Warning-Hover, var(--Surface-Minimal));
+}
+
+.appearanceInformative {
+  --_stb-bold: var(--Informative-Bold, var(--Surface-Bold));
+  --_stb-material-fill: var(--Informative-Material-Fill);
+  --_stb-material-text: var(--Informative-Material-Text);
+  --_stb-bold-high: var(--Informative-Bold-TintedA11y, var(--Informative-Bold-High, var(--Text-OnBold-High)));
+  --_stb-bold-hover: var(--Informative-Bold-Hover, var(--Surface-Bold-Hover));
+  --_stb-subtle: var(--Informative-Subtle, var(--Surface-Subtle));
+  --_stb-subtle-hover: var(--Informative-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_stb-default-accent-a11y: var(--Informative-TintedA11y, var(--Informative-Tinted, var(--Surface-Bold)));
+  --_stb-default-medium-text: var(--Informative-Medium-Text, var(--Text-Medium));
+  --_stb-default-low-stroke: var(--Informative-Stroke-Low, var(--Surface-Bold));
+  --_stb-default-hover: var(--Informative-Hover, var(--Surface-Minimal));
+}
+
+/* ========================================
+   SELECTED STATES — driven by data-attention + [data-pressed]
+   Base UI Toggle sets [data-pressed] when selected.
+   ======================================== */
+
+/* HIGH attention selected: bold fill (solid accent bg, on-bold-high text) */
+.selectableSingleTextButton[data-pressed][data-attention="high"] {
+  /* `background` (not background-color) — the material fill is a gradient image. */
+  background: var(--SelectableSingleTextButton-backgroundColor-selected-high, var(--_stb-material-fill, var(--_stb-bold)));
+  color: var(--SelectableSingleTextButton-textColor-selected-high, var(--_stb-material-text, var(--_stb-bold-high)));
+  border-color: transparent;
+}
+
+/* MEDIUM attention selected: subtle fill (tinted bg, accent text) */
+.selectableSingleTextButton[data-pressed][data-attention="medium"] {
+  background-color: var(--SelectableSingleTextButton-backgroundColor-selected-medium, var(--_stb-subtle));
+  color: var(--SelectableSingleTextButton-textColor-selected-medium, var(--_stb-default-accent-a11y));
+  border-color: transparent;
+}
+
+/* LOW attention selected: ghost with bold accent border */
+.selectableSingleTextButton[data-pressed][data-attention="low"] {
+  background-color: transparent;
+  color: var(--SelectableSingleTextButton-textColor-selected-low, var(--_stb-default-accent-a11y));
+  border-color: var(--SelectableSingleTextButton-borderColor-selected-low, var(--_stb-bold));
+}
+
+/* ========================================
+   SIZES — S/M/L only (no XS) via data-size attribute selectors
+   ======================================== */
+
+.selectableSingleTextButton[data-size="s"] {
+  min-height: var(--SelectableSingleTextButton-minHeight-s, var(--Spacing-8));
+  min-width: var(--SelectableSingleTextButton-minHeight-s, var(--Spacing-8));
+  padding: var(--SelectableSingleTextButton-padding-s, var(--Spacing-0-5));
+  font-size: var(--SelectableSingleTextButton-fontSize-s, var(--Label-S-FontSize));
+  line-height: var(--SelectableSingleTextButton-lineHeight-s, var(--Label-S-LineHeight));
+}
+
+.selectableSingleTextButton[data-size="m"] {
+  min-height: var(--SelectableSingleTextButton-minHeight-m, var(--Spacing-10));
+  min-width: var(--SelectableSingleTextButton-minHeight-m, var(--Spacing-10));
+  padding: var(--SelectableSingleTextButton-padding-m, var(--Spacing-1));
+  font-size: var(--SelectableSingleTextButton-fontSize-m, var(--Label-M-FontSize));
+  line-height: var(--SelectableSingleTextButton-lineHeight-m, var(--Label-M-LineHeight));
+}
+
+.selectableSingleTextButton[data-size="l"] {
+  min-height: var(--SelectableSingleTextButton-minHeight-l, var(--Spacing-12));
+  min-width: var(--SelectableSingleTextButton-minHeight-l, var(--Spacing-12));
+  padding: var(--SelectableSingleTextButton-padding-l, var(--Spacing-2));
+  font-size: var(--SelectableSingleTextButton-fontSize-l, var(--Label-L-FontSize));
+  line-height: var(--SelectableSingleTextButton-lineHeight-l, var(--Label-L-LineHeight));
+}
+
+/* ========================================
+   CONDENSED MODE — reduces height + padding, same typography
+   ======================================== */
+
+.selectableSingleTextButton[data-condensed][data-size="s"] {
+  min-height: var(--SelectableSingleTextButton-minHeight-s-condensed, var(--Spacing-4-5));
+  min-width: var(--SelectableSingleTextButton-minHeight-s-condensed, var(--Spacing-4-5));
+  padding: var(--SelectableSingleTextButton-padding-s-condensed, var(--Spacing-0-5));
+}
+
+.selectableSingleTextButton[data-condensed][data-size="m"] {
+  min-height: var(--SelectableSingleTextButton-minHeight-m-condensed, var(--Spacing-6));
+  min-width: var(--SelectableSingleTextButton-minHeight-m-condensed, var(--Spacing-6));
+  padding: var(--SelectableSingleTextButton-padding-m-condensed, var(--Spacing-0-5));
+}
+
+.selectableSingleTextButton[data-condensed][data-size="l"] {
+  min-height: var(--SelectableSingleTextButton-minHeight-l-condensed, var(--Spacing-8));
+  min-width: var(--SelectableSingleTextButton-minHeight-l-condensed, var(--Spacing-8));
+  padding: var(--SelectableSingleTextButton-padding-l-condensed, var(--Spacing-0-5));
+}
+
+/* ========================================
+   FULL WIDTH
+   ======================================== */
+
+.fullWidth {
+  width: var(--SelectableSingleTextButton-fullWidth, 100%);
+  aspect-ratio: auto;
+}
+
+/* ========================================
+   HOVER STATES
+   ======================================== */
+
+/* Hover unselected — subtle bg tint */
+.selectableSingleTextButton:hover:not([data-disabled]) {
+  background-color: var(--SelectableSingleTextButton-backgroundColor-hover, var(--_stb-default-hover));
+}
+
+/* Hover selected high — fg-bold-hover */
+.selectableSingleTextButton[data-pressed][data-attention="high"]:hover:not([data-disabled]) {
+  background: var(--SelectableSingleTextButton-backgroundColor-selected-high-hover, var(--_stb-material-fill, var(--_stb-bold-hover)));
+}
+
+/* Hover selected medium — bg-subtle-hover */
+.selectableSingleTextButton[data-pressed][data-attention="medium"]:hover:not([data-disabled]) {
+  background-color: var(--SelectableSingleTextButton-backgroundColor-selected-medium-hover, var(--_stb-subtle-hover));
+}
+
+/* Hover selected low — default hover */
+.selectableSingleTextButton[data-pressed][data-attention="low"]:hover:not([data-disabled]) {
+  background-color: var(--SelectableSingleTextButton-backgroundColor-selected-low-hover, var(--_stb-default-hover));
+}
+
+/* ========================================
+   DISABLED + LOADING
+   ======================================== */
+
+.selectableSingleTextButton[data-disabled] {
+  opacity: var(--Disabled-Opacity);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.selectableSingleTextButton[data-loading] {
+  opacity: var(--Loading-Opacity, var(--Disabled-Opacity));
+  pointer-events: none;
+}
+
+/* ========================================
+   FOCUS RING — double box-shadow (inner surface + outer brand)
+   ======================================== */
+
+.selectableSingleTextButton:focus {
+  outline: none;
+}
+
+.selectableSingleTextButton:focus-visible,
+:global([data-force-state="focus"]) .selectableSingleTextButton {
+  box-shadow:
+    0 0 0 var(--Stroke-XL) var(--Surface-Halo-Gap, var(--Surface-Main)),
+    0 0 0 calc(var(--Stroke-XL) + var(--Focus-Outline-Width)) var(--Focus-Outline);
+}
+
+/* ========================================
+   LABEL
+   ======================================== */
+
+.label {
+  display: flex;
+  align-items: center;
+}
+
+/* ========================================
+   LOADING SPINNER — replaces label when loading
+   ======================================== */
+
+.spinner {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: inherit;
+  --CircularProgressIndicator-indicatorColor: currentColor;
+  --CircularProgressIndicator-trackColor: transparent;
+}
+
+/**
+ * ========================================
+ * IMPORTANT: NO LITERALS IN THIS FILE
+ * ========================================
+ *
+ * All values MUST come from --Token-Name variables
+ * defined in @oneui/tokens CSS files
+ */

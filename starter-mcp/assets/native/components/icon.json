@@ -1,0 +1,165 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Icon",
+  "generatedAt": "2026-07-09T13:07:37.402Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "Semantic icon. Resolves the `icon` glyph (semantic name, ReactElement, or JDS icon component reference) and inherits colour from the parent text/content token via `appearance` + `emphasis`. Never accept raw hex colours."
+  },
+  "compositionRules": {
+    "requires": [
+      "icon"
+    ],
+    "allows": [],
+    "forbids": [],
+    "childKind": "leaf"
+  },
+  "props": [
+    {
+      "name": "icon",
+      "type": "ReactNode",
+      "required": true,
+      "description": "The glyph — a semantic icon name, a pre-built ReactElement, or (RN-only) a JDS/custom icon component reference (e.g. `icon={IcStar}`)."
+    },
+    {
+      "name": "size",
+      "type": "ReactNode",
+      "required": false,
+      "defaultValue": "5",
+      "description": "A DesignIconSize token (\"2\"..\"40\") OR a raw pixel number (escape hatch only)."
+    },
+    {
+      "name": "appearance",
+      "type": "'primary' | 'secondary' | 'tertiary' | 'quaternary' | 'neutral' | 'sparkle' | 'positive' | 'negative' | 'warning' | 'informative'",
+      "required": false,
+      "defaultValue": "neutral",
+      "description": ""
+    },
+    {
+      "name": "emphasis",
+      "type": "'high' | 'medium' | 'low' | 'tinted' | 'tintedA11y'",
+      "required": false,
+      "defaultValue": "high",
+      "description": ""
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": false,
+      "description": "Required when the icon conveys meaning standalone (no adjacent text)."
+    },
+    {
+      "name": "aria-hidden",
+      "type": "boolean",
+      "required": false,
+      "description": "Set when the icon is purely decorative alongside adjacent text."
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.kb.rn.Icon",
+    "type": "object",
+    "required": [
+      "icon"
+    ],
+    "properties": {
+      "icon": {
+        "description": "The glyph — a semantic icon name, a pre-built ReactElement, or (RN-only) a JDS/custom icon component reference (e.g. `icon={IcStar}`)."
+      },
+      "size": {
+        "description": "A DesignIconSize token (\"2\"..\"40\") OR a raw pixel number (escape hatch only).",
+        "default": "5"
+      },
+      "appearance": {
+        "enum": [
+          "primary",
+          "secondary",
+          "tertiary",
+          "quaternary",
+          "neutral",
+          "sparkle",
+          "positive",
+          "negative",
+          "warning",
+          "informative"
+        ],
+        "default": "neutral"
+      },
+      "emphasis": {
+        "enum": [
+          "high",
+          "medium",
+          "low",
+          "tinted",
+          "tintedA11y"
+        ],
+        "default": "high"
+      },
+      "aria-label": {
+        "type": "string",
+        "description": "Required when the icon conveys meaning standalone (no adjacent text)."
+      },
+      "aria-hidden": {
+        "type": "boolean",
+        "description": "Set when the icon is purely decorative alongside adjacent text."
+      }
+    }
+  },
+  "tokens": {
+    "color": [
+      "primary",
+      "secondary",
+      "tertiary",
+      "quaternary",
+      "neutral",
+      "sparkle",
+      "positive",
+      "negative",
+      "warning",
+      "informative"
+    ],
+    "spacing": [
+      "2XS",
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL"
+    ]
+  },
+  "a11y": {
+    "accessibilityRole": "image",
+    "accessibleNameSource": "aria-label",
+    "minTouchTarget": 44,
+    "honorsBoldText": false,
+    "honorsScreenReader": true
+  },
+  "renderHints": {
+    "baseElement": "View",
+    "animatedOn": [],
+    "honorsReduceMotion": false,
+    "readsFromSurfaceContext": true
+  },
+  "figma": {
+    "componentKey": "jds-icon-v4",
+    "keyHistory": []
+  },
+  "codeSnippets": [
+    {
+      "id": "import-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { Icon } from '@oneui/ui-native';\n\n<Icon />"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "icon",
+    "icon",
+    "chassis"
+  ],
+  "importPath": "@oneui/ui-native"
+}

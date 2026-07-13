@@ -1,0 +1,276 @@
+/**
+ * Scrim.module.css
+ *
+ * Figma 4301:4782 / page 4078:17919.
+ *
+ * Figma model (per-variant symbol):
+ *   Gradient: solid fill (#0c0d10 = --Neutral-Bold) + SVG alpha-mask linearGradient.
+ *             background-color = var(--Neutral-Bold) solid fill.
+ *             mask-image = alpha mask: black→transparent at positions 0→50→65→75→83→88→100%.
+ *             mask-size/position encode band extent (xs=20% … xl=100%).
+ *             Attention = CSS element opacity (mirrors Figma layer opacity).
+ *   Overlay:  background-color = Material-Translucent-Dark heavy/moderate/subtle.
+ *
+ * Verified by: pnpm check:literals
+ */
+
+.scrim {
+  position: absolute;
+  display: block;
+  inset: 0;
+  pointer-events: none;
+  z-index: var(--Scrim-zIndex, var(--Z-Index-Overlay, 1));
+
+  --_scrim-neutral: var(--Neutral-Bold, var(--Surface-Bold));
+  /* Band size as % of container — mirrors Figma gradient endpoint coords.
+     Default = s (40%). Left/right positions override --_scrim-band-x;
+     bottom/top positions override --_scrim-band-y. */
+  --_scrim-band-x: 100%;
+  --_scrim-band-y: 40%;
+  --_scrim-band-position: bottom;
+  --_scrim-direction: to top;
+}
+
+/* ========================================
+   VARIANT — gradient = solid fill + alpha mask; overlay = uniform tint
+   ======================================== */
+
+.scrim[data-variant='gradient'] {
+  /*
+   * Direct CSS translation of Figma's model:
+   *   background-color = solid fill (--Neutral-Bold = brand colour).
+   *   mask-image       = SVG alpha-mask linearGradient (black=show, transparent=hide).
+   *
+   * Opacity values:  100% → 30%  → 15% → 8%  → 4%  → 2%  → 0%
+   * Stop positions:    0% → 50%  → 65% → 75% → 83% → 88% → 100%
+   * (Non-linear: opaque region holds longer, then fades quickly at the edge.)
+   *
+   * Renders once --Neutral-Bold (or --Surface-Bold fallback) is injected by brand CSS.
+   */
+  background-color: var(--Scrim-fromColor, var(--_scrim-neutral));
+  background-image: none;
+  mask-image: linear-gradient(
+    var(--_scrim-direction),
+    black 0%,
+    rgb(0 0 0 / 0.30) 50%,
+    rgb(0 0 0 / 0.15) 65%,
+    rgb(0 0 0 / 0.08) 75%,
+    rgb(0 0 0 / 0.04) 83%,
+    rgb(0 0 0 / 0.02) 88%,
+    transparent 100%
+  );
+  mask-size: var(--_scrim-band-x) var(--_scrim-band-y);
+  mask-position: var(--_scrim-band-position);
+  mask-repeat: no-repeat;
+}
+
+.scrim[data-variant='overlay'] {
+  /* Default (no attention attr): medium = rgba(0,0,0,0.33) */
+  background-color: var(
+    --Scrim-backgroundColor-medium,
+    color-mix(in srgb, var(--Material-Translucent-Dark-Moderate) 66%, transparent)
+  );
+  background-image: none;
+}
+
+/* ========================================
+   ATTENTION
+   Gradient: element opacity mirrors Figma layer opacity (curve stays fixed).
+   Overlay:  Figma values are 50% / 33% / 17% black.
+             --Material-Translucent-Dark-Moderate = rgba(0,0,0,0.50) = High.
+             Medium / Low are derived via color-mix from Moderate.
+   ======================================== */
+
+.scrim[data-attention='high'][data-variant='gradient'] {
+  opacity: var(--Scrim-Opacity-High, 0.95);
+}
+
+.scrim[data-attention='medium'][data-variant='gradient'] {
+  opacity: var(--Scrim-Opacity-Medium, 0.5);
+}
+
+.scrim[data-attention='low'][data-variant='gradient'] {
+  opacity: var(--Scrim-Opacity-Low, 0.25);
+}
+
+/* Overlay: high = rgba(0,0,0,0.50) */
+.scrim[data-attention='high'][data-variant='overlay'] {
+  background-color: var(
+    --Scrim-backgroundColor-high,
+    var(--Material-Translucent-Dark-Moderate)
+  );
+}
+
+/* Overlay: medium = rgba(0,0,0,0.33) ≈ 66% of Moderate */
+.scrim[data-attention='medium'][data-variant='overlay'] {
+  background-color: var(
+    --Scrim-backgroundColor-medium,
+    color-mix(in srgb, var(--Material-Translucent-Dark-Moderate) 66%, transparent)
+  );
+}
+
+/* Overlay: low = rgba(0,0,0,0.17) ≈ 34% of Moderate */
+.scrim[data-attention='low'][data-variant='overlay'] {
+  background-color: var(
+    --Scrim-backgroundColor-low,
+    color-mix(in srgb, var(--Material-Translucent-Dark-Moderate) 34%, transparent)
+  );
+}
+
+/* ========================================
+   POSITION — gradient direction + band anchor
+   ======================================== */
+
+.scrim[data-variant='gradient'][data-position='bottom'] {
+  --_scrim-direction: to top;
+  --_scrim-band-position: bottom;
+  --_scrim-band-x: 100%;
+}
+
+.scrim[data-variant='gradient'][data-position='top'] {
+  --_scrim-direction: to bottom;
+  --_scrim-band-position: top;
+  --_scrim-band-x: 100%;
+}
+
+.scrim[data-variant='gradient'][data-position='left'] {
+  --_scrim-direction: to right;
+  --_scrim-band-position: left;
+  --_scrim-band-y: 100%;
+}
+
+.scrim[data-variant='gradient'][data-position='right'] {
+  --_scrim-direction: to left;
+  --_scrim-band-position: right;
+  --_scrim-band-y: 100%;
+}
+
+.scrim[data-variant='gradient'][data-position='center'] {
+  --_scrim-band-position: center;
+}
+
+/* ========================================
+   SIZE — band extent as % of container, derived from Figma SVG gradient
+   endpoint coordinates (x2/y2 values map to % of component dimensions).
+   xs=20%  s=40%  m=60%  l=80%  xl=100%
+   ======================================== */
+
+.scrim[data-variant='gradient'][data-size='full'] {
+  --_scrim-band-x: 100%;
+  --_scrim-band-y: 100%;
+  --_scrim-band-position: center;
+}
+
+/* bottom / top — vary band height */
+.scrim[data-variant='gradient'][data-position='bottom'][data-size='xs'],
+.scrim[data-variant='gradient'][data-position='top'][data-size='xs'] {
+  --_scrim-band-y: var(--Scrim-sizeHeight-XS, 20%);
+}
+
+.scrim[data-variant='gradient'][data-position='bottom'][data-size='s'],
+.scrim[data-variant='gradient'][data-position='top'][data-size='s'] {
+  --_scrim-band-y: var(--Scrim-sizeHeight-S, 40%);
+}
+
+.scrim[data-variant='gradient'][data-position='bottom'][data-size='m'],
+.scrim[data-variant='gradient'][data-position='top'][data-size='m'] {
+  --_scrim-band-y: var(--Scrim-sizeHeight-M, 60%);
+}
+
+.scrim[data-variant='gradient'][data-position='bottom'][data-size='l'],
+.scrim[data-variant='gradient'][data-position='top'][data-size='l'] {
+  --_scrim-band-y: var(--Scrim-sizeHeight-L, 80%);
+}
+
+.scrim[data-variant='gradient'][data-position='bottom'][data-size='xl'],
+.scrim[data-variant='gradient'][data-position='top'][data-size='xl'] {
+  --_scrim-band-y: var(--Scrim-sizeHeight-XL, 100%);
+}
+
+/* left / right — vary band width */
+.scrim[data-variant='gradient'][data-position='left'][data-size='xs'],
+.scrim[data-variant='gradient'][data-position='right'][data-size='xs'] {
+  --_scrim-band-x: var(--Scrim-sizeWidth-XS, 20%);
+}
+
+.scrim[data-variant='gradient'][data-position='left'][data-size='s'],
+.scrim[data-variant='gradient'][data-position='right'][data-size='s'] {
+  --_scrim-band-x: var(--Scrim-sizeWidth-S, 40%);
+}
+
+.scrim[data-variant='gradient'][data-position='left'][data-size='m'],
+.scrim[data-variant='gradient'][data-position='right'][data-size='m'] {
+  --_scrim-band-x: var(--Scrim-sizeWidth-M, 60%);
+}
+
+.scrim[data-variant='gradient'][data-position='left'][data-size='l'],
+.scrim[data-variant='gradient'][data-position='right'][data-size='l'] {
+  --_scrim-band-x: var(--Scrim-sizeWidth-L, 80%);
+}
+
+.scrim[data-variant='gradient'][data-position='left'][data-size='xl'],
+.scrim[data-variant='gradient'][data-position='right'][data-size='xl'] {
+  --_scrim-band-x: var(--Scrim-sizeWidth-XL, 100%);
+}
+
+/* ========================================
+   STORYBOOK preview — transparent Figma ComponentBGCell positioning box
+   ======================================== */
+
+.previewFrame {
+  position: relative;
+  display: block;
+  width: var(--Spacing-28);
+  height: var(--Spacing-28);
+  overflow: hidden;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  background-color: transparent;
+}
+
+/* Matrix cell — uniform size for ALL positions (matches Figma component-set preview).
+   Left/right gradients show as vertical bands inside the same landscape frame. */
+.previewFrameLandscape,
+.previewFramePortrait {
+  position: relative;
+  display: block;
+  width: var(--Spacing-28);
+  height: var(--Spacing-28);
+  overflow: hidden;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  background-color: transparent;
+  outline: 1px solid var(--Border-Subtle);
+}
+
+.previewLabel {
+  color: var(--Text-Medium);
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Low);
+}
+
+.previewColumn {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-5);
+  width: 100%;
+  align-items: center;
+}
+
+.previewRow {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-3);
+  align-items: center;
+}
+
+.previewGrid {
+  display: grid;
+  /* 5 equal columns — one per size (xs · s · m · l · xl) */
+  grid-template-columns: repeat(5, var(--Spacing-28));
+  gap: var(--Spacing-6);
+  justify-content: center;
+  width: 100%;
+}

@@ -1,0 +1,144 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Scrim",
+  "generatedAt": "2026-07-09T13:07:37.422Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "A layout fade or overlay tint used to improve legibility of content resting on images or complex backgrounds."
+  },
+  "compositionRules": {
+    "requires": [],
+    "allows": [],
+    "forbids": [],
+    "childKind": "leaf"
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "gradient"
+      },
+      {
+        "name": "overlay"
+      }
+    ]
+  },
+  "props": [
+    {
+      "name": "attention",
+      "type": "'low' | 'medium' | 'high'",
+      "required": false,
+      "defaultValue": "medium",
+      "description": "Fade strength"
+    },
+    {
+      "name": "size",
+      "type": "'XS' | 'S' | 'M' | 'L' | 'XL' | 'full'",
+      "required": false,
+      "defaultValue": "XS",
+      "description": "Band coverage within the parent"
+    },
+    {
+      "name": "position",
+      "type": "'top' | 'bottom' | 'start' | 'end' | 'center'",
+      "required": false,
+      "defaultValue": "bottom",
+      "description": "Edge the fade anchors to"
+    },
+    {
+      "name": "variant",
+      "type": "'gradient' | 'overlay'",
+      "required": false,
+      "defaultValue": "gradient",
+      "description": "Edge fade or flat tint"
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.kb.rn.Scrim",
+    "type": "object",
+    "properties": {
+      "attention": {
+        "enum": [
+          "low",
+          "medium",
+          "high"
+        ],
+        "default": "medium",
+        "description": "Fade strength"
+      },
+      "size": {
+        "enum": [
+          "XS",
+          "S",
+          "M",
+          "L",
+          "XL",
+          "full"
+        ],
+        "default": "XS",
+        "description": "Band coverage within the parent"
+      },
+      "position": {
+        "enum": [
+          "top",
+          "bottom",
+          "start",
+          "end",
+          "center"
+        ],
+        "default": "bottom",
+        "description": "Edge the fade anchors to"
+      },
+      "variant": {
+        "enum": [
+          "gradient",
+          "overlay"
+        ],
+        "default": "gradient",
+        "description": "Edge fade or flat tint"
+      }
+    }
+  },
+  "tokens": {
+    "color": [],
+    "surface": []
+  },
+  "a11y": {
+    "accessibilityRole": "none",
+    "accessibleNameSource": "children",
+    "minTouchTarget": 44,
+    "honorsBoldText": false,
+    "honorsScreenReader": true
+  },
+  "renderHints": {
+    "baseElement": "View",
+    "animatedOn": [],
+    "honorsReduceMotion": true,
+    "readsFromSurfaceContext": false
+  },
+  "figma": {
+    "componentKey": "jds-scrim-v4",
+    "keyHistory": [],
+    "variantProperties": {
+      "Component": "Scrim"
+    }
+  },
+  "codeSnippets": [
+    {
+      "id": "import-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { Scrim } from '@oneui/ui-native';\n\n<Scrim />"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "scrim",
+    "layout",
+    "overlay",
+    "background"
+  ],
+  "importPath": "@oneui/ui-native"
+}

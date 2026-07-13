@@ -1,0 +1,30 @@
+import React, { forwardRef } from 'react';
+import type { IconComponentProps } from '../iconProps';
+
+export const IcGames = forwardRef<SVGSVGElement, IconComponentProps>(function IcGames(
+  { size = 24, width, height, color = 'currentColor', className, style, ...props },
+  ref,
+) {
+  const dim = width ?? height ?? size;
+  return (
+    <svg
+      ref={ref}
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      width={width ?? dim}
+      height={height ?? dim}
+      color={color}
+      className={className}
+      style={style}
+      {...props}
+    >
+      <path
+            fill="currentColor"
+            d="M16 8h-3a3 3 0 0 0-3-3 1 1 0 0 1-1-1 1 1 0 0 0-2 0 3 3 0 0 0 3 3 1 1 0 0 1 1 1H8a6 6 0 1 0 0 12 5.93 5.93 0 0 0 3.28-1h1.44A5.93 5.93 0 0 0 16 20a6 6 0 1 0 0-12m-7 7H8v1a1 1 0 1 1-2 0v-1H5a1 1 0 0 1 0-2h1v-1a1 1 0 1 1 2 0v1h1a1 1 0 0 1 0 2m7.07-3.38q.084-.181.22-.33a1 1 0 0 1 1.09-.21q.093.03.17.09.085.053.16.12a1 1 0 0 1 .21.33 1 1 0 0 1-.21 1.09 1.2 1.2 0 0 1-.33.21.94.94 0 0 1-.76 0 1 1 0 0 1-.33-.21 1 1 0 0 1-.22-1.09m-.36 3.09a1.2 1.2 0 0 1-.33.21.94.94 0 0 1-.76 0 1 1 0 0 1-.33-.21A1 1 0 0 1 14 14a1 1 0 1 1 2 0 1 1 0 0 1-.29.71m2.21 1.67a1.2 1.2 0 0 1-.21.33 1 1 0 0 1-1.09.21 1 1 0 0 1-.33-.21 1 1 0 0 1-.22-1.09q.084-.181.22-.33a1 1 0 0 1 1.09-.21q.183.077.33.21a1 1 0 0 1 .21.33.94.94 0 0 1 0 .76m1.78-1.67a1 1 0 0 1-1.41-1.42l.15-.12a.8.8 0 0 1 .18-.09.6.6 0 0 1 .18-.08 1 1 0 0 1 1.125.604q.078.19.075.396a1 1 0 0 1-.3.71"
+          />
+    </svg>
+  );
+});
+
+IcGames.displayName = 'IcGames';

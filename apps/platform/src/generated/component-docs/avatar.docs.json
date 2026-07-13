@@ -1,0 +1,377 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Avatar",
+  "generatedAt": "2026-01-01T00:00:00.000Z",
+  "machineReadable": true,
+  "intentAndPurpose": {
+    "intent": {
+      "value": "Display a user or entity representation as image, icon, or text initials.",
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "taskContexts": {
+      "value": [
+        "user-profile",
+        "contact-list",
+        "comment-attribution",
+        "navigation-header"
+      ],
+      "attribution": {
+        "source": "authored"
+      }
+    },
+    "sentiments": {
+      "value": [
+        "neutral",
+        "positive"
+      ],
+      "attribution": {
+        "source": "authored"
+      }
+    }
+  },
+  "compositionRules": {
+    "requires": {
+      "value": [
+        "alt text for accessibility"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "allows": {
+      "value": [
+        "image src",
+        "icon element",
+        "text initials via alt"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "forbids": {
+      "value": [
+        "interactive content within avatar"
+      ],
+      "attribution": {
+        "source": "authored"
+      }
+    }
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "image",
+        "useWhen": {
+          "value": [
+            "user has a profile photo"
+          ],
+          "attribution": {
+            "source": "inferred"
+          }
+        }
+      },
+      {
+        "name": "icon",
+        "useWhen": {
+          "value": [
+            "generic entity or placeholder representation"
+          ],
+          "attribution": {
+            "source": "inferred"
+          }
+        }
+      },
+      {
+        "name": "text",
+        "useWhen": {
+          "value": [
+            "no image available, display initials"
+          ],
+          "attribution": {
+            "source": "inferred"
+          }
+        }
+      }
+    ]
+  },
+  "relationshipsAndDependencies": {
+    "related": {
+      "value": [
+        "IconContained",
+        "Image"
+      ],
+      "attribution": {
+        "source": "authored"
+      }
+    }
+  },
+  "contextSignals": {
+    "density": {
+      "value": [
+        "compact",
+        "default",
+        "open"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "modality": {
+      "value": [
+        "desktop",
+        "mobile"
+      ],
+      "attribution": {
+        "source": "authored"
+      }
+    },
+    "brand": {
+      "value": [
+        "theme-scope aware",
+        "recipe-driven"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "mode": {
+      "value": [
+        "light",
+        "dark",
+        "surface-context"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "observabilityHooks": {
+    "track": {
+      "value": [
+        "impression"
+      ],
+      "attribution": {
+        "source": "authored"
+      }
+    },
+    "health": {
+      "value": [
+        "a11y_violations",
+        "image_load_failure_rate"
+      ],
+      "attribution": {
+        "source": "authored"
+      }
+    }
+  },
+  "props": [
+    {
+      "name": "alt",
+      "type": "string",
+      "required": false,
+      "description": "Alt text / name used for accessibility and initials extraction"
+    },
+    {
+      "name": "appearance",
+      "type": "AvatarAppearance",
+      "required": false,
+      "description": "Multi-accent appearance role. 'auto' resolves to 'primary'."
+    },
+    {
+      "name": "attention",
+      "type": "AvatarAttention",
+      "required": false,
+      "description": "Attention level — High (filled), Medium (tinted), Low (transparent). Default: 'high'"
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "required": false,
+      "description": "Additional class name"
+    },
+    {
+      "name": "content",
+      "type": "AvatarContent",
+      "required": false,
+      "description": "Display content: image, icon, or text (initials). Aligns with Figma property `content`."
+    },
+    {
+      "name": "customSize",
+      "type": "number",
+      "required": false,
+      "description": "Custom size in pixels (only when size='custom')"
+    },
+    {
+      "name": "data-testid",
+      "type": "string",
+      "required": false,
+      "description": "Test automation id — forwarded to the root element."
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "required": false,
+      "description": "Disabled state"
+    },
+    {
+      "name": "fallback",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Custom fallback content when image fails or for icon/text content"
+    },
+    {
+      "name": "icon",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Icon element (when content is icon)"
+    },
+    {
+      "name": "onClick",
+      "type": "() => void",
+      "required": false,
+      "description": "Web alias for `onPress`."
+    },
+    {
+      "name": "onPress",
+      "type": "() => void",
+      "required": false,
+      "description": "Click handler — when set, the avatar renders as an interactive Base UI button."
+    },
+    {
+      "name": "size",
+      "type": "AvatarSize",
+      "required": false,
+      "description": "Size preset. Default: 'm'"
+    },
+    {
+      "name": "src",
+      "type": "string",
+      "required": false,
+      "description": "Image source URL (when content is image)"
+    },
+    {
+      "name": "style",
+      "type": "CSSProperties",
+      "required": false,
+      "description": "Inline styles"
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.docs.avatar",
+    "type": "object",
+    "properties": {
+      "alt": {
+        "type": "string",
+        "description": "Alt text / name used for accessibility and initials extraction"
+      },
+      "appearance": {
+        "enum": [
+          "auto",
+          "primary",
+          "secondary",
+          "neutral",
+          "sparkle",
+          "brand-bg",
+          "positive",
+          "negative",
+          "warning",
+          "informative"
+        ],
+        "description": "Multi-accent appearance role. 'auto' resolves to 'primary'."
+      },
+      "attention": {
+        "enum": [
+          "high",
+          "medium",
+          "low"
+        ],
+        "description": "Attention level — High (filled), Medium (tinted), Low (transparent). Default: 'high'"
+      },
+      "className": {
+        "type": "string",
+        "description": "Additional class name"
+      },
+      "content": {
+        "enum": [
+          "image",
+          "icon",
+          "text"
+        ],
+        "description": "Display content: image, icon, or text (initials). Aligns with Figma property `content`."
+      },
+      "customSize": {
+        "type": "number",
+        "description": "Custom size in pixels (only when size='custom')"
+      },
+      "data-testid": {
+        "type": "string",
+        "description": "Test automation id — forwarded to the root element."
+      },
+      "disabled": {
+        "type": "boolean",
+        "description": "Disabled state"
+      },
+      "fallback": {
+        "description": "Custom fallback content when image fails or for icon/text content"
+      },
+      "icon": {
+        "description": "Icon element (when content is icon)"
+      },
+      "onClick": {
+        "description": "Web alias for `onPress`."
+      },
+      "onPress": {
+        "description": "Click handler — when set, the avatar renders as an interactive Base UI button."
+      },
+      "size": {
+        "enum": [
+          "2xs",
+          "xs",
+          "s",
+          "m",
+          "l",
+          "xl",
+          "2xl",
+          "custom"
+        ],
+        "description": "Size preset. Default: 'm'"
+      },
+      "src": {
+        "type": "string",
+        "description": "Image source URL (when content is image)"
+      },
+      "style": {
+        "description": "Inline styles"
+      }
+    }
+  },
+  "codeSnippets": [
+    {
+      "id": "avatar-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { Avatar } from '@oneui/ui';\n\n<Avatar src=\"/photo.jpg\" alt=\"Jane Doe\" />"
+    },
+    {
+      "id": "avatar-initials",
+      "title": "Text Initials",
+      "language": "tsx",
+      "code": "<Avatar content=\"text\" alt=\"Jane Doe\" />"
+    },
+    {
+      "id": "avatar-recipe-decisions",
+      "title": "Recipe Decisions",
+      "language": "json",
+      "code": "{\n  \"component\": \"Avatar\",\n  \"decisions\": [\n    \"Shape\"\n  ]\n}"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "avatar"
+  ],
+  "generatedMarkdown": "# Avatar Machine-Readable Documentation\n\n_Generated from source metadata. Do not edit manually._\n\n## Intent and Purpose\n\n- **Intent**: Display a user or entity representation as image, icon, or text initials.\n- **Task contexts**: user-profile, contact-list, comment-attribution, navigation-header\n- **Sentiments**: neutral, positive\n\n## Composition Rules\n\n- **Requires**: alt text for accessibility\n- **Allows**: image src, icon element, text initials via alt\n- **Forbids**: interactive content within avatar\n\n## Variant Logic\n\n- **image**: use when user has a profile photo\n- **icon**: use when generic entity or placeholder representation\n- **text**: use when no image available, display initials\n\n## Relationships and Dependencies\n\n- **Related**: IconContained, Image\n- **Escalates to**: -\n- **Degrades to**: -\n- **Groups with**: -\n\n## Context Signals\n\n- **Density**: compact, default, open\n- **Modality**: desktop, mobile\n- **Brand**: theme-scope aware, recipe-driven\n- **Mode**: light, dark, surface-context\n\n## Observability Hooks\n\n- **Track**: impression\n- **Health**: a11y_violations, image_load_failure_rate\n\n## Props\n\n| Prop | Type | Required | Default | Description |\n| --- | --- | --- | --- | --- |\n| `alt` | `string` | No | - | Alt text / name used for accessibility and initials extraction |\n| `appearance` | `AvatarAppearance` | No | - | Multi-accent appearance role. 'auto' resolves to 'primary'. |\n| `attention` | `AvatarAttention` | No | - | Attention level — High (filled), Medium (tinted), Low (transparent). Default: 'high' |\n| `className` | `string` | No | - | Additional class name |\n| `content` | `AvatarContent` | No | - | Display content: image, icon, or text (initials). Aligns with Figma property `content`. |\n| `customSize` | `number` | No | - | Custom size in pixels (only when size='custom') |\n| `data-testid` | `string` | No | - | Test automation id — forwarded to the root element. |\n| `disabled` | `boolean` | No | - | Disabled state |\n| `fallback` | `ReactNode` | No | - | Custom fallback content when image fails or for icon/text content |\n| `icon` | `ReactNode` | No | - | Icon element (when content is icon) |\n| `onClick` | `() => void` | No | - | Web alias for `onPress`. |\n| `onPress` | `() => void` | No | - | Click handler — when set, the avatar renders as an interactive Base UI button. |\n| `size` | `AvatarSize` | No | - | Size preset. Default: 'm' |\n| `src` | `string` | No | - | Image source URL (when content is image) |\n| `style` | `CSSProperties` | No | - | Inline styles |\n\n## Slots\n\n| Slot | Types | Tokens |\n| --- | --- | --- |\n\n\n## Code Snippets\n\n### Basic Usage\n\n```tsx\nimport { Avatar } from '@oneui/ui';\n\n<Avatar src=\"/photo.jpg\" alt=\"Jane Doe\" />\n```\n\n### Text Initials\n\n```tsx\n<Avatar content=\"text\" alt=\"Jane Doe\" />\n```\n\n### Recipe Decisions\n\n```json\n{\n  \"component\": \"Avatar\",\n  \"decisions\": [\n    \"Shape\"\n  ]\n}\n```\n"
+}

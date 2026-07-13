@@ -1,0 +1,176 @@
+/**
+ * rules.module.css
+ * Styles for the voice rules editor
+ */
+
+.statsBar {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-4);
+  padding: var(--Spacing-3) 0;
+}
+
+.stat {
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  color: var(--Text-Medium);
+}
+
+.seedButton {
+  margin-left: auto;
+  background-color: var(--Primary-Bold);
+  color: var(--Primary-Bold-High);
+  border: none;
+  border-radius: var(--Shape-Pill);
+  padding: var(--Spacing-1-5) var(--Spacing-4);
+  font-size: var(--Label-S-FontSize);
+  font-weight: var(--Label-FontWeight-Medium);
+  cursor: pointer;
+}
+
+.seedButton:hover {
+  opacity: 0.9;
+}
+
+.ruleCard {
+  border: 1px solid var(--Border-Subtle);
+  border-radius: var(--Shape-4-5);
+  overflow: hidden;
+  background-color: var(--Surface-Main);
+}
+
+.ruleHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: var(--Spacing-3-5) var(--Spacing-4);
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  color: var(--Text-High);
+  font-size: var(--Body-M-FontSize);
+  line-height: var(--Body-M-LineHeight);
+}
+
+.ruleHeader:hover {
+  background-color: var(--Surface-Subtle);
+}
+
+.ruleHeaderLeft {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-3-5);
+}
+
+.ruleHeaderRight {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-3);
+}
+
+.rulePriority {
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  color: var(--Text-Low);
+  width: 24px;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.ruleTitle {
+  font-weight: var(--Body-FontWeight-Medium);
+}
+
+
+.chevron {
+  font-size: var(--Body-L-FontSize);
+  color: var(--Text-Low);
+  width: 20px;
+  text-align: center;
+}
+
+.ruleBody {
+  padding: var(--Spacing-3-5) var(--Spacing-4) var(--Spacing-4);
+  border-top: 1px solid var(--Border-Subtle);
+}
+
+.ruleContent {
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  color: var(--Text-Medium);
+  white-space: pre-wrap;
+}
+
+.ruleTextarea {
+  width: 100%;
+  min-height: 200px;
+  padding: var(--Spacing-3);
+  border: 1px solid var(--Border-Subtle);
+  border-radius: var(--Shape-3);
+  background-color: var(--Surface-Main);
+  color: var(--Text-High);
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  resize: vertical;
+}
+
+.ruleTextarea:focus {
+  outline: none;
+  border-color: var(--Primary-Bold);
+}
+
+.ruleActions {
+  display: flex;
+  gap: var(--Spacing-3);
+  margin-top: var(--Spacing-3-5);
+}
+
+.editButton,
+.overrideButton,
+.resetButton,
+.saveButton,
+.cancelButton {
+  border: none;
+  border-radius: var(--Shape-Pill);
+  padding: var(--Spacing-1-5) var(--Spacing-3-5);
+  font-size: var(--Label-XS-FontSize);
+  font-weight: var(--Label-FontWeight-Medium);
+  cursor: pointer;
+}
+
+.editButton {
+  background-color: var(--Surface-Subtle);
+  color: var(--Text-High);
+}
+
+.overrideButton {
+  background-color: var(--Primary-Subtle);
+  color: var(--Primary-TintedA11y);
+}
+
+.resetButton {
+  background-color: var(--Negative-Subtle);
+  color: var(--Negative-TintedA11y);
+}
+
+.saveButton {
+  background-color: var(--Primary-Bold);
+  color: var(--Primary-Bold-High);
+}
+
+.cancelButton {
+  background-color: var(--Surface-Subtle);
+  color: var(--Text-Medium);
+}
+
+.ruleMeta {
+  display: flex;
+  gap: var(--Spacing-4);
+  margin-top: var(--Spacing-3);
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  color: var(--Text-Low);
+}

@@ -1,0 +1,79 @@
+{
+  "name": "@oneui/tokens",
+  "version": "0.1.0-alpha.0",
+  "private": false,
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "sideEffects": ["src/css/**/*.css"],
+  "files": [
+    "dist",
+    "src/css"
+  ],
+  "exports": {
+    ".": "./src/index.ts",
+    "./css/layers": "./src/css/layers.css",
+    "./css": "./src/css/primitives.css",
+    "./css/semantic": "./src/css/semantic.css",
+    "./css/light": "./src/css/themes/light.css",
+    "./css/dark": "./src/css/themes/dark.css",
+    "./css/dim": "./src/css/themes/dim.css",
+    "./css/brands": "./src/css/brands/index.css",
+    "./css/brands/jiocinema": "./src/css/brands/jiocinema.css",
+    "./css/brands/jiomart": "./src/css/brands/jiomart.css",
+    "./css/brands/jiohotstar": "./src/css/brands/jiohotstar.css",
+    "./css/density": "./src/css/density/index.css",
+    "./css/density/compact": "./src/css/density/compact.css",
+    "./css/density/open": "./src/css/density/open.css",
+    "./css/materials": "./src/css/materials.css",
+    "./css/dimensions/scale": "./src/css/dimensions/scale.css",
+    "./css/dimensions/grid": "./src/css/dimensions/grid.css",
+    "./css/typography": "./src/css/typography/typography.css"
+  },
+  "publishConfig": {
+    "main": "./dist/index.cjs",
+    "module": "./dist/index.mjs",
+    "types": "./dist/index.d.ts",
+    "exports": {
+      ".": {
+        "types": "./dist/index.d.ts",
+        "import": "./dist/index.mjs",
+        "require": "./dist/index.cjs"
+      },
+      "./css/layers": "./src/css/layers.css",
+      "./css": "./src/css/primitives.css",
+      "./css/semantic": "./src/css/semantic.css",
+      "./css/light": "./src/css/themes/light.css",
+      "./css/dark": "./src/css/themes/dark.css",
+      "./css/dim": "./src/css/themes/dim.css",
+      "./css/brands": "./src/css/brands/index.css",
+      "./css/brands/jiocinema": "./src/css/brands/jiocinema.css",
+      "./css/brands/jiomart": "./src/css/brands/jiomart.css",
+      "./css/brands/jiohotstar": "./src/css/brands/jiohotstar.css",
+      "./css/density": "./src/css/density/index.css",
+      "./css/density/compact": "./src/css/density/compact.css",
+      "./css/density/open": "./src/css/density/open.css",
+      "./css/materials": "./src/css/materials.css",
+      "./css/dimensions/scale": "./src/css/dimensions/scale.css",
+      "./css/dimensions/grid": "./src/css/dimensions/grid.css",
+      "./css/typography": "./src/css/typography/typography.css"
+    }
+  },
+  "scripts": {
+    "build": "tsup",
+    "generate": "tsx scripts/generate.ts",
+    "validate": "tsx src/validators/resolution.ts",
+    "typecheck": "tsc --noEmit",
+    "pack:dist": "node -e \"require('fs').mkdirSync('../../dist/packages/tokens',{recursive:true})\" && npm pack --pack-destination ../../dist/packages/tokens",
+    "build:pack": "pnpm run build && pnpm run pack:dist"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@oneui/shared": "workspace:*",
+    "@types/node": "^22.10.5",
+    "glob": "^10.3.10",
+    "tsup": "^8.0.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "lib": ["ES2022", "DOM"],
+    "noEmit": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "types": ["react", "react-native", "node"],
+    "paths": {
+      "@oneui/shared": ["../../packages/shared/src"],
+      "@oneui/shared/engine": ["../../packages/shared/src/engine"],
+      "@oneui/tokens": ["../../packages/tokens/src"],
+      "@oneui/ui-native": ["../../packages/ui-native/src"],
+      "@oneui/ui-native/theme": ["../../packages/ui-native/src/theme"],
+      "@oneui/ui-native/components/Button": ["../../packages/ui-native/src/components/Button"],
+      "@oneui/ui-native/showcase/Button": [
+        "../../packages/ui-native/src/components/Button/Button.showcase.native.tsx"
+      ],
+      "@oneui/ui/components/Button/shared": [
+        "../../packages/ui/src/components/Button/index.shared.ts"
+      ],
+      "@oneui/ui/components/Icon/shared": [
+        "../../packages/ui/src/components/Icon/index.shared.ts"
+      ]
+    }
+  },
+  "include": ["**/*.ts", "**/*.tsx", "declarations.d.ts"],
+  "exclude": ["node_modules"]
+}

@@ -1,0 +1,33 @@
+/**
+ * HomeChat.module.css
+ *
+ * Home-specific greeting styles. All transcript + composer layout lives
+ * in `packages/ui/.../ChatSurface.module.css` — this module only owns
+ * the "HelloJio + greeting" headline rendered in the empty-state slot.
+ *
+ * Token-only; zero literals.
+ */
+
+.greetingRow {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-2);
+  color: var(--Primary-High);
+}
+
+.greetingIcon {
+  flex-shrink: 0;
+  width: var(--Display-S-LineHeight);
+  height: var(--Display-S-LineHeight);
+  color: var(--Primary-Bold);
+}
+
+.greeting {
+  font-family: var(--Display-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Display-S-FontSize);
+  line-height: var(--Display-S-LineHeight);
+  font-weight: var(--Display-S-FontWeight);
+  color: var(--Primary-High);
+  margin: 0;
+  text-align: center;
+}

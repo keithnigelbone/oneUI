@@ -1,0 +1,103 @@
+# Sync OneUiStudio_Base_v4 (GitHub dev) → oneui-studio (Azure DevOps dev)
+#
+# The GitHub source repo is PRIVATE, so a Personal Access Token is required.
+# Add a secret pipeline variable:
+#   GITHUB_PAT = a GitHub token with read access to OneUiStudio_Base_v4
+# The clone URL is built in the script using the x-access-token form; do NOT
+# embed the PAT inside another variable's value (Azure won't expand a secret
+# referenced from another variable).
+#
+# Azure DevOps setup (one-time):
+#   1. Pipelines → New pipeline → select this repo → Existing Azure Pipelines YAML
+#      → azure-pipelines-sync.yml
+#   2. Project Settings → Repos → oneui-studio → Security
+#      Grant "Build Service" → Contribute + Create branch
+#   3. Pipeline → Edit → ⋮ → Triggers → enable scheduled runs if needed
+
+trigger: none
+
+schedules:
+  - cron: '0 */6 * * *'
+    displayName: Sync from GitHub dev (every 6 hours)
+    branches:
+      include:
+        - dev
+    always: true
+
+pool:
+  name: 'OneUI'
+
+variables:
+  GITHUB_REPO: Nuno-Marcelino_jplgit/OneUiStudio_Base_v4
+  GITHUB_BRANCH: dev
+  TARGET_BRANCH: dev
+
+steps:
+  - checkout: self
+    persistCredentials: true
+    fetchDepth: 0
+
+  - bash: |
+      set -euo pipefail
+
+      git config user.name "OneUI Studio Sync Bot"
+      git config user.email "oneui-studio-sync@ril.com"
+
+      # The GitHub source repo is private, so it must be cloned with a PAT.
+      # Azure does NOT expand a secret ($(GITHUB_PAT)) referenced inside another
+      # variable's value, so we build the authenticated URL here from the raw
+      # PAT env var using the x-access-token form.
+      test -n "${GITHUB_PAT:-}" || { echo "##[error]GITHUB_PAT is not set."; exit 1; }
+      CLONE_URL="https://x-access-token:${GITHUB_PAT}@github.com/${GITHUB_REPO}.git"
+      WORK_DIR="$(Agent.TempDirectory)/base-v4"
+
+      echo "Cloning GitHub source (${GITHUB_REPO}@${GITHUB_BRANCH})..."
+      rm -rf "$WORK_DIR"
+      git clone --branch "${GITHUB_BRANCH}" "$CLONE_URL" "$WORK_DIR"
+
+      SOURCE_SHA="$(git -C "$WORK_DIR" rev-parse HEAD)"
+      echo "Source commit: ${SOURCE_SHA}"
+
+      git remote remove github 2>/dev/null || true
+      git remote add github "file://${WORK_DIR}/.git"
+      git fetch github "${GITHUB_BRANCH}"
+
+      # Adding the github remote gives us two remote-tracking branches named
+      # "${TARGET_BRANCH}" (origin/* and github/*), so a bare checkout is
+      # ambiguous. Pin the local branch explicitly to origin.
+      git checkout -B "${TARGET_BRANCH}" "refs/remotes/origin/${TARGET_BRANCH}"
+
+      # Mirror tree from GitHub (same flow as manual one-time import)
+      git rm -rf --ignore-unmatch . 2>/dev/null || true
+      git checkout "github/${GITHUB_BRANCH}" -- .
+
+      # Re-add files skipped by root .gitignore (android/ ios/ paths)
+      comm -23 \
+        <(git ls-tree -r --name-only "github/${GITHUB_BRANCH}" | sort) \
+        <(git ls-files | sort) \
+        | while read -r file; do
+            git checkout "github/${GITHUB_BRANCH}" -- "$file"
+          done
+
+      find . -name '.DS_Store' -not -path './.git/*' -delete
+
+      git add -A
+
+      if git diff --cached --quiet; then
+        echo "Already up to date with GitHub dev (${SOURCE_SHA})"
+        exit 0
+      fi
+
+      git commit -m "chore(sync): mirror OneUiStudio_Base_v4 dev from GitHub
+
+      Fetched latest changes from the dev branch of OneUiStudio_Base_v4 on GitHub.
+      Source commit: ${SOURCE_SHA}"
+
+      git push origin "HEAD:${TARGET_BRANCH}"
+    displayName: Clone GitHub dev and push to Azure DevOps
+    env:
+      GITHUB_PAT: $(GITHUB_PAT)
+      GITHUB_REPO: $(GITHUB_REPO)
+      GITHUB_BRANCH: $(GITHUB_BRANCH)
+      TARGET_BRANCH: $(TARGET_BRANCH)
+      GITHUB_CLONE_URL: $(GITHUB_CLONE_URL)

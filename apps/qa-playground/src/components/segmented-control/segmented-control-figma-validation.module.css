@@ -1,0 +1,215 @@
+/**
+ * SegmentedControl Figma validation — COMPONENT_SET matrices (token-only).
+ */
+
+.page {
+  box-sizing: border-box;
+  width: 100vw;
+  max-width: 100vw;
+  margin-inline: calc(50% - 50vw);
+  padding: 0;
+}
+
+.metaLine {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  font-weight: var(--Body-FontWeight-Low);
+  color: var(--Text-Medium);
+  margin: 0 0 var(--Spacing-4-5);
+  padding-inline: var(--Spacing-5);
+  word-break: break-word;
+}
+
+.section {
+  margin-top: var(--Spacing-10);
+  padding-inline: var(--Spacing-5);
+}
+
+.variantSection {
+  margin-top: 0;
+  width: 100%;
+}
+
+.variantSection .figmaCaption {
+  padding-inline: var(--Spacing-5);
+}
+
+.variantTableWrap {
+  overflow: visible;
+  width: 100%;
+  max-width: 100%;
+  border-radius: 0;
+  border-inline: none;
+  border-block: var(--Stroke-M) solid var(--Border-Subtle);
+  background: var(--Surface-Minimal);
+  padding: var(--Spacing-3);
+  box-sizing: border-box;
+}
+
+.variantGridTable {
+  border-collapse: collapse;
+  width: 100%;
+  table-layout: fixed;
+  font-family: var(--Typography-Font-Primary);
+}
+
+.variantRowHeaderCol {
+  width: 12%;
+}
+
+.variantDataCol {
+  width: auto;
+}
+
+.tableWrap {
+  overflow: auto;
+  max-width: 100%;
+}
+
+.gridTable {
+  border-collapse: collapse;
+  width: max-content;
+  max-width: 100%;
+  font-family: var(--Typography-Font-Primary);
+}
+
+.gridTable th,
+.gridTable td {
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+  padding: var(--Spacing-3-5);
+  vertical-align: middle;
+  text-align: center;
+}
+
+.figmaCaption {
+  caption-side: top;
+  text-align: left;
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Headline-M-FontSize);
+  line-height: var(--Headline-M-LineHeight);
+  font-weight: var(--Headline-M-FontWeight);
+  color: var(--Sparkle-High);
+  padding: 0 0 var(--Spacing-3-5);
+}
+
+.figmaCaptionMark {
+  color: var(--Sparkle-High);
+}
+
+.cell {
+  white-space: nowrap;
+  background: var(--Surface-Default);
+}
+
+.variantCell {
+  white-space: normal;
+  overflow-wrap: anywhere;
+  background: var(--Surface-Default);
+}
+
+.variantCellInner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-width: 0;
+}
+
+.variantCellInner[data-stretch='true'] {
+  display: block;
+}
+
+.variantCellInner[data-stretch='true'] > span {
+  display: block;
+  width: 100%;
+  min-width: 0;
+}
+
+.rowLabelRight {
+  text-align: left;
+  vertical-align: middle;
+  font-family: var(--Typography-Font-Code);
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Low);
+  color: var(--Text-Medium);
+  white-space: pre-wrap;
+  padding-inline-start: var(--Spacing-4);
+  min-width: var(--Spacing-40);
+  max-width: var(--Spacing-40);
+  background: var(--Surface-Default);
+}
+
+.footerRow td,
+.footerRow th {
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+}
+
+.footerAxis {
+  font-family: var(--Typography-Font-Code);
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Low);
+  color: var(--Text-Medium);
+  text-align: center;
+  background: var(--Surface-Default);
+  padding-block: var(--Spacing-2-5);
+}
+
+.footerCorner {
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+  background: var(--Surface-Default);
+  min-width: var(--Spacing-20);
+}
+
+.cornerCell {
+  text-align: left;
+  font-family: var(--Typography-Font-Code);
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Low);
+  color: var(--Text-Medium);
+  background: var(--Surface-Default);
+  min-width: var(--Spacing-24);
+}
+
+.colHeader {
+  font-family: var(--Typography-Font-Code);
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+  color: var(--Text-Medium);
+  background: var(--Surface-Default);
+}
+
+.rowHeader {
+  text-align: left;
+  font-family: var(--Typography-Font-Code);
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Low);
+  color: var(--Text-Medium);
+  white-space: pre-wrap;
+  background: var(--Surface-Default);
+  min-width: var(--Spacing-40);
+  max-width: var(--Spacing-40);
+}
+
+.variantGridTable th,
+.variantGridTable td {
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+  padding: var(--Spacing-2-5);
+  vertical-align: middle;
+  text-align: center;
+}
+
+.variantGridTable .rowHeader {
+  min-width: 0;
+  max-width: none;
+  word-break: break-word;
+}
+
+.variantGridTable .cornerCell {
+  min-width: 0;
+}

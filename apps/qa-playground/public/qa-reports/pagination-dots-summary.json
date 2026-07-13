@@ -1,0 +1,450 @@
+{
+  "ok": true,
+  "slug": "pagination-dots",
+  "message": "pagination-dots QA Playwright run OK — 2026-06-23T09:32:28.350Z",
+  "suites": {
+    "accessibility": {
+      "suite": "accessibility",
+      "passed": 18,
+      "failed": 0,
+      "skipped": 0,
+      "logs": [
+        "18 test(s) in Playwright report for accessibility.",
+        "Axe: scan completed — 0 violation rules reported."
+      ],
+      "errors": [],
+      "cases": [
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — zero serious/critical + HTML report",
+          "status": "passed",
+          "durationMs": 5739
+        },
+        {
+          "name": "[a11y] data-section=\"pagination-dots-qa-default\" — zero serious/critical",
+          "status": "passed",
+          "durationMs": 5291
+        },
+        {
+          "name": "[a11y] data-section=\"pagination-dots-qa-current-page\" — zero serious/critical",
+          "status": "passed",
+          "durationMs": 4576
+        },
+        {
+          "name": "[a11y] data-section=\"pagination-dots-qa-code-only\" — zero serious/critical",
+          "status": "passed",
+          "durationMs": 4588
+        },
+        {
+          "name": "[a11y] data-section=\"pagination-dots-qa-appearance-strip\" — zero serious/critical",
+          "status": "passed",
+          "durationMs": 4799
+        },
+        {
+          "name": "[a11y] data-section=\"pagination-dots-qa-degenerate\" — zero serious/critical",
+          "status": "passed",
+          "durationMs": 4234
+        },
+        {
+          "name": "[a11y] data-section=\"pagination-dots-qa-combos\" — zero serious/critical",
+          "status": "passed",
+          "durationMs": 4375
+        },
+        {
+          "name": "[a11y] Default tablist has accessible label",
+          "status": "passed",
+          "durationMs": 3190
+        },
+        {
+          "name": "[a11y] Active dot exposes aria-selected=\"true\"",
+          "status": "passed",
+          "durationMs": 3631
+        },
+        {
+          "name": "[a11y] dot tabs have Page N of M accessible names",
+          "status": "passed",
+          "durationMs": 3234
+        },
+        {
+          "name": "[a11y] readOnly uses status role and aria-current on active dot",
+          "status": "passed",
+          "durationMs": 2281
+        },
+        {
+          "name": "[a11y] keyboard-only — ArrowRight changes selection",
+          "status": "passed",
+          "durationMs": 3690
+        },
+        {
+          "name": "[a11y] focus visible on Tab",
+          "status": "passed",
+          "durationMs": 3689
+        },
+        {
+          "name": "[a11y] ARIA validity rules — PaginationDots story bands",
+          "status": "passed",
+          "durationMs": 5214
+        },
+        {
+          "name": "[a11y] axe button-name rule — PaginationDots story bands",
+          "status": "passed",
+          "durationMs": 4660
+        },
+        {
+          "name": "[a11y] Reflow at 320px — default dots remain operable",
+          "status": "passed",
+          "durationMs": 6743
+        },
+        {
+          "name": "[a11y] Figma validation grid — zero serious/critical",
+          "status": "passed",
+          "durationMs": 5026
+        },
+        {
+          "name": "[a11y] page lang on <html>",
+          "status": "passed",
+          "durationMs": 3551
+        }
+      ],
+      "axe": {
+        "violations": []
+      }
+    },
+    "functional": {
+      "suite": "functional",
+      "passed": 63,
+      "failed": 0,
+      "skipped": 0,
+      "logs": [
+        "63 test(s) in Playwright report for functional."
+      ],
+      "errors": [],
+      "cases": [
+        {
+          "name": "[fn] shows Pagination Dots page heading",
+          "status": "passed",
+          "durationMs": 3489
+        },
+        {
+          "name": "[fn] scenario tabs are present",
+          "status": "passed",
+          "durationMs": 3709
+        },
+        {
+          "name": "[fn] default tablist renders with first page active",
+          "status": "passed",
+          "durationMs": 3259
+        },
+        {
+          "name": "[fn] selecting a dot advances the active page",
+          "status": "passed",
+          "durationMs": 3284
+        },
+        {
+          "name": "[fn] controlled demo updates caption on dot click",
+          "status": "passed",
+          "durationMs": 3229
+        },
+        {
+          "name": "[fn] readOnly renders status role and disabled dots",
+          "status": "passed",
+          "durationMs": 3435
+        },
+        {
+          "name": "[fn] loop true — two-dot sequence wraps on keyboard",
+          "status": "passed",
+          "durationMs": 3325
+        },
+        {
+          "name": "[fn] loop false — keyboard clamps at last page",
+          "status": "passed",
+          "durationMs": 3810
+        },
+        {
+          "name": "[fn] appearance sparkle row renders",
+          "status": "passed",
+          "durationMs": 3526
+        },
+        {
+          "name": "[fn] degenerate count 0 and 1",
+          "status": "passed",
+          "durationMs": 3706
+        },
+        {
+          "name": "[fn] combination matrix renders all rows",
+          "status": "passed",
+          "durationMs": 3615
+        },
+        {
+          "name": "[fn] figma validation tab mounts pageCount × loop grid",
+          "status": "passed",
+          "durationMs": 3966
+        },
+        {
+          "name": "[fn] Tab reaches focusable controls",
+          "status": "passed",
+          "durationMs": 3552
+        },
+        {
+          "name": "[fn] roving tabindex — only active dot is tabbable",
+          "status": "passed",
+          "durationMs": 3446
+        },
+        {
+          "name": "[fn] ArrowRight advances active index",
+          "status": "passed",
+          "durationMs": 3794
+        },
+        {
+          "name": "[fn] ArrowLeft moves back",
+          "status": "passed",
+          "durationMs": 3495
+        },
+        {
+          "name": "[fn] Home and End jump to first and last page",
+          "status": "passed",
+          "durationMs": 3279
+        },
+        {
+          "name": "[fn] focus indicator visible after Tab",
+          "status": "passed",
+          "durationMs": 3635
+        },
+        {
+          "name": "1.1 — Page loads without console errors; default tablist mounts",
+          "status": "passed",
+          "durationMs": 5854
+        },
+        {
+          "name": "1.2 — Every showcase `data-testid` is visible on Test Scenarios",
+          "status": "passed",
+          "durationMs": 4251
+        },
+        {
+          "name": "1.3 — Every `data-section` band is visible",
+          "status": "passed",
+          "durationMs": 3810
+        },
+        {
+          "name": "2.1 — Default — page 1 active, primary appearance on tablist",
+          "status": "passed",
+          "durationMs": 3721
+        },
+        {
+          "name": "2.1 — defaultActiveIndex 0 vs 2 selects correct starting page",
+          "status": "passed",
+          "durationMs": 3630
+        },
+        {
+          "name": "2.1 — appearance sparkle exposes data-appearance on tablist",
+          "status": "passed",
+          "durationMs": 3447
+        },
+        {
+          "name": "2.2 — Size prop (N/A — Figma M only; no public size prop)",
+          "status": "passed",
+          "durationMs": 3728
+        },
+        {
+          "name": "2.2b — Active dot is pill-shaped (width > height); inactive dot is circular",
+          "status": "passed",
+          "durationMs": 3541
+        },
+        {
+          "name": "3.1 — Click dot updates aria-selected page (controlled)",
+          "status": "passed",
+          "durationMs": 3702
+        },
+        {
+          "name": "3.2 — Readonly dots — click does not change aria-current",
+          "status": "passed",
+          "durationMs": 3579
+        },
+        {
+          "name": "3.3 — Readonly is non-interactive (status role)",
+          "status": "passed",
+          "durationMs": 3019
+        },
+        {
+          "name": "3.4 — Click outside removes focus from active dot",
+          "status": "passed",
+          "durationMs": 3162
+        },
+        {
+          "name": "4.1 — Tab reaches focusable controls",
+          "status": "passed",
+          "durationMs": 3648
+        },
+        {
+          "name": "4.2 — Enter on focused dot keeps selection actionable",
+          "status": "passed",
+          "durationMs": 3653
+        },
+        {
+          "name": "4.3 — Space on focused dot (N/A — dots use arrows)",
+          "status": "passed",
+          "durationMs": 3502
+        },
+        {
+          "name": "4.4 — ArrowRight / ArrowLeft move selection",
+          "status": "passed",
+          "durationMs": 3175
+        },
+        {
+          "name": "4.5 — Home and End jump to first and last page",
+          "status": "passed",
+          "durationMs": 3359
+        },
+        {
+          "name": "4.4b — loop true wraps from last to first",
+          "status": "passed",
+          "durationMs": 3209
+        },
+        {
+          "name": "4.6 — Escape (N/A)",
+          "status": "passed",
+          "durationMs": 3119
+        },
+        {
+          "name": "4.7 — Tab cycle escapes tablist without trap",
+          "status": "passed",
+          "durationMs": 3407
+        },
+        {
+          "name": "5.1 — Keyboard focus lands on active dot tab",
+          "status": "passed",
+          "durationMs": 3201
+        },
+        {
+          "name": "5.2 — Focus indicator visible after Tab",
+          "status": "passed",
+          "durationMs": 3442
+        },
+        {
+          "name": "5.3 — Roving tabindex — exactly one dot has tabindex 0",
+          "status": "passed",
+          "durationMs": 3262
+        },
+        {
+          "name": "5.4 — Blur removes focus from dot",
+          "status": "passed",
+          "durationMs": 3023
+        },
+        {
+          "name": "5.5 — autoFocus (N/A)",
+          "status": "passed",
+          "durationMs": 2934
+        },
+        {
+          "name": "6.1 — Default state — page 1 of 8 selected",
+          "status": "passed",
+          "durationMs": 3007
+        },
+        {
+          "name": "6.2 — aria-selected true on active dot only",
+          "status": "passed",
+          "durationMs": 3193
+        },
+        {
+          "name": "6.3 — Disabled (N/A — no disabled prop on PaginationDots)",
+          "status": "passed",
+          "durationMs": 3256
+        },
+        {
+          "name": "6.4 — Readonly — status role, all buttons disabled",
+          "status": "passed",
+          "durationMs": 3066
+        },
+        {
+          "name": "6.5 — Error / loading (N/A)",
+          "status": "passed",
+          "durationMs": 3254
+        },
+        {
+          "name": "7.x — PaginationDots has no start/end slots",
+          "status": "passed",
+          "durationMs": 3176
+        },
+        {
+          "name": "8.2 — Single select — only one dot has aria-selected at a time",
+          "status": "passed",
+          "durationMs": 3496
+        },
+        {
+          "name": "9.x — Not a text input",
+          "status": "passed",
+          "durationMs": 3387
+        },
+        {
+          "name": "10.2 — loop true wraps; loop false clamps at last page",
+          "status": "passed",
+          "durationMs": 3741
+        },
+        {
+          "name": "11.1 — Controlled caption reflects currentPage (1-based)",
+          "status": "passed",
+          "durationMs": 3386
+        },
+        {
+          "name": "11.1 — Dot tabs expose Page N of M accessible names",
+          "status": "passed",
+          "durationMs": 3583
+        },
+        {
+          "name": "11.1 — Empty count renders tablist with zero tabs",
+          "status": "passed",
+          "durationMs": 4081
+        },
+        {
+          "name": "12.1 — fullWidth (N/A)",
+          "status": "passed",
+          "durationMs": 4040
+        },
+        {
+          "name": "12.2 — At 320px viewport default dots remain operable",
+          "status": "passed",
+          "durationMs": 7190
+        },
+        {
+          "name": "12.2b — At 1440px all scenario sections remain visible",
+          "status": "passed",
+          "durationMs": 7082
+        },
+        {
+          "name": "12.3 — Dots laid out horizontally in tablist",
+          "status": "passed",
+          "durationMs": 4358
+        },
+        {
+          "name": "13.1 — After dark theme, all scenario sections remain visible",
+          "status": "passed",
+          "durationMs": 5078
+        },
+        {
+          "name": "13.1 — Default dots operable in dark mode",
+          "status": "passed",
+          "durationMs": 4539
+        },
+        {
+          "name": "Smoke — Page heading reads “Pagination Dots”",
+          "status": "passed",
+          "durationMs": 3448
+        },
+        {
+          "name": "Smoke — Default tablist is visible with page 1 selected",
+          "status": "passed",
+          "durationMs": 2074
+        }
+      ]
+    },
+    "performance": {
+      "suite": "performance",
+      "passed": 0,
+      "failed": 0,
+      "skipped": 0,
+      "logs": [
+        "Performance suite is not executed in apps/qa-playground pagination-dots Playwright bundle."
+      ],
+      "errors": []
+    }
+  }
+}

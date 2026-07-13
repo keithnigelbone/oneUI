@@ -1,0 +1,44 @@
+{
+  "skill_name": "oneui",
+  "description": "Composite scenarios verifying an agent generates OneUI-correct code with @jds4/oneui-react. Each expectation is grep-able against the generated output.",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Build a product detail screen with @jds4/oneui-react: a rounded hero product image, a title, price, a primary 'Buy now' CTA, a secondary 'Add to wishlist' action, a row of filter chips, and a celebratory 'New' badge.",
+      "expectations": [
+        "Primary CTA is a Button with attention=\"high\" (not appearance=\"secondary\")",
+        "Secondary action uses attention=\"medium\" or attention=\"low\" — not a second high/bold button",
+        "Filter chips use appearance=\"secondary\"; the CTA does not",
+        "The 'New' badge uses appearance=\"sparkle\"",
+        "Hero image is an Image (or Avatar) with alt and aspectRatio, rendered rounded — never a raw <img> and never square",
+        "Icons come from @jds4/oneui-icons-jio via <Icon icon=\"...\"> — no lucide-react/@tabler/@phosphor imports and no name= prop",
+        "Any non-default background is a <Surface mode=...>, not a <div style={{ background }}>",
+        "No hardcoded colors, px, or font literals; imports are from @jds4/oneui-react (never @oneui/ui or @base-ui/react)"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Create a settings form with @jds4/oneui-react: labelled Email and Password fields, a prominent search field, an error state on Email, and Save/Cancel actions.",
+      "expectations": [
+        "Email and Password use the OneUI Input (labelled) — not a raw <input>",
+        "Input attention is \"medium\" or \"high\" only — never attention=\"low\" on an Input",
+        "The search field uses shape=\"pill\" (e.g. with type=\"search\"); normal fields use the default shape",
+        "Save uses attention=\"high\"; Cancel uses attention=\"medium\" — appearance=\"secondary\" is NOT used to demote a button",
+        "Email error is expressed via Input feedback props, not a hand-rolled red <div>",
+        "All styling via tokens (var(--...)) — zero #hex / px / raw font sizes; imports from @jds4/oneui-react"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Build a promotional hero banner with @jds4/oneui-react placed over a background image: a celebratory badge, a headline, body copy, and one CTA on top of the media.",
+      "expectations": [
+        "On-media region wraps controls in a transparent-material <Surface> OR the lone CTA uses contained={false} — it does not paint an opaque box over the media",
+        "Exactly one bold/high focal point (the CTA); no competing bold elements",
+        "The celebratory badge/icon uses appearance=\"sparkle\" and appears at most once or twice",
+        "Body text stays neutral (--Text-High/Medium/Low or the Text component); only links use a tinted/secondary appearance",
+        "The brand hero background is a <Surface mode=\"bold\"> (or brand-bg) — not a literal background color",
+        "Image uses alt + aspectRatio and is rounded; icons only from @jds4/oneui-icons-jio"
+      ]
+    }
+  ]
+}

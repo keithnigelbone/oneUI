@@ -1,0 +1,349 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "CheckboxField",
+  "generatedAt": "2026-07-09T13:07:37.418Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "Field shell around Checkbox. Single mode = one integrated checkbox + label/description/feedback; multi-option mode = a fieldset of <Checkbox> children driven by groupValue/onGroupValueChange. Adds required asterisk, info-icon slot, error/feedback and dynamic-text rows."
+  },
+  "compositionRules": {
+    "requires": [],
+    "allows": [],
+    "forbids": [],
+    "childKind": "fixed-slots"
+  },
+  "props": [
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Multi-option <Checkbox> items. Omit for single integrated mode."
+    },
+    {
+      "name": "label",
+      "type": "string",
+      "required": false,
+      "description": "Field header (multi) or integrated label (single)."
+    },
+    {
+      "name": "description",
+      "type": "string",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "groupValue",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Multi-option selected `value`s (controlled)."
+    },
+    {
+      "name": "groupDefaultValue",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Multi-option selected `value`s (uncontrolled)."
+    },
+    {
+      "name": "onGroupValueChange",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Multi-option change handler — receives the next list of selected values."
+    },
+    {
+      "name": "selected",
+      "type": "boolean",
+      "required": false,
+      "description": "Single-mode checked state."
+    },
+    {
+      "name": "indeterminate",
+      "type": "boolean",
+      "required": false,
+      "description": "Single-mode mixed state."
+    },
+    {
+      "name": "onSelectedChange",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Single-mode change handler."
+    },
+    {
+      "name": "invalid",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": "Drives error chrome on the inner Checkbox(es)."
+    },
+    {
+      "name": "error",
+      "type": "string",
+      "required": false,
+      "description": "Shorthand negative feedback row."
+    },
+    {
+      "name": "feedback",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Custom feedback node — replaces the auto error row (a JDS <InputFeedback>)."
+    },
+    {
+      "name": "infoIconSlot",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Trailing control beside the label (e.g. info <IconButton>)."
+    },
+    {
+      "name": "required",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": "Renders an asterisk after the label."
+    },
+    {
+      "name": "fullWidth",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "dynamicText",
+      "type": "string",
+      "required": false,
+      "description": "Leading copy for the dynamic-text row."
+    },
+    {
+      "name": "helperButton",
+      "type": "string",
+      "required": false,
+      "description": "Trailing pressable label for the dynamic-text row."
+    },
+    {
+      "name": "onHelperPress",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Handler for helperButton."
+    },
+    {
+      "name": "dynamicTextSlot",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Custom dynamic-text node (overrides dynamicText/helperButton)."
+    },
+    {
+      "name": "size",
+      "type": "'s' | 'm' | 'l'",
+      "required": false,
+      "defaultValue": "m",
+      "description": ""
+    },
+    {
+      "name": "appearance",
+      "type": "'auto' | 'primary' | 'secondary' | 'neutral' | 'sparkle' | 'brand-bg' | 'positive' | 'negative' | 'warning' | 'informative'",
+      "required": false,
+      "defaultValue": "auto",
+      "description": "Forwarded to the inner Checkbox(es). 'auto' → secondary."
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "readOnly",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "aria-describedby",
+      "type": "string",
+      "required": false,
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.kb.rn.CheckboxField",
+    "type": "object",
+    "properties": {
+      "children": {
+        "description": "Multi-option <Checkbox> items. Omit for single integrated mode."
+      },
+      "label": {
+        "type": "string",
+        "description": "Field header (multi) or integrated label (single)."
+      },
+      "description": {
+        "type": "string"
+      },
+      "groupValue": {
+        "description": "Multi-option selected `value`s (controlled)."
+      },
+      "groupDefaultValue": {
+        "description": "Multi-option selected `value`s (uncontrolled)."
+      },
+      "onGroupValueChange": {
+        "description": "Multi-option change handler — receives the next list of selected values."
+      },
+      "selected": {
+        "type": "boolean",
+        "description": "Single-mode checked state."
+      },
+      "indeterminate": {
+        "type": "boolean",
+        "description": "Single-mode mixed state."
+      },
+      "onSelectedChange": {
+        "description": "Single-mode change handler."
+      },
+      "invalid": {
+        "type": "boolean",
+        "default": false,
+        "description": "Drives error chrome on the inner Checkbox(es)."
+      },
+      "error": {
+        "type": "string",
+        "description": "Shorthand negative feedback row."
+      },
+      "feedback": {
+        "description": "Custom feedback node — replaces the auto error row (a JDS <InputFeedback>)."
+      },
+      "infoIconSlot": {
+        "description": "Trailing control beside the label (e.g. info <IconButton>)."
+      },
+      "required": {
+        "type": "boolean",
+        "default": false,
+        "description": "Renders an asterisk after the label."
+      },
+      "fullWidth": {
+        "type": "boolean",
+        "default": false
+      },
+      "dynamicText": {
+        "type": "string",
+        "description": "Leading copy for the dynamic-text row."
+      },
+      "helperButton": {
+        "type": "string",
+        "description": "Trailing pressable label for the dynamic-text row."
+      },
+      "onHelperPress": {
+        "description": "Handler for helperButton."
+      },
+      "dynamicTextSlot": {
+        "description": "Custom dynamic-text node (overrides dynamicText/helperButton)."
+      },
+      "size": {
+        "enum": [
+          "s",
+          "m",
+          "l"
+        ],
+        "default": "m"
+      },
+      "appearance": {
+        "enum": [
+          "auto",
+          "primary",
+          "secondary",
+          "neutral",
+          "sparkle",
+          "brand-bg",
+          "positive",
+          "negative",
+          "warning",
+          "informative"
+        ],
+        "default": "auto",
+        "description": "Forwarded to the inner Checkbox(es). 'auto' → secondary."
+      },
+      "disabled": {
+        "type": "boolean",
+        "default": false
+      },
+      "readOnly": {
+        "type": "boolean",
+        "default": false
+      },
+      "aria-label": {
+        "type": "string"
+      },
+      "aria-describedby": {
+        "type": "string"
+      }
+    }
+  },
+  "tokens": {
+    "color": [
+      "primary",
+      "secondary",
+      "neutral",
+      "sparkle",
+      "brand-bg",
+      "positive",
+      "negative",
+      "warning",
+      "informative"
+    ],
+    "typography": [
+      "label.S",
+      "label.M",
+      "label.L",
+      "body.S",
+      "body.M"
+    ]
+  },
+  "a11y": {
+    "accessibilityRole": "none",
+    "accessibilityState": [
+      "disabled"
+    ],
+    "accessibleNameSource": "aria-label",
+    "minTouchTarget": 44,
+    "honorsBoldText": true,
+    "honorsScreenReader": true
+  },
+  "renderHints": {
+    "baseElement": "View",
+    "animatedOn": [],
+    "honorsReduceMotion": false,
+    "readsFromSurfaceContext": true
+  },
+  "figma": {
+    "componentKey": "jds-checkbox-field-v4",
+    "keyHistory": [],
+    "variantProperties": {
+      "Component": "CheckboxField"
+    }
+  },
+  "codeSnippets": [
+    {
+      "id": "import-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { CheckboxField } from '@oneui/ui-native';\n\n<CheckboxField />"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "checkboxfield",
+    "form",
+    "field",
+    "selection",
+    "composition"
+  ],
+  "importPath": "@oneui/ui-native"
+}

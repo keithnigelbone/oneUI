@@ -1,0 +1,137 @@
+/**
+ * ComponentDocsPanel.module.css
+ * Token-only styling for the component documentation panel.
+ */
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-3-5);
+  padding: var(--Spacing-3-5) var(--Spacing-4);
+}
+
+.description {
+  font-size: var(--Body-S-FontSize, var(--Typography-Size-S));
+  line-height: var(--Body-S-LineHeight, 1.5);
+  color: var(--Text-Medium);
+  margin: 0;
+}
+
+.sectionTitle {
+  font-size: var(--Label-S-FontSize, var(--Typography-Size-XS));
+  font-weight: var(--Label-FontWeight-High, 700);
+  color: var(--Text-High);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0;
+  padding-top: var(--Spacing-2);
+}
+
+.propsTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.propsTable th {
+  font-size: var(--Label-XS-FontSize, var(--Typography-Size-2XS));
+  font-weight: var(--Label-FontWeight-Medium, 500);
+  color: var(--Text-Low);
+  text-align: left;
+  padding: var(--Spacing-1-5) var(--Spacing-2);
+  border-bottom: var(--Stroke-M) solid var(--Border-Subtle);
+}
+
+.propsTable td {
+  font-size: var(--Label-XS-FontSize, var(--Typography-Size-2XS));
+  color: var(--Text-Medium);
+  padding: var(--Spacing-1-5) var(--Spacing-2);
+  vertical-align: top;
+  border-bottom: var(--Stroke-M) solid var(--Border-Subtle);
+}
+
+.propName {
+  font-family: var(--Typography-Font-Code, monospace);
+  color: var(--Text-High);
+  font-weight: var(--Label-FontWeight-Medium, 500);
+  white-space: nowrap;
+}
+
+.propType {
+  font-family: var(--Typography-Font-Code, monospace);
+  color: var(--Primary-Tinted, var(--Text-Low));
+  font-size: var(--Code-XS-FontSize, var(--Typography-Size-3XS));
+}
+
+.propDefault {
+  font-family: var(--Typography-Font-Code, monospace);
+  color: var(--Text-Low);
+}
+
+.propRequired {
+  color: var(--Negative-Tinted, var(--Text-Medium));
+  font-size: var(--Label-3XS-FontSize, var(--Typography-Size-3XS));
+  font-weight: var(--Label-FontWeight-Medium, 500);
+}
+
+.brandBadge {
+  display: inline-block;
+  font-size: var(--Label-3XS-FontSize, var(--Typography-Size-3XS));
+  color: var(--Primary-TintedA11y, var(--Text-Medium));
+  background: var(--Primary-Subtle, var(--Surface-Subtle));
+  padding: var(--Spacing-0-5) var(--Spacing-1-5);
+  border-radius: var(--Shape-0-5);
+}
+
+.slotsList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-2);
+}
+
+.slotItem {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-0-5);
+  padding: var(--Spacing-2) var(--Spacing-2-5);
+  background: var(--Primary-Minimal, var(--Surface-Minimal));
+  border-radius: var(--Shape-2);
+}
+
+.slotName {
+  font-family: var(--Typography-Font-Code, monospace);
+  font-size: var(--Label-XS-FontSize, var(--Typography-Size-2XS));
+  font-weight: var(--Label-FontWeight-Medium, 500);
+  color: var(--Text-High);
+}
+
+.slotDesc {
+  font-size: var(--Label-2XS-FontSize, var(--Typography-Size-3XS));
+  color: var(--Text-Low);
+}
+
+.slotTypes {
+  font-family: var(--Typography-Font-Code, monospace);
+  font-size: var(--Code-XS-FontSize, var(--Typography-Size-3XS));
+  color: var(--Primary-Tinted, var(--Text-Low));
+}
+
+.badges {
+  display: flex;
+  gap: var(--Spacing-2);
+  flex-wrap: wrap;
+}
+
+.badge {
+  font-size: var(--Label-3XS-FontSize, var(--Typography-Size-3XS));
+  padding: var(--Spacing-0-5) var(--Spacing-2);
+  border-radius: var(--Shape-0-5);
+  background: var(--Primary-Subtle, var(--Surface-Subtle));
+  color: var(--Text-Medium);
+}
+
+.emptyState {
+  padding: var(--Spacing-4-5);
+  text-align: center;
+  color: var(--Text-Low);
+  font-size: var(--Body-S-FontSize, var(--Typography-Size-S));
+}

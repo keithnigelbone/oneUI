@@ -1,0 +1,560 @@
+{
+  "ok": true,
+  "slug": "slider",
+  "message": "slider QA Playwright run OK — 2026-06-23T09:41:49.926Z",
+  "suites": {
+    "accessibility": {
+      "suite": "accessibility",
+      "passed": 32,
+      "failed": 0,
+      "skipped": 0,
+      "logs": [
+        "32 test(s) in Playwright report for accessibility.",
+        "Axe: scan completed — 0 violation rules reported."
+      ],
+      "errors": [],
+      "cases": [
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — zero serious/critical + HTML report",
+          "status": "passed",
+          "durationMs": 6271
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — Default band",
+          "status": "passed",
+          "durationMs": 5226,
+          "componentBand": "slider-qa-default"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — Type (continuous · range) band",
+          "status": "passed",
+          "durationMs": 9367,
+          "componentBand": "slider-qa-type"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — Knob style band",
+          "status": "passed",
+          "durationMs": 5594,
+          "componentBand": "slider-qa-knob-style"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — Appearance band",
+          "status": "passed",
+          "durationMs": 6013,
+          "componentBand": "slider-qa-appearance"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — Steps band",
+          "status": "passed",
+          "durationMs": 3076,
+          "componentBand": "slider-qa-steps"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — Start / end slots band",
+          "status": "passed",
+          "durationMs": 3775,
+          "componentBand": "slider-qa-start-end"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — Controlled value band",
+          "status": "passed",
+          "durationMs": 3777,
+          "componentBand": "slider-qa-value"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — Disabled · read-only · vertical · tooltip band",
+          "status": "passed",
+          "durationMs": 3697,
+          "componentBand": "slider-qa-extra-states"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — Surface context band",
+          "status": "passed",
+          "durationMs": 3575,
+          "componentBand": "slider-qa-surface-context"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — Combination matrix band",
+          "status": "passed",
+          "durationMs": 4728,
+          "componentBand": "slider-qa-combos"
+        },
+        {
+          "name": "[a11y] data-testid=\"slider-default\" — zero serious/critical",
+          "status": "passed",
+          "durationMs": 4526
+        },
+        {
+          "name": "[a11y] data-testid=\"slider-type-continuous\" — zero serious/critical",
+          "status": "passed",
+          "durationMs": 4640
+        },
+        {
+          "name": "[a11y] data-testid=\"slider-type-range\" — zero serious/critical",
+          "status": "passed",
+          "durationMs": 4662
+        },
+        {
+          "name": "[a11y] data-testid=\"slider-knob-inside\" — zero serious/critical",
+          "status": "passed",
+          "durationMs": 3481
+        },
+        {
+          "name": "[a11y] data-testid=\"slider-appearance-primary\" — zero serious/critical",
+          "status": "passed",
+          "durationMs": 18017
+        },
+        {
+          "name": "[a11y] data-testid=\"slider-steps-true-stepcount-5\" — zero serious/critical",
+          "status": "passed",
+          "durationMs": 3682
+        },
+        {
+          "name": "[a11y] data-testid=\"slider-start-end-iconbutton-continuous\" — zero serious/critical",
+          "status": "passed",
+          "durationMs": 3794
+        },
+        {
+          "name": "[a11y] data-testid=\"slider-disabled\" — zero serious/critical",
+          "status": "passed",
+          "durationMs": 3744
+        },
+        {
+          "name": "[a11y] data-testid=\"slider-readonly\" — zero serious/critical",
+          "status": "passed",
+          "durationMs": 15684
+        },
+        {
+          "name": "[a11y] data-testid=\"slider-combo-0\" — zero serious/critical",
+          "status": "passed",
+          "durationMs": 2851
+        },
+        {
+          "name": "[a11y] Accessible name readout — every slider thumb in showcase",
+          "status": "passed",
+          "durationMs": 2869
+        },
+        {
+          "name": "[a11y] DOM inspection — default slider min, max, aria-valuenow",
+          "status": "passed",
+          "durationMs": 2515
+        },
+        {
+          "name": "[a11y] DOM inspection — range type min and max thumb names and values",
+          "status": "passed",
+          "durationMs": 2076
+        },
+        {
+          "name": "[a11y] Keyboard arrows — default slider value change",
+          "status": "passed",
+          "durationMs": 2190
+        },
+        {
+          "name": "[a11y] Keyboard Home and End — default slider",
+          "status": "passed",
+          "durationMs": 2077
+        },
+        {
+          "name": "[a11y] Keyboard ArrowRight — disabled slider (value must not change)",
+          "status": "passed",
+          "durationMs": 2052
+        },
+        {
+          "name": "[a11y] Accessible name readout — Decrease and Increase IconButtons on default slider",
+          "status": "passed",
+          "durationMs": 2109
+        },
+        {
+          "name": "[a11y] ARIA validity — showcase bands, zero serious/critical",
+          "status": "passed",
+          "durationMs": 2799
+        },
+        {
+          "name": "[a11y] page lang on <html>",
+          "status": "passed",
+          "durationMs": 2027
+        },
+        {
+          "name": "[a11y] Viewport 320px — horizontal overflow check per showcase band (except default)",
+          "status": "passed",
+          "durationMs": 7147
+        },
+        {
+          "name": "[a11y] playground route responds",
+          "status": "passed",
+          "durationMs": 2005
+        }
+      ],
+      "axe": {
+        "violations": []
+      }
+    },
+    "functional": {
+      "suite": "functional",
+      "passed": 69,
+      "failed": 0,
+      "skipped": 0,
+      "logs": [
+        "69 test(s) in Playwright report for functional."
+      ],
+      "errors": [],
+      "cases": [
+        {
+          "name": "[fn] 1.1 — no console errors on playground load",
+          "status": "passed",
+          "durationMs": 5681
+        },
+        {
+          "name": "[fn] 1.2 — every playground data-testid is visible",
+          "status": "passed",
+          "durationMs": 4532
+        },
+        {
+          "name": "[fn] 1.3 — every data-section is visible",
+          "status": "passed",
+          "durationMs": 3375
+        },
+        {
+          "name": "[fn] 2.1 — appearance rows set data-appearance on root",
+          "status": "passed",
+          "durationMs": 3778
+        },
+        {
+          "name": "[fn] 2.2 — Size scaling (N/A)",
+          "status": "passed",
+          "durationMs": 3061
+        },
+        {
+          "name": "[fn] 3.1 — keyboard ArrowRight changes aria-valuenow (slider input)",
+          "status": "passed",
+          "durationMs": 2661
+        },
+        {
+          "name": "[fn] 3.2 — disabled slider value unchanged after keyboard nudge",
+          "status": "passed",
+          "durationMs": 2700
+        },
+        {
+          "name": "[fn] 3.3 — readOnly slider value unchanged after keyboard nudge",
+          "status": "passed",
+          "durationMs": 2477
+        },
+        {
+          "name": "[fn] 3.4 — click outside removes focus from slider thumb",
+          "status": "passed",
+          "durationMs": 3343
+        },
+        {
+          "name": "[fn] 4.1 — Tab reaches default slider thumb",
+          "status": "passed",
+          "durationMs": 3803
+        },
+        {
+          "name": "[fn] 4.2 — Enter (N/A)",
+          "status": "passed",
+          "durationMs": 3395
+        },
+        {
+          "name": "[fn] 4.3 — Space (N/A)",
+          "status": "passed",
+          "durationMs": 3592
+        },
+        {
+          "name": "[fn] 4.6 — Escape (N/A)",
+          "status": "passed",
+          "durationMs": 5270
+        },
+        {
+          "name": "[fn] 4.7 — Tab through page without keyboard trap",
+          "status": "passed",
+          "durationMs": 4579
+        },
+        {
+          "name": "[fn] 5.1 — focus lands on slider thumb",
+          "status": "passed",
+          "durationMs": 3117
+        },
+        {
+          "name": "[fn] 5.2 — focus ring visible on thumb",
+          "status": "passed",
+          "durationMs": 3237
+        },
+        {
+          "name": "[fn] 5.5 — autoFocus (N/A)",
+          "status": "passed",
+          "durationMs": 3236
+        },
+        {
+          "name": "[fn] 6.4 — readOnly slider keeps aria-valuenow on keyboard nudge",
+          "status": "passed",
+          "durationMs": 3518
+        },
+        {
+          "name": "[fn] 6.5 — Error state (N/A)",
+          "status": "passed",
+          "durationMs": 3305
+        },
+        {
+          "name": "[fn] 6.6 — Loading state (N/A)",
+          "status": "passed",
+          "durationMs": 2550
+        },
+        {
+          "name": "[fn] 7.1 — start/end none renders slider without slot buttons",
+          "status": "passed",
+          "durationMs": 2537
+        },
+        {
+          "name": "[fn] 7.1 — start/end Icon renders decorative slot icons",
+          "status": "passed",
+          "durationMs": 2585
+        },
+        {
+          "name": "[fn] 7.1 — start/end IconButton renders Decrease and Increase",
+          "status": "passed",
+          "durationMs": 3301
+        },
+        {
+          "name": "[fn] 8.1 — Toggle (N/A)",
+          "status": "passed",
+          "durationMs": 3662
+        },
+        {
+          "name": "[fn] 9.1 — Typing text (N/A)",
+          "status": "passed",
+          "durationMs": 3249
+        },
+        {
+          "name": "[fn] 9.2 — min, max, and aria-valuenow on default range input",
+          "status": "passed",
+          "durationMs": 3563
+        },
+        {
+          "name": "[fn] 10.1 — showSteps false vs true both render",
+          "status": "passed",
+          "durationMs": 5985
+        },
+        {
+          "name": "[fn] 10.2 — snapToSteps false row renders (free drag with ticks)",
+          "status": "passed",
+          "durationMs": 6614
+        },
+        {
+          "name": "[fn] 12.1 — fullWidth (N/A)",
+          "status": "passed",
+          "durationMs": 3006
+        },
+        {
+          "name": "[fn] 12.2 — visible at 320px viewport",
+          "status": "passed",
+          "durationMs": 5025
+        },
+        {
+          "name": "[fn] 12.2 — visible at 1440px viewport",
+          "status": "passed",
+          "durationMs": 6208
+        },
+        {
+          "name": "[fn] 12.3 — vertical orientation cell renders",
+          "status": "passed",
+          "durationMs": 2757
+        },
+        {
+          "name": "[fn] Smoke — Page heading reads “Slider”",
+          "status": "passed",
+          "durationMs": 2652
+        },
+        {
+          "name": "[fn] Smoke — Default slider is visible",
+          "status": "passed",
+          "durationMs": 2520
+        },
+        {
+          "name": "[fn] Smoke — Continuous type slider is visible",
+          "status": "passed",
+          "durationMs": 1212
+        },
+        {
+          "name": "[fn] shows Slider page heading",
+          "status": "passed",
+          "durationMs": 1979
+        },
+        {
+          "name": "[fn] theme toggle updates label",
+          "status": "passed",
+          "durationMs": 2024
+        },
+        {
+          "name": "[fn] scenario tabs are present",
+          "status": "passed",
+          "durationMs": 2383
+        },
+        {
+          "name": "[fn] Default story slider is visible",
+          "status": "passed",
+          "durationMs": 3962
+        },
+        {
+          "name": "[fn] Figma default — data-appearance secondary, knobStyle inside",
+          "status": "passed",
+          "durationMs": 3345
+        },
+        {
+          "name": "[fn] Figma default — continuous, single thumb, aria-valuenow 50",
+          "status": "passed",
+          "durationMs": 3372
+        },
+        {
+          "name": "[fn] Figma default — IconButton decrease lowers value",
+          "status": "passed",
+          "durationMs": 3463
+        },
+        {
+          "name": "[fn] Figma default — IconButton increase raises value",
+          "status": "passed",
+          "durationMs": 5710
+        },
+        {
+          "name": "[fn] Code shipped default (no knobStyle prop) — knob outside ⚠️",
+          "status": "passed",
+          "durationMs": 3737
+        },
+        {
+          "name": "[fn] Figma default — explicit knobStyle inside (QA passes prop)",
+          "status": "passed",
+          "durationMs": 2287
+        },
+        {
+          "name": "[fn] Type band — continuous vs range thumb count",
+          "status": "passed",
+          "durationMs": 3064
+        },
+        {
+          "name": "[fn] Type range — data-range on root",
+          "status": "passed",
+          "durationMs": 3058
+        },
+        {
+          "name": "[fn] KnobStyle band — outside and inside visible",
+          "status": "passed",
+          "durationMs": 3218
+        },
+        {
+          "name": "[fn] KnobStyle range — inside range row visible",
+          "status": "passed",
+          "durationMs": 3568
+        },
+        {
+          "name": "[fn] Appearance band — primary row visible",
+          "status": "passed",
+          "durationMs": 2046
+        },
+        {
+          "name": "[fn] Appearance band — spot-check Figma roles",
+          "status": "passed",
+          "durationMs": 1785
+        },
+        {
+          "name": "[fn] Steps band — showSteps false vs true variants",
+          "status": "passed",
+          "durationMs": 3060
+        },
+        {
+          "name": "[fn] Start/end band — none, Icon, IconButton rows",
+          "status": "passed",
+          "durationMs": 3686
+        },
+        {
+          "name": "[fn] Value band — controlled single and range",
+          "status": "passed",
+          "durationMs": 3514
+        },
+        {
+          "name": "[fn] Extra states — disabled, readOnly, vertical, tooltip",
+          "status": "passed",
+          "durationMs": 3607
+        },
+        {
+          "name": "[fn] Surface context band — default, subtle, bold",
+          "status": "passed",
+          "durationMs": 13896
+        },
+        {
+          "name": "[fn] Combination matrix renders all combo rows",
+          "status": "passed",
+          "durationMs": 3198
+        },
+        {
+          "name": "[fn] ArrowRight on Figma default increases aria-valuenow by step (step=1)",
+          "status": "passed",
+          "durationMs": 3614
+        },
+        {
+          "name": "[fn] ArrowLeft on Figma default decreases aria-valuenow by step (step=1)",
+          "status": "passed",
+          "durationMs": 3439
+        },
+        {
+          "name": "[fn] Home and End keys move default slider to min and max",
+          "status": "passed",
+          "durationMs": 3329
+        },
+        {
+          "name": "[fn] Range type — min and max thumbs expose initial values",
+          "status": "passed",
+          "durationMs": 2565
+        },
+        {
+          "name": "[fn] Range type — min thumb ArrowRight increases only lower value",
+          "status": "passed",
+          "durationMs": 2584
+        },
+        {
+          "name": "[fn] Disabled slider — keyboard does not change value",
+          "status": "passed",
+          "durationMs": 2416
+        },
+        {
+          "name": "[fn] ReadOnly slider — keyboard does not change value",
+          "status": "passed",
+          "durationMs": 2454
+        },
+        {
+          "name": "[fn] IconButton decrease lowers continuous slot slider value",
+          "status": "passed",
+          "durationMs": 3469
+        },
+        {
+          "name": "[fn] IconButton increase raises continuous slot slider value",
+          "status": "passed",
+          "durationMs": 3598
+        },
+        {
+          "name": "[fn] IconButton inside knob — decrease updates value",
+          "status": "passed",
+          "durationMs": 3276
+        },
+        {
+          "name": "[fn] Default slider exposes min and max (native range input)",
+          "status": "passed",
+          "durationMs": 3336
+        },
+        {
+          "name": "[fn] Range sliders expose accessible names from aria-label / ariaLabels",
+          "status": "passed",
+          "durationMs": 5712
+        }
+      ]
+    },
+    "performance": {
+      "suite": "performance",
+      "passed": 0,
+      "failed": 0,
+      "skipped": 0,
+      "logs": [
+        "Performance suite is not executed in apps/qa-playground slider Playwright bundle."
+      ],
+      "errors": []
+    }
+  }
+}

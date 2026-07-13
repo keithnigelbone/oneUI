@@ -1,0 +1,311 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Checkbox",
+  "generatedAt": "2026-07-09T13:07:37.408Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "Selection control with tri-state support (selected / indeterminate / unselected). `appearance` drives both unchecked border and checked fill via the parent <Surface>; auto resolves to the secondary stack. Read-only is distinct from disabled. For multi-option label stacks use CheckboxField."
+  },
+  "compositionRules": {
+    "requires": [],
+    "allows": [],
+    "forbids": [],
+    "childKind": "leaf"
+  },
+  "props": [
+    {
+      "name": "label",
+      "type": "string",
+      "required": false,
+      "description": "Visible label beside the control. Becomes the accessible name when no aria-label is set."
+    },
+    {
+      "name": "description",
+      "type": "string",
+      "required": false,
+      "description": "Supplementary copy below the label row (plain text only)."
+    },
+    {
+      "name": "selected",
+      "type": "boolean",
+      "required": false,
+      "description": "Checked state (controlled)."
+    },
+    {
+      "name": "defaultSelected",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": "Initial checked state (uncontrolled)."
+    },
+    {
+      "name": "indeterminate",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": "Mixed state — wins over selected; maps to accessibilityState.checked=\"mixed\"."
+    },
+    {
+      "name": "onSelectedChange",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Fires with the next selected value on press."
+    },
+    {
+      "name": "onPress",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Raw RN press handler (alias toggle)."
+    },
+    {
+      "name": "size",
+      "type": "'s' | 'm' | 'l'",
+      "required": false,
+      "defaultValue": "m",
+      "description": "Legacy small/medium/large aliases canonicalise to s/m/l."
+    },
+    {
+      "name": "appearance",
+      "type": "'auto' | 'primary' | 'secondary' | 'neutral' | 'sparkle' | 'brand-bg' | 'positive' | 'negative' | 'warning' | 'informative'",
+      "required": false,
+      "defaultValue": "auto",
+      "description": "Multi-accent role for border + checked fill, resolved against the parent <Surface>. 'auto' → secondary."
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "readOnly",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": "Non-toggleable but distinct from disabled (solid dark fill)."
+    },
+    {
+      "name": "errorHighlight",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": "Invalid chrome on the wrapper."
+    },
+    {
+      "name": "value",
+      "type": "string",
+      "required": false,
+      "description": "Option identifier read by CheckboxField to map selection keys."
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": false,
+      "description": "Accessible name when there is no visible label."
+    },
+    {
+      "name": "aria-describedby",
+      "type": "string",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "backgroundColor",
+      "type": "string",
+      "required": false,
+      "description": "[error] Don't paint directly. Use `appearance` (role) + `variant`/`mode` and wrap in <Surface mode>; the brand cascade picks the right fill."
+    },
+    {
+      "name": "style",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Layout style only. backgroundColor / borderColor are forbidden — appearance + surface drive the fill. — [warn] Don't paint the Checkbox. Use `appearance`; the surface cascade resolves border + checked fill."
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.kb.rn.Checkbox",
+    "type": "object",
+    "properties": {
+      "label": {
+        "type": "string",
+        "description": "Visible label beside the control. Becomes the accessible name when no aria-label is set."
+      },
+      "description": {
+        "type": "string",
+        "description": "Supplementary copy below the label row (plain text only)."
+      },
+      "selected": {
+        "type": "boolean",
+        "description": "Checked state (controlled)."
+      },
+      "defaultSelected": {
+        "type": "boolean",
+        "default": false,
+        "description": "Initial checked state (uncontrolled)."
+      },
+      "indeterminate": {
+        "type": "boolean",
+        "default": false,
+        "description": "Mixed state — wins over selected; maps to accessibilityState.checked=\"mixed\"."
+      },
+      "onSelectedChange": {
+        "description": "Fires with the next selected value on press."
+      },
+      "onPress": {
+        "description": "Raw RN press handler (alias toggle)."
+      },
+      "size": {
+        "enum": [
+          "s",
+          "m",
+          "l"
+        ],
+        "default": "m",
+        "description": "Legacy small/medium/large aliases canonicalise to s/m/l."
+      },
+      "appearance": {
+        "enum": [
+          "auto",
+          "primary",
+          "secondary",
+          "neutral",
+          "sparkle",
+          "brand-bg",
+          "positive",
+          "negative",
+          "warning",
+          "informative"
+        ],
+        "default": "auto",
+        "description": "Multi-accent role for border + checked fill, resolved against the parent <Surface>. 'auto' → secondary."
+      },
+      "disabled": {
+        "type": "boolean",
+        "default": false
+      },
+      "readOnly": {
+        "type": "boolean",
+        "default": false,
+        "description": "Non-toggleable but distinct from disabled (solid dark fill)."
+      },
+      "errorHighlight": {
+        "type": "boolean",
+        "default": false,
+        "description": "Invalid chrome on the wrapper."
+      },
+      "value": {
+        "type": "string",
+        "description": "Option identifier read by CheckboxField to map selection keys."
+      },
+      "aria-label": {
+        "type": "string",
+        "description": "Accessible name when there is no visible label."
+      },
+      "aria-describedby": {
+        "type": "string"
+      },
+      "backgroundColor": {
+        "type": "string",
+        "not": {
+          "anyOf": [
+            {
+              "pattern": "^#"
+            },
+            {
+              "pattern": "^rgba?\\("
+            },
+            {
+              "pattern": "^hsla?\\("
+            },
+            {
+              "pattern": "^oklch\\("
+            },
+            {
+              "pattern": "^color-mix\\("
+            },
+            {
+              "enum": [
+                "transparent",
+                "inherit"
+              ]
+            }
+          ]
+        },
+        "x-jds-suggestion": "Don't paint directly. Use `appearance` (role) + `variant`/`mode` and wrap in <Surface mode>; the brand cascade picks the right fill.",
+        "x-jds-severity": "error"
+      },
+      "style": {
+        "description": "Layout style only. backgroundColor / borderColor are forbidden — appearance + surface drive the fill.",
+        "x-jds-suggestion": "Don't paint the Checkbox. Use `appearance`; the surface cascade resolves border + checked fill.",
+        "x-jds-severity": "warn"
+      }
+    }
+  },
+  "tokens": {
+    "color": [
+      "primary",
+      "secondary",
+      "neutral",
+      "sparkle",
+      "brand-bg",
+      "positive",
+      "negative",
+      "warning",
+      "informative"
+    ],
+    "surface": [
+      "default",
+      "bold"
+    ],
+    "typography": [
+      "label.S",
+      "label.M",
+      "label.L"
+    ]
+  },
+  "a11y": {
+    "accessibilityRole": "checkbox",
+    "accessibilityState": [
+      "checked",
+      "disabled"
+    ],
+    "accessibleNameSource": "aria-label",
+    "minTouchTarget": 44,
+    "honorsBoldText": true,
+    "honorsScreenReader": true
+  },
+  "renderHints": {
+    "baseElement": "Pressable",
+    "animatedOn": [],
+    "honorsReduceMotion": false,
+    "readsFromSurfaceContext": true
+  },
+  "figma": {
+    "componentKey": "jds-checkbox-v4",
+    "keyHistory": [],
+    "variantProperties": {
+      "Component": "Checkbox"
+    }
+  },
+  "codeSnippets": [
+    {
+      "id": "import-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { Checkbox } from '@oneui/ui-native';\n\n<Checkbox />"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "checkbox",
+    "form",
+    "selection",
+    "control",
+    "surface-aware"
+  ],
+  "importPath": "@oneui/ui-native"
+}

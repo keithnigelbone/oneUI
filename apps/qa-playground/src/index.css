@@ -1,0 +1,53 @@
+/**
+ * Token bootstrap — order mirrors `apps/storybook/.storybook/preview.ts`
+ * (layers → scale → typography → primitives → themes …).
+ */
+
+@import '@oneui/tokens/css/layers';
+
+@import '@oneui/tokens/css/dimensions/scale';
+@import '@oneui/tokens/css/dimensions/grid';
+
+@import '@oneui/tokens/css/typography';
+
+@import '@oneui/tokens/css';
+@import '@oneui/tokens/css/semantic';
+
+@import '@oneui/tokens/css/light';
+@import '@oneui/tokens/css/dark';
+
+@import '@oneui/tokens/css/density/compact';
+@import '@oneui/tokens/css/density/open';
+
+@import '@oneui/tokens/css/materials';
+
+/* Shirt-name spacing/shape tokens used by qa.module.css + showcases (platform globals.css is not loaded here). */
+@import './legacy-spacing-shape-aliases.css';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  /* Primary stack aligned with Storybook `.story-wrapper` (apps/storybook/.storybook/preview.css). */
+  font-family: var(--Typography-Font-Primary, system-ui);
+  font-feature-settings: var(--Typography-Features-Primary);
+  letter-spacing: var(--Body-LetterSpacing, 0);
+  font-optical-sizing: var(--Body-FontOpticalSizing, auto);
+  background-color: var(--Surface-Default);
+  color: var(--Text-High);
+  overflow: auto;
+}
+
+#root {
+  min-height: 100%;
+}

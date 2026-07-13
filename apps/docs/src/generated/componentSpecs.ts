@@ -1,0 +1,66 @@
+import spec0 from '../../../../docs/components/generated/surface.docs.json';
+import spec1 from '../../../../docs/components/generated/button.docs.json';
+import spec2 from '../../../../docs/components/generated/iconbutton.docs.json';
+import spec4 from '../../../../docs/components/generated/fab.docs.json';
+import spec5 from '../../../../docs/components/generated/badge.docs.json';
+import spec6 from '../../../../docs/components/generated/avatar.docs.json';
+import spec7 from '../../../../docs/components/generated/chip.docs.json';
+import spec8 from '../../../../docs/components/generated/chipgroup.docs.json';
+import spec9 from '../../../../docs/components/generated/inputfield.docs.json';
+import spec10 from '../../../../docs/components/generated/checkbox.docs.json';
+import spec11 from '../../../../docs/components/generated/radio.docs.json';
+import spec12 from '../../../../docs/components/generated/switch.docs.json';
+import spec13 from '../../../../docs/components/generated/slider.docs.json';
+import spec14 from '../../../../docs/components/generated/tabs.docs.json';
+import spec15 from '../../../../docs/components/generated/listitem.docs.json';
+import spec16 from '../../../../docs/components/generated/listitemgroup.docs.json';
+import spec17 from '../../../../docs/components/generated/divider.docs.json';
+import spec18 from '../../../../docs/components/generated/image.docs.json';
+import spec19 from '../../../../docs/components/generated/icon.docs.json';
+import spec20 from '../../../../docs/components/generated/logo.docs.json';
+import spec21 from '../../../../docs/components/generated/spinner.docs.json';
+import spec22 from '../../../../docs/components/generated/tooltip.docs.json';
+import spec23 from '../../../../docs/components/generated/paginationdots.docs.json';
+import spec24 from '../../../../docs/components/generated/container.docs.json';
+import spec25 from '../../../../docs/components/generated/grid.docs.json';
+import spec26 from '../../../../docs/components/generated/stepper.docs.json';
+import spec27 from '../../../../docs/components/generated/counterbadge.docs.json';
+import spec28 from '../../../../docs/components/generated/indicatorbadge.docs.json';
+import spec29 from '../../../../docs/components/generated/bottomnavigation.docs.json';
+import spec30 from '../../../../docs/components/generated/webheader.docs.json';
+import spec31 from '../../../../docs/components/generated/carousel.docs.json';
+import type { ComponentDocumentationSpec } from '@oneui/shared';
+
+export const COMPONENT_DOC_SPECS = {
+  "Surface": spec0 as ComponentDocumentationSpec,
+  "Button": spec1 as ComponentDocumentationSpec,
+  "IconButton": spec2 as ComponentDocumentationSpec,
+  "FAB": spec4 as ComponentDocumentationSpec,
+  "Badge": spec5 as ComponentDocumentationSpec,
+  "Avatar": spec6 as ComponentDocumentationSpec,
+  "Chip": spec7 as ComponentDocumentationSpec,
+  "ChipGroup": spec8 as ComponentDocumentationSpec,
+  "InputField": spec9 as ComponentDocumentationSpec,
+  "Checkbox": spec10 as ComponentDocumentationSpec,
+  "Radio": spec11 as ComponentDocumentationSpec,
+  "Switch": spec12 as ComponentDocumentationSpec,
+  "Slider": spec13 as ComponentDocumentationSpec,
+  "Tabs": spec14 as ComponentDocumentationSpec,
+  "ListItem": spec15 as ComponentDocumentationSpec,
+  "ListItemGroup": spec16 as ComponentDocumentationSpec,
+  "Divider": spec17 as ComponentDocumentationSpec,
+  "Image": spec18 as ComponentDocumentationSpec,
+  "Icon": spec19 as ComponentDocumentationSpec,
+  "Logo": spec20 as ComponentDocumentationSpec,
+  "Spinner": spec21 as ComponentDocumentationSpec,
+  "Tooltip": spec22 as ComponentDocumentationSpec,
+  "PaginationDots": spec23 as ComponentDocumentationSpec,
+  "Container": spec24 as ComponentDocumentationSpec,
+  "Grid": spec25 as ComponentDocumentationSpec,
+  "Stepper": spec26 as ComponentDocumentationSpec,
+  "CounterBadge": spec27 as ComponentDocumentationSpec,
+  "IndicatorBadge": spec28 as ComponentDocumentationSpec,
+  "BottomNavigation": spec29 as ComponentDocumentationSpec,
+  "WebHeader": spec30 as ComponentDocumentationSpec,
+  "Carousel": spec31 as ComponentDocumentationSpec,
+} satisfies Record<string, ComponentDocumentationSpec>;

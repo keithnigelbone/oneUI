@@ -1,0 +1,85 @@
+/* ── Shared preview control section (sticky settings bar) ──────────
+   Used by every foundation preview demo so the control section is
+   identical everywhere — spacing, labels, and sticky behaviour. */
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-8);
+  /* Sticky settings with a bottom divider (Figma). */
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--Surface-Main);
+  padding-bottom: var(--Spacing-6);
+  border-bottom: var(--Stroke-M, 1px) solid var(--Border-Subtle);
+}
+
+/* Extends the opaque background UP over the scroll container's top padding,
+   covering the transparent strip above the controls when pinned. The height
+   matches the demo root's top gap (Spacing-12). */
+.controls::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 100%;
+  height: var(--Spacing-12);
+  background: var(--Surface-Main);
+}
+
+.viewportBlock {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-2);
+}
+
+.viewportHeader {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--Spacing-3);
+}
+
+.chipRow,
+.readoutRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--Spacing-8);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-1-5);
+  align-items: flex-start;
+}
+
+.fieldLabel {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+  color: var(--Text-High);
+}
+
+.readoutValue {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+  color: var(--Text-High);
+}
+
+/* Low-emphasis readout value (base size, active breakpoint, columns…). */
+.readoutValueLow {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Low);
+  color: var(--Text-Low);
+}
+
+.readoutValueLow code {
+  font-family: var(--Typography-Font-Code, monospace);
+}

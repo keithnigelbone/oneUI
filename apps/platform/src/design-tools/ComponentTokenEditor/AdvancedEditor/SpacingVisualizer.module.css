@@ -1,0 +1,148 @@
+/**
+ * SpacingVisualizer.module.css
+ *
+ * Figma-like visual spacing control styles.
+ * Token-only styling (zero literals).
+ */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-3);
+}
+
+/* Visual box with subtle dot grid - Figma style */
+.visualizer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--Surface-Subtle);
+  border-radius: var(--Shape-3-5);
+  padding: var(--Spacing-3-5);
+  min-height: var(--Spacing-7);
+}
+
+/* 3x3 Dot grid - subtle like Figma */
+.dotGrid {
+  position: absolute;
+  inset: var(--Spacing-3);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  pointer-events: none;
+}
+
+.dot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dot::before {
+  content: '';
+  width: var(--Spacing-2);
+  height: var(--Spacing-2);
+  border-radius: var(--Shape-Pill);
+  background-color: var(--Border-Subtle);
+  opacity: 0.6;
+}
+
+/* Center element - dark box with content bars like Figma */
+.centerElement {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--Surface-Bold);
+  border-radius: var(--Shape-3);
+  padding: var(--Spacing-3);
+  min-width: var(--Spacing-6);
+  min-height: var(--Spacing-4-5);
+}
+
+/* Content bars inside center element - like text lines */
+.contentBars {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-1-5);
+  align-items: center;
+}
+
+.bar {
+  width: var(--Spacing-3-5);
+  height: var(--Spacing-1-5);
+  background-color: var(--Text-OnBold-High);
+  border-radius: var(--Shape-2);
+}
+
+.bar[data-short] {
+  width: var(--Spacing-3);
+}
+
+/* Padding indicators - subtle bars on sides */
+.paddingIndicatorLeft,
+.paddingIndicatorRight {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: var(--Spacing-2);
+  height: var(--Spacing-3-5);
+  background-color: var(--Surface-Bold);
+  opacity: 0.3;
+  border-radius: var(--Shape-2);
+}
+
+.paddingIndicatorLeft {
+  left: var(--Spacing-2-5);
+}
+
+.paddingIndicatorRight {
+  right: var(--Spacing-2-5);
+}
+
+/* Spacing Controls - compact */
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-2);
+}
+
+.controlRow {
+  display: flex;
+  gap: var(--Spacing-2);
+}
+
+/* Control field - white box with icon and value */
+.controlField {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-2);
+  background-color: var(--Surface-Main);
+  border: 1px solid var(--Border-Subtle);
+  border-radius: var(--Shape-3-5);
+  padding: var(--Spacing-2) var(--Spacing-2-5);
+  min-height: var(--Spacing-4-5);
+}
+
+.controlIcon {
+  flex-shrink: 0;
+  color: var(--Text-Low);
+}
+
+/* Override Select styles for compact appearance */
+.controlSelect {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Make the select trigger more compact */
+.controlSelect :global(.select-trigger) {
+  padding: 0;
+  border: none;
+  background: transparent;
+  min-height: auto;
+  font-size: var(--Label-2XS-FontSize);
+}

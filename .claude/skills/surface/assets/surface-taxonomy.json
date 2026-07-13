@@ -1,0 +1,100 @@
+{
+  "$comment": "Machine-readable OneUI surface level taxonomy. 'attention' is the relative loudness; 'allowedLevel' is where it may appear; 'rarity' signals how often it is appropriate. Numeric step offsets reflect the engine's resolveSurface() relative to the parent step on the 25-step (100-2500) scale.",
+  "levels": {
+    "default": {
+      "attention": "base",
+      "stepRule": "2500 in light, 200 in dark (ignores parent)",
+      "allowedLevel": ["screen", "section", "component"],
+      "useFor": ["page background", "standard sections", "normal cards", "lists", "forms", "content areas", "finance/account/utility UI"],
+      "avoidFor": ["any tinting", "manufactured attention"],
+      "themeRule": "neutral in light and dark",
+      "rarity": "default"
+    },
+    "minimal": {
+      "attention": "very-low",
+      "stepRule": "parent + dir * 100",
+      "allowedLevel": ["component"],
+      "useFor": ["tiny nested separation inside a component"],
+      "avoidFor": ["screen level", "section level", "promotion"],
+      "rarity": "rare"
+    },
+    "subtle": {
+      "attention": "low",
+      "stepRule": "parent + dir * 200",
+      "allowedLevel": ["component"],
+      "useFor": ["gentle local distinction", "secondary nested containers", "low-priority supporting areas"],
+      "avoidFor": ["page background", "main sections", "high attention"],
+      "rarity": "rare"
+    },
+    "moderate": {
+      "attention": "medium",
+      "stepRule": "parent + dir * 300",
+      "allowedLevel": ["component"],
+      "useFor": ["component state needing visibility", "guided local area", "small info block where bold is too strong"],
+      "avoidFor": ["page background", "large UI areas"],
+      "rarity": "rare"
+    },
+    "bold": {
+      "attention": "high",
+      "stepRule": "brand base step (base if parent>=1300 else darkerBase); minimum 7-step jump with 700-offset fallback",
+      "allowedLevel": ["component", "banner", "toast", "card"],
+      "useFor": ["alerts", "toasts", "important guidance", "promotional banners", "marketing cards", "critical journey moments"],
+      "avoidFor": ["standard content", "background decoration", "making UI look designed"],
+      "rule": "at most one focal point per screen",
+      "rarity": "rare"
+    },
+    "elevated": {
+      "attention": "spatial",
+      "stepRule": "min(parent + 100, 2500) — always lighter",
+      "allowedLevel": ["overlay", "component"],
+      "useFor": ["overlays", "sheets", "dialogs", "menus", "popovers", "floating cards"],
+      "avoidFor": ["static decoration", "making content feel important"],
+      "rarity": "as-needed"
+    },
+    "ghost": {
+      "attention": "none",
+      "stepRule": "parent step (unchanged), still emits surface context",
+      "allowedLevel": ["component"],
+      "useFor": ["participating in the surface cascade without changing color"],
+      "avoidFor": ["visible separation (it has none)"],
+      "rarity": "as-needed"
+    },
+    "brand-bg": {
+      "attention": "brand",
+      "stepRule": "pinned brand background step",
+      "allowedLevel": ["marketing-card", "promotion-card"],
+      "useFor": ["marketing", "campaign", "promotion", "celebration", "brand storytelling"],
+      "avoidFor": ["standard product UI", "forms", "finance screens", "page background", "normal list items"],
+      "rarity": "very-rare"
+    },
+    "sparkle": {
+      "attention": "celebration",
+      "stepRule": "pinned sparkle/accent step (role, not numeric level)",
+      "allowedLevel": ["component", "banner", "reward"],
+      "useFor": ["promotion", "celebration", "rewards", "delight", "campaigns"],
+      "avoidFor": ["normal product UI", "forms", "standard cards"],
+      "rarity": "rare"
+    }
+  },
+  "roles": {
+    "primary": "actions, navigation, active states, main decisions, primary CTA",
+    "secondary": "non-interactive support, passive indicators (NOT a secondary button hierarchy)",
+    "neutral": "achromatic scaffolding, always available",
+    "sparkle": "promotion, celebration, reward, delight",
+    "brand-bg": "branded/marketing backgrounds only",
+    "positive": "success semantic",
+    "negative": "error/destructive semantic",
+    "warning": "caution semantic",
+    "informative": "info/system-status semantic; also drives focus rings"
+  },
+  "globalRules": [
+    "Start every screen on default neutral.",
+    "A non-default surface needs a nameable purpose: guidance, promotion, interaction, separation, or elevation.",
+    "Solve hierarchy with spacing/type/layout before reaching for a surface.",
+    "One clear attention focal point per screen.",
+    "Text and strokes stay neutral unless link/action/nav/semantic/on-color-foreground.",
+    "Dark mode stays neutral — never tinted or brand-colored backgrounds.",
+    "Never hardcode background colors; always use <Surface mode> so adaptation works.",
+    "Color is computed automatically and is WCAG-safe — your only job is choosing the right level."
+  ]
+}

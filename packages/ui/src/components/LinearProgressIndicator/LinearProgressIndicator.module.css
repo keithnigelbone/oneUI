@@ -1,0 +1,190 @@
+/**
+ * LinearProgressIndicator.module.css
+ *
+ * Token-only linear progress bar — track + indicator fills.
+ * Indeterminate animation targets Base UI Progress.Indicator [data-indeterminate].
+ * Verified by: pnpm check:literals
+ */
+
+.progressRoot {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+}
+
+.root {
+  --_indicator-color: var(
+    --LinearProgressIndicator-indicatorColor,
+    var(--Primary-Bold, var(--Surface-Bold))
+  );
+  --_track-role: var(--Primary-Subtle, var(--Neutral-Subtle));
+  --_track-rail: var(--Neutral-Subtle, var(--Surface-Subtle));
+  --_track-color: var(--LinearProgressIndicator-trackColor, var(--_track-rail));
+
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+/* ========================================
+   APPEARANCE — role remapping
+   ======================================== */
+
+.appearanceNeutral {
+  --_indicator-color: var(
+    --LinearProgressIndicator-indicatorColor,
+    var(--Neutral-Bold, var(--Surface-Bold))
+  );
+  --_track-role: var(--Neutral-Subtle, var(--Surface-Subtle));
+}
+
+.appearanceSecondary {
+  --_indicator-color: var(
+    --LinearProgressIndicator-indicatorColor,
+    var(--Secondary-Bold, var(--Surface-Bold))
+  );
+  --_track-role: var(--Secondary-Subtle, var(--Neutral-Subtle));
+}
+
+.appearanceSparkle {
+  --_indicator-color: var(
+    --LinearProgressIndicator-indicatorColor,
+    var(--Sparkle-Bold, var(--Surface-Bold))
+  );
+  --_track-role: var(--Sparkle-Subtle, var(--Neutral-Subtle));
+}
+
+.appearancePositive {
+  --_indicator-color: var(
+    --LinearProgressIndicator-indicatorColor,
+    var(--Positive-Bold, var(--Surface-Bold))
+  );
+  --_track-role: var(--Positive-Subtle, var(--Neutral-Subtle));
+}
+
+.appearanceNegative {
+  --_indicator-color: var(
+    --LinearProgressIndicator-indicatorColor,
+    var(--Negative-Bold, var(--Surface-Bold))
+  );
+  --_track-role: var(--Negative-Subtle, var(--Neutral-Subtle));
+}
+
+.appearanceWarning {
+  --_indicator-color: var(
+    --LinearProgressIndicator-indicatorColor,
+    var(--Warning-Bold, var(--Surface-Bold))
+  );
+  --_track-role: var(--Warning-Subtle, var(--Neutral-Subtle));
+}
+
+.appearanceInformative {
+  --_indicator-color: var(
+    --LinearProgressIndicator-indicatorColor,
+    var(--Informative-Bold, var(--Surface-Bold))
+  );
+  --_track-role: var(--Informative-Subtle, var(--Neutral-Subtle));
+}
+
+/* Surface context — tint track on colored surfaces (same pattern as CPI / Slider). */
+[data-surface='minimal'] .root,
+[data-surface='subtle'] .root,
+[data-surface='moderate'] .root,
+[data-surface='bold'] .root,
+[data-surface='elevated'] .root {
+  --_track-rail: var(--_track-role, var(--Neutral-Subtle));
+}
+
+/* ========================================
+   SIZES — track height (Figma S / M / L)
+   ======================================== */
+
+.root[data-size='S'] .track {
+  height: var(--LinearProgressIndicator-trackHeight-S, var(--Spacing-1-5));
+}
+
+.root[data-size='M'] .track {
+  height: var(--LinearProgressIndicator-trackHeight-M, var(--Spacing-2-5));
+}
+
+.root[data-size='L'] .track {
+  height: var(--LinearProgressIndicator-trackHeight-L, var(--Spacing-3-5));
+}
+
+/* ========================================
+   SHAPE — roundCaps
+   ======================================== */
+
+.root[data-round-caps='true'] .track,
+.root[data-round-caps='true'] .indicator {
+  border-radius: var(--LinearProgressIndicator-borderRadius-round, var(--Shape-Pill));
+}
+
+.root[data-round-caps='false'] .track,
+.root[data-round-caps='false'] .indicator {
+  border-radius: var(--LinearProgressIndicator-borderRadius-flat, var(--Shape-0));
+}
+
+/* ========================================
+   TRACK + INDICATOR (Base UI Progress.Indicator)
+   ======================================== */
+
+.track {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  background-color: var(--_track-color);
+}
+
+.indicator {
+  position: absolute;
+  inset-block: 0;
+  inset-inline-start: 0;
+  display: block;
+  background-color: var(--_indicator-color);
+  height: 100%;
+  transition:
+    width
+    var(--LinearProgressIndicator-valueTransitionDuration, var(--Motion-Duration-M))
+    var(--LinearProgressIndicator-valueTransitionEasing, var(--Motion-Easing-Transition-Moderate));
+}
+
+/* Base UI: value={null} → data-indeterminate; no inline width (see Indicator render). */
+.indicatorIndeterminate,
+.root[data-type='indeterminate'] .indicator,
+.indicator[data-indeterminate] {
+  width: var(--LinearProgressIndicator-indeterminateWidth, 40%);
+  animation-name: lpi-indeterminate;
+  animation-duration: var(
+    --LinearProgressIndicator-indeterminateDuration,
+    var(--Motion-Duration-3XL)
+  );
+  animation-timing-function: var(
+    --LinearProgressIndicator-indeterminateEasing,
+    var(--Motion-Easing-Transition-Moderate)
+  );
+  animation-iteration-count: infinite;
+  transition: none;
+  will-change: transform;
+}
+
+@keyframes lpi-indeterminate {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(250%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .indicatorIndeterminate,
+  .root[data-type='indeterminate'] .indicator,
+  .indicator[data-indeterminate] {
+    animation: none;
+    transform: translateX(75%);
+  }
+}

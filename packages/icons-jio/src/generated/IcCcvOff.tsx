@@ -1,0 +1,30 @@
+import React, { forwardRef } from 'react';
+import type { IconComponentProps } from '../iconProps';
+
+export const IcCcvOff = forwardRef<SVGSVGElement, IconComponentProps>(function IcCcvOff(
+  { size = 24, width, height, color = 'currentColor', className, style, ...props },
+  ref,
+) {
+  const dim = width ?? height ?? size;
+  return (
+    <svg
+      ref={ref}
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      width={width ?? dim}
+      height={height ?? dim}
+      color={color}
+      className={className}
+      style={style}
+      {...props}
+    >
+      <path
+            fill="currentColor"
+            d="M14.76 5H4a2 2 0 0 0-2 2v2h8.76zM22 9V7a2 2 0 0 0-1.62-2l.33-.33A1.005 1.005 0 0 0 20 2.956a1 1 0 0 0-.71.294l-16 16a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0L6.41 19H20a2 2 0 0 0 2-2v-6h-7.59l2-2zm-3 4a1 1 0 1 1 0 2 1 1 0 0 1 0-2m-3 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2m-3 2a1 1 0 1 1 0-2 1 1 0 0 1 0 2M2 11v6a2.2 2.2 0 0 0 .11.64L8.76 11z"
+          />
+    </svg>
+  );
+});
+
+IcCcvOff.displayName = 'IcCcvOff';

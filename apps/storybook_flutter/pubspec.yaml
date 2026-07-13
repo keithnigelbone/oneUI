@@ -1,0 +1,30 @@
+name: storybook
+description: >
+  One UI Flutter Storybook — foundations gallery (iOS, Android, Web).
+  Matches web `apps/storybook` foundation story titles.
+publish_to: "none"
+version: 0.1.0
+
+environment:
+  sdk: ">=3.5.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  http: ^1.2.2
+  path: ^1.9.0
+  web: ^1.1.0
+  ui_flutter:
+    path: ../../packages/ui_flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+# Fonts: **`JioType Variable`** (Jio curated `jiotype-var`) are declared in the
+# path dependency **`ui_flutter`** (`packages/ui_flutter/pubspec.yaml` →
+# `flutter.fonts`) with assets under **`packages/ui_flutter/fonts/`**. Flutter
+# merges dependency fonts into this app — do not duplicate the same family here.
+flutter:
+  uses-material-design: true

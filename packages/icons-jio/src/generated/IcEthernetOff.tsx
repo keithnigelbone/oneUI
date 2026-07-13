@@ -1,0 +1,35 @@
+import React, { forwardRef } from 'react';
+import type { IconComponentProps } from '../iconProps';
+
+export const IcEthernetOff = forwardRef<SVGSVGElement, IconComponentProps>(function IcEthernetOff(
+  { size = 24, width, height, color = 'currentColor', className, style, ...props },
+  ref,
+) {
+  const dim = width ?? height ?? size;
+  return (
+    <svg
+      ref={ref}
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      width={width ?? dim}
+      height={height ?? dim}
+      color={color}
+      className={className}
+      style={style}
+      {...props}
+    >
+      <path
+            fill="currentColor"
+            d="M7.713 7.289a.996.996 0 0 0-1.41 0l-4.01 4a.996.996 0 0 0 0 1.41l4 4c.2.2.45.29.71.29s.51-.1.71-.29a.996.996 0 0 0 0-1.41l-3.29-3.29 3.29-3.29a.996.996 0 0 0 0-1.41zm14 4-4-4a.996.996 0 1 0-1.41 1.41l3.29 3.29-3.29 3.29a.996.996 0 0 0 .71 1.7c.26 0 .51-.1.71-.29l4-4a.996.996 0 0 0 0-1.41z"
+            opacity={0.2}
+          />
+          <path
+            fill="currentColor"
+            d="M13.25 16.17c-.16-.25-.4-.44-.67-.55s-.58-.14-.87-.09c-.29.06-.56.2-.77.41s-.35.48-.41.77-.03.59.09.87.31.51.55.67A1.499 1.499 0 0 0 13.5 17c0-.3-.09-.59-.25-.83M12 13.5c.27 0 .52-.11.71-.29s.29-.44.29-.71v-6c0-.27-.11-.52-.29-.71A1 1 0 0 0 12 5.5c-.27 0-.52.11-.71.29a1 1 0 0 0-.29.71v6c0 .27.11.52.29.71s.44.29.71.29"
+          />
+    </svg>
+  );
+});
+
+IcEthernetOff.displayName = 'IcEthernetOff';

@@ -1,0 +1,375 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "RadioField",
+  "generatedAt": "2026-07-09T13:07:37.418Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "Field shell around Radio that OWNS single-selection. Integrated-single / multi-option (RadioGroup) / plain-option modes by children count. Drive multi mode with value/onValueChange. Adds header, required asterisk, info-icon slot, error/feedback and dynamic-text rows, orientation."
+  },
+  "compositionRules": {
+    "requires": [],
+    "allows": [],
+    "forbids": [],
+    "childKind": "fixed-slots"
+  },
+  "props": [
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "required": false,
+      "description": "<Radio> options. Omit for integrated single mode."
+    },
+    {
+      "name": "value",
+      "type": "string",
+      "required": false,
+      "description": "Selected option value (controlled, multi/integrated-string mode)."
+    },
+    {
+      "name": "defaultValue",
+      "type": "string",
+      "required": false,
+      "description": "Selected option value (uncontrolled)."
+    },
+    {
+      "name": "onValueChange",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Group change handler — receives the selected option value."
+    },
+    {
+      "name": "checked",
+      "type": "boolean",
+      "required": false,
+      "description": "Integrated single mode — controlled on/off."
+    },
+    {
+      "name": "defaultChecked",
+      "type": "boolean",
+      "required": false,
+      "description": "Integrated single mode — uncontrolled on/off."
+    },
+    {
+      "name": "onCheckedChange",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Integrated single mode — fired when the lone option toggles."
+    },
+    {
+      "name": "singleOptionValue",
+      "type": "string",
+      "required": false,
+      "defaultValue": "on",
+      "description": "Form value of the implicit lone Radio in integrated mode."
+    },
+    {
+      "name": "label",
+      "type": "string",
+      "required": false,
+      "description": "Field header (multi) or integrated label (single)."
+    },
+    {
+      "name": "description",
+      "type": "string",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "infoIconSlot",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Trailing control beside the label (e.g. info <IconButton>)."
+    },
+    {
+      "name": "invalid",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "required",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": "Renders an asterisk after the label."
+    },
+    {
+      "name": "fullWidth",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "readOnly",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "size",
+      "type": "'s' | 'm' | 'l'",
+      "required": false,
+      "defaultValue": "m",
+      "description": "Forwarded to all options."
+    },
+    {
+      "name": "appearance",
+      "type": "'auto' | 'primary' | 'secondary' | 'neutral' | 'sparkle' | 'brand-bg' | 'positive' | 'negative' | 'warning' | 'informative'",
+      "required": false,
+      "defaultValue": "auto",
+      "description": "Forwarded to all options. 'auto' → secondary."
+    },
+    {
+      "name": "orientation",
+      "type": "'vertical' | 'horizontal'",
+      "required": false,
+      "defaultValue": "vertical",
+      "description": ""
+    },
+    {
+      "name": "error",
+      "type": "string",
+      "required": false,
+      "description": "Shorthand negative feedback row."
+    },
+    {
+      "name": "feedback",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Custom feedback node (a JDS <InputFeedback>)."
+    },
+    {
+      "name": "dynamicText",
+      "type": "string",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "helperButton",
+      "type": "string",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "onHelperPress",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Handler for helperButton."
+    },
+    {
+      "name": "dynamicTextSlot",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Custom dynamic-text node."
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "aria-describedby",
+      "type": "string",
+      "required": false,
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.kb.rn.RadioField",
+    "type": "object",
+    "properties": {
+      "children": {
+        "description": "<Radio> options. Omit for integrated single mode."
+      },
+      "value": {
+        "type": "string",
+        "description": "Selected option value (controlled, multi/integrated-string mode)."
+      },
+      "defaultValue": {
+        "type": "string",
+        "description": "Selected option value (uncontrolled)."
+      },
+      "onValueChange": {
+        "description": "Group change handler — receives the selected option value."
+      },
+      "checked": {
+        "type": "boolean",
+        "description": "Integrated single mode — controlled on/off."
+      },
+      "defaultChecked": {
+        "type": "boolean",
+        "description": "Integrated single mode — uncontrolled on/off."
+      },
+      "onCheckedChange": {
+        "description": "Integrated single mode — fired when the lone option toggles."
+      },
+      "singleOptionValue": {
+        "type": "string",
+        "default": "on",
+        "description": "Form value of the implicit lone Radio in integrated mode."
+      },
+      "label": {
+        "type": "string",
+        "description": "Field header (multi) or integrated label (single)."
+      },
+      "description": {
+        "type": "string"
+      },
+      "infoIconSlot": {
+        "description": "Trailing control beside the label (e.g. info <IconButton>)."
+      },
+      "invalid": {
+        "type": "boolean",
+        "default": false
+      },
+      "required": {
+        "type": "boolean",
+        "default": false,
+        "description": "Renders an asterisk after the label."
+      },
+      "fullWidth": {
+        "type": "boolean",
+        "default": false
+      },
+      "disabled": {
+        "type": "boolean",
+        "default": false
+      },
+      "readOnly": {
+        "type": "boolean",
+        "default": false
+      },
+      "size": {
+        "enum": [
+          "s",
+          "m",
+          "l"
+        ],
+        "default": "m",
+        "description": "Forwarded to all options."
+      },
+      "appearance": {
+        "enum": [
+          "auto",
+          "primary",
+          "secondary",
+          "neutral",
+          "sparkle",
+          "brand-bg",
+          "positive",
+          "negative",
+          "warning",
+          "informative"
+        ],
+        "default": "auto",
+        "description": "Forwarded to all options. 'auto' → secondary."
+      },
+      "orientation": {
+        "enum": [
+          "vertical",
+          "horizontal"
+        ],
+        "default": "vertical"
+      },
+      "error": {
+        "type": "string",
+        "description": "Shorthand negative feedback row."
+      },
+      "feedback": {
+        "description": "Custom feedback node (a JDS <InputFeedback>)."
+      },
+      "dynamicText": {
+        "type": "string"
+      },
+      "helperButton": {
+        "type": "string"
+      },
+      "onHelperPress": {
+        "description": "Handler for helperButton."
+      },
+      "dynamicTextSlot": {
+        "description": "Custom dynamic-text node."
+      },
+      "aria-label": {
+        "type": "string"
+      },
+      "aria-describedby": {
+        "type": "string"
+      }
+    }
+  },
+  "tokens": {
+    "color": [
+      "primary",
+      "secondary",
+      "neutral",
+      "sparkle",
+      "brand-bg",
+      "positive",
+      "negative",
+      "warning",
+      "informative"
+    ],
+    "typography": [
+      "label.S",
+      "label.M",
+      "label.L",
+      "body.S",
+      "body.M"
+    ]
+  },
+  "a11y": {
+    "accessibilityRole": "none",
+    "accessibilityState": [
+      "disabled"
+    ],
+    "accessibleNameSource": "aria-label",
+    "minTouchTarget": 44,
+    "honorsBoldText": true,
+    "honorsScreenReader": true
+  },
+  "renderHints": {
+    "baseElement": "View",
+    "animatedOn": [],
+    "honorsReduceMotion": false,
+    "readsFromSurfaceContext": true
+  },
+  "figma": {
+    "componentKey": "jds-radio-field-v4",
+    "keyHistory": [],
+    "variantProperties": {
+      "Component": "RadioField"
+    }
+  },
+  "codeSnippets": [
+    {
+      "id": "import-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { RadioField } from '@oneui/ui-native';\n\n<RadioField />"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "radiofield",
+    "form",
+    "field",
+    "selection",
+    "composition"
+  ],
+  "importPath": "@oneui/ui-native"
+}

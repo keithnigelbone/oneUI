@@ -1,0 +1,77 @@
+# Modal — Figma API + native combination rules
+#
+# Figma API (design + code)
+#   size                   s | m | l | fullWidth     → size: 'S' | 'M' | 'L' | 'FullWidth'
+#   header                 true | false               → header?: boolean (default true)
+#   headerAlign            left | center             → headerAlign?: 'left' | 'center'
+#   headerStart            none | Icon | badge        → headerStart?: ReactNode
+#   Title                  true | false               → showTitle?: boolean (default true)
+#   Description            true | false               → showDescription?: boolean (default true)
+#   dividerTopVisibility   none | onScroll | always   → dividerTopVisibility?: DividerVisibility
+#   body                   figmaNativeSlot            → children: ReactNode
+#   dividerBottomVisibility none | onScroll | always  → dividerBottomVisibility?: DividerVisibility
+#   footer                 true | false               → footer?: boolean (default true)
+#   footerOrientation      horizontal | vertical       → footerOrientation?: 'horizontal' | 'vertical'
+#   footerStart            none (figmaNativeSlot)      → footerStart?: ReactNode
+#
+# Code only
+#   maxHeight              number (vh)                → NOT YET ON NATIVE API
+#   open                   boolean                    → open?: boolean (controlled)
+#   defaultOpen            boolean                    → defaultOpen?: boolean (uncontrolled)
+#   onOpenChange           (open, details) => void
+#   dismissible            boolean (default true)
+#   footerEnd              ReactNode (action buttons)
+#   aria-label / aria-labelledby / testID / style / accessibilityHint
+#
+# Max-height dependency (behavioural)
+#   1. Short content  → modal hugs content; maxHeight unused
+#   2. Growing content → modal grows until maxHeight cap
+#   3. Overflow       → body scrolls; header + footer stay fixed
+
+section1: Modal sizes
+- mount modal with size S, M, L (native: 'S' | 'M' | 'L')
+
+section2: Modal header visibility
+- mount modal with header true and false
+
+section3: Modal header alignment
+- mount modal with headerAlign left and center
+
+section4: Modal headerStart slot
+- mount modal with headerStart none, Icon and badge
+
+section5: Modal title visibility
+- mount modal with showTitle true and false
+
+section6: Modal description visibility
+- mount modal with showDescription true and false
+
+section7: Modal divider top visibility
+- mount modal with dividerTopVisibility none, onScroll and always
+- onScroll cells use long scrollable body content
+
+section8: Modal divider bottom visibility
+- mount modal with dividerBottomVisibility none, onScroll and always
+- onScroll cells use long scrollable body content
+
+section9: Modal footer visibility
+- mount modal with footer true and false
+
+section10: Modal footer orientation
+- mount modal with footerOrientation horizontal and vertical
+
+section11: Modal footerStart slot
+- mount modal with footerStart none and with custom slot content
+
+section12: Modal dismissible (code only)
+- mount modal with dismissible true and false
+
+section13: Modal open state (code only)
+- mount modal controlled with open true via trigger button
+- mount modal uncontrolled with defaultOpen true
+
+section14: Modal scrollable body
+- mount modal with long body content to exercise scroll + onScroll dividers
+
+section15: Modal with size fullWidth
+- mount modal with size fullWidth

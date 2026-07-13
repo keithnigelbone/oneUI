@@ -1,0 +1,36 @@
+{
+  "eval_id": 0,
+  "run_type": "with_skill",
+  "expectations": [
+    {
+      "text": "uses-intermediate-variables",
+      "passed": true,
+      "evidence": "CSS uses --_chip-* intermediate variables (12 total) on .chip root, role-agnostic: --_chip-fg-bold, --_chip-fg-bold-high, --_chip-bg-subtle, --_chip-default-high, --_chip-default-accent-a11y, etc."
+    },
+    {
+      "text": "maps-to-role-tokens-with-fallbacks",
+      "passed": true,
+      "evidence": "All intermediates map to --Primary-* with legacy fallbacks: e.g. --_chip-fg-bold: var(--Primary-FG-Bold, var(--Surface-Bold))"
+    },
+    {
+      "text": "three-variant-styles",
+      "passed": true,
+      "evidence": ".filled uses --_chip-fg-bold for bg + --_chip-fg-bold-high for text. .tinted uses --_chip-bg-subtle bg + --_chip-default-accent-a11y text. .outlined uses transparent bg + --_chip-default-low-stroke border."
+    },
+    {
+      "text": "appearance-role-classes",
+      "passed": true,
+      "evidence": ".appearanceNeutral and .appearanceNegative classes each remap all 12 intermediate variables to their role tokens (--Neutral-*, --Negative-*)"
+    },
+    {
+      "text": "explains-automatic-adaptation",
+      "passed": true,
+      "evidence": "Explanation document covers the four-layer architecture, CSS cascade walkthrough, bold inversion explanation, and states 'the chip adapts with zero JavaScript'"
+    },
+    {
+      "text": "no-hardcoded-colors",
+      "passed": true,
+      "evidence": "File header states 'ZERO LITERALS — all values come from design tokens' and inspection confirms all colors use var() references"
+    }
+  ]
+}

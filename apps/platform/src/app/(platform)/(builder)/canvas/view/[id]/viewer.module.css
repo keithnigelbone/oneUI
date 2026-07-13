@@ -1,0 +1,111 @@
+/**
+ * viewer.module.css — Composition read-only viewer
+ */
+
+.page {
+  display: flex;
+  flex-direction: column;
+  height: calc(100% + var(--Spacing-6) * 2);
+  max-width: none !important;
+  margin: calc(-1 * var(--Spacing-6));
+  overflow: hidden;
+}
+
+.loading, .error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: var(--Text-Low);
+  font-size: var(--Body-M-FontSize);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--Spacing-3-5) var(--Spacing-4-5);
+  border-bottom: var(--Stroke-M) solid var(--Neutral-Stroke-Low);
+  flex-shrink: 0;
+}
+
+.headerInfo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-1-5);
+}
+
+.title {
+  font-size: var(--Body-L-FontSize);
+  font-weight: var(--Body-FontWeight-Medium);
+  color: var(--Text-High);
+  margin: 0;
+}
+
+.meta {
+  font-size: var(--Body-S-FontSize);
+  color: var(--Text-Low);
+}
+
+.headerActions {
+  display: flex;
+  gap: var(--Spacing-3);
+}
+
+.copyButton {
+  padding: var(--Spacing-2) var(--Spacing-4);
+  font-size: var(--Body-S-FontSize);
+  font-weight: var(--Label-FontWeight-Medium);
+  color: var(--Primary-Bold-High);
+  background: var(--Primary-Bold);
+  border: none;
+  border-radius: var(--Shape-Pill);
+  cursor: pointer;
+}
+
+.editLink {
+  padding: var(--Spacing-2) var(--Spacing-4);
+  font-size: var(--Body-S-FontSize);
+  font-weight: var(--Body-FontWeight-Low);
+  color: var(--Text-Medium);
+  background: var(--Neutral-Subtle);
+  border: var(--Stroke-M) solid var(--Neutral-Stroke-Low);
+  border-radius: var(--Shape-Pill);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.content {
+  flex: 1;
+  overflow: auto;
+  padding: var(--Spacing-4-5);
+}
+
+.codeBlock {
+  font-family: var(--Typography-Font-Code);
+  font-size: var(--Code-S-FontSize);
+  line-height: var(--Code-S-LineHeight);
+  color: var(--Text-High);
+  background: var(--Neutral-Minimal);
+  border-radius: var(--Shape-4);
+  padding: var(--Spacing-4-5);
+  margin: 0;
+  white-space: pre;
+  tab-size: 2;
+  overflow-x: auto;
+}
+
+.empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: var(--Text-Low);
+}
+
+.description {
+  padding: var(--Spacing-3-5) var(--Spacing-4-5);
+  font-size: var(--Body-S-FontSize);
+  color: var(--Text-Medium);
+  border-top: var(--Stroke-M) solid var(--Neutral-Stroke-Low);
+}

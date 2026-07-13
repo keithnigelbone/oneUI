@@ -1,0 +1,322 @@
+/**
+ * foundation.module.css
+ * Shared styling for all foundation pages
+ * Token-only values
+ */
+
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-5);
+  max-width: 1200px;
+  padding-top: var(--Spacing-6);
+  padding-bottom: var(--Spacing-6);
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-3-5);
+}
+
+.title {
+  font-family: var(--Display-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Display-S-FontSize);
+  line-height: var(--Display-S-LineHeight);
+  font-weight: var(--Display-S-FontWeight);
+  color: var(--Text-High);
+  margin: 0;
+}
+
+.description {
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Body-M-FontSize);
+  line-height: var(--Body-M-LineHeight);
+  color: var(--Text-Medium);
+  margin: 0;
+  max-width: 600px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-4-5);
+}
+
+.foundationTabsRow {
+  margin-left: calc(-1 * var(--Spacing-2-5));
+  border-bottom: var(--Stroke-M) solid var(--Border-Subtle);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.foundationTabsRow::-webkit-scrollbar {
+  display: none;
+}
+
+.foundationTabsList {
+  width: max-content;
+  min-width: 100%;
+}
+
+.tabPanelStack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-4-5);
+  margin-top: calc(-1 * var(--Spacing-4-5));
+}
+
+.tabPanelStack > section {
+  border: none;
+  border-radius: var(--Spacing-0);
+  background: transparent;
+}
+
+.tabPanelStack > section > div:first-child {
+  align-items: flex-start;
+  gap: var(--Spacing-5);
+  padding: var(--Spacing-6) var(--Spacing-0) var(--Spacing-4);
+  border-radius: var(--Spacing-0);
+  background: transparent;
+}
+
+.tabPanelStack > section > div:first-child > div:first-child {
+  flex: 1 1 var(--Dimension-f16);
+  min-width: var(--Spacing-0);
+}
+
+.tabPanelStack > section > div:first-child > div:last-child {
+  flex: 0 1 auto;
+}
+
+.tabPanelStack > section > div:last-child {
+  padding: var(--Spacing-4) var(--Spacing-0) var(--Spacing-0);
+  border-radius: var(--Spacing-0);
+  background: transparent;
+}
+
+.foundationControls {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: var(--Spacing-3) var(--Spacing-5);
+  width: max-content;
+  max-width: 100%;
+}
+
+.foundationInlineControls {
+  display: flex;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: var(--Spacing-3) var(--Spacing-5);
+  justify-content: space-between;
+  padding-bottom: var(--Spacing-4);
+  width: 100%;
+}
+
+.foundationControlStack {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--Spacing-2);
+}
+
+.foundationControlGroup {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-3);
+}
+
+.foundationTrailingControl {
+  margin-left: auto;
+}
+
+.foundationControlLabel {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+  color: var(--Text-Low);
+}
+
+.foundationControlSelect {
+  min-width: var(--Dimension-f15);
+}
+
+.foundationFooterActions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--Spacing-3);
+  justify-content: flex-start;
+  padding-top: var(--Spacing-4);
+}
+
+.section {
+  background-color: var(--Surface-Main);
+  border: 1px solid var(--Border-Subtle);
+  border-radius: var(--Shape-4-5);
+  padding: var(--Spacing-4-5);
+}
+
+.sectionTitle {
+  font-family: var(--Title-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Title-M-FontSize);
+  line-height: var(--Title-M-LineHeight);
+  font-weight: var(--Title-M-FontWeight);
+  color: var(--Text-High);
+  margin: 0 0 var(--Spacing-2-5) 0;
+}
+
+.sectionDescription {
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  color: var(--Text-Low);
+  margin: 0 0 var(--Spacing-4) 0;
+}
+
+.placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--Spacing-6);
+  background-color: var(--Surface-Subtle);
+  border-radius: var(--Shape-4);
+  color: var(--Text-Low);
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+}
+
+/* Two-column layout for larger screens */
+.twoColumn {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--Spacing-4-5);
+}
+
+@media (max-width: 768px) {
+  .twoColumn {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Scale preview container */
+.scalePreview {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-3-5);
+}
+
+/* Control group */
+.controlGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-4);
+}
+
+/* Horizontal control row */
+.controlRow {
+  display: flex;
+  gap: var(--Spacing-4-5);
+  align-items: flex-start;
+}
+
+.controlRow > * {
+  flex: 1;
+}
+
+/* Info box */
+.infoBox {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--Spacing-3-5);
+  padding: var(--Spacing-4);
+  background-color: var(--Surface-Subtle);
+  border-radius: var(--Shape-4);
+}
+
+.infoIcon {
+  width: var(--Spacing-4);
+  height: var(--Spacing-4);
+  color: var(--Text-Medium);
+  flex-shrink: 0;
+}
+
+.infoText {
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  color: var(--Text-Medium);
+  margin: 0;
+}
+
+/* Brand indicator in description */
+.brandIndicator {
+  color: var(--Text-Low);
+}
+
+.brandIndicator strong {
+  color: var(--Text-High);
+  font-weight: var(--Body-FontWeight-Medium);
+}
+
+/* Dimension page controls wrapper */
+.dimensionControls {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-4-5);
+}
+
+/* Platform selector chips (Dimension page) */
+.platformChips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--Spacing-3);
+}
+
+.platformChip {
+  padding: var(--Spacing-3) var(--Spacing-4);
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+  border-radius: var(--Shape-4);
+  background-color: var(--Surface-Main);
+  color: var(--Text-Medium);
+  font-family: var(--Label-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Label-S-FontSize);
+  line-height: var(--Label-S-LineHeight);
+  cursor: pointer;
+  transition: background-color var(--Motion-Duration-Discreet-Short),
+              color var(--Motion-Duration-Discreet-Short);
+}
+
+.platformChip:hover:not(:disabled) {
+  background-color: var(--Surface-Subtle);
+  color: var(--Text-High);
+}
+
+.platformChip[data-selected] {
+  background-color: var(--Surface-Bold);
+  color: var(--Text-OnBold-High);
+  border-color: var(--Surface-Bold);
+}
+
+.platformChip:disabled {
+  opacity: var(--Disabled-Opacity);
+  cursor: not-allowed;
+}
+
+/* Platform info line */
+.platformInfo {
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  color: var(--Text-Medium);
+  padding: var(--Spacing-3) var(--Spacing-3-5);
+  background-color: var(--Surface-Subtle);
+  border-radius: var(--Shape-4);
+}
+
+.platformInfo strong {
+  color: var(--Text-High);
+  font-weight: var(--Body-FontWeight-Medium);
+}

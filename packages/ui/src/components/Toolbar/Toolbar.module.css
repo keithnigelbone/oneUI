@@ -1,0 +1,19 @@
+/**
+ * Toolbar.module.css
+ * Token-only styling for Toolbar component
+ * Verified by: pnpm check:literals
+ */
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-2);
+  padding: var(--Spacing-2);
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+  border-radius: var(--Shape-4);
+  background-color: var(--Surface-Default);
+}
+
+.toolbar[data-orientation='vertical'] {
+  flex-direction: column;
+}

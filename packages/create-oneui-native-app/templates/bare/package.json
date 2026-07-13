@@ -1,0 +1,41 @@
+{
+  "name": "__PROJECT_NAME__",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "npx oneui-native-cdn prefetch && react-native start",
+    "android": "npx oneui-native-cdn prefetch && react-native run-android",
+    "ios": "npx oneui-native-cdn prefetch && react-native run-ios",
+    "prefetch": "oneui-native-cdn prefetch",
+    "link-assets": "npx react-native-asset",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@oneui/icons-jio-native": "0.1.0-alpha.1",
+    "@oneui/ui-native": "0.1.0-alpha.5",
+    "@react-navigation/native": "^7.1.8",
+    "@react-navigation/native-stack": "^7.3.0",
+    "react": "19.1.0",
+    "react-native": "0.81.5",
+    "react-native-gesture-handler": "~2.28.0",
+    "react-native-reanimated": "~4.1.1",
+    "react-native-safe-area-context": "~5.6.0",
+    "react-native-screens": "~4.16.0",
+    "react-native-svg": "^15.15.5",
+    "react-native-worklets": "0.5.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.25.0",
+    "@oneui/native-cdn": "0.1.0-alpha.4",
+    "@react-native-community/cli": "^15.0.0",
+    "@react-native-community/cli-platform-android": "^15.0.0",
+    "@react-native-community/cli-platform-ios": "^15.0.0",
+    "@react-native/babel-preset": "^0.81.0",
+    "@react-native/metro-config": "^0.81.0",
+    "@react-native/typescript-config": "^0.81.0",
+    "@types/react": "~19.1.0",
+    "@types/react-native": "^0.73.0",
+    "react-native-asset": "^2.0.0",
+    "typescript": "^5.7.2"
+  }
+}

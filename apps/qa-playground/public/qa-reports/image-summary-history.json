@@ -1,0 +1,4463 @@
+{
+  "slug": "image",
+  "runs": [
+    {
+      "savedAt": "2026-06-23T09:18:37.847Z",
+      "report": {
+        "ok": true,
+        "slug": "image",
+        "message": "image QA Playwright run OK — 2026-06-22T13:31:30.514Z",
+        "suites": {
+          "accessibility": {
+            "suite": "accessibility",
+            "passed": 26,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "26 test(s) in Playwright report for accessibility.",
+              "Axe: scan completed — 0 violation rules reported."
+            ],
+            "errors": [],
+            "cases": [
+              {
+                "name": "[a11y] WCAG 2.1 AA tag scan + JSON artefact + HTML report (exclude bug repro)",
+                "status": "passed",
+                "durationMs": 5219
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Default band",
+                "status": "passed",
+                "durationMs": 5046,
+                "componentBand": "image-qa-default"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Aspect ratio band",
+                "status": "passed",
+                "durationMs": 5040,
+                "componentBand": "image-qa-aspect"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Object fit band",
+                "status": "passed",
+                "durationMs": 4975,
+                "componentBand": "image-qa-fit"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Interactive band",
+                "status": "passed",
+                "durationMs": 5745,
+                "componentBand": "image-qa-interactive"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Fallback band",
+                "status": "passed",
+                "durationMs": 4219,
+                "componentBand": "image-qa-fallback"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Loading (lazy · eager) band",
+                "status": "passed",
+                "durationMs": 5138,
+                "componentBand": "image-qa-loading"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Labelled alt text band",
+                "status": "passed",
+                "durationMs": 4197,
+                "componentBand": "image-qa-a11y"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Radius override band",
+                "status": "passed",
+                "durationMs": 5611,
+                "componentBand": "image-qa-radius"
+              },
+              {
+                "name": "[a11y] data-section=\"image-qa-default\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 4847
+              },
+              {
+                "name": "[a11y] data-section=\"image-qa-aspect\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 3562
+              },
+              {
+                "name": "[a11y] data-section=\"image-qa-fit\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 3073
+              },
+              {
+                "name": "[a11y] data-section=\"image-qa-interactive\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 4042
+              },
+              {
+                "name": "[a11y] data-section=\"image-qa-fallback\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 3886
+              },
+              {
+                "name": "[a11y] data-section=\"image-qa-loading\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 4069
+              },
+              {
+                "name": "[a11y] data-section=\"image-qa-a11y\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 3744
+              },
+              {
+                "name": "[a11y] data-section=\"image-qa-radius\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 3594
+              },
+              {
+                "name": "[a11y] axe image-alt rule — Test Scenarios page (exclude bug repro band)",
+                "status": "passed",
+                "durationMs": 3200
+              },
+              {
+                "name": "[a11y] Keyboard Enter — interactive image",
+                "status": "passed",
+                "durationMs": 2920
+              },
+              {
+                "name": "[a11y] Keyboard Space — interactive image",
+                "status": "passed",
+                "durationMs": 5755
+              },
+              {
+                "name": "[a11y] Interactive disabled image renders as a disabled button",
+                "status": "passed",
+                "durationMs": 2924,
+                "bugId": "BUG-IMAGE-001",
+                "componentBand": "image-qa-bug-repro"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — bug repro (interactive + disabled) band",
+                "status": "passed",
+                "durationMs": 3432,
+                "bugId": "BUG-IMAGE-001",
+                "componentBand": "image-qa-bug-repro"
+              },
+              {
+                "name": "[a11y] Accessibility band labelled image exposes aria-label “Taj Mahal at sunrise”",
+                "status": "passed",
+                "durationMs": 3289
+              },
+              {
+                "name": "[a11y] Reflow at 320px — story bands fit without horizontal scroll",
+                "status": "passed",
+                "durationMs": 5626
+              },
+              {
+                "name": "[a11y] Section 508 tag run on story bands (exclude bug repro) — zero serious/critical",
+                "status": "passed",
+                "durationMs": 3347
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Figma aspect-ratio grid",
+                "status": "passed",
+                "durationMs": 3936
+              }
+            ],
+            "axe": {
+              "violations": []
+            }
+          },
+          "functional": {
+            "suite": "functional",
+            "passed": 59,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "59 test(s) in Playwright report for functional."
+            ],
+            "errors": [],
+            "cases": [
+              {
+                "name": "1.1 — Page loads without console errors; default image mounts",
+                "status": "passed",
+                "durationMs": 4965
+              },
+              {
+                "name": "1.2 — Every Test Scenarios `data-testid` is visible",
+                "status": "passed",
+                "durationMs": 5044
+              },
+              {
+                "name": "1.3 — Every `data-section` band is visible",
+                "status": "passed",
+                "durationMs": 3968
+              },
+              {
+                "name": "2.1 — Default image: role img, aria-label from alt",
+                "status": "passed",
+                "durationMs": 3568
+              },
+              {
+                "name": "2.1 — Each aspect ratio cell emits matching data-aspect-ratio",
+                "status": "passed",
+                "durationMs": 2198
+              },
+              {
+                "name": "2.1 — Lazy and eager loading attributes on img",
+                "status": "passed",
+                "durationMs": 2561
+              },
+              {
+                "name": "2.2 — Aspect ratio scaling: 16:9 is wider than tall; 9:16 is taller than wide",
+                "status": "passed",
+                "durationMs": 2578
+              },
+              {
+                "name": "2.3 — Appearance colour (N/A)",
+                "status": "passed",
+                "durationMs": 3025
+              },
+              {
+                "name": "3.1 — Single click on interactive image increments counter",
+                "status": "passed",
+                "durationMs": 3275
+              },
+              {
+                "name": "3.2 — Interactive + disabled must not behave as enabled button",
+                "status": "passed",
+                "durationMs": 2803
+              },
+              {
+                "name": "3.3 — Readonly (N/A)",
+                "status": "passed",
+                "durationMs": 2478
+              },
+              {
+                "name": "3.4 — Click outside removes focus from interactive image",
+                "status": "passed",
+                "durationMs": 2882
+              },
+              {
+                "name": "4.1 — Tab reaches interactive image button",
+                "status": "passed",
+                "durationMs": 3242
+              },
+              {
+                "name": "4.2 — Enter activates interactive image",
+                "status": "passed",
+                "durationMs": 3097
+              },
+              {
+                "name": "4.3 — Space activates interactive image",
+                "status": "passed",
+                "durationMs": 6046
+              },
+              {
+                "name": "4.4 — Arrow keys (N/A for single image)",
+                "status": "passed",
+                "durationMs": 2823
+              },
+              {
+                "name": "4.5 — Home/End (N/A)",
+                "status": "passed",
+                "durationMs": 3273
+              },
+              {
+                "name": "4.6 — Escape (N/A)",
+                "status": "passed",
+                "durationMs": 3503
+              },
+              {
+                "name": "4.7 — Tab escapes interactive image without trap",
+                "status": "passed",
+                "durationMs": 3466
+              },
+              {
+                "name": "5.1 — Interactive image receives focus on click",
+                "status": "passed",
+                "durationMs": 3227
+              },
+              {
+                "name": "5.2 — Focus indicator visible on interactive image (keyboard :focus-visible)",
+                "status": "passed",
+                "durationMs": 3088
+              },
+              {
+                "name": "5.3 — Non-interactive default image is not tabbable",
+                "status": "passed",
+                "durationMs": 22611
+              },
+              {
+                "name": "5.4 — Blur removes focus from interactive image",
+                "status": "passed",
+                "durationMs": 3957
+              },
+              {
+                "name": "5.5 — autoFocus (N/A)",
+                "status": "passed",
+                "durationMs": 3456
+              },
+              {
+                "name": "6.1 — Default display image renders with role img",
+                "status": "passed",
+                "durationMs": 3432
+              },
+              {
+                "name": "6.3 — Bug repro disabled image is not in Tab order as enabled control",
+                "status": "passed",
+                "durationMs": 2879
+              },
+              {
+                "name": "6.6 — Loading strategy (lazy/eager) — img loading attribute present",
+                "status": "passed",
+                "durationMs": 2518
+              },
+              {
+                "name": "7.x — Image has no start/end slot API",
+                "status": "passed",
+                "durationMs": 3660
+              },
+              {
+                "name": "8.x — Not a toggle component",
+                "status": "passed",
+                "durationMs": 3733
+              },
+              {
+                "name": "9.x — Not a text input",
+                "status": "passed",
+                "durationMs": 3753
+              },
+              {
+                "name": "10.1 — Non-interactive images use role img (not button)",
+                "status": "passed",
+                "durationMs": 2909
+              },
+              {
+                "name": "10.2 — Interactive without disabled renders button",
+                "status": "passed",
+                "durationMs": 2363
+              },
+              {
+                "name": "11.1 — aria-label reflects alt text on labelled images",
+                "status": "passed",
+                "durationMs": 2803
+              },
+              {
+                "name": "11.2 — Default image renders inner img with presentation role",
+                "status": "passed",
+                "durationMs": 2772
+              },
+              {
+                "name": "11.2 — Broken image fallback shows default SVG icon",
+                "status": "passed",
+                "durationMs": 2953
+              },
+              {
+                "name": "11.1 — Custom fallback text renders in fallback node",
+                "status": "passed",
+                "durationMs": 3432
+              },
+              {
+                "name": "11.3 — Progress value (N/A)",
+                "status": "passed",
+                "durationMs": 2751
+              },
+              {
+                "name": "12.1 — fullWidth (N/A)",
+                "status": "passed",
+                "durationMs": 2703
+              },
+              {
+                "name": "12.2 — At 320px viewport, scenario bands fit without horizontal scroll",
+                "status": "passed",
+                "durationMs": 4943
+              },
+              {
+                "name": "12.2b — Default image visible at 1440px viewport",
+                "status": "passed",
+                "durationMs": 4853
+              },
+              {
+                "name": "12.3 — Aspect band cells in DOM order (auto before 9:16)",
+                "status": "passed",
+                "durationMs": 3129
+              },
+              {
+                "name": "12.1 — Radius token override applies non-zero border-radius",
+                "status": "passed",
+                "durationMs": 2931
+              },
+              {
+                "name": "13.1 — After dark theme, all scenario sections remain visible",
+                "status": "passed",
+                "durationMs": 3663
+              },
+              {
+                "name": "13.1 — Default image remains visible in dark mode",
+                "status": "passed",
+                "durationMs": 3290
+              },
+              {
+                "name": "Smoke — Page heading reads “Image”",
+                "status": "passed",
+                "durationMs": 2717
+              },
+              {
+                "name": "Smoke — Default image visible with aria-label",
+                "status": "passed",
+                "durationMs": 2132
+              },
+              {
+                "name": "Smoke — Interactive image is a button",
+                "status": "passed",
+                "durationMs": 1962
+              },
+              {
+                "name": "Smoke — Manifest root testid count in showcase",
+                "status": "passed",
+                "durationMs": 1854
+              },
+              {
+                "name": "[fn] Component page shows title and all QA tabs",
+                "status": "passed",
+                "durationMs": 3297
+              },
+              {
+                "name": "[fn] Default image is visible and has aria-label “Landscape”",
+                "status": "passed",
+                "durationMs": 3252
+              },
+              {
+                "name": "[fn] Figma aspect ratios set data-aspect-ratio (auto omits the attribute)",
+                "status": "passed",
+                "durationMs": 2810
+              },
+              {
+                "name": "[fn] Interactive image acts as a button and increments click counter",
+                "status": "passed",
+                "durationMs": 4475
+              },
+              {
+                "name": "[fn] Broken image URL shows default icon and custom fallback text",
+                "status": "passed",
+                "durationMs": 4606
+              },
+              {
+                "name": "[fn] Lazy and eager loading strategies set the img loading attribute",
+                "status": "passed",
+                "durationMs": 4281
+              },
+              {
+                "name": "[fn] Labelled example exposes descriptive aria-label",
+                "status": "passed",
+                "durationMs": 4243
+              },
+              {
+                "name": "[fn] Radius token override example renders",
+                "status": "passed",
+                "durationMs": 4120
+              },
+              {
+                "name": "[fn] All Test Scenarios story bands are mounted on the page",
+                "status": "passed",
+                "durationMs": 2846
+              },
+              {
+                "name": "[fn] Figma Validation tab shows API table and aspect-ratio grid",
+                "status": "passed",
+                "durationMs": 3520
+              },
+              {
+                "name": "[fn] theme toggle updates label",
+                "status": "passed",
+                "durationMs": 2080
+              }
+            ]
+          },
+          "performance": {
+            "suite": "performance",
+            "passed": 0,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "Performance suite is not executed in apps/qa-playground image Playwright bundle."
+            ],
+            "errors": []
+          }
+        }
+      }
+    },
+    {
+      "savedAt": "2026-06-22T13:31:30.516Z",
+      "report": {
+        "ok": true,
+        "slug": "image",
+        "message": "image QA Playwright run OK — 2026-06-22T13:18:57.343Z",
+        "suites": {
+          "accessibility": {
+            "suite": "accessibility",
+            "passed": 26,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "26 test(s) in Playwright report for accessibility.",
+              "Axe: scan completed — 0 violation rules reported."
+            ],
+            "errors": [],
+            "cases": [
+              {
+                "name": "[a11y] WCAG 2.1 AA tag scan + JSON artefact + HTML report (exclude bug repro)",
+                "status": "passed",
+                "durationMs": 6515
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Default band",
+                "status": "passed",
+                "durationMs": 6335,
+                "componentBand": "image-qa-default"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Aspect ratio band",
+                "status": "passed",
+                "durationMs": 6414,
+                "componentBand": "image-qa-aspect"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Object fit band",
+                "status": "passed",
+                "durationMs": 6413,
+                "componentBand": "image-qa-fit"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Interactive band",
+                "status": "passed",
+                "durationMs": 6494,
+                "componentBand": "image-qa-interactive"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Fallback band",
+                "status": "passed",
+                "durationMs": 4509,
+                "componentBand": "image-qa-fallback"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Loading (lazy · eager) band",
+                "status": "passed",
+                "durationMs": 4530,
+                "componentBand": "image-qa-loading"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Labelled alt text band",
+                "status": "passed",
+                "durationMs": 4519,
+                "componentBand": "image-qa-a11y"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Radius override band",
+                "status": "passed",
+                "durationMs": 4546,
+                "componentBand": "image-qa-radius"
+              },
+              {
+                "name": "[a11y] data-section=\"image-qa-default\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 5810
+              },
+              {
+                "name": "[a11y] data-section=\"image-qa-aspect\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 3565
+              },
+              {
+                "name": "[a11y] data-section=\"image-qa-fit\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 3613
+              },
+              {
+                "name": "[a11y] data-section=\"image-qa-interactive\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 5192
+              },
+              {
+                "name": "[a11y] data-section=\"image-qa-fallback\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 5168
+              },
+              {
+                "name": "[a11y] data-section=\"image-qa-loading\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 3940
+              },
+              {
+                "name": "[a11y] data-section=\"image-qa-a11y\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 3618
+              },
+              {
+                "name": "[a11y] data-section=\"image-qa-radius\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 3751
+              },
+              {
+                "name": "[a11y] axe image-alt rule — Test Scenarios page (exclude bug repro band)",
+                "status": "passed",
+                "durationMs": 60608
+              },
+              {
+                "name": "[a11y] Keyboard Enter — interactive image",
+                "status": "passed",
+                "durationMs": 4407
+              },
+              {
+                "name": "[a11y] Keyboard Space — interactive image",
+                "status": "passed",
+                "durationMs": 7551
+              },
+              {
+                "name": "[a11y] Interactive disabled image renders as a disabled button",
+                "status": "passed",
+                "durationMs": 4997,
+                "bugId": "BUG-IMAGE-001",
+                "componentBand": "image-qa-bug-repro"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — bug repro (interactive + disabled) band",
+                "status": "passed",
+                "durationMs": 5596,
+                "bugId": "BUG-IMAGE-001",
+                "componentBand": "image-qa-bug-repro"
+              },
+              {
+                "name": "[a11y] Accessibility band labelled image exposes aria-label “Taj Mahal at sunrise”",
+                "status": "passed",
+                "durationMs": 3380
+              },
+              {
+                "name": "[a11y] Reflow at 320px — story bands fit without horizontal scroll",
+                "status": "passed",
+                "durationMs": 5815
+              },
+              {
+                "name": "[a11y] Section 508 tag run on story bands (exclude bug repro) — zero serious/critical",
+                "status": "passed",
+                "durationMs": 5153
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Figma aspect-ratio grid",
+                "status": "passed",
+                "durationMs": 5762
+              }
+            ],
+            "axe": {
+              "violations": []
+            }
+          },
+          "functional": {
+            "suite": "functional",
+            "passed": 59,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "59 test(s) in Playwright report for functional."
+            ],
+            "errors": [],
+            "cases": [
+              {
+                "name": "1.1 — Page loads without console errors; default image mounts",
+                "status": "passed",
+                "durationMs": 4772
+              },
+              {
+                "name": "1.2 — Every Test Scenarios `data-testid` is visible",
+                "status": "passed",
+                "durationMs": 3496
+              },
+              {
+                "name": "1.3 — Every `data-section` band is visible",
+                "status": "passed",
+                "durationMs": 2855
+              },
+              {
+                "name": "2.1 — Default image: role img, aria-label from alt",
+                "status": "passed",
+                "durationMs": 2639
+              },
+              {
+                "name": "2.1 — Each aspect ratio cell emits matching data-aspect-ratio",
+                "status": "passed",
+                "durationMs": 2375
+              },
+              {
+                "name": "2.1 — Lazy and eager loading attributes on img",
+                "status": "passed",
+                "durationMs": 2812
+              },
+              {
+                "name": "2.2 — Aspect ratio scaling: 16:9 is wider than tall; 9:16 is taller than wide",
+                "status": "passed",
+                "durationMs": 4284
+              },
+              {
+                "name": "2.3 — Appearance colour (N/A)",
+                "status": "passed",
+                "durationMs": 34135
+              },
+              {
+                "name": "3.1 — Single click on interactive image increments counter",
+                "status": "passed",
+                "durationMs": 3670
+              },
+              {
+                "name": "3.2 — Interactive + disabled must not behave as enabled button",
+                "status": "passed",
+                "durationMs": 3003
+              },
+              {
+                "name": "3.3 — Readonly (N/A)",
+                "status": "passed",
+                "durationMs": 1747
+              },
+              {
+                "name": "3.4 — Click outside removes focus from interactive image",
+                "status": "passed",
+                "durationMs": 2342
+              },
+              {
+                "name": "4.1 — Tab reaches interactive image button",
+                "status": "passed",
+                "durationMs": 2841
+              },
+              {
+                "name": "4.2 — Enter activates interactive image",
+                "status": "passed",
+                "durationMs": 2194
+              },
+              {
+                "name": "4.3 — Space activates interactive image",
+                "status": "passed",
+                "durationMs": 3613
+              },
+              {
+                "name": "4.4 — Arrow keys (N/A for single image)",
+                "status": "passed",
+                "durationMs": 2364
+              },
+              {
+                "name": "4.5 — Home/End (N/A)",
+                "status": "passed",
+                "durationMs": 2279
+              },
+              {
+                "name": "4.6 — Escape (N/A)",
+                "status": "passed",
+                "durationMs": 1995
+              },
+              {
+                "name": "4.7 — Tab escapes interactive image without trap",
+                "status": "passed",
+                "durationMs": 2054
+              },
+              {
+                "name": "5.1 — Interactive image receives focus on click",
+                "status": "passed",
+                "durationMs": 2238
+              },
+              {
+                "name": "5.2 — Focus indicator visible on interactive image (keyboard :focus-visible)",
+                "status": "passed",
+                "durationMs": 2181
+              },
+              {
+                "name": "5.3 — Non-interactive default image is not tabbable",
+                "status": "passed",
+                "durationMs": 2173
+              },
+              {
+                "name": "5.4 — Blur removes focus from interactive image",
+                "status": "passed",
+                "durationMs": 2277
+              },
+              {
+                "name": "5.5 — autoFocus (N/A)",
+                "status": "passed",
+                "durationMs": 2580
+              },
+              {
+                "name": "6.1 — Default display image renders with role img",
+                "status": "passed",
+                "durationMs": 2588
+              },
+              {
+                "name": "6.3 — Bug repro disabled image is not in Tab order as enabled control",
+                "status": "passed",
+                "durationMs": 2600
+              },
+              {
+                "name": "6.6 — Loading strategy (lazy/eager) — img loading attribute present",
+                "status": "passed",
+                "durationMs": 2823
+              },
+              {
+                "name": "7.x — Image has no start/end slot API",
+                "status": "passed",
+                "durationMs": 3098
+              },
+              {
+                "name": "8.x — Not a toggle component",
+                "status": "passed",
+                "durationMs": 2621
+              },
+              {
+                "name": "9.x — Not a text input",
+                "status": "passed",
+                "durationMs": 2848
+              },
+              {
+                "name": "10.1 — Non-interactive images use role img (not button)",
+                "status": "passed",
+                "durationMs": 2481
+              },
+              {
+                "name": "10.2 — Interactive without disabled renders button",
+                "status": "passed",
+                "durationMs": 2200
+              },
+              {
+                "name": "11.1 — aria-label reflects alt text on labelled images",
+                "status": "passed",
+                "durationMs": 2265
+              },
+              {
+                "name": "11.2 — Default image renders inner img with presentation role",
+                "status": "passed",
+                "durationMs": 2214
+              },
+              {
+                "name": "11.2 — Broken image fallback shows default SVG icon",
+                "status": "passed",
+                "durationMs": 2542
+              },
+              {
+                "name": "11.1 — Custom fallback text renders in fallback node",
+                "status": "passed",
+                "durationMs": 2117
+              },
+              {
+                "name": "11.3 — Progress value (N/A)",
+                "status": "passed",
+                "durationMs": 2004
+              },
+              {
+                "name": "12.1 — fullWidth (N/A)",
+                "status": "passed",
+                "durationMs": 2078
+              },
+              {
+                "name": "12.2 — At 320px viewport, scenario bands fit without horizontal scroll",
+                "status": "passed",
+                "durationMs": 3764
+              },
+              {
+                "name": "12.2b — Default image visible at 1440px viewport",
+                "status": "passed",
+                "durationMs": 3447
+              },
+              {
+                "name": "12.3 — Aspect band cells in DOM order (auto before 9:16)",
+                "status": "passed",
+                "durationMs": 2281
+              },
+              {
+                "name": "12.1 — Radius token override applies non-zero border-radius",
+                "status": "passed",
+                "durationMs": 2392
+              },
+              {
+                "name": "13.1 — After dark theme, all scenario sections remain visible",
+                "status": "passed",
+                "durationMs": 3938
+              },
+              {
+                "name": "13.1 — Default image remains visible in dark mode",
+                "status": "passed",
+                "durationMs": 3475
+              },
+              {
+                "name": "Smoke — Page heading reads “Image”",
+                "status": "passed",
+                "durationMs": 2101
+              },
+              {
+                "name": "Smoke — Default image visible with aria-label",
+                "status": "passed",
+                "durationMs": 2090
+              },
+              {
+                "name": "Smoke — Interactive image is a button",
+                "status": "passed",
+                "durationMs": 2465
+              },
+              {
+                "name": "Smoke — Manifest root testid count in showcase",
+                "status": "passed",
+                "durationMs": 2559
+              },
+              {
+                "name": "[fn] Component page shows title and all QA tabs",
+                "status": "passed",
+                "durationMs": 4513
+              },
+              {
+                "name": "[fn] Default image is visible and has aria-label “Landscape”",
+                "status": "passed",
+                "durationMs": 1664
+              },
+              {
+                "name": "[fn] Figma aspect ratios set data-aspect-ratio (auto omits the attribute)",
+                "status": "passed",
+                "durationMs": 3551
+              },
+              {
+                "name": "[fn] Interactive image acts as a button and increments click counter",
+                "status": "passed",
+                "durationMs": 2412
+              },
+              {
+                "name": "[fn] Broken image URL shows default icon and custom fallback text",
+                "status": "passed",
+                "durationMs": 3407
+              },
+              {
+                "name": "[fn] Lazy and eager loading strategies set the img loading attribute",
+                "status": "passed",
+                "durationMs": 2783
+              },
+              {
+                "name": "[fn] Labelled example exposes descriptive aria-label",
+                "status": "passed",
+                "durationMs": 2125
+              },
+              {
+                "name": "[fn] Radius token override example renders",
+                "status": "passed",
+                "durationMs": 1585
+              },
+              {
+                "name": "[fn] All Test Scenarios story bands are mounted on the page",
+                "status": "passed",
+                "durationMs": 2708
+              },
+              {
+                "name": "[fn] Figma Validation tab shows API table and aspect-ratio grid",
+                "status": "passed",
+                "durationMs": 3118
+              },
+              {
+                "name": "[fn] theme toggle updates label",
+                "status": "passed",
+                "durationMs": 2806
+              }
+            ]
+          },
+          "performance": {
+            "suite": "performance",
+            "passed": 0,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "Performance suite is not executed in apps/qa-playground image Playwright bundle."
+            ],
+            "errors": []
+          }
+        }
+      }
+    },
+    {
+      "savedAt": "2026-06-22T13:18:57.345Z",
+      "report": {
+        "ok": false,
+        "slug": "image",
+        "message": "image QA Playwright run had failures — 2026-06-17T07:44:05.330Z",
+        "suites": {
+          "accessibility": {
+            "suite": "accessibility",
+            "passed": 26,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "26 test(s) in Playwright report for accessibility.",
+              "Axe: scan completed — 0 violation rules reported."
+            ],
+            "errors": [],
+            "cases": [
+              {
+                "name": "[a11y] WCAG 2.1 AA tag scan + JSON artefact + HTML report (exclude bug repro)",
+                "status": "passed",
+                "durationMs": 6571
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Default band",
+                "status": "passed",
+                "durationMs": 6363,
+                "componentBand": "image-qa-default"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Aspect ratio band",
+                "status": "passed",
+                "durationMs": 6256,
+                "componentBand": "image-qa-aspect"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Object fit band",
+                "status": "passed",
+                "durationMs": 6099,
+                "componentBand": "image-qa-fit"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Interactive band",
+                "status": "passed",
+                "durationMs": 6654,
+                "componentBand": "image-qa-interactive"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Fallback band",
+                "status": "passed",
+                "durationMs": 3141,
+                "componentBand": "image-qa-fallback"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Loading (lazy · eager) band",
+                "status": "passed",
+                "durationMs": 3496,
+                "componentBand": "image-qa-loading"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Labelled alt text band",
+                "status": "passed",
+                "durationMs": 3597,
+                "componentBand": "image-qa-a11y"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Radius override band",
+                "status": "passed",
+                "durationMs": 3711,
+                "componentBand": "image-qa-radius"
+              },
+              {
+                "name": "[a11y] data-section=\"image-qa-default\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 7325
+              },
+              {
+                "name": "[a11y] data-section=\"image-qa-aspect\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 5584
+              },
+              {
+                "name": "[a11y] data-section=\"image-qa-fit\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 9030
+              },
+              {
+                "name": "[a11y] data-section=\"image-qa-interactive\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 8641
+              },
+              {
+                "name": "[a11y] data-section=\"image-qa-fallback\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 9550
+              },
+              {
+                "name": "[a11y] data-section=\"image-qa-loading\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 7479
+              },
+              {
+                "name": "[a11y] data-section=\"image-qa-a11y\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 6259
+              },
+              {
+                "name": "[a11y] data-section=\"image-qa-radius\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 4818
+              },
+              {
+                "name": "[a11y] axe image-alt rule — Test Scenarios page (exclude bug repro band)",
+                "status": "passed",
+                "durationMs": 4695
+              },
+              {
+                "name": "[a11y] Keyboard Enter — interactive image",
+                "status": "passed",
+                "durationMs": 4491
+              },
+              {
+                "name": "[a11y] Keyboard Space — interactive image",
+                "status": "passed",
+                "durationMs": 10190
+              },
+              {
+                "name": "[a11y] Interactive disabled image renders as a disabled button",
+                "status": "passed",
+                "durationMs": 3631,
+                "bugId": "BUG-IMAGE-001",
+                "componentBand": "image-qa-bug-repro"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — bug repro (interactive + disabled) band",
+                "status": "passed",
+                "durationMs": 5999,
+                "bugId": "BUG-IMAGE-001",
+                "componentBand": "image-qa-bug-repro"
+              },
+              {
+                "name": "[a11y] Accessibility band labelled image exposes aria-label “Taj Mahal at sunrise”",
+                "status": "passed",
+                "durationMs": 4040
+              },
+              {
+                "name": "[a11y] Reflow at 320px — story bands fit without horizontal scroll",
+                "status": "passed",
+                "durationMs": 13010
+              },
+              {
+                "name": "[a11y] Section 508 tag run on story bands (exclude bug repro) — zero serious/critical",
+                "status": "passed",
+                "durationMs": 9571
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Figma aspect-ratio grid",
+                "status": "passed",
+                "durationMs": 9279
+              }
+            ],
+            "axe": {
+              "violations": []
+            }
+          },
+          "functional": {
+            "suite": "functional",
+            "passed": 53,
+            "failed": 6,
+            "skipped": 0,
+            "logs": [
+              "59 test(s) in Playwright report for functional."
+            ],
+            "errors": [
+              "1.2 — Every Test Scenarios `data-testid` is visible: Test timeout of 30000ms exceeded.",
+              "11.2 — Broken image fallback shows default SVG icon: Error: expect(locator).toBeVisible() failed",
+              "11.1 — Custom fallback text renders in fallback node: Error: expect(locator).toBeVisible() failed",
+              "12.3 — Aspect band cells laid out in grid (16:9 before 9:16 in DOM order): Error: aspect auto should appear above 9:16 in grid",
+              "[fn] Broken image URL shows default icon and custom fallback text: Error: expect(locator).toBeVisible() failed",
+              "[fn] All Test Scenarios story bands are mounted on the page: Test timeout of 30000ms exceeded while running \"beforeEach\" hook."
+            ],
+            "cases": [
+              {
+                "name": "1.1 — Page loads without console errors; default image mounts",
+                "status": "passed",
+                "durationMs": 9765
+              },
+              {
+                "name": "1.2 — Every Test Scenarios `data-testid` is visible",
+                "status": "failed",
+                "durationMs": 40709,
+                "error": "Test timeout of 30000ms exceeded."
+              },
+              {
+                "name": "1.3 — Every `data-section` band is visible",
+                "status": "passed",
+                "durationMs": 4962
+              },
+              {
+                "name": "2.1 — Default image: role img, aria-label from alt",
+                "status": "passed",
+                "durationMs": 1825
+              },
+              {
+                "name": "2.1 — Each aspect ratio cell emits matching data-aspect-ratio",
+                "status": "passed",
+                "durationMs": 1398
+              },
+              {
+                "name": "2.1 — Lazy and eager loading attributes on img",
+                "status": "passed",
+                "durationMs": 1300
+              },
+              {
+                "name": "2.2 — Aspect ratio scaling: 16:9 is wider than tall; 9:16 is taller than wide",
+                "status": "passed",
+                "durationMs": 1283
+              },
+              {
+                "name": "2.3 — Appearance colour (N/A)",
+                "status": "passed",
+                "durationMs": 1315
+              },
+              {
+                "name": "3.1 — Single click on interactive image increments counter",
+                "status": "passed",
+                "durationMs": 1916
+              },
+              {
+                "name": "3.2 — Interactive + disabled must not behave as enabled button",
+                "status": "passed",
+                "durationMs": 1807
+              },
+              {
+                "name": "3.3 — Readonly (N/A)",
+                "status": "passed",
+                "durationMs": 3879
+              },
+              {
+                "name": "3.4 — Click outside removes focus from interactive image",
+                "status": "passed",
+                "durationMs": 5157
+              },
+              {
+                "name": "4.1 — Tab reaches interactive image button",
+                "status": "passed",
+                "durationMs": 2637
+              },
+              {
+                "name": "4.2 — Enter activates interactive image",
+                "status": "passed",
+                "durationMs": 2393
+              },
+              {
+                "name": "4.3 — Space activates interactive image",
+                "status": "passed",
+                "durationMs": 3350
+              },
+              {
+                "name": "4.4 — Arrow keys (N/A for single image)",
+                "status": "passed",
+                "durationMs": 1954
+              },
+              {
+                "name": "4.5 — Home/End (N/A)",
+                "status": "passed",
+                "durationMs": 1367
+              },
+              {
+                "name": "4.6 — Escape (N/A)",
+                "status": "passed",
+                "durationMs": 1310
+              },
+              {
+                "name": "4.7 — Tab escapes interactive image without trap",
+                "status": "passed",
+                "durationMs": 1405
+              },
+              {
+                "name": "5.1 — Interactive image receives focus on click",
+                "status": "passed",
+                "durationMs": 1416
+              },
+              {
+                "name": "5.2 — Focus indicator visible on interactive image (keyboard :focus-visible)",
+                "status": "passed",
+                "durationMs": 1774
+              },
+              {
+                "name": "5.3 — Non-interactive default image is not tabbable",
+                "status": "passed",
+                "durationMs": 1747
+              },
+              {
+                "name": "5.4 — Blur removes focus from interactive image",
+                "status": "passed",
+                "durationMs": 1750
+              },
+              {
+                "name": "5.5 — autoFocus (N/A)",
+                "status": "passed",
+                "durationMs": 2245
+              },
+              {
+                "name": "6.1 — Default display image renders with role img",
+                "status": "passed",
+                "durationMs": 5343
+              },
+              {
+                "name": "6.3 — Bug repro disabled image is not in Tab order as enabled control",
+                "status": "passed",
+                "durationMs": 3937
+              },
+              {
+                "name": "6.6 — Loading strategy (lazy/eager) — img loading attribute present",
+                "status": "passed",
+                "durationMs": 2808
+              },
+              {
+                "name": "7.x — Image has no start/end slot API",
+                "status": "passed",
+                "durationMs": 2461
+              },
+              {
+                "name": "8.x — Not a toggle component",
+                "status": "passed",
+                "durationMs": 1506
+              },
+              {
+                "name": "9.x — Not a text input",
+                "status": "passed",
+                "durationMs": 1422
+              },
+              {
+                "name": "10.1 — Non-interactive images use role img (not button)",
+                "status": "passed",
+                "durationMs": 2066
+              },
+              {
+                "name": "10.2 — Interactive without disabled renders button",
+                "status": "passed",
+                "durationMs": 1996
+              },
+              {
+                "name": "11.1 — aria-label reflects alt text on labelled images",
+                "status": "passed",
+                "durationMs": 2034
+              },
+              {
+                "name": "11.2 — Default image renders inner img with presentation role",
+                "status": "passed",
+                "durationMs": 1951
+              },
+              {
+                "name": "11.2 — Broken image fallback shows default SVG icon",
+                "status": "failed",
+                "durationMs": 18350,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "11.1 — Custom fallback text renders in fallback node",
+                "status": "failed",
+                "durationMs": 18259,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "11.3 — Progress value (N/A)",
+                "status": "passed",
+                "durationMs": 1721
+              },
+              {
+                "name": "12.1 — fullWidth (N/A)",
+                "status": "passed",
+                "durationMs": 3174
+              },
+              {
+                "name": "12.2 — At 320px viewport, scenario bands fit without horizontal scroll",
+                "status": "passed",
+                "durationMs": 3144
+              },
+              {
+                "name": "12.2b — Default image visible at 1440px viewport",
+                "status": "passed",
+                "durationMs": 1926
+              },
+              {
+                "name": "12.3 — Aspect band cells laid out in grid (16:9 before 9:16 in DOM order)",
+                "status": "failed",
+                "durationMs": 1031,
+                "error": "Error: aspect auto should appear above 9:16 in grid"
+              },
+              {
+                "name": "12.1 — Radius token override applies non-zero border-radius",
+                "status": "passed",
+                "durationMs": 1586
+              },
+              {
+                "name": "13.1 — After dark theme, all scenario sections remain visible",
+                "status": "passed",
+                "durationMs": 1393
+              },
+              {
+                "name": "13.1 — Default image remains visible in dark mode",
+                "status": "passed",
+                "durationMs": 1215
+              },
+              {
+                "name": "Smoke — Page heading reads “Image”",
+                "status": "passed",
+                "durationMs": 2953
+              },
+              {
+                "name": "Smoke — Default image visible with aria-label",
+                "status": "passed",
+                "durationMs": 3214
+              },
+              {
+                "name": "Smoke — Interactive image is a button",
+                "status": "passed",
+                "durationMs": 1210
+              },
+              {
+                "name": "Smoke — Manifest root testid count in showcase",
+                "status": "passed",
+                "durationMs": 8226
+              },
+              {
+                "name": "[fn] Component page shows title and all QA tabs",
+                "status": "passed",
+                "durationMs": 6589
+              },
+              {
+                "name": "[fn] Default image is visible and has aria-label “Landscape”",
+                "status": "passed",
+                "durationMs": 6113
+              },
+              {
+                "name": "[fn] Figma aspect ratios set data-aspect-ratio (auto omits the attribute)",
+                "status": "passed",
+                "durationMs": 3428
+              },
+              {
+                "name": "[fn] Interactive image acts as a button and increments click counter",
+                "status": "passed",
+                "durationMs": 3784
+              },
+              {
+                "name": "[fn] Broken image URL shows default icon and custom fallback text",
+                "status": "failed",
+                "durationMs": 19002,
+                "error": "Error: expect(locator).toBeVisible() failed"
+              },
+              {
+                "name": "[fn] Lazy and eager loading strategies set the img loading attribute",
+                "status": "passed",
+                "durationMs": 3276
+              },
+              {
+                "name": "[fn] Labelled example exposes descriptive aria-label",
+                "status": "passed",
+                "durationMs": 4013
+              },
+              {
+                "name": "[fn] Radius token override example renders",
+                "status": "passed",
+                "durationMs": 3500
+              },
+              {
+                "name": "[fn] All Test Scenarios story bands are mounted on the page",
+                "status": "failed",
+                "durationMs": 40186,
+                "error": "Test timeout of 30000ms exceeded while running \"beforeEach\" hook."
+              },
+              {
+                "name": "[fn] Figma Validation tab shows API table and aspect-ratio grid",
+                "status": "passed",
+                "durationMs": 3939
+              },
+              {
+                "name": "[fn] theme toggle updates label",
+                "status": "passed",
+                "durationMs": 3062
+              }
+            ]
+          },
+          "performance": {
+            "suite": "performance",
+            "passed": 0,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "Performance suite is not executed in apps/qa-playground image Playwright bundle."
+            ],
+            "errors": []
+          }
+        }
+      }
+    },
+    {
+      "savedAt": "2026-06-17T07:44:05.333Z",
+      "report": {
+        "ok": false,
+        "slug": "image",
+        "message": "image QA Playwright run had failures — 2026-06-04T09:54:13.331Z",
+        "suites": {
+          "accessibility": {
+            "suite": "accessibility",
+            "passed": 25,
+            "failed": 1,
+            "skipped": 0,
+            "logs": [
+              "26 test(s) in Playwright report for accessibility.",
+              "Axe: scan completed — 0 violation rules reported."
+            ],
+            "errors": [
+              "BUG-IMAGE-001: Error: Interactive + disabled expected <button disabled>"
+            ],
+            "cases": [
+              {
+                "name": "[a11y] WCAG 2.1 AA tag scan + JSON artefact + HTML report (exclude bug repro)",
+                "status": "passed",
+                "durationMs": 4144
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Default band",
+                "status": "passed",
+                "durationMs": 3718,
+                "componentBand": "image-qa-default"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Aspect ratio band",
+                "status": "passed",
+                "durationMs": 3490,
+                "componentBand": "image-qa-aspect"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Object fit band",
+                "status": "passed",
+                "durationMs": 3473,
+                "componentBand": "image-qa-fit"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Interactive band",
+                "status": "passed",
+                "durationMs": 3378,
+                "componentBand": "image-qa-interactive"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Fallback band",
+                "status": "passed",
+                "durationMs": 3484,
+                "componentBand": "image-qa-fallback"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Loading (lazy · eager) band",
+                "status": "passed",
+                "durationMs": 3689,
+                "componentBand": "image-qa-loading"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Labelled alt text band",
+                "status": "passed",
+                "durationMs": 3662,
+                "componentBand": "image-qa-a11y"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Radius override band",
+                "status": "passed",
+                "durationMs": 3851,
+                "componentBand": "image-qa-radius"
+              },
+              {
+                "name": "[a11y] data-section=\"image-qa-default\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 3474
+              },
+              {
+                "name": "[a11y] data-section=\"image-qa-aspect\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 2895
+              },
+              {
+                "name": "[a11y] data-section=\"image-qa-fit\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 3108
+              },
+              {
+                "name": "[a11y] data-section=\"image-qa-interactive\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 3052
+              },
+              {
+                "name": "[a11y] data-section=\"image-qa-fallback\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 3301
+              },
+              {
+                "name": "[a11y] data-section=\"image-qa-loading\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 3135
+              },
+              {
+                "name": "[a11y] data-section=\"image-qa-a11y\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 2137
+              },
+              {
+                "name": "[a11y] data-section=\"image-qa-radius\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 2955
+              },
+              {
+                "name": "[a11y] axe image-alt rule — Test Scenarios page (exclude bug repro band)",
+                "status": "passed",
+                "durationMs": 2988
+              },
+              {
+                "name": "[a11y] Keyboard Enter — interactive image",
+                "status": "passed",
+                "durationMs": 2617
+              },
+              {
+                "name": "[a11y] Keyboard Space — interactive image",
+                "status": "passed",
+                "durationMs": 4287
+              },
+              {
+                "name": "[a11y] Interactive disabled image renders as a disabled button",
+                "status": "failed",
+                "durationMs": 7081,
+                "error": "Error: Interactive + disabled expected <button disabled>",
+                "bugId": "BUG-IMAGE-001",
+                "componentBand": "image-qa-bug-repro"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — bug repro (interactive + disabled) band",
+                "status": "passed",
+                "durationMs": 2648,
+                "bugId": "BUG-IMAGE-001",
+                "componentBand": "image-qa-bug-repro"
+              },
+              {
+                "name": "[a11y] Accessibility band labelled image exposes aria-label “Taj Mahal at sunrise”",
+                "status": "passed",
+                "durationMs": 2142
+              },
+              {
+                "name": "[a11y] Reflow at 320px — story bands fit without horizontal scroll",
+                "status": "passed",
+                "durationMs": 3829
+              },
+              {
+                "name": "[a11y] Section 508 tag run on story bands (exclude bug repro) — zero serious/critical",
+                "status": "passed",
+                "durationMs": 2331
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Figma aspect-ratio grid",
+                "status": "passed",
+                "durationMs": 2761
+              }
+            ],
+            "axe": {
+              "violations": []
+            }
+          },
+          "functional": {
+            "suite": "functional",
+            "passed": 58,
+            "failed": 1,
+            "skipped": 0,
+            "logs": [
+              "59 test(s) in Playwright report for functional."
+            ],
+            "errors": [
+              "3.2 — Interactive + disabled must not behave as enabled button: Error: Interactive + disabled should render as disabled button"
+            ],
+            "cases": [
+              {
+                "name": "1.1 — Page loads without console errors; default image mounts",
+                "status": "passed",
+                "durationMs": 4478
+              },
+              {
+                "name": "1.2 — Every Test Scenarios `data-testid` is visible",
+                "status": "passed",
+                "durationMs": 3751
+              },
+              {
+                "name": "1.3 — Every `data-section` band is visible",
+                "status": "passed",
+                "durationMs": 3203
+              },
+              {
+                "name": "2.1 — Default image: role img, aria-label from alt",
+                "status": "passed",
+                "durationMs": 2474
+              },
+              {
+                "name": "2.1 — Each aspect ratio cell emits matching data-aspect-ratio",
+                "status": "passed",
+                "durationMs": 1881
+              },
+              {
+                "name": "2.1 — Lazy and eager loading attributes on img",
+                "status": "passed",
+                "durationMs": 2790
+              },
+              {
+                "name": "2.2 — Aspect ratio scaling: 16:9 is wider than tall; 9:16 is taller than wide",
+                "status": "passed",
+                "durationMs": 2872
+              },
+              {
+                "name": "2.3 — Appearance colour (N/A)",
+                "status": "passed",
+                "durationMs": 2768
+              },
+              {
+                "name": "3.1 — Single click on interactive image increments counter",
+                "status": "passed",
+                "durationMs": 3115
+              },
+              {
+                "name": "3.2 — Interactive + disabled must not behave as enabled button",
+                "status": "failed",
+                "durationMs": 7643,
+                "error": "Error: Interactive + disabled should render as disabled button"
+              },
+              {
+                "name": "3.3 — Readonly (N/A)",
+                "status": "passed",
+                "durationMs": 2061
+              },
+              {
+                "name": "3.4 — Click outside removes focus from interactive image",
+                "status": "passed",
+                "durationMs": 2301
+              },
+              {
+                "name": "4.1 — Tab reaches interactive image button",
+                "status": "passed",
+                "durationMs": 2335
+              },
+              {
+                "name": "4.2 — Enter activates interactive image",
+                "status": "passed",
+                "durationMs": 2183
+              },
+              {
+                "name": "4.3 — Space activates interactive image",
+                "status": "passed",
+                "durationMs": 2897
+              },
+              {
+                "name": "4.4 — Arrow keys (N/A for single image)",
+                "status": "passed",
+                "durationMs": 2115
+              },
+              {
+                "name": "4.5 — Home/End (N/A)",
+                "status": "passed",
+                "durationMs": 2054
+              },
+              {
+                "name": "4.6 — Escape (N/A)",
+                "status": "passed",
+                "durationMs": 2198
+              },
+              {
+                "name": "4.7 — Tab escapes interactive image without trap",
+                "status": "passed",
+                "durationMs": 2014
+              },
+              {
+                "name": "5.1 — Interactive image receives focus on click",
+                "status": "passed",
+                "durationMs": 2091
+              },
+              {
+                "name": "5.2 — Focus indicator visible on interactive image (keyboard :focus-visible)",
+                "status": "passed",
+                "durationMs": 2259
+              },
+              {
+                "name": "5.3 — Non-interactive default image is not tabbable",
+                "status": "passed",
+                "durationMs": 2177
+              },
+              {
+                "name": "5.4 — Blur removes focus from interactive image",
+                "status": "passed",
+                "durationMs": 3358
+              },
+              {
+                "name": "5.5 — autoFocus (N/A)",
+                "status": "passed",
+                "durationMs": 1883
+              },
+              {
+                "name": "6.1 — Default display image renders with role img",
+                "status": "passed",
+                "durationMs": 2466
+              },
+              {
+                "name": "6.3 — Bug repro disabled image is not in Tab order as enabled control",
+                "status": "passed",
+                "durationMs": 2969
+              },
+              {
+                "name": "6.6 — Loading strategy (lazy/eager) — img loading attribute present",
+                "status": "passed",
+                "durationMs": 2967
+              },
+              {
+                "name": "7.x — Image has no start/end slot API",
+                "status": "passed",
+                "durationMs": 3154
+              },
+              {
+                "name": "8.x — Not a toggle component",
+                "status": "passed",
+                "durationMs": 2885
+              },
+              {
+                "name": "9.x — Not a text input",
+                "status": "passed",
+                "durationMs": 2699
+              },
+              {
+                "name": "10.1 — Non-interactive images use role img (not button)",
+                "status": "passed",
+                "durationMs": 2959
+              },
+              {
+                "name": "10.2 — Interactive without disabled renders button",
+                "status": "passed",
+                "durationMs": 3340
+              },
+              {
+                "name": "11.1 — aria-label reflects alt text on labelled images",
+                "status": "passed",
+                "durationMs": 3639
+              },
+              {
+                "name": "11.2 — Default image renders inner img with presentation role",
+                "status": "passed",
+                "durationMs": 3579
+              },
+              {
+                "name": "11.2 — Broken image fallback shows default SVG icon",
+                "status": "passed",
+                "durationMs": 3652
+              },
+              {
+                "name": "11.1 — Custom fallback text renders in fallback node",
+                "status": "passed",
+                "durationMs": 3586
+              },
+              {
+                "name": "11.3 — Progress value (N/A)",
+                "status": "passed",
+                "durationMs": 3391
+              },
+              {
+                "name": "12.1 — fullWidth (N/A)",
+                "status": "passed",
+                "durationMs": 3466
+              },
+              {
+                "name": "12.2 — At 320px viewport, scenario bands fit without horizontal scroll",
+                "status": "passed",
+                "durationMs": 6610
+              },
+              {
+                "name": "12.2b — Default image visible at 1440px viewport",
+                "status": "passed",
+                "durationMs": 6182
+              },
+              {
+                "name": "12.3 — Aspect band cells laid out in grid (16:9 before 9:16 in DOM order)",
+                "status": "passed",
+                "durationMs": 3066
+              },
+              {
+                "name": "12.1 — Radius token override applies non-zero border-radius",
+                "status": "passed",
+                "durationMs": 4531
+              },
+              {
+                "name": "13.1 — After dark theme, all scenario sections remain visible",
+                "status": "passed",
+                "durationMs": 4250
+              },
+              {
+                "name": "13.1 — Default image remains visible in dark mode",
+                "status": "passed",
+                "durationMs": 3514
+              },
+              {
+                "name": "Smoke — Page heading reads “Image”",
+                "status": "passed",
+                "durationMs": 2372
+              },
+              {
+                "name": "Smoke — Default image visible with aria-label",
+                "status": "passed",
+                "durationMs": 2799
+              },
+              {
+                "name": "Smoke — Interactive image is a button",
+                "status": "passed",
+                "durationMs": 2964
+              },
+              {
+                "name": "Smoke — Manifest root testid count in showcase",
+                "status": "passed",
+                "durationMs": 2838
+              },
+              {
+                "name": "[fn] Component page shows title and all QA tabs",
+                "status": "passed",
+                "durationMs": 1908
+              },
+              {
+                "name": "[fn] Default image is visible and has aria-label “Landscape”",
+                "status": "passed",
+                "durationMs": 1675
+              },
+              {
+                "name": "[fn] Figma aspect ratios set data-aspect-ratio (auto omits the attribute)",
+                "status": "passed",
+                "durationMs": 2257
+              },
+              {
+                "name": "[fn] Interactive image acts as a button and increments click counter",
+                "status": "passed",
+                "durationMs": 2295
+              },
+              {
+                "name": "[fn] Broken image URL shows default icon and custom fallback text",
+                "status": "passed",
+                "durationMs": 2355
+              },
+              {
+                "name": "[fn] Lazy and eager loading strategies set the img loading attribute",
+                "status": "passed",
+                "durationMs": 2929
+              },
+              {
+                "name": "[fn] Labelled example exposes descriptive aria-label",
+                "status": "passed",
+                "durationMs": 2118
+              },
+              {
+                "name": "[fn] Radius token override example renders",
+                "status": "passed",
+                "durationMs": 2015
+              },
+              {
+                "name": "[fn] All Test Scenarios story bands are mounted on the page",
+                "status": "passed",
+                "durationMs": 2313
+              },
+              {
+                "name": "[fn] Figma Validation tab shows API table and aspect-ratio grid",
+                "status": "passed",
+                "durationMs": 2598
+              },
+              {
+                "name": "[fn] theme toggle updates label",
+                "status": "passed",
+                "durationMs": 2863
+              }
+            ]
+          },
+          "performance": {
+            "suite": "performance",
+            "passed": 0,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "Performance suite is not executed in apps/qa-playground image Playwright bundle."
+            ],
+            "errors": []
+          }
+        }
+      }
+    },
+    {
+      "savedAt": "2026-06-04T09:54:13.333Z",
+      "report": {
+        "ok": false,
+        "slug": "image",
+        "message": "image QA Playwright run had failures — 2026-06-04T08:42:28.252Z",
+        "suites": {
+          "accessibility": {
+            "suite": "accessibility",
+            "passed": 25,
+            "failed": 1,
+            "skipped": 0,
+            "logs": [
+              "26 test(s) in Playwright report for accessibility.",
+              "Axe: scan completed — 0 violation rules reported."
+            ],
+            "errors": [
+              "BUG-IMAGE-001: Error: Interactive + disabled expected <button disabled>"
+            ],
+            "cases": [
+              {
+                "name": "[a11y] WCAG 2.1 AA tag scan + JSON artefact + HTML report (exclude bug repro)",
+                "status": "passed",
+                "durationMs": 4136
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Default band",
+                "status": "passed",
+                "durationMs": 3573,
+                "componentBand": "image-qa-default"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Aspect ratio band",
+                "status": "passed",
+                "durationMs": 3709,
+                "componentBand": "image-qa-aspect"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Object fit band",
+                "status": "passed",
+                "durationMs": 3442,
+                "componentBand": "image-qa-fit"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Interactive band",
+                "status": "passed",
+                "durationMs": 3359,
+                "componentBand": "image-qa-interactive"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Fallback band",
+                "status": "passed",
+                "durationMs": 3128,
+                "componentBand": "image-qa-fallback"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Loading (lazy · eager) band",
+                "status": "passed",
+                "durationMs": 3184,
+                "componentBand": "image-qa-loading"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Labelled alt text band",
+                "status": "passed",
+                "durationMs": 8540,
+                "componentBand": "image-qa-a11y"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Radius override band",
+                "status": "passed",
+                "durationMs": 4960,
+                "componentBand": "image-qa-radius"
+              },
+              {
+                "name": "[a11y] data-section=\"image-qa-default\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 4502
+              },
+              {
+                "name": "[a11y] data-section=\"image-qa-aspect\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 1967
+              },
+              {
+                "name": "[a11y] data-section=\"image-qa-fit\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 1801
+              },
+              {
+                "name": "[a11y] data-section=\"image-qa-interactive\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 2532
+              },
+              {
+                "name": "[a11y] data-section=\"image-qa-fallback\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 2556
+              },
+              {
+                "name": "[a11y] data-section=\"image-qa-loading\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 2595
+              },
+              {
+                "name": "[a11y] data-section=\"image-qa-a11y\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 2522
+              },
+              {
+                "name": "[a11y] data-section=\"image-qa-radius\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 2911
+              },
+              {
+                "name": "[a11y] axe image-alt rule — Test Scenarios page (exclude bug repro band)",
+                "status": "passed",
+                "durationMs": 2873
+              },
+              {
+                "name": "[a11y] Keyboard Enter — interactive image",
+                "status": "passed",
+                "durationMs": 2854
+              },
+              {
+                "name": "[a11y] Keyboard Space — interactive image",
+                "status": "passed",
+                "durationMs": 4402
+              },
+              {
+                "name": "[a11y] Interactive disabled image renders as a disabled button",
+                "status": "failed",
+                "durationMs": 7384,
+                "error": "Error: Interactive + disabled expected <button disabled>",
+                "bugId": "BUG-IMAGE-001",
+                "componentBand": "image-qa-bug-repro"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — bug repro (interactive + disabled) band",
+                "status": "passed",
+                "durationMs": 2982,
+                "bugId": "BUG-IMAGE-001",
+                "componentBand": "image-qa-bug-repro"
+              },
+              {
+                "name": "[a11y] Accessibility band labelled image exposes aria-label “Taj Mahal at sunrise”",
+                "status": "passed",
+                "durationMs": 2410
+              },
+              {
+                "name": "[a11y] Reflow at 320px — story bands fit without horizontal scroll",
+                "status": "passed",
+                "durationMs": 3706
+              },
+              {
+                "name": "[a11y] Section 508 tag run on story bands (exclude bug repro) — zero serious/critical",
+                "status": "passed",
+                "durationMs": 2007
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Figma aspect-ratio grid",
+                "status": "passed",
+                "durationMs": 2507
+              }
+            ],
+            "axe": {
+              "violations": []
+            }
+          },
+          "functional": {
+            "suite": "functional",
+            "passed": 57,
+            "failed": 2,
+            "skipped": 0,
+            "logs": [
+              "59 test(s) in Playwright report for functional."
+            ],
+            "errors": [
+              "3.2 — Interactive + disabled must not behave as enabled button: Error: Interactive + disabled should render as disabled button",
+              "13.1 — After dark theme, all scenario sections remain visible: Error: locator.scrollIntoViewIfNeeded: Element is not attached to the DOM"
+            ],
+            "cases": [
+              {
+                "name": "1.1 — Page loads without console errors; default image mounts",
+                "status": "passed",
+                "durationMs": 4410
+              },
+              {
+                "name": "1.2 — Every Test Scenarios `data-testid` is visible",
+                "status": "passed",
+                "durationMs": 4468
+              },
+              {
+                "name": "1.3 — Every `data-section` band is visible",
+                "status": "passed",
+                "durationMs": 3806
+              },
+              {
+                "name": "2.1 — Default image: role img, aria-label from alt",
+                "status": "passed",
+                "durationMs": 3059
+              },
+              {
+                "name": "2.1 — Each aspect ratio cell emits matching data-aspect-ratio",
+                "status": "passed",
+                "durationMs": 2056
+              },
+              {
+                "name": "2.1 — Lazy and eager loading attributes on img",
+                "status": "passed",
+                "durationMs": 2472
+              },
+              {
+                "name": "2.2 — Aspect ratio scaling: 16:9 is wider than tall; 9:16 is taller than wide",
+                "status": "passed",
+                "durationMs": 2615
+              },
+              {
+                "name": "2.3 — Appearance colour (N/A)",
+                "status": "passed",
+                "durationMs": 3415
+              },
+              {
+                "name": "3.1 — Single click on interactive image increments counter",
+                "status": "passed",
+                "durationMs": 3359
+              },
+              {
+                "name": "3.2 — Interactive + disabled must not behave as enabled button",
+                "status": "failed",
+                "durationMs": 7075,
+                "error": "Error: Interactive + disabled should render as disabled button"
+              },
+              {
+                "name": "3.3 — Readonly (N/A)",
+                "status": "passed",
+                "durationMs": 2014
+              },
+              {
+                "name": "3.4 — Click outside removes focus from interactive image",
+                "status": "passed",
+                "durationMs": 1945
+              },
+              {
+                "name": "4.1 — Tab reaches interactive image button",
+                "status": "passed",
+                "durationMs": 2146
+              },
+              {
+                "name": "4.2 — Enter activates interactive image",
+                "status": "passed",
+                "durationMs": 2377
+              },
+              {
+                "name": "4.3 — Space activates interactive image",
+                "status": "passed",
+                "durationMs": 3930
+              },
+              {
+                "name": "4.4 — Arrow keys (N/A for single image)",
+                "status": "passed",
+                "durationMs": 2050
+              },
+              {
+                "name": "4.5 — Home/End (N/A)",
+                "status": "passed",
+                "durationMs": 2058
+              },
+              {
+                "name": "4.6 — Escape (N/A)",
+                "status": "passed",
+                "durationMs": 3090
+              },
+              {
+                "name": "4.7 — Tab escapes interactive image without trap",
+                "status": "passed",
+                "durationMs": 2345
+              },
+              {
+                "name": "5.1 — Interactive image receives focus on click",
+                "status": "passed",
+                "durationMs": 1932
+              },
+              {
+                "name": "5.2 — Focus indicator visible on interactive image (keyboard :focus-visible)",
+                "status": "passed",
+                "durationMs": 2195
+              },
+              {
+                "name": "5.3 — Non-interactive default image is not tabbable",
+                "status": "passed",
+                "durationMs": 3387
+              },
+              {
+                "name": "5.4 — Blur removes focus from interactive image",
+                "status": "passed",
+                "durationMs": 2367
+              },
+              {
+                "name": "5.5 — autoFocus (N/A)",
+                "status": "passed",
+                "durationMs": 2133
+              },
+              {
+                "name": "6.1 — Default display image renders with role img",
+                "status": "passed",
+                "durationMs": 2179
+              },
+              {
+                "name": "6.3 — Bug repro disabled image is not in Tab order as enabled control",
+                "status": "passed",
+                "durationMs": 2435
+              },
+              {
+                "name": "6.6 — Loading strategy (lazy/eager) — img loading attribute present",
+                "status": "passed",
+                "durationMs": 2881
+              },
+              {
+                "name": "7.x — Image has no start/end slot API",
+                "status": "passed",
+                "durationMs": 3616
+              },
+              {
+                "name": "8.x — Not a toggle component",
+                "status": "passed",
+                "durationMs": 2765
+              },
+              {
+                "name": "9.x — Not a text input",
+                "status": "passed",
+                "durationMs": 2183
+              },
+              {
+                "name": "10.1 — Non-interactive images use role img (not button)",
+                "status": "passed",
+                "durationMs": 1959
+              },
+              {
+                "name": "10.2 — Interactive without disabled renders button",
+                "status": "passed",
+                "durationMs": 2242
+              },
+              {
+                "name": "11.1 — aria-label reflects alt text on labelled images",
+                "status": "passed",
+                "durationMs": 2607
+              },
+              {
+                "name": "11.2 — Default image renders inner img with presentation role",
+                "status": "passed",
+                "durationMs": 2801
+              },
+              {
+                "name": "11.2 — Broken image fallback shows default SVG icon",
+                "status": "passed",
+                "durationMs": 2745
+              },
+              {
+                "name": "11.1 — Custom fallback text renders in fallback node",
+                "status": "passed",
+                "durationMs": 2550
+              },
+              {
+                "name": "11.3 — Progress value (N/A)",
+                "status": "passed",
+                "durationMs": 2406
+              },
+              {
+                "name": "12.1 — fullWidth (N/A)",
+                "status": "passed",
+                "durationMs": 2456
+              },
+              {
+                "name": "12.2 — At 320px viewport, scenario bands fit without horizontal scroll",
+                "status": "passed",
+                "durationMs": 4702
+              },
+              {
+                "name": "12.2b — Default image visible at 1440px viewport",
+                "status": "passed",
+                "durationMs": 4265
+              },
+              {
+                "name": "12.3 — Aspect band cells laid out in grid (16:9 before 9:16 in DOM order)",
+                "status": "passed",
+                "durationMs": 2645
+              },
+              {
+                "name": "12.1 — Radius token override applies non-zero border-radius",
+                "status": "passed",
+                "durationMs": 2780
+              },
+              {
+                "name": "13.1 — After dark theme, all scenario sections remain visible",
+                "status": "failed",
+                "durationMs": 3354,
+                "error": "Error: locator.scrollIntoViewIfNeeded: Element is not attached to the DOM"
+              },
+              {
+                "name": "13.1 — Default image remains visible in dark mode",
+                "status": "passed",
+                "durationMs": 2836
+              },
+              {
+                "name": "Smoke — Page heading reads “Image”",
+                "status": "passed",
+                "durationMs": 3092
+              },
+              {
+                "name": "Smoke — Default image visible with aria-label",
+                "status": "passed",
+                "durationMs": 2952
+              },
+              {
+                "name": "Smoke — Interactive image is a button",
+                "status": "passed",
+                "durationMs": 2692
+              },
+              {
+                "name": "Smoke — Manifest root testid count in showcase",
+                "status": "passed",
+                "durationMs": 1026
+              },
+              {
+                "name": "[fn] Component page shows title and all QA tabs",
+                "status": "passed",
+                "durationMs": 1593
+              },
+              {
+                "name": "[fn] Default image is visible and has aria-label “Landscape”",
+                "status": "passed",
+                "durationMs": 1755
+              },
+              {
+                "name": "[fn] Figma aspect ratios set data-aspect-ratio (auto omits the attribute)",
+                "status": "passed",
+                "durationMs": 1913
+              },
+              {
+                "name": "[fn] Interactive image acts as a button and increments click counter",
+                "status": "passed",
+                "durationMs": 2077
+              },
+              {
+                "name": "[fn] Broken image URL shows default icon and custom fallback text",
+                "status": "passed",
+                "durationMs": 2106
+              },
+              {
+                "name": "[fn] Lazy and eager loading strategies set the img loading attribute",
+                "status": "passed",
+                "durationMs": 3191
+              },
+              {
+                "name": "[fn] Labelled example exposes descriptive aria-label",
+                "status": "passed",
+                "durationMs": 2365
+              },
+              {
+                "name": "[fn] Radius token override example renders",
+                "status": "passed",
+                "durationMs": 2430
+              },
+              {
+                "name": "[fn] All Test Scenarios story bands are mounted on the page",
+                "status": "passed",
+                "durationMs": 2324
+              },
+              {
+                "name": "[fn] Figma Validation tab shows API table and aspect-ratio grid",
+                "status": "passed",
+                "durationMs": 2371
+              },
+              {
+                "name": "[fn] theme toggle updates label",
+                "status": "passed",
+                "durationMs": 2792
+              }
+            ]
+          },
+          "performance": {
+            "suite": "performance",
+            "passed": 0,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "Performance suite is not executed in apps/qa-playground image Playwright bundle."
+            ],
+            "errors": []
+          }
+        }
+      }
+    },
+    {
+      "savedAt": "2026-06-04T08:42:28.254Z",
+      "report": {
+        "ok": false,
+        "slug": "image",
+        "message": "image QA Playwright run had failures — 2026-06-04T06:33:44.398Z",
+        "suites": {
+          "accessibility": {
+            "suite": "accessibility",
+            "passed": 25,
+            "failed": 1,
+            "skipped": 0,
+            "logs": [
+              "26 test(s) in Playwright report for accessibility.",
+              "Axe: scan completed — 0 violation rules reported."
+            ],
+            "errors": [
+              "BUG-IMAGE-001: Error: Interactive + disabled expected <button disabled>"
+            ],
+            "cases": [
+              {
+                "name": "[a11y] WCAG 2.1 AA tag scan + JSON artefact + HTML report (exclude bug repro)",
+                "status": "passed",
+                "durationMs": 4555
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Default band",
+                "status": "passed",
+                "durationMs": 4277,
+                "componentBand": "image-qa-default"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Aspect ratio band",
+                "status": "passed",
+                "durationMs": 4306,
+                "componentBand": "image-qa-aspect"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Object fit band",
+                "status": "passed",
+                "durationMs": 4350,
+                "componentBand": "image-qa-fit"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Interactive band",
+                "status": "passed",
+                "durationMs": 4278,
+                "componentBand": "image-qa-interactive"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Fallback band",
+                "status": "passed",
+                "durationMs": 3844,
+                "componentBand": "image-qa-fallback"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Loading (lazy · eager) band",
+                "status": "passed",
+                "durationMs": 3240,
+                "componentBand": "image-qa-loading"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Labelled alt text band",
+                "status": "passed",
+                "durationMs": 4013,
+                "componentBand": "image-qa-a11y"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Radius override band",
+                "status": "passed",
+                "durationMs": 3977,
+                "componentBand": "image-qa-radius"
+              },
+              {
+                "name": "[a11y] data-section=\"image-qa-default\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 3215
+              },
+              {
+                "name": "[a11y] data-section=\"image-qa-aspect\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 2049
+              },
+              {
+                "name": "[a11y] data-section=\"image-qa-fit\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 2677
+              },
+              {
+                "name": "[a11y] data-section=\"image-qa-interactive\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 2695
+              },
+              {
+                "name": "[a11y] data-section=\"image-qa-fallback\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 3031
+              },
+              {
+                "name": "[a11y] data-section=\"image-qa-loading\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 2927
+              },
+              {
+                "name": "[a11y] data-section=\"image-qa-a11y\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 2199
+              },
+              {
+                "name": "[a11y] data-section=\"image-qa-radius\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 2052
+              },
+              {
+                "name": "[a11y] axe image-alt rule — Test Scenarios page (exclude bug repro band)",
+                "status": "passed",
+                "durationMs": 2364
+              },
+              {
+                "name": "[a11y] Keyboard Enter — interactive image",
+                "status": "passed",
+                "durationMs": 2176
+              },
+              {
+                "name": "[a11y] Keyboard Space — interactive image",
+                "status": "passed",
+                "durationMs": 3765
+              },
+              {
+                "name": "[a11y] Interactive disabled image renders as a disabled button",
+                "status": "failed",
+                "durationMs": 7184,
+                "error": "Error: Interactive + disabled expected <button disabled>",
+                "bugId": "BUG-IMAGE-001",
+                "componentBand": "image-qa-bug-repro"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — bug repro (interactive + disabled) band",
+                "status": "passed",
+                "durationMs": 2447,
+                "bugId": "BUG-IMAGE-001",
+                "componentBand": "image-qa-bug-repro"
+              },
+              {
+                "name": "[a11y] Accessibility band labelled image exposes aria-label “Taj Mahal at sunrise”",
+                "status": "passed",
+                "durationMs": 2123
+              },
+              {
+                "name": "[a11y] Reflow at 320px — story bands fit without horizontal scroll",
+                "status": "passed",
+                "durationMs": 3398
+              },
+              {
+                "name": "[a11y] Section 508 tag run on story bands (exclude bug repro) — zero serious/critical",
+                "status": "passed",
+                "durationMs": 2339
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Figma aspect-ratio grid",
+                "status": "passed",
+                "durationMs": 2464
+              }
+            ],
+            "axe": {
+              "violations": []
+            }
+          },
+          "functional": {
+            "suite": "functional",
+            "passed": 58,
+            "failed": 1,
+            "skipped": 0,
+            "logs": [
+              "59 test(s) in Playwright report for functional."
+            ],
+            "errors": [
+              "3.2 — Interactive + disabled must not behave as enabled button: Error: Interactive + disabled should render as disabled button"
+            ],
+            "cases": [
+              {
+                "name": "1.1 — Page loads without console errors; default image mounts",
+                "status": "passed",
+                "durationMs": 4830
+              },
+              {
+                "name": "1.2 — Every Test Scenarios `data-testid` is visible",
+                "status": "passed",
+                "durationMs": 3252
+              },
+              {
+                "name": "1.3 — Every `data-section` band is visible",
+                "status": "passed",
+                "durationMs": 3483
+              },
+              {
+                "name": "2.1 — Default image: role img, aria-label from alt",
+                "status": "passed",
+                "durationMs": 3100
+              },
+              {
+                "name": "2.1 — Each aspect ratio cell emits matching data-aspect-ratio",
+                "status": "passed",
+                "durationMs": 2210
+              },
+              {
+                "name": "2.1 — Lazy and eager loading attributes on img",
+                "status": "passed",
+                "durationMs": 2319
+              },
+              {
+                "name": "2.2 — Aspect ratio scaling: 16:9 is wider than tall; 9:16 is taller than wide",
+                "status": "passed",
+                "durationMs": 2657
+              },
+              {
+                "name": "2.3 — Appearance colour (N/A)",
+                "status": "passed",
+                "durationMs": 2381
+              },
+              {
+                "name": "3.1 — Single click on interactive image increments counter",
+                "status": "passed",
+                "durationMs": 2519
+              },
+              {
+                "name": "3.2 — Interactive + disabled must not behave as enabled button",
+                "status": "failed",
+                "durationMs": 7348,
+                "error": "Error: Interactive + disabled should render as disabled button"
+              },
+              {
+                "name": "3.3 — Readonly (N/A)",
+                "status": "passed",
+                "durationMs": 2401
+              },
+              {
+                "name": "3.4 — Click outside removes focus from interactive image",
+                "status": "passed",
+                "durationMs": 2454
+              },
+              {
+                "name": "4.1 — Tab reaches interactive image button",
+                "status": "passed",
+                "durationMs": 2432
+              },
+              {
+                "name": "4.2 — Enter activates interactive image",
+                "status": "passed",
+                "durationMs": 2367
+              },
+              {
+                "name": "4.3 — Space activates interactive image",
+                "status": "passed",
+                "durationMs": 3096
+              },
+              {
+                "name": "4.4 — Arrow keys (N/A for single image)",
+                "status": "passed",
+                "durationMs": 2050
+              },
+              {
+                "name": "4.5 — Home/End (N/A)",
+                "status": "passed",
+                "durationMs": 2214
+              },
+              {
+                "name": "4.6 — Escape (N/A)",
+                "status": "passed",
+                "durationMs": 2230
+              },
+              {
+                "name": "4.7 — Tab escapes interactive image without trap",
+                "status": "passed",
+                "durationMs": 1980
+              },
+              {
+                "name": "5.1 — Interactive image receives focus on click",
+                "status": "passed",
+                "durationMs": 2008
+              },
+              {
+                "name": "5.2 — Focus indicator visible on interactive image (keyboard :focus-visible)",
+                "status": "passed",
+                "durationMs": 2383
+              },
+              {
+                "name": "5.3 — Non-interactive default image is not tabbable",
+                "status": "passed",
+                "durationMs": 2241
+              },
+              {
+                "name": "5.4 — Blur removes focus from interactive image",
+                "status": "passed",
+                "durationMs": 1530
+              },
+              {
+                "name": "5.5 — autoFocus (N/A)",
+                "status": "passed",
+                "durationMs": 3079
+              },
+              {
+                "name": "6.1 — Default display image renders with role img",
+                "status": "passed",
+                "durationMs": 2085
+              },
+              {
+                "name": "6.3 — Bug repro disabled image is not in Tab order as enabled control",
+                "status": "passed",
+                "durationMs": 2426
+              },
+              {
+                "name": "6.6 — Loading strategy (lazy/eager) — img loading attribute present",
+                "status": "passed",
+                "durationMs": 2351
+              },
+              {
+                "name": "7.x — Image has no start/end slot API",
+                "status": "passed",
+                "durationMs": 2023
+              },
+              {
+                "name": "8.x — Not a toggle component",
+                "status": "passed",
+                "durationMs": 2340
+              },
+              {
+                "name": "9.x — Not a text input",
+                "status": "passed",
+                "durationMs": 2813
+              },
+              {
+                "name": "10.1 — Non-interactive images use role img (not button)",
+                "status": "passed",
+                "durationMs": 2992
+              },
+              {
+                "name": "10.2 — Interactive without disabled renders button",
+                "status": "passed",
+                "durationMs": 2711
+              },
+              {
+                "name": "11.1 — aria-label reflects alt text on labelled images",
+                "status": "passed",
+                "durationMs": 2355
+              },
+              {
+                "name": "11.2 — Default image renders inner img with presentation role",
+                "status": "passed",
+                "durationMs": 3128
+              },
+              {
+                "name": "11.2 — Broken image fallback shows default SVG icon",
+                "status": "passed",
+                "durationMs": 3080
+              },
+              {
+                "name": "11.1 — Custom fallback text renders in fallback node",
+                "status": "passed",
+                "durationMs": 2595
+              },
+              {
+                "name": "11.3 — Progress value (N/A)",
+                "status": "passed",
+                "durationMs": 2612
+              },
+              {
+                "name": "12.1 — fullWidth (N/A)",
+                "status": "passed",
+                "durationMs": 1866
+              },
+              {
+                "name": "12.2 — At 320px viewport, scenario bands fit without horizontal scroll",
+                "status": "passed",
+                "durationMs": 3545
+              },
+              {
+                "name": "12.2b — Default image visible at 1440px viewport",
+                "status": "passed",
+                "durationMs": 3390
+              },
+              {
+                "name": "12.3 — Aspect band cells laid out in grid (16:9 before 9:16 in DOM order)",
+                "status": "passed",
+                "durationMs": 3314
+              },
+              {
+                "name": "12.1 — Radius token override applies non-zero border-radius",
+                "status": "passed",
+                "durationMs": 3428
+              },
+              {
+                "name": "13.1 — After dark theme, all scenario sections remain visible",
+                "status": "passed",
+                "durationMs": 3390
+              },
+              {
+                "name": "13.1 — Default image remains visible in dark mode",
+                "status": "passed",
+                "durationMs": 2739
+              },
+              {
+                "name": "Smoke — Page heading reads “Image”",
+                "status": "passed",
+                "durationMs": 2724
+              },
+              {
+                "name": "Smoke — Default image visible with aria-label",
+                "status": "passed",
+                "durationMs": 2697
+              },
+              {
+                "name": "Smoke — Interactive image is a button",
+                "status": "passed",
+                "durationMs": 3031
+              },
+              {
+                "name": "Smoke — Manifest root testid count in showcase",
+                "status": "passed",
+                "durationMs": 2971
+              },
+              {
+                "name": "[fn] Component page shows title and all QA tabs",
+                "status": "passed",
+                "durationMs": 1924
+              },
+              {
+                "name": "[fn] Default image is visible and has aria-label “Landscape”",
+                "status": "passed",
+                "durationMs": 1193
+              },
+              {
+                "name": "[fn] Figma aspect ratios set data-aspect-ratio (auto omits the attribute)",
+                "status": "passed",
+                "durationMs": 1978
+              },
+              {
+                "name": "[fn] Interactive image acts as a button and increments click counter",
+                "status": "passed",
+                "durationMs": 1914
+              },
+              {
+                "name": "[fn] Broken image URL shows default icon and custom fallback text",
+                "status": "passed",
+                "durationMs": 1930
+              },
+              {
+                "name": "[fn] Lazy and eager loading strategies set the img loading attribute",
+                "status": "passed",
+                "durationMs": 1813
+              },
+              {
+                "name": "[fn] Labelled example exposes descriptive aria-label",
+                "status": "passed",
+                "durationMs": 3079
+              },
+              {
+                "name": "[fn] Radius token override example renders",
+                "status": "passed",
+                "durationMs": 2300
+              },
+              {
+                "name": "[fn] All Test Scenarios story bands are mounted on the page",
+                "status": "passed",
+                "durationMs": 2035
+              },
+              {
+                "name": "[fn] Figma Validation tab shows API table and aspect-ratio grid",
+                "status": "passed",
+                "durationMs": 2398
+              },
+              {
+                "name": "[fn] theme toggle updates label",
+                "status": "passed",
+                "durationMs": 1248
+              }
+            ]
+          },
+          "performance": {
+            "suite": "performance",
+            "passed": 0,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "Performance suite is not executed in apps/qa-playground image Playwright bundle."
+            ],
+            "errors": []
+          }
+        }
+      }
+    },
+    {
+      "savedAt": "2026-06-04T06:33:44.400Z",
+      "report": {
+        "ok": false,
+        "slug": "image",
+        "message": "image QA Playwright run had failures — 2026-06-04T06:30:02.926Z",
+        "suites": {
+          "accessibility": {
+            "suite": "accessibility",
+            "passed": 25,
+            "failed": 1,
+            "skipped": 0,
+            "logs": [
+              "26 test(s) in Playwright report for accessibility.",
+              "Axe: scan completed — 0 violation rules reported."
+            ],
+            "errors": [
+              "BUG-IMAGE-001: Error: Interactive + disabled expected <button disabled>"
+            ],
+            "cases": [
+              {
+                "name": "[a11y] WCAG 2.1 AA tag scan + JSON artefact + HTML report (exclude bug repro)",
+                "status": "passed",
+                "durationMs": 5390
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Default band",
+                "status": "passed",
+                "durationMs": 5231,
+                "componentBand": "image-qa-default"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Aspect ratio band",
+                "status": "passed",
+                "durationMs": 5205,
+                "componentBand": "image-qa-aspect"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Object fit band",
+                "status": "passed",
+                "durationMs": 5251,
+                "componentBand": "image-qa-fit"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Interactive band",
+                "status": "passed",
+                "durationMs": 5083,
+                "componentBand": "image-qa-interactive"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Fallback band",
+                "status": "passed",
+                "durationMs": 3952,
+                "componentBand": "image-qa-fallback"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Loading (lazy · eager) band",
+                "status": "passed",
+                "durationMs": 3868,
+                "componentBand": "image-qa-loading"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Labelled alt text band",
+                "status": "passed",
+                "durationMs": 3924,
+                "componentBand": "image-qa-a11y"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Radius override band",
+                "status": "passed",
+                "durationMs": 3791,
+                "componentBand": "image-qa-radius"
+              },
+              {
+                "name": "[a11y] data-section=\"image-qa-default\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 3982
+              },
+              {
+                "name": "[a11y] data-section=\"image-qa-aspect\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 3925
+              },
+              {
+                "name": "[a11y] data-section=\"image-qa-fit\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 3885
+              },
+              {
+                "name": "[a11y] data-section=\"image-qa-interactive\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 4063
+              },
+              {
+                "name": "[a11y] data-section=\"image-qa-fallback\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 4094
+              },
+              {
+                "name": "[a11y] data-section=\"image-qa-loading\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 3853
+              },
+              {
+                "name": "[a11y] data-section=\"image-qa-a11y\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 3233
+              },
+              {
+                "name": "[a11y] data-section=\"image-qa-radius\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 3197
+              },
+              {
+                "name": "[a11y] axe image-alt rule — Test Scenarios page (exclude bug repro band)",
+                "status": "passed",
+                "durationMs": 3272
+              },
+              {
+                "name": "[a11y] Keyboard Enter — interactive image",
+                "status": "passed",
+                "durationMs": 2944
+              },
+              {
+                "name": "[a11y] Keyboard Space — interactive image",
+                "status": "passed",
+                "durationMs": 5455
+              },
+              {
+                "name": "[a11y] Interactive disabled image renders as a disabled button",
+                "status": "failed",
+                "durationMs": 8181,
+                "error": "Error: Interactive + disabled expected <button disabled>",
+                "bugId": "BUG-IMAGE-001",
+                "componentBand": "image-qa-bug-repro"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — bug repro (interactive + disabled) band",
+                "status": "passed",
+                "durationMs": 4066,
+                "bugId": "BUG-IMAGE-001",
+                "componentBand": "image-qa-bug-repro"
+              },
+              {
+                "name": "[a11y] Accessibility band labelled image exposes aria-label “Taj Mahal at sunrise”",
+                "status": "passed",
+                "durationMs": 3124
+              },
+              {
+                "name": "[a11y] Reflow at 320px — story bands fit without horizontal scroll",
+                "status": "passed",
+                "durationMs": 4674
+              },
+              {
+                "name": "[a11y] Section 508 tag run on story bands (exclude bug repro) — zero serious/critical",
+                "status": "passed",
+                "durationMs": 2486
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Figma aspect-ratio grid",
+                "status": "passed",
+                "durationMs": 2462
+              }
+            ],
+            "axe": {
+              "violations": []
+            }
+          },
+          "functional": {
+            "suite": "functional",
+            "passed": 58,
+            "failed": 3,
+            "skipped": 0,
+            "logs": [
+              "61 test(s) in Playwright report for functional."
+            ],
+            "errors": [
+              "3.2 — Interactive + disabled must not behave as enabled button: Error: Interactive + disabled should render as disabled button",
+              "6.3 — Interactive + disabled exposes disabled button semantics: Error: Interactive + disabled must render <button disabled>, not role=img div",
+              "10.2 — Interactive + disabled must still render disabled button: Error: When both interactive and disabled are true, assistive tech needs <button disabled>"
+            ],
+            "cases": [
+              {
+                "name": "1.1 — Page loads without console errors; default image mounts",
+                "status": "passed",
+                "durationMs": 4623
+              },
+              {
+                "name": "1.2 — Every Test Scenarios `data-testid` is visible",
+                "status": "passed",
+                "durationMs": 3817
+              },
+              {
+                "name": "1.3 — Every `data-section` band is visible",
+                "status": "passed",
+                "durationMs": 3517
+              },
+              {
+                "name": "2.1 — Default image: role img, aria-label from alt",
+                "status": "passed",
+                "durationMs": 3176
+              },
+              {
+                "name": "2.1 — Each aspect ratio cell emits matching data-aspect-ratio",
+                "status": "passed",
+                "durationMs": 2419
+              },
+              {
+                "name": "2.1 — Lazy and eager loading attributes on img",
+                "status": "passed",
+                "durationMs": 2724
+              },
+              {
+                "name": "2.2 — Aspect ratio scaling: 16:9 is wider than tall; 9:16 is taller than wide",
+                "status": "passed",
+                "durationMs": 2900
+              },
+              {
+                "name": "2.3 — Appearance colour (N/A)",
+                "status": "passed",
+                "durationMs": 2803
+              },
+              {
+                "name": "3.1 — Single click on interactive image increments counter",
+                "status": "passed",
+                "durationMs": 2821
+              },
+              {
+                "name": "3.2 — Interactive + disabled must not behave as enabled button",
+                "status": "failed",
+                "durationMs": 6985,
+                "error": "Error: Interactive + disabled should render as disabled button"
+              },
+              {
+                "name": "3.3 — Readonly (N/A)",
+                "status": "passed",
+                "durationMs": 2455
+              },
+              {
+                "name": "3.4 — Click outside removes focus from interactive image",
+                "status": "passed",
+                "durationMs": 2340
+              },
+              {
+                "name": "4.1 — Tab reaches interactive image button",
+                "status": "passed",
+                "durationMs": 2773
+              },
+              {
+                "name": "4.2 — Enter activates interactive image",
+                "status": "passed",
+                "durationMs": 2639
+              },
+              {
+                "name": "4.3 — Space activates interactive image",
+                "status": "passed",
+                "durationMs": 3117
+              },
+              {
+                "name": "4.4 — Arrow keys (N/A for single image)",
+                "status": "passed",
+                "durationMs": 2049
+              },
+              {
+                "name": "4.5 — Home/End (N/A)",
+                "status": "passed",
+                "durationMs": 1988
+              },
+              {
+                "name": "4.6 — Escape (N/A)",
+                "status": "passed",
+                "durationMs": 2216
+              },
+              {
+                "name": "4.7 — Tab escapes interactive image without trap",
+                "status": "passed",
+                "durationMs": 2206
+              },
+              {
+                "name": "5.1 — Interactive image receives focus on click",
+                "status": "passed",
+                "durationMs": 2422
+              },
+              {
+                "name": "5.2 — Focus indicator visible on interactive image (keyboard :focus-visible)",
+                "status": "passed",
+                "durationMs": 2747
+              },
+              {
+                "name": "5.3 — Non-interactive default image is not tabbable",
+                "status": "passed",
+                "durationMs": 2612
+              },
+              {
+                "name": "5.4 — Blur removes focus from interactive image",
+                "status": "passed",
+                "durationMs": 2662
+              },
+              {
+                "name": "5.5 — autoFocus (N/A)",
+                "status": "passed",
+                "durationMs": 2158
+              },
+              {
+                "name": "6.1 — Default display image renders with role img",
+                "status": "passed",
+                "durationMs": 2403
+              },
+              {
+                "name": "6.3 — Interactive + disabled exposes disabled button semantics",
+                "status": "failed",
+                "durationMs": 7231,
+                "error": "Error: Interactive + disabled must render <button disabled>, not role=img div"
+              },
+              {
+                "name": "6.3 — Bug repro disabled image is not in Tab order as enabled control",
+                "status": "passed",
+                "durationMs": 2535
+              },
+              {
+                "name": "6.6 — Loading strategy (lazy/eager) — img loading attribute present",
+                "status": "passed",
+                "durationMs": 2328
+              },
+              {
+                "name": "7.x — Image has no start/end slot API",
+                "status": "passed",
+                "durationMs": 2166
+              },
+              {
+                "name": "8.x — Not a toggle component",
+                "status": "passed",
+                "durationMs": 2261
+              },
+              {
+                "name": "9.x — Not a text input",
+                "status": "passed",
+                "durationMs": 2483
+              },
+              {
+                "name": "10.1 — Non-interactive images use role img (not button)",
+                "status": "passed",
+                "durationMs": 2246
+              },
+              {
+                "name": "10.2 — Interactive + disabled must still render disabled button",
+                "status": "failed",
+                "durationMs": 7255,
+                "error": "Error: When both interactive and disabled are true, assistive tech needs <button disabled>"
+              },
+              {
+                "name": "10.2 — Interactive without disabled renders button",
+                "status": "passed",
+                "durationMs": 1910
+              },
+              {
+                "name": "11.1 — aria-label reflects alt text on labelled images",
+                "status": "passed",
+                "durationMs": 1729
+              },
+              {
+                "name": "11.2 — Default image renders inner img with presentation role",
+                "status": "passed",
+                "durationMs": 1835
+              },
+              {
+                "name": "11.2 — Broken image fallback shows default SVG icon",
+                "status": "passed",
+                "durationMs": 1659
+              },
+              {
+                "name": "11.1 — Custom fallback text renders in fallback node",
+                "status": "passed",
+                "durationMs": 2442
+              },
+              {
+                "name": "11.3 — Progress value (N/A)",
+                "status": "passed",
+                "durationMs": 1576
+              },
+              {
+                "name": "12.1 — fullWidth (N/A)",
+                "status": "passed",
+                "durationMs": 2535
+              },
+              {
+                "name": "12.2 — At 320px viewport, scenario bands fit without horizontal scroll",
+                "status": "passed",
+                "durationMs": 5536
+              },
+              {
+                "name": "12.2b — Default image visible at 1440px viewport",
+                "status": "passed",
+                "durationMs": 3619
+              },
+              {
+                "name": "12.3 — Aspect band cells laid out in grid (16:9 before 9:16 in DOM order)",
+                "status": "passed",
+                "durationMs": 2645
+              },
+              {
+                "name": "12.1 — Radius token override applies non-zero border-radius",
+                "status": "passed",
+                "durationMs": 2729
+              },
+              {
+                "name": "13.1 — After dark theme, all scenario sections remain visible",
+                "status": "passed",
+                "durationMs": 2949
+              },
+              {
+                "name": "13.1 — Default image remains visible in dark mode",
+                "status": "passed",
+                "durationMs": 2563
+              },
+              {
+                "name": "Smoke — Page heading reads “Image”",
+                "status": "passed",
+                "durationMs": 2200
+              },
+              {
+                "name": "Smoke — Default image visible with aria-label",
+                "status": "passed",
+                "durationMs": 2577
+              },
+              {
+                "name": "Smoke — Interactive image is a button",
+                "status": "passed",
+                "durationMs": 2363
+              },
+              {
+                "name": "Smoke — Manifest root testid count in showcase",
+                "status": "passed",
+                "durationMs": 2477
+              },
+              {
+                "name": "[fn] Component page shows title and all QA tabs",
+                "status": "passed",
+                "durationMs": 1671
+              },
+              {
+                "name": "[fn] Default image is visible and has aria-label “Landscape”",
+                "status": "passed",
+                "durationMs": 2004
+              },
+              {
+                "name": "[fn] Figma aspect ratios set data-aspect-ratio (auto omits the attribute)",
+                "status": "passed",
+                "durationMs": 2502
+              },
+              {
+                "name": "[fn] Interactive image acts as a button and increments click counter",
+                "status": "passed",
+                "durationMs": 2719
+              },
+              {
+                "name": "[fn] Broken image URL shows default icon and custom fallback text",
+                "status": "passed",
+                "durationMs": 2599
+              },
+              {
+                "name": "[fn] Lazy and eager loading strategies set the img loading attribute",
+                "status": "passed",
+                "durationMs": 2404
+              },
+              {
+                "name": "[fn] Labelled example exposes descriptive aria-label",
+                "status": "passed",
+                "durationMs": 2471
+              },
+              {
+                "name": "[fn] Radius token override example renders",
+                "status": "passed",
+                "durationMs": 3325
+              },
+              {
+                "name": "[fn] All Test Scenarios story bands are mounted on the page",
+                "status": "passed",
+                "durationMs": 2420
+              },
+              {
+                "name": "[fn] Figma Validation tab shows API table and aspect-ratio grid",
+                "status": "passed",
+                "durationMs": 2459
+              },
+              {
+                "name": "[fn] theme toggle updates label",
+                "status": "passed",
+                "durationMs": 2565
+              }
+            ]
+          },
+          "performance": {
+            "suite": "performance",
+            "passed": 0,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "Performance suite is not executed in apps/qa-playground image Playwright bundle."
+            ],
+            "errors": []
+          }
+        }
+      }
+    },
+    {
+      "savedAt": "2026-06-04T06:30:02.928Z",
+      "report": {
+        "ok": false,
+        "slug": "image",
+        "message": "image QA Playwright run had failures — 2026-06-04T06:25:20.014Z",
+        "suites": {
+          "accessibility": {
+            "suite": "accessibility",
+            "passed": 25,
+            "failed": 1,
+            "skipped": 0,
+            "logs": [
+              "26 test(s) in Playwright report for accessibility.",
+              "Axe: scan completed — 0 violation rules reported."
+            ],
+            "errors": [
+              "[a11y] Interactive disabled image renders as a disabled button: BUG-IMAGE-001: expected <button disabled>"
+            ],
+            "cases": [
+              {
+                "name": "[a11y] WCAG 2.1 AA tag scan + JSON artefact + HTML report (exclude bug repro)",
+                "status": "passed",
+                "durationMs": 4270
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Default band",
+                "status": "passed",
+                "durationMs": 4046,
+                "componentBand": "image-qa-default"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Aspect ratio band",
+                "status": "passed",
+                "durationMs": 4191,
+                "componentBand": "image-qa-aspect"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Object fit band",
+                "status": "passed",
+                "durationMs": 4023,
+                "componentBand": "image-qa-fit"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Interactive band",
+                "status": "passed",
+                "durationMs": 4043,
+                "componentBand": "image-qa-interactive"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Fallback band",
+                "status": "passed",
+                "durationMs": 3191,
+                "componentBand": "image-qa-fallback"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Loading (lazy · eager) band",
+                "status": "passed",
+                "durationMs": 3420,
+                "componentBand": "image-qa-loading"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Labelled alt text band",
+                "status": "passed",
+                "durationMs": 3152,
+                "componentBand": "image-qa-a11y"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Radius override band",
+                "status": "passed",
+                "durationMs": 3499,
+                "componentBand": "image-qa-radius"
+              },
+              {
+                "name": "[a11y] data-section=\"image-qa-default\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 3290
+              },
+              {
+                "name": "[a11y] data-section=\"image-qa-aspect\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 2926
+              },
+              {
+                "name": "[a11y] data-section=\"image-qa-fit\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 2927
+              },
+              {
+                "name": "[a11y] data-section=\"image-qa-interactive\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 3517
+              },
+              {
+                "name": "[a11y] data-section=\"image-qa-fallback\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 3710
+              },
+              {
+                "name": "[a11y] data-section=\"image-qa-loading\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 2886
+              },
+              {
+                "name": "[a11y] data-section=\"image-qa-a11y\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 2134
+              },
+              {
+                "name": "[a11y] data-section=\"image-qa-radius\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 2300
+              },
+              {
+                "name": "[a11y] axe image-alt rule — Test Scenarios page (exclude bug repro band)",
+                "status": "passed",
+                "durationMs": 2627
+              },
+              {
+                "name": "[a11y] Keyboard Enter — interactive image",
+                "status": "passed",
+                "durationMs": 2092
+              },
+              {
+                "name": "[a11y] Keyboard Space — interactive image",
+                "status": "passed",
+                "durationMs": 3971
+              },
+              {
+                "name": "[a11y] Interactive disabled image renders as a disabled button",
+                "status": "failed",
+                "durationMs": 7384,
+                "error": "BUG-IMAGE-001: expected <button disabled>",
+                "bugId": "BUG-IMAGE-001",
+                "componentBand": "image-qa-bug-repro"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — bug repro (interactive + disabled) band",
+                "status": "passed",
+                "durationMs": 2861,
+                "bugId": "BUG-IMAGE-001",
+                "componentBand": "image-qa-bug-repro"
+              },
+              {
+                "name": "[a11y] Accessibility band labelled image exposes aria-label “Taj Mahal at sunrise”",
+                "status": "passed",
+                "durationMs": 2342
+              },
+              {
+                "name": "[a11y] Reflow at 320px — story bands fit without horizontal scroll",
+                "status": "passed",
+                "durationMs": 3932
+              },
+              {
+                "name": "[a11y] Section 508 tag run on story bands (exclude bug repro) — zero serious/critical",
+                "status": "passed",
+                "durationMs": 2475
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Figma aspect-ratio grid",
+                "status": "passed",
+                "durationMs": 2606
+              }
+            ],
+            "axe": {
+              "violations": []
+            }
+          },
+          "functional": {
+            "suite": "functional",
+            "passed": 58,
+            "failed": 3,
+            "skipped": 0,
+            "logs": [
+              "61 test(s) in Playwright report for functional."
+            ],
+            "errors": [
+              "3.2 — BUG-IMAGE-001: interactive + disabled must not behave as enabled button: BUG-IMAGE-001: should be disabled button",
+              "6.3 — BUG-IMAGE-001: interactive + disabled exposes disabled button semantics: BUG-IMAGE-001: interactive+disabled must render <button disabled>, not role=img div",
+              "10.2 — BUG-IMAGE-001: interactive + disabled must still render disabled button: Error: When both interactive and disabled are true, assistive tech needs <button disabled>"
+            ],
+            "cases": [
+              {
+                "name": "1.1 — Page loads without console errors; default image mounts",
+                "status": "passed",
+                "durationMs": 4551
+              },
+              {
+                "name": "1.2 — Every Test Scenarios `data-testid` is visible",
+                "status": "passed",
+                "durationMs": 3490
+              },
+              {
+                "name": "1.3 — Every `data-section` band is visible",
+                "status": "passed",
+                "durationMs": 3306
+              },
+              {
+                "name": "2.1 — Default image: role img, aria-label from alt",
+                "status": "passed",
+                "durationMs": 2982
+              },
+              {
+                "name": "2.1 — Each aspect ratio cell emits matching data-aspect-ratio",
+                "status": "passed",
+                "durationMs": 2427
+              },
+              {
+                "name": "2.1 — Lazy and eager loading attributes on img",
+                "status": "passed",
+                "durationMs": 1645
+              },
+              {
+                "name": "2.2 — Aspect ratio scaling: 16:9 is wider than tall; 9:16 is taller than wide",
+                "status": "passed",
+                "durationMs": 2363
+              },
+              {
+                "name": "2.3 — Appearance colour (N/A)",
+                "status": "passed",
+                "durationMs": 2241
+              },
+              {
+                "name": "3.1 — Single click on interactive image increments counter",
+                "status": "passed",
+                "durationMs": 2861
+              },
+              {
+                "name": "3.2 — BUG-IMAGE-001: interactive + disabled must not behave as enabled button",
+                "status": "failed",
+                "durationMs": 7891,
+                "error": "BUG-IMAGE-001: should be disabled button"
+              },
+              {
+                "name": "3.3 — Readonly (N/A)",
+                "status": "passed",
+                "durationMs": 2141
+              },
+              {
+                "name": "3.4 — Click outside removes focus from interactive image",
+                "status": "passed",
+                "durationMs": 2078
+              },
+              {
+                "name": "4.1 — Tab reaches interactive image button",
+                "status": "passed",
+                "durationMs": 2172
+              },
+              {
+                "name": "4.2 — Enter activates interactive image",
+                "status": "passed",
+                "durationMs": 2149
+              },
+              {
+                "name": "4.3 — Space activates interactive image",
+                "status": "passed",
+                "durationMs": 3458
+              },
+              {
+                "name": "4.4 — Arrow keys (N/A for single image)",
+                "status": "passed",
+                "durationMs": 1854
+              },
+              {
+                "name": "4.5 — Home/End (N/A)",
+                "status": "passed",
+                "durationMs": 1995
+              },
+              {
+                "name": "4.6 — Escape (N/A)",
+                "status": "passed",
+                "durationMs": 1747
+              },
+              {
+                "name": "4.7 — Tab escapes interactive image without trap",
+                "status": "passed",
+                "durationMs": 1934
+              },
+              {
+                "name": "5.1 — Interactive image receives focus on click",
+                "status": "passed",
+                "durationMs": 1857
+              },
+              {
+                "name": "5.2 — Focus indicator visible on interactive image (keyboard :focus-visible)",
+                "status": "passed",
+                "durationMs": 2021
+              },
+              {
+                "name": "5.3 — Non-interactive default image is not tabbable",
+                "status": "passed",
+                "durationMs": 1885
+              },
+              {
+                "name": "5.4 — Blur removes focus from interactive image",
+                "status": "passed",
+                "durationMs": 1761
+              },
+              {
+                "name": "5.5 — autoFocus (N/A)",
+                "status": "passed",
+                "durationMs": 2213
+              },
+              {
+                "name": "6.1 — Default display image renders with role img",
+                "status": "passed",
+                "durationMs": 1922
+              },
+              {
+                "name": "6.3 — BUG-IMAGE-001: interactive + disabled exposes disabled button semantics",
+                "status": "failed",
+                "durationMs": 7227,
+                "error": "BUG-IMAGE-001: interactive+disabled must render <button disabled>, not role=img div"
+              },
+              {
+                "name": "6.3 — Bug repro disabled image is not in Tab order as enabled control",
+                "status": "passed",
+                "durationMs": 2039
+              },
+              {
+                "name": "6.6 — Loading strategy (lazy/eager) — img loading attribute present",
+                "status": "passed",
+                "durationMs": 1904
+              },
+              {
+                "name": "7.x — Image has no start/end slot API",
+                "status": "passed",
+                "durationMs": 2008
+              },
+              {
+                "name": "8.x — Not a toggle component",
+                "status": "passed",
+                "durationMs": 2094
+              },
+              {
+                "name": "9.x — Not a text input",
+                "status": "passed",
+                "durationMs": 1887
+              },
+              {
+                "name": "10.1 — Non-interactive images use role img (not button)",
+                "status": "passed",
+                "durationMs": 2075
+              },
+              {
+                "name": "10.2 — BUG-IMAGE-001: interactive + disabled must still render disabled button",
+                "status": "failed",
+                "durationMs": 7425,
+                "error": "Error: When both interactive and disabled are true, assistive tech needs <button disabled>"
+              },
+              {
+                "name": "10.2 — Interactive without disabled renders button",
+                "status": "passed",
+                "durationMs": 2210
+              },
+              {
+                "name": "11.1 — aria-label reflects alt text on labelled images",
+                "status": "passed",
+                "durationMs": 2026
+              },
+              {
+                "name": "11.2 — Default image renders inner img with presentation role",
+                "status": "passed",
+                "durationMs": 1692
+              },
+              {
+                "name": "11.2 — Broken image fallback shows default SVG icon",
+                "status": "passed",
+                "durationMs": 1501
+              },
+              {
+                "name": "11.1 — Custom fallback text renders in fallback node",
+                "status": "passed",
+                "durationMs": 1551
+              },
+              {
+                "name": "11.3 — Progress value (N/A)",
+                "status": "passed",
+                "durationMs": 2609
+              },
+              {
+                "name": "12.1 — fullWidth (N/A)",
+                "status": "passed",
+                "durationMs": 1751
+              },
+              {
+                "name": "12.2 — At 320px viewport, scenario bands fit without horizontal scroll",
+                "status": "passed",
+                "durationMs": 4646
+              },
+              {
+                "name": "12.2b — Default image visible at 1440px viewport",
+                "status": "passed",
+                "durationMs": 3737
+              },
+              {
+                "name": "12.3 — Aspect band cells laid out in grid (16:9 before 9:16 in DOM order)",
+                "status": "passed",
+                "durationMs": 3204
+              },
+              {
+                "name": "12.1 — Radius token override applies non-zero border-radius",
+                "status": "passed",
+                "durationMs": 3099
+              },
+              {
+                "name": "13.1 — After dark theme, all scenario sections remain visible",
+                "status": "passed",
+                "durationMs": 3878
+              },
+              {
+                "name": "13.1 — Default image remains visible in dark mode",
+                "status": "passed",
+                "durationMs": 3453
+              },
+              {
+                "name": "Smoke — Page heading reads “Image”",
+                "status": "passed",
+                "durationMs": 3033
+              },
+              {
+                "name": "Smoke — Default image visible with aria-label",
+                "status": "passed",
+                "durationMs": 3571
+              },
+              {
+                "name": "Smoke — Interactive image is a button",
+                "status": "passed",
+                "durationMs": 2212
+              },
+              {
+                "name": "Smoke — Manifest root testid count in showcase",
+                "status": "passed",
+                "durationMs": 2145
+              },
+              {
+                "name": "[fn] Component page shows title and all QA tabs",
+                "status": "passed",
+                "durationMs": 2309
+              },
+              {
+                "name": "[fn] Default image is visible and has aria-label “Landscape”",
+                "status": "passed",
+                "durationMs": 1158
+              },
+              {
+                "name": "[fn] Figma aspect ratios set data-aspect-ratio (auto omits the attribute)",
+                "status": "passed",
+                "durationMs": 2767
+              },
+              {
+                "name": "[fn] Interactive image acts as a button and increments click counter",
+                "status": "passed",
+                "durationMs": 2186
+              },
+              {
+                "name": "[fn] Broken image URL shows default icon and custom fallback text",
+                "status": "passed",
+                "durationMs": 2125
+              },
+              {
+                "name": "[fn] Lazy and eager loading strategies set the img loading attribute",
+                "status": "passed",
+                "durationMs": 1901
+              },
+              {
+                "name": "[fn] Labelled example exposes descriptive aria-label",
+                "status": "passed",
+                "durationMs": 2048
+              },
+              {
+                "name": "[fn] Radius token override example renders",
+                "status": "passed",
+                "durationMs": 2644
+              },
+              {
+                "name": "[fn] All Test Scenarios story bands are mounted on the page",
+                "status": "passed",
+                "durationMs": 2115
+              },
+              {
+                "name": "[fn] Figma Validation tab shows API table and aspect-ratio grid",
+                "status": "passed",
+                "durationMs": 2383
+              },
+              {
+                "name": "[fn] theme toggle updates label",
+                "status": "passed",
+                "durationMs": 2074
+              }
+            ]
+          },
+          "performance": {
+            "suite": "performance",
+            "passed": 0,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "Performance suite is not executed in apps/qa-playground image Playwright bundle."
+            ],
+            "errors": []
+          }
+        }
+      }
+    },
+    {
+      "savedAt": "2026-06-04T06:25:20.015Z",
+      "report": {
+        "ok": false,
+        "slug": "image",
+        "message": "image QA Playwright run had failures — 2026-05-29T12:48:04.649Z",
+        "suites": {
+          "accessibility": {
+            "suite": "accessibility",
+            "passed": 25,
+            "failed": 1,
+            "skipped": 0,
+            "logs": [
+              "26 test(s) in Playwright report for accessibility.",
+              "Axe: scan completed — 0 violation rules reported."
+            ],
+            "errors": [
+              "[a11y] Interactive disabled image renders as a disabled button: BUG-IMAGE-001: expected <button disabled>"
+            ],
+            "cases": [
+              {
+                "name": "[a11y] WCAG 2.1 AA tag scan + JSON artefact + HTML report (exclude bug repro)",
+                "status": "passed",
+                "durationMs": 3320
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Default band",
+                "status": "passed",
+                "durationMs": 3297,
+                "componentBand": "image-qa-default"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Aspect ratio band",
+                "status": "passed",
+                "durationMs": 3652,
+                "componentBand": "image-qa-aspect"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Object fit band",
+                "status": "passed",
+                "durationMs": 3145,
+                "componentBand": "image-qa-fit"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Interactive band",
+                "status": "passed",
+                "durationMs": 3708,
+                "componentBand": "image-qa-interactive"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Fallback band",
+                "status": "passed",
+                "durationMs": 2528,
+                "componentBand": "image-qa-fallback"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Loading (lazy · eager) band",
+                "status": "passed",
+                "durationMs": 2746,
+                "componentBand": "image-qa-loading"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Labelled alt text band",
+                "status": "passed",
+                "durationMs": 2940,
+                "componentBand": "image-qa-a11y"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Radius override band",
+                "status": "passed",
+                "durationMs": 2891,
+                "componentBand": "image-qa-radius"
+              },
+              {
+                "name": "[a11y] data-section=\"image-qa-default\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 3251
+              },
+              {
+                "name": "[a11y] data-section=\"image-qa-aspect\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 2163
+              },
+              {
+                "name": "[a11y] data-section=\"image-qa-fit\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 2505
+              },
+              {
+                "name": "[a11y] data-section=\"image-qa-interactive\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 2695
+              },
+              {
+                "name": "[a11y] data-section=\"image-qa-fallback\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 2641
+              },
+              {
+                "name": "[a11y] data-section=\"image-qa-loading\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 2531
+              },
+              {
+                "name": "[a11y] data-section=\"image-qa-a11y\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 2020
+              },
+              {
+                "name": "[a11y] data-section=\"image-qa-radius\" — WCAG tags, zero serious/critical",
+                "status": "passed",
+                "durationMs": 2126
+              },
+              {
+                "name": "[a11y] axe image-alt rule — Test Scenarios page (exclude bug repro band)",
+                "status": "passed",
+                "durationMs": 2336
+              },
+              {
+                "name": "[a11y] Keyboard Enter — interactive image",
+                "status": "passed",
+                "durationMs": 2181
+              },
+              {
+                "name": "[a11y] Keyboard Space — interactive image",
+                "status": "passed",
+                "durationMs": 3554
+              },
+              {
+                "name": "[a11y] Interactive disabled image renders as a disabled button",
+                "status": "failed",
+                "durationMs": 7135,
+                "error": "BUG-IMAGE-001: expected <button disabled>",
+                "bugId": "BUG-IMAGE-001",
+                "componentBand": "image-qa-bug-repro"
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — bug repro (interactive + disabled) band",
+                "status": "passed",
+                "durationMs": 2535,
+                "bugId": "BUG-IMAGE-001",
+                "componentBand": "image-qa-bug-repro"
+              },
+              {
+                "name": "[a11y] Accessibility band labelled image exposes aria-label “Taj Mahal at sunrise”",
+                "status": "passed",
+                "durationMs": 2338
+              },
+              {
+                "name": "[a11y] Reflow at 320px — story bands fit without horizontal scroll",
+                "status": "passed",
+                "durationMs": 3761
+              },
+              {
+                "name": "[a11y] Section 508 tag run on story bands (exclude bug repro) — zero serious/critical",
+                "status": "passed",
+                "durationMs": 1976
+              },
+              {
+                "name": "[a11y] WCAG 2.1 AA axe scan — Figma aspect-ratio grid",
+                "status": "passed",
+                "durationMs": 2536
+              }
+            ],
+            "axe": {
+              "violations": []
+            }
+          },
+          "functional": {
+            "suite": "functional",
+            "passed": 58,
+            "failed": 3,
+            "skipped": 0,
+            "logs": [
+              "61 test(s) in Playwright report for functional."
+            ],
+            "errors": [
+              "3.2 — BUG-IMAGE-001: interactive + disabled must not behave as enabled button: BUG-IMAGE-001: should be disabled button",
+              "6.3 — BUG-IMAGE-001: interactive + disabled exposes disabled button semantics: BUG-IMAGE-001: interactive+disabled must render <button disabled>, not role=img div",
+              "10.2 — BUG-IMAGE-001: interactive + disabled must still render disabled button: Error: When both interactive and disabled are true, assistive tech needs <button disabled>"
+            ],
+            "cases": [
+              {
+                "name": "1.1 — Page loads without console errors; default image mounts",
+                "status": "passed",
+                "durationMs": 3492
+              },
+              {
+                "name": "1.2 — Every Test Scenarios `data-testid` is visible",
+                "status": "passed",
+                "durationMs": 3066
+              },
+              {
+                "name": "1.3 — Every `data-section` band is visible",
+                "status": "passed",
+                "durationMs": 2494
+              },
+              {
+                "name": "2.1 — Default image: role img, aria-label from alt",
+                "status": "passed",
+                "durationMs": 2101
+              },
+              {
+                "name": "2.1 — Each aspect ratio cell emits matching data-aspect-ratio",
+                "status": "passed",
+                "durationMs": 1642
+              },
+              {
+                "name": "2.1 — Lazy and eager loading attributes on img",
+                "status": "passed",
+                "durationMs": 2342
+              },
+              {
+                "name": "2.2 — Aspect ratio scaling: 16:9 is wider than tall; 9:16 is taller than wide",
+                "status": "passed",
+                "durationMs": 2449
+              },
+              {
+                "name": "2.3 — Appearance colour (N/A)",
+                "status": "passed",
+                "durationMs": 2440
+              },
+              {
+                "name": "3.1 — Single click on interactive image increments counter",
+                "status": "passed",
+                "durationMs": 2560
+              },
+              {
+                "name": "3.2 — BUG-IMAGE-001: interactive + disabled must not behave as enabled button",
+                "status": "failed",
+                "durationMs": 6844,
+                "error": "BUG-IMAGE-001: should be disabled button"
+              },
+              {
+                "name": "3.3 — Readonly (N/A)",
+                "status": "passed",
+                "durationMs": 1965
+              },
+              {
+                "name": "3.4 — Click outside removes focus from interactive image",
+                "status": "passed",
+                "durationMs": 2304
+              },
+              {
+                "name": "4.1 — Tab reaches interactive image button",
+                "status": "passed",
+                "durationMs": 2324
+              },
+              {
+                "name": "4.2 — Enter activates interactive image",
+                "status": "passed",
+                "durationMs": 1878
+              },
+              {
+                "name": "4.3 — Space activates interactive image",
+                "status": "passed",
+                "durationMs": 2451
+              },
+              {
+                "name": "4.4 — Arrow keys (N/A for single image)",
+                "status": "passed",
+                "durationMs": 1769
+              },
+              {
+                "name": "4.5 — Home/End (N/A)",
+                "status": "passed",
+                "durationMs": 1801
+              },
+              {
+                "name": "4.6 — Escape (N/A)",
+                "status": "passed",
+                "durationMs": 1955
+              },
+              {
+                "name": "4.7 — Tab escapes interactive image without trap",
+                "status": "passed",
+                "durationMs": 1600
+              },
+              {
+                "name": "5.1 — Interactive image receives focus on click",
+                "status": "passed",
+                "durationMs": 1762
+              },
+              {
+                "name": "5.2 — Focus indicator visible on interactive image (keyboard :focus-visible)",
+                "status": "passed",
+                "durationMs": 1926
+              },
+              {
+                "name": "5.3 — Non-interactive default image is not tabbable",
+                "status": "passed",
+                "durationMs": 1796
+              },
+              {
+                "name": "5.4 — Blur removes focus from interactive image",
+                "status": "passed",
+                "durationMs": 1446
+              },
+              {
+                "name": "5.5 — autoFocus (N/A)",
+                "status": "passed",
+                "durationMs": 2156
+              },
+              {
+                "name": "6.1 — Default display image renders with role img",
+                "status": "passed",
+                "durationMs": 1863
+              },
+              {
+                "name": "6.3 — BUG-IMAGE-001: interactive + disabled exposes disabled button semantics",
+                "status": "failed",
+                "durationMs": 8248,
+                "error": "BUG-IMAGE-001: interactive+disabled must render <button disabled>, not role=img div"
+              },
+              {
+                "name": "6.3 — Bug repro disabled image is not in Tab order as enabled control",
+                "status": "passed",
+                "durationMs": 9461
+              },
+              {
+                "name": "6.6 — Loading strategy (lazy/eager) — img loading attribute present",
+                "status": "passed",
+                "durationMs": 3830
+              },
+              {
+                "name": "7.x — Image has no start/end slot API",
+                "status": "passed",
+                "durationMs": 3085
+              },
+              {
+                "name": "8.x — Not a toggle component",
+                "status": "passed",
+                "durationMs": 2132
+              },
+              {
+                "name": "9.x — Not a text input",
+                "status": "passed",
+                "durationMs": 1926
+              },
+              {
+                "name": "10.1 — Non-interactive images use role img (not button)",
+                "status": "passed",
+                "durationMs": 1553
+              },
+              {
+                "name": "10.2 — BUG-IMAGE-001: interactive + disabled must still render disabled button",
+                "status": "failed",
+                "durationMs": 6645,
+                "error": "Error: When both interactive and disabled are true, assistive tech needs <button disabled>"
+              },
+              {
+                "name": "10.2 — Interactive without disabled renders button",
+                "status": "passed",
+                "durationMs": 1863
+              },
+              {
+                "name": "11.1 — aria-label reflects alt text on labelled images",
+                "status": "passed",
+                "durationMs": 1669
+              },
+              {
+                "name": "11.2 — Default image renders inner img with presentation role",
+                "status": "passed",
+                "durationMs": 2566
+              },
+              {
+                "name": "11.2 — Broken image fallback shows default SVG icon",
+                "status": "passed",
+                "durationMs": 1223
+              },
+              {
+                "name": "11.1 — Custom fallback text renders in fallback node",
+                "status": "passed",
+                "durationMs": 1481
+              },
+              {
+                "name": "11.3 — Progress value (N/A)",
+                "status": "passed",
+                "durationMs": 1586
+              },
+              {
+                "name": "12.1 — fullWidth (N/A)",
+                "status": "passed",
+                "durationMs": 1540
+              },
+              {
+                "name": "12.2 — At 320px viewport, scenario bands fit without horizontal scroll",
+                "status": "passed",
+                "durationMs": 3951
+              },
+              {
+                "name": "12.2b — Default image visible at 1440px viewport",
+                "status": "passed",
+                "durationMs": 3429
+              },
+              {
+                "name": "12.3 — Aspect band cells laid out in grid (16:9 before 9:16 in DOM order)",
+                "status": "passed",
+                "durationMs": 2413
+              },
+              {
+                "name": "12.1 — Radius token override applies non-zero border-radius",
+                "status": "passed",
+                "durationMs": 1960
+              },
+              {
+                "name": "13.1 — After dark theme, all scenario sections remain visible",
+                "status": "passed",
+                "durationMs": 2125
+              },
+              {
+                "name": "13.1 — Default image remains visible in dark mode",
+                "status": "passed",
+                "durationMs": 1853
+              },
+              {
+                "name": "Smoke — Page heading reads “Image”",
+                "status": "passed",
+                "durationMs": 2127
+              },
+              {
+                "name": "Smoke — Default image visible with aria-label",
+                "status": "passed",
+                "durationMs": 2119
+              },
+              {
+                "name": "Smoke — Interactive image is a button",
+                "status": "passed",
+                "durationMs": 2223
+              },
+              {
+                "name": "Smoke — Manifest root testid count in showcase",
+                "status": "passed",
+                "durationMs": 1776
+              },
+              {
+                "name": "[fn] Component page shows title and all QA tabs",
+                "status": "passed",
+                "durationMs": 1859
+              },
+              {
+                "name": "[fn] Default image is visible and has aria-label “Landscape”",
+                "status": "passed",
+                "durationMs": 1441
+              },
+              {
+                "name": "[fn] Figma aspect ratios set data-aspect-ratio (auto omits the attribute)",
+                "status": "passed",
+                "durationMs": 1735
+              },
+              {
+                "name": "[fn] Interactive image acts as a button and increments click counter",
+                "status": "passed",
+                "durationMs": 1864
+              },
+              {
+                "name": "[fn] Broken image URL shows default icon and custom fallback text",
+                "status": "passed",
+                "durationMs": 1779
+              },
+              {
+                "name": "[fn] Lazy and eager loading strategies set the img loading attribute",
+                "status": "passed",
+                "durationMs": 1672
+              },
+              {
+                "name": "[fn] Labelled example exposes descriptive aria-label",
+                "status": "passed",
+                "durationMs": 1881
+              },
+              {
+                "name": "[fn] Radius token override example renders",
+                "status": "passed",
+                "durationMs": 2005
+              },
+              {
+                "name": "[fn] All Test Scenarios story bands are mounted on the page",
+                "status": "passed",
+                "durationMs": 2065
+              },
+              {
+                "name": "[fn] Figma Validation tab shows API table and aspect-ratio grid",
+                "status": "passed",
+                "durationMs": 2248
+              },
+              {
+                "name": "[fn] theme toggle updates label",
+                "status": "passed",
+                "durationMs": 2028
+              }
+            ]
+          },
+          "performance": {
+            "suite": "performance",
+            "passed": 0,
+            "failed": 0,
+            "skipped": 0,
+            "logs": [
+              "Performance suite is not executed in apps/qa-playground image Playwright bundle."
+            ],
+            "errors": []
+          }
+        }
+      }
+    }
+  ]
+}

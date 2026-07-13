@@ -1,0 +1,13 @@
+import React from 'react';
+import Svg, { Path, type SvgProps } from 'react-native-svg';
+export function IcTower(props: SvgProps) {
+  const fill = String(props.fill ?? '#000000');
+  return (
+    <Svg viewBox="0 0 24 24" fill="none" {...props}>
+      <Path
+            fill={fill}
+            d="M18 2h-.5a1 1 0 0 0-1 1v1a1 1 0 0 1-2 0V3a1 1 0 0 0-1-1h-3a1 1 0 0 0-1 1v1a1 1 0 0 1-2 0V3a1 1 0 0 0-1-1H6a2 2 0 0 0-2 2v3a2 2 0 0 0 1.92 2h12.16A2 2 0 0 0 20 7V4a2 2 0 0 0-2-2m-1.23 9H7.19a1 1 0 0 0-1 .92l-1.1 7.93a2 2 0 0 0 2 2.15H9a1 1 0 0 0 1-1v-2.85A2.11 2.11 0 0 1 11.71 16 2 2 0 0 1 14 18v3a1 1 0 0 0 1 1h1.92a2 2 0 0 0 2-2.15L17.81 12a1 1 0 0 0-1.04-1"
+          />
+    </Svg>
+  );
+}

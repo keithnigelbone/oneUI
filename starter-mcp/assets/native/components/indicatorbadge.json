@@ -1,0 +1,179 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "IndicatorBadge",
+  "generatedAt": "2026-07-09T13:07:37.417Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "Contentless status dot (\"unread\" affordance). Five sizes. `appearance` inherits from a slot-owning parent (Badge/Button) when unset, else primary; fills from the bold surface. Hidden from assistive tech unless `aria-label` is set. Use CounterBadge for a count."
+  },
+  "compositionRules": {
+    "requires": [],
+    "allows": [],
+    "forbids": [],
+    "childKind": "leaf"
+  },
+  "props": [
+    {
+      "name": "size",
+      "type": "'xs' | 's' | 'm' | 'l' | 'xl'",
+      "required": false,
+      "defaultValue": "m",
+      "description": ""
+    },
+    {
+      "name": "appearance",
+      "type": "'auto' | 'primary' | 'secondary' | 'neutral' | 'sparkle' | 'brand-bg' | 'positive' | 'negative' | 'warning' | 'informative'",
+      "required": false,
+      "defaultValue": "auto",
+      "description": "Multi-accent role. When unset, inherits from a slot-owning parent (Badge/Button), else 'primary'."
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": false,
+      "description": "When set, exposes role=\"image\"; otherwise the dot is decorative (hidden)."
+    },
+    {
+      "name": "backgroundColor",
+      "type": "string",
+      "required": false,
+      "description": "[error] Don't paint directly. Use `appearance` (role) + `variant`/`mode` and wrap in <Surface mode>; the brand cascade picks the right fill."
+    },
+    {
+      "name": "style",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Layout style only — appearance + the parent <Surface> drive the fill. — [warn] Don't paint the dot; use `appearance`. In a parent slot, leave appearance unset to inherit."
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.kb.rn.IndicatorBadge",
+    "type": "object",
+    "properties": {
+      "size": {
+        "enum": [
+          "xs",
+          "s",
+          "m",
+          "l",
+          "xl"
+        ],
+        "default": "m"
+      },
+      "appearance": {
+        "enum": [
+          "auto",
+          "primary",
+          "secondary",
+          "neutral",
+          "sparkle",
+          "brand-bg",
+          "positive",
+          "negative",
+          "warning",
+          "informative"
+        ],
+        "default": "auto",
+        "description": "Multi-accent role. When unset, inherits from a slot-owning parent (Badge/Button), else 'primary'."
+      },
+      "aria-label": {
+        "type": "string",
+        "description": "When set, exposes role=\"image\"; otherwise the dot is decorative (hidden)."
+      },
+      "backgroundColor": {
+        "type": "string",
+        "not": {
+          "anyOf": [
+            {
+              "pattern": "^#"
+            },
+            {
+              "pattern": "^rgba?\\("
+            },
+            {
+              "pattern": "^hsla?\\("
+            },
+            {
+              "pattern": "^oklch\\("
+            },
+            {
+              "pattern": "^color-mix\\("
+            },
+            {
+              "enum": [
+                "transparent",
+                "inherit"
+              ]
+            }
+          ]
+        },
+        "x-jds-suggestion": "Don't paint directly. Use `appearance` (role) + `variant`/`mode` and wrap in <Surface mode>; the brand cascade picks the right fill.",
+        "x-jds-severity": "error"
+      },
+      "style": {
+        "description": "Layout style only — appearance + the parent <Surface> drive the fill.",
+        "x-jds-suggestion": "Don't paint the dot; use `appearance`. In a parent slot, leave appearance unset to inherit.",
+        "x-jds-severity": "warn"
+      }
+    }
+  },
+  "tokens": {
+    "color": [
+      "primary",
+      "secondary",
+      "neutral",
+      "sparkle",
+      "brand-bg",
+      "positive",
+      "negative",
+      "warning",
+      "informative"
+    ],
+    "surface": [
+      "bold"
+    ],
+    "shape": [
+      "pill"
+    ]
+  },
+  "a11y": {
+    "accessibilityRole": "image",
+    "accessibleNameSource": "aria-label",
+    "minTouchTarget": 44,
+    "honorsBoldText": false,
+    "honorsScreenReader": true
+  },
+  "renderHints": {
+    "baseElement": "View",
+    "animatedOn": [],
+    "honorsReduceMotion": false,
+    "readsFromSurfaceContext": true
+  },
+  "figma": {
+    "componentKey": "jds-indicator-badge-v4",
+    "keyHistory": [],
+    "variantProperties": {
+      "Component": "IndicatorBadge"
+    }
+  },
+  "codeSnippets": [
+    {
+      "id": "import-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { IndicatorBadge } from '@oneui/ui-native';\n\n<IndicatorBadge />"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "indicatorbadge",
+    "display",
+    "status",
+    "indicator",
+    "surface-aware"
+  ],
+  "importPath": "@oneui/ui-native"
+}

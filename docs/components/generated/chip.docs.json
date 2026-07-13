@@ -1,0 +1,399 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Chip",
+  "generatedAt": "2026-01-01T00:00:00.000Z",
+  "machineReadable": true,
+  "intentAndPurpose": {
+    "intent": {
+      "value": "Compact interactive label for filtering, tagging, or selecting values.",
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "taskContexts": {
+      "value": [
+        "filter-selection",
+        "tag-display",
+        "multi-select",
+        "categorisation"
+      ],
+      "attribution": {
+        "source": "authored"
+      }
+    },
+    "sentiments": {
+      "value": [
+        "neutral",
+        "positive",
+        "informative"
+      ],
+      "attribution": {
+        "source": "authored"
+      }
+    }
+  },
+  "compositionRules": {
+    "requires": {
+      "value": [
+        "label text or aria-label"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "allows": {
+      "value": [
+        "start slot (icon, avatar, badge)",
+        "end slot (icon, counter)"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "forbids": {
+      "value": [
+        "multi-line text content"
+      ],
+      "attribution": {
+        "source": "authored"
+      }
+    }
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "bold",
+        "useWhen": {
+          "value": [
+            "selected/active state in filter groups"
+          ],
+          "attribution": {
+            "source": "inferred"
+          }
+        }
+      },
+      {
+        "name": "subtle",
+        "useWhen": {
+          "value": [
+            "suggested or pre-selected options"
+          ],
+          "attribution": {
+            "source": "inferred"
+          }
+        }
+      },
+      {
+        "name": "ghost",
+        "useWhen": {
+          "value": [
+            "unselected filter options (default)"
+          ],
+          "attribution": {
+            "source": "inferred"
+          }
+        }
+      }
+    ]
+  },
+  "relationshipsAndDependencies": {
+    "related": {
+      "value": [
+        "ChipGroup",
+        "Button",
+        "Badge"
+      ],
+      "attribution": {
+        "source": "authored"
+      }
+    },
+    "groupsWith": {
+      "value": [
+        "ChipGroup"
+      ],
+      "attribution": {
+        "source": "authored"
+      }
+    }
+  },
+  "contextSignals": {
+    "density": {
+      "value": [
+        "compact",
+        "default",
+        "open"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "modality": {
+      "value": [
+        "desktop",
+        "mobile"
+      ],
+      "attribution": {
+        "source": "authored"
+      }
+    },
+    "brand": {
+      "value": [
+        "theme-scope aware",
+        "recipe-driven"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "mode": {
+      "value": [
+        "light",
+        "dark",
+        "surface-context"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "observabilityHooks": {
+    "track": {
+      "value": [
+        "select",
+        "deselect"
+      ],
+      "attribution": {
+        "source": "authored"
+      }
+    },
+    "health": {
+      "value": [
+        "adoption_rate",
+        "a11y_violations"
+      ],
+      "attribution": {
+        "source": "authored"
+      }
+    }
+  },
+  "props": [
+    {
+      "name": "appearance",
+      "type": "ChipAppearance",
+      "required": false,
+      "description": "Multi-accent appearance role. 'auto' resolves to 'secondary'."
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": false,
+      "description": "Accessible label for screen readers"
+    },
+    {
+      "name": "attention",
+      "type": "ChipAttention",
+      "required": false,
+      "description": "Emphasis level — high (filled when selected), medium (tinted when selected), low (outlined). Default: 'high'."
+    },
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Text label content"
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "required": false,
+      "description": "Additional class name"
+    },
+    {
+      "name": "data-testid",
+      "type": "string",
+      "required": false,
+      "description": "QA / automation hook on the root toggle button"
+    },
+    {
+      "name": "defaultSelected",
+      "type": "boolean",
+      "required": false,
+      "description": "Default selected state (uncontrolled). Defaults to true."
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "required": false,
+      "description": "Whether the chip is disabled."
+    },
+    {
+      "name": "end",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Content to render after the label (Icon, Avatar, CounterBadge, IndicatorBadge)"
+    },
+    {
+      "name": "onSelectedChange",
+      "type": "(selected: boolean, eventDetails?: unknown) => void",
+      "required": false,
+      "description": "Called when selected state changes."
+    },
+    {
+      "name": "selected",
+      "type": "boolean",
+      "required": false,
+      "description": "Selected state (controlled). Maps to Toggle pressed."
+    },
+    {
+      "name": "size",
+      "type": "ChipSize",
+      "required": false,
+      "description": "Chip size. Default: 'm'."
+    },
+    {
+      "name": "start",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Content to render before the label (Icon, Avatar, CounterBadge, IndicatorBadge)"
+    },
+    {
+      "name": "style",
+      "type": "CSSProperties",
+      "required": false,
+      "description": "Inline styles"
+    },
+    {
+      "name": "value",
+      "type": "string",
+      "required": false,
+      "description": "Value for use within ToggleGroup."
+    }
+  ],
+  "slots": [
+    {
+      "name": "start",
+      "types": [
+        "Icon",
+        "Avatar",
+        "CounterBadge",
+        "IndicatorBadge"
+      ],
+      "tokens": []
+    },
+    {
+      "name": "end",
+      "types": [
+        "Icon",
+        "Avatar",
+        "CounterBadge",
+        "IndicatorBadge"
+      ],
+      "tokens": []
+    }
+  ],
+  "propsSchema": {
+    "$id": "jds.docs.chip",
+    "type": "object",
+    "properties": {
+      "appearance": {
+        "enum": [
+          "auto",
+          "primary",
+          "secondary",
+          "neutral",
+          "sparkle",
+          "brand-bg",
+          "positive",
+          "negative",
+          "warning",
+          "informative"
+        ],
+        "description": "Multi-accent appearance role. 'auto' resolves to 'secondary'."
+      },
+      "aria-label": {
+        "type": "string",
+        "description": "Accessible label for screen readers"
+      },
+      "attention": {
+        "enum": [
+          "high",
+          "medium",
+          "low"
+        ],
+        "description": "Emphasis level — high (filled when selected), medium (tinted when selected), low (outlined). Default: 'high'."
+      },
+      "children": {
+        "description": "Text label content"
+      },
+      "className": {
+        "type": "string",
+        "description": "Additional class name"
+      },
+      "data-testid": {
+        "type": "string",
+        "description": "QA / automation hook on the root toggle button"
+      },
+      "defaultSelected": {
+        "type": "boolean",
+        "description": "Default selected state (uncontrolled). Defaults to true."
+      },
+      "disabled": {
+        "type": "boolean",
+        "description": "Whether the chip is disabled."
+      },
+      "end": {
+        "description": "Content to render after the label (Icon, Avatar, CounterBadge, IndicatorBadge)"
+      },
+      "onSelectedChange": {
+        "description": "Called when selected state changes."
+      },
+      "selected": {
+        "type": "boolean",
+        "description": "Selected state (controlled). Maps to Toggle pressed."
+      },
+      "size": {
+        "enum": [
+          "s",
+          "m",
+          "l"
+        ],
+        "description": "Chip size. Default: 'm'."
+      },
+      "start": {
+        "description": "Content to render before the label (Icon, Avatar, CounterBadge, IndicatorBadge)"
+      },
+      "style": {
+        "description": "Inline styles"
+      },
+      "value": {
+        "type": "string",
+        "description": "Value for use within ToggleGroup."
+      }
+    }
+  },
+  "codeSnippets": [
+    {
+      "id": "chip-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { Chip } from '@oneui/ui';\n\n<Chip>Label</Chip>"
+    },
+    {
+      "id": "chip-selected",
+      "title": "Selectable Chip",
+      "language": "tsx",
+      "code": "<Chip attention=\"high\" selected>Active Filter</Chip>"
+    },
+    {
+      "id": "chip-recipe-decisions",
+      "title": "Recipe Decisions",
+      "language": "json",
+      "code": "{\n  \"component\": \"Chip\",\n  \"decisions\": [\n    \"Shape\"\n  ]\n}"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "chip"
+  ],
+  "generatedMarkdown": "# Chip Machine-Readable Documentation\n\n_Generated from source metadata. Do not edit manually._\n\n## Intent and Purpose\n\n- **Intent**: Compact interactive label for filtering, tagging, or selecting values.\n- **Task contexts**: filter-selection, tag-display, multi-select, categorisation\n- **Sentiments**: neutral, positive, informative\n\n## Composition Rules\n\n- **Requires**: label text or aria-label\n- **Allows**: start slot (icon, avatar, badge), end slot (icon, counter)\n- **Forbids**: multi-line text content\n\n## Variant Logic\n\n- **bold**: use when selected/active state in filter groups\n- **subtle**: use when suggested or pre-selected options\n- **ghost**: use when unselected filter options (default)\n\n## Relationships and Dependencies\n\n- **Related**: ChipGroup, Button, Badge\n- **Escalates to**: -\n- **Degrades to**: -\n- **Groups with**: ChipGroup\n\n## Context Signals\n\n- **Density**: compact, default, open\n- **Modality**: desktop, mobile\n- **Brand**: theme-scope aware, recipe-driven\n- **Mode**: light, dark, surface-context\n\n## Observability Hooks\n\n- **Track**: select, deselect\n- **Health**: adoption_rate, a11y_violations\n\n## Props\n\n| Prop | Type | Required | Default | Description |\n| --- | --- | --- | --- | --- |\n| `appearance` | `ChipAppearance` | No | - | Multi-accent appearance role. 'auto' resolves to 'secondary'. |\n| `aria-label` | `string` | No | - | Accessible label for screen readers |\n| `attention` | `ChipAttention` | No | - | Emphasis level — high (filled when selected), medium (tinted when selected), low (outlined). Default: 'high'. |\n| `children` | `ReactNode` | No | - | Text label content |\n| `className` | `string` | No | - | Additional class name |\n| `data-testid` | `string` | No | - | QA / automation hook on the root toggle button |\n| `defaultSelected` | `boolean` | No | - | Default selected state (uncontrolled). Defaults to true. |\n| `disabled` | `boolean` | No | - | Whether the chip is disabled. |\n| `end` | `ReactNode` | No | - | Content to render after the label (Icon, Avatar, CounterBadge, IndicatorBadge) |\n| `onSelectedChange` | `(selected: boolean, eventDetails?: unknown) => void` | No | - | Called when selected state changes. |\n| `selected` | `boolean` | No | - | Selected state (controlled). Maps to Toggle pressed. |\n| `size` | `ChipSize` | No | - | Chip size. Default: 'm'. |\n| `start` | `ReactNode` | No | - | Content to render before the label (Icon, Avatar, CounterBadge, IndicatorBadge) |\n| `style` | `CSSProperties` | No | - | Inline styles |\n| `value` | `string` | No | - | Value for use within ToggleGroup. |\n\n## Slots\n\n| Slot | Types | Tokens |\n| --- | --- | --- |\n| `start` | Icon, Avatar, CounterBadge, IndicatorBadge |  |\n| `end` | Icon, Avatar, CounterBadge, IndicatorBadge |  |\n\n## Code Snippets\n\n### Basic Usage\n\n```tsx\nimport { Chip } from '@oneui/ui';\n\n<Chip>Label</Chip>\n```\n\n### Selectable Chip\n\n```tsx\n<Chip attention=\"high\" selected>Active Filter</Chip>\n```\n\n### Recipe Decisions\n\n```json\n{\n  \"component\": \"Chip\",\n  \"decisions\": [\n    \"Shape\"\n  ]\n}\n```\n"
+}

@@ -1,0 +1,38 @@
+import React, { forwardRef } from 'react';
+import type { IconComponentProps } from '../iconProps';
+
+export const IcLive = forwardRef<SVGSVGElement, IconComponentProps>(function IcLive(
+  { size = 24, width, height, color = 'currentColor', className, style, ...props },
+  ref,
+) {
+  const dim = width ?? height ?? size;
+  return (
+    <svg
+      ref={ref}
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      width={width ?? dim}
+      height={height ?? dim}
+      color={color}
+      className={className}
+      style={style}
+      {...props}
+    >
+      <path
+            fill="currentColor"
+            d="M12.01 14.004a2 2 0 1 0 0-4 2 2 0 0 0 0 4M18.72 19.004c-.24 0-.48-.08-.67-.25-.41-.37-.45-1-.08-1.41a8 8 0 0 0 2.04-5.33c0-1.97-.72-3.87-2.04-5.33a.998.998 0 1 1 1.49-1.33 9.99 9.99 0 0 1 2.55 6.67c0 2.47-.9 4.83-2.55 6.67-.2.22-.47.33-.75.33z"
+          />
+          <path
+            fill="currentColor"
+            d="M16.01 16.004c-.21 0-.42-.07-.6-.2-.44-.33-.53-.96-.2-1.4a4 4 0 0 0 0-4.8c-.33-.44-.24-1.07.2-1.4s1.07-.24 1.4.2c.79 1.05 1.2 2.29 1.2 3.6s-.42 2.56-1.2 3.6c-.2.26-.5.4-.8.4M5.3 19.004c-.27 0-.55-.11-.75-.33A9.99 9.99 0 0 1 2 12.004c0-2.47.9-4.83 2.55-6.67a.998.998 0 1 1 1.49 1.33A8 8 0 0 0 4 11.994c0 1.97.72 3.87 2.04 5.33.37.41.33 1.04-.08 1.41-.19.17-.43.25-.67.25z"
+          />
+          <path
+            fill="currentColor"
+            d="M8.01 16.004c-.3 0-.6-.14-.8-.4a5.93 5.93 0 0 1-1.2-3.6c0-1.31.42-2.56 1.2-3.6.33-.44.96-.53 1.4-.2s.53.96.2 1.4a4 4 0 0 0 0 4.8c.33.44.24 1.07-.2 1.4-.18.13-.39.2-.6.2"
+          />
+    </svg>
+  );
+});
+
+IcLive.displayName = 'IcLive';

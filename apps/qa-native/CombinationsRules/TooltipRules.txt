@@ -1,0 +1,128 @@
+# Tooltip — Figma API + native combination rules
+#
+# ─── Figma API vs code API mapping ──────────────────────────────────────────────
+#
+#   Figma property    Figma values                              Native code prop
+#   ─────────────────────────────────────────────────────────────────────────────
+#   position          top | topStart | topEnd                   position?: TooltipPosition
+#                     bottom | BottomStart | BottomEnd          NOTE: Figma uses 'BottomStart'/'BottomEnd'
+#                     left | leftStart | leftEnd                      TypeScript uses 'bottomStart'/'bottomEnd'
+#                     right | rightStart | rightEnd             (BUG-TOOLTIP-5 — casing mismatch)
+#   tip               true | false                              arrow?: boolean
+#                                                               (BUG-TOOLTIP-1 — different name)
+#   disable           true | false                              disabled?: boolean
+#                                                               (BUG-TOOLTIP-2 — different name)
+#
+#   Code-only props (no Figma equivalent):
+#     side            'top' | 'bottom' | 'left' | 'right'      explicit side override
+#     align           'start' | 'center' | 'end'               explicit align override
+#     sideOffset      number                                    distance from trigger in px
+#     open            boolean                                   controlled open state
+#     defaultOpen     boolean                                   uncontrolled initial open
+#     onOpenChange    (open: boolean) => void
+#     trigger         'hover' | 'click' | 'focus' | 'manual'   default 'hover'
+#     delay           number                                    default 200ms
+#     closeDelay      number
+#     maxWidth        number | string                           wraps content when set
+#     hoverable       boolean                                   default true
+#     portal          boolean                                   accepted but no-op on native
+#     zIndex          number
+#     subtle          boolean                                   reduced-motion animation path
+#
+# ─── parsePosition inversion convention ─────────────────────────────────────────
+#
+#   Figma names where the TIP points. Code names where the POPUP sits.
+#   They are inverses:
+#     position='bottom'      → side='top'    (tip at bottom = popup above trigger)
+#     position='top'         → side='bottom' (tip at top    = popup below trigger)
+#     position='left'        → side='right'  (tip at left   = popup to the right)
+#     position='right'       → side='left'   (tip at right  = popup to the left)
+#
+#   Alignment passes through unchanged: Start → start, End → end, (none) → center.
+#
+# ─── Known bugs ─────────────────────────────────────────────────────────────────
+#
+#   BUG-TOOLTIP-1: Figma prop 'tip' ≠ code prop 'arrow'
+#     File: packages/ui-native/src/components/Tooltip/interface.ts (TooltipProps)
+#     Impact: Passing tip={false} at runtime silently does nothing (unknown prop).
+#     QA workaround: always use arrow={false} in test code.
+#
+#   BUG-TOOLTIP-2: Figma prop 'disable' ≠ code prop 'disabled'
+#     File: packages/ui-native/src/components/Tooltip/interface.ts (TooltipProps)
+#     Impact: Passing disable={true} at runtime silently does nothing.
+#     QA workaround: always use disabled={true} in test code.
+#
+#   BUG-TOOLTIP-3: anchor <View accessibilityElementsHidden={isOpen}> wraps popup
+#     File: packages/ui-native/src/components/Tooltip/Tooltip.native.tsx:639
+#     Impact: On iOS, accessibilityElementsHidden=true cascades to the popup child,
+#             overriding its importantForAccessibility='yes'. Popup content is never
+#             announced by VoiceOver when the tooltip opens.
+#     Expected fix: accessibilityElementsHidden should apply only to the trigger
+#                   wrapper, not the anchor that also contains the popup.
+#
+#   BUG-TOOLTIP-4: getTooltipTriggerAccessibilityProps returns accessible=false
+#                  when content is a ReactNode without aria-label
+#     File: packages/ui-native/src/components/Tooltip/interface.ts:322
+#     Impact: When <Tooltip content={<View>...</View>}> and no aria-label is given,
+#             label=undefined → accessible=false → trigger invisible to VoiceOver/TalkBack.
+#     Expected fix: Trigger should remain accessible=true with a generic role,
+#                   not hidden from assistive technology.
+#
+#   BUG-TOOLTIP-5: Figma position casing mismatch
+#     Figma documents: 'BottomStart', 'BottomEnd' (capital B)
+#     TypeScript type:  'bottomStart', 'bottomEnd' (lowercase b)
+#     Impact: Typing the Figma-documented value gives a TypeScript error.
+#     Expected fix: Figma spec should be updated to lowercase camelCase.
+#
+# ─── Default values ─────────────────────────────────────────────────────────────
+#
+#   trigger: 'hover'   delay: 200   arrow: true   side: 'top'   align: 'center'
+
+section1: All positions (4 sides × 3 alignments = 12 combinations)
+- mount Tooltip with each of the 12 TooltipPosition values
+  positions: top, topStart, topEnd, bottom, bottomStart, bottomEnd,
+             left, leftStart, leftEnd, right, rightStart, rightEnd
+- all cells use open=true, trigger='manual' so tooltip popup is always visible
+- display as flexWrap row grid; each cell ~130×90 so the floating popup has space
+- trigger element inside each Tooltip is a small View with text label (position name)
+- NOTE: position names are Figma's TIP direction, not the POPUP side
+  (position='bottom' means POPUP appears ABOVE, side='top')
+
+section2: Arrow (tip) — true and false
+- mount two Tooltip cells with open=true, position='bottom', trigger='manual'
+  cell A: arrow={true}  — tip triangle visible
+  cell B: arrow={false} — tip triangle hidden
+- NOTE: Figma calls this prop 'tip'; native code prop is 'arrow' (BUG-TOOLTIP-1)
+- QA testers must use arrow={true|false}, NOT tip={true|false}
+- visual difference: presence or absence of the SVG triangle below the popup
+
+section3: Disabled tooltip
+- mount two Tooltip cells with trigger='click'
+  cell A: disabled={false} — open=true, popup visible
+  cell B: disabled={true}  — open=false/controlled, popup hidden
+- NOTE: Figma calls this prop 'disable'; native code prop is 'disabled' (BUG-TOOLTIP-2)
+- QA testers must use disabled={true|false}, NOT disable={true|false}
+- Disabled tooltip: popup never appears; no onOpenChange fires on press
+
+section4: Controlled open state
+- mount three Tooltip cells with position='bottom'
+  cell A: open={true}       — controlled, popup permanently visible
+  cell B: open={false}      — controlled, popup permanently hidden
+  cell C: defaultOpen={true} — uncontrolled, popup shown on mount, interactive
+- all cells use trigger='manual' for cells A and B (static visual capture)
+- cell C uses trigger='click' to verify interactive toggle still works
+
+section5: With maxWidth (multiline content)
+- mount two Tooltip cells with open=true, position='bottom', trigger='manual'
+  cell A: no maxWidth — short single-line content "Short tooltip"
+  cell B: maxWidth={160} — long content "This is a longer tooltip that wraps to multiple lines"
+- multiline=true activates when maxWidth is set (tooltipContentToAccessibilityLabel)
+- cell B popup body should visibly wrap text across two or more lines
+
+section6: Subtle motion
+- mount two Tooltip cells with open=true, position='bottom', trigger='manual'
+  cell A: subtle={false} (default) — standard entrance animation path
+  cell B: subtle={true}            — reduced-motion path (opacity-only, no translate)
+- NOTE: motion itself is not capturable by screenshot; static appearance should
+  be identical. This section tests visual parity at the settled (opacity=1) state.
+- Applitools baseline: both cells should look visually identical when open.

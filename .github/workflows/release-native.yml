@@ -1,0 +1,219 @@
+name: Release Native
+
+# Packs the three publishable React Native packages in dependency order
+# (@oneui/shared → @oneui/tokens → @oneui/ui-native) via tsup, then — when
+# dryRun is unchecked — DEPLOYS them to BOTH targets:
+#   1. the JIO-DS-OneUI-Native Azure DevOps Artifacts feed, and
+#   2. the JFrog Artifactory npm repository.
+#
+# Manual-only: the sole trigger is workflow_dispatch. There is intentionally
+# NO `pull_request` or `push` trigger, so opening/updating a PR (or pushing to
+# any branch) never starts this workflow — it runs only via the "Run workflow"
+# button in the Actions tab (or an explicit API/CLI dispatch).
+#
+# Run-mode gate (checked once at the start):
+#   dryRun = true  (default) → pack + upload artifact only. No deploy.
+#   dryRun = false           → pack, then deploy to Azure + JFrog.
+#
+# This workflow lives inside the repo, so there is no GitHub clone step —
+# actions/checkout brings the source from the ref the workflow was dispatched
+# against. Pick the branch/tag in the "Run workflow" dropdown.
+#
+# ─────────────────────────────────────────────────────────────────────────
+# Credential handling:
+#   AZURE_DEVOPS_PAT — GitHub Actions secret (Azure feed). Used only on `main`.
+#   JFROG_*          — ⚠ TEMPORARILY inline in the env block below, per request.
+#                      This is insecure: anyone with repo read access (and the
+#                      whole git history, permanently) can read the token, and
+#                      GitHub secret-scanning will likely flag it. DO NOT commit
+#                      a real token to a shared branch. Harden by swapping the
+#                      inline value for `${{ secrets.JFROG_ACCESS_TOKEN }}`
+#                      (or JFrog GitHub OIDC) when ready.
+# ─────────────────────────────────────────────────────────────────────────
+
+on:
+  workflow_dispatch:
+    inputs:
+      dryRun:
+        description: 'Pack only — do not deploy (uncheck to deploy to Azure + JFrog)'
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+
+env:
+  NPM_REGISTRY_URL: https://jio-dsp.pkgs.visualstudio.com/_packaging/JIO-DS-OneUI-Native/npm/registry/
+  # ↓↓↓ JFrog config — FILL IN (inline for now; move to secrets before real use) ↓↓↓
+  JFROG_REGISTRY_HOST: 'your-org.jfrog.io'       # host only, no protocol / path
+  JFROG_NPM_REPO: 'oneui-npm'                     # the Artifactory npm repo key
+  JFROG_ACCESS_TOKEN: 'PASTE_JFROG_TOKEN_HERE'    # ⚠ identity/access token — do NOT commit a real one
+  JFROG_NPM_SCOPE: '@oneui'
+  # ↑↑↑ JFrog config ↑↑↑
+
+jobs:
+  release-native:
+    name: Build & deploy @oneui/ui-native
+    runs-on: [self-hosted, linux]
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Run-mode check at the start: announce up front whether this run will
+      # deploy or just pack, so the intent is obvious in the logs.
+      - name: Resolve run mode
+        run: |
+          set -euo pipefail
+          if [ "${{ inputs.dryRun }}" = "true" ]; then
+            echo "::notice::DRY RUN — packing tarballs only. Nothing will be deployed to Azure or JFrog."
+          else
+            echo "::notice::DEPLOY RUN — tarballs will be deployed to Azure (main only) + JFrog after packing."
+          fi
+
+      - name: Use Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Enable pnpm
+        run: |
+          set -euo pipefail
+          corepack enable
+          corepack prepare pnpm@9.15.9 --activate
+          node --version
+          pnpm --version
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      # Release-readiness gates (fail fast, before the heavier build):
+      #   - export/gating contract (folder ⇄ barrel ⇄ gated ⇄ KB status/name)
+      #   - version hygiene (no wip/test leakage; docs ⇄ package agree)
+      #   - docs completeness (every public component has a usage doc)
+      #   - README component table is up to date
+      # These also run inside `build`, but a dedicated step surfaces failures
+      # clearly in the CI UI.
+      - name: Verify release gates
+        run: pnpm --filter @oneui/ui-native run check:release
+
+      # Builds + packs the three publishable native packages in dependency
+      # order (@oneui/shared → @oneui/tokens → @oneui/ui-native) via tsup.
+      # No brand CSS / Convex is involved for React Native.
+      - name: Build release tarballs
+        env:
+          NODE_OPTIONS: '--max-old-space-size=8192'
+        run: |
+          set -euo pipefail
+          echo "Running build:pack for @oneui/ui-native"
+          pnpm --filter @oneui/ui-native run build:pack
+          echo "Produced tarball:"
+          ls -la dist/packages/ui-native/*.tgz
+
+      - name: Upload release tarball artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: oneui-native-release
+          path: dist/packages/ui-native/*.tgz
+          if-no-files-found: error
+          # GitHub only supports day-granular retention (min 1 day); keep the
+          # shortest window so the shared storage quota recovers quickly.
+          retention-days: 1
+
+      - name: Dry-run summary
+        if: inputs.dryRun == true
+        run: |
+          set -euo pipefail
+          echo "Dry run enabled. Tarball was packed and uploaded as the oneui-native-release artifact. No deploy."
+          ls -la dist/packages/ui-native/*.tgz
+
+      # ── DEPLOY TARGET 1: Azure DevOps Artifacts feed ──────────────────────
+      # Only the default branch publishes to the feed. Any other branch/tag
+      # packs (earlier steps) but skips publish, so feature branches can be
+      # validated end-to-end without polluting the feed.
+      - name: Publish tarballs to JIO-DS-OneUI-Native feed
+        if: inputs.dryRun == false
+        env:
+          AZURE_DEVOPS_PAT: ${{ secrets.AZURE_DEVOPS_PAT }}
+        run: |
+          set -euo pipefail
+
+          if [ "${{ github.ref_name }}" != "main" ]; then
+            echo "::warning::ref is '${{ github.ref_name }}', not 'main' — skipping Azure publish."
+            exit 0
+          fi
+
+          if [ -z "${AZURE_DEVOPS_PAT:-}" ]; then
+            echo "::error::AZURE_DEVOPS_PAT is empty — add it under repo Settings → Secrets → Actions."
+            exit 1
+          fi
+
+          B64=$(printf '%s' "$AZURE_DEVOPS_PAT" | base64 -w 0)
+          REG="//jio-dsp.pkgs.visualstudio.com/_packaging/JIO-DS-OneUI-Native/npm/registry/"
+          BASE="//jio-dsp.pkgs.visualstudio.com/_packaging/JIO-DS-OneUI-Native/npm/"
+          cat > "$HOME/.npmrc" <<EOF
+          @oneui:registry=${NPM_REGISTRY_URL}
+          always-auth=true
+          ${REG}:username=AzureDevOps
+          ${REG}:_password=${B64}
+          ${REG}:email=ci@noreply.local
+          ${BASE}:username=AzureDevOps
+          ${BASE}:_password=${B64}
+          ${BASE}:email=ci@noreply.local
+          EOF
+          chmod 600 "$HOME/.npmrc"
+
+          for tgz in dist/packages/*/*.tgz; do
+            echo "Publishing $tgz"
+            # Prereleases (0.1.0-alpha.x) publish under the "alpha" dist-tag so
+            # they don't become the default "latest" consumers install.
+            npm publish "$tgz" --registry="${NPM_REGISTRY_URL}" --access=restricted --tag=alpha
+          done
+
+      # ── DEPLOY TARGET 2: JFrog Artifactory ────────────────────────────────
+      # Runs on any branch (gated only by dryRun) so JFrog can be validated
+      # from feature branches. Writes a JFrog-scoped ~/.npmrc, verifies
+      # connectivity/auth, then publishes.
+      - name: Write ~/.npmrc for JFrog Artifactory
+        if: inputs.dryRun == false
+        run: |
+          set -euo pipefail
+          if [ "${JFROG_ACCESS_TOKEN}" = "PASTE_JFROG_TOKEN_HERE" ] || [ -z "${JFROG_ACCESS_TOKEN}" ]; then
+            echo "::error::JFROG_ACCESS_TOKEN is not set — edit the env block in release-native.yml."
+            exit 1
+          fi
+          REG="//${JFROG_REGISTRY_HOST}/artifactory/api/npm/${JFROG_NPM_REPO}/"
+          cat > "$HOME/.npmrc" <<EOF
+          ${JFROG_NPM_SCOPE}:registry=https:${REG}
+          always-auth=true
+          ${REG}:_authToken=${JFROG_ACCESS_TOKEN}
+          EOF
+          chmod 600 "$HOME/.npmrc"
+          echo "Wrote ~/.npmrc targeting https:${REG}"
+
+      # Cross-check: `npm ping` confirms the JFrog repo is reachable and the
+      # token is accepted; `npm whoami` confirms the resolved identity. These
+      # prove connectivity + auth, NOT deploy rights — only the publish below
+      # proves the token has "Deploy/Cache" permission on the repo.
+      - name: Verify JFrog connectivity & auth
+        if: inputs.dryRun == false
+        run: |
+          set -euo pipefail
+          REG="https://${JFROG_REGISTRY_HOST}/artifactory/api/npm/${JFROG_NPM_REPO}/"
+          echo "Pinging ${REG}"
+          npm ping --registry="${REG}"
+          echo "Authenticated as:"
+          npm whoami --registry="${REG}" || echo "::warning::whoami failed — token may be deploy-only or lack a read identity."
+
+      - name: Deploy tarballs to JFrog
+        if: inputs.dryRun == false
+        run: |
+          set -euo pipefail
+          REG="https://${JFROG_REGISTRY_HOST}/artifactory/api/npm/${JFROG_NPM_REPO}/"
+          for tgz in dist/packages/*/*.tgz; do
+            echo "Deploying $tgz → ${REG}"
+            # Prereleases (0.1.0-alpha.x) go under the "alpha" dist-tag so they
+            # don't become the default "latest" consumers install.
+            npm publish "$tgz" --registry="${REG}" --tag=alpha
+          done

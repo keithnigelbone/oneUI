@@ -1,0 +1,198 @@
+/**
+ * ProjectCard — Project list card styles
+ */
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-3-5);
+  padding: var(--Spacing-3-5) var(--Spacing-4) var(--Spacing-4);
+  background: var(--Surface-Elevated);
+  border-radius: var(--Shape-4-5);
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+  cursor: pointer;
+  transition: background-color var(--Duration-XS) var(--Motion-Easing-Transition),
+              border-color var(--Duration-XS) var(--Motion-Easing-Transition);
+}
+
+.card:hover {
+  background: var(--Surface-Elevated);
+  border-color: var(--Text-Low);
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--Spacing-3-5);
+}
+
+.headerRight {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-2);
+  flex-shrink: 0;
+}
+
+.typeBadge {
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  padding: var(--Spacing-1) var(--Spacing-2);
+  border-radius: var(--Shape-3-5);
+  white-space: nowrap;
+}
+
+.typeBadge[data-type='single'] {
+  background: var(--Informative-Subtle, var(--Neutral-Subtle));
+  color: var(--Informative-TintedA11y, var(--Text-Medium));
+}
+
+.typeBadge[data-type='campaign'] {
+  background: var(--Primary-Subtle, var(--Neutral-Subtle));
+  color: var(--Primary-TintedA11y, var(--Text-Medium));
+}
+
+.menuWrapper {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.menuDropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  z-index: 10;
+  min-width: 140px;
+  padding: var(--Spacing-1-5) 0;
+  background: var(--Surface-Elevated);
+  border-radius: var(--Shape-4);
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+  box-shadow: var(--Elevation-2);
+}
+
+.menuItem {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-3);
+  width: 100%;
+  padding: var(--Spacing-2) var(--Spacing-3-5);
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  color: var(--Text-High);
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  transition: background-color var(--Duration-XS) var(--Motion-Easing-Transition);
+}
+
+.menuItem:hover {
+  background: var(--Surface-Minimal);
+}
+
+.menuItemDanger {
+  color: var(--Status-Error);
+}
+
+.menuItemDanger:hover {
+  background: var(--Status-Error-Subtle);
+}
+
+.name {
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Body-M-FontSize);
+  font-weight: var(--Body-FontWeight-High);
+  line-height: var(--Body-M-LineHeight);
+  color: var(--Text-High);
+  margin: 0;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.description {
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Body-M-FontSize);
+  line-height: var(--Body-M-LineHeight);
+  color: var(--Text-Medium);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--Spacing-3-5);
+}
+
+.platforms {
+  display: flex;
+  gap: var(--Spacing-2);
+  flex-wrap: wrap;
+}
+
+.platformBadge {
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  padding: var(--Spacing-1) var(--Spacing-2);
+  background: var(--Surface-Ghost, var(--Surface-Minimal));
+  color: var(--Text-Medium);
+  border-radius: var(--Shape-3-5);
+}
+
+.meta {
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  color: var(--Text-Low);
+  white-space: nowrap;
+}
+
+/* New project card */
+.newCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--Spacing-3-5);
+  padding: var(--Spacing-6);
+  background: transparent;
+  border-radius: var(--Shape-4-5);
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+  cursor: pointer;
+  transition: background-color var(--Duration-XS) var(--Motion-Easing-Transition),
+              border-color var(--Duration-XS) var(--Motion-Easing-Transition);
+  min-height: 160px;
+}
+
+.newCard:hover {
+  background: var(--Surface-Minimal);
+  border-color: var(--Text-Medium);
+}
+
+.newCardIcon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--Shape-Pill);
+  background: var(--Surface-Elevated);
+  color: var(--Text-Medium);
+}
+
+.newCardLabel {
+  font-family: var(--Title-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Title-S-FontSize);
+  font-weight: var(--Body-FontWeight-High);
+  line-height: var(--Title-S-LineHeight);
+  color: var(--Text-Medium);
+}

@@ -1,0 +1,255 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "PrimaryNav",
+  "generatedAt": "2026-07-09T13:07:37.432Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "HeaderNative chrome row — logo/back (startSlot), optional title/search, end actions (endSlot), optional avatar (avatarSlot). No children slot."
+  },
+  "compositionRules": {
+    "requires": [],
+    "allows": [],
+    "forbids": [],
+    "childKind": "leaf"
+  },
+  "props": [
+    {
+      "name": "type",
+      "type": "'homeBar' | 'contextBar' | 'searchBar'",
+      "required": false,
+      "defaultValue": "homeBar",
+      "description": ""
+    },
+    {
+      "name": "expanded",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": "Two-row layout with a Headline/L title on row two. Requires titleContent."
+    },
+    {
+      "name": "start",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "true",
+      "description": "Show the start slot."
+    },
+    {
+      "name": "end",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "true",
+      "description": "Show the end slot."
+    },
+    {
+      "name": "endActions",
+      "type": "'Button' | 'IconButton'",
+      "required": false,
+      "description": "Instance-swap hint for the end slot content type."
+    },
+    {
+      "name": "avatar",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": "Show the avatar in the end area — requires avatarSlot."
+    },
+    {
+      "name": "secondaryText",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": "contextBar only — show secondaryTextContent."
+    },
+    {
+      "name": "searchInput",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": "homeBar only — inline search pill in the middle row."
+    },
+    {
+      "name": "startSlot",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Start slot content — logo, back button, etc."
+    },
+    {
+      "name": "endSlot",
+      "type": "ReactNode",
+      "required": false,
+      "description": "End slot content — IconButtons / Buttons."
+    },
+    {
+      "name": "avatarSlot",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Avatar element when avatar=true."
+    },
+    {
+      "name": "titleContent",
+      "type": "string",
+      "required": false,
+      "description": "contextBar collapsed — Title/M inline; expanded (any type) — Headline/L on row two."
+    },
+    {
+      "name": "secondaryTextContent",
+      "type": "string",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "searchPlaceholder",
+      "type": "string",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "searchValue",
+      "type": "string",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "searchAriaLabel",
+      "type": "string",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "searchEndSlot",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Trailing slot inside the searchBar Input (default: microphone)."
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.kb.rn.PrimaryNav",
+    "type": "object",
+    "properties": {
+      "type": {
+        "enum": [
+          "homeBar",
+          "contextBar",
+          "searchBar"
+        ],
+        "default": "homeBar"
+      },
+      "expanded": {
+        "type": "boolean",
+        "default": false,
+        "description": "Two-row layout with a Headline/L title on row two. Requires titleContent."
+      },
+      "start": {
+        "type": "boolean",
+        "default": true,
+        "description": "Show the start slot."
+      },
+      "end": {
+        "type": "boolean",
+        "default": true,
+        "description": "Show the end slot."
+      },
+      "endActions": {
+        "enum": [
+          "Button",
+          "IconButton"
+        ],
+        "description": "Instance-swap hint for the end slot content type."
+      },
+      "avatar": {
+        "type": "boolean",
+        "default": false,
+        "description": "Show the avatar in the end area — requires avatarSlot."
+      },
+      "secondaryText": {
+        "type": "boolean",
+        "default": false,
+        "description": "contextBar only — show secondaryTextContent."
+      },
+      "searchInput": {
+        "type": "boolean",
+        "default": false,
+        "description": "homeBar only — inline search pill in the middle row."
+      },
+      "startSlot": {
+        "description": "Start slot content — logo, back button, etc."
+      },
+      "endSlot": {
+        "description": "End slot content — IconButtons / Buttons."
+      },
+      "avatarSlot": {
+        "description": "Avatar element when avatar=true."
+      },
+      "titleContent": {
+        "type": "string",
+        "description": "contextBar collapsed — Title/M inline; expanded (any type) — Headline/L on row two."
+      },
+      "secondaryTextContent": {
+        "type": "string"
+      },
+      "searchPlaceholder": {
+        "type": "string"
+      },
+      "searchValue": {
+        "type": "string"
+      },
+      "searchAriaLabel": {
+        "type": "string"
+      },
+      "searchEndSlot": {
+        "description": "Trailing slot inside the searchBar Input (default: microphone)."
+      }
+    }
+  },
+  "tokens": {
+    "color": [
+      "neutral",
+      "primary"
+    ],
+    "typography": [
+      "title.M",
+      "headline.L"
+    ]
+  },
+  "a11y": {
+    "accessibilityRole": "none",
+    "accessibleNameSource": "aria-label",
+    "minTouchTarget": 44,
+    "honorsBoldText": true,
+    "honorsScreenReader": true
+  },
+  "renderHints": {
+    "baseElement": "View",
+    "animatedOn": [],
+    "honorsReduceMotion": false,
+    "readsFromSurfaceContext": true
+  },
+  "figma": {
+    "componentKey": "jds-header-native-primarynav-v1",
+    "keyHistory": [],
+    "variantProperties": {
+      "Component": "HeaderNative.PrimaryNav"
+    }
+  },
+  "codeSnippets": [
+    {
+      "id": "import-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { PrimaryNav } from '@oneui/ui-native';\n\n<PrimaryNav />"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "primarynav",
+    "navigation",
+    "header",
+    "app-shell",
+    "compound"
+  ],
+  "importPath": "@oneui/ui-native"
+}

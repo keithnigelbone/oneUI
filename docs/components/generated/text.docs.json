@@ -1,0 +1,527 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Text",
+  "generatedAt": "2026-01-01T00:00:00.000Z",
+  "machineReadable": true,
+  "intentAndPurpose": {
+    "intent": {
+      "value": "Inline / block text. Six typography roles with role-specific size scales, canonical multi-accent appearance, attention levels, italic / underline / strikethrough, latin / multi-script font fallback, and line-clamp truncation. Defaults to `span`; set `as` for headings or anchors. When using the `text` prop with the `link` slot, avoid `aria-hidden` on the root unless the link is decorative — the slot remains focusable.",
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "taskContexts": {
+      "value": [],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "sentiments": {
+      "value": [
+        "neutral"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "compositionRules": {
+    "requires": {
+      "value": [],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "allows": {
+      "value": [
+        "link"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "forbids": {
+      "value": [],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "display",
+        "useWhen": {
+          "value": [
+            "Display"
+          ],
+          "attribution": {
+            "source": "inferred"
+          }
+        }
+      },
+      {
+        "name": "headline",
+        "useWhen": {
+          "value": [
+            "Headline"
+          ],
+          "attribution": {
+            "source": "inferred"
+          }
+        }
+      },
+      {
+        "name": "title",
+        "useWhen": {
+          "value": [
+            "Title"
+          ],
+          "attribution": {
+            "source": "inferred"
+          }
+        }
+      },
+      {
+        "name": "body",
+        "useWhen": {
+          "value": [
+            "Body"
+          ],
+          "attribution": {
+            "source": "inferred"
+          }
+        }
+      },
+      {
+        "name": "label",
+        "useWhen": {
+          "value": [
+            "Label"
+          ],
+          "attribution": {
+            "source": "inferred"
+          }
+        }
+      },
+      {
+        "name": "code",
+        "useWhen": {
+          "value": [
+            "Code"
+          ],
+          "attribution": {
+            "source": "inferred"
+          }
+        }
+      }
+    ]
+  },
+  "relationshipsAndDependencies": {
+    "related": {
+      "value": [],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "contextSignals": {
+    "density": {
+      "value": [
+        "compact",
+        "default",
+        "open"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "modality": {
+      "value": [
+        "desktop",
+        "mobile"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "brand": {
+      "value": [
+        "theme-scope aware",
+        "recipe-driven"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "mode": {
+      "value": [
+        "light",
+        "dark",
+        "surface-context"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "observabilityHooks": {
+    "track": {
+      "value": [],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "health": {
+      "value": [
+        "a11y_violations"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "props": [
+    {
+      "name": "appearance",
+      "type": "TextAppearance",
+      "required": false,
+      "description": "appearance property"
+    },
+    {
+      "name": "aria-hidden",
+      "type": "boolean",
+      "required": false,
+      "description": "aria-hidden property"
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": false,
+      "description": "aria-label property"
+    },
+    {
+      "name": "as",
+      "type": "ElementType",
+      "required": false,
+      "description": "as property"
+    },
+    {
+      "name": "attention",
+      "type": "TextAttention",
+      "required": false,
+      "description": "attention property"
+    },
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "required": false,
+      "description": "children property"
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "required": false,
+      "description": "className property"
+    },
+    {
+      "name": "href",
+      "type": "string",
+      "required": false,
+      "description": "When `as=\"a\"`, passed through to the anchor element."
+    },
+    {
+      "name": "id",
+      "type": "string",
+      "required": false,
+      "description": "Stable document id — for `aria-labelledby` / skip-link targets on headings."
+    },
+    {
+      "name": "italic",
+      "type": "boolean",
+      "required": false,
+      "description": "italic property"
+    },
+    {
+      "name": "lang",
+      "type": "string",
+      "required": false,
+      "description": "BCP 47 language tag. Also enables matching `:lang(...)` script context."
+    },
+    {
+      "name": "language",
+      "type": "TextLanguage",
+      "required": false,
+      "description": "language property"
+    },
+    {
+      "name": "link",
+      "type": "ReactNode",
+      "required": false,
+      "description": "link property"
+    },
+    {
+      "name": "maxLines",
+      "type": "number",
+      "required": false,
+      "description": "maxLines property"
+    },
+    {
+      "name": "rel",
+      "type": "string",
+      "required": false,
+      "description": "rel property"
+    },
+    {
+      "name": "script",
+      "type": "TextScript",
+      "required": false,
+      "description": "Explicit script override when language inference is insufficient."
+    },
+    {
+      "name": "scriptMode",
+      "type": "TextScriptMode",
+      "required": false,
+      "description": "`ui` uses compact UI fonts; `reading` switches to reading fonts + roomier line-height."
+    },
+    {
+      "name": "size",
+      "type": "TextSizeBody",
+      "required": false,
+      "description": "size property"
+    },
+    {
+      "name": "strikethrough",
+      "type": "boolean",
+      "required": false,
+      "description": "strikethrough property"
+    },
+    {
+      "name": "style",
+      "type": "CSSProperties",
+      "required": false,
+      "description": "style property"
+    },
+    {
+      "name": "tabIndex",
+      "type": "number",
+      "required": false,
+      "description": "Native tab order override when the text node must participate in focus management."
+    },
+    {
+      "name": "target",
+      "type": "string",
+      "required": false,
+      "description": "target property"
+    },
+    {
+      "name": "text",
+      "type": "string",
+      "required": false,
+      "description": "text property"
+    },
+    {
+      "name": "textAlign",
+      "type": "TextAlign",
+      "required": false,
+      "description": "textAlign property"
+    },
+    {
+      "name": "underline",
+      "type": "boolean",
+      "required": false,
+      "description": "underline property"
+    },
+    {
+      "name": "variant",
+      "type": "'body'",
+      "required": false,
+      "description": "variant property"
+    },
+    {
+      "name": "weight",
+      "type": "TextWeight",
+      "required": false,
+      "description": "weight property"
+    }
+  ],
+  "slots": [
+    {
+      "name": "link",
+      "types": [],
+      "tokens": []
+    }
+  ],
+  "propsSchema": {
+    "$id": "jds.docs.text",
+    "type": "object",
+    "properties": {
+      "appearance": {
+        "enum": [
+          "auto",
+          "primary",
+          "secondary",
+          "neutral",
+          "sparkle",
+          "brand-bg",
+          "positive",
+          "negative",
+          "warning",
+          "informative"
+        ],
+        "description": "appearance property"
+      },
+      "aria-hidden": {
+        "type": "boolean",
+        "description": "aria-hidden property"
+      },
+      "aria-label": {
+        "type": "string",
+        "description": "aria-label property"
+      },
+      "as": {
+        "description": "as property"
+      },
+      "attention": {
+        "enum": [
+          "none",
+          "high",
+          "medium",
+          "low",
+          "tintedA11y"
+        ],
+        "description": "attention property"
+      },
+      "children": {
+        "description": "children property"
+      },
+      "className": {
+        "type": "string",
+        "description": "className property"
+      },
+      "href": {
+        "type": "string",
+        "description": "When `as=\"a\"`, passed through to the anchor element."
+      },
+      "id": {
+        "type": "string",
+        "description": "Stable document id — for `aria-labelledby` / skip-link targets on headings."
+      },
+      "italic": {
+        "type": "boolean",
+        "description": "italic property"
+      },
+      "lang": {
+        "type": "string",
+        "description": "BCP 47 language tag. Also enables matching `:lang(...)` script context."
+      },
+      "language": {
+        "enum": [
+          "latin",
+          "others"
+        ],
+        "description": "language property"
+      },
+      "link": {
+        "description": "link property"
+      },
+      "maxLines": {
+        "type": "number",
+        "description": "maxLines property"
+      },
+      "rel": {
+        "type": "string",
+        "description": "rel property"
+      },
+      "script": {
+        "enum": [
+          "devanagari",
+          "bengali",
+          "gujarati",
+          "gurmukhi",
+          "kannada",
+          "malayalam",
+          "oriya",
+          "tamil",
+          "telugu",
+          "arabic"
+        ],
+        "description": "Explicit script override when language inference is insufficient."
+      },
+      "scriptMode": {
+        "enum": [
+          "ui",
+          "reading"
+        ],
+        "description": "`ui` uses compact UI fonts; `reading` switches to reading fonts + roomier line-height."
+      },
+      "size": {
+        "description": "size property"
+      },
+      "strikethrough": {
+        "type": "boolean",
+        "description": "strikethrough property"
+      },
+      "style": {
+        "description": "style property"
+      },
+      "tabIndex": {
+        "type": "number",
+        "description": "Native tab order override when the text node must participate in focus management."
+      },
+      "target": {
+        "type": "string",
+        "description": "target property"
+      },
+      "text": {
+        "type": "string",
+        "description": "text property"
+      },
+      "textAlign": {
+        "enum": [
+          "left",
+          "center",
+          "right"
+        ],
+        "description": "textAlign property"
+      },
+      "underline": {
+        "type": "boolean",
+        "description": "underline property"
+      },
+      "variant": {
+        "enum": [
+          "display",
+          "headline",
+          "title",
+          "body",
+          "label",
+          "code"
+        ],
+        "description": "variant property"
+      },
+      "weight": {
+        "enum": [
+          "high",
+          "medium",
+          "low"
+        ],
+        "description": "weight property"
+      }
+    }
+  },
+  "codeSnippets": [
+    {
+      "id": "text-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { Text } from '@oneui/ui';\n\n<Text />"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "text"
+  ],
+  "generatedMarkdown": "# Text Machine-Readable Documentation\n\n_Generated from source metadata. Do not edit manually._\n\n## Intent and Purpose\n\n- **Intent**: Inline / block text. Six typography roles with role-specific size scales, canonical multi-accent appearance, attention levels, italic / underline / strikethrough, latin / multi-script font fallback, and line-clamp truncation. Defaults to `span`; set `as` for headings or anchors. When using the `text` prop with the `link` slot, avoid `aria-hidden` on the root unless the link is decorative — the slot remains focusable.\n- **Task contexts**: \n- **Sentiments**: neutral\n\n## Composition Rules\n\n- **Requires**: \n- **Allows**: link\n- **Forbids**: \n\n## Variant Logic\n\n- **display**: use when Display\n- **headline**: use when Headline\n- **title**: use when Title\n- **body**: use when Body\n- **label**: use when Label\n- **code**: use when Code\n\n## Relationships and Dependencies\n\n- **Related**: \n- **Escalates to**: -\n- **Degrades to**: -\n- **Groups with**: -\n\n## Context Signals\n\n- **Density**: compact, default, open\n- **Modality**: desktop, mobile\n- **Brand**: theme-scope aware, recipe-driven\n- **Mode**: light, dark, surface-context\n\n## Observability Hooks\n\n- **Track**: \n- **Health**: a11y_violations\n\n## Props\n\n| Prop | Type | Required | Default | Description |\n| --- | --- | --- | --- | --- |\n| `appearance` | `TextAppearance` | No | - | appearance property |\n| `aria-hidden` | `boolean` | No | - | aria-hidden property |\n| `aria-label` | `string` | No | - | aria-label property |\n| `as` | `ElementType` | No | - | as property |\n| `attention` | `TextAttention` | No | - | attention property |\n| `children` | `ReactNode` | No | - | children property |\n| `className` | `string` | No | - | className property |\n| `href` | `string` | No | - | When `as=\"a\"`, passed through to the anchor element. |\n| `id` | `string` | No | - | Stable document id — for `aria-labelledby` / skip-link targets on headings. |\n| `italic` | `boolean` | No | - | italic property |\n| `lang` | `string` | No | - | BCP 47 language tag. Also enables matching `:lang(...)` script context. |\n| `language` | `TextLanguage` | No | - | language property |\n| `link` | `ReactNode` | No | - | link property |\n| `maxLines` | `number` | No | - | maxLines property |\n| `rel` | `string` | No | - | rel property |\n| `script` | `TextScript` | No | - | Explicit script override when language inference is insufficient. |\n| `scriptMode` | `TextScriptMode` | No | - | `ui` uses compact UI fonts; `reading` switches to reading fonts + roomier line-height. |\n| `size` | `TextSizeBody` | No | - | size property |\n| `strikethrough` | `boolean` | No | - | strikethrough property |\n| `style` | `CSSProperties` | No | - | style property |\n| `tabIndex` | `number` | No | - | Native tab order override when the text node must participate in focus management. |\n| `target` | `string` | No | - | target property |\n| `text` | `string` | No | - | text property |\n| `textAlign` | `TextAlign` | No | - | textAlign property |\n| `underline` | `boolean` | No | - | underline property |\n| `variant` | `'body'` | No | - | variant property |\n| `weight` | `TextWeight` | No | - | weight property |\n\n## Slots\n\n| Slot | Types | Tokens |\n| --- | --- | --- |\n| `link` |  |  |\n\n## Code Snippets\n\n### Basic Usage\n\n```tsx\nimport { Text } from '@oneui/ui';\n\n<Text />\n```\n"
+}

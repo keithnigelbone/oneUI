@@ -1,0 +1,30 @@
+import React, { forwardRef } from 'react';
+import type { IconComponentProps } from '../iconProps';
+
+export const IcSunnyMostlyCloudyShowers = forwardRef<SVGSVGElement, IconComponentProps>(function IcSunnyMostlyCloudyShowers(
+  { size = 24, width, height, color = 'currentColor', className, style, ...props },
+  ref,
+) {
+  const dim = width ?? height ?? size;
+  return (
+    <svg
+      ref={ref}
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      width={width ?? dim}
+      height={height ?? dim}
+      color={color}
+      className={className}
+      style={style}
+      {...props}
+    >
+      <path
+            fill="currentColor"
+            d="M6.94 4.33c.12.54.65.88 1.19.76s.88-.65.76-1.19l-.22-.98a.996.996 0 0 0-1.19-.76c-.54.12-.88.65-.76 1.19zM3.9 9.1l-.98.22c-.54.12-.88.65-.76 1.19s.65.88 1.19.76l.98-.22c.54-.12.88-.65.76-1.19A.996.996 0 0 0 3.9 9.1m1.42-3.64-.84-.54a.994.994 0 0 0-1.38.31c-.3.47-.16 1.08.31 1.38l.84.54c.47.3 1.08.16 1.38-.31s.16-1.08-.31-1.38m5.83.16c.47.3 1.08.16 1.38-.31l.54-.84c.3-.47.16-1.08-.31-1.38a.994.994 0 0 0-1.38.31l-.54.84c-.3.47-.16 1.08.31 1.38m-.28 1.62c.09-.11.19-.21.29-.31A2.99 2.99 0 0 0 6 9c0 .61.18 1.17.49 1.64.7-1.86 2.37-3.22 4.38-3.4m8.9 3.26c-.41-2-2.12-3.51-4.17-3.51-1.6 0-2.97.93-3.71 2.28-.18-.03-.37-.06-.56-.06-1.77 0-3.2 1.49-3.2 3.33-1.18 0-2.13.99-2.13 2.22s.96 2.22 2.13 2.22H18.8c1.77 0 3.2-1.49 3.2-3.33 0-1.49-.94-2.73-2.23-3.16zM9.2 18.4l-1.5 2c-.33.44-.24 1.07.2 1.4.18.13.39.2.6.2.3 0 .6-.14.8-.4l1.5-2c.33-.44.24-1.07-.2-1.4s-1.07-.24-1.4.2m4 0-1.5 2c-.33.44-.24 1.07.2 1.4.18.13.39.2.6.2.3 0 .6-.14.8-.4l1.5-2c.33-.44.24-1.07-.2-1.4s-1.07-.24-1.4.2m4 0-1.5 2c-.33.44-.24 1.07.2 1.4.18.13.39.2.6.2.3 0 .6-.14.8-.4l1.5-2c.33-.44.24-1.07-.2-1.4s-1.07-.24-1.4.2"
+          />
+    </svg>
+  );
+});
+
+IcSunnyMostlyCloudyShowers.displayName = 'IcSunnyMostlyCloudyShowers';

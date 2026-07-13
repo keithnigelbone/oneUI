@@ -1,0 +1,309 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Text",
+  "generatedAt": "2026-07-09T13:07:37.401Z",
+  "machineReadable": true,
+  "status": "alpha",
+  "intentAndPurpose": {
+    "intent": "Typographic primitive. Reads --{Role}-{Size}-FontSize / LineHeight / FontWeight via useTypographyTokens. Every text element in OneUI must be authored through this component, not a raw <Text>."
+  },
+  "compositionRules": {
+    "requires": [
+      "variant",
+      "size",
+      "children"
+    ],
+    "allows": [],
+    "forbids": [],
+    "childKind": "leaf"
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "display"
+      },
+      {
+        "name": "headline"
+      },
+      {
+        "name": "title"
+      },
+      {
+        "name": "body"
+      },
+      {
+        "name": "label"
+      },
+      {
+        "name": "code"
+      }
+    ]
+  },
+  "props": [
+    {
+      "name": "variant",
+      "type": "'display' | 'headline' | 'title' | 'body' | 'label' | 'code'",
+      "required": true,
+      "description": ""
+    },
+    {
+      "name": "size",
+      "type": "ReactNode",
+      "required": true,
+      "description": "Variant-scoped size. Validator enforces the per-variant subset."
+    },
+    {
+      "name": "weight",
+      "type": "'high' | 'medium' | 'low'",
+      "required": false,
+      "defaultValue": "medium",
+      "description": "Only valid for variant ∈ {body, label, code}. Ignored otherwise (code coerces to medium)."
+    },
+    {
+      "name": "appearance",
+      "type": "'auto' | 'primary' | 'secondary' | 'neutral' | 'sparkle' | 'brand-bg' | 'positive' | 'negative' | 'warning' | 'informative'",
+      "required": false,
+      "defaultValue": "auto",
+      "description": ""
+    },
+    {
+      "name": "attention",
+      "type": "'high' | 'medium' | 'low' | 'tintedA11y'",
+      "required": false,
+      "defaultValue": "medium",
+      "description": "Content token slot. Resolves to --{Role}-{Attention} or --{Role}-Bold-{Attention} inside a bold Surface."
+    },
+    {
+      "name": "maxLines",
+      "type": "integer",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "required": true,
+      "description": "String or interpolated string nodes only."
+    },
+    {
+      "name": "fontSize",
+      "type": "ReactNode",
+      "required": false,
+      "description": "[error] Use `role` + `size` instead of fontSize. Raw font sizes break the brand cascade."
+    },
+    {
+      "name": "fontWeight",
+      "type": "ReactNode",
+      "required": false,
+      "description": "[error] Use `weight` (body/label/code variants) instead of fontWeight."
+    },
+    {
+      "name": "color",
+      "type": "string",
+      "required": false,
+      "description": "[error] Use `appearance` + `attention` (e.g. appearance=\"primary\" attention=\"high\"). Surface context handles dark / tinted backgrounds automatically."
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.kb.rn.Text",
+    "type": "object",
+    "properties": {
+      "variant": {
+        "enum": [
+          "display",
+          "headline",
+          "title",
+          "body",
+          "label",
+          "code"
+        ]
+      },
+      "size": {
+        "description": "Variant-scoped size. Validator enforces the per-variant subset.",
+        "oneOf": [
+          {
+            "enum": [
+              "L",
+              "M",
+              "S"
+            ]
+          },
+          {
+            "enum": [
+              "2XL",
+              "XL",
+              "L",
+              "M",
+              "S",
+              "XS",
+              "2XS"
+            ]
+          },
+          {
+            "enum": [
+              "2XL",
+              "XL",
+              "L",
+              "M",
+              "S",
+              "XS",
+              "2XS",
+              "3XS"
+            ]
+          }
+        ]
+      },
+      "weight": {
+        "enum": [
+          "high",
+          "medium",
+          "low"
+        ],
+        "default": "medium",
+        "description": "Only valid for variant ∈ {body, label, code}. Ignored otherwise (code coerces to medium)."
+      },
+      "appearance": {
+        "enum": [
+          "auto",
+          "primary",
+          "secondary",
+          "neutral",
+          "sparkle",
+          "brand-bg",
+          "positive",
+          "negative",
+          "warning",
+          "informative"
+        ],
+        "default": "auto"
+      },
+      "attention": {
+        "enum": [
+          "high",
+          "medium",
+          "low",
+          "tintedA11y"
+        ],
+        "default": "medium",
+        "description": "Content token slot. Resolves to --{Role}-{Attention} or --{Role}-Bold-{Attention} inside a bold Surface."
+      },
+      "maxLines": {
+        "type": "integer",
+        "minimum": 1
+      },
+      "children": {
+        "description": "String or interpolated string nodes only."
+      },
+      "fontSize": {
+        "not": {},
+        "x-jds-suggestion": "Use `role` + `size` instead of fontSize. Raw font sizes break the brand cascade.",
+        "x-jds-severity": "error"
+      },
+      "fontWeight": {
+        "not": {},
+        "x-jds-suggestion": "Use `weight` (body/label/code variants) instead of fontWeight.",
+        "x-jds-severity": "error"
+      },
+      "color": {
+        "type": "string",
+        "not": {
+          "anyOf": [
+            {
+              "pattern": "^#"
+            },
+            {
+              "pattern": "^rgba?\\("
+            },
+            {
+              "pattern": "^oklch\\("
+            }
+          ]
+        },
+        "x-jds-suggestion": "Use `appearance` + `attention` (e.g. appearance=\"primary\" attention=\"high\"). Surface context handles dark / tinted backgrounds automatically.",
+        "x-jds-severity": "error"
+      }
+    },
+    "required": [
+      "variant",
+      "size",
+      "children"
+    ]
+  },
+  "tokens": {
+    "color": [
+      "primary",
+      "secondary",
+      "tertiary",
+      "quaternary",
+      "neutral",
+      "sparkle",
+      "positive",
+      "negative",
+      "warning",
+      "informative"
+    ],
+    "typography": [
+      "display.L",
+      "display.M",
+      "display.S",
+      "headline.L",
+      "headline.M",
+      "headline.S",
+      "title.L",
+      "title.M",
+      "title.S",
+      "body.2XL",
+      "body.XL",
+      "body.L",
+      "body.M",
+      "body.S",
+      "body.XS",
+      "body.2XS",
+      "label.2XL",
+      "label.XL",
+      "label.L",
+      "label.M",
+      "label.S",
+      "label.XS",
+      "label.2XS",
+      "label.3XS",
+      "code.M",
+      "code.S",
+      "code.XS"
+    ]
+  },
+  "a11y": {
+    "accessibilityRole": "text",
+    "accessibleNameSource": "children",
+    "minTouchTarget": 44,
+    "honorsBoldText": true,
+    "honorsScreenReader": true
+  },
+  "renderHints": {
+    "baseElement": "Text",
+    "animatedOn": [],
+    "honorsReduceMotion": false,
+    "readsFromSurfaceContext": true
+  },
+  "figma": {
+    "componentKey": "jds-text-v4",
+    "keyHistory": []
+  },
+  "codeSnippets": [
+    {
+      "id": "import-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { Text } from '@oneui/ui-native';\n\n<Text />"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "text",
+    "typography",
+    "chassis"
+  ],
+  "importPath": "@oneui/ui-native"
+}

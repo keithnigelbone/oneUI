@@ -1,0 +1,57 @@
+---
+description: Build or update @oneui/ui-native components with web/Layers parity and full a11y
+globs: packages/ui-native/**/*
+alwaysApply: false
+---
+
+# ui-native component build
+
+**Full workflow:** [docs/native-component-build-playbook.md](../../docs/native-component-build-playbook.md)
+
+**Inventories:** [component-inventory.md](../../docs/component-inventory.md) · [component-interface-inventory.md](../../docs/component-interface-inventory.md) · [parity/README.md](../../docs/parity/README.md)
+
+## Authority
+
+| Priority | Source |
+| -------- | ------ |
+| 1 | `packages/ui/src/components/<Name>/*.shared.ts` + `.tsx` + `.module.css` (product API & behaviour) |
+| 2 | `packages/ui-native/src/components/<Name>/interface.ts` (native-owned contract) |
+| 3 | Layers `jds<name>-4` / `jds<name>` `generated/interface.ts` (Figma cross-check only) |
+
+## Non-negotiables
+
+- **Never** import props/state from `@oneui/ui/components/*/shared`.
+- **One file:** `interface.ts` = types + `use*State` + a11y helpers (no separate `*A11y.ts`).
+- **Spacing:** `tokens.spacing['4']`, `tokens.spacing['1-5']` — not `tokens.dimension.f*`, not t-shirt `M`/`5XS`.
+- **Color:** static geometry in `*.styles.native.ts`; brand paint inline via `useSurfaceTokens` — no literals (`pnpm check:literals`).
+- **Surface:** tinted backgrounds → `<Surface mode="…">`; no raw `View` with manual brand fills.
+- **Typography:** `useTypographyTokens` + role tokens; never hard-coded font sizes/weights.
+- **Button family:** reuse `src/utils/buttonStateBase.ts` for variant/appearance resolution.
+
+## Required files per component
+
+```
+interface.ts
+<Name>.native.tsx
+<Name>.styles.native.ts
+<Name>.showcase.native.tsx
+index.ts
+```
+
+Add `docs/parity/<name>-web-native-parity.md` and update `docs/parity/README.md`.
+
+## `interface.ts` must include
+
+- Types copied/adapted from web `.shared.ts` (`ViewStyle`, not `CSSProperties`).
+- RN: `testID`, `accessibilityHint`, and web-aligned `aria-*` where the web component has them.
+- `get<Name>AccessibilityProps()` + Vitest in `*A11y.test.ts` for interactive/decorative components.
+
+## Before finishing
+
+```bash
+pnpm --filter @oneui/ui-native typecheck
+pnpm check:literals
+pnpm check:parity
+```
+
+Verify in sample app on default surface and inside `<Surface mode="bold">`; smoke-test VoiceOver/TalkBack.

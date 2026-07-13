@@ -1,0 +1,124 @@
+/**
+ * Dialog.module.css
+ * Token-only styling for Dialog/AlertDialog component
+ * Verified by: pnpm check:literals
+ *
+ * INTENTIONAL-LITERAL: the default dialog width (600px) is a product-
+ * design size that fits typical form content without feeling oversized.
+ * Not expressible through the spacing/dimension token scale.
+ */
+
+/* Backdrop */
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: var(--Z-Index-Modal);
+  background-color: var(--Scrim);
+}
+
+.backdrop[data-ending-style] {
+  opacity: 0;
+  transition: opacity var(--Motion-Duration-Discreet-Medium) var(--Motion-Easing-Standard);
+}
+
+/* Popup */
+.popup {
+  box-sizing: border-box;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: var(--Z-Index-Modal);
+  transform: translate(-50%, -50%);
+  padding: var(--Spacing-5);
+  border-radius: var(--Shape-4-5);
+  background-color: var(--Surface-Elevated);
+  color: var(--Text-High);
+  box-shadow: var(--Elevation-4);
+  outline: var(--Stroke-M) solid var(--Border-Subtle);
+  transition: all var(--Motion-Duration-Expressive-Short) var(--Motion-Easing-Emphasized);
+}
+
+.popup[data-starting-style],
+.popup[data-ending-style] {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.95);
+}
+
+/* Sizes */
+.small {
+  width: var(--Dialog-Height-Medium);
+  max-width: calc(100vw - var(--Spacing-6));
+}
+
+.medium {
+  width: var(--Dialog-Height-Large);
+  max-width: calc(100vw - var(--Spacing-6));
+}
+
+/* INTENTIONAL-LITERAL: `.large` dialog width (600px) is the product-spec
+   size for content-heavy modals. Sibling sizes use --Dialog-Height-* tokens
+   but there's no matching --Dialog-Height-XL yet; using a token placeholder
+   would lie about the source. */
+.large {
+  width: 600px;
+  max-width: calc(100vw - var(--Spacing-6));
+}
+
+/* Title */
+.title {
+  font-size: var(--Headline-L-FontSize);
+  font-weight: var(--Body-FontWeight-High);
+  line-height: var(--Typography-LineHeight-Tight);
+  letter-spacing: var(--Typography-LetterSpacing-Tight);
+  color: var(--Text-High);
+  margin: 0 0 var(--Spacing-3) 0;
+}
+
+.small .title {
+  font-size: var(--Headline-M-FontSize);
+}
+
+/* Description */
+.description {
+  font-size: var(--Body-M-FontSize);
+  line-height: var(--Typography-LineHeight-Normal);
+  color: var(--Text-Medium);
+  margin: 0 0 var(--Spacing-5) 0;
+}
+
+/* Actions */
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--Spacing-3-5);
+}
+
+/* Close button */
+.close {
+  position: absolute;
+  top: var(--Spacing-4);
+  right: var(--Spacing-4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--Spacing-5);
+  height: var(--Spacing-5);
+  border: none;
+  border-radius: var(--Shape-4);
+  background-color: transparent;
+  color: var(--Text-Medium);
+  cursor: pointer;
+  transition: background-color var(--Motion-Duration-Discreet-Short) var(--Motion-Easing-Standard);
+}
+
+.close:hover {
+  background-color: var(--Surface-Minimal);
+}
+
+.close:focus {
+  outline: none;
+}
+
+.close:focus-visible {
+  outline: var(--Focus-Outline-Width) solid var(--Focus-Outline);
+}

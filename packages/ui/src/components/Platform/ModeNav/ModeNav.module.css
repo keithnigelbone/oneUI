@@ -1,0 +1,19 @@
+/**
+ * ModeNav.module.css
+ *
+ * Top-center segmented mode tabs. Matches Claude-desktop's pill strip —
+ * inactive tabs are low-emphasis text, the active tab gets a subtle
+ * tinted pill background that adapts via surface-context when the tab
+ * strip sits on a coloured header. Zero literals.
+ */
+
+.root {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--Spacing-1-5);
+  padding: var(--Spacing-1-5);
+  border-radius: var(--SelectableButton-borderRadius, var(--Button-borderRadius, var(--Shape-Pill)));
+  background: transparent;
+}
+
+/* Tab appearance is fully handled by the SelectableButton component. */

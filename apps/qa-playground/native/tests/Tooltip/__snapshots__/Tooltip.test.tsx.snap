@@ -1,0 +1,502 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Tooltip — visual snapshots > [visual] disabled=true: popup not rendered 1`] = `
+<View
+  accessibilityElementsHidden={false}
+  collapsable={false}
+  ref={
+    {
+      "current": null,
+    }
+  }
+  style={
+    {
+      "alignSelf": "flex-start",
+      "overflow": "visible",
+      "position": "relative",
+    }
+  }
+>
+  <View
+    accessibilityLabel="Disabled tip"
+    accessibilityRole="button"
+    accessibilityState={
+      {
+        "disabled": true,
+        "expanded": false,
+      }
+    }
+    accessible={true}
+    collapsable={false}
+    onLayout={[Function]}
+    pointerEvents="box-none"
+    ref={
+      {
+        "current": null,
+      }
+    }
+    style={
+      {
+        "alignSelf": "flex-start",
+      }
+    }
+  >
+    <View
+      onBlur={[Function]}
+      onFocus={[Function]}
+      onPress={[Function]}
+      onPressIn={[Function]}
+      onPressOut={[Function]}
+      style={
+        {
+          "height": 32,
+          "width": 60,
+        }
+      }
+    />
+  </View>
+</View>
+`;
+
+exports[`Tooltip — visual snapshots > [visual] maxWidth=180 with long content, open=true 1`] = `
+<View
+  accessibilityElementsHidden={true}
+  collapsable={false}
+  ref={
+    {
+      "current": null,
+    }
+  }
+  style={
+    {
+      "alignSelf": "flex-start",
+      "overflow": "visible",
+      "position": "relative",
+    }
+  }
+>
+  <View
+    accessibilityLabel="This is a longer tooltip message that wraps to multiple lines inside the popup"
+    accessibilityRole="button"
+    accessibilityState={
+      {
+        "disabled": false,
+        "expanded": true,
+      }
+    }
+    accessible={true}
+    collapsable={false}
+    onLayout={[Function]}
+    pointerEvents="box-none"
+    ref={
+      {
+        "current": null,
+      }
+    }
+    style={
+      {
+        "alignSelf": "flex-start",
+      }
+    }
+  >
+    <View
+      onBlur={[Function]}
+      onFocus={[Function]}
+      onPress={[Function]}
+      onPressIn={[Function]}
+      onPressOut={[Function]}
+      style={
+        {
+          "height": 32,
+          "width": 60,
+        }
+      }
+    />
+  </View>
+  <View
+    accessibilityLabel="This is a longer tooltip message that wraps to multiple lines inside the popup"
+    accessibilityLiveRegion="polite"
+    accessibilityRole="text"
+    accessible={true}
+    importantForAccessibility="yes"
+    pointerEvents="none"
+    style={
+      [
+        {
+          "overflow": "visible",
+          "position": "absolute",
+        },
+        {
+          "left": 0,
+          "top": 0,
+        },
+        {
+          "opacity": 0,
+          "pointerEvents": "none",
+        },
+        null,
+      ]
+    }
+    testID="snap-4-popup"
+  >
+    <View
+      onLayout={[Function]}
+      style={
+        [
+          {
+            "alignSelf": "flex-start",
+            "flexDirection": "column",
+            "maxWidth": 160,
+            "overflow": "visible",
+          },
+          {
+            "backgroundColor": "#767676",
+            "borderRadius": 6,
+            "elevation": 4,
+            "maxWidth": 180,
+            "paddingHorizontal": 12,
+            "paddingVertical": 6,
+            "shadowColor": "#000000",
+            "shadowOffset": {
+              "height": 3,
+              "width": 0,
+            },
+            "shadowOpacity": 0.13,
+            "shadowRadius": 6,
+            "zIndex": 500,
+          },
+        ]
+      }
+    >
+      <View
+        style={
+          [
+            {
+              "flexDirection": "column",
+              "position": "absolute",
+            },
+            {
+              "alignItems": "center",
+              "left": 0,
+              "right": 0,
+            },
+            {
+              "bottom": -5,
+            },
+          ]
+        }
+      >
+        <Svg
+          height={6}
+          viewBox="0 0 18 6"
+          width={18}
+        >
+          <Path
+            d="M7.18173 5.15746L4.3897 2.03407C3.22548 0.731678 1.64646 0 0 0H18C16.3535 0 14.7745 0.731676 13.6103 2.03407L10.8183 5.15746C9.81407 6.28085 8.18593 6.28085 7.18173 5.15746Z"
+            fill="#767676"
+          />
+        </Svg>
+      </View>
+      <Text
+        style={
+          {
+            "color": "#000000",
+            "flexShrink": 1,
+            "fontFamily": "JioType-Medium",
+            "fontSize": 14,
+            "fontWeight": 500,
+            "lineHeight": 18,
+          }
+        }
+      >
+        This is a longer tooltip message that wraps to multiple lines inside the popup
+      </Text>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`Tooltip — visual snapshots > [visual] position=bottom, arrow=true, open=true 1`] = `
+<View
+  accessibilityElementsHidden={true}
+  collapsable={false}
+  ref={
+    {
+      "current": null,
+    }
+  }
+  style={
+    {
+      "alignSelf": "flex-start",
+      "overflow": "visible",
+      "position": "relative",
+    }
+  }
+>
+  <View
+    accessibilityLabel="Snapshot tip"
+    accessibilityRole="button"
+    accessibilityState={
+      {
+        "disabled": false,
+        "expanded": true,
+      }
+    }
+    accessible={true}
+    collapsable={false}
+    onLayout={[Function]}
+    pointerEvents="box-none"
+    ref={
+      {
+        "current": null,
+      }
+    }
+    style={
+      {
+        "alignSelf": "flex-start",
+      }
+    }
+  >
+    <View
+      onBlur={[Function]}
+      onFocus={[Function]}
+      onPress={[Function]}
+      onPressIn={[Function]}
+      onPressOut={[Function]}
+      style={
+        {
+          "height": 32,
+          "width": 60,
+        }
+      }
+    />
+  </View>
+  <View
+    accessibilityLabel="Snapshot tip"
+    accessibilityLiveRegion="polite"
+    accessibilityRole="text"
+    accessible={true}
+    importantForAccessibility="yes"
+    pointerEvents="none"
+    style={
+      [
+        {
+          "overflow": "visible",
+          "position": "absolute",
+        },
+        {
+          "left": 0,
+          "top": 0,
+        },
+        {
+          "opacity": 0,
+          "pointerEvents": "none",
+        },
+        null,
+      ]
+    }
+    testID="snap-1-popup"
+  >
+    <View
+      onLayout={[Function]}
+      style={
+        [
+          {
+            "alignSelf": "flex-start",
+            "flexDirection": "column",
+            "maxWidth": 160,
+            "overflow": "visible",
+          },
+          {
+            "backgroundColor": "#767676",
+            "borderRadius": 6,
+            "elevation": 4,
+            "paddingHorizontal": 12,
+            "paddingVertical": 6,
+            "shadowColor": "#000000",
+            "shadowOffset": {
+              "height": 3,
+              "width": 0,
+            },
+            "shadowOpacity": 0.13,
+            "shadowRadius": 6,
+            "zIndex": 500,
+          },
+        ]
+      }
+    >
+      <View
+        style={
+          [
+            {
+              "flexDirection": "column",
+              "position": "absolute",
+            },
+            {
+              "alignItems": "center",
+              "left": 0,
+              "right": 0,
+            },
+            {
+              "bottom": -5,
+            },
+          ]
+        }
+      >
+        <Svg
+          height={6}
+          viewBox="0 0 18 6"
+          width={18}
+        >
+          <Path
+            d="M7.18173 5.15746L4.3897 2.03407C3.22548 0.731678 1.64646 0 0 0H18C16.3535 0 14.7745 0.731676 13.6103 2.03407L10.8183 5.15746C9.81407 6.28085 8.18593 6.28085 7.18173 5.15746Z"
+            fill="#767676"
+          />
+        </Svg>
+      </View>
+      <Text
+        style={
+          {
+            "color": "#000000",
+            "flexShrink": 0,
+            "fontFamily": "JioType-Medium",
+            "fontSize": 14,
+            "fontWeight": 500,
+            "lineHeight": 18,
+          }
+        }
+      >
+        Snapshot tip
+      </Text>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`Tooltip — visual snapshots > [visual] position=right, arrow=false, open=true 1`] = `
+<View
+  accessibilityElementsHidden={true}
+  collapsable={false}
+  ref={
+    {
+      "current": null,
+    }
+  }
+  style={
+    {
+      "alignSelf": "flex-start",
+      "overflow": "visible",
+      "position": "relative",
+    }
+  }
+>
+  <View
+    accessibilityLabel="Right side tip"
+    accessibilityRole="button"
+    accessibilityState={
+      {
+        "disabled": false,
+        "expanded": true,
+      }
+    }
+    accessible={true}
+    collapsable={false}
+    onLayout={[Function]}
+    pointerEvents="box-none"
+    ref={
+      {
+        "current": null,
+      }
+    }
+    style={
+      {
+        "alignSelf": "flex-start",
+      }
+    }
+  >
+    <View
+      onBlur={[Function]}
+      onFocus={[Function]}
+      onPress={[Function]}
+      onPressIn={[Function]}
+      onPressOut={[Function]}
+      style={
+        {
+          "height": 32,
+          "width": 60,
+        }
+      }
+    />
+  </View>
+  <View
+    accessibilityLabel="Right side tip"
+    accessibilityLiveRegion="polite"
+    accessibilityRole="text"
+    accessible={true}
+    importantForAccessibility="yes"
+    pointerEvents="none"
+    style={
+      [
+        {
+          "overflow": "visible",
+          "position": "absolute",
+        },
+        {
+          "left": 0,
+          "top": 0,
+        },
+        {
+          "opacity": 0,
+          "pointerEvents": "none",
+        },
+        null,
+      ]
+    }
+    testID="snap-2-popup"
+  >
+    <View
+      onLayout={[Function]}
+      style={
+        [
+          {
+            "alignSelf": "flex-start",
+            "flexDirection": "column",
+            "maxWidth": 160,
+            "overflow": "visible",
+          },
+          {
+            "backgroundColor": "#767676",
+            "borderRadius": 6,
+            "elevation": 4,
+            "paddingHorizontal": 12,
+            "paddingVertical": 6,
+            "shadowColor": "#000000",
+            "shadowOffset": {
+              "height": 3,
+              "width": 0,
+            },
+            "shadowOpacity": 0.13,
+            "shadowRadius": 6,
+            "zIndex": 500,
+          },
+        ]
+      }
+    >
+      <Text
+        style={
+          {
+            "color": "#000000",
+            "flexShrink": 0,
+            "fontFamily": "JioType-Medium",
+            "fontSize": 14,
+            "fontWeight": 500,
+            "lineHeight": 18,
+          }
+        }
+      >
+        Right side tip
+      </Text>
+    </View>
+  </View>
+</View>
+`;

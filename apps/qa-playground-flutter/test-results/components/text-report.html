@@ -1,0 +1,3475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flutter QA — text</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0f1117; color: #e2e8f0; min-height: 100vh; }
+    .header { background: #1a1d27; border-bottom: 1px solid #2d3147; padding: 20px 32px; display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
+    .header-title { font-size: 18px; font-weight: 600; color: #f0f4ff; }
+    .header-sub { font-size: 12px; color: #64748b; margin-top: 2px; }
+    .stat-card { display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 8px 16px; border-radius: 8px; min-width: 80px; }
+    .stat-value { font-size: 22px; font-weight: 700; line-height: 1; }
+    .stat-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; color: #94a3b8; }
+    .stat-total { background: #1e2235; }
+    .stat-pass { background: #0f2a1a; }
+    .stat-fail { background: #2a0f0f; }
+    .stat-skip { background: #1e2235; }
+    .stat-time { background: #1e2235; }
+    .stat-pass .stat-value { color: #4ade80; }
+    .stat-fail .stat-value { color: #f87171; }
+    .stat-skip .stat-value { color: #94a3b8; }
+    .stat-total .stat-value, .stat-time .stat-value { color: #94a3b8; }
+    .status-banner { margin-left: auto; padding: 6px 16px; border-radius: 20px; font-size: 13px; font-weight: 600; }
+    .status-banner.all-pass { background: #052e16; color: #4ade80; border: 1px solid #16a34a; }
+    .status-banner.has-fail { background: #2a0f0f; color: #f87171; border: 1px solid #dc2626; }
+    .content { padding: 24px 32px; max-width: 1100px; margin: 0 auto; }
+    .toolbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; }
+    .filters { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+    .filter-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; color: #64748b; }
+    .filter-select { appearance: none; background: #1e2235; color: #c7d2fe; border: 1px solid #2d3147; border-radius: 6px; padding: 6px 12px; font-size: 12px; min-width: 140px; }
+    .suite-pills { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+    .suite-pill { font-size: 11px; padding: 4px 10px; border-radius: 999px; border: 1px solid #2d3147; color: #94a3b8; }
+    .suite-pill.fn { border-color: #4c1d95; color: #c4b5fd; }
+    .suite-pill.a11y { border-color: #14532d; color: #6ee7b7; }
+    .suite-pill.smoke { border-color: #0c4a6e; color: #7dd3fc; }
+    .file-block { background: #1a1d27; border: 1px solid #2d3147; border-radius: 10px; margin-bottom: 16px; overflow: hidden; }
+    .file-block.file-fail { border-color: #7f1d1d; }
+    .file-block.file-pass { border-color: #14532d; }
+    .file-summary { display: flex; align-items: center; gap: 10px; padding: 12px 16px; cursor: pointer; list-style: none; background: #20243a; user-select: none; }
+    .file-summary::-webkit-details-marker { display: none; }
+    .file-icon { font-size: 14px; }
+    .file-block.file-pass .file-icon { color: #4ade80; }
+    .file-block.file-fail .file-icon { color: #f87171; }
+    .file-path { font-size: 13px; font-weight: 500; color: #c7d2fe; font-family: 'JetBrains Mono', monospace; flex: 1; }
+    .file-counts { display: flex; gap: 8px; font-size: 12px; }
+    .pass-count { color: #4ade80; }
+    .fail-count { color: #f87171; }
+    .file-dur { font-size: 12px; color: #475569; }
+    .suite-block { padding: 4px 16px 12px; }
+    .test-row { border-radius: 6px; margin: 2px 0; }
+    .test-row.failed { background: #1a0a0a; }
+    .test-header { display: flex; align-items: center; gap: 8px; padding: 7px 10px; border-radius: 6px; }
+    .test-header:hover { background: #252a3f; }
+    .status-icon { font-size: 13px; font-weight: 700; width: 18px; flex-shrink: 0; }
+    .status-icon.pass { color: #4ade80; }
+    .status-icon.fail { color: #f87171; }
+    .status-icon.skip { color: #94a3b8; }
+    .test-name { flex: 1; font-size: 13px; color: #cbd5e1; }
+    .test-dur { font-size: 11px; color: #475569; flex-shrink: 0; }
+    .tag { font-size: 10px; font-weight: 600; padding: 2px 7px; border-radius: 10px; letter-spacing: 0.3px; flex-shrink: 0; }
+    .tag-smoke { background: #1e3a5f; color: #7dd3fc; }
+    .tag-fn { background: #2d1b69; color: #c4b5fd; }
+    .tag-a11y { background: #1a3a2a; color: #6ee7b7; }
+    .tag-catalog { background: #3b2f0a; color: #fcd34d; }
+    .tag-other { background: #2d2d2d; color: #94a3b8; }
+    .platform-badge { font-size: 10px; color: #64748b; border: 1px solid #334155; border-radius: 4px; padding: 1px 5px; }
+    .error-block { margin: 4px 10px 8px 36px; padding: 8px 12px; background: #1f0a0a; border-left: 3px solid #dc2626; border-radius: 0 4px 4px 0; }
+    .error-block pre { font-size: 11px; color: #fca5a5; white-space: pre-wrap; word-break: break-word; font-family: 'JetBrains Mono', monospace; max-height: 240px; overflow: auto; }
+    .footer { text-align: center; padding: 32px; font-size: 12px; color: #334155; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div>
+      <div class="header-title">Flutter QA — text</div>
+      <div class="header-sub">flutter_test · headless VM · 7/2/2026, 2:49:15 PM</div>
+    </div>
+    <div class="stat-card stat-total"><div class="stat-value">325</div><div class="stat-label">Total</div></div>
+    <div class="stat-card stat-pass"><div class="stat-value">325</div><div class="stat-label">Passed</div></div>
+    <div class="stat-card stat-fail"><div class="stat-value">0</div><div class="stat-label">Failed</div></div>
+    <div class="stat-card stat-skip"><div class="stat-value">0</div><div class="stat-label">Skipped</div></div>
+    <div class="stat-card stat-time"><div class="stat-value">10.0s</div><div class="stat-label">Duration</div></div>
+    <div class="status-banner all-pass">✓ All tests passed</div>
+  </div>
+  <div class="content">
+    <div class="toolbar">
+      <div class="filters">
+        <span class="filter-label">Component</span>
+        <select class="filter-select" id="comp-filter" onchange="applyFilters()">
+          <option value="">All</option>
+          <option value="text">text</option>
+        </select>
+        <span class="filter-label">Tier</span>
+        <select class="filter-select" id="tier-filter" onchange="applyFilters()">
+          <option value="">All</option>
+          <option value="smoke">Smoke</option>
+          <option value="fn">Functional</option>
+          <option value="a11y">Accessibility</option>
+          <option value="catalog">Catalog</option>
+        </select>
+      </div>
+    </div>
+    <div class="suite-pills">
+      <span class="suite-pill smoke">Smoke: 33</span>
+      <span class="suite-pill fn">Functional: 55</span>
+      <span class="suite-pill a11y">Accessibility: 38</span>
+      <span class="suite-pill">Catalog: 0</span>
+    </div>
+    <details class="file-block file-pass" data-component="text" open>
+      <summary class="file-summary">
+        <span class="file-icon">✓</span>
+        <span class="file-path">test/components/text/text_a11y_test.dart</span>
+        <span class="file-counts">
+          <span class="pass-count">32 passed</span>
+          
+        </span>
+        <span class="file-dur">1.28s</span>
+      </summary>
+      <div class="suite-block"><div class="test-row passed" data-component="text" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          
+          <span class="test-name">[a11y] resolveOneUiTextAccessibilityLabel [a11y] prefers semanticsLabel</span>
+          <span class="test-dur">15ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          
+          <span class="test-name">[a11y] resolveOneUiTextAccessibilityLabel [a11y] falls back to text prop</span>
+          <span class="test-dur">2ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          
+          <span class="test-name">[a11y] resolveOneUiTextSemantics [a11y] headline exposes header semantics</span>
+          <span class="test-dur">3ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          
+          <span class="test-name">[a11y] resolveOneUiTextSemantics [a11y] plain body does not require wrapper</span>
+          <span class="test-dur">1ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          
+          <span class="test-name">[a11y] resolveOneUiTextSemantics [a11y] interactive link exposes link semantics</span>
+          <span class="test-dur">2ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[a11y] Text widget — semantics [a11y] headline exposes header in AT tree</span>
+          <span class="test-dur">659ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[a11y] Text widget — semantics [a11y] headline exposes header in AT tree</span>
+          <span class="test-dur">37ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[a11y] Text widget — semantics [a11y] headline exposes header in AT tree</span>
+          <span class="test-dur">33ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[a11y] Text widget — semantics [a11y] display exposes header in AT tree</span>
+          <span class="test-dur">22ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[a11y] Text widget — semantics [a11y] display exposes header in AT tree</span>
+          <span class="test-dur">20ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[a11y] Text widget — semantics [a11y] display exposes header in AT tree</span>
+          <span class="test-dur">22ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[a11y] Text widget — semantics [a11y] interactive copy exposes link semantics</span>
+          <span class="test-dur">26ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[a11y] Text widget — semantics [a11y] interactive copy exposes link semantics</span>
+          <span class="test-dur">23ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[a11y] Text widget — semantics [a11y] interactive copy exposes link semantics</span>
+          <span class="test-dur">21ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[a11y] Text widget — semantics [a11y] explicit semanticsLabel overrides visible text</span>
+          <span class="test-dur">19ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[a11y] Text widget — semantics [a11y] explicit semanticsLabel overrides visible text</span>
+          <span class="test-dur">24ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[a11y] Text widget — semantics [a11y] explicit semanticsLabel overrides visible text</span>
+          <span class="test-dur">19ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[a11y] Text widget — semantics [a11y] ariaHidden excludes from semantics tree</span>
+          <span class="test-dur">21ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[a11y] Text widget — semantics [a11y] ariaHidden excludes from semantics tree</span>
+          <span class="test-dur">19ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[a11y] Text widget — semantics [a11y] ariaHidden excludes from semantics tree</span>
+          <span class="test-dur">19ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[a11y] Text widget — semantics [a11y] title does not expose header semantics</span>
+          <span class="test-dur">19ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[a11y] Text widget — semantics [a11y] title does not expose header semantics</span>
+          <span class="test-dur">19ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[a11y] Text widget — semantics [a11y] title does not expose header semantics</span>
+          <span class="test-dur">21ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[a11y] Text widget — semantics [a11y] plain body uses native Text semantics (no wrapper)</span>
+          <span class="test-dur">25ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[a11y] Text widget — semantics [a11y] plain body uses native Text semantics (no wrapper)</span>
+          <span class="test-dur">19ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[a11y] Text widget — semantics [a11y] plain body uses native Text semantics (no wrapper)</span>
+          <span class="test-dur">66ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[a11y] Text widget — semantics [a11y] interactive copy exposes semanticsHint</span>
+          <span class="test-dur">19ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[a11y] Text widget — semantics [a11y] interactive copy exposes semanticsHint</span>
+          <span class="test-dur">17ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[a11y] Text widget — semantics [a11y] interactive copy exposes semanticsHint</span>
+          <span class="test-dur">20ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[a11y] Text widget — semantics [a11y] excludeFromSemantics hides from AT tree</span>
+          <span class="test-dur">16ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[a11y] Text widget — semantics [a11y] excludeFromSemantics hides from AT tree</span>
+          <span class="test-dur">17ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[a11y] Text widget — semantics [a11y] excludeFromSemantics hides from AT tree</span>
+          <span class="test-dur">15ms</span>
+        </div>
+        
+      </div></div>
+    </details>
+<details class="file-block file-pass" data-component="text" open>
+      <summary class="file-summary">
+        <span class="file-icon">✓</span>
+        <span class="file-path">test/components/text/text_figma_parity_test.dart</span>
+        <span class="file-counts">
+          <span class="pass-count">135 passed</span>
+          
+        </span>
+        <span class="file-dur">2.44s</span>
+      </summary>
+      <div class="suite-block"><div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] Text — variant [figma] variant=OneUiTextVariant.body renders typography role</span>
+          <span class="test-dur">373ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] Text — variant [figma] variant=OneUiTextVariant.body renders typography role</span>
+          <span class="test-dur">33ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] Text — variant [figma] variant=OneUiTextVariant.body renders typography role</span>
+          <span class="test-dur">28ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] Text — variant [figma] variant=OneUiTextVariant.label renders typography role</span>
+          <span class="test-dur">23ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] Text — variant [figma] variant=OneUiTextVariant.label renders typography role</span>
+          <span class="test-dur">24ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] Text — variant [figma] variant=OneUiTextVariant.label renders typography role</span>
+          <span class="test-dur">16ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] Text — variant [figma] variant=OneUiTextVariant.title renders typography role</span>
+          <span class="test-dur">17ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] Text — variant [figma] variant=OneUiTextVariant.title renders typography role</span>
+          <span class="test-dur">17ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] Text — variant [figma] variant=OneUiTextVariant.title renders typography role</span>
+          <span class="test-dur">17ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] Text — variant [figma] variant=OneUiTextVariant.headline renders typography role</span>
+          <span class="test-dur">17ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] Text — variant [figma] variant=OneUiTextVariant.headline renders typography role</span>
+          <span class="test-dur">18ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] Text — variant [figma] variant=OneUiTextVariant.headline renders typography role</span>
+          <span class="test-dur">15ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] Text — variant [figma] variant=OneUiTextVariant.display renders typography role</span>
+          <span class="test-dur">18ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] Text — variant [figma] variant=OneUiTextVariant.display renders typography role</span>
+          <span class="test-dur">16ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] Text — variant [figma] variant=OneUiTextVariant.display renders typography role</span>
+          <span class="test-dur">16ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] Text — variant [figma] variant=OneUiTextVariant.code renders typography role</span>
+          <span class="test-dur">15ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] Text — variant [figma] variant=OneUiTextVariant.code renders typography role</span>
+          <span class="test-dur">16ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] Text — variant [figma] variant=OneUiTextVariant.code renders typography role</span>
+          <span class="test-dur">15ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          
+          <span class="test-name">[figma] Text — size clamping [figma] display XL clamps to L</span>
+          <span class="test-dur">3ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          
+          <span class="test-name">[figma] Text — size clamping [figma] body 3XS clamps to 2XS</span>
+          <span class="test-dur">2ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          
+          <span class="test-name">[figma] Text — size clamping [figma] code 2XL clamps to M</span>
+          <span class="test-dur">1ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] Text — size clamping [figma] display XL renders L fontSize (32px harness)</span>
+          <span class="test-dur">17ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] Text — size clamping [figma] display XL renders L fontSize (32px harness)</span>
+          <span class="test-dur">16ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] Text — size clamping [figma] display XL renders L fontSize (32px harness)</span>
+          <span class="test-dur">15ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] Text — size clamping [figma] body S renders 12px</span>
+          <span class="test-dur">22ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] Text — size clamping [figma] body S renders 12px</span>
+          <span class="test-dur">17ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] Text — size clamping [figma] body S renders 12px</span>
+          <span class="test-dur">19ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] Text — size clamping [figma] body size=2XS resolves</span>
+          <span class="test-dur">18ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] Text — size clamping [figma] body size=2XS resolves</span>
+          <span class="test-dur">20ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] Text — size clamping [figma] body size=2XS resolves</span>
+          <span class="test-dur">15ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] Text — size clamping [figma] body size=XS resolves</span>
+          <span class="test-dur">15ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] Text — size clamping [figma] body size=XS resolves</span>
+          <span class="test-dur">15ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] Text — size clamping [figma] body size=XS resolves</span>
+          <span class="test-dur">16ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] Text — size clamping [figma] body size=S resolves</span>
+          <span class="test-dur">14ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] Text — size clamping [figma] body size=S resolves</span>
+          <span class="test-dur">15ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] Text — size clamping [figma] body size=S resolves</span>
+          <span class="test-dur">15ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] Text — size clamping [figma] body size=M resolves</span>
+          <span class="test-dur">14ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] Text — size clamping [figma] body size=M resolves</span>
+          <span class="test-dur">14ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] Text — size clamping [figma] body size=M resolves</span>
+          <span class="test-dur">17ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] Text — size clamping [figma] body size=L resolves</span>
+          <span class="test-dur">17ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] Text — size clamping [figma] body size=L resolves</span>
+          <span class="test-dur">15ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] Text — size clamping [figma] body size=L resolves</span>
+          <span class="test-dur">14ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] Text — size clamping [figma] body size=XL resolves</span>
+          <span class="test-dur">19ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] Text — size clamping [figma] body size=XL resolves</span>
+          <span class="test-dur">20ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] Text — size clamping [figma] body size=XL resolves</span>
+          <span class="test-dur">13ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] Text — size clamping [figma] body size=2XL resolves</span>
+          <span class="test-dur">14ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] Text — size clamping [figma] body size=2XL resolves</span>
+          <span class="test-dur">17ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] Text — size clamping [figma] body size=2XL resolves</span>
+          <span class="test-dur">16ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] Text — weight scoping [figma] body high vs low weight differs</span>
+          <span class="test-dur">38ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] Text — weight scoping [figma] body high vs low weight differs</span>
+          <span class="test-dur">22ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] Text — weight scoping [figma] body high vs low weight differs</span>
+          <span class="test-dur">21ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] Text — weight scoping [figma] display ignores weight prop (fixed medium)</span>
+          <span class="test-dur">15ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] Text — weight scoping [figma] display ignores weight prop (fixed medium)</span>
+          <span class="test-dur">16ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] Text — weight scoping [figma] display ignores weight prop (fixed medium)</span>
+          <span class="test-dur">17ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] Text — weight scoping [figma] code ignores weight prop (fixed medium)</span>
+          <span class="test-dur">17ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] Text — weight scoping [figma] code ignores weight prop (fixed medium)</span>
+          <span class="test-dur">16ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] Text — weight scoping [figma] code ignores weight prop (fixed medium)</span>
+          <span class="test-dur">14ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          
+          <span class="test-name">[figma] Text — weight scoping [figma] resolveOneUiTextWeight scoping</span>
+          <span class="test-dur">3ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] Text — attention scoping [figma] body high vs low colour differs</span>
+          <span class="test-dur">22ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] Text — attention scoping [figma] body high vs low colour differs</span>
+          <span class="test-dur">19ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] Text — attention scoping [figma] body high vs low colour differs</span>
+          <span class="test-dur">19ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] Text — attention scoping [figma] display ignores low attention (high-only)</span>
+          <span class="test-dur">23ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] Text — attention scoping [figma] display ignores low attention (high-only)</span>
+          <span class="test-dur">21ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] Text — attention scoping [figma] display ignores low attention (high-only)</span>
+          <span class="test-dur">19ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          
+          <span class="test-name">[figma] Text — attention scoping [figma] attention none resolves to high</span>
+          <span class="test-dur">1ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] Text — attention scoping [figma] body attention=OneUiTextAttention.none renders</span>
+          <span class="test-dur">13ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] Text — attention scoping [figma] body attention=OneUiTextAttention.none renders</span>
+          <span class="test-dur">14ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] Text — attention scoping [figma] body attention=OneUiTextAttention.none renders</span>
+          <span class="test-dur">22ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] Text — attention scoping [figma] body attention=OneUiTextAttention.high renders</span>
+          <span class="test-dur">13ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] Text — attention scoping [figma] body attention=OneUiTextAttention.high renders</span>
+          <span class="test-dur">16ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] Text — attention scoping [figma] body attention=OneUiTextAttention.high renders</span>
+          <span class="test-dur">15ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] Text — attention scoping [figma] body attention=OneUiTextAttention.medium renders</span>
+          <span class="test-dur">21ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] Text — attention scoping [figma] body attention=OneUiTextAttention.medium renders</span>
+          <span class="test-dur">16ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] Text — attention scoping [figma] body attention=OneUiTextAttention.medium renders</span>
+          <span class="test-dur">15ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] Text — attention scoping [figma] body attention=OneUiTextAttention.low renders</span>
+          <span class="test-dur">14ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] Text — attention scoping [figma] body attention=OneUiTextAttention.low renders</span>
+          <span class="test-dur">13ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] Text — attention scoping [figma] body attention=OneUiTextAttention.low renders</span>
+          <span class="test-dur">14ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] Text — attention scoping [figma] body attention=OneUiTextAttention.tintedA11y renders</span>
+          <span class="test-dur">14ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] Text — attention scoping [figma] body attention=OneUiTextAttention.tintedA11y renders</span>
+          <span class="test-dur">13ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] Text — attention scoping [figma] body attention=OneUiTextAttention.tintedA11y renders</span>
+          <span class="test-dur">11ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          
+          <span class="test-name">[figma] Text — appearance [figma] appearance=auto resolves to neutral</span>
+          <span class="test-dur">2ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] Text — appearance [figma] appearance=auto renders</span>
+          <span class="test-dur">13ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] Text — appearance [figma] appearance=auto renders</span>
+          <span class="test-dur">25ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] Text — appearance [figma] appearance=auto renders</span>
+          <span class="test-dur">15ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] Text — appearance [figma] appearance=primary renders</span>
+          <span class="test-dur">14ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] Text — appearance [figma] appearance=primary renders</span>
+          <span class="test-dur">14ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] Text — appearance [figma] appearance=primary renders</span>
+          <span class="test-dur">14ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] Text — appearance [figma] appearance=neutral renders</span>
+          <span class="test-dur">15ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] Text — appearance [figma] appearance=neutral renders</span>
+          <span class="test-dur">13ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] Text — appearance [figma] appearance=neutral renders</span>
+          <span class="test-dur">14ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] Text — appearance [figma] appearance=secondary renders</span>
+          <span class="test-dur">13ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] Text — appearance [figma] appearance=secondary renders</span>
+          <span class="test-dur">13ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] Text — appearance [figma] appearance=secondary renders</span>
+          <span class="test-dur">12ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] Text — appearance [figma] appearance=sparkle renders</span>
+          <span class="test-dur">19ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] Text — appearance [figma] appearance=sparkle renders</span>
+          <span class="test-dur">13ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] Text — appearance [figma] appearance=sparkle renders</span>
+          <span class="test-dur">14ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] Text — appearance [figma] appearance=brand-bg renders</span>
+          <span class="test-dur">12ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] Text — appearance [figma] appearance=brand-bg renders</span>
+          <span class="test-dur">13ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] Text — appearance [figma] appearance=brand-bg renders</span>
+          <span class="test-dur">12ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] Text — appearance [figma] appearance=positive renders</span>
+          <span class="test-dur">14ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] Text — appearance [figma] appearance=positive renders</span>
+          <span class="test-dur">14ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] Text — appearance [figma] appearance=positive renders</span>
+          <span class="test-dur">13ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] Text — appearance [figma] appearance=negative renders</span>
+          <span class="test-dur">12ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] Text — appearance [figma] appearance=negative renders</span>
+          <span class="test-dur">13ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] Text — appearance [figma] appearance=negative renders</span>
+          <span class="test-dur">12ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] Text — appearance [figma] appearance=warning renders</span>
+          <span class="test-dur">13ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] Text — appearance [figma] appearance=warning renders</span>
+          <span class="test-dur">13ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] Text — appearance [figma] appearance=warning renders</span>
+          <span class="test-dur">11ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] Text — appearance [figma] appearance=informative renders</span>
+          <span class="test-dur">20ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] Text — appearance [figma] appearance=informative renders</span>
+          <span class="test-dur">13ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] Text — appearance [figma] appearance=informative renders</span>
+          <span class="test-dur">12ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] Text — italic / underline / strikethrough [figma] italic → FontStyle.italic</span>
+          <span class="test-dur">14ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] Text — italic / underline / strikethrough [figma] italic → FontStyle.italic</span>
+          <span class="test-dur">14ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] Text — italic / underline / strikethrough [figma] italic → FontStyle.italic</span>
+          <span class="test-dur">13ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] Text — italic / underline / strikethrough [figma] underline → TextDecoration.underline</span>
+          <span class="test-dur">17ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] Text — italic / underline / strikethrough [figma] underline → TextDecoration.underline</span>
+          <span class="test-dur">14ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] Text — italic / underline / strikethrough [figma] underline → TextDecoration.underline</span>
+          <span class="test-dur">12ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] Text — italic / underline / strikethrough [figma] strikethrough → TextDecoration.lineThrough</span>
+          <span class="test-dur">23ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] Text — italic / underline / strikethrough [figma] strikethrough → TextDecoration.lineThrough</span>
+          <span class="test-dur">13ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] Text — italic / underline / strikethrough [figma] strikethrough → TextDecoration.lineThrough</span>
+          <span class="test-dur">12ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] Text — italic / underline / strikethrough [figma] underline + strikethrough combine</span>
+          <span class="test-dur">12ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] Text — italic / underline / strikethrough [figma] underline + strikethrough combine</span>
+          <span class="test-dur">12ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] Text — italic / underline / strikethrough [figma] underline + strikethrough combine</span>
+          <span class="test-dur">12ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] Text — textAlign [figma] textAlign=OneUiTextAlign.left maps to Flutter</span>
+          <span class="test-dur">14ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] Text — textAlign [figma] textAlign=OneUiTextAlign.left maps to Flutter</span>
+          <span class="test-dur">14ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] Text — textAlign [figma] textAlign=OneUiTextAlign.left maps to Flutter</span>
+          <span class="test-dur">17ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] Text — textAlign [figma] textAlign=OneUiTextAlign.center maps to Flutter</span>
+          <span class="test-dur">12ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] Text — textAlign [figma] textAlign=OneUiTextAlign.center maps to Flutter</span>
+          <span class="test-dur">15ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] Text — textAlign [figma] textAlign=OneUiTextAlign.center maps to Flutter</span>
+          <span class="test-dur">13ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] Text — textAlign [figma] textAlign=OneUiTextAlign.right maps to Flutter</span>
+          <span class="test-dur">12ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] Text — textAlign [figma] textAlign=OneUiTextAlign.right maps to Flutter</span>
+          <span class="test-dur">12ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] Text — textAlign [figma] textAlign=OneUiTextAlign.right maps to Flutter</span>
+          <span class="test-dur">12ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[figma] Text — numberOfLines [figma] maxLines truncates with ellipsis</span>
+          <span class="test-dur">13ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[figma] Text — numberOfLines [figma] maxLines truncates with ellipsis</span>
+          <span class="test-dur">40ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[figma] Text — numberOfLines [figma] maxLines truncates with ellipsis</span>
+          <span class="test-dur">13ms</span>
+        </div>
+        
+      </div></div>
+    </details>
+<details class="file-block file-pass" data-component="text" open>
+      <summary class="file-summary">
+        <span class="file-icon">✓</span>
+        <span class="file-path">test/components/text/text_functional_test.dart</span>
+        <span class="file-counts">
+          <span class="pass-count">79 passed</span>
+          
+        </span>
+        <span class="file-dur">2.37s</span>
+      </summary>
+      <div class="suite-block"><div class="test-row passed" data-component="text" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[smoke] Text — API variants [smoke] renders body copy</span>
+          <span class="test-dur">589ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[smoke] Text — API variants [smoke] renders body copy</span>
+          <span class="test-dur">38ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[smoke] Text — API variants [smoke] renders body copy</span>
+          <span class="test-dur">30ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[smoke] Text — API variants [smoke] variant=OneUiTextVariant.body renders</span>
+          <span class="test-dur">24ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[smoke] Text — API variants [smoke] variant=OneUiTextVariant.body renders</span>
+          <span class="test-dur">24ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[smoke] Text — API variants [smoke] variant=OneUiTextVariant.body renders</span>
+          <span class="test-dur">22ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[smoke] Text — API variants [smoke] variant=OneUiTextVariant.label renders</span>
+          <span class="test-dur">34ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[smoke] Text — API variants [smoke] variant=OneUiTextVariant.label renders</span>
+          <span class="test-dur">20ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[smoke] Text — API variants [smoke] variant=OneUiTextVariant.label renders</span>
+          <span class="test-dur">19ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[smoke] Text — API variants [smoke] variant=OneUiTextVariant.title renders</span>
+          <span class="test-dur">25ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[smoke] Text — API variants [smoke] variant=OneUiTextVariant.title renders</span>
+          <span class="test-dur">26ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[smoke] Text — API variants [smoke] variant=OneUiTextVariant.title renders</span>
+          <span class="test-dur">18ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[smoke] Text — API variants [smoke] variant=OneUiTextVariant.headline renders</span>
+          <span class="test-dur">22ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[smoke] Text — API variants [smoke] variant=OneUiTextVariant.headline renders</span>
+          <span class="test-dur">18ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[smoke] Text — API variants [smoke] variant=OneUiTextVariant.headline renders</span>
+          <span class="test-dur">102ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[smoke] Text — API variants [smoke] variant=OneUiTextVariant.display renders</span>
+          <span class="test-dur">20ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[smoke] Text — API variants [smoke] variant=OneUiTextVariant.display renders</span>
+          <span class="test-dur">19ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[smoke] Text — API variants [smoke] variant=OneUiTextVariant.display renders</span>
+          <span class="test-dur">19ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[smoke] Text — API variants [smoke] variant=OneUiTextVariant.code renders</span>
+          <span class="test-dur">19ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[smoke] Text — API variants [smoke] variant=OneUiTextVariant.code renders</span>
+          <span class="test-dur">20ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[smoke] Text — API variants [smoke] variant=OneUiTextVariant.code renders</span>
+          <span class="test-dur">19ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[smoke] Text — API variants [smoke] appearance=&quot;primary&quot; renders</span>
+          <span class="test-dur">17ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[smoke] Text — API variants [smoke] appearance=&quot;primary&quot; renders</span>
+          <span class="test-dur">22ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[smoke] Text — API variants [smoke] appearance=&quot;primary&quot; renders</span>
+          <span class="test-dur">19ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[smoke] Text — API variants [smoke] appearance=&quot;secondary&quot; renders</span>
+          <span class="test-dur">17ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[smoke] Text — API variants [smoke] appearance=&quot;secondary&quot; renders</span>
+          <span class="test-dur">19ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[smoke] Text — API variants [smoke] appearance=&quot;secondary&quot; renders</span>
+          <span class="test-dur">17ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[smoke] Text — API variants [smoke] appearance=&quot;negative&quot; renders</span>
+          <span class="test-dur">17ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[smoke] Text — API variants [smoke] appearance=&quot;negative&quot; renders</span>
+          <span class="test-dur">16ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[smoke] Text — API variants [smoke] appearance=&quot;negative&quot; renders</span>
+          <span class="test-dur">16ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[smoke] Text — API variants [smoke] appearance=&quot;positive&quot; renders</span>
+          <span class="test-dur">19ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[smoke] Text — API variants [smoke] appearance=&quot;positive&quot; renders</span>
+          <span class="test-dur">29ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[smoke] Text — API variants [smoke] appearance=&quot;positive&quot; renders</span>
+          <span class="test-dur">47ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[fn] Text — interaction [fn] onPressed fires callback</span>
+          <span class="test-dur">54ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[fn] Text — interaction [fn] onPressed fires callback</span>
+          <span class="test-dur">21ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[fn] Text — interaction [fn] onPressed fires callback</span>
+          <span class="test-dur">23ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[fn] Text — interaction [fn] testId attaches ValueKey</span>
+          <span class="test-dur">21ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[fn] Text — interaction [fn] testId attaches ValueKey</span>
+          <span class="test-dur">19ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[fn] Text — interaction [fn] testId attaches ValueKey</span>
+          <span class="test-dur">15ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[fn] Text — interaction [fn] body high weight renders w700</span>
+          <span class="test-dur">66ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[fn] Text — interaction [fn] body high weight renders w700</span>
+          <span class="test-dur">20ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[fn] Text — interaction [fn] body high weight renders w700</span>
+          <span class="test-dur">17ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[fn] Text — interaction [fn] italic renders FontStyle.italic</span>
+          <span class="test-dur">50ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[fn] Text — interaction [fn] italic renders FontStyle.italic</span>
+          <span class="test-dur">17ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[fn] Text — interaction [fn] italic renders FontStyle.italic</span>
+          <span class="test-dur">18ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[fn] Text — interaction [fn] underline renders TextDecoration.underline</span>
+          <span class="test-dur">20ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[fn] Text — interaction [fn] underline renders TextDecoration.underline</span>
+          <span class="test-dur">16ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[fn] Text — interaction [fn] underline renders TextDecoration.underline</span>
+          <span class="test-dur">17ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[fn] Text — interaction [fn] maxLines=1 sets ellipsis overflow</span>
+          <span class="test-dur">18ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[fn] Text — interaction [fn] maxLines=1 sets ellipsis overflow</span>
+          <span class="test-dur">16ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[fn] Text — interaction [fn] maxLines=1 sets ellipsis overflow</span>
+          <span class="test-dur">17ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[fn] Text — interaction [fn] textAlign=center maps to Flutter TextAlign.center</span>
+          <span class="test-dur">17ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[fn] Text — interaction [fn] textAlign=center maps to Flutter TextAlign.center</span>
+          <span class="test-dur">20ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[fn] Text — interaction [fn] textAlign=center maps to Flutter TextAlign.center</span>
+          <span class="test-dur">53ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[fn] Text — interaction [fn] display size XL clamps to L fontSize</span>
+          <span class="test-dur">23ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[fn] Text — interaction [fn] display size XL clamps to L fontSize</span>
+          <span class="test-dur">22ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[fn] Text — interaction [fn] display size XL clamps to L fontSize</span>
+          <span class="test-dur">15ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[fn] Text — interaction [fn] label 3XS renders harness 9px</span>
+          <span class="test-dur">16ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[fn] Text — interaction [fn] label 3XS renders harness 9px</span>
+          <span class="test-dur">16ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[fn] Text — interaction [fn] label 3XS renders harness 9px</span>
+          <span class="test-dur">15ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[fn] Text — interaction [fn] body medium weight renders w500</span>
+          <span class="test-dur">16ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[fn] Text — interaction [fn] body medium weight renders w500</span>
+          <span class="test-dur">20ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[fn] Text — interaction [fn] body medium weight renders w500</span>
+          <span class="test-dur">16ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[fn] Text — interaction [fn] title ignores low weight prop (fixed medium)</span>
+          <span class="test-dur">16ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[fn] Text — interaction [fn] title ignores low weight prop (fixed medium)</span>
+          <span class="test-dur">14ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[fn] Text — interaction [fn] title ignores low weight prop (fixed medium)</span>
+          <span class="test-dur">15ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[fn] Text — interaction [fn] code ignores high weight prop (fixed medium)</span>
+          <span class="test-dur">18ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[fn] Text — interaction [fn] code ignores high weight prop (fixed medium)</span>
+          <span class="test-dur">22ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[fn] Text — interaction [fn] code ignores high weight prop (fixed medium)</span>
+          <span class="test-dur">19ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[fn] Text — interaction [fn] strikethrough renders TextDecoration.lineThrough</span>
+          <span class="test-dur">20ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[fn] Text — interaction [fn] strikethrough renders TextDecoration.lineThrough</span>
+          <span class="test-dur">16ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[fn] Text — interaction [fn] strikethrough renders TextDecoration.lineThrough</span>
+          <span class="test-dur">15ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[fn] Text — interaction [fn] textAlign=right maps to Flutter</span>
+          <span class="test-dur">26ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[fn] Text — interaction [fn] textAlign=right maps to Flutter</span>
+          <span class="test-dur">14ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[fn] Text — interaction [fn] textAlign=right maps to Flutter</span>
+          <span class="test-dur">17ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[fn] Text — interaction [fn] attention none matches high colour</span>
+          <span class="test-dur">36ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[fn] Text — interaction [fn] attention none matches high colour</span>
+          <span class="test-dur">23ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[fn] Text — interaction [fn] attention none matches high colour</span>
+          <span class="test-dur">22ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          
+          <span class="test-name">[fn] Text — interaction [fn] appearance=auto resolves to neutral</span>
+          <span class="test-dur">2ms</span>
+        </div>
+        
+      </div></div>
+    </details>
+<details class="file-block file-pass" data-component="text" open>
+      <summary class="file-summary">
+        <span class="file-icon">✓</span>
+        <span class="file-path">test/components/text/text_golden_dark_test.dart</span>
+        <span class="file-counts">
+          <span class="pass-count">8 passed</span>
+          
+        </span>
+        <span class="file-dur">0.83s</span>
+      </summary>
+      <div class="suite-block"><div class="test-row passed" data-component="text" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden][dark] Text — typography variants body / M (dark)</span>
+          <span class="test-dur">483ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden][dark] Text — typography variants label / M (dark)</span>
+          <span class="test-dur">70ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden][dark] Text — typography variants title / M (dark)</span>
+          <span class="test-dur">48ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden][dark] Text — typography variants headline / M (dark)</span>
+          <span class="test-dur">46ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden][dark] Text — typography variants display / M (dark)</span>
+          <span class="test-dur">40ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden][dark] Text — attention levels (body) body / high (dark)</span>
+          <span class="test-dur">40ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden][dark] Text — attention levels (body) body / medium (dark)</span>
+          <span class="test-dur">63ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden][dark] Text — attention levels (body) body / low (dark)</span>
+          <span class="test-dur">36ms</span>
+        </div>
+        
+      </div></div>
+    </details>
+<details class="file-block file-pass" data-component="text" open>
+      <summary class="file-summary">
+        <span class="file-icon">✓</span>
+        <span class="file-path">test/components/text/text_golden_surface_test.dart</span>
+        <span class="file-counts">
+          <span class="pass-count">13 passed</span>
+          
+        </span>
+        <span class="file-dur">1.16s</span>
+      </summary>
+      <div class="suite-block"><div class="test-row passed" data-component="text" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden][surface] Text — inside Surface(mode=X) surface=bold / attention=high</span>
+          <span class="test-dur">614ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden][surface] Text — inside Surface(mode=X) surface=bold / attention=medium</span>
+          <span class="test-dur">53ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden][surface] Text — inside Surface(mode=X) surface=bold / attention=low</span>
+          <span class="test-dur">46ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden][surface] Text — inside Surface(mode=X) surface=subtle / attention=high</span>
+          <span class="test-dur">44ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden][surface] Text — inside Surface(mode=X) surface=subtle / attention=medium</span>
+          <span class="test-dur">89ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden][surface] Text — inside Surface(mode=X) surface=subtle / attention=low</span>
+          <span class="test-dur">44ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden][surface] Text — inside Surface(mode=X) surface=minimal / attention=high</span>
+          <span class="test-dur">41ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden][surface] Text — inside Surface(mode=X) surface=minimal / attention=medium</span>
+          <span class="test-dur">39ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden][surface] Text — inside Surface(mode=X) surface=minimal / attention=low</span>
+          <span class="test-dur">40ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden][surface] Text — inside Surface(mode=X) surface=elevated / attention=high</span>
+          <span class="test-dur">40ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden][surface] Text — inside Surface(mode=X) surface=elevated / attention=medium</span>
+          <span class="test-dur">36ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden][surface] Text — inside Surface(mode=X) surface=elevated / attention=low</span>
+          <span class="test-dur">39ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden][surface] Text — cross-role secondary surface secondary subtle / high attention</span>
+          <span class="test-dur">35ms</span>
+        </div>
+        
+      </div></div>
+    </details>
+<details class="file-block file-pass" data-component="text" open>
+      <summary class="file-summary">
+        <span class="file-icon">✓</span>
+        <span class="file-path">test/components/text/text_golden_test.dart</span>
+        <span class="file-counts">
+          <span class="pass-count">12 passed</span>
+          
+        </span>
+        <span class="file-dur">0.94s</span>
+      </summary>
+      <div class="suite-block"><div class="test-row passed" data-component="text" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] Text — typography variants body / M / high</span>
+          <span class="test-dur">450ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] Text — typography variants label / S / medium</span>
+          <span class="test-dur">42ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] Text — typography variants title / M / high</span>
+          <span class="test-dur">47ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] Text — typography variants headline / L / high</span>
+          <span class="test-dur">41ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] Text — typography variants display / M / high</span>
+          <span class="test-dur">41ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] Text — typography variants code / M / medium (synthetic harness — bundled code font)</span>
+          <span class="test-dur">46ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] Text — attention × appearance (body) body / high_primary</span>
+          <span class="test-dur">37ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] Text — attention × appearance (body) body / medium_secondary</span>
+          <span class="test-dur">56ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] Text — attention × appearance (body) body / low_neutral</span>
+          <span class="test-dur">36ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] Text — attention × appearance (body) body / tintedA11y_positive</span>
+          <span class="test-dur">41ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] Text — decorations body italic + underline</span>
+          <span class="test-dur">71ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] Text — decorations body strikethrough</span>
+          <span class="test-dur">34ms</span>
+        </div>
+        
+      </div></div>
+    </details>
+<details class="file-block file-pass" data-component="text" open>
+      <summary class="file-summary">
+        <span class="file-icon">✓</span>
+        <span class="file-path">test/components/text/text_platform_test.dart</span>
+        <span class="file-counts">
+          <span class="pass-count">14 passed</span>
+          
+        </span>
+        <span class="file-dur">0.83s</span>
+      </summary>
+      <div class="suite-block"><div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[platform][mobile] Text [mobile] tap invokes onPressed</span>
+          <span class="test-dur">503ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[platform][mobile] Text [mobile] tap invokes onPressed</span>
+          <span class="test-dur">40ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[platform][mobile] Text [mobile] headline exposes header semantics</span>
+          <span class="test-dur">29ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[platform][mobile] Text [mobile] headline exposes header semantics</span>
+          <span class="test-dur">23ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[platform][mobile] Text [mobile] S platform renders body M at 14px</span>
+          <span class="test-dur">25ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[platform][mobile] Text [mobile] S platform renders body M at 14px</span>
+          <span class="test-dur">22ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[platform][web] Text [web] tap invokes onPressed</span>
+          <span class="test-dur">38ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">macos</span>
+          <span class="test-name">[platform][web] Text [web] tap invokes onPressed (macOS)</span>
+          <span class="test-dur">22ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[platform][web] Text [web] interactive link exposes link semantics</span>
+          <span class="test-dur">21ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">macos</span>
+          <span class="test-name">[platform][web] Text [web] interactive link exposes link semantics (macOS)</span>
+          <span class="test-dur">24ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[platform][web] Text [web] plain body uses native Text semantics</span>
+          <span class="test-dur">22ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">macos</span>
+          <span class="test-name">[platform][web] Text [web] plain body uses native Text semantics (macOS)</span>
+          <span class="test-dur">19ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[platform][web] Text [web] D-1280 desktop platform renders body M</span>
+          <span class="test-dur">20ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">macos</span>
+          <span class="test-name">[platform][web] Text [web] D-1280 desktop platform renders body M (macOS)</span>
+          <span class="test-dur">20ms</span>
+        </div>
+        
+      </div></div>
+    </details>
+<details class="file-block file-pass" data-component="text" open>
+      <summary class="file-summary">
+        <span class="file-icon">✓</span>
+        <span class="file-path">test/components/text/text_regression_test.dart</span>
+        <span class="file-counts">
+          <span class="pass-count">32 passed</span>
+          
+        </span>
+        <span class="file-dur">1.34s</span>
+      </summary>
+      <div class="suite-block"><div class="test-row passed" data-component="text" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[regression][confirmed] Text [fn] [TXT-FN-001] href without onPressed must wire a tap handler</span>
+          <span class="test-dur">448ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[regression][confirmed] Text [fn] [TXT-FN-001] href without onPressed must wire a tap handler</span>
+          <span class="test-dur">54ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[regression][confirmed] Text [fn] [TXT-FN-001] href without onPressed must wire a tap handler</span>
+          <span class="test-dur">37ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[regression][confirmed] Text [a11y] [TXT-A11Y-001] href-only link must expose tap action in semantics</span>
+          <span class="test-dur">36ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[regression][confirmed] Text [a11y] [TXT-A11Y-001] href-only link must expose tap action in semantics</span>
+          <span class="test-dur">24ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[regression][confirmed] Text [a11y] [TXT-A11Y-001] href-only link must expose tap action in semantics</span>
+          <span class="test-dur">23ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[regression][confirmed] Text [fn] [TXT-FN-002] inline link substring must wire tap when onLinkPress is set</span>
+          <span class="test-dur">28ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[regression][confirmed] Text [fn] [TXT-FN-002] inline link substring must wire tap when onLinkPress is set</span>
+          <span class="test-dur">22ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[regression][confirmed] Text [fn] [TXT-FN-002] inline link substring must wire tap when onLinkPress is set</span>
+          <span class="test-dur">240ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[regression][confirmed] Text [fn] [TXT-FN-002b] inline link without onLinkPress renders plain copy</span>
+          <span class="test-dur">27ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[regression][confirmed] Text [fn] [TXT-FN-002b] inline link without onLinkPress renders plain copy</span>
+          <span class="test-dur">22ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[regression][confirmed] Text [fn] [TXT-FN-002b] inline link without onLinkPress renders plain copy</span>
+          <span class="test-dur">20ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[regression][debatable] Text [a11y] [TXT-DEB-001] testId is not exposed via Semantics.identifier</span>
+          <span class="test-dur">19ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[regression][debatable] Text [a11y] [TXT-DEB-001] testId is not exposed via Semantics.identifier</span>
+          <span class="test-dur">17ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[regression][debatable] Text [a11y] [TXT-DEB-001] testId is not exposed via Semantics.identifier</span>
+          <span class="test-dur">18ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          
+          <span class="test-name">[regression][parity] Text [parity] [TXT-PAR-001] appearance auto → neutral</span>
+          <span class="test-dur">3ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          
+          <span class="test-name">[regression][parity] Text [parity] [TXT-PAR-002] attention none → high</span>
+          <span class="test-dur">2ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          
+          <span class="test-name">[regression][parity] Text [parity] [TXT-PAR-003] display/headline/title weight fixed medium</span>
+          <span class="test-dur">2ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          
+          <span class="test-name">[regression][parity] Text [parity] [TXT-PAR-004] display/headline/title attention high-only</span>
+          <span class="test-dur">1ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[regression][parity] Text [parity] [TXT-PAR-005] display low weight prop renders medium at runtime</span>
+          <span class="test-dur">19ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[regression][parity] Text [parity] [TXT-PAR-005] display low weight prop renders medium at runtime</span>
+          <span class="test-dur">19ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[regression][parity] Text [parity] [TXT-PAR-005] display low weight prop renders medium at runtime</span>
+          <span class="test-dur">19ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[regression][parity] Text [parity] [TXT-PAR-006] body weight high vs low renders distinct weights</span>
+          <span class="test-dur">43ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[regression][parity] Text [parity] [TXT-PAR-006] body weight high vs low renders distinct weights</span>
+          <span class="test-dur">27ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[regression][parity] Text [parity] [TXT-PAR-006] body weight high vs low renders distinct weights</span>
+          <span class="test-dur">25ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[regression][parity] Text [parity] [TXT-PAR-007] italic underline strikethrough reach TextStyle</span>
+          <span class="test-dur">18ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[regression][parity] Text [parity] [TXT-PAR-007] italic underline strikethrough reach TextStyle</span>
+          <span class="test-dur">18ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[regression][parity] Text [parity] [TXT-PAR-007] italic underline strikethrough reach TextStyle</span>
+          <span class="test-dur">20ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[regression][parity] Text [parity] [TXT-PAR-008] onPressed fires on tap</span>
+          <span class="test-dur">50ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[regression][parity] Text [parity] [TXT-PAR-008] onPressed fires on tap</span>
+          <span class="test-dur">23ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[regression][parity] Text [parity] [TXT-PAR-008] onPressed fires on tap</span>
+          <span class="test-dur">19ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="text" data-tier="other">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">OTHER</span>
+          
+          <span class="test-name">[regression][meta] Text [meta] burn-down counter — total pending bugs = 0</span>
+          <span class="test-dur">2ms</span>
+        </div>
+        
+      </div></div>
+    </details>
+  </div>
+  <div class="footer">Generated by <code>generate-html-report.mts</code> · OneUI QA Playground Flutter</div>
+  <script>
+    function applyFilters() {
+      var comp = document.getElementById('comp-filter').value;
+      var tier = document.getElementById('tier-filter').value;
+      document.querySelectorAll('.file-block').forEach(function(block) {
+        var bc = block.getAttribute('data-component');
+        var showFile = (!comp || bc === comp);
+        if (showFile && tier) {
+          var rows = block.querySelectorAll('.test-row');
+          var any = false;
+          rows.forEach(function(row) {
+            var match = row.getAttribute('data-tier') === tier;
+            row.style.display = match ? '' : 'none';
+            if (match) any = true;
+          });
+          block.style.display = any ? '' : 'none';
+        } else {
+          block.style.display = showFile ? '' : 'none';
+          block.querySelectorAll('.test-row').forEach(function(row) { row.style.display = ''; });
+        }
+      });
+    }
+  </script>
+</body>
+</html>

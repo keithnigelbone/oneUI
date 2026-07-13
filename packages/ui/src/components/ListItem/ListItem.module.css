@@ -1,0 +1,525 @@
+/**
+ * ListItem.module.css
+ * Zero-literal styling for ListItem — token-only.
+ *
+ * Architecture:
+ *  - Role-agnostic intermediate vars (--_li-*) default to Primary, remapped by appearance classes.
+ *  - State hooks via data-attributes: [data-container], [data-selected], [data-align],
+ *    [data-start-size], [data-end-size], [data-disabled].
+ *  - selected='high' ALSO sets [data-surface="fg-bold"] on the root → brand CSS cascade
+ *    remaps --{Role}-Default-* to on-bold colours for all children (bold inversion).
+ *  - Focus halo follows the CLAUDE.md pattern (2-layer box-shadow, Halo-Gap + Focus-Outline).
+ */
+
+/* =========================================================
+   ROOT
+   ========================================================= */
+
+.root {
+  /* ----- Intermediate vars — default Primary, overridden by .appearance* classes ----- */
+  --_li-title: var(--Primary-High, var(--Text-High));
+  --_li-support: var(--Primary-Low, var(--Text-Low));
+  /* Slot accent (start icon, supportSlot icon) defaults to SECONDARY so leading
+     icons/avatars get the brand-secondary tint by default. Each .appearance* class
+     remaps this to its own role's accent, so explicit roles still win. */
+  --_li-accent: var(--Secondary-Tinted, var(--Secondary-High, var(--Text-High)));
+  --_li-end: var(--Primary-Low, var(--Text-Low));
+  --_li-hover: var(--Primary-Hover, var(--Surface-Minimal));
+  --_li-pressed: var(--Primary-Pressed, var(--Surface-Subtle));
+  --_li-fill-medium: var(--Primary-Subtle, var(--Surface-Subtle));
+  --_li-fill-high: var(--Primary-Bold, var(--Surface-Bold));
+
+  /* position: relative — required for the ::after divider absolutely positioning. */
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--ListItem-gap, var(--Spacing-3));
+  width: 100%;
+  min-height: var(--ListItem-minHeight, var(--Spacing-12)); /* 48px */
+  box-sizing: border-box;
+
+  /* Content-column x-offset = padding + (start slot + gap, if present).
+     Used by the inset divider to start at the text column. */
+  --_li-content-offset: var(--ListItem-paddingInline, var(--Spacing-3));
+
+  padding-block: var(--ListItem-paddingBlock, var(--Spacing-2));   /* 8px */
+  padding-inline: var(--ListItem-paddingInline, var(--Spacing-3));  /* 12px */
+
+  background-color: transparent;
+  border: none;
+  color: var(--_li-title);
+  text-align: start;
+  text-decoration: none;
+  cursor: pointer;
+  font-family: var(--Label-FontFamily, var(--Typography-Font-Text));
+  -webkit-tap-highlight-color: transparent;
+
+  transition-property: background-color, color, box-shadow, opacity;
+  transition-duration: var(--ListItem-transitionDuration, var(--Motion-Duration-Discreet-S));
+  transition-timing-function: var(--ListItem-transitionEasing, var(--Motion-Easing-Transition-Moderate));
+}
+
+/* Reset native button baseline so tokens control everything */
+.root[type="button"] {
+  font: inherit;
+  color: var(--_li-title);
+}
+
+/* Non-interactive root (no href / no onClick) — rendered as <div> */
+.root[data-interactive="false"] {
+  cursor: default;
+}
+
+/* =========================================================
+   CONTAINER VARIANTS
+   ========================================================= */
+
+/* fullWidth: edge-to-edge, no border-radius */
+.root[data-container="fullWidth"] {
+  border-radius: var(--ListItem-borderRadius-fullWidth, 0);
+}
+
+/* inset: horizontal margin + rounded corners (Figma's "inset" variant) */
+.root[data-container="inset"] {
+  border-radius: var(--ListItem-borderRadius, var(--Shape-2));
+  margin-inline: var(--ListItem-insetMargin, var(--Spacing-3));
+  width: auto;
+}
+
+/* =========================================================
+   SLOT ALIGNMENT
+   ========================================================= */
+
+/* centre (default): vertical centre alignment */
+.root[data-align="centre"] {
+  align-items: center;
+}
+
+/* top: for multi-line support text — slots align to the top of content */
+.root[data-align="top"] {
+  align-items: flex-start;
+  padding-block: var(--ListItem-paddingBlock-top, var(--Spacing-2-5)); /* 10px top */
+}
+
+/* none: single-line (derived when supportText is absent) — always centred */
+.root[data-align="none"] {
+  align-items: center;
+}
+
+/* =========================================================
+   START / END SLOTS
+   ========================================================= */
+
+.slot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--_li-accent);
+  --Icon-color: var(--_li-accent);
+}
+
+.slot[data-role="end"] {
+  color: var(--_li-end);
+  --Icon-color: var(--_li-end);
+  margin-inline-start: auto;
+  /* Trailing slot always vertically centred — even when slotAlignment="top"
+     pins the leading icon to the title baseline, the trailing affordance
+     (chevron, action button, status cluster) reads better mid-row. */
+  align-self: center;
+}
+
+/* INTENTIONAL-LITERAL: the "width:24px" below is documentation prose
+   referencing a historical behaviour; no such declaration exists in this
+   file. The check-literals scanner catches it because block-comment
+   continuation lines don't re-open with `/*`.
+   Slot sizes — apply ONLY to raw SVG children (icons), not to the slot wrapper itself.
+   If the slot is given a fixed width, complex trailing content (Stepper, Switch,
+   status-text + chevron clusters) gets clipped by the group's overflow:hidden because
+   it visually overflows the constrained slot box while the layout still positions the
+   slot at width:24px. Letting the slot hug its content makes those rich trailings fit. */
+.slot[data-size="s"] > svg {
+  width: var(--ListItem-slotSize-s, var(--Spacing-5));   /* 20px */
+  height: var(--ListItem-slotSize-s, var(--Spacing-5));
+}
+
+.slot[data-size="m"] > svg {
+  width: var(--ListItem-slotSize-m, var(--Spacing-6));  /* 24px */
+  height: var(--ListItem-slotSize-m, var(--Spacing-6));
+}
+
+.slot[data-size="l"] > svg {
+  width: var(--ListItem-slotSize-l, var(--Spacing-8));  /* 32px */
+  height: var(--ListItem-slotSize-l, var(--Spacing-8));
+}
+
+.slot[data-size="xl"] > svg {
+  width: var(--ListItem-slotSize-xl, var(--Spacing-10)); /* 40px */
+  height: var(--ListItem-slotSize-xl, var(--Spacing-10));
+}
+
+/* Reserve a square box for the START slot so leading icons line up consistently
+   regardless of their natural size. Trailing content (end slot) intentionally
+   hugs its content because Steppers/Switches/status clusters need full breathing
+   room; the divider's content-offset still uses the canonical slot size. */
+.slot[data-role="start"][data-size="s"]  { min-width: var(--ListItem-slotSize-s,  var(--Spacing-5)); }
+.slot[data-role="start"][data-size="m"]  { min-width: var(--ListItem-slotSize-m,  var(--Spacing-6)); }
+.slot[data-role="start"][data-size="l"]  { min-width: var(--ListItem-slotSize-l,  var(--Spacing-8)); }
+.slot[data-role="start"][data-size="xl"] { min-width: var(--ListItem-slotSize-xl, var(--Spacing-10)); }
+
+/* =========================================================
+   CONTENT (title + supportText)
+   ========================================================= */
+
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--ListItem-contentGap, var(--Spacing-0-5));  /* 2px */
+  /* flex-basis: 0 lets the title column shrink first so wide trailing slots
+     (e.g. <Stepper>, status text + chevron clusters) never get clipped by the
+     row width. Title/support text still ellipses via overflow:hidden + nowrap. */
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.title {
+  font-family: var(--Label-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--ListItem-titleFontSize, var(--Label-M-FontSize));
+  line-height: var(--ListItem-titleLineHeight, var(--Label-M-LineHeight));
+  font-weight: var(--ListItem-titleFontWeight, var(--Label-FontWeight-High));
+  color: var(--_li-title);
+  margin: 0;
+  /* Truncate single-line titles */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Support row: wraps the optional inline slot + support text on one line.
+   Flex + gap keeps the small icon aligned to the text baseline. */
+.support {
+  display: flex;
+  align-items: center;
+  gap: var(--ListItem-supportSlotGap, var(--Spacing-1)); /* 4px */
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--ListItem-supportFontSize, var(--Body-S-FontSize));
+  line-height: var(--ListItem-supportLineHeight, var(--Body-S-LineHeight));
+  font-weight: var(--ListItem-supportFontWeight, var(--Body-FontWeight-Low));
+  color: var(--_li-support);
+  margin: 0;
+}
+
+/* Inline slot before support text — Figma: .ListItem.Slot.Default.Content
+   Inherits the slot accent (Secondary by default) so it visually pairs with
+   the leading icon and the row's accent identity, rather than the muted
+   support text colour. Per-row semantic overrides (positive/informative)
+   wrap the Icon child with their own colour token.
+   Size mapped to Spacing-4 (Dimension-f0) — one f-step below the Figma
+   Hug-12 spec so the inline metadata icon reads as quieter than the
+   support text it sits beside. */
+.supportSlot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--_li-accent);
+  --Icon-color: var(--_li-accent);
+  width: var(--ListItem-supportSlotSize, var(--Spacing-4));
+  height: var(--ListItem-supportSlotSize, var(--Spacing-4));
+}
+
+/* Force every SVG nested inside the support slot — including those wrapped in
+   colour-override spans (e.g. the per-row semantic icon helpers) — to take the
+   full slot box. Direct-child only would leak the icon's intrinsic size whenever
+   a consumer wraps the Icon for theming. */
+.supportSlot,
+.supportSlot > * {
+  box-sizing: border-box;
+}
+
+.supportSlot > * {
+  width: 100%;
+  height: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.supportSlot svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.supportText {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* =========================================================
+   SELECTED STATES
+   ========================================================= */
+
+/* Medium: tinted surface fill (Primary-Subtle or role equivalent).
+   Title/support colours continue to use --{Role}-Default-* (dark accent on tint)
+   — readable because Subtle is a light tinted surface. */
+.root[data-selected="medium"] {
+  background-color: var(--_li-fill-medium);
+}
+
+/* High: bold accent fill. DO NOT self-apply [data-surface] here — that would cause
+   --{Role}-Bold to be read as brandBoldInversion (a lighter tint) on the same
+   element, making the fill wrong. Instead, we directly override the intermediate
+   vars to point at the role's --Bold-* on-colour tokens, which are pre-computed
+   for on-bold readability and already behave correctly inside any ancestor surface
+   context via the cascade. */
+.root[data-selected="high"] {
+  background-color: var(--_li-fill-high);
+  --_li-title: var(--Primary-Bold-TintedA11y, var(--Primary-Bold-High, var(--Text-OnBold-High)));
+  --_li-support: var(--Primary-Bold-TintedA11y, var(--Primary-Bold-High, var(--Text-OnBold-High)));
+  --_li-accent: var(--Primary-Bold-TintedA11y, var(--Primary-Bold-High, var(--Text-OnBold-High)));
+  --_li-end: var(--Primary-Bold-TintedA11y, var(--Primary-Bold-High, var(--Text-OnBold-High)));
+}
+
+/* Per-appearance overrides for selected=high — point at the correct role's
+   Bold on-colours. (Primary is already the default above.) */
+.appearanceNeutral[data-selected="high"],
+.root.appearanceNeutral[data-selected="high"] {
+  --_li-title: var(--Neutral-Bold-TintedA11y, var(--Neutral-Bold-High, var(--Text-OnBold-High)));
+  --_li-support: var(--Neutral-Bold-TintedA11y, var(--Neutral-Bold-High, var(--Text-OnBold-High)));
+  --_li-accent: var(--Neutral-Bold-TintedA11y, var(--Neutral-Bold-High, var(--Text-OnBold-High)));
+  --_li-end: var(--Neutral-Bold-TintedA11y, var(--Neutral-Bold-High, var(--Text-OnBold-High)));
+}
+
+.appearanceSecondary[data-selected="high"] {
+  --_li-title: var(--Secondary-Bold-TintedA11y, var(--Secondary-Bold-High, var(--Text-OnBold-High)));
+  --_li-support: var(--Secondary-Bold-TintedA11y, var(--Secondary-Bold-High, var(--Text-OnBold-High)));
+  --_li-accent: var(--Secondary-Bold-TintedA11y, var(--Secondary-Bold-High, var(--Text-OnBold-High)));
+  --_li-end: var(--Secondary-Bold-TintedA11y, var(--Secondary-Bold-High, var(--Text-OnBold-High)));
+}
+
+.appearanceSparkle[data-selected="high"] {
+  --_li-title: var(--Sparkle-Bold-TintedA11y, var(--Sparkle-Bold-High, var(--Text-OnBold-High)));
+  --_li-support: var(--Sparkle-Bold-TintedA11y, var(--Sparkle-Bold-High, var(--Text-OnBold-High)));
+  --_li-accent: var(--Sparkle-Bold-TintedA11y, var(--Sparkle-Bold-High, var(--Text-OnBold-High)));
+  --_li-end: var(--Sparkle-Bold-TintedA11y, var(--Sparkle-Bold-High, var(--Text-OnBold-High)));
+}
+
+.appearanceBrandBg[data-selected="high"] {
+  --_li-title: var(--Brand-Bg-Bold-TintedA11y, var(--Brand-Bg-Bold-High, var(--Text-OnBold-High)));
+  --_li-support: var(--Brand-Bg-Bold-TintedA11y, var(--Brand-Bg-Bold-High, var(--Text-OnBold-High)));
+  --_li-accent: var(--Brand-Bg-Bold-TintedA11y, var(--Brand-Bg-Bold-High, var(--Text-OnBold-High)));
+  --_li-end: var(--Brand-Bg-Bold-TintedA11y, var(--Brand-Bg-Bold-High, var(--Text-OnBold-High)));
+}
+
+.appearancePositive[data-selected="high"] {
+  --_li-title: var(--Positive-Bold-TintedA11y, var(--Positive-Bold-High, var(--Text-OnBold-High)));
+  --_li-support: var(--Positive-Bold-TintedA11y, var(--Positive-Bold-High, var(--Text-OnBold-High)));
+  --_li-accent: var(--Positive-Bold-TintedA11y, var(--Positive-Bold-High, var(--Text-OnBold-High)));
+  --_li-end: var(--Positive-Bold-TintedA11y, var(--Positive-Bold-High, var(--Text-OnBold-High)));
+}
+
+.appearanceNegative[data-selected="high"] {
+  --_li-title: var(--Negative-Bold-TintedA11y, var(--Negative-Bold-High, var(--Text-OnBold-High)));
+  --_li-support: var(--Negative-Bold-TintedA11y, var(--Negative-Bold-High, var(--Text-OnBold-High)));
+  --_li-accent: var(--Negative-Bold-TintedA11y, var(--Negative-Bold-High, var(--Text-OnBold-High)));
+  --_li-end: var(--Negative-Bold-TintedA11y, var(--Negative-Bold-High, var(--Text-OnBold-High)));
+}
+
+.appearanceWarning[data-selected="high"] {
+  --_li-title: var(--Warning-Bold-TintedA11y, var(--Warning-Bold-High, var(--Text-OnBold-High)));
+  --_li-support: var(--Warning-Bold-TintedA11y, var(--Warning-Bold-High, var(--Text-OnBold-High)));
+  --_li-accent: var(--Warning-Bold-TintedA11y, var(--Warning-Bold-High, var(--Text-OnBold-High)));
+  --_li-end: var(--Warning-Bold-TintedA11y, var(--Warning-Bold-High, var(--Text-OnBold-High)));
+}
+
+.appearanceInformative[data-selected="high"] {
+  --_li-title: var(--Informative-Bold-TintedA11y, var(--Informative-Bold-High, var(--Text-OnBold-High)));
+  --_li-support: var(--Informative-Bold-TintedA11y, var(--Informative-Bold-High, var(--Text-OnBold-High)));
+  --_li-accent: var(--Informative-Bold-TintedA11y, var(--Informative-Bold-High, var(--Text-OnBold-High)));
+  --_li-end: var(--Informative-Bold-TintedA11y, var(--Informative-Bold-High, var(--Text-OnBold-High)));
+}
+
+/* =========================================================
+   HOVER / PRESSED (non-disabled, non-selected-high only)
+   The hover/pressed tokens are state-layer overlays that don't apply to bold fill.
+   ========================================================= */
+
+.root:hover:not([data-disabled]):not([data-selected="high"]) {
+  background-color: var(--ListItem-backgroundColor-hover, var(--_li-hover));
+}
+
+.root:active:not([data-disabled]):not([data-selected="high"]) {
+  background-color: var(--ListItem-backgroundColor-pressed, var(--_li-pressed));
+}
+
+/* Selected medium already has a fill — layer hover/pressed on top */
+.root[data-selected="medium"]:hover:not([data-disabled]) {
+  background-color: var(--Primary-Subtle-Hover, var(--_li-hover));
+}
+
+.root[data-selected="medium"]:active:not([data-disabled]) {
+  background-color: var(--Primary-Subtle-Pressed, var(--_li-pressed));
+}
+
+/* =========================================================
+   DIVIDER — bottom hairline (::after)
+   'full'  = edge-to-edge
+   'inset' = starts at the content column
+   Auto-suppressed on :last-child so there's no dangling line below the last row.
+   ========================================================= */
+
+/* Content offset = padding + slot size + gap, when a start slot is rendered. */
+.root[data-start-size="s"]  { --_li-content-offset: calc(var(--ListItem-paddingInline, var(--Spacing-3)) + var(--ListItem-slotSize-s,  var(--Spacing-5))   + var(--ListItem-gap, var(--Spacing-3))); }
+.root[data-start-size="m"]  { --_li-content-offset: calc(var(--ListItem-paddingInline, var(--Spacing-3)) + var(--ListItem-slotSize-m,  var(--Spacing-6))  + var(--ListItem-gap, var(--Spacing-3))); }
+.root[data-start-size="l"]  { --_li-content-offset: calc(var(--ListItem-paddingInline, var(--Spacing-3)) + var(--ListItem-slotSize-l,  var(--Spacing-8))  + var(--ListItem-gap, var(--Spacing-3))); }
+.root[data-start-size="xl"] { --_li-content-offset: calc(var(--ListItem-paddingInline, var(--Spacing-3)) + var(--ListItem-slotSize-xl, var(--Spacing-10))  + var(--ListItem-gap, var(--Spacing-3))); }
+
+.root[data-divider="full"]::after,
+.root[data-divider="inset"]::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: var(--ListItem-dividerThickness, var(--Stroke-S, var(--Border-Thin-Width, 1px)));
+  background-color: var(--ListItem-dividerColor, var(--Neutral-Stroke-Low, var(--Border-Subtle)));
+  pointer-events: none;
+}
+
+.root[data-divider="full"]::after {
+  left: 0;
+}
+
+.root[data-divider="inset"]::after {
+  left: var(--_li-content-offset);
+}
+
+/* Auto-suppress the divider when this row is the last child of its parent.
+   Prevents a dangling hairline below the bottom row of any list. */
+.root:last-child[data-divider="full"]::after,
+.root:last-child[data-divider="inset"]::after {
+  display: none;
+}
+
+/* =========================================================
+   DISABLED
+   ========================================================= */
+
+.root[data-disabled] {
+  opacity: var(--Disabled-Opacity);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* =========================================================
+   FOCUS HALO (CLAUDE.md Focus Halo Pattern)
+   ========================================================= */
+
+.root:focus {
+  outline: none;
+}
+
+.root:focus-visible,
+:global([data-force-state="focus"]) .root {
+  box-shadow:
+    0 0 0 var(--Stroke-XL) var(--Surface-Halo-Gap, var(--Surface-Main)),
+    0 0 0 calc(var(--Stroke-XL) + var(--Focus-Outline-Width))
+      var(--Informative-Bold, var(--Focus-Outline));
+}
+
+/* =========================================================
+   APPEARANCE ROLE CLASSES — remap --_li-* intermediates
+   The Primary role is intentionally NOT a class: leaving the row at root
+   defaults (which use Primary text + Secondary slot accent) is the desired
+   "no appearance set" baseline. Other roles override everything.
+   ========================================================= */
+
+.appearanceNeutral {
+  --_li-title: var(--Neutral-High, var(--Text-High));
+  --_li-support: var(--Neutral-Low, var(--Text-Low));
+  --_li-accent: var(--Neutral-Tinted, var(--Neutral-High, var(--Text-High)));
+  --_li-end: var(--Neutral-Low, var(--Text-Low));
+  --_li-hover: var(--Neutral-Hover, var(--Surface-Minimal));
+  --_li-pressed: var(--Neutral-Pressed, var(--Surface-Subtle));
+  --_li-fill-medium: var(--Neutral-Subtle, var(--Surface-Subtle));
+  --_li-fill-high: var(--Neutral-Bold, var(--Surface-Bold));
+}
+
+.appearanceSecondary {
+  --_li-title: var(--Secondary-High, var(--Text-High));
+  --_li-support: var(--Secondary-Low, var(--Text-Low));
+  --_li-accent: var(--Secondary-Tinted, var(--Secondary-High, var(--Text-High)));
+  --_li-end: var(--Secondary-Low, var(--Text-Low));
+  --_li-hover: var(--Secondary-Hover, var(--Surface-Minimal));
+  --_li-pressed: var(--Secondary-Pressed, var(--Surface-Subtle));
+  --_li-fill-medium: var(--Secondary-Subtle, var(--Surface-Subtle));
+  --_li-fill-high: var(--Secondary-Bold, var(--Surface-Bold));
+}
+
+.appearanceSparkle {
+  --_li-title: var(--Sparkle-High, var(--Text-High));
+  --_li-support: var(--Sparkle-Low, var(--Text-Low));
+  --_li-accent: var(--Sparkle-Tinted, var(--Sparkle-High, var(--Text-High)));
+  --_li-end: var(--Sparkle-Low, var(--Text-Low));
+  --_li-hover: var(--Sparkle-Hover, var(--Surface-Minimal));
+  --_li-pressed: var(--Sparkle-Pressed, var(--Surface-Subtle));
+  --_li-fill-medium: var(--Sparkle-Subtle, var(--Surface-Subtle));
+  --_li-fill-high: var(--Sparkle-Bold, var(--Surface-Bold));
+}
+
+.appearanceBrandBg {
+  --_li-title: var(--Brand-Bg-High, var(--Text-High));
+  --_li-support: var(--Brand-Bg-Low, var(--Text-Low));
+  --_li-accent: var(--Brand-Bg-Tinted, var(--Brand-Bg-High, var(--Text-High)));
+  --_li-end: var(--Brand-Bg-Low, var(--Text-Low));
+  --_li-hover: var(--Brand-Bg-Hover, var(--Surface-Minimal));
+  --_li-pressed: var(--Brand-Bg-Pressed, var(--Surface-Subtle));
+  --_li-fill-medium: var(--Brand-Bg-Subtle, var(--Surface-Subtle));
+  --_li-fill-high: var(--Brand-Bg-Bold, var(--Surface-Bold));
+}
+
+.appearancePositive {
+  --_li-title: var(--Positive-High, var(--Text-High));
+  --_li-support: var(--Positive-Low, var(--Text-Low));
+  --_li-accent: var(--Positive-Tinted, var(--Positive-High, var(--Text-High)));
+  --_li-end: var(--Positive-Low, var(--Text-Low));
+  --_li-hover: var(--Positive-Hover, var(--Surface-Minimal));
+  --_li-pressed: var(--Positive-Pressed, var(--Surface-Subtle));
+  --_li-fill-medium: var(--Positive-Subtle, var(--Surface-Subtle));
+  --_li-fill-high: var(--Positive-Bold, var(--Surface-Bold));
+}
+
+.appearanceNegative {
+  --_li-title: var(--Negative-High, var(--Text-High));
+  --_li-support: var(--Negative-Low, var(--Text-Low));
+  --_li-accent: var(--Negative-Tinted, var(--Negative-High, var(--Text-High)));
+  --_li-end: var(--Negative-Low, var(--Text-Low));
+  --_li-hover: var(--Negative-Hover, var(--Surface-Minimal));
+  --_li-pressed: var(--Negative-Pressed, var(--Surface-Subtle));
+  --_li-fill-medium: var(--Negative-Subtle, var(--Surface-Subtle));
+  --_li-fill-high: var(--Negative-Bold, var(--Surface-Bold));
+}
+
+.appearanceWarning {
+  --_li-title: var(--Warning-High, var(--Text-High));
+  --_li-support: var(--Warning-Low, var(--Text-Low));
+  --_li-accent: var(--Warning-Tinted, var(--Warning-High, var(--Text-High)));
+  --_li-end: var(--Warning-Low, var(--Text-Low));
+  --_li-hover: var(--Warning-Hover, var(--Surface-Minimal));
+  --_li-pressed: var(--Warning-Pressed, var(--Surface-Subtle));
+  --_li-fill-medium: var(--Warning-Subtle, var(--Surface-Subtle));
+  --_li-fill-high: var(--Warning-Bold, var(--Surface-Bold));
+}
+
+.appearanceInformative {
+  --_li-title: var(--Informative-High, var(--Text-High));
+  --_li-support: var(--Informative-Low, var(--Text-Low));
+  --_li-accent: var(--Informative-Tinted, var(--Informative-High, var(--Text-High)));
+  --_li-end: var(--Informative-Low, var(--Text-Low));
+  --_li-hover: var(--Informative-Hover, var(--Surface-Minimal));
+  --_li-pressed: var(--Informative-Pressed, var(--Surface-Subtle));
+  --_li-fill-medium: var(--Informative-Subtle, var(--Surface-Subtle));
+  --_li-fill-high: var(--Informative-Bold, var(--Surface-Bold));
+}

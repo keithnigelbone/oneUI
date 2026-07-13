@@ -1,0 +1,31 @@
+{
+  "expectations": [
+    {
+      "text": "Page/screen background stays default neutral (page not wrapped in a tinted/bold/brand Surface)",
+      "passed": true,
+      "evidence": "matched"
+    },
+    {
+      "text": "Cashback offer is the single non-default surface (bold/brand-bg/sparkle present)",
+      "passed": true,
+      "evidence": "matched"
+    },
+    {
+      "text": "Offer uses <Surface>, not a hardcoded background div",
+      "passed": true,
+      "evidence": "matched"
+    },
+    {
+      "text": "No hardcoded hex color literals in the code",
+      "passed": true,
+      "evidence": "matched"
+    },
+    {
+      "text": "Transactions list not given its own tinted/colored surface",
+      "passed": true,
+      "evidence": "matched"
+    }
+  ],
+  "passed_count": 5,
+  "total": 5
+}

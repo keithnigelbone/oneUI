@@ -1,0 +1,472 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Slider",
+  "generatedAt": "2026-01-01T00:00:00.000Z",
+  "machineReadable": true,
+  "intentAndPurpose": {
+    "intent": {
+      "value": "Precision range input. Multi-accent appearance, inside/outside knob styles, optional step ticks, and a value tooltip that follows the thumb.",
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "taskContexts": {
+      "value": [],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "sentiments": {
+      "value": [
+        "neutral"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "compositionRules": {
+    "requires": {
+      "value": [],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "allows": {
+      "value": [
+        "start",
+        "end"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "forbids": {
+      "value": [],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "continuous",
+        "useWhen": {
+          "value": [
+            "Continuous"
+          ],
+          "attribution": {
+            "source": "inferred"
+          }
+        }
+      },
+      {
+        "name": "range",
+        "useWhen": {
+          "value": [
+            "Range"
+          ],
+          "attribution": {
+            "source": "inferred"
+          }
+        }
+      }
+    ]
+  },
+  "relationshipsAndDependencies": {
+    "related": {
+      "value": [],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "contextSignals": {
+    "density": {
+      "value": [
+        "compact",
+        "default",
+        "open"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "modality": {
+      "value": [
+        "desktop",
+        "mobile"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "brand": {
+      "value": [
+        "theme-scope aware",
+        "recipe-driven"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "mode": {
+      "value": [
+        "light",
+        "dark",
+        "surface-context"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "observabilityHooks": {
+    "track": {
+      "value": [],
+      "attribution": {
+        "source": "inferred"
+      }
+    },
+    "health": {
+      "value": [
+        "a11y_violations"
+      ],
+      "attribution": {
+        "source": "inferred"
+      }
+    }
+  },
+  "props": [
+    {
+      "name": "appearance",
+      "type": "SliderAppearance",
+      "required": false,
+      "description": "Multi-accent appearance role. Default 'auto' → 'secondary'."
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": false,
+      "description": "aria-label property"
+    },
+    {
+      "name": "aria-labelledby",
+      "type": "string",
+      "required": false,
+      "description": "aria-labelledby property"
+    },
+    {
+      "name": "ariaLabels",
+      "type": "string[]",
+      "required": false,
+      "description": "Per-thumb aria-label for range sliders (array indexed by thumb). Falls back to `aria-label` when absent. Use this only in range mode; for single-thumb sliders use `aria-label`."
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "required": false,
+      "description": "className property"
+    },
+    {
+      "name": "defaultValue",
+      "type": "number | number[]",
+      "required": false,
+      "description": "Default value (uncontrolled)."
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "required": false,
+      "description": "disabled property"
+    },
+    {
+      "name": "end",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Node rendered at the end of the slider (e.g. an IconButton). 30×30 slot per Figma."
+    },
+    {
+      "name": "form",
+      "type": "string",
+      "required": false,
+      "description": "form property"
+    },
+    {
+      "name": "formatValue",
+      "type": "(value: number, index: number) => string",
+      "required": false,
+      "description": "Formatter for tooltip value."
+    },
+    {
+      "name": "knobStyle",
+      "type": "SliderKnobStyle",
+      "required": false,
+      "description": "Knob placement style. Default 'outside'."
+    },
+    {
+      "name": "largeStep",
+      "type": "number",
+      "required": false,
+      "description": "largeStep property"
+    },
+    {
+      "name": "max",
+      "type": "number",
+      "required": false,
+      "description": "max property"
+    },
+    {
+      "name": "min",
+      "type": "number",
+      "required": false,
+      "description": "min property"
+    },
+    {
+      "name": "minStepsBetweenValues",
+      "type": "number",
+      "required": false,
+      "description": "minStepsBetweenValues property"
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "required": false,
+      "description": "name property"
+    },
+    {
+      "name": "onValueChange",
+      "type": "(value: number | number[]) => void",
+      "required": false,
+      "description": "Called as the user drags."
+    },
+    {
+      "name": "onValueCommitted",
+      "type": "(value: number | number[]) => void",
+      "required": false,
+      "description": "Called when the user releases / commits the value."
+    },
+    {
+      "name": "orientation",
+      "type": "SliderOrientation",
+      "required": false,
+      "description": "Orientation. Default 'horizontal'."
+    },
+    {
+      "name": "readOnly",
+      "type": "boolean",
+      "required": false,
+      "description": "readOnly property"
+    },
+    {
+      "name": "showSteps",
+      "type": "boolean",
+      "required": false,
+      "description": "Render tick marks at every step."
+    },
+    {
+      "name": "showTooltip",
+      "type": "SliderTooltipMode",
+      "required": false,
+      "description": "Tooltip visibility. Default 'auto' (drag + focus)."
+    },
+    {
+      "name": "snapToSteps",
+      "type": "boolean",
+      "required": false,
+      "description": "When true (default), the thumb snaps to exact step positions. When false, dragging is continuous but tick marks still appear at step positions."
+    },
+    {
+      "name": "start",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Node rendered at the start of the slider (e.g. an IconButton). 30×30 slot per Figma."
+    },
+    {
+      "name": "step",
+      "type": "number",
+      "required": false,
+      "description": "step property"
+    },
+    {
+      "name": "stepLabels",
+      "type": "ReactNode[]",
+      "required": false,
+      "description": "Optional labels under step marks."
+    },
+    {
+      "name": "style",
+      "type": "CSSProperties",
+      "required": false,
+      "description": "style property"
+    },
+    {
+      "name": "value",
+      "type": "number | number[]",
+      "required": false,
+      "description": "Current value (controlled). Number for single thumb, array for range."
+    }
+  ],
+  "slots": [
+    {
+      "name": "start",
+      "types": [],
+      "tokens": []
+    },
+    {
+      "name": "end",
+      "types": [],
+      "tokens": []
+    }
+  ],
+  "propsSchema": {
+    "$id": "jds.docs.slider",
+    "type": "object",
+    "properties": {
+      "appearance": {
+        "enum": [
+          "auto",
+          "primary",
+          "secondary",
+          "neutral",
+          "sparkle",
+          "brand-bg",
+          "positive",
+          "negative",
+          "warning",
+          "informative"
+        ],
+        "description": "Multi-accent appearance role. Default 'auto' → 'secondary'."
+      },
+      "aria-label": {
+        "type": "string",
+        "description": "aria-label property"
+      },
+      "aria-labelledby": {
+        "type": "string",
+        "description": "aria-labelledby property"
+      },
+      "ariaLabels": {
+        "description": "Per-thumb aria-label for range sliders (array indexed by thumb). Falls back to `aria-label` when absent. Use this only in range mode; for single-thumb sliders use `aria-label`."
+      },
+      "className": {
+        "type": "string",
+        "description": "className property"
+      },
+      "defaultValue": {
+        "description": "Default value (uncontrolled)."
+      },
+      "disabled": {
+        "type": "boolean",
+        "description": "disabled property"
+      },
+      "end": {
+        "description": "Node rendered at the end of the slider (e.g. an IconButton). 30×30 slot per Figma."
+      },
+      "form": {
+        "type": "string",
+        "description": "form property"
+      },
+      "formatValue": {
+        "description": "Formatter for tooltip value."
+      },
+      "knobStyle": {
+        "enum": [
+          "outside",
+          "inside"
+        ],
+        "description": "Knob placement style. Default 'outside'."
+      },
+      "largeStep": {
+        "type": "number",
+        "description": "largeStep property"
+      },
+      "max": {
+        "type": "number",
+        "description": "max property"
+      },
+      "min": {
+        "type": "number",
+        "description": "min property"
+      },
+      "minStepsBetweenValues": {
+        "type": "number",
+        "description": "minStepsBetweenValues property"
+      },
+      "name": {
+        "type": "string",
+        "description": "name property"
+      },
+      "onValueChange": {
+        "description": "Called as the user drags."
+      },
+      "onValueCommitted": {
+        "description": "Called when the user releases / commits the value."
+      },
+      "orientation": {
+        "enum": [
+          "horizontal",
+          "vertical"
+        ],
+        "description": "Orientation. Default 'horizontal'."
+      },
+      "readOnly": {
+        "type": "boolean",
+        "description": "readOnly property"
+      },
+      "showSteps": {
+        "type": "boolean",
+        "description": "Render tick marks at every step."
+      },
+      "showTooltip": {
+        "enum": [
+          "auto",
+          "always",
+          "false"
+        ],
+        "description": "Tooltip visibility. Default 'auto' (drag + focus)."
+      },
+      "snapToSteps": {
+        "type": "boolean",
+        "description": "When true (default), the thumb snaps to exact step positions. When false, dragging is continuous but tick marks still appear at step positions."
+      },
+      "start": {
+        "description": "Node rendered at the start of the slider (e.g. an IconButton). 30×30 slot per Figma."
+      },
+      "step": {
+        "type": "number",
+        "description": "step property"
+      },
+      "stepLabels": {
+        "description": "Optional labels under step marks."
+      },
+      "style": {
+        "description": "style property"
+      },
+      "value": {
+        "description": "Current value (controlled). Number for single thumb, array for range."
+      }
+    }
+  },
+  "codeSnippets": [
+    {
+      "id": "slider-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { Slider } from '@oneui/ui';\n\n<Slider />"
+    },
+    {
+      "id": "slider-recipe-decisions",
+      "title": "Recipe Decisions",
+      "language": "json",
+      "code": "{\n  \"component\": \"Slider\",\n  \"decisions\": [\n    \"Shape\"\n  ]\n}"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "slider"
+  ],
+  "generatedMarkdown": "# Slider Machine-Readable Documentation\n\n_Generated from source metadata. Do not edit manually._\n\n## Intent and Purpose\n\n- **Intent**: Precision range input. Multi-accent appearance, inside/outside knob styles, optional step ticks, and a value tooltip that follows the thumb.\n- **Task contexts**: \n- **Sentiments**: neutral\n\n## Composition Rules\n\n- **Requires**: \n- **Allows**: start, end\n- **Forbids**: \n\n## Variant Logic\n\n- **continuous**: use when Continuous\n- **range**: use when Range\n\n## Relationships and Dependencies\n\n- **Related**: \n- **Escalates to**: -\n- **Degrades to**: -\n- **Groups with**: -\n\n## Context Signals\n\n- **Density**: compact, default, open\n- **Modality**: desktop, mobile\n- **Brand**: theme-scope aware, recipe-driven\n- **Mode**: light, dark, surface-context\n\n## Observability Hooks\n\n- **Track**: \n- **Health**: a11y_violations\n\n## Props\n\n| Prop | Type | Required | Default | Description |\n| --- | --- | --- | --- | --- |\n| `appearance` | `SliderAppearance` | No | - | Multi-accent appearance role. Default 'auto' → 'secondary'. |\n| `aria-label` | `string` | No | - | aria-label property |\n| `aria-labelledby` | `string` | No | - | aria-labelledby property |\n| `ariaLabels` | `string[]` | No | - | Per-thumb aria-label for range sliders (array indexed by thumb). Falls back to `aria-label` when absent. Use this only in range mode; for single-thumb sliders use `aria-label`. |\n| `className` | `string` | No | - | className property |\n| `defaultValue` | `number | number[]` | No | - | Default value (uncontrolled). |\n| `disabled` | `boolean` | No | - | disabled property |\n| `end` | `ReactNode` | No | - | Node rendered at the end of the slider (e.g. an IconButton). 30×30 slot per Figma. |\n| `form` | `string` | No | - | form property |\n| `formatValue` | `(value: number, index: number) => string` | No | - | Formatter for tooltip value. |\n| `knobStyle` | `SliderKnobStyle` | No | - | Knob placement style. Default 'outside'. |\n| `largeStep` | `number` | No | - | largeStep property |\n| `max` | `number` | No | - | max property |\n| `min` | `number` | No | - | min property |\n| `minStepsBetweenValues` | `number` | No | - | minStepsBetweenValues property |\n| `name` | `string` | No | - | name property |\n| `onValueChange` | `(value: number | number[]) => void` | No | - | Called as the user drags. |\n| `onValueCommitted` | `(value: number | number[]) => void` | No | - | Called when the user releases / commits the value. |\n| `orientation` | `SliderOrientation` | No | - | Orientation. Default 'horizontal'. |\n| `readOnly` | `boolean` | No | - | readOnly property |\n| `showSteps` | `boolean` | No | - | Render tick marks at every step. |\n| `showTooltip` | `SliderTooltipMode` | No | - | Tooltip visibility. Default 'auto' (drag + focus). |\n| `snapToSteps` | `boolean` | No | - | When true (default), the thumb snaps to exact step positions. When false, dragging is continuous but tick marks still appear at step positions. |\n| `start` | `ReactNode` | No | - | Node rendered at the start of the slider (e.g. an IconButton). 30×30 slot per Figma. |\n| `step` | `number` | No | - | step property |\n| `stepLabels` | `ReactNode[]` | No | - | Optional labels under step marks. |\n| `style` | `CSSProperties` | No | - | style property |\n| `value` | `number | number[]` | No | - | Current value (controlled). Number for single thumb, array for range. |\n\n## Slots\n\n| Slot | Types | Tokens |\n| --- | --- | --- |\n| `start` |  |  |\n| `end` |  |  |\n\n## Code Snippets\n\n### Basic Usage\n\n```tsx\nimport { Slider } from '@oneui/ui';\n\n<Slider />\n```\n\n### Recipe Decisions\n\n```json\n{\n  \"component\": \"Slider\",\n  \"decisions\": [\n    \"Shape\"\n  ]\n}\n```\n"
+}

@@ -1,0 +1,30 @@
+import React, { forwardRef } from 'react';
+import type { IconComponentProps } from '../iconProps';
+
+export const IcLocationShare = forwardRef<SVGSVGElement, IconComponentProps>(function IcLocationShare(
+  { size = 24, width, height, color = 'currentColor', className, style, ...props },
+  ref,
+) {
+  const dim = width ?? height ?? size;
+  return (
+    <svg
+      ref={ref}
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      width={width ?? dim}
+      height={height ?? dim}
+      color={color}
+      className={className}
+      style={style}
+      {...props}
+    >
+      <path
+            fill="currentColor"
+            d="M17.66 4.34A8 8 0 0 0 4 10c0 5 5.94 10.8 6.62 11.45a2 2 0 0 0 2.76 0C14.06 20.8 20 15 20 10a8 8 0 0 0-2.34-5.66M12 16a6 6 0 0 1-5.54-3.71 5.86 5.86 0 0 1-.34-3.46 6 6 0 0 1 1.64-3.07 6.1 6.1 0 0 1 3.07-1.65A6 6 0 1 1 12 16m0-4a1 1 0 0 0-.56.17.94.94 0 0 0-.36.45.93.93 0 0 0-.06.57 1 1 0 0 0 .78.79c.195.038.397.017.58-.06a.9.9 0 0 0 .45-.37 1 1 0 0 0-.12-1.26A1 1 0 0 0 12 12m0-3a4 4 0 0 0-2.67 1 1 1 0 0 0-.26.31 1 1 0 0 0-.07.39 1.1 1.1 0 0 0 0 .4c.04.13.109.25.2.35q.145.146.33.24.192.083.4.09a.9.9 0 0 0 .39-.08 1 1 0 0 0 .34-.22 2 2 0 0 1 2.66 0 1 1 0 0 0 .67.26.9.9 0 0 0 .4-.09 1 1 0 0 0 .28-1.65A4 4 0 0 0 12 9m3.5-2.1a7.12 7.12 0 0 0-7 0 .9.9 0 0 0-.3.26.9.9 0 0 0-.2.35q-.03.195 0 .39a1 1 0 0 0 .39.66.9.9 0 0 0 .35.17 1 1 0 0 0 .39 0 1 1 0 0 0 .37-.13 5.06 5.06 0 0 1 5 0 1 1 0 0 0 1.11-.07A.93.93 0 0 0 16 8a1 1 0 0 0 0-.65 1.05 1.05 0 0 0-.5-.45"
+          />
+    </svg>
+  );
+});
+
+IcLocationShare.displayName = 'IcLocationShare';

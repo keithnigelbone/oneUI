@@ -1,0 +1,82 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Separator",
+  "generatedAt": "2026-07-09T13:07:37.414Z",
+  "machineReadable": true,
+  "status": "planned",
+  "intentAndPurpose": {
+    "intent": "Decorative hairline rule (horizontal or vertical). No content, no appearance — hidden from assistive tech. Stroke resolves from neutral strokeLow against the parent <Surface>. Use Divider for a labelled / emphasised separator."
+  },
+  "compositionRules": {
+    "requires": [],
+    "allows": [],
+    "forbids": [],
+    "childKind": "leaf"
+  },
+  "props": [
+    {
+      "name": "orientation",
+      "type": "'horizontal' | 'vertical'",
+      "required": false,
+      "defaultValue": "horizontal",
+      "description": ""
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.kb.rn.Separator",
+    "type": "object",
+    "properties": {
+      "orientation": {
+        "enum": [
+          "horizontal",
+          "vertical"
+        ],
+        "default": "horizontal"
+      }
+    }
+  },
+  "tokens": {
+    "color": [
+      "neutral"
+    ]
+  },
+  "a11y": {
+    "accessibilityRole": "none",
+    "accessibleNameSource": "children",
+    "minTouchTarget": 44,
+    "honorsBoldText": false,
+    "honorsScreenReader": false
+  },
+  "renderHints": {
+    "baseElement": "View",
+    "animatedOn": [],
+    "honorsReduceMotion": false,
+    "readsFromSurfaceContext": true
+  },
+  "figma": {
+    "componentKey": "jds-separator-v4",
+    "keyHistory": [],
+    "variantProperties": {
+      "Component": "Separator"
+    }
+  },
+  "codeSnippets": [
+    {
+      "id": "import-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { Separator } from '@oneui/ui-native';\n\n<Separator />"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "separator",
+    "layout",
+    "separator",
+    "decorative",
+    "surface-aware"
+  ],
+  "importPath": "@oneui/ui-native"
+}

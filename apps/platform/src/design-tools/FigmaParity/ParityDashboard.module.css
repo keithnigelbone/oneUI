@@ -1,0 +1,133 @@
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-2);
+}
+
+/* Connection card inside CollapsibleSection */
+.connectionCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-3);
+}
+
+.connectionHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-3);
+}
+
+.connectionIcon {
+  flex-shrink: 0;
+  color: var(--Text-Low);
+}
+
+.connectionCard[data-connected='true'] .connectionIcon {
+  color: var(--Positive-Tinted);
+}
+
+.connectionInfo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-0-5);
+  flex: 1;
+  min-width: 0;
+}
+
+.connectionTitle {
+  font-size: var(--Label-S-FontSize);
+  font-weight: var(--Label-FontWeight-High);
+  color: var(--Text-High);
+}
+
+.connectionDetail {
+  font-size: var(--Label-2XS-FontSize);
+  color: var(--Text-Low);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-family: var(--Typography-Font-Code);
+}
+
+.livePulse {
+  width: var(--Spacing-2);
+  height: var(--Spacing-2);
+  border-radius: var(--Shape-Pill);
+  background-color: var(--Positive-Tinted);
+  flex-shrink: 0;
+  animation: pulse var(--Motion-Duration-Expressive-Long) ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+/* Connection metadata row */
+.connectionMeta {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-3-5);
+}
+
+.metaItem {
+  font-size: var(--Label-2XS-FontSize);
+  color: var(--Text-Low);
+}
+
+/* Valid node ID indicator */
+.validIcon {
+  color: var(--Positive-Tinted);
+}
+
+/* Connection action buttons */
+.connectionActions {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-1-5);
+}
+
+/* Error message */
+.errorMessage {
+  font-size: var(--Label-XS-FontSize);
+  color: var(--Negative-Tinted);
+  padding: var(--Spacing-0-5) var(--Spacing-3);
+  background: var(--Negative-Subtle);
+  border-radius: var(--Shape-2);
+}
+
+/* Filters row */
+.filterRow {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-1-5);
+  flex-wrap: wrap;
+}
+
+/* Content area */
+.content {
+  position: relative;
+}
+
+.loadingOverlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--Surface-Default);
+  opacity: 0.8;
+  z-index: 1;
+  border-radius: var(--Shape-2);
+}
+
+.loadingText {
+  font-size: var(--Label-S-FontSize);
+  color: var(--Text-Medium);
+  font-weight: var(--Label-FontWeight-High);
+}

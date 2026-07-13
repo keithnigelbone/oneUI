@@ -1,0 +1,104 @@
+/**
+ * SEMANTIC TOKEN MAPPINGS
+ * Contextual aliases for primitive tokens
+ * Example: --Button-Background maps to --Surface-Bold
+ */
+
+@layer semantic {
+:root {
+  /* Button tokens */
+  --Button-Background-Bold: var(--Surface-Bold);
+  --Button-Text-Bold: var(--Text-OnBold-High);
+
+  /* Card tokens */
+  --Card-Background: var(--Surface-Subtle);
+  --Card-Text: var(--Text-High);
+
+  /* Focus states — brand CSS overrides --Focus-Outline with the informative
+     scale's TintedA11y (walked to ≥4.5:1 against the current surface). The
+     fallback below only covers the instant before brand CSS injects. */
+  --Focus-Outline: var(--Informative-TintedA11y, var(--Text-High));
+  --Focus-Outline-Width: 2px;
+
+  /* Disabled states */
+  --Disabled-Opacity: 0.3;
+
+  /* Overlay/Hover states */
+  --Overlay-Subtle: rgba(255, 255, 255, 0.05);
+  --Overlay-Light: rgba(255, 255, 255, 0.1);
+  --Overlay-Medium: rgba(255, 255, 255, 0.15);
+
+  /* Scrim/Backdrop for modals and dialogs */
+  --Scrim: rgba(0, 0, 0, 0.5);
+  --Scrim-Heavy: rgba(0, 0, 0, 0.7);
+
+  /* Status/Semantic colors (OkLCH) for diff/change indicators */
+  --Status-Success: oklch(65% 0.16 145);
+  --Status-Success-Background: oklch(90% 0.08 145);
+  --Status-Success-Light: oklch(90% 0.08 145);
+  --Status-Success-Subtle: oklch(96% 0.03 145);
+  --Status-Success-Text: oklch(30% 0.12 145);
+
+  --Status-Warning: oklch(82% 0.15 85);
+  --Status-Warning-Background: oklch(92% 0.08 85);
+  --Status-Warning-Light: oklch(92% 0.08 85);
+  --Status-Warning-Subtle: oklch(97% 0.03 85);
+  --Status-Warning-Text: oklch(35% 0.12 85);
+
+  --Status-Error: oklch(60% 0.20 25);
+  --Status-Error-Background: oklch(90% 0.08 25);
+  --Status-Error-Light: oklch(90% 0.08 25);
+  --Status-Error-Subtle: oklch(96% 0.03 25);
+  --Status-Error-Text: oklch(35% 0.15 25);
+
+  --Status-Neutral: oklch(65% 0 0);
+  --Status-Neutral-Light: oklch(90% 0 0);
+  --Status-Neutral-Background: oklch(90% 0 0);
+
+  /* UI Icon sizes (semantic aliases for spacing tokens) */
+  --UI-Icon-Size-XS: var(--Spacing-3);
+  --UI-Icon-Size-S: var(--Spacing-3-5);
+  --UI-Icon-Size-M: var(--Spacing-4);
+  --UI-Icon-Size-L: var(--Spacing-4-5);
+  --UI-Icon-Size-XL: var(--Spacing-5);
+
+  /* Visualization/Display heights */
+  --Visualization-Height: var(--Component-Height-TopBar);
+
+  /* Border tokens (neutral low/medium stroke fallbacks) */
+  --Border-Subtle: oklch(88% 0 0);
+  --Border-Default: oklch(82% 0 0);
+
+  /* Softer surface variants */
+  --Surface-Ghost-Soft: oklch(97% 0 0);
+}
+
+/* Surface context fallbacks — work without brand CSS injection */
+[data-surface="bold"] {
+  --Text-High: var(--Text-OnBold-High);
+  --Text-Medium: var(--Text-OnBold-High);
+  --Text-Low: var(--Text-OnBold-High);
+  --Surface-Bold: var(--Text-OnBold-High);
+  /* --Surface-Fill-Bold is defined as a literal at :root (not a var() reference),
+     so inheritance resolves to the dark fill rather than the on-bold text token. */
+  --Surface-Halo-Gap: var(--Surface-Fill-Bold);
+  /* Focus must be context-aware on bold: re-declare so the var() expression
+     resolves at this scope (picks up engine-emitted --Informative-TintedA11y
+     for bold context, or --Text-OnBold-High as guaranteed-contrast fallback). */
+  --Focus-Outline: var(--Informative-TintedA11y, var(--Text-OnBold-High));
+}
+
+[data-surface="subtle"],
+[data-surface="minimal"],
+[data-surface="moderate"],
+[data-surface="elevated"] {
+  /* Same lazy-resolution trick for tinted/elevated contexts: re-declare
+     so the var() chain re-evaluates at this scope and picks up brand CSS's
+     per-surface --Informative-TintedA11y. */
+  --Focus-Outline: var(--Informative-TintedA11y, var(--Text-High));
+}
+
+[data-surface="default"] {
+  --Text-High: var(--Text-High);
+}
+} /* @layer semantic */

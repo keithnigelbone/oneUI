@@ -1,0 +1,664 @@
+/**
+ * WebHeader.module.css
+ *
+ * CRITICAL: ZERO LITERALS rule — all styling uses design tokens ONLY
+ *
+ * Architecture: Intermediate variables (--_wh-*) cascade from .webHeader root
+ * to all sub-components. Variant/responsive selectors use data attributes.
+ *
+ * Verified by: pnpm check:literals
+ */
+
+/* ========================================
+   ROOT — WebHeader
+   ======================================== */
+
+.webHeader {
+  /* ========================================
+     INTERMEDIATE VARIABLES
+     ======================================== */
+  --_wh-text-high: var(--WebHeader-textColor, var(--Neutral-High));
+  --_wh-text-medium: var(--Neutral-Medium-Text);
+  --_wh-accent: var(--WebHeader-activeItemTextColor, var(--Primary-TintedA11y, var(--Neutral-High)));
+  --_wh-subtle: var(--WebHeader-activeItemBackground, var(--Primary-Subtle, var(--Surface-Subtle)));
+  --_wh-surface: var(--WebHeader-backgroundColor, var(--Surface-Default));
+  --_wh-border: var(--WebHeader-dividerColor, var(--Border-Subtle));
+  --_wh-hover: var(--WebHeader-hoverColor, var(--Primary-Hover, var(--Surface-Minimal)));
+  --_wh-pressed: var(--Primary-Pressed, var(--Surface-Subtle));
+
+  /* SIZING */
+  --_wh-row-height: var(--WebHeader-rowHeight, var(--Spacing-14));
+  --_wh-padding-inline: var(--WebHeader-paddingHorizontal, var(--Spacing-Margin));
+  --_wh-item-padding-inline: var(--WebHeader-itemPaddingHorizontal, var(--Spacing-3));
+  --_wh-item-radius: var(--WebHeader-itemBorderRadius, var(--Shape-Pill));
+  --_wh-item-gap: var(--WebHeader-itemGap, var(--Spacing-1));
+
+  /* MOTION */
+  --_wh-transition-duration: var(--WebHeader-transitionDuration, var(--Motion-Duration-Discreet-Medium));
+  --_wh-transition-easing: var(--WebHeader-transitionEasing, var(--Motion-Easing-Standard));
+  --_wh-slide-duration: var(--WebHeader-slideDuration, var(--Motion-Duration-Expressive-Medium));
+  --_wh-slide-easing: var(--WebHeader-slideEasing, var(--Motion-Easing-Emphasized));
+
+  /* BASE */
+  position: sticky;
+  top: 0;
+  z-index: var(--Z-Index-Sticky);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--_wh-surface);
+  transition: transform var(--_wh-slide-duration) var(--_wh-slide-easing),
+    opacity var(--_wh-transition-duration) var(--_wh-transition-easing),
+    background-color var(--_wh-transition-duration) var(--_wh-transition-easing);
+}
+
+/* ========================================
+   VARIANT SELECTORS
+   ======================================== */
+
+.webHeader[data-variant='transparent'] {
+  position: fixed;
+  background-color: transparent;
+  --_wh-text-high: var(--Primary-Bold-High, var(--Neutral-High));
+  --_wh-text-medium: var(--Primary-Bold-High, var(--Neutral-Medium-Text));
+  --_wh-border: transparent;
+}
+
+.webHeader[data-variant='glass'] {
+  position: fixed;
+  background-color: var(--Surface-Glass, var(--Surface-Default));
+  backdrop-filter: blur(var(--Spacing-5)) saturate(180%);
+  -webkit-backdrop-filter: blur(var(--Spacing-5)) saturate(180%);
+}
+
+.webHeader[data-variant='hidden'] {
+  position: fixed;
+  transform: translateY(-100%);
+  pointer-events: none;
+}
+
+.webHeader[data-variant='stickyHidden'] {
+  transform: translateY(-100%);
+  pointer-events: none;
+}
+
+/* ========================================
+   PRIMARY NAV
+   ======================================== */
+
+.primaryNav {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: var(--_wh-row-height);
+  padding-inline: var(--_wh-padding-inline);
+  padding-block: var(--Spacing-1);
+  overflow: clip;
+}
+
+.primaryNavDivider {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+  --Divider-color: var(--_wh-border);
+}
+
+.primaryNavStart {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-3);
+  flex-shrink: 0;
+  padding-inline-end: var(--Spacing-1-5);
+}
+
+.primaryNavMiddle {
+  display: flex;
+  align-items: center;
+  gap: var(--_wh-item-gap);
+  position: relative;
+  height: 100%;
+}
+
+/* End section: gap between icon group and avatar = spacings/3 (12px) */
+.primaryNavEnd {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-3-5);
+  flex-shrink: 0;
+  padding-inline-start: var(--Spacing-1-5);
+}
+
+/* Icon group: gap between individual icons = spacings/1.5 (6px) */
+.primaryNavEndSlot {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-1-5);
+}
+
+/* Middle layout modes */
+.primaryNav[data-middle='none'] .primaryNavMiddle {
+  display: none;
+}
+
+.primaryNav[data-middle='fluid'] .primaryNavMiddle {
+  flex: 1;
+  justify-content: center;
+}
+
+.primaryNav[data-middle='centred'] .primaryNavMiddle {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Centred mode: hide expanded search — should only show as icon button */
+.primaryNav[data-middle='centred'] .searchInput {
+  display: none !important;
+}
+
+/* When search is in the middle, it takes remaining flex space.
+   Match the visual gap used when the search sits inside `.primaryNavEnd`
+   (its siblings there are separated by `gap: var(--Spacing-3-5)`).
+   `.primaryNavEnd` already contributes `padding-inline-start:
+   var(--Spacing-1-5)` before its first child, so we only need to add
+   the remainder here. */
+.primaryNavMiddle .searchInput {
+  display: flex;
+  flex: 1;
+  width: auto;
+  margin-inline-start: var(--Spacing-3);
+  margin-inline-end: calc(var(--Spacing-3-5) - var(--Spacing-1-5));
+}
+
+/* ========================================
+   RESPONSIVE — data-breakpoint selectors
+   ======================================== */
+
+/* Mobile S (< 620px): hide middle + search, show hamburger */
+.webHeader[data-breakpoint='S'] .primaryNavMiddle {
+  display: none !important;
+}
+
+.webHeader[data-breakpoint='S'] .searchInput {
+  display: none !important;
+}
+
+/* Tablet M (620–990px): show middle nav, hide search */
+.webHeader[data-breakpoint='M'] .primaryNavMiddle {
+  display: flex;
+}
+
+.webHeader[data-breakpoint='M'] .searchInput {
+  display: none !important;
+}
+
+/* Desktop L (≥ 991px): show middle + wider search */
+.webHeader[data-breakpoint='L'] .primaryNavMiddle {
+  display: flex;
+}
+
+.webHeader[data-breakpoint='L'] .searchInput {
+  display: flex;
+  width: calc(var(--Spacing-40) + var(--Spacing-14));
+}
+
+/* Hamburger: visible on mobile/tablet, hidden on desktop */
+.hamburgerButton {
+  display: flex;
+}
+
+.webHeader[data-breakpoint='L'] .hamburgerButton {
+  display: none;
+}
+
+/* Sliding indicator removed — indicator is now inside each HeaderItem per Figma spec */
+
+/* ========================================
+   HEADER ITEM — .Header.Item from Figma
+
+   Structure: item > stateLayer > contentWrapper > [slots + label] + indicator
+   Height: 56px (stretches to parent row)
+   Typography: Label S Medium (14px, 500, 14px line-height)
+   State layer: Shape-2XS (8px radius)
+
+   Attention controls active visual:
+     high:   pill background + accent text (no underline)
+     medium: underline indicator + accent text (no pill)
+     low:    accent text only
+   ======================================== */
+
+.item {
+  /* Fallback intermediate vars when used outside .webHeader (e.g. standalone in Storybook) */
+  --_wh-text-high: var(--Neutral-High);
+  --_wh-text-medium: var(--Neutral-Medium-Text);
+  --_wh-accent: var(--Primary-TintedA11y, var(--Neutral-High));
+  --_wh-subtle: var(--Primary-Subtle, var(--Surface-Subtle));
+  --_wh-hover: var(--Primary-Hover, var(--Surface-Minimal));
+  --_wh-pressed: var(--Primary-Pressed, var(--Surface-Subtle));
+  --_wh-row-height: var(--WebHeader-rowHeight, var(--Spacing-14));
+  --_wh-item-padding-inline: var(--WebHeader-itemPaddingHorizontal, var(--Spacing-3));
+  --_wh-item-radius: var(--WebHeader-itemBorderRadius, var(--Shape-Pill));
+  --_wh-transition-duration: var(--Motion-Duration-Discreet-Medium);
+  --_wh-transition-easing: var(--Motion-Easing-Standard);
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  position: relative;
+  height: var(--_wh-row-height);
+  min-height: var(--_wh-row-height);
+  color: var(--_wh-text-high);
+  font-family: var(--Label-FontFamily, var(--Typography-Font-Primary, inherit));
+  font-size: var(--WebHeader-itemFontSize, var(--Label-S-FontSize));
+  font-weight: var(--WebHeader-itemFontWeight, var(--Label-FontWeight-Medium));
+  line-height: var(--Label-S-LineHeight);
+  cursor: pointer;
+  border: none;
+  background: none;
+  text-decoration: none;
+  white-space: nowrap;
+  user-select: none;
+  padding: 0;
+  flex-shrink: 0;
+  /* Explicit color override — button elements have browser default color */
+  color: var(--_wh-text-high);
+  transition-property: color;
+  transition-duration: var(--_wh-transition-duration);
+  transition-timing-function: var(--_wh-transition-easing);
+}
+
+/* LOW attention: dim text at idle, darkens on hover.
+   Figma: idle = colour/on-colour/low (57% opacity)
+          hover = colour/on-colour/high (solid) */
+.item[data-attention='low'] {
+  color: var(--_wh-text-medium);
+}
+
+.item[data-attention='low']:hover {
+  color: var(--_wh-text-high);
+}
+
+/* MEDIUM attention: standard text, no background hover */
+.item[data-attention='medium'] {
+  color: var(--_wh-text-high);
+}
+
+/* HIGH attention: standard text (pill handles hover bg) */
+.item[data-attention='high'] {
+  color: var(--_wh-text-high);
+}
+
+/* Active overrides ALL attention levels with accent color */
+
+/* State layer — wraps content, provides hover/press feedback.
+   Figma: rounded-[shape/2, 8px], full height, px-[spacings/2.5, 10px]
+   No background transition — pill appears/disappears instantly to avoid
+   glitch when switching active items (old pill fading + new pill appearing). */
+.itemStateLayer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  min-height: var(--Spacing-7);
+  padding-inline: var(--_wh-item-padding-inline);
+  border-radius: var(--_wh-item-radius);
+  position: relative;
+}
+
+/* Hover/press — ONLY on high attention pill state layer.
+   Low/medium attention have NO visible hover background per Figma. */
+.item:hover .itemStateLayerPill {
+  background-color: var(--_wh-hover);
+}
+
+.item:active .itemStateLayerPill {
+  background-color: var(--_wh-pressed);
+}
+
+/* HIGH attention active: pill background.
+   Figma: h-[24px] = Spacing-7, pill radius, bg-subtle color.
+   Padding: pl-[8px] pr-[10px] when slots, otherwise px-[10px]. */
+.itemStateLayerPill {
+  height: var(--Spacing-7);
+  background-color: var(--_wh-subtle);
+  border-radius: var(--_wh-item-radius);
+}
+
+/* Content wrapper — holds label + slots + indicator.
+   Figma: relative container so indicator positions at bottom of text area. */
+.itemContentWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--Spacing-1);
+  height: 100%;
+  position: relative;
+}
+
+/* Active text color (all attention levels) */
+.item[data-active='true'] {
+  color: var(--_wh-accent);
+}
+
+/* ========================================
+   SLIDING INDICATOR — single bar at PrimaryNav bottom
+   Slides between items with CSS transition on translate + width.
+   Measures the active item's .itemLabel position via JS.
+   Figma: h-[spacings/0.5, 2px], rounded, colour/on-colour/tinted.
+   ======================================== */
+
+.indicator {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: var(--Spacing-0-5);
+  background-color: var(--WebHeader-indicatorColor, var(--Primary-Tinted, var(--Surface-Bold)));
+  border-radius: var(--Spacing-0-5);
+  transform: translateX(0);
+  width: 0;
+  will-change: transform, width;
+  transition-property: transform, width;
+  transition-duration: var(--Motion-Duration-Expressive-Medium, var(--Motion-Duration-L));
+  transition-timing-function: var(--Motion-Easing-Emphasized, cubic-bezier(0.2, 0, 0, 1));
+  pointer-events: none;
+}
+
+.indicatorHidden {
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .indicator {
+    transition: none;
+  }
+}
+
+/* Visual alignment to start */
+.item[data-align-start] .itemStateLayer {
+  padding-inline-start: 0;
+}
+
+/* Focus ring */
+.item:focus {
+  outline: none;
+}
+
+.item:focus-visible {
+  outline: var(--Focus-Outline-Width) solid var(--Focus-Outline);
+  outline-offset: var(--Spacing-0-5);
+  border-radius: var(--_wh-item-radius);
+}
+
+/* Item label */
+.itemLabel {
+  position: relative;
+}
+
+/* Item slots — inherit color from item so icons match the label color */
+.itemSlot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: inherit;
+}
+
+/* S = IndicatorBadge (renders at its own 8px size, no constraint needed) */
+
+/* M = Icon slot (16px = Icon size="4" = Spacing-4 = f0) */
+.item[data-start-size='M'] .itemSlotStart,
+.item[data-end-size='M'] .itemSlotEnd {
+  width: var(--Spacing-4);
+  height: var(--Spacing-4);
+  overflow: hidden;
+}
+
+/* ========================================
+   SECONDARY NAV
+   ======================================== */
+
+.secondaryNav {
+  display: flex;
+  align-items: center;
+  min-height: var(--_wh-row-height);
+  padding-inline: var(--_wh-padding-inline);
+  gap: var(--_wh-item-gap);
+  overflow: clip;
+}
+
+.secondaryNav[data-type='navStart'] .secondaryNavItems {
+  display: flex;
+  align-items: center;
+  gap: var(--_wh-item-gap);
+  flex: 1;
+  justify-content: flex-start;
+}
+
+.secondaryNav[data-type='navMiddle'] .secondaryNavItems {
+  display: flex;
+  align-items: center;
+  gap: var(--_wh-item-gap);
+  flex: 1;
+  justify-content: center;
+}
+
+.secondaryNav[data-type='marketing'] {
+  gap: var(--Spacing-5);
+}
+
+.secondaryNavItems {
+  display: flex;
+  align-items: center;
+  gap: var(--_wh-item-gap);
+  height: var(--_wh-row-height);
+}
+
+.secondaryNavSubheader {
+  color: var(--_wh-text-high);
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Primary, inherit));
+  font-size: var(--Body-S-FontSize);
+  font-weight: var(--Body-FontWeight-Medium);
+  line-height: var(--Body-S-LineHeight);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.secondaryNavSpacer {
+  flex: 1;
+}
+
+.secondaryNavEnd {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-1);
+  flex-shrink: 0;
+}
+
+/* ========================================
+   SEARCH INPUT
+
+   The visual pill / fill / typography / focus ring are all handled by
+   the shared <Input shape="pill" attention="high" appearance="neutral">.
+   This class only controls responsive visibility, width, and positioning
+   of the search wrapper inside the PrimaryNav row.
+   ======================================== */
+
+.searchInput {
+  display: none;
+  align-items: center;
+  flex-shrink: 0;
+  margin-inline-start: var(--Spacing-4-5);
+}
+
+.searchControl {
+  --Input-borderRadius-pill: var(--WebHeader-searchBorderRadius, var(--Shape-Pill));
+}
+
+/* ========================================
+   MOBILE DRAWER
+   ======================================== */
+
+.drawerBackdrop {
+  position: fixed;
+  inset: 0;
+  z-index: var(--Z-Index-Modal);
+  background-color: var(--Scrim);
+  opacity: 1;
+  transition: opacity var(--_wh-transition-duration) var(--_wh-transition-easing);
+}
+
+.drawerBackdrop[data-starting-style],
+.drawerBackdrop[data-ending-style] {
+  opacity: 0;
+}
+
+.drawer {
+  position: fixed;
+  inset: 0;
+  z-index: var(--Z-Index-Modal);
+  background-color: var(--Surface-Default);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  transform: translateY(0);
+  opacity: 1;
+  transition: transform var(--_wh-slide-duration) var(--_wh-slide-easing),
+    opacity var(--_wh-transition-duration) var(--_wh-transition-easing);
+}
+
+.drawer[data-starting-style],
+.drawer[data-ending-style] {
+  opacity: 0;
+  transform: translateY(calc(var(--Spacing-7) * -1));
+}
+
+.drawerHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: var(--_wh-row-height);
+  padding-inline: var(--Spacing-Margin);
+  flex-shrink: 0;
+}
+
+.drawerHeaderStart {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-3);
+}
+
+.drawerBody {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Drill-down screens */
+.drawerScreen {
+  position: absolute;
+  inset: 0;
+  overflow-y: auto;
+  padding-block: var(--Spacing-1);
+  transition: transform var(--_wh-slide-duration) var(--_wh-slide-easing),
+    opacity var(--_wh-transition-duration) var(--_wh-transition-easing);
+}
+
+.drawerScreen[data-position='left'] {
+  transform: translateX(calc(var(--Spacing-12) * -1));
+  opacity: 0;
+  pointer-events: none;
+}
+
+.drawerScreen[data-position='center'] {
+  transform: translateX(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.drawerScreen[data-position='right'] {
+  transform: translateX(var(--Spacing-12));
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Drawer nav items */
+.drawerItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-height: var(--Spacing-14);
+  padding-inline: var(--Spacing-Margin);
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: start;
+  text-decoration: none;
+  color: var(--_wh-text-high);
+  font-family: var(--Title-FontFamily, var(--Typography-Font-Primary, inherit));
+  font-size: var(--Title-S-FontSize);
+  font-weight: var(--Title-FontWeight-High);
+  line-height: var(--Title-S-LineHeight);
+  transition-property: background-color, opacity, transform;
+  transition-duration: var(--_wh-transition-duration);
+  transition-timing-function: var(--_wh-transition-easing);
+}
+
+.drawerItem:hover {
+  background-color: var(--_wh-hover);
+}
+
+.drawerItem:active {
+  background-color: var(--_wh-pressed);
+}
+
+.drawerItem:focus {
+  outline: none;
+}
+
+.drawerItem:focus-visible {
+  outline: var(--Focus-Outline-Width) solid var(--Focus-Outline);
+  outline-offset: calc(var(--Spacing-0-5) * -1);
+}
+
+/* Active dot indicator on drawer items */
+.drawerItemDot {
+  width: var(--Spacing-1-5);
+  height: var(--Spacing-1-5);
+  border-radius: var(--Shape-Pill);
+  background-color: var(--_wh-accent);
+  flex-shrink: 0;
+  margin-inline-end: var(--Spacing-3);
+}
+
+.drawerItemEnd {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  color: var(--_wh-text-medium);
+}
+
+/* ========================================
+   REDUCED MOTION
+   ======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .webHeader,
+  .indicator,
+  .item,
+  .item .itemPill,
+  .drawer,
+  .drawer[data-starting-style],
+  .drawer[data-ending-style],
+  .drawerBackdrop,
+  .drawerBackdrop[data-starting-style],
+  .drawerBackdrop[data-ending-style],
+  .drawerScreen,
+  .drawerItem {
+    transition: none;
+  }
+}

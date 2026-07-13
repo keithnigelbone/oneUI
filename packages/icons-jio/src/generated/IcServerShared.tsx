@@ -1,0 +1,30 @@
+import React, { forwardRef } from 'react';
+import type { IconComponentProps } from '../iconProps';
+
+export const IcServerShared = forwardRef<SVGSVGElement, IconComponentProps>(function IcServerShared(
+  { size = 24, width, height, color = 'currentColor', className, style, ...props },
+  ref,
+) {
+  const dim = width ?? height ?? size;
+  return (
+    <svg
+      ref={ref}
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      width={width ?? dim}
+      height={height ?? dim}
+      color={color}
+      className={className}
+      style={style}
+      {...props}
+    >
+      <path
+            fill="currentColor"
+            d="M20.5 13a1.5 1.5 0 0 0-.55.11L17.74 12 20 10.89c.174.072.361.11.55.11a1.5 1.5 0 1 0-1.44-1.9l-3 1.51a1.5 1.5 0 0 0-.55-.11 1.5 1.5 0 1 0 0 3c.189 0 .375-.038.55-.11l3 1.51A1.5 1.5 0 1 0 20.5 13m-15-2h6.59A6 6 0 0 1 18 6h3.65a3.49 3.49 0 0 0-3.15-2h-13a3.5 3.5 0 1 0 0 7m4-4.5a1 1 0 1 1 0 2 1 1 0 0 1 0-2m-4 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2m6.59 6.5H5.5a3.5 3.5 0 1 0 0 7h13a3.49 3.49 0 0 0 3.15-2H18a6 6 0 0 1-5.91-5M5.5 17.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2m4 0a1 1 0 1 1 0-2 1 1 0 0 1 0 2"
+          />
+    </svg>
+  );
+});
+
+IcServerShared.displayName = 'IcServerShared';

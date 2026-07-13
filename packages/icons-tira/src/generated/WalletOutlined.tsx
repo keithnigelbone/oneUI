@@ -1,0 +1,28 @@
+import React, { forwardRef } from 'react';
+import type { IconComponentProps } from '../iconProps';
+
+export const WalletOutlined = forwardRef<SVGSVGElement, IconComponentProps>(function WalletOutlined(
+  { size = 24, width, height, color = 'currentColor', className, style, ...props },
+  ref,
+) {
+  const dim = width ?? height ?? size;
+  return (
+    <svg
+      ref={ref}
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      width={width ?? dim}
+      height={height ?? dim}
+      color={color}
+      className={className}
+      style={style}
+      {...props}
+    >
+      <path d="M15.3791 12.5999C15.7104 12.5999 15.9791 12.3313 15.9791 11.9999C15.9791 11.6685 15.7104 11.3999 15.3791 11.3999C15.0477 11.3999 14.7791 11.6685 14.7791 11.9999C14.7791 12.3313 15.0477 12.5999 15.3791 12.5999Z" fill="currentColor"/>
+      <path fillRule="evenodd" clipRule="evenodd" d="M19.9998 15.9998V8C19.9998 5.79086 18.2089 4 15.9998 4H6C4.89543 4 4 4.89543 4 6V17.9998C4 19.1043 4.89543 19.9998 6 19.9998H15.9998C18.2089 19.9998 19.9998 18.2089 19.9998 15.9998ZM15.9998 5.2H6C5.55817 5.2 5.2 5.55817 5.2 6V17.9998C5.2 18.4416 5.55817 18.7998 6 18.7998H15.9998C17.5462 18.7998 18.7998 17.5462 18.7998 15.9998V14.5H14.3808C13.2762 14.5 12.3808 13.6046 12.3808 12.5V11.5C12.3808 10.3954 13.2762 9.5 14.3808 9.5H18.7998V8C18.7998 6.4536 17.5462 5.2 15.9998 5.2ZM18.7998 10.7V13.3H14.3808C13.9389 13.3 13.5808 12.9418 13.5808 12.5V11.5C13.5808 11.0582 13.9389 10.7 14.3808 10.7H18.7998Z" fill="currentColor"/>
+    </svg>
+  );
+});
+
+WalletOutlined.displayName = 'WalletOutlined';

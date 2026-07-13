@@ -1,0 +1,154 @@
+/*
+ * CampaignPlanCard.module.css — token-only styling for the inline campaign-plan
+ * card (D-08, LAB-02 zero-literals).
+ *
+ * The card body is a calm grouped `<Surface mode="subtle">` (Surface owns the
+ * tint + token remapping — NO `background:` on a raw container, NO decorative
+ * stroke on the tinted Surface per CLAUDE.md § Surface Context). Sections are
+ * laid out on the f-step spacing scale; titles use the Title-M role, body uses
+ * Body-M/Body-S, meta uses Label-XS. Every text element carries
+ * `font-family: var(--Typography-Font-Primary)`.
+ *
+ * Net-new interactive focus (the confirm button's focus is owned by `Button`;
+ * the direction tiles' focus is owned by `Radio`) uses the Focus Halo with
+ * `--Surface-Halo-Gap` where this module owns a focusable affordance. No legacy
+ * `--Typography-Size-*` / `--Typography-Weight-*`, no literal numbers (only `0`).
+ */
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-4);
+  padding: var(--Spacing-4);
+  border-radius: var(--Shape-3-5);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.title {
+  margin: 0;
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Title-M-FontSize);
+  font-weight: var(--Title-M-FontWeight);
+  line-height: var(--Title-M-LineHeight);
+  color: var(--Text-High);
+}
+
+/* The heading is programmatically focused on mount (a11y) — give it a halo. */
+.title:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 var(--Stroke-XL) var(--Surface-Halo-Gap, var(--Surface-Main)),
+    0 0 0 var(--Focus-Outline-Width) var(--Focus-Outline);
+  border-radius: var(--Shape-2);
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-1-5);
+}
+
+.sectionLabel {
+  margin: 0;
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Label-S-FontSize);
+  font-weight: var(--Label-FontWeight-Medium);
+  line-height: var(--Label-S-LineHeight);
+  color: var(--Text-Medium);
+}
+
+.sectionBody {
+  margin: 0;
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Body-M-FontSize);
+  font-weight: var(--Body-FontWeight-Low);
+  line-height: var(--Body-M-LineHeight);
+  color: var(--Text-High);
+}
+
+.hierarchy {
+  margin: 0;
+  padding-inline-start: var(--Spacing-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-1);
+}
+
+.hierarchyItem {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Body-S-FontSize);
+  font-weight: var(--Body-FontWeight-Low);
+  line-height: var(--Body-S-LineHeight);
+  color: var(--Text-High);
+}
+
+/* The three creative-direction tiles — gutter between tiles is the platform
+   gutter token (UI-SPEC). */
+.directions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-Gutter);
+}
+
+.tile {
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--Shape-3);
+  padding: var(--Spacing-3);
+}
+
+.tileHead {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-2);
+}
+
+.tileName {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Title-M-FontSize);
+  font-weight: var(--Title-M-FontWeight);
+  line-height: var(--Title-M-LineHeight);
+  color: var(--Text-High);
+}
+
+.tileConcept {
+  display: block;
+  margin-top: var(--Spacing-1);
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Body-S-FontSize);
+  font-weight: var(--Body-FontWeight-Low);
+  line-height: var(--Body-S-LineHeight);
+  color: var(--Text-Medium);
+}
+
+.tileMeta {
+  display: block;
+  margin-top: var(--Spacing-1);
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Label-XS-FontSize);
+  font-weight: var(--Label-FontWeight-Low);
+  line-height: var(--Label-XS-LineHeight);
+  color: var(--Text-Low);
+}
+
+.frameRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--Spacing-3);
+}
+
+.submitError {
+  margin: 0;
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Body-S-FontSize);
+  font-weight: var(--Body-FontWeight-Low);
+  line-height: var(--Body-S-LineHeight);
+  color: var(--Negative-High);
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+}

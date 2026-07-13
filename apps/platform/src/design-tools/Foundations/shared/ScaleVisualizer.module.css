@@ -1,0 +1,144 @@
+/**
+ * ScaleVisualizer.module.css
+ * Token-only styling for scale visualization
+ */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-2);
+  width: 100%;
+}
+
+.horizontal {
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: var(--Spacing-2-5);
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-3-5);
+  padding: var(--Spacing-2-5) 0;
+  cursor: default;
+  border-radius: var(--Shape-3-5);
+  transition-duration: var(--Motion-Duration-Discreet-Short);
+}
+
+.itemClickable {
+  cursor: pointer;
+}
+
+.itemClickable:hover {
+  background-color: var(--Surface-Subtle);
+  padding-left: var(--Spacing-2-5);
+  padding-right: var(--Spacing-2-5);
+  margin-left: calc(-1 * var(--Spacing-2-5));
+  margin-right: calc(-1 * var(--Spacing-2-5));
+}
+
+.itemSelected {
+  background-color: var(--Surface-Subtle);
+  padding-left: var(--Spacing-2-5);
+  padding-right: var(--Spacing-2-5);
+  margin-left: calc(-1 * var(--Spacing-2-5));
+  margin-right: calc(-1 * var(--Spacing-2-5));
+}
+
+.itemHighlight {
+  font-weight: var(--Body-FontWeight-Medium);
+}
+
+.label {
+  min-width: var(--Spacing-7);
+  font-size: var(--Body-S-FontSize);
+  color: var(--Text-Medium);
+  font-variant-numeric: tabular-nums;
+}
+
+.barContainer {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  min-height: var(--Spacing-4);
+}
+
+.bar {
+  height: var(--Spacing-3-5);
+  background-color: var(--Surface-Bold);
+  border-radius: var(--Shape-3);
+  transition-duration: var(--Motion-Duration-Discreet-Medium);
+}
+
+.barColor {
+  height: var(--Spacing-4-5);
+  width: var(--Spacing-6);
+  border-radius: var(--Shape-3-5);
+  border: 1px solid var(--Border-Subtle);
+}
+
+.value {
+  min-width: var(--Spacing-8);
+  font-size: var(--Body-S-FontSize);
+  color: var(--Text-High);
+  font-family: monospace;
+  text-align: right;
+}
+
+.description {
+  font-size: var(--Label-XS-FontSize);
+  color: var(--Text-Low);
+  margin-left: var(--Spacing-3);
+}
+
+/* Horizontal items (for color swatches) */
+.horizontal .item {
+  flex-direction: column;
+  align-items: center;
+  padding: var(--Spacing-2-5);
+  gap: var(--Spacing-2-5);
+}
+
+.horizontal .label {
+  min-width: auto;
+  text-align: center;
+}
+
+.horizontal .barColor {
+  width: var(--Spacing-7);
+  height: var(--Spacing-7);
+}
+
+.horizontal .value {
+  min-width: auto;
+  font-size: var(--Label-XS-FontSize);
+}
+
+/* Color scale specific */
+.colorItem {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--Spacing-2-5);
+}
+
+.colorRow {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-3-5);
+  width: 100%;
+}
+
+.colorSwatch {
+  width: var(--Spacing-4-5);
+  height: var(--Spacing-4-5);
+  border-radius: var(--Shape-3);
+  border: 1px solid var(--Border-Subtle);
+  flex-shrink: 0;
+}
+
+.colorValue {
+  font-size: var(--Label-XS-FontSize);
+  color: var(--Text-Medium);
+  font-family: monospace;
+}

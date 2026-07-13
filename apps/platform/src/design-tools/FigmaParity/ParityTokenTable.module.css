@@ -1,0 +1,107 @@
+.tableContainer {
+  overflow-y: auto;
+  border: var(--Stroke-S) solid var(--Neutral-Stroke-Low);
+  border-radius: var(--Shape-2);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  font-weight: var(--Label-FontWeight-High);
+  font-size: var(--Label-XS-FontSize);
+  color: var(--Text-Medium);
+  text-align: left;
+  padding: var(--Spacing-0-5) var(--Spacing-1-5);
+  border-bottom: var(--Stroke-S) solid var(--Neutral-Stroke-Low);
+  background: var(--Surface-Default);
+  white-space: nowrap;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.row {
+  transition: background-color var(--Motion-Duration-Discreet-Short) ease;
+}
+
+.row:hover {
+  background-color: var(--Neutral-Hover);
+}
+
+.row[data-status='mismatched']:hover {
+  background-color: var(--Warning-Subtle);
+}
+
+.row[role='button'] {
+  cursor: pointer;
+}
+
+.row[role='button']:focus-visible {
+  outline: var(--Stroke-M) solid var(--Primary-Tinted);
+  outline-offset: calc(-1 * var(--Stroke-M));
+}
+
+.cell {
+  padding: var(--Spacing-0-5) var(--Spacing-1-5);
+  font-size: var(--Label-XS-FontSize);
+  color: var(--Text-High);
+  border-bottom: var(--Stroke-S) solid var(--Neutral-Stroke-Low);
+  vertical-align: middle;
+}
+
+.cell[data-highlight='true'] {
+  background-color: var(--Warning-Subtle);
+}
+
+.propertyName {
+  font-weight: var(--Label-FontWeight-High);
+  font-size: var(--Label-XS-FontSize);
+}
+
+.slotBadge {
+  display: inline-flex;
+  margin-left: var(--Spacing-0-5);
+  padding: 0 var(--Spacing-0-5);
+  border-radius: var(--Shape-Pill);
+  background: var(--Neutral-Subtle);
+  font-size: var(--Label-2XS-FontSize);
+  color: var(--Text-Medium);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  vertical-align: middle;
+}
+
+.tokenName {
+  font-family: var(--Typography-Font-Code);
+  font-size: var(--Code-S-FontSize);
+  color: var(--Text-Medium);
+}
+
+.valueText {
+  font-family: var(--Typography-Font-Code);
+  font-size: var(--Code-S-FontSize);
+}
+
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--Spacing-5);
+  gap: var(--Spacing-1-5);
+}
+
+.emptyTitle {
+  font-size: var(--Label-S-FontSize);
+  font-weight: var(--Label-FontWeight-High);
+  color: var(--Text-Medium);
+}
+
+.emptyDetail {
+  font-size: var(--Label-XS-FontSize);
+  color: var(--Text-Low);
+}

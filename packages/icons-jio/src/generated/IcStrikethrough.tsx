@@ -1,0 +1,34 @@
+import React, { forwardRef } from 'react';
+import type { IconComponentProps } from '../iconProps';
+
+export const IcStrikethrough = forwardRef<SVGSVGElement, IconComponentProps>(function IcStrikethrough(
+  { size = 24, width, height, color = 'currentColor', className, style, ...props },
+  ref,
+) {
+  const dim = width ?? height ?? size;
+  return (
+    <svg
+      ref={ref}
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      width={width ?? dim}
+      height={height ?? dim}
+      color={color}
+      className={className}
+      style={style}
+      {...props}
+    >
+      <path
+            fill="currentColor"
+            d="M19.48 13.01H4.9c-.56 0-1.01-.45-1.01-1.01s.45-1.01 1.01-1.01h14.58c.56 0 1.01.45 1.01 1.01s-.45 1.01-1.01 1.01"
+          />
+          <path
+            fill="currentColor"
+            d="M11.92 4.87c-2.24 0-3.54.99-3.54 2.49 0 1.24 1.1 1.81 2.72 2.43l2.72 1.08c2.94 1.16 4.75 2.46 4.75 5.49 0 3.48-2.72 5.6-6.65 5.6-2.92 0-5.04-.96-6.43-2.32-.23-.23-.45-.59-.45-.93 0-.65.71-1.59 1.56-1.59.34 0 .59.17.96.48.99.85 2.38 1.53 4.36 1.53 2.12 0 3.6-1.05 3.6-2.77 0-1.27-1.08-2.06-2.72-2.69l-2.72-1.08c-2.92-1.16-4.76-2.29-4.76-5.24 0-3.2 2.66-5.32 6.6-5.32 2.26 0 4.02.68 5.12 1.53.37.31.54.65.54 1.1 0 .65-.74 1.47-1.44 1.47-.37 0-.57-.11-.88-.31-.91-.54-1.81-.96-3.34-.96z"
+          />
+    </svg>
+  );
+});
+
+IcStrikethrough.displayName = 'IcStrikethrough';

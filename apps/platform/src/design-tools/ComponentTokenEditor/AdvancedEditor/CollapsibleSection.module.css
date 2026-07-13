@@ -1,0 +1,72 @@
+/**
+ * CollapsibleSection.module.css
+ *
+ * Compact Figma-like collapsible sections.
+ * Token-only styling (zero literals).
+ */
+
+.section {
+  /* Sections are separated by explicit divider elements in parent */
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-3);
+  width: 100%;
+  padding: var(--Spacing-3-5) var(--Spacing-4);
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  text-align: left;
+  transition: background-color var(--Motion-Duration-Discreet-Short);
+}
+
+.header:hover {
+  background-color: var(--Surface-Ghost);
+}
+
+.chevron {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--Text-Low);
+  transition: transform var(--Motion-Duration-Discreet-Short);
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--Text-Medium);
+}
+
+.title {
+  font-size: var(--Body-S-FontSize);
+  font-weight: var(--Body-FontWeight-Medium);
+  color: var(--Text-High);
+  flex: 1;
+}
+
+.count {
+  font-size: var(--Label-2XS-FontSize);
+  color: var(--Text-High);
+  font-weight: var(--Body-FontWeight-Low);
+}
+
+.content {
+  padding: var(--Spacing-3) var(--Spacing-4);
+}
+
+.contentNoPadding {
+  padding: 0;
+}
+
+/* Animation for smooth open/close */
+.section[data-open='false'] .content {
+  display: none;
+}
+
+.section[data-open='true'] .chevron {
+  color: var(--Text-Medium);
+}

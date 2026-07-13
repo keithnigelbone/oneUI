@@ -1,0 +1,26 @@
+/**
+ * Fieldset.module.css
+ * Token-only styling for Fieldset component
+ * Verified by: pnpm check:literals
+ */
+
+.fieldset {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-4);
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.fieldset[data-disabled] {
+  opacity: var(--Disabled-Opacity);
+}
+
+.legend {
+  font-size: var(--Body-L-FontSize);
+  font-weight: var(--Body-FontWeight-High);
+  line-height: var(--Typography-LineHeight-Tight);
+  color: var(--Text-High);
+  margin-bottom: var(--Spacing-3);
+}

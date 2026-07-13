@@ -1,0 +1,239 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Badge",
+  "generatedAt": "2026-01-01T00:00:00.000Z",
+  "machineReadable": true,
+  "intentAndPurpose": {
+    "intent": "Non-interactive display component used to highlight status, provide notifications, or categorize content. Supports start/end slots for icons and sub-badges.",
+    "taskContexts": [],
+    "sentiments": [
+      "neutral"
+    ]
+  },
+  "compositionRules": {
+    "requires": [],
+    "allows": [
+      "start",
+      "end"
+    ],
+    "forbids": []
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "bold",
+        "useWhen": [
+          "High"
+        ]
+      },
+      {
+        "name": "subtle",
+        "useWhen": [
+          "Medium"
+        ]
+      },
+      {
+        "name": "ghost",
+        "useWhen": [
+          "Low"
+        ]
+      }
+    ]
+  },
+  "relationshipsAndDependencies": {
+    "related": []
+  },
+  "contextSignals": {
+    "density": [
+      "compact",
+      "default",
+      "open"
+    ],
+    "modality": [
+      "desktop",
+      "mobile"
+    ],
+    "brand": [
+      "theme-scope aware",
+      "recipe-driven"
+    ],
+    "mode": [
+      "light",
+      "dark",
+      "surface-context"
+    ]
+  },
+  "observabilityHooks": {
+    "track": [],
+    "health": [
+      "a11y_violations"
+    ]
+  },
+  "props": [
+    {
+      "name": "appearance",
+      "type": "BadgeAppearance",
+      "required": false,
+      "description": "Multi-accent appearance role. `'auto'` or omit: inherit nearest `<Surface>` effective role, else `sparkle`."
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": false,
+      "description": "Accessible label for screen readers"
+    },
+    {
+      "name": "attention",
+      "type": "BadgeAttention",
+      "required": false,
+      "description": "Figma attention level — high (bold fill), medium (tinted fill), low (transparent). Default: 'high'."
+    },
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Text content displayed inside the badge"
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "required": false,
+      "description": "Additional class name"
+    },
+    {
+      "name": "data-testid",
+      "type": "string",
+      "required": false,
+      "description": "Test selector passthrough"
+    },
+    {
+      "name": "end",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Content to render after the label (icon, avatar, counter badge, indicator badge)"
+    },
+    {
+      "name": "size",
+      "type": "BadgeSize",
+      "required": false,
+      "description": "Badge size. Default: 'm'."
+    },
+    {
+      "name": "start",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Content to render before the label (icon, avatar, counter badge, indicator badge)"
+    },
+    {
+      "name": "style",
+      "type": "CSSProperties",
+      "required": false,
+      "description": "Inline styles"
+    }
+  ],
+  "slots": [
+    {
+      "name": "start",
+      "types": [
+        "Icon",
+        "Avatar",
+        "CounterBadge",
+        "IndicatorBadge"
+      ],
+      "tokens": []
+    },
+    {
+      "name": "end",
+      "types": [
+        "Icon",
+        "Avatar",
+        "CounterBadge",
+        "IndicatorBadge"
+      ],
+      "tokens": []
+    }
+  ],
+  "propsSchema": {
+    "$id": "jds.docs.badge",
+    "type": "object",
+    "properties": {
+      "appearance": {
+        "enum": [
+          "auto",
+          "primary",
+          "secondary",
+          "neutral",
+          "sparkle",
+          "brand-bg",
+          "positive",
+          "negative",
+          "warning",
+          "informative"
+        ],
+        "description": "Multi-accent appearance role. `'auto'` or omit: inherit nearest `<Surface>` effective role, else `sparkle`."
+      },
+      "aria-label": {
+        "type": "string",
+        "description": "Accessible label for screen readers"
+      },
+      "attention": {
+        "enum": [
+          "high",
+          "medium",
+          "low"
+        ],
+        "description": "Figma attention level — high (bold fill), medium (tinted fill), low (transparent). Default: 'high'."
+      },
+      "children": {
+        "description": "Text content displayed inside the badge"
+      },
+      "className": {
+        "type": "string",
+        "description": "Additional class name"
+      },
+      "data-testid": {
+        "type": "string",
+        "description": "Test selector passthrough"
+      },
+      "end": {
+        "description": "Content to render after the label (icon, avatar, counter badge, indicator badge)"
+      },
+      "size": {
+        "enum": [
+          "xs",
+          "s",
+          "m",
+          "l",
+          "xl"
+        ],
+        "description": "Badge size. Default: 'm'."
+      },
+      "start": {
+        "description": "Content to render before the label (icon, avatar, counter badge, indicator badge)"
+      },
+      "style": {
+        "description": "Inline styles"
+      }
+    }
+  },
+  "codeSnippets": [
+    {
+      "id": "badge-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { Badge } from '@oneui/ui';\n\n<Badge />"
+    },
+    {
+      "id": "badge-recipe-decisions",
+      "title": "Recipe Decisions",
+      "language": "json",
+      "code": "{\n  \"component\": \"Badge\",\n  \"decisions\": [\n    \"Shape\"\n  ]\n}"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "badge"
+  ],
+  "importPath": "@jds4/oneui-react"
+}

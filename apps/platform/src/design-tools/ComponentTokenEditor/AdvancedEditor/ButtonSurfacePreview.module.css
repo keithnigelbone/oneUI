@@ -1,0 +1,285 @@
+/**
+ * ButtonSurfacePreview.module.css
+ *
+ * Styles for button preview on different surfaces.
+ * Token-only styling (zero literals).
+ */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-4-5);
+  padding: var(--Spacing-3-5);
+}
+
+.surfaceGrid {
+  display: grid;
+  gap: var(--Spacing-4);
+}
+
+.surfaceColumn {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-4);
+  padding: var(--Spacing-4);
+  border-radius: var(--Shape-4-5);
+  overflow: hidden;
+}
+
+.surfaceHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--Spacing-3-5);
+  padding-bottom: var(--Spacing-3-5);
+  border-bottom: var(--Stroke-M) solid currentColor;
+  opacity: 0.3;
+}
+
+.surfaceName {
+  font-size: var(--Body-S-FontSize);
+  font-weight: var(--Body-FontWeight-High);
+}
+
+.surfaceStep {
+  font-size: var(--Label-XS-FontSize);
+  font-weight: var(--Body-FontWeight-Medium);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Button Matrix */
+.buttonMatrix {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-3);
+}
+
+.matrixRow {
+  display: grid;
+  grid-template-columns: 32px repeat(3, 1fr);
+  gap: var(--Spacing-3);
+  align-items: center;
+}
+
+.matrixHeaderCell {
+  font-size: var(--Label-2XS-FontSize);
+  font-weight: var(--Body-FontWeight-Medium);
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: var(--Typography-LetterSpacing-Wider);
+  opacity: 0.6;
+}
+
+.matrixLabelCell {
+  font-size: var(--Label-2XS-FontSize);
+  font-weight: var(--Body-FontWeight-Medium);
+  text-align: center;
+  opacity: 0.6;
+}
+
+.matrixCell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.buttonWrapper {
+  display: inline-flex;
+}
+
+.buttonWrapper[style*="flex: 1"] {
+  display: flex;
+  width: 100%;
+}
+
+.buttonWrapper[data-state='hover'] button {
+  opacity: 0.9;
+}
+
+.buttonWrapper[data-state='pressed'] button {
+  opacity: 0.85;
+  transform: scale(0.98);
+}
+
+/* Interaction States Section */
+.statesDivider {
+  margin: var(--Spacing-4) 0 var(--Spacing-3-5) 0;
+  border-top: var(--Stroke-M) solid currentColor;
+  opacity: 0.2;
+}
+
+.statesSection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-3);
+}
+
+.statesLabel {
+  font-size: var(--Label-2XS-FontSize);
+  font-weight: var(--Body-FontWeight-Medium);
+  text-transform: uppercase;
+  letter-spacing: var(--Typography-LetterSpacing-Wider);
+  opacity: 0.5;
+  margin-bottom: var(--Spacing-2-5);
+}
+
+/* Empty State */
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--Spacing-3-5);
+  /* INTENTIONAL-LITERAL: empty state min-height — layout geometry, no dimension token at 200px */
+  min-height: 200px;
+  padding: var(--Spacing-5);
+  color: var(--Text-Medium);
+  font-size: var(--Body-S-FontSize);
+  text-align: center;
+}
+
+/* INTENTIONAL-LITERAL: text column max-width — readability constraint, no dimension token at 400px */
+.emptyState p {
+  margin: 0;
+  max-width: 400px;
+}
+
+.emptyStateTitle {
+  font-size: var(--Body-M-FontSize);
+  font-weight: var(--Body-FontWeight-High);
+  color: var(--Text-High);
+}
+
+.emptyStateDescription {
+  font-size: var(--Body-S-FontSize);
+  color: var(--Text-Medium);
+  line-height: var(--Typography-LineHeight-M);
+}
+
+/* Display Mode Toggle */
+.displayModeToggle {
+  display: flex;
+  gap: var(--Spacing-2-5);
+  padding: var(--Spacing-2-5);
+  background-color: var(--Surface-Minimal);
+  border-radius: var(--Shape-4);
+  width: fit-content;
+  margin-bottom: var(--Spacing-4);
+}
+
+.displayModeButton {
+  padding: var(--Spacing-3) var(--Spacing-4);
+  font-size: var(--Body-S-FontSize);
+  font-weight: var(--Body-FontWeight-Medium);
+  color: var(--Text-Medium);
+  background-color: transparent;
+  border: none;
+  border-radius: var(--Shape-3-5);
+  cursor: pointer;
+  transition: all 150ms ease;
+}
+
+.displayModeButton:hover {
+  color: var(--Text-High);
+  background-color: var(--Surface-Subtle);
+}
+
+.displayModeButton[data-selected='true'] {
+  color: var(--Text-High);
+  background-color: var(--Surface-Default);
+  box-shadow: var(--Elevation-1);
+}
+
+/* Row-based Layout (All Mode) */
+.surfaceRows {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-3-5);
+}
+
+.surfaceRow {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--Spacing-3-5);
+  padding: var(--Spacing-3-5) var(--Spacing-4);
+  border-radius: var(--Shape-4-5);
+}
+
+.surfaceRowLabel {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  gap: var(--Spacing-2);
+  flex-shrink: 0;
+}
+
+.surfaceRowName {
+  font-size: var(--Body-S-FontSize);
+  font-weight: var(--Body-FontWeight-High);
+}
+
+.surfaceRowStep {
+  font-size: var(--Label-2XS-FontSize);
+  font-weight: var(--Body-FontWeight-Medium);
+  font-variant-numeric: tabular-nums;
+  opacity: 0.6;
+}
+
+.surfaceRowButtons {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-4);
+  flex-wrap: wrap;
+}
+
+/* Surface Tabs (Single Mode) */
+.surfaceTabs {
+  display: flex;
+  gap: var(--Spacing-3);
+  padding: var(--Spacing-3-5);
+  margin-bottom: var(--Spacing-4);
+  background-color: var(--Surface-Minimal);
+  border-radius: var(--Shape-4);
+  flex-wrap: wrap;
+}
+
+.surfaceTab {
+  padding: var(--Spacing-3) var(--Spacing-4);
+  font-size: var(--Body-S-FontSize);
+  font-weight: var(--Body-FontWeight-Medium);
+  border: 1px solid transparent;
+  border-radius: var(--Shape-3-5);
+  cursor: pointer;
+  transition: all 150ms ease;
+}
+
+.surfaceTab:hover {
+  opacity: 0.9;
+}
+
+.surfaceTab[data-selected='true'] {
+  border-color: var(--Border-Default);
+}
+
+.surfaceTab[data-selected='false'] {
+  opacity: 0.7;
+}
+
+.surfaceTab[data-selected='false']:hover {
+  opacity: 0.85;
+}
+
+/* Responsive */
+/* INTENTIONAL-LITERAL: responsive breakpoints — layout breakpoints, no CSS token system for media queries */
+@media (max-width: 900px) {
+  .surfaceGrid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .surfaceGrid {
+    grid-template-columns: 1fr !important;
+  }
+}

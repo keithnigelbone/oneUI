@@ -1,0 +1,258 @@
+/**
+ * Divider.module.css
+ *
+ * CRITICAL: This file demonstrates the ZERO LITERALS rule
+ * ALL styling uses design tokens ONLY
+ *
+ * Architecture: Role-agnostic intermediate variables (--_div-*)
+ * - Default = Neutral role (always auto-injected, always surface-aware)
+ * - Appearance classes remap --_div-* to other role-specific tokens
+ * - Attention data attributes select which token tier to use
+ * - Size data attributes set stroke width
+ *
+ * Verified by: pnpm check:literals
+ */
+
+.divider {
+  /* ========================================
+     INTERMEDIATE VARIABLES — Neutral role (grey on default surface)
+     Neutral is auto-injected by buildV4PaletteData(), always available.
+     ======================================== */
+  --_div-high: var(--Neutral-High, var(--Neutral-High));
+  --_div-medium-stroke: var(--Neutral-Stroke-Medium, var(--Neutral-Stroke-Medium));
+  --_div-low-stroke: var(--Neutral-Stroke-Low, var(--Neutral-Stroke-Low));
+
+  /* ========================================
+     COLOR — default attention is low
+     ======================================== */
+  --_div-color: var(--Divider-color, var(--_div-low-stroke));
+
+  /* ========================================
+     CONTENT COLOR — Neutral text tokens for readability
+     ======================================== */
+  --_div-content-high: var(--Neutral-High, var(--Neutral-High));
+  --_div-content-medium: var(--Neutral-Medium-Text, var(--Neutral-Medium-Text));
+  --_div-content-low: var(--Neutral-Low);
+  --_div-content-color: var(--Divider-contentColor, var(--_div-content-low));
+
+  /* ========================================
+     STROKE WIDTH — default = Stroke-M (1px)
+     ======================================== */
+  --_div-stroke: var(--Stroke-M);
+
+  border: none;
+  margin: 0;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+/* ========================================
+   SURFACE CONTEXT — switch to Primary role tokens for surface adaptation.
+   Same pattern as Switch.module.css: Neutral for default, Primary in surfaces.
+   Primary IS always remapped by brand CSS [data-surface] blocks.
+   Scoped under .divider to satisfy CSS Module purity requirement.
+   ======================================== */
+:global([data-surface='minimal']) .divider,
+:global([data-surface='subtle']) .divider,
+:global([data-surface='moderate']) .divider,
+:global([data-surface='bold']) .divider,
+:global([data-surface='elevated']) .divider {
+  --_div-high: var(--Primary-High, var(--Primary-High));
+  --_div-medium-stroke: var(--Primary-Stroke-Medium, var(--Primary-Stroke-Medium));
+  --_div-low-stroke: var(--Primary-Stroke-Low, var(--Primary-Stroke-Low));
+  --_div-content-high: var(--Primary-High, var(--Primary-High));
+  --_div-content-medium: var(--Primary-Medium-Text, var(--Primary-Medium-Text));
+  --_div-content-low: var(--Primary-Low);
+}
+
+/* ========================================
+   SIMPLE DIVIDER — no content, uses background-color
+   ======================================== */
+
+.simple {
+  background-color: var(--_div-color);
+}
+
+.simple[data-orientation='horizontal'] {
+  width: 100%;
+  height: var(--_div-stroke);
+}
+
+.simple[data-orientation='vertical'] {
+  width: var(--_div-stroke);
+  height: 100%;
+  align-self: stretch;
+}
+
+/* ========================================
+   CONTENT DIVIDER — flexbox layout: line + content + line
+   ======================================== */
+
+.withContent {
+  display: flex;
+  align-items: center;
+  gap: var(--Divider-contentGap, var(--Spacing-3-5));
+}
+
+.withContent[data-orientation='horizontal'] {
+  width: 100%;
+  flex-direction: row;
+}
+
+.withContent[data-orientation='vertical'] {
+  height: 100%;
+  flex-direction: column;
+  align-self: stretch;
+}
+
+/* Line segments (before and after content) */
+.line {
+  flex: 1 1 0;
+  background-color: var(--_div-color);
+}
+
+.withContent[data-orientation='horizontal'] .line {
+  height: var(--_div-stroke);
+}
+
+.withContent[data-orientation='vertical'] .line {
+  width: var(--_div-stroke);
+}
+
+/* Content slot — typography/colour come from <Text> / <Icon> inside */
+.content {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+}
+
+/* Icon slot shell — fixed footprint; glyph sizing is owned by <Icon size="4"> */
+.slotIconWrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--Divider-iconSize, var(--Spacing-4));
+  height: var(--Divider-iconSize, var(--Spacing-4));
+}
+
+/* ========================================
+   ROUND CAPS — rounded ends on line segments
+   ======================================== */
+
+.roundCaps .line,
+.roundCaps.simple {
+  border-radius: var(--Shape-Pill);
+}
+
+/* ========================================
+   ATTENTION — select which token tier to use
+   ======================================== */
+
+.divider[data-attention='high'] {
+  --_div-color: var(--Divider-color, var(--_div-high));
+  --_div-content-color: var(--Divider-contentColor, var(--_div-content-high));
+}
+
+.divider[data-attention='medium'] {
+  --_div-color: var(--Divider-color, var(--_div-medium-stroke));
+  --_div-content-color: var(--Divider-contentColor, var(--_div-content-medium));
+}
+
+.divider[data-attention='low'] {
+  --_div-color: var(--Divider-color, var(--_div-low-stroke));
+  --_div-content-color: var(--Divider-contentColor, var(--_div-content-low));
+}
+
+/* ========================================
+   SIZE — stroke width
+   ======================================== */
+
+.divider[data-size='s'] {
+  --_div-stroke: var(--Stroke-S);
+}
+
+.divider[data-size='m'] {
+  --_div-stroke: var(--Stroke-M);
+}
+
+.divider[data-size='l'] {
+  --_div-stroke: var(--Stroke-L);
+}
+
+/* ========================================
+   APPEARANCE — role-agnostic intermediate variable remapping
+   ======================================== */
+
+.appearancePrimary {
+  --_div-high: var(--Primary-High, var(--Text-High));
+  --_div-medium-stroke: var(--Primary-Stroke-Medium, var(--Text-Medium-Stroke));
+  --_div-low-stroke: var(--Primary-Stroke-Low, var(--Text-Low-Stroke));
+  --_div-content-high: var(--Primary-High, var(--Text-High));
+  --_div-content-medium: var(--Primary-Medium-Text, var(--Text-Medium));
+  --_div-content-low: var(--Primary-Low, var(--Text-Low));
+}
+
+.appearanceSecondary {
+  --_div-high: var(--Secondary-High, var(--Text-High));
+  --_div-medium-stroke: var(--Secondary-Stroke-Medium, var(--Text-Medium-Stroke));
+  --_div-low-stroke: var(--Secondary-Stroke-Low, var(--Text-Low-Stroke));
+  --_div-content-high: var(--Secondary-High, var(--Text-High));
+  --_div-content-medium: var(--Secondary-Medium-Text, var(--Text-Medium));
+  --_div-content-low: var(--Secondary-Low, var(--Text-Low));
+}
+
+.appearanceSparkle {
+  --_div-high: var(--Sparkle-High, var(--Text-High));
+  --_div-medium-stroke: var(--Sparkle-Stroke-Medium, var(--Text-Medium-Stroke));
+  --_div-low-stroke: var(--Sparkle-Stroke-Low, var(--Text-Low-Stroke));
+  --_div-content-high: var(--Sparkle-High, var(--Text-High));
+  --_div-content-medium: var(--Sparkle-Medium-Text, var(--Text-Medium));
+  --_div-content-low: var(--Sparkle-Low, var(--Text-Low));
+}
+
+.appearancePositive {
+  --_div-high: var(--Positive-High, var(--Text-High));
+  --_div-medium-stroke: var(--Positive-Stroke-Medium, var(--Text-Medium-Stroke));
+  --_div-low-stroke: var(--Positive-Stroke-Low, var(--Text-Low-Stroke));
+  --_div-content-high: var(--Positive-High, var(--Text-High));
+  --_div-content-medium: var(--Positive-Medium-Text, var(--Text-Medium));
+  --_div-content-low: var(--Positive-Low, var(--Text-Low));
+}
+
+.appearanceNegative {
+  --_div-high: var(--Negative-High, var(--Text-High));
+  --_div-medium-stroke: var(--Negative-Stroke-Medium, var(--Text-Medium-Stroke));
+  --_div-low-stroke: var(--Negative-Stroke-Low, var(--Text-Low-Stroke));
+  --_div-content-high: var(--Negative-High, var(--Text-High));
+  --_div-content-medium: var(--Negative-Medium-Text, var(--Text-Medium));
+  --_div-content-low: var(--Negative-Low, var(--Text-Low));
+}
+
+.appearanceWarning {
+  --_div-high: var(--Warning-High, var(--Text-High));
+  --_div-medium-stroke: var(--Warning-Stroke-Medium, var(--Text-Medium-Stroke));
+  --_div-low-stroke: var(--Warning-Stroke-Low, var(--Text-Low-Stroke));
+  --_div-content-high: var(--Warning-High, var(--Text-High));
+  --_div-content-medium: var(--Warning-Medium-Text, var(--Text-Medium));
+  --_div-content-low: var(--Warning-Low, var(--Text-Low));
+}
+
+.appearanceInformative {
+  --_div-high: var(--Informative-High, var(--Text-High));
+  --_div-medium-stroke: var(--Informative-Stroke-Medium, var(--Text-Medium-Stroke));
+  --_div-low-stroke: var(--Informative-Stroke-Low, var(--Text-Low-Stroke));
+  --_div-content-high: var(--Informative-High, var(--Text-High));
+  --_div-content-medium: var(--Informative-Medium-Text, var(--Text-Medium));
+  --_div-content-low: var(--Informative-Low, var(--Text-Low));
+}
+
+/**
+ * ========================================
+ * IMPORTANT: NO LITERALS IN THIS FILE
+ * ========================================
+ *
+ * All values MUST come from --Token-Name variables
+ * defined in @oneui/tokens CSS files
+ */

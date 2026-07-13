@@ -1,0 +1,85 @@
+{
+  "skill_name": "surface-context",
+  "iteration": 1,
+  "configurations": [
+    {
+      "name": "with_skill",
+      "results": [
+        {
+          "eval_name": "create-surface-aware-chip",
+          "pass_rate": 1.0,
+          "passed": 6,
+          "total": 6,
+          "tokens": 52620,
+          "duration_seconds": 135.6
+        },
+        {
+          "eval_name": "debug-invisible-button",
+          "pass_rate": 1.0,
+          "passed": 4,
+          "total": 4,
+          "tokens": 43362,
+          "duration_seconds": 75.1
+        },
+        {
+          "eval_name": "card-on-bg-subtle",
+          "pass_rate": 1.0,
+          "passed": 4,
+          "total": 4,
+          "tokens": 69405,
+          "duration_seconds": 125.7
+        }
+      ],
+      "aggregate": {
+        "mean_pass_rate": 1.0,
+        "mean_tokens": 55129,
+        "mean_duration_seconds": 112.1
+      }
+    },
+    {
+      "name": "without_skill",
+      "results": [
+        {
+          "eval_name": "create-surface-aware-chip",
+          "pass_rate": 1.0,
+          "passed": 6,
+          "total": 6,
+          "tokens": 56370,
+          "duration_seconds": 139.0
+        },
+        {
+          "eval_name": "debug-invisible-button",
+          "pass_rate": 1.0,
+          "passed": 4,
+          "total": 4,
+          "tokens": 45394,
+          "duration_seconds": 70.4
+        },
+        {
+          "eval_name": "card-on-bg-subtle",
+          "pass_rate": 1.0,
+          "passed": 4,
+          "total": 4,
+          "tokens": 87070,
+          "duration_seconds": 140.0
+        }
+      ],
+      "aggregate": {
+        "mean_pass_rate": 1.0,
+        "mean_tokens": 62945,
+        "mean_duration_seconds": 116.5
+      }
+    }
+  ],
+  "analysis": {
+    "observations": [
+      "Both configurations achieve 100% pass rate on all assertions — the baseline (without skill) also finds correct patterns by reading existing Button/Avatar CSS.",
+      "The with-skill configuration uses ~12% fewer tokens on average (55K vs 63K) because it reads the skill instead of exploring the codebase.",
+      "The bg-subtle eval shows the biggest token difference: 69K (with skill) vs 87K (without) — 21% savings because the skill has the on-subtle context rules ready.",
+      "For the debug scenario, both versions produce near-identical quality. The with-skill version is slightly more detailed about bold inversion mechanics.",
+      "The Chip CSS outputs are remarkably similar in structure — both found the intermediate variable pattern. The with-skill version chose Shape-3XS (per skill guidance), the without-skill version chose Shape-Pill (by reading Button pattern).",
+      "This skill provides the most value for users/agents who DON'T have access to the codebase — it encapsulates the architectural knowledge that would otherwise require reading 10+ source files."
+    ],
+    "recommendation": "The skill is ready for production. Both versions produce correct output, but the skill saves exploration time and ensures consistent architectural guidance. For external consumers (design system users, new contributors), the skill is essential."
+  }
+}

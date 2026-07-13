@@ -1,0 +1,29 @@
+.block {
+  margin-bottom: var(--Spacing-8);
+}
+
+.blockTitle {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Title-M-FontSize);
+  line-height: var(--Title-M-LineHeight);
+  font-weight: var(--Title-M-FontWeight);
+  color: var(--Text-High);
+  margin: 0 0 var(--Spacing-3-5);
+}
+
+.groupHeader {
+  font-family: var(--Typography-Font-Code);
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+  color: var(--Text-High);
+  background: var(--Surface-Minimal);
+  padding: var(--Spacing-2-5);
+}
+
+/** Figma hatched “N/A” slots — we still render the control; dashed cue only. */
+.cellFigmaOmitted {
+  outline: var(--Stroke-M) dashed var(--Border-Subtle);
+  outline-offset: calc(-1 * var(--Stroke-M));
+  background: var(--Surface-Default);
+}

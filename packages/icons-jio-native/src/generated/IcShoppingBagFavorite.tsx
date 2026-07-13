@@ -1,0 +1,13 @@
+import React from 'react';
+import Svg, { Path, type SvgProps } from 'react-native-svg';
+export function IcShoppingBagFavorite(props: SvgProps) {
+  const fill = String(props.fill ?? '#000000');
+  return (
+    <Svg viewBox="0 0 24 24" fill="none" {...props}>
+      <Path
+            fill={fill}
+            d="M18 6h-2a4 4 0 1 0-8 0H6a2 2 0 0 0-2 2v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8a2 2 0 0 0-2-2m-6-2a2 2 0 0 1 2 2h-4a2 2 0 0 1 2-2m.76 13.1-.2.18a.82.82 0 0 1-1.12 0l-.2-.18c-1.86-1.71-3-3-3-4.36a2.21 2.21 0 0 1 2.23-2.24 2.3 2.3 0 0 1 1.48.6 2.3 2.3 0 0 1 1.48-.6 2.21 2.21 0 0 1 2.23 2.24c.05 1.38-1.04 2.65-2.9 4.36"
+          />
+    </Svg>
+  );
+}

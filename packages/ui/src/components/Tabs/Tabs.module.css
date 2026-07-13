@@ -1,0 +1,376 @@
+/**
+ * Tabs.module.css
+ *
+ * Figma-aligned Tabs / TabItem / TabGroup styling.
+ * ZERO LITERALS — all values come from design tokens. Verified by `pnpm check:literals`.
+ *
+ * DOM structure (Figma-matched):
+ *
+ *   .tab (BaseTabs.Tab)                  ← height per size, no padding
+ *     .stateLayer                        ← padded, rounded, hosts the focus halo
+ *       .contentWrapper                  ← flex row, label + slots
+ *         .start                         ← leading slot
+ *         .label                         ← text
+ *         .end                           ← trailing slot
+ *     (BaseTabs.Indicator lives at the LIST level, animates between tabs)
+ *
+ * Indicator tracks the content-wrapper width (NOT the padded tab width).
+ * The animation is driven by Base UI's --active-tab-{left,width} vars with
+ * CSS inset via --_indicator-pad-x.
+ *
+ * State matrix:
+ *   - idle unselected:     label = --Text-High,              no indicator
+ *   - hover unselected:    label = --Text-Low,               no indicator
+ *   - selected (any):      label = --{Role}-TintedA11y,      tinted-accent indicator
+ *   - focus-visible:       double-ring halo on state-layer
+ *   - disabled:            label = --{Role}-Low-Text, opacity 0.38
+ *
+ * Architecture:
+ *   - Role-agnostic intermediate vars (--_tab-*). Default = Primary.
+ *   - 11 .appearance* classes remap --_tab-* to other roles.
+ *   - Size + orientation via [data-size] + [data-orientation] data-attr selectors.
+ *
+ * Figma reference (file F7KEYdO8R8Nbe2N4gI8dIU):
+ *   - TabGroup component set: node 1:55590
+ *   - TabItem API spec:       node 37:15865
+ *   - Focus state layer:      node 2564:1264
+ *   - Hover state layer:      node 2564:1272
+ */
+
+/* ============================================================
+   ROOT — Tabs.Root wrapper
+   ============================================================ */
+
+.root {
+  display: flex;
+  flex-direction: column;
+}
+
+.root[data-orientation='vertical'] {
+  flex-direction: row;
+}
+
+/* ============================================================
+   LIST — wraps all TabItems
+   ============================================================ */
+
+.list {
+  position: relative;
+  display: flex;
+  gap: var(--Tabs-gap, var(--Spacing-0));
+  z-index: var(--Z-Index-Base);
+}
+
+.list[data-orientation='vertical'] {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+/* ============================================================
+   TAB — button element (no padding/radius, just size + typography)
+   ============================================================ */
+
+.tab {
+  /* ----- Role-agnostic intermediate vars (default appearance = Primary) -----
+     Fallback order mirrors Chip.module.css so that when brand CSS has
+     injected the per-role tokens (--Primary-TintedA11y etc.),
+     selected labels render with the tinted-a11y colour. The final
+     fallback is --Surface-Bold so unstyled previews still show colour
+     instead of collapsing to plain black. */
+  --_tab-label-idle: var(--Primary-High, var(--Text-High));
+  --_tab-label-selected: var(--Primary-TintedA11y, var(--Primary-Tinted, var(--Surface-Bold)));
+  --_tab-label-disabled: var(--Primary-Low, var(--Text-Low));
+  --_tab-indicator-selected: var(--Primary-Tinted, var(--Primary-TintedA11y, var(--Primary-Bold, var(--Surface-Bold))));
+
+  /* ----- Base layout ----- */
+  position: relative;
+  display: inline-flex;
+  align-items: stretch;
+  flex: 0 0 auto;
+  box-sizing: border-box;
+
+  /* ----- Reset native button ----- */
+  border: none;
+  margin: 0;
+  padding: 0;
+  outline: none;
+  background: transparent;
+  appearance: none;
+  cursor: pointer;
+  user-select: none;
+
+  /* ----- Typography (inherits down to state-layer + label) ----- */
+  font-family: var(--Tabs-fontFamily, var(--Label-FontFamily, var(--Typography-Font-Primary, inherit)));
+  font-weight: var(--Tabs-fontWeight, var(--Label-FontWeight-Medium));
+  font-optical-sizing: var(--Tabs-fontOpticalSizing, var(--Label-FontOpticalSizing, auto));
+  font-variation-settings: var(--Tabs-fontVariationSettings, var(--Label-OpszVariation, normal));
+  white-space: nowrap;
+  color: var(--_tab-label-idle);
+
+  /* ----- Motion ----- */
+  transition: color var(--Motion-Duration-S) var(--Motion-Easing-Transition-Moderate);
+}
+
+/* Vertical tabs span full list width. */
+.tab[data-orientation='vertical'] {
+  width: 100%;
+  justify-content: flex-start;
+}
+
+/* ============================================================
+   STATE LAYER — padded, rounded inner box.
+   Hosts the focus halo. Figma keeps it visually transparent in
+   every state (hover feedback = label colour only).
+   ============================================================ */
+
+.stateLayer {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  min-height: inherit;
+  height: 100%;
+  width: 100%;
+  /* Figma keeps the state-layer background transparent in every state
+     (idle / hover / selected / pressed). Only the indicator + label colour
+     change across states. Do NOT add background fills here. */
+  background-color: transparent;
+  border-radius: var(--Tabs-itemRadius, var(--Shape-1-5));
+}
+
+.tab[data-orientation='vertical'] .stateLayer {
+  justify-content: flex-start;
+}
+
+/* ----- Focus halo — Figma-matched 2px offset-gap + 4px outline, on the state layer ----- */
+.tab:focus {
+  outline: none;
+}
+
+.tab:focus-visible .stateLayer,
+.tab[data-force-state="focus"] .stateLayer {
+  box-shadow:
+    0 0 0 var(--Stroke-XL) var(--Surface-Halo-Gap, var(--Surface-Main)),
+    0 0 0 calc(var(--Stroke-XL) + var(--Focus-Outline-Width)) var(--Focus-Outline);
+}
+
+/* ============================================================
+   CONTENT WRAPPER — label + slots.
+   ============================================================ */
+
+.contentWrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--Tabs-slotGap, var(--Spacing-1));
+  height: 100%;
+}
+
+/* ============================================================
+   APPEARANCE CLASSES — remap --_tab-* for 9 roles
+   ============================================================ */
+
+.appearanceNeutral {
+  --_tab-label-selected: var(--Neutral-TintedA11y, var(--Neutral-Tinted, var(--Surface-Bold)));
+  --_tab-indicator-selected: var(--Neutral-Tinted, var(--Neutral-Bold, var(--Surface-Bold)));
+}
+
+.appearanceSecondary {
+  --_tab-label-selected: var(--Secondary-TintedA11y, var(--Secondary-Tinted, var(--Surface-Bold)));
+  --_tab-indicator-selected: var(--Secondary-Tinted, var(--Secondary-Bold, var(--Surface-Bold)));
+}
+
+.appearanceSparkle {
+  --_tab-label-selected: var(--Sparkle-TintedA11y, var(--Sparkle-Tinted, var(--Surface-Bold)));
+  --_tab-indicator-selected: var(--Sparkle-Tinted, var(--Sparkle-Bold, var(--Surface-Bold)));
+}
+
+.appearanceBrandBg {
+  --_tab-label-selected: var(--Brand-Bg-TintedA11y, var(--Brand-Bg-Tinted, var(--Surface-Bold)));
+  --_tab-indicator-selected: var(--Brand-Bg-Tinted, var(--Brand-Bg-Bold, var(--Surface-Bold)));
+}
+
+.appearancePositive {
+  --_tab-label-selected: var(--Positive-TintedA11y, var(--Positive-Tinted, var(--Surface-Bold)));
+  --_tab-indicator-selected: var(--Positive-Tinted, var(--Positive-Bold, var(--Surface-Bold)));
+}
+
+.appearanceNegative {
+  --_tab-label-selected: var(--Negative-TintedA11y, var(--Negative-Tinted, var(--Surface-Bold)));
+  --_tab-indicator-selected: var(--Negative-Tinted, var(--Negative-Bold, var(--Surface-Bold)));
+}
+
+.appearanceWarning {
+  --_tab-label-selected: var(--Warning-TintedA11y, var(--Warning-Tinted, var(--Surface-Bold)));
+  --_tab-indicator-selected: var(--Warning-Tinted, var(--Warning-Bold, var(--Surface-Bold)));
+}
+
+.appearanceInformative {
+  --_tab-label-selected: var(--Informative-TintedA11y, var(--Informative-Tinted, var(--Surface-Bold)));
+  --_tab-indicator-selected: var(--Informative-Tinted, var(--Informative-Bold, var(--Surface-Bold)));
+}
+
+/* ============================================================
+   SIZE × ORIENTATION — Figma-exact values
+   Horizontal: S h32/pad8/r8  M h40/pad10/r6  L h48/pad12/r8
+   Vertical:   S h32/pad10/r8 M h40/pad12/r8  L h48/pad14/r8
+   ============================================================ */
+
+/* Tab heights */
+.tab[data-size='s'] { height: var(--Tabs-itemHeight-s, var(--Spacing-8)); }
+.tab[data-size='m'] { height: var(--Tabs-itemHeight-m, var(--Spacing-10)); }
+.tab[data-size='l'] { height: var(--Tabs-itemHeight-l, var(--Spacing-12)); }
+
+/* Tab font-size (Label role, per-size) */
+.tab[data-size='s'] { font-size: var(--Tabs-fontSize-s, var(--Label-XS-FontSize)); line-height: var(--Tabs-lineHeight-s, var(--Label-XS-LineHeight)); }
+.tab[data-size='m'] { font-size: var(--Tabs-fontSize-m, var(--Label-S-FontSize));  line-height: var(--Tabs-lineHeight-m, var(--Label-S-LineHeight));  }
+.tab[data-size='l'] { font-size: var(--Tabs-fontSize-l, var(--Label-M-FontSize));  line-height: var(--Tabs-lineHeight-l, var(--Label-M-LineHeight));  }
+
+/* State-layer padding per size × orientation */
+.tab[data-orientation='horizontal'][data-size='s'] .stateLayer {
+  padding: var(--Spacing-0) var(--Tabs-itemPaddingX-s, var(--Spacing-2));
+  border-radius: var(--Tabs-itemRadius-s, var(--Tabs-itemRadius, var(--Shape-2)));
+}
+.tab[data-orientation='horizontal'][data-size='m'] .stateLayer {
+  padding: var(--Spacing-0) var(--Tabs-itemPaddingX-m, var(--Spacing-2-5));
+  border-radius: var(--Tabs-itemRadius-m, var(--Tabs-itemRadius, var(--Shape-1-5)));
+}
+.tab[data-orientation='horizontal'][data-size='l'] .stateLayer {
+  padding: var(--Spacing-0) var(--Tabs-itemPaddingX-l, var(--Spacing-3));
+  border-radius: var(--Tabs-itemRadius-l, var(--Tabs-itemRadius, var(--Shape-2)));
+}
+.tab[data-orientation='vertical'][data-size='s'] .stateLayer {
+  padding: var(--Spacing-0) var(--Tabs-itemPaddingX-vertical-s, var(--Spacing-2-5));
+  border-radius: var(--Tabs-itemRadius-vertical, var(--Tabs-itemRadius, var(--Shape-2)));
+}
+.tab[data-orientation='vertical'][data-size='m'] .stateLayer {
+  padding: var(--Spacing-0) var(--Tabs-itemPaddingX-vertical-m, var(--Spacing-3));
+  border-radius: var(--Tabs-itemRadius-vertical, var(--Tabs-itemRadius, var(--Shape-2)));
+}
+.tab[data-orientation='vertical'][data-size='l'] .stateLayer {
+  padding: var(--Spacing-0) var(--Tabs-itemPaddingX-vertical-l, var(--Spacing-3-5));
+  border-radius: var(--Tabs-itemRadius-vertical, var(--Tabs-itemRadius, var(--Shape-2)));
+}
+
+/* ============================================================
+   STATES — selected label color + disabled opacity
+   ============================================================ */
+
+.tab[data-active] {
+  color: var(--_tab-label-selected);
+  font-weight: var(--Tabs-fontWeight-selected, var(--Label-FontWeight-High, var(--Label-FontWeight-Medium)));
+}
+
+.tab[data-disabled] {
+  opacity: var(--Disabled-Opacity, 0.38);
+  cursor: not-allowed;
+  color: var(--_tab-label-disabled);
+}
+
+/* ============================================================
+   SLOT COMPOSITION
+   ============================================================ */
+
+.start,
+.end {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.label {
+  display: inline-flex;
+  align-items: center;
+  min-width: 0;
+}
+
+/* ============================================================
+   HOVER — label colour shift only (no indicator).
+   Unselected tabs dim to the low-emphasis text token on hover so
+   interactivity is visible without a bar. Selected tabs never
+   hover-shift (they already carry the tinted-a11y label).
+   ============================================================ */
+
+.tab:hover:not([data-disabled]):not([data-active]) {
+  color: var(--Tabs-colorHover, var(--Text-Low));
+}
+
+/* ============================================================
+   SELECTED INDICATOR — list-level, animated.
+   Uses Base UI's --active-tab-{left,top,width,height} CSS vars which
+   track the currently-selected Tab button. We inset left/right by the
+   state-layer's horizontal padding so the bar visually aligns with
+   the content-wrapper (label + slots), matching Figma exactly.
+   ============================================================ */
+
+.selectedIndicator {
+  position: absolute;
+  background-color: var(--_tab-indicator-selected, var(--Primary-Tinted, var(--Primary-Bold, var(--Surface-Bold))));
+  border-radius: var(--Tabs-indicatorRadius, var(--Shape-0-5));
+  pointer-events: none;
+  transition:
+    translate var(--Motion-Duration-M) var(--Motion-Easing-Transition-Moderate),
+    width var(--Motion-Duration-M) var(--Motion-Easing-Transition-Moderate),
+    height var(--Motion-Duration-M) var(--Motion-Easing-Transition-Moderate);
+}
+
+/* Per-list --_indicator-pad-x = state-layer padding × 1 (added to left, subtracted from width). */
+.list[data-orientation='horizontal'][data-size='s'] { --_indicator-pad-x: var(--Tabs-itemPaddingX-s, var(--Spacing-2)); }
+.list[data-orientation='horizontal'][data-size='m'] { --_indicator-pad-x: var(--Tabs-itemPaddingX-m, var(--Spacing-2-5)); }
+.list[data-orientation='horizontal'][data-size='l'] { --_indicator-pad-x: var(--Tabs-itemPaddingX-l, var(--Spacing-3)); }
+
+/* Horizontal: bottom bar, width = active-tab-width minus (pad × 2) so it matches content-wrapper. */
+.list[data-orientation='horizontal'] .selectedIndicator {
+  left: 0;
+  bottom: 0;
+  height: var(--Tabs-indicatorThickness, var(--Stroke-XL));
+  width: calc(var(--active-tab-width) - 2 * var(--_indicator-pad-x, var(--Spacing-2-5)));
+  translate: calc(var(--active-tab-left) + var(--_indicator-pad-x, var(--Spacing-2-5))) 0;
+}
+
+/* Vertical: left bar, per-size height centered within the active tab's height. */
+.list[data-orientation='vertical'][data-size='s'] { --_indicator-v-h: var(--Spacing-6); }
+.list[data-orientation='vertical'][data-size='m'] { --_indicator-v-h: var(--Spacing-8); }
+.list[data-orientation='vertical'][data-size='l'] { --_indicator-v-h: var(--Spacing-9); }
+
+.list[data-orientation='vertical'] .selectedIndicator {
+  left: 0;
+  top: 0;
+  width: var(--Tabs-indicatorThickness, var(--Stroke-XL));
+  height: var(--_indicator-v-h, var(--Spacing-8));
+  translate: 0 calc(var(--active-tab-top) + (var(--active-tab-height) - var(--_indicator-v-h, var(--Spacing-8))) / 2);
+}
+
+/* Per-list appearance remaps for the animated indicator color. */
+.list[data-appearance='neutral']     .selectedIndicator { background-color: var(--Neutral-Tinted, var(--Neutral-Bold, var(--Surface-Bold))); }
+.list[data-appearance='secondary']   .selectedIndicator { background-color: var(--Secondary-Tinted, var(--Secondary-Bold, var(--Surface-Bold))); }
+.list[data-appearance='sparkle']     .selectedIndicator { background-color: var(--Sparkle-Tinted, var(--Sparkle-Bold, var(--Surface-Bold))); }
+.list[data-appearance='brand-bg']    .selectedIndicator { background-color: var(--Brand-Bg-Tinted, var(--Brand-Bg-Bold, var(--Surface-Bold))); }
+.list[data-appearance='positive']    .selectedIndicator { background-color: var(--Positive-Tinted, var(--Positive-Bold, var(--Surface-Bold))); }
+.list[data-appearance='negative']    .selectedIndicator { background-color: var(--Negative-Tinted, var(--Negative-Bold, var(--Surface-Bold))); }
+.list[data-appearance='warning']     .selectedIndicator { background-color: var(--Warning-Tinted, var(--Warning-Bold, var(--Surface-Bold))); }
+.list[data-appearance='informative'] .selectedIndicator { background-color: var(--Informative-Tinted, var(--Informative-Bold, var(--Surface-Bold))); }
+
+/* ============================================================
+   PANEL
+   ============================================================ */
+
+.panel {
+  padding: var(--Tabs-panelPadding, var(--Spacing-4));
+  outline: none;
+}
+
+.panel:focus {
+  outline: none;
+}
+
+.panel:focus-visible {
+  outline: var(--Focus-Outline-Width) solid var(--Focus-Outline);
+  border-radius: var(--Shape-2);
+}
+
+.panel[hidden] {
+  display: none;
+}

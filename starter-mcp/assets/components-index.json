@@ -1,0 +1,374 @@
+[
+  {
+    "name": "Avatar",
+    "slug": "avatar",
+    "intent": "Display a user or entity representation as image, icon, or text initials.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "avatar"
+    ]
+  },
+  {
+    "name": "Badge",
+    "slug": "badge",
+    "intent": "Non-interactive display component used to highlight status, provide notifications, or categorize content. Supports start/end slots for icons and sub-badges.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "badge"
+    ]
+  },
+  {
+    "name": "BottomNavigation",
+    "slug": "bottomnavigation",
+    "intent": "App-level bottom navigation bar. Accepts 2–5 <BottomNavItem> children with a shared `labelType` (none / 1line / 2line). Supports controlled or uncontrolled active value, multi-accent appearance roles, and an optional top hairline divider.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "bottom-navigation"
+    ]
+  },
+  {
+    "name": "Button",
+    "slug": "button",
+    "intent": "Trigger a single user action with clear emphasis and accessible states.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "button"
+    ]
+  },
+  {
+    "name": "Checkbox",
+    "slug": "checkbox",
+    "intent": "Binary selection control for forms and settings with tri-state (indeterminate) support.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "checkbox"
+    ]
+  },
+  {
+    "name": "CheckboxField",
+    "slug": "checkboxfield",
+    "intent": "`Field.Root` + **Checkbox** with integrated `Field.Label` / `Field.Description`, optional `infoIconSlot`, `error` / `feedback`, native `Field.Error` slot, and optional `InputDynamicText` row — same composition contract as **InputField** (Figma `.DNA/InputField` stack; control DNA from Checkbox). Colour follows `appearance` on the inner Checkbox.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "checkbox-field"
+    ]
+  },
+  {
+    "name": "Chip",
+    "slug": "chip",
+    "intent": "Compact interactive label for filtering, tagging, or selecting values.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "chip"
+    ]
+  },
+  {
+    "name": "ChipGroup",
+    "slug": "chipgroup",
+    "intent": "Groups multiple Chip components with shared selection state, keyboard navigation, and layout. Supports single-select (default) and multi-select modes. Propagates size, variant, and appearance to all child Chips.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "chip-group"
+    ]
+  },
+  {
+    "name": "CircularProgressIndicator",
+    "slug": "circularprogressindicator",
+    "intent": "Circular progress arc. Determinate variant renders an arc proportional to `value`; indeterminate renders a spinning animation. Optional center content (icon or auto percentage). 10 t-shirt sizes. Multi-accent appearance roles.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "circular-progress-indicator"
+    ]
+  },
+  {
+    "name": "Container",
+    "slug": "container",
+    "intent": "Page-level width container. `fluid` grows with the viewport (default). `fixed` caps at --Grid-MaxWidth per platform and centers. `full-bleed` is edge-to-edge for hero sections and full-width media.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "container"
+    ]
+  },
+  {
+    "name": "CounterBadge",
+    "slug": "counterbadge",
+    "intent": "Non-interactive display component showing a numeric count with bold/subtle/ghost variants and multi-accent support.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "counter-badge"
+    ]
+  },
+  {
+    "name": "Divider",
+    "slug": "divider",
+    "intent": "Visual separator between sections, list items, or content groups.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "divider"
+    ]
+  },
+  {
+    "name": "Icon",
+    "slug": "icon",
+    "intent": "Render a semantic or custom icon with configurable size, colour role, and emphasis level.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "icon"
+    ]
+  },
+  {
+    "name": "IconButton",
+    "slug": "iconbutton",
+    "intent": "Trigger compact single actions with icon-only affordance.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "icon-button"
+    ]
+  },
+  {
+    "name": "IconContained",
+    "slug": "iconcontained",
+    "intent": "Display an icon within a filled container shape with attention-level emphasis.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "icon-contained"
+    ]
+  },
+  {
+    "name": "Image",
+    "slug": "image",
+    "intent": "Display an image with aspect ratio presets, loading states, and optional interactive overlay.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "image"
+    ]
+  },
+  {
+    "name": "IndicatorBadge",
+    "slug": "indicatorbadge",
+    "intent": "Non-interactive status/presence indicator dot. Supports multi-accent appearance roles and five sizes.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "indicator-badge"
+    ]
+  },
+  {
+    "name": "Input",
+    "slug": "input",
+    "intent": "Low-level single-line text entry control. Use standalone only when you do not need a visible label, helper text, or validation chrome; otherwise compose it inside InputField.",
+    "tags": [
+      "input",
+      "form",
+      "text",
+      "field"
+    ]
+  },
+  {
+    "name": "InputField",
+    "slug": "inputfield",
+    "intent": "Text input field: `Field.Root` + **Input** (`Field.Label` / `Field.Description` for label-stack copy, `Field.Control` for the `<input>`, 4-slot shell), then `InputFeedback` (including native `Field.Error` when there is no string `error` / custom `feedback`), and DynamicText. Default info uses `IconButton` + `Tooltip` (override with `infoIconSlot`). Optional `labelSlot` replaces string `label` / `description`.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "input-field"
+    ]
+  },
+  {
+    "name": "Logo",
+    "slug": "logo",
+    "intent": "A visual mark that identifies and reinforces brand identity throughout the interface. Transparent size container — the SVG content controls its own shape and colors.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "logo"
+    ]
+  },
+  {
+    "name": "Modal",
+    "slug": "modal",
+    "intent": "Focused overlay with structured header/body/footer layout and scroll management. The modal popup is role-neutral; per-role styling is applied to the slot children (footer buttons, headerStart, body content).",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "modal"
+    ]
+  },
+  {
+    "name": "Pagination",
+    "slug": "pagination",
+    "intent": "Numbered page navigation for paged result sets (search results, tables, listings). Shows first/last + a window of pages around the current one, with optional prev/next arrows.",
+    "tags": [
+      "pagination",
+      "navigation",
+      "paging",
+      "results"
+    ]
+  },
+  {
+    "name": "PaginationDots",
+    "slug": "paginationdots",
+    "intent": "Windowed pagination indicator for carousels and multi-page content. Shows a fixed window of dots that scroll with the active index. Edge dots shrink to signal more content on either side. Supports loop (infinite) and non-loop (end-grow) modes. Fully accessible: roving tabindex, keyboard nav, aria-selected.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "pagination-dots"
+    ]
+  },
+  {
+    "name": "Radio",
+    "slug": "radio",
+    "intent": "Single-selection control within a mutually-exclusive option group.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "radio"
+    ]
+  },
+  {
+    "name": "RadioField",
+    "slug": "radiofield",
+    "intent": "`Field.Root` + **RadioGroup** with optional `Field.Label` / `Field.Description`, `infoIconSlot`, `error` / `feedback`, native `Field.Error` slot, and optional `InputDynamicText` row — same shell as **InputField** / **CheckboxField**. Integrated single mode has no `Radio` children; colour follows **`appearance`** on inner radios.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "radio-field"
+    ]
+  },
+  {
+    "name": "SelectableButton",
+    "slug": "selectablebutton",
+    "intent": "Toggle button with text label and optional start/end slots for binary selection within groups.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "selectable-button"
+    ]
+  },
+  {
+    "name": "SelectableIconButton",
+    "slug": "selectableiconbutton",
+    "intent": "Icon-only toggle button for compact binary selection with configurable shape layout.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "selectable-icon-button"
+    ]
+  },
+  {
+    "name": "SelectableSingleTextButton",
+    "slug": "selectablesingletextbutton",
+    "intent": "Text-only toggle button for binary selection — no start/end slots, simpler than SelectableButton.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "selectable-single-text-button"
+    ]
+  },
+  {
+    "name": "SingleTextButton",
+    "slug": "singletextbutton",
+    "intent": "Circular single-text action button (max 2 characters, e.g. \"Ag\", \"En\"). Attention level drives the visual: high=bold fill, medium=subtle fill, low=ghost. 3 sizes (S/M/L). Shape customisable per brand.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "single-text-button"
+    ]
+  },
+  {
+    "name": "Slider",
+    "slug": "slider",
+    "intent": "Precision range input. Multi-accent appearance, inside/outside knob styles, optional step ticks, and a value tooltip that follows the thumb.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "slider"
+    ]
+  },
+  {
+    "name": "Stepper",
+    "slug": "stepper",
+    "intent": "Numeric input control with increment and decrement buttons for bounded integer values.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "stepper"
+    ]
+  },
+  {
+    "name": "Surface",
+    "slug": "surface",
+    "intent": "Container primitive that opts descendants into the OneUI surface cascade via [data-surface]. The `mode` prop maps to one of the 7 canonical surface tokens (default/ghost/minimal/subtle/moderate/bold/elevated). Optional transparent material composites over arbitrary media.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "surface"
+    ]
+  },
+  {
+    "name": "Switch",
+    "slug": "switch",
+    "intent": "Immediate binary toggle — state takes effect on change without a submit action.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "switch"
+    ]
+  },
+  {
+    "name": "Tabs",
+    "slug": "tabs",
+    "intent": "Accessible tabbed navigation. Uses Base UI Tabs primitive for keyboard navigation, arrow/Home/End keys, and automatic focus management. Three sizes (S/M/L), two orientations (horizontal/vertical). Matching Figma spec: selected tab gets an animated tinted indicator, tinted-accessible label color, and a surface-aware double-ring focus halo. Supports start + end content slots; icon + badge are legacy aliases.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "tabs"
+    ]
+  },
+  {
+    "name": "Text",
+    "slug": "text",
+    "intent": "Inline / block text. Six typography roles with role-specific size scales, canonical multi-accent appearance, attention levels, italic / underline / strikethrough, latin / multi-script font fallback, and line-clamp truncation. Defaults to `span`; set `as` for headings or anchors. When using the `text` prop with the `link` slot, avoid `aria-hidden` on the root unless the link is decorative — the slot remains focusable.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "text"
+    ]
+  },
+  {
+    "name": "Tooltip",
+    "slug": "tooltip",
+    "intent": "Floating hover / focus label that attaches to a trigger element. Supports the Figma position alias (top/topStart/topEnd/...), Base UI side+align, controlled/uncontrolled open state, arrow, portal, and configurable delay.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "tooltip"
+    ]
+  },
+  {
+    "name": "TouchSlider",
+    "slug": "touchslider",
+    "intent": "Chunky fingertip-friendly slider. The track is the tap target; the fill represents the value. Ideal for touch devices, TV remotes, and large-target contexts.",
+    "tags": [
+      "machine-readable",
+      "generated",
+      "touch-slider"
+    ]
+  }
+]

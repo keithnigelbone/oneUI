@@ -1,0 +1,585 @@
+.headerRow {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--Spacing-5);
+}
+
+.actionRow {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-3);
+}
+
+.statusText,
+.metaText,
+	.controlLabel,
+	.bodyText,
+	.sectionHeading,
+	.sectionTitle,
+	.activeMetalName,
+	.logoFallback,
+	.metalSwatchLabel,
+	.tokenPill,
+	.tokenSectionHeader {
+  font-family: var(--Typography-Font-Primary);
+}
+
+.statusText,
+.metaText {
+  color: var(--Text-Low);
+  font-size: var(--Label-XS-FontSize);
+  font-weight: var(--Label-FontWeight-Low);
+  line-height: var(--Label-XS-LineHeight);
+}
+
+.bodyText {
+  color: var(--Text-Medium);
+  font-size: var(--Body-S-FontSize);
+  font-weight: var(--Body-FontWeight-Low);
+  line-height: var(--Body-S-LineHeight);
+  margin: 0;
+}
+
+.sectionHeading {
+  color: var(--Text-High);
+  font-size: var(--Title-M-FontSize);
+  font-weight: var(--Title-M-FontWeight);
+  line-height: var(--Title-M-LineHeight);
+  margin: 0;
+}
+
+.controlGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--Spacing-5);
+  margin-block-end: var(--Spacing-5);
+}
+
+.controlGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-3);
+}
+
+.controlLabel {
+  color: var(--Text-Medium);
+  font-size: var(--Label-S-FontSize);
+  font-weight: var(--Label-FontWeight-Medium);
+  line-height: var(--Label-S-LineHeight);
+}
+
+.segmentedList {
+  width: fit-content;
+}
+
+.previewStack,
+.mediaGroup,
+.mediaHeader,
+.surfaceTile,
+.effectTile,
+.effectsStack,
+.editorPanel,
+.sliderStack,
+.metallicStack,
+.metallicRow,
+.metalCard,
+	.metalPreviewGroup,
+	.gradientControls,
+	.colorField,
+	.activeMetalBody,
+	.overrideField,
+	.overrideInputRow,
+	.tokenPair,
+.tokenReference,
+.tokenReferenceSection,
+.effectsSection,
+.tokenRow {
+  display: flex;
+  flex-direction: column;
+}
+
+.previewStack {
+  gap: var(--Spacing-6);
+}
+
+.mediaGroup {
+  gap: var(--Spacing-3-5);
+}
+
+.mediaHeader {
+  gap: var(--Spacing-2);
+}
+
+.mediaBackdrop {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--Spacing-4);
+  padding: var(--Spacing-4-5);
+  border-radius: var(--Shape-5);
+}
+
+.mediaBackdrop[data-media-context='dynamic'] {
+  background:
+    radial-gradient(circle at 20% 30%, var(--Positive-Bold) 0%, transparent 55%),
+    radial-gradient(circle at 80% 70%, var(--Informative-Bold) 0%, transparent 55%),
+    linear-gradient(135deg, var(--Primary-Bold) 0%, var(--Negative-Bold) 50%, var(--Warning-Bold) 100%);
+}
+
+.mediaBackdrop[data-media-context='dark'] {
+  background: linear-gradient(135deg, var(--Neutral-Bold) 0%, var(--Primary-Bold) 100%);
+}
+
+.mediaBackdrop[data-media-context='light'] {
+  background: linear-gradient(135deg, var(--Surface-Default) 0%, var(--Neutral-Minimal) 100%);
+}
+
+.surfaceTile {
+  min-height: var(--Dimension-f15);
+  gap: var(--Spacing-4);
+  justify-content: space-between;
+  padding: var(--Spacing-4);
+  border-radius: var(--Shape-4-5);
+}
+
+.tileHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--Spacing-3);
+}
+
+.buttonRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--Spacing-3);
+}
+
+.effectGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--Spacing-4);
+}
+
+.effectTile {
+  gap: var(--Spacing-3);
+  padding: var(--Spacing-4);
+  border-radius: var(--Shape-4-5);
+}
+
+.effectsStack {
+  gap: var(--Spacing-5);
+}
+
+.editorGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--Spacing-5);
+}
+
+.editorPanel {
+  gap: var(--Spacing-4);
+}
+
+.effectPreviewRow {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(var(--Dimension-f15), 1fr));
+  gap: var(--Spacing-3);
+  padding: var(--Spacing-4);
+  border-radius: var(--Shape-4-5);
+  background:
+    radial-gradient(circle at top left, var(--Informative-Bold), transparent),
+    linear-gradient(135deg, var(--Primary-Bold), var(--Warning-Bold));
+}
+
+.effectPreviewTile {
+  display: flex;
+  min-height: var(--Dimension-f12);
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--Spacing-3);
+  padding: var(--Spacing-3);
+  border-radius: var(--Shape-4);
+  background: color-mix(in srgb, var(--Surface-Default) 70%, transparent);
+  box-shadow: var(--Elevation-1);
+}
+
+.sliderStack {
+  gap: var(--Spacing-3-5);
+}
+
+.metallicStack {
+  gap: var(--Spacing-8);
+}
+
+.activeMetalsPanel {
+	display: flex;
+	flex-direction: column;
+	gap: var(--Spacing-5);
+	padding-block-end: var(--Spacing-6);
+}
+
+.activeMetalsHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--Spacing-4);
+}
+
+.activeMetalsGrid {
+	display: grid;
+	grid-template-columns: repeat(4, minmax(0, 1fr));
+	gap: var(--Spacing-5);
+}
+
+.activeMetalTile {
+	display: flex;
+	flex-direction: column;
+	min-width: 0;
+	gap: var(--Spacing-3);
+	padding: var(--Spacing-0);
+	border-radius: var(--Shape-4-5);
+}
+
+.activeMetalSwatch {
+	display: flex;
+	aspect-ratio: 5 / 3;
+	min-height: var(--Dimension-f13);
+	align-items: center;
+	justify-content: center;
+	border-radius: var(--Shape-4);
+  color: var(--metal-text);
+  background: var(--metal-fill);
+}
+
+.activeMetalBody {
+	min-width: 0;
+	gap: var(--Spacing-2);
+}
+
+.activeMetalTop {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	min-width: 0;
+	gap: var(--Spacing-3);
+}
+
+.activeMetalName {
+	color: var(--Text-High);
+	min-width: 0;
+	flex: 1 1 auto;
+	font-size: var(--Title-S-FontSize);
+	font-weight: var(--Title-S-FontWeight);
+	line-height: var(--Title-S-LineHeight);
+	margin: 0;
+}
+
+.activeMetalSwitch {
+	flex: 0 0 auto;
+	gap: var(--Spacing-0);
+}
+
+.metalCard {
+	gap: var(--Spacing-6);
+	padding: var(--Spacing-6) var(--Spacing-0);
+	border-top: var(--Stroke-M) solid var(--Border-Subtle);
+	border-radius: var(--Spacing-0);
+}
+
+.metalCard:first-child,
+.activeMetalsPanel + .metalCard {
+	padding-top: var(--Spacing-0);
+	border-top: none;
+}
+
+.metalCard:last-child {
+  padding-bottom: var(--Spacing-0);
+}
+
+.metalHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--Spacing-4);
+}
+
+.variantTabsRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--Spacing-3);
+}
+
+.variantActions {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: var(--Spacing-2);
+}
+
+.metalTitleRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--Spacing-3);
+  margin-block-end: var(--Spacing-1);
+}
+
+.variantBar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-3);
+  padding-block: var(--Spacing-3);
+  border-block-end: var(--Stroke-S) solid var(--Border-Subtle);
+}
+
+.variantTabs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--Spacing-2);
+}
+
+.variantMeta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--Spacing-4);
+}
+
+.sectionTitle {
+  color: var(--Text-High);
+  font-size: var(--Title-L-FontSize);
+  font-weight: var(--Title-L-FontWeight);
+  line-height: var(--Title-L-LineHeight);
+  margin: 0;
+}
+
+.metalPreviewGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--Spacing-5);
+}
+
+.metalPreviewGroup {
+  gap: var(--Spacing-2);
+}
+
+.gradientControls {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--Spacing-4) var(--Spacing-5);
+  align-items: end;
+}
+
+.metalLogoPreview,
+.metalSurfaceSwatch,
+.metalStrokeSwatch {
+  display: flex;
+  min-height: var(--Dimension-f13);
+  align-items: center;
+  justify-content: center;
+  padding: var(--Spacing-4);
+  border-radius: var(--Shape-4-5);
+  background: var(--Surface-Default);
+  overflow: hidden;
+}
+
+.metalLogoPreview {
+  color: var(--metal-stroke-color);
+}
+
+.metalSurfaceSwatch {
+  color: var(--metal-text);
+  background: var(--metal-fill);
+}
+
+.metalStrokeSwatch {
+  position: relative;
+  color: var(--metal-stroke-color);
+  background: var(--Surface-Default);
+}
+
+.metalStrokeSwatch::before {
+  position: absolute;
+  inset: 0;
+  padding: var(--Stroke-L);
+  border-radius: inherit;
+  background: var(--metal-stroke);
+  content: '';
+  pointer-events: none;
+  -webkit-mask:
+    linear-gradient(var(--Neutral-Bold) 0 0) content-box,
+    linear-gradient(var(--Neutral-Bold) 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(var(--Neutral-Bold) 0 0) content-box,
+    linear-gradient(var(--Neutral-Bold) 0 0);
+  mask-composite: exclude;
+}
+
+.metalSwatchLabel,
+.logoFallback {
+  color: currentColor;
+  font-size: var(--Label-S-FontSize);
+  font-weight: var(--Label-FontWeight-Medium);
+  line-height: var(--Label-S-LineHeight);
+}
+
+.metalTokenList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--Spacing-2);
+}
+
+.tokenPair {
+  grid-column: 1 / -1;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: var(--Spacing-2);
+  padding-top: var(--Spacing-2);
+}
+
+.metallicRow {
+  gap: var(--Spacing-4);
+}
+
+.metallicPreview {
+  display: flex;
+  min-height: var(--Dimension-f13);
+  align-items: flex-end;
+  padding: var(--Spacing-4);
+  border-radius: var(--Shape-4-5);
+  box-shadow: var(--Elevation-1);
+}
+
+.colorGrid {
+	display: grid;
+	grid-template-columns: repeat(5, minmax(0, 1fr));
+	gap: var(--Spacing-6) var(--Spacing-5);
+}
+
+.colorField {
+	min-width: 0;
+	gap: var(--Spacing-2-5);
+}
+
+.overrideField {
+	gap: var(--Spacing-1-5);
+	min-width: 0;
+}
+
+.overrideInputRow {
+	flex-direction: row;
+	align-items: center;
+	gap: var(--Spacing-1-5);
+	min-width: 0;
+}
+
+.overrideInputRow > :last-child {
+	min-width: 0;
+	flex: 1 1 auto;
+}
+
+.colorPreviewDot {
+  width: var(--Spacing-4);
+  height: var(--Spacing-4);
+  flex: 0 0 var(--Spacing-4);
+  border-radius: var(--Shape-Pill);
+  background: var(--stop-color);
+  box-shadow: 0 0 0 var(--Stroke-M) var(--Border-Subtle);
+}
+
+.tokenReference {
+  gap: var(--Spacing-6);
+}
+
+.tokenReferenceSection,
+.effectsSection {
+  gap: var(--Spacing-4-5);
+}
+
+.tokenGrid {
+  display: grid;
+  /* Columns wide enough for full --Material-Metallic-* token names (~2× f15). */
+  grid-template-columns: repeat(auto-fill, minmax(calc(var(--Dimension-f15) * 2), 1fr));
+  gap: var(--Spacing-4) var(--Spacing-5);
+}
+
+.tokenRow {
+  gap: var(--Spacing-2);
+  min-width: 0;
+}
+
+.tokenSectionHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--Spacing-3);
+}
+
+.tokenPill {
+	align-self: flex-start;
+	max-inline-size: 100%;
+	font-family: var(--Typography-Font-Code);
+  font-size: var(--Code-S-FontSize);
+	font-weight: var(--Code-FontWeight-Low);
+	line-height: var(--Code-S-LineHeight);
+}
+
+/* Token names must stay fully readable — wrap instead of truncating.
+   (Truncated pills made every metal token look like the same token.)
+   Doubled class beats the Badge size class height with certainty. */
+.tokenPill.tokenPill {
+	height: auto;
+	min-height: var(--Spacing-4);
+	white-space: normal;
+	overflow-wrap: anywhere;
+	padding-block: var(--Spacing-0-5);
+}
+
+.tokenPill > span {
+	min-inline-size: 0;
+	white-space: normal;
+	overflow-wrap: anywhere;
+}
+
+@media (max-width: 960px) {
+  .headerRow,
+  .controlGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .headerRow {
+    flex-direction: column;
+  }
+
+  .mediaBackdrop,
+  .effectGrid,
+  .activeMetalsGrid,
+  .editorGrid,
+  .gradientControls,
+  .metalPreviewGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .colorGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .mediaBackdrop,
+  .effectGrid,
+  .activeMetalsGrid,
+  .editorGrid,
+  .gradientControls,
+  .metalPreviewGrid,
+  .colorGrid {
+    grid-template-columns: 1fr;
+  }
+}

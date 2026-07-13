@@ -1,0 +1,125 @@
+/*
+ * ComposerControlStrip.module.css
+ *
+ * Token-only layout for the chat composer control strip (D-07 / CHAT-03,
+ * LAB-02 zero-literals). The strip is a compact HORIZONTAL row of the four
+ * run-origin selectors (Brand / Sub-brand / Artifact type / Output profile)
+ * that rides in `ChatComposer`'s `leadingInline` slot.
+ *
+ * Surface Context (CLAUDE.md MANDATORY): the strip does NOT set `background` on
+ * a raw container. If a tint is wanted, the chat host wraps the strip in
+ * `<Surface mode="minimal">` (UI-SPEC Color § Secondary) — this module only
+ * lays out the fields; the Surface owns the tinting + token remapping.
+ *
+ * Typography uses the role-explicit V2 tokens with matching line-height and
+ * `font-family: var(--Typography-Font-Primary)` on every text element
+ * (CLAUDE.md MANDATORY). No literals, no legacy `--Typography-Size-*` /
+ * `--Typography-Weight-*`. Only `0`, `100%`, `9999px` literals are permitted by
+ * check:literals; this module uses none of those beyond f-step tokens.
+ *
+ * The UI-SPEC named aliases (`--Spacing-3XS`, `--Shape-3XS`) are not emitted
+ * tokens in this repo; the real f-step numeric tokens used by the RequestPanel
+ * analog are written instead (--Spacing-2 ≈ f-4/8px gap, --Spacing-1 ≈ f-6/4px,
+ * --Shape-3 ≈ subtle interactive radius).
+ */
+
+/* Compact horizontal strip — selectors wrap onto a second row on narrow
+ * composers rather than overflowing. Gap between selects = --Spacing-2 (the
+ * f-step the UI-SPEC labels "3XS"); icon→text micro gaps inside selects are
+ * owned by the Select component itself. */
+.strip {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: flex-end;
+  gap: var(--Spacing-2);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Column layout (popover context menu): stack the four fields full-width with a
+ * roomier vertical rhythm so each selector gets its own row. */
+.strip[data-layout='column'] {
+  flex-flow: column nowrap;
+  align-items: stretch;
+  gap: var(--Spacing-3);
+}
+
+.strip[data-layout='column'] .field {
+  flex: 0 0 auto;
+}
+
+/* Each labelled selector stacks its label above the control with the tight
+ * --Spacing-1 (f-6, the "5XS" micro gap). The field grows to share the row. */
+.field {
+  display: flex;
+  flex: 1 1 0;
+  min-width: 0;
+  flex-direction: column;
+  gap: var(--Spacing-1);
+}
+
+.fieldLabel {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Label-S-FontSize);
+  font-weight: var(--Label-FontWeight-Medium);
+  line-height: var(--Label-S-LineHeight);
+  color: var(--Text-High);
+}
+
+/* GAP-02 — required-field marker on the Brand label. Uses the negative role's
+ * text token so the asterisk reads as a "must fill" cue inside whatever Surface
+ * the strip sits on (context-aware, never a hardcoded colour). */
+.requiredMark {
+  color: var(--Negative-High);
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Label-S-FontSize);
+  font-weight: var(--Label-FontWeight-Medium);
+  line-height: var(--Label-S-LineHeight);
+}
+
+/* GAP-02 — short inline hint shown while no real brand is resolved. V2 micro
+ * label typography; Text-Medium so it reads as secondary guidance, not an error. */
+.fieldHint {
+  margin: 0;
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Label-XS-FontSize);
+  font-weight: var(--Label-FontWeight-Low);
+  line-height: var(--Label-XS-LineHeight);
+  color: var(--Text-Medium);
+}
+
+/* Accessible-only text (the "(required)" cue announced to AT, hidden visually).
+ * Token-only visually-hidden pattern lifted verbatim from
+ * `Pagination.module.css`/`AgentPulse.module.css` (.srOnly): --Stroke-M sizing
+ * + clip-based hiding, no raw px (check:literals clean). */
+.visuallyHidden {
+  position: absolute;
+  width: var(--Stroke-M);
+  height: var(--Stroke-M);
+  padding: var(--Spacing-0);
+  margin: calc(-1 * var(--Stroke-M));
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: var(--Stroke-None) solid transparent;
+}
+
+/* The Select fills its field; its own radius default is overridden to the
+ * subtle interactive radius (--Shape-3, the "3XS" interactive token). */
+.control {
+  width: 100%;
+  border-radius: var(--Shape-3);
+}
+
+/* Focus halo (CLAUDE.md Focus Halo pattern): the inner gap adapts to whatever
+ * Surface the strip sits on via --Surface-Halo-Gap — never --Surface-Main
+ * directly (which would punch a visible hole inside a <Surface> container). The
+ * Select draws its own halo; this rule covers the bare label-associated trigger
+ * wrapper so keyboard focus stays visible inside the strip. */
+.control:focus-visible,
+.control :focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 var(--Stroke-XL) var(--Surface-Halo-Gap, var(--Surface-Main)),
+    0 0 0 var(--Focus-Outline-Width) var(--Focus-Outline);
+}

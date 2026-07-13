@@ -1,0 +1,369 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Input",
+  "generatedAt": "2026-07-09T13:07:37.406Z",
+  "machineReadable": true,
+  "status": "alpha",
+  "intentAndPurpose": {
+    "intent": "Labelled text input. Pairs a single-line field with structured label / helper / error text rendered via Text role tokens."
+  },
+  "compositionRules": {
+    "requires": [],
+    "allows": [],
+    "forbids": [],
+    "childKind": "leaf"
+  },
+  "props": [
+    {
+      "name": "value",
+      "type": "string",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "defaultValue",
+      "type": "string",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "placeholder",
+      "type": "string",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "readOnly",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "invalid",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "required",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "appearance",
+      "type": "'auto' | 'primary' | 'secondary' | 'neutral' | 'sparkle' | 'positive' | 'negative' | 'warning' | 'informative'",
+      "required": false,
+      "defaultValue": "auto",
+      "description": ""
+    },
+    {
+      "name": "size",
+      "type": "'xs' | 's' | 'm' | 'l'",
+      "required": false,
+      "defaultValue": "m",
+      "description": ""
+    },
+    {
+      "name": "label",
+      "type": "string",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "helperText",
+      "type": "string",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "errorText",
+      "type": "string",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "autoCapitalize",
+      "type": "'none' | 'sentences' | 'words' | 'characters'",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "autoCorrect",
+      "type": "boolean",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "keyboardType",
+      "type": "'default' | 'email-address' | 'numeric' | 'phone-pad' | 'decimal-pad' | 'url'",
+      "required": false,
+      "description": "RN keyboardType — drives soft-keyboard layout."
+    },
+    {
+      "name": "secureTextEntry",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": ""
+    },
+    {
+      "name": "onChangeText",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Text-change callback."
+    },
+    {
+      "name": "start",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Leading adornment slot — typically <Icon> or <IconButton> (e.g. a search glyph)."
+    },
+    {
+      "name": "start2",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Second leading slot — typically Text (prefix, currency symbol)."
+    },
+    {
+      "name": "end",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Trailing adornment slot — typically <Icon> or <IconButton> (e.g. a clear button)."
+    },
+    {
+      "name": "end2",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Second trailing slot — Text, Icon, or IconButton."
+    },
+    {
+      "name": "backgroundColor",
+      "type": "string",
+      "required": false,
+      "description": "[error] Don't paint directly. Use `appearance` (role) + `variant`/`mode` and wrap in <Surface mode>; the brand cascade picks the right fill."
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.kb.rn.Input",
+    "type": "object",
+    "properties": {
+      "value": {
+        "type": "string"
+      },
+      "defaultValue": {
+        "type": "string"
+      },
+      "placeholder": {
+        "type": "string"
+      },
+      "disabled": {
+        "type": "boolean",
+        "default": false
+      },
+      "readOnly": {
+        "type": "boolean",
+        "default": false
+      },
+      "invalid": {
+        "type": "boolean",
+        "default": false
+      },
+      "required": {
+        "type": "boolean",
+        "default": false
+      },
+      "appearance": {
+        "enum": [
+          "auto",
+          "primary",
+          "secondary",
+          "neutral",
+          "sparkle",
+          "positive",
+          "negative",
+          "warning",
+          "informative"
+        ],
+        "default": "auto"
+      },
+      "size": {
+        "enum": [
+          "xs",
+          "s",
+          "m",
+          "l"
+        ],
+        "default": "m"
+      },
+      "label": {
+        "type": "string"
+      },
+      "helperText": {
+        "type": "string"
+      },
+      "errorText": {
+        "type": "string"
+      },
+      "autoCapitalize": {
+        "enum": [
+          "none",
+          "sentences",
+          "words",
+          "characters"
+        ]
+      },
+      "autoCorrect": {
+        "type": "boolean"
+      },
+      "keyboardType": {
+        "enum": [
+          "default",
+          "email-address",
+          "numeric",
+          "phone-pad",
+          "decimal-pad",
+          "url"
+        ],
+        "description": "RN keyboardType — drives soft-keyboard layout."
+      },
+      "secureTextEntry": {
+        "type": "boolean",
+        "default": false
+      },
+      "onChangeText": {
+        "description": "Text-change callback."
+      },
+      "start": {
+        "description": "Leading adornment slot — typically <Icon> or <IconButton> (e.g. a search glyph)."
+      },
+      "start2": {
+        "description": "Second leading slot — typically Text (prefix, currency symbol)."
+      },
+      "end": {
+        "description": "Trailing adornment slot — typically <Icon> or <IconButton> (e.g. a clear button)."
+      },
+      "end2": {
+        "description": "Second trailing slot — Text, Icon, or IconButton."
+      },
+      "backgroundColor": {
+        "type": "string",
+        "not": {
+          "anyOf": [
+            {
+              "pattern": "^#"
+            },
+            {
+              "pattern": "^rgba?\\("
+            },
+            {
+              "pattern": "^hsla?\\("
+            },
+            {
+              "pattern": "^oklch\\("
+            },
+            {
+              "pattern": "^color-mix\\("
+            },
+            {
+              "enum": [
+                "transparent",
+                "inherit"
+              ]
+            }
+          ]
+        },
+        "x-jds-suggestion": "Don't paint directly. Use `appearance` (role) + `variant`/`mode` and wrap in <Surface mode>; the brand cascade picks the right fill.",
+        "x-jds-severity": "error"
+      }
+    }
+  },
+  "tokens": {
+    "color": [
+      "neutral",
+      "primary",
+      "negative",
+      "positive",
+      "warning"
+    ],
+    "surface": [
+      "subtle",
+      "moderate",
+      "bold"
+    ],
+    "typography": [
+      "body.M",
+      "body.L",
+      "label.S",
+      "label.XS"
+    ],
+    "spacing": [
+      "3XS",
+      "2XS",
+      "XS",
+      "S",
+      "M"
+    ],
+    "shape": [
+      "XS",
+      "S",
+      "M"
+    ],
+    "motion": [
+      "motion.duration.discreet.short"
+    ]
+  },
+  "a11y": {
+    "accessibilityRole": "text",
+    "accessibilityState": [
+      "disabled"
+    ],
+    "accessibleNameSource": "aria-label",
+    "minTouchTarget": 44,
+    "honorsBoldText": true,
+    "honorsScreenReader": true
+  },
+  "renderHints": {
+    "baseElement": "TextInput",
+    "animatedOn": [
+      "focus"
+    ],
+    "honorsReduceMotion": true,
+    "readsFromSurfaceContext": true
+  },
+  "figma": {
+    "componentKey": "jds-input-v4",
+    "keyHistory": [],
+    "variantProperties": {
+      "Component": "Input"
+    }
+  },
+  "codeSnippets": [
+    {
+      "id": "import-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { Input } from '@oneui/ui-native';\n\n<Input />"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "input",
+    "input",
+    "form",
+    "chassis"
+  ],
+  "importPath": "@oneui/ui-native"
+}

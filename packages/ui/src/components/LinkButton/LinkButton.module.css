@@ -1,0 +1,410 @@
+/**
+ * LinkButton.module.css
+ *
+ * CRITICAL: ZERO LITERALS rule — ALL styling uses design tokens ONLY
+ *
+ * Architecture: Role-agnostic intermediate variables (--_lb-*)
+ * LinkButton = ghost-like (always transparent bg) with underline logic.
+ *
+ * Attention levels:
+ *   High (bold): accent color text + visible accent underline
+ *   Medium (subtle): accent color text + transparent underline
+ *   Low (ghost): default high text + transparent underline
+ *
+ * Verified by: pnpm check:literals
+ */
+
+.linkButton {
+  /* ========================================
+     INTERMEDIATE VARIABLES — default = Primary role
+     ======================================== */
+  --_lb-accent: var(--LinkButton-roleTintedA11y, var(--Primary-TintedA11y, var(--Primary-Tinted, var(--Surface-Bold))));
+  --_lb-text-high: var(--LinkButton-roleHigh, var(--Primary-High, var(--Text-High)));
+  --_lb-default-hover: var(--LinkButton-roleHover, var(--Primary-Hover, var(--Surface-Minimal)));
+  --_lb-default-pressed: var(--LinkButton-rolePressed, var(--Primary-Pressed, var(--Surface-Subtle)));
+
+  /* ========================================
+     SHAPE — small radius, not pill
+     ======================================== */
+  border-radius: var(--LinkButton-borderRadius, var(--Shape-2));
+
+  /* ========================================
+     SURFACE — always transparent
+     ======================================== */
+  --_lb-underline-image: var(--LinkButton-underlineImage, none);
+  background-color: transparent;
+
+  /* ========================================
+     SPACING — minimal padding
+     ======================================== */
+  --_lb-pad-h: var(--LinkButton-paddingHorizontal, var(--Spacing-0-5));
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: var(--_lb-pad-h);
+  padding-right: var(--_lb-pad-h);
+
+  /* ========================================
+     MOTION
+     ======================================== */
+  transition-property: background-color, color, text-decoration-color;
+  transition-duration: var(--LinkButton-transitionDuration, var(--Motion-Duration-Discreet-Medium));
+  transition-timing-function: var(--LinkButton-transitionEasing, var(--Motion-Easing-Standard));
+
+  /* ========================================
+     BASE STYLES — Typography uses Label role
+     ======================================== */
+  font-family: var(--LinkButton-fontFamily, var(--Label-FontFamily, var(--Typography-Font-Primary, inherit)));
+  font-size: var(--LinkButton-fontSize, var(--Label-M-FontSize));
+  font-weight: var(--LinkButton-fontWeight, var(--Label-FontWeight-High));
+  line-height: var(--LinkButton-lineHeight, var(--Label-M-LineHeight));
+  font-optical-sizing: var(--LinkButton-fontOpticalSizing, var(--Label-FontOpticalSizing, auto));
+  font-variation-settings: var(--LinkButton-fontVariationSettings, var(--Label-OpszVariation, normal));
+  cursor: pointer;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  --_lb-min-h: var(--LinkButton-minHeight, var(--Spacing-5));
+  min-height: var(--_lb-min-h);
+  min-width: var(--Touch-Target-Min);
+  white-space: nowrap;
+  border: none;
+
+  /* ========================================
+     UNDERLINE — base setup, variants control color.
+     Figma spec: thickness = 10% of font-size, skip-ink = none.
+     Offset uses Spacing-1 for breathing room between text and underline.
+     ======================================== */
+  text-decoration: underline;
+  text-underline-offset: var(--LinkButton-underlineOffset, var(--Spacing-1));
+  text-decoration-thickness: var(--LinkButton-underlineThickness, var(--Stroke-L));
+  text-decoration-skip-ink: none;
+}
+
+.linkButton::after {
+  content: '';
+  position: absolute;
+  left: var(--_lb-pad-h);
+  right: var(--_lb-pad-h);
+  bottom: var(--LinkButton-underlineOffset, var(--Spacing-1));
+  height: var(--LinkButton-underlineThickness, var(--Stroke-L));
+  pointer-events: none;
+  border-radius: var(--Shape-Pill);
+  background: var(--_lb-underline-image, none);
+}
+
+/* ========================================
+   APPEARANCE — role-agnostic intermediate variable remapping
+   ======================================== */
+
+.appearancePrimary {
+  --_lb-accent: var(--Primary-TintedA11y, var(--Primary-Tinted, var(--Surface-Bold)));
+  --_lb-text-high: var(--Primary-High, var(--Text-High));
+  --_lb-default-hover: var(--Primary-Hover, var(--Surface-Minimal));
+  --_lb-default-pressed: var(--Primary-Pressed, var(--Surface-Subtle));
+}
+
+.appearanceNeutral {
+  --_lb-accent: var(--Neutral-TintedA11y, var(--Neutral-Tinted, var(--Surface-Bold)));
+  --_lb-text-high: var(--Neutral-High, var(--Text-High));
+  --_lb-default-hover: var(--Neutral-Hover, var(--Surface-Minimal));
+  --_lb-default-pressed: var(--Neutral-Pressed, var(--Surface-Subtle));
+}
+
+.appearanceSecondary {
+  --_lb-accent: var(--Secondary-TintedA11y, var(--Secondary-Tinted, var(--Surface-Bold)));
+  --_lb-text-high: var(--Secondary-High, var(--Text-High));
+  --_lb-default-hover: var(--Secondary-Hover, var(--Surface-Minimal));
+  --_lb-default-pressed: var(--Secondary-Pressed, var(--Surface-Subtle));
+}
+
+.appearanceSparkle {
+  --_lb-accent: var(--Sparkle-TintedA11y, var(--Sparkle-Tinted, var(--Surface-Bold)));
+  --_lb-text-high: var(--Sparkle-High, var(--Text-High));
+  --_lb-default-hover: var(--Sparkle-Hover, var(--Surface-Minimal));
+  --_lb-default-pressed: var(--Sparkle-Pressed, var(--Surface-Subtle));
+}
+
+.appearanceBrandBg {
+  --_lb-accent: var(--Brand-Bg-TintedA11y, var(--Brand-Bg-Tinted, var(--Surface-Bold)));
+  --_lb-text-high: var(--Brand-Bg-High, var(--Text-High));
+  --_lb-default-hover: var(--Brand-Bg-Hover, var(--Surface-Minimal));
+  --_lb-default-pressed: var(--Brand-Bg-Pressed, var(--Surface-Subtle));
+}
+
+.appearancePositive {
+  --_lb-accent: var(--Positive-TintedA11y, var(--Positive-Tinted, var(--Surface-Bold)));
+  --_lb-text-high: var(--Positive-High, var(--Text-High));
+  --_lb-default-hover: var(--Positive-Hover, var(--Surface-Minimal));
+  --_lb-default-pressed: var(--Positive-Pressed, var(--Surface-Subtle));
+}
+
+.appearanceNegative {
+  --_lb-accent: var(--Negative-TintedA11y, var(--Negative-Tinted, var(--Surface-Bold)));
+  --_lb-text-high: var(--Negative-High, var(--Text-High));
+  --_lb-default-hover: var(--Negative-Hover, var(--Surface-Minimal));
+  --_lb-default-pressed: var(--Negative-Pressed, var(--Surface-Subtle));
+}
+
+.appearanceWarning {
+  --_lb-accent: var(--Warning-TintedA11y, var(--Warning-Tinted, var(--Surface-Bold)));
+  --_lb-text-high: var(--Warning-High, var(--Text-High));
+  --_lb-default-hover: var(--Warning-Hover, var(--Surface-Minimal));
+  --_lb-default-pressed: var(--Warning-Pressed, var(--Surface-Subtle));
+}
+
+.appearanceInformative {
+  --_lb-accent: var(--Informative-TintedA11y, var(--Informative-Tinted, var(--Surface-Bold)));
+  --_lb-text-high: var(--Informative-High, var(--Text-High));
+  --_lb-default-hover: var(--Informative-Hover, var(--Surface-Minimal));
+  --_lb-default-pressed: var(--Informative-Pressed, var(--Surface-Subtle));
+}
+
+/* ========================================
+   VARIANTS — underline and text color logic
+   ======================================== */
+
+/* High: accent text + visible accent underline */
+.bold {
+  --_lb-underline-image: var(
+    --LinkButton-underlineImage-bold,
+    var(--LinkButton-underlineImage, none)
+  );
+  color: var(--LinkButton-textColor-bold, var(--_lb-accent));
+  text-decoration-color: var(--LinkButton-underlineColor-bold, var(--_lb-accent));
+}
+
+/* showUnderline={false} — suppresses the underline in both the default and
+   hover states. Used by `<Button contained={false}>` to match the Figma
+   spec (underline colour transparent by default). Specificity is raised on
+   the hover override so it beats the variant-level `.bold:hover` rule. */
+.linkButton[data-underline="none"] {
+  --_lb-underline-image: none;
+  text-decoration-color: transparent;
+}
+.linkButton[data-underline="none"]:hover:not(.disabled),
+.linkButton[data-underline="none"]:focus-visible:not(.disabled) {
+  --_lb-underline-image: none;
+  text-decoration-color: transparent;
+}
+
+/* Medium: accent text + transparent underline */
+.subtle {
+  --_lb-underline-image: var(
+    --LinkButton-underlineImage-subtle,
+    var(--LinkButton-underlineImage, none)
+  );
+  color: var(--LinkButton-textColor-subtle, var(--_lb-accent));
+  text-decoration-color: var(--LinkButton-underlineColor-subtle, transparent);
+}
+
+/* Low: default high text + transparent underline */
+.ghost {
+  --_lb-underline-image: var(
+    --LinkButton-underlineImage-ghost,
+    var(--LinkButton-underlineImage, none)
+  );
+  color: var(--LinkButton-textColor-ghost, var(--_lb-text-high));
+  text-decoration-color: var(--LinkButton-underlineColor-ghost, transparent);
+}
+
+/* ========================================
+   SIZES — F-step based via data-size attribute selectors
+   ======================================== */
+
+.linkButton[data-size="6"] {
+  --_lb-min-h: var(--LinkButton-minHeight-6, var(--Spacing-3-5));
+  font-size: var(--LinkButton-fontSize-6, var(--LinkButton-fontSize, var(--Label-XS-FontSize)));
+  line-height: var(--LinkButton-lineHeight-6, var(--LinkButton-lineHeight, var(--Label-XS-LineHeight)));
+  --LinkButton-iconSize: var(--LinkButton-iconSize-6, var(--Spacing-3-5));
+}
+
+.linkButton[data-size="8"] {
+  --_lb-min-h: var(--LinkButton-minHeight-8, var(--Spacing-4));
+  font-size: var(--LinkButton-fontSize-8, var(--LinkButton-fontSize, var(--Label-S-FontSize)));
+  line-height: var(--LinkButton-lineHeight-8, var(--LinkButton-lineHeight, var(--Label-S-LineHeight)));
+  --LinkButton-iconSize: var(--LinkButton-iconSize-8, var(--Spacing-4));
+}
+
+.linkButton[data-size="10"] {
+  --_lb-min-h: var(--LinkButton-minHeight-10, var(--Spacing-5));
+  font-size: var(--LinkButton-fontSize-10, var(--LinkButton-fontSize, var(--Label-M-FontSize)));
+  line-height: var(--LinkButton-lineHeight-10, var(--LinkButton-lineHeight, var(--Label-M-LineHeight)));
+  --LinkButton-iconSize: var(--LinkButton-iconSize-10, var(--Spacing-5));
+}
+
+.linkButton[data-size="12"] {
+  --_lb-min-h: var(--LinkButton-minHeight-12, var(--Spacing-6));
+  font-size: var(--LinkButton-fontSize-12, var(--LinkButton-fontSize, var(--Label-L-FontSize)));
+  line-height: var(--LinkButton-lineHeight-12, var(--LinkButton-lineHeight, var(--Label-L-LineHeight)));
+  --LinkButton-iconSize: var(--LinkButton-iconSize-12, var(--Spacing-6));
+}
+
+/* ========================================
+   STATES
+   ======================================== */
+
+.disabled {
+  opacity: var(--Disabled-Opacity);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.loading {
+  opacity: var(--Loading-Opacity, var(--Disabled-Opacity));
+  pointer-events: none;
+}
+
+/* Hover — reveal underline for subtle/ghost, show bg tint */
+.bold:hover:not(.disabled) {
+  background-color: var(--_lb-default-hover);
+  --_lb-underline-image: var(
+    --LinkButton-underlineImage-bold-hover,
+    var(--LinkButton-underlineImage-bold, var(--LinkButton-underlineImage, none))
+  );
+  color: var(--LinkButton-textColor-bold-hover, var(--LinkButton-textColor-bold, var(--_lb-accent)));
+  text-decoration-color: var(
+    --LinkButton-underlineColor-bold-hover,
+    var(--LinkButton-underlineColor-bold, var(--_lb-accent))
+  );
+}
+
+.subtle:hover:not(.disabled) {
+  background-color: var(--_lb-default-hover);
+  --_lb-underline-image: var(
+    --LinkButton-underlineImage-subtle-hover,
+    var(--LinkButton-underlineImage-subtle, var(--LinkButton-underlineImage, none))
+  );
+  color: var(--LinkButton-textColor-subtle-hover, var(--LinkButton-textColor-subtle, var(--_lb-accent)));
+  text-decoration-color: var(
+    --LinkButton-underlineColor-subtle-hover,
+    var(--LinkButton-underlineColor-subtle, var(--_lb-accent))
+  );
+}
+
+.ghost:hover:not(.disabled) {
+  background-color: var(--_lb-default-hover);
+  --_lb-underline-image: var(
+    --LinkButton-underlineImage-ghost-hover,
+    var(--LinkButton-underlineImage-ghost, var(--LinkButton-underlineImage, none))
+  );
+  color: var(--LinkButton-textColor-ghost-hover, var(--LinkButton-textColor-ghost, var(--_lb-text-high)));
+  text-decoration-color: var(
+    --LinkButton-underlineColor-ghost-hover,
+    var(--LinkButton-underlineColor-ghost, var(--_lb-text-high))
+  );
+}
+
+/* Pressed states */
+.bold:active:not(.disabled) {
+  background-color: var(--_lb-default-pressed);
+  --_lb-underline-image: var(
+    --LinkButton-underlineImage-bold-pressed,
+    var(--LinkButton-underlineImage-bold, var(--LinkButton-underlineImage, none))
+  );
+  color: var(--LinkButton-textColor-bold-pressed, var(--LinkButton-textColor-bold, var(--_lb-accent)));
+  text-decoration-color: var(
+    --LinkButton-underlineColor-bold-pressed,
+    var(--LinkButton-underlineColor-bold, var(--_lb-accent))
+  );
+}
+
+.subtle:active:not(.disabled) {
+  background-color: var(--_lb-default-pressed);
+  --_lb-underline-image: var(
+    --LinkButton-underlineImage-subtle-pressed,
+    var(--LinkButton-underlineImage-subtle, var(--LinkButton-underlineImage, none))
+  );
+  color: var(--LinkButton-textColor-subtle-pressed, var(--LinkButton-textColor-subtle, var(--_lb-accent)));
+  text-decoration-color: var(
+    --LinkButton-underlineColor-subtle-pressed,
+    var(--LinkButton-underlineColor-subtle, var(--_lb-accent))
+  );
+}
+
+.ghost:active:not(.disabled) {
+  background-color: var(--_lb-default-pressed);
+  --_lb-underline-image: var(
+    --LinkButton-underlineImage-ghost-pressed,
+    var(--LinkButton-underlineImage-ghost, var(--LinkButton-underlineImage, none))
+  );
+  color: var(--LinkButton-textColor-ghost-pressed, var(--LinkButton-textColor-ghost, var(--_lb-text-high)));
+  text-decoration-color: var(
+    --LinkButton-underlineColor-ghost-pressed,
+    var(--LinkButton-underlineColor-ghost, var(--_lb-text-high))
+  );
+}
+
+/* Focus ring — double box-shadow (inner white + outer brand) per Figma */
+.linkButton:focus {
+  outline: none;
+}
+
+.linkButton:focus-visible,
+:global([data-force-state="focus"]) .linkButton {
+  box-shadow:
+    0 0 0 var(--Stroke-XL) var(--Surface-Halo-Gap, var(--Surface-Main)),
+    0 0 0 calc(var(--Stroke-XL) + var(--Focus-Outline-Width)) var(--Focus-Outline);
+}
+
+/* ========================================
+   SLOTS — start/end content areas
+   ======================================== */
+
+.label {
+  display: inline-flex;
+  align-items: center;
+}
+
+.start {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: var(--LinkButton-iconGap, var(--Spacing-1));
+  flex-shrink: 0;
+  color: inherit;
+  --Icon-color: currentColor;
+}
+
+.start svg {
+  display: block;
+  width: var(--LinkButton-iconSize, var(--Spacing-5));
+  height: var(--LinkButton-iconSize, var(--Spacing-5));
+}
+
+.end {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: var(--LinkButton-iconGap, var(--Spacing-1));
+  flex-shrink: 0;
+  color: inherit;
+  --Icon-color: currentColor;
+}
+
+.end svg {
+  display: block;
+  width: var(--LinkButton-iconSize, var(--Spacing-5));
+  height: var(--LinkButton-iconSize, var(--Spacing-5));
+}
+
+/* ========================================
+   LOADING SPINNER
+   ======================================== */
+
+.spinner {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: inherit;
+  margin-right: var(--LinkButton-iconGap, var(--Spacing-1));
+  --CircularProgressIndicator-indicatorColor: currentColor;
+  --CircularProgressIndicator-trackColor: transparent;
+}
+
+/**
+ * ========================================
+ * IMPORTANT: NO LITERALS IN THIS FILE
+ * ========================================
+ */

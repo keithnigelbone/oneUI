@@ -1,0 +1,641 @@
+/**
+ * Chip.module.css
+ *
+ * CRITICAL: This file demonstrates the ZERO LITERALS rule
+ * ALL styling uses design tokens ONLY
+ *
+ * Architecture: Role-agnostic intermediate variables (--_ch-*)
+ * - Default = Secondary role
+ * - Appearance classes remap --_ch-* to other roles
+ * - Variant selectors consume --_ch-* without duplication
+ * - Selected state uses [data-pressed] from Base UI Toggle
+ *
+ * Verified by: pnpm check:literals
+ */
+
+.chip {
+  /* ========================================
+     INTERMEDIATE VARIABLES — default = Secondary role
+     These are remapped by appearance classes
+     ======================================== */
+  --_ch-bold: var(--Chip-roleBold, var(--Secondary-Bold, var(--Surface-Bold)));
+  --_ch-bold-high: var(--Chip-roleBoldHigh, var(--Secondary-Bold-High, var(--Text-OnBold-High)));
+  /* Icons use the role's Tinted on-colour (softer than TintedA11y), matching Badge. */
+  --_ch-bold-tinted-a11y: var(--Chip-roleBoldTinted, var(--Secondary-Bold-Tinted, var(--Secondary-Bold-TintedA11y, var(--_ch-bold-high))));
+  --_ch-bold-hover: var(--Chip-roleBoldHover, var(--Secondary-Bold-Hover, var(--Surface-Bold-Hover)));
+  --_ch-bold-pressed: var(--Chip-roleBoldPressed, var(--Secondary-Bold-Pressed, var(--Secondary-Bold-Hover, var(--Secondary-Bold-Hover))));
+  /* Metallic material assignment — the brand engine emits --{Role}-Material-* tokens
+     only when the role has an ACTIVE metal assigned. When absent these resolve to
+     the guaranteed-invalid value and consumers fall back to the bold chain. */
+  --_ch-material-fill: var(--Chip-roleMaterialFill, var(--Secondary-Material-Fill));
+  --_ch-material-text: var(--Chip-roleMaterialText, var(--Secondary-Material-Text));
+  --_ch-material-stroke-color: var(--Chip-roleMaterialStrokeColor, var(--Secondary-Material-StrokeColor));
+  --_ch-minimal: var(--Secondary-Minimal, var(--Surface-Minimal));
+  --_ch-subtle: var(--Chip-roleSubtle, var(--Secondary-Subtle, var(--Surface-Subtle)));
+  --_ch-subtle-hover: var(--Chip-roleSubtleHover, var(--Secondary-Subtle-Hover, var(--Surface-Subtle-Hover)));
+  --_ch-subtle-pressed: var(--Chip-roleSubtlePressed, var(--Secondary-Subtle-Pressed, var(--Secondary-Subtle-Hover, var(--Secondary-Subtle-Hover))));
+  --_ch-default-high: var(--Chip-roleHigh, var(--Secondary-High, var(--Text-High)));
+  --_ch-default-accent-a11y: var(--Chip-roleTinted, var(--Secondary-Tinted, var(--Secondary-TintedA11y, var(--Surface-Bold))));
+  --_ch-default-medium-text: var(--Chip-roleMediumText, var(--Secondary-Medium-Text, var(--Text-Medium)));
+  --_ch-default-low-stroke: var(--Chip-roleStrokeLow, var(--Secondary-Stroke-Low, var(--Surface-Bold)));
+  --_ch-default-hover: var(--Chip-roleHover, var(--Secondary-Hover, var(--Surface-Minimal)));
+  --_ch-default-pressed: var(--Chip-rolePressed, var(--Secondary-Pressed, var(--Secondary-Hover, var(--Surface-Minimal))));
+  --_ch-unselected-minimal: var(--Neutral-Minimal, var(--Surface-Minimal));
+  --_ch-unselected-stroke-medium: var(--Neutral-Stroke-Medium, var(--Neutral-Stroke-Low, var(--Surface-Bold)));
+  --_ch-unselected-hover: var(--Neutral-Hover, var(--Surface-Minimal));
+  --_ch-unselected-pressed: var(--Neutral-Pressed, var(--Neutral-Hover, var(--Surface-Minimal)));
+
+  /* ========================================
+     BASE STYLES
+     ======================================== */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  --_ch-radius: var(--Chip-borderRadius, var(--Shape-Pill));
+  border-top-left-radius: var(--Chip-ornament-radius-left, var(--_ch-radius));
+  border-bottom-left-radius: var(--Chip-ornament-radius-left, var(--_ch-radius));
+  border-top-right-radius: var(--Chip-ornament-radius-right, var(--_ch-radius));
+  border-bottom-right-radius: var(--Chip-ornament-radius-right, var(--_ch-radius));
+  font-family: var(--Chip-fontFamily, var(--Label-FontFamily, var(--Typography-Font-Primary, inherit)));
+  font-weight: var(--Chip-fontWeight, var(--Label-FontWeight-Medium));
+  font-optical-sizing: var(--Chip-fontOpticalSizing, var(--Label-FontOpticalSizing, auto));
+  font-variation-settings: var(--Chip-fontVariationSettings, var(--Label-OpszVariation, normal));
+  white-space: nowrap;
+  box-sizing: border-box;
+  cursor: pointer;
+  /* Tap interaction from Convex motion foundations:
+     Surface colour: Duration-M, Transition-Moderate (press & release) */
+  transition:
+    background-color var(--Motion-Duration-M) var(--Motion-Easing-Transition-Moderate),
+    color var(--Motion-Duration-M) var(--Motion-Easing-Transition-Moderate),
+    border-color var(--Motion-Duration-M) var(--Motion-Easing-Transition-Moderate),
+    box-shadow var(--Motion-Duration-M) var(--Motion-Easing-Transition-Moderate),
+    opacity var(--Motion-Duration-M) var(--Motion-Easing-Transition-Moderate);
+  border: none;
+  position: relative;
+  margin-left: var(--Chip-ornament-width-left, var(--Spacing-0));
+  margin-right: var(--Chip-ornament-width-right, var(--Spacing-0));
+  clip-path: var(--Chip-cssDecorationClipPath, none);
+}
+
+.chip::after {
+  content: '';
+  position: absolute;
+  inset: var(--Spacing-0);
+  box-sizing: border-box;
+  pointer-events: none;
+  border-radius: inherit;
+  clip-path: var(--Chip-cssDecorationClipPath, none);
+  border-style: var(--Chip-cssDecorationStrokeStyle, solid);
+  border-color: var(--Chip-cssDecorationColor, currentColor);
+  border-width:
+    var(--Chip-cssDecorationInsetStrokeWidth, var(--Spacing-0))
+    var(--Chip-cssDecorationInsetStrokeWidth, var(--Spacing-0))
+    var(--Chip-cssDecorationInsetStrokeWidth, var(--Chip-cssDecorationUnderlineWidth, var(--Spacing-0)))
+    var(--Chip-cssDecorationInsetStrokeWidth, var(--Spacing-0));
+}
+
+/* ========================================
+   APPEARANCE — role-agnostic intermediate variable remapping
+   Adding a new appearance = 1 new class with 9 remappings
+   ======================================== */
+
+.appearancePrimary {
+  --_ch-bold: var(--Primary-Bold, var(--Surface-Bold));
+  --_ch-bold-high: var(--Primary-Bold-High, var(--Text-OnBold-High));
+  --_ch-bold-tinted-a11y: var(--Primary-Bold-Tinted, var(--Primary-Bold-TintedA11y, var(--_ch-bold-high)));
+  --_ch-bold-hover: var(--Primary-Bold-Hover, var(--Surface-Bold-Hover));
+  --_ch-bold-pressed: var(--Primary-Bold-Pressed, var(--Primary-Bold-Hover, var(--Primary-Bold-Hover)));
+  --_ch-material-fill: var(--Primary-Material-Fill);
+  --_ch-material-text: var(--Primary-Material-Text);
+  --_ch-material-stroke-color: var(--Primary-Material-StrokeColor);
+  --_ch-minimal: var(--Primary-Minimal, var(--Surface-Minimal));
+  --_ch-subtle: var(--Primary-Subtle, var(--Surface-Subtle));
+  --_ch-subtle-hover: var(--Primary-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_ch-subtle-pressed: var(--Primary-Subtle-Pressed, var(--Primary-Subtle-Hover, var(--Primary-Subtle-Hover)));
+  --_ch-default-high: var(--Primary-High, var(--Text-High));
+  --_ch-default-accent-a11y: var(--Primary-Tinted, var(--Primary-TintedA11y, var(--Surface-Bold)));
+  --_ch-default-medium-text: var(--Primary-Medium-Text, var(--Text-Medium));
+  --_ch-default-low-stroke: var(--Primary-Stroke-Low, var(--Surface-Bold));
+  --_ch-default-hover: var(--Primary-Hover, var(--Surface-Minimal));
+  --_ch-default-pressed: var(--Primary-Pressed, var(--Primary-Hover, var(--Surface-Minimal)));
+}
+
+.appearanceNeutral {
+  --_ch-bold: var(--Neutral-Bold, var(--Surface-Bold));
+  --_ch-bold-high: var(--Neutral-Bold-High, var(--Text-OnBold-High));
+  --_ch-bold-tinted-a11y: var(--Neutral-Bold-Tinted, var(--Neutral-Bold-TintedA11y, var(--_ch-bold-high)));
+  --_ch-bold-hover: var(--Neutral-Bold-Hover, var(--Surface-Bold-Hover));
+  --_ch-bold-pressed: var(--Neutral-Bold-Pressed, var(--Neutral-Bold-Hover, var(--Neutral-Bold-Hover)));
+  --_ch-material-fill: var(--Neutral-Material-Fill);
+  --_ch-material-text: var(--Neutral-Material-Text);
+  --_ch-material-stroke-color: var(--Neutral-Material-StrokeColor);
+  --_ch-minimal: var(--Neutral-Minimal, var(--Surface-Minimal));
+  --_ch-subtle: var(--Neutral-Subtle, var(--Surface-Subtle));
+  --_ch-subtle-hover: var(--Neutral-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_ch-subtle-pressed: var(--Neutral-Subtle-Pressed, var(--Neutral-Subtle-Hover, var(--Neutral-Subtle-Hover)));
+  --_ch-default-high: var(--Neutral-High, var(--Text-High));
+  --_ch-default-accent-a11y: var(--Neutral-Tinted, var(--Neutral-TintedA11y, var(--Surface-Bold)));
+  --_ch-default-medium-text: var(--Neutral-Medium-Text, var(--Text-Medium));
+  --_ch-default-low-stroke: var(--Neutral-Stroke-Low, var(--Surface-Bold));
+  --_ch-default-hover: var(--Neutral-Hover, var(--Surface-Minimal));
+  --_ch-default-pressed: var(--Neutral-Pressed, var(--Neutral-Hover, var(--Surface-Minimal)));
+}
+
+.appearanceSecondary {
+  --_ch-bold: var(--Secondary-Bold, var(--Surface-Bold));
+  --_ch-bold-high: var(--Secondary-Bold-High, var(--Text-OnBold-High));
+  --_ch-bold-tinted-a11y: var(--Secondary-Bold-Tinted, var(--Secondary-Bold-TintedA11y, var(--_ch-bold-high)));
+  --_ch-bold-hover: var(--Secondary-Bold-Hover, var(--Surface-Bold-Hover));
+  --_ch-bold-pressed: var(--Secondary-Bold-Pressed, var(--Secondary-Bold-Hover, var(--Secondary-Bold-Hover)));
+  --_ch-material-fill: var(--Secondary-Material-Fill);
+  --_ch-material-text: var(--Secondary-Material-Text);
+  --_ch-material-stroke-color: var(--Secondary-Material-StrokeColor);
+  --_ch-minimal: var(--Secondary-Minimal, var(--Surface-Minimal));
+  --_ch-subtle: var(--Secondary-Subtle, var(--Surface-Subtle));
+  --_ch-subtle-hover: var(--Secondary-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_ch-subtle-pressed: var(--Secondary-Subtle-Pressed, var(--Secondary-Subtle-Hover, var(--Secondary-Subtle-Hover)));
+  --_ch-default-high: var(--Secondary-High, var(--Text-High));
+  --_ch-default-accent-a11y: var(--Secondary-Tinted, var(--Secondary-TintedA11y, var(--Surface-Bold)));
+  --_ch-default-medium-text: var(--Secondary-Medium-Text, var(--Text-Medium));
+  --_ch-default-low-stroke: var(--Secondary-Stroke-Low, var(--Surface-Bold));
+  --_ch-default-hover: var(--Secondary-Hover, var(--Surface-Minimal));
+  --_ch-default-pressed: var(--Secondary-Pressed, var(--Secondary-Hover, var(--Surface-Minimal)));
+}
+
+.appearanceSparkle {
+  --_ch-bold: var(--Sparkle-Bold, var(--Surface-Bold));
+  --_ch-bold-high: var(--Sparkle-Bold-High, var(--Text-OnBold-High));
+  --_ch-bold-tinted-a11y: var(--Sparkle-Bold-Tinted, var(--Sparkle-Bold-TintedA11y, var(--_ch-bold-high)));
+  --_ch-bold-hover: var(--Sparkle-Bold-Hover, var(--Surface-Bold-Hover));
+  --_ch-bold-pressed: var(--Sparkle-Bold-Pressed, var(--Sparkle-Bold-Hover, var(--Sparkle-Bold-Hover)));
+  --_ch-material-fill: var(--Sparkle-Material-Fill);
+  --_ch-material-text: var(--Sparkle-Material-Text);
+  --_ch-material-stroke-color: var(--Sparkle-Material-StrokeColor);
+  --_ch-minimal: var(--Sparkle-Minimal, var(--Surface-Minimal));
+  --_ch-subtle: var(--Sparkle-Subtle, var(--Surface-Subtle));
+  --_ch-subtle-hover: var(--Sparkle-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_ch-subtle-pressed: var(--Sparkle-Subtle-Pressed, var(--Sparkle-Subtle-Hover, var(--Sparkle-Subtle-Hover)));
+  --_ch-default-high: var(--Sparkle-High, var(--Text-High));
+  --_ch-default-accent-a11y: var(--Sparkle-Tinted, var(--Sparkle-TintedA11y, var(--Surface-Bold)));
+  --_ch-default-medium-text: var(--Sparkle-Medium-Text, var(--Text-Medium));
+  --_ch-default-low-stroke: var(--Sparkle-Stroke-Low, var(--Surface-Bold));
+  --_ch-default-hover: var(--Sparkle-Hover, var(--Surface-Minimal));
+  --_ch-default-pressed: var(--Sparkle-Pressed, var(--Sparkle-Hover, var(--Surface-Minimal)));
+}
+
+.appearanceBrandBg {
+  --_ch-bold: var(--Brand-Bg-Bold, var(--Surface-Bold));
+  --_ch-bold-high: var(--Brand-Bg-Bold-High, var(--Text-OnBold-High));
+  --_ch-bold-tinted-a11y: var(--Brand-Bg-Bold-Tinted, var(--Brand-Bg-Bold-TintedA11y, var(--_ch-bold-high)));
+  --_ch-bold-hover: var(--Brand-Bg-Bold-Hover, var(--Surface-Bold-Hover));
+  --_ch-bold-pressed: var(--Brand-Bg-Bold-Pressed, var(--Brand-Bg-Bold-Hover, var(--Brand-Bg-Bold-Hover)));
+  --_ch-material-fill: var(--Brand-Bg-Material-Fill);
+  --_ch-material-text: var(--Brand-Bg-Material-Text);
+  --_ch-material-stroke-color: var(--Brand-Bg-Material-StrokeColor);
+  --_ch-minimal: var(--Brand-Bg-Minimal, var(--Surface-Minimal));
+  --_ch-subtle: var(--Brand-Bg-Subtle, var(--Surface-Subtle));
+  --_ch-subtle-hover: var(--Brand-Bg-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_ch-subtle-pressed: var(--Brand-Bg-Subtle-Pressed, var(--Brand-Bg-Subtle-Hover, var(--Brand-Bg-Subtle-Hover)));
+  --_ch-default-high: var(--Brand-Bg-High, var(--Text-High));
+  --_ch-default-accent-a11y: var(--Brand-Bg-Tinted, var(--Brand-Bg-TintedA11y, var(--Surface-Bold)));
+  --_ch-default-medium-text: var(--Brand-Bg-Medium-Text, var(--Text-Medium));
+  --_ch-default-low-stroke: var(--Brand-Bg-Stroke-Low, var(--Surface-Bold));
+  --_ch-default-hover: var(--Brand-Bg-Hover, var(--Surface-Minimal));
+  --_ch-default-pressed: var(--Brand-Bg-Pressed, var(--Brand-Bg-Hover, var(--Surface-Minimal)));
+}
+
+.appearancePositive {
+  --_ch-bold: var(--Positive-Bold, var(--Surface-Bold));
+  --_ch-bold-high: var(--Positive-Bold-High, var(--Text-OnBold-High));
+  --_ch-bold-tinted-a11y: var(--Positive-Bold-Tinted, var(--Positive-Bold-TintedA11y, var(--_ch-bold-high)));
+  --_ch-bold-hover: var(--Positive-Bold-Hover, var(--Surface-Bold-Hover));
+  --_ch-bold-pressed: var(--Positive-Bold-Pressed, var(--Positive-Bold-Hover, var(--Positive-Bold-Hover)));
+  --_ch-material-fill: var(--Positive-Material-Fill);
+  --_ch-material-text: var(--Positive-Material-Text);
+  --_ch-material-stroke-color: var(--Positive-Material-StrokeColor);
+  --_ch-minimal: var(--Positive-Minimal, var(--Surface-Minimal));
+  --_ch-subtle: var(--Positive-Subtle, var(--Surface-Subtle));
+  --_ch-subtle-hover: var(--Positive-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_ch-subtle-pressed: var(--Positive-Subtle-Pressed, var(--Positive-Subtle-Hover, var(--Positive-Subtle-Hover)));
+  --_ch-default-high: var(--Positive-High, var(--Text-High));
+  --_ch-default-accent-a11y: var(--Positive-Tinted, var(--Positive-TintedA11y, var(--Surface-Bold)));
+  --_ch-default-medium-text: var(--Positive-Medium-Text, var(--Text-Medium));
+  --_ch-default-low-stroke: var(--Positive-Stroke-Low, var(--Surface-Bold));
+  --_ch-default-hover: var(--Positive-Hover, var(--Surface-Minimal));
+  --_ch-default-pressed: var(--Positive-Pressed, var(--Positive-Hover, var(--Surface-Minimal)));
+}
+
+.appearanceNegative {
+  --_ch-bold: var(--Negative-Bold, var(--Surface-Bold));
+  --_ch-bold-high: var(--Negative-Bold-High, var(--Text-OnBold-High));
+  --_ch-bold-tinted-a11y: var(--Negative-Bold-Tinted, var(--Negative-Bold-TintedA11y, var(--_ch-bold-high)));
+  --_ch-bold-hover: var(--Negative-Bold-Hover, var(--Surface-Bold-Hover));
+  --_ch-bold-pressed: var(--Negative-Bold-Pressed, var(--Negative-Bold-Hover, var(--Negative-Bold-Hover)));
+  --_ch-material-fill: var(--Negative-Material-Fill);
+  --_ch-material-text: var(--Negative-Material-Text);
+  --_ch-material-stroke-color: var(--Negative-Material-StrokeColor);
+  --_ch-minimal: var(--Negative-Minimal, var(--Surface-Minimal));
+  --_ch-subtle: var(--Negative-Subtle, var(--Surface-Subtle));
+  --_ch-subtle-hover: var(--Negative-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_ch-subtle-pressed: var(--Negative-Subtle-Pressed, var(--Negative-Subtle-Hover, var(--Negative-Subtle-Hover)));
+  --_ch-default-high: var(--Negative-High, var(--Text-High));
+  --_ch-default-accent-a11y: var(--Negative-Tinted, var(--Negative-TintedA11y, var(--Surface-Bold)));
+  --_ch-default-medium-text: var(--Negative-Medium-Text, var(--Text-Medium));
+  --_ch-default-low-stroke: var(--Negative-Stroke-Low, var(--Surface-Bold));
+  --_ch-default-hover: var(--Negative-Hover, var(--Surface-Minimal));
+  --_ch-default-pressed: var(--Negative-Pressed, var(--Negative-Hover, var(--Surface-Minimal)));
+}
+
+.appearanceWarning {
+  --_ch-bold: var(--Warning-Bold, var(--Surface-Bold));
+  --_ch-bold-high: var(--Warning-Bold-High, var(--Text-OnBold-High));
+  --_ch-bold-tinted-a11y: var(--Warning-Bold-Tinted, var(--Warning-Bold-TintedA11y, var(--_ch-bold-high)));
+  --_ch-bold-hover: var(--Warning-Bold-Hover, var(--Surface-Bold-Hover));
+  --_ch-bold-pressed: var(--Warning-Bold-Pressed, var(--Warning-Bold-Hover, var(--Warning-Bold-Hover)));
+  --_ch-material-fill: var(--Warning-Material-Fill);
+  --_ch-material-text: var(--Warning-Material-Text);
+  --_ch-material-stroke-color: var(--Warning-Material-StrokeColor);
+  --_ch-minimal: var(--Warning-Minimal, var(--Surface-Minimal));
+  --_ch-subtle: var(--Warning-Subtle, var(--Surface-Subtle));
+  --_ch-subtle-hover: var(--Warning-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_ch-subtle-pressed: var(--Warning-Subtle-Pressed, var(--Warning-Subtle-Hover, var(--Warning-Subtle-Hover)));
+  --_ch-default-high: var(--Warning-High, var(--Text-High));
+  --_ch-default-accent-a11y: var(--Warning-Tinted, var(--Warning-TintedA11y, var(--Surface-Bold)));
+  --_ch-default-medium-text: var(--Warning-Medium-Text, var(--Text-Medium));
+  --_ch-default-low-stroke: var(--Warning-Stroke-Low, var(--Surface-Bold));
+  --_ch-default-hover: var(--Warning-Hover, var(--Surface-Minimal));
+  --_ch-default-pressed: var(--Warning-Pressed, var(--Warning-Hover, var(--Surface-Minimal)));
+}
+
+.appearanceInformative {
+  --_ch-bold: var(--Informative-Bold, var(--Surface-Bold));
+  --_ch-bold-high: var(--Informative-Bold-High, var(--Text-OnBold-High));
+  --_ch-bold-tinted-a11y: var(--Informative-Bold-Tinted, var(--Informative-Bold-TintedA11y, var(--_ch-bold-high)));
+  --_ch-bold-hover: var(--Informative-Bold-Hover, var(--Surface-Bold-Hover));
+  --_ch-bold-pressed: var(--Informative-Bold-Pressed, var(--Informative-Bold-Hover, var(--Informative-Bold-Hover)));
+  --_ch-material-fill: var(--Informative-Material-Fill);
+  --_ch-material-text: var(--Informative-Material-Text);
+  --_ch-material-stroke-color: var(--Informative-Material-StrokeColor);
+  --_ch-minimal: var(--Informative-Minimal, var(--Surface-Minimal));
+  --_ch-subtle: var(--Informative-Subtle, var(--Surface-Subtle));
+  --_ch-subtle-hover: var(--Informative-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_ch-subtle-pressed: var(--Informative-Subtle-Pressed, var(--Informative-Subtle-Hover, var(--Informative-Subtle-Hover)));
+  --_ch-default-high: var(--Informative-High, var(--Text-High));
+  --_ch-default-accent-a11y: var(--Informative-Tinted, var(--Informative-TintedA11y, var(--Surface-Bold)));
+  --_ch-default-medium-text: var(--Informative-Medium-Text, var(--Text-Medium));
+  --_ch-default-low-stroke: var(--Informative-Stroke-Low, var(--Surface-Bold));
+  --_ch-default-hover: var(--Informative-Hover, var(--Surface-Minimal));
+  --_ch-default-pressed: var(--Informative-Pressed, var(--Informative-Hover, var(--Surface-Minimal)));
+}
+
+/* Unselected high/medium role: nearest parent Surface appearance, then neutral. */
+.chip[data-unselected-appearance="primary"] {
+  --_ch-unselected-minimal: var(--Primary-Minimal, var(--Surface-Minimal));
+  --_ch-unselected-stroke-medium: var(--Primary-Stroke-Medium, var(--Primary-Stroke-Low, var(--Surface-Bold)));
+  --_ch-unselected-hover: var(--Primary-Hover, var(--Surface-Minimal));
+  --_ch-unselected-pressed: var(--Primary-Pressed, var(--Primary-Hover, var(--Surface-Minimal)));
+}
+
+.chip[data-unselected-appearance="neutral"] {
+  --_ch-unselected-minimal: var(--Neutral-Minimal, var(--Surface-Minimal));
+  --_ch-unselected-stroke-medium: var(--Neutral-Stroke-Medium, var(--Neutral-Stroke-Low, var(--Surface-Bold)));
+  --_ch-unselected-hover: var(--Neutral-Hover, var(--Surface-Minimal));
+  --_ch-unselected-pressed: var(--Neutral-Pressed, var(--Neutral-Hover, var(--Surface-Minimal)));
+}
+
+.chip[data-unselected-appearance="secondary"] {
+  --_ch-unselected-minimal: var(--Secondary-Minimal, var(--Surface-Minimal));
+  --_ch-unselected-stroke-medium: var(--Secondary-Stroke-Medium, var(--Secondary-Stroke-Low, var(--Surface-Bold)));
+  --_ch-unselected-hover: var(--Secondary-Hover, var(--Surface-Minimal));
+  --_ch-unselected-pressed: var(--Secondary-Pressed, var(--Secondary-Hover, var(--Surface-Minimal)));
+}
+
+.chip[data-unselected-appearance="sparkle"] {
+  --_ch-unselected-minimal: var(--Sparkle-Minimal, var(--Surface-Minimal));
+  --_ch-unselected-stroke-medium: var(--Sparkle-Stroke-Medium, var(--Sparkle-Stroke-Low, var(--Surface-Bold)));
+  --_ch-unselected-hover: var(--Sparkle-Hover, var(--Surface-Minimal));
+  --_ch-unselected-pressed: var(--Sparkle-Pressed, var(--Sparkle-Hover, var(--Surface-Minimal)));
+}
+
+.chip[data-unselected-appearance="brand-bg"] {
+  --_ch-unselected-minimal: var(--Brand-Bg-Minimal, var(--Surface-Minimal));
+  --_ch-unselected-stroke-medium: var(--Brand-Bg-Stroke-Medium, var(--Brand-Bg-Stroke-Low, var(--Surface-Bold)));
+  --_ch-unselected-hover: var(--Brand-Bg-Hover, var(--Surface-Minimal));
+  --_ch-unselected-pressed: var(--Brand-Bg-Pressed, var(--Brand-Bg-Hover, var(--Surface-Minimal)));
+}
+
+.chip[data-unselected-appearance="positive"] {
+  --_ch-unselected-minimal: var(--Positive-Minimal, var(--Surface-Minimal));
+  --_ch-unselected-stroke-medium: var(--Positive-Stroke-Medium, var(--Positive-Stroke-Low, var(--Surface-Bold)));
+  --_ch-unselected-hover: var(--Positive-Hover, var(--Surface-Minimal));
+  --_ch-unselected-pressed: var(--Positive-Pressed, var(--Positive-Hover, var(--Surface-Minimal)));
+}
+
+.chip[data-unselected-appearance="negative"] {
+  --_ch-unselected-minimal: var(--Negative-Minimal, var(--Surface-Minimal));
+  --_ch-unselected-stroke-medium: var(--Negative-Stroke-Medium, var(--Negative-Stroke-Low, var(--Surface-Bold)));
+  --_ch-unselected-hover: var(--Negative-Hover, var(--Surface-Minimal));
+  --_ch-unselected-pressed: var(--Negative-Pressed, var(--Negative-Hover, var(--Surface-Minimal)));
+}
+
+.chip[data-unselected-appearance="warning"] {
+  --_ch-unselected-minimal: var(--Warning-Minimal, var(--Surface-Minimal));
+  --_ch-unselected-stroke-medium: var(--Warning-Stroke-Medium, var(--Warning-Stroke-Low, var(--Surface-Bold)));
+  --_ch-unselected-hover: var(--Warning-Hover, var(--Surface-Minimal));
+  --_ch-unselected-pressed: var(--Warning-Pressed, var(--Warning-Hover, var(--Surface-Minimal)));
+}
+
+.chip[data-unselected-appearance="informative"] {
+  --_ch-unselected-minimal: var(--Informative-Minimal, var(--Surface-Minimal));
+  --_ch-unselected-stroke-medium: var(--Informative-Stroke-Medium, var(--Informative-Stroke-Low, var(--Surface-Bold)));
+  --_ch-unselected-hover: var(--Informative-Hover, var(--Surface-Minimal));
+  --_ch-unselected-pressed: var(--Informative-Pressed, var(--Informative-Hover, var(--Surface-Minimal)));
+}
+
+/* ========================================
+   VARIANTS — consume intermediate vars, zero duplication
+   Unselected states (default). Selected states use [data-pressed].
+   ======================================== */
+
+/* === BOLD (attention: high) === */
+
+/* Unselected bold (Figma): appearance minimal fill, Text-High, no border */
+.bold {
+  --_ch-bg: var(--Chip-backgroundColor-bold, var(--_ch-unselected-minimal));
+  background-color: var(--_ch-bg);
+  color: var(--Chip-textColor-bold, var(--Text-High));
+  border: var(--Chip-borderWidth, var(--Stroke-M)) solid var(--Chip-borderColor-bold, transparent);
+}
+
+/* Selected bold: solid fg-bold fill, on-bold-high text, no visible border */
+.bold[data-pressed] {
+  /* `background` (not background-color) — the material fill is a gradient image. */
+  --_ch-bg: var(--Chip-backgroundColor-bold-selected, var(--_ch-material-fill, var(--_ch-bold)));
+  background: var(--_ch-bg);
+  color: var(--Chip-textColor-bold-selected, var(--_ch-material-text, var(--_ch-bold-high)));
+  border-color: var(--Chip-borderColor-bold-selected, var(--_ch-material-stroke-color, var(--_ch-bold)));
+}
+
+/* === SUBTLE (attention: medium) === */
+
+/* Unselected subtle (Figma): transparent bg, Text-High, hairline neutral stroke */
+.subtle {
+  --_ch-bg: var(--Chip-backgroundColor-subtle, transparent);
+  background-color: var(--_ch-bg);
+  color: var(--Chip-textColor-subtle, var(--Text-High));
+  border: var(--Chip-borderWidth, var(--Stroke-M)) solid var(--Chip-borderColor-subtle, var(--_ch-unselected-stroke-medium));
+}
+
+/* Selected subtle: brand-tinted bg-subtle fill, Text-High, no border */
+.subtle[data-pressed] {
+  --_ch-bg: var(--Chip-backgroundColor-subtle-selected, var(--_ch-subtle));
+  background-color: var(--_ch-bg);
+  color: var(--Chip-textColor-subtle-selected, var(--_ch-default-high));
+  border-color: var(--Chip-borderColor-subtle-selected, transparent);
+}
+
+/* === GHOST (attention: low) === */
+
+/* Unselected ghost (Figma): transparent bg, Text-High, no border */
+.ghost {
+  --_ch-bg: var(--Chip-backgroundColor-ghost, transparent);
+  background-color: var(--_ch-bg);
+  color: var(--Chip-textColor-ghost, var(--Text-High));
+  border: var(--Chip-borderWidth, var(--Stroke-M)) solid var(--Chip-borderColor-ghost, transparent);
+}
+
+/* Selected ghost (Figma): transparent bg, accent-tinted text, hairline accent stroke (softer) */
+.ghost[data-pressed] {
+  --_ch-bg: var(--Chip-backgroundColor-ghost-selected, transparent);
+  background-color: var(--_ch-bg);
+  color: var(--Chip-textColor-ghost-selected, var(--_ch-default-high));
+  border-color: var(--Chip-borderColor-ghost-selected, var(--_ch-default-accent-a11y));
+}
+
+/* ========================================
+   SIZES — via data-size attribute selectors
+   Figma-verified spacing (Spacings tokens):
+     No slots:   S/M pad=10px(2.5), L pad=12px(3), gap=0
+     With slots: S/M pad=4px(1), L pad=6px(1.5), gap=S/M 4px(1), L 6px(1.5)
+   Padding reduces ONLY on the side with a slot (asymmetric).
+   ======================================== */
+
+.chip[data-size="s"] {
+  --_ch-h: var(--Chip-height-s, var(--Spacing-5));
+  height: var(--_ch-h);
+  padding-left: var(--Chip-paddingHorizontal-s, var(--Spacing-2-5));
+  padding-right: var(--Chip-paddingHorizontal-s, var(--Spacing-2-5));
+  gap: var(--Chip-gap-s, var(--Spacing-1));
+  font-size: var(--Chip-fontSize-s, var(--Label-XS-FontSize));
+  line-height: var(--Chip-lineHeight-s, var(--Label-XS-LineHeight));
+}
+
+.chip[data-size="m"] {
+  --_ch-h: var(--Chip-height-m, var(--Spacing-6));
+  height: var(--_ch-h);
+  padding-left: var(--Chip-paddingHorizontal-m, var(--Spacing-2-5));
+  padding-right: var(--Chip-paddingHorizontal-m, var(--Spacing-2-5));
+  gap: var(--Chip-gap-m, var(--Spacing-1));
+  font-size: var(--Chip-fontSize-m, var(--Label-S-FontSize));
+  line-height: var(--Chip-lineHeight-m, var(--Label-S-LineHeight));
+}
+
+.chip[data-size="l"] {
+  --_ch-h: var(--Chip-height-l, var(--Spacing-8));
+  height: var(--_ch-h);
+  padding-left: var(--Chip-paddingHorizontal-l, var(--Spacing-3));
+  padding-right: var(--Chip-paddingHorizontal-l, var(--Spacing-3));
+  gap: var(--Chip-gap-l, var(--Spacing-1-5));
+  font-size: var(--Chip-fontSize-l, var(--Label-M-FontSize));
+  line-height: var(--Chip-lineHeight-l, var(--Label-M-LineHeight));
+}
+
+/* ========================================
+   SLOT-AWARE PADDING — reduced padding on the side where a slot is present
+   Uses :has() for CSS-only slot detection (same pattern as Button).
+   Accounts for both direct children and slotContext wrapper (display:contents).
+   ======================================== */
+
+/* S: start slot present → left padding reduces from 10px to 4px */
+.chip[data-size="s"]:has(.start) {
+  padding-left: var(--Chip-paddingHorizontal-s-slot, var(--Spacing-1));
+}
+.chip[data-size="s"]:has(.end) {
+  padding-right: var(--Chip-paddingHorizontal-s-slot, var(--Spacing-1));
+}
+
+/* M: start slot present → left padding reduces from 10px to 4px */
+.chip[data-size="m"]:has(.start) {
+  padding-left: var(--Chip-paddingHorizontal-m-slot, var(--Spacing-1));
+}
+.chip[data-size="m"]:has(.end) {
+  padding-right: var(--Chip-paddingHorizontal-m-slot, var(--Spacing-1));
+}
+
+/* L: start slot present → left padding reduces from 12px to 6px */
+.chip[data-size="l"]:has(.start) {
+  padding-left: var(--Chip-paddingHorizontal-l-slot, var(--Spacing-1-5));
+}
+.chip[data-size="l"]:has(.end) {
+  padding-right: var(--Chip-paddingHorizontal-l-slot, var(--Spacing-1-5));
+}
+
+/* ========================================
+   STATES — hover, pressed (click), disabled, focus
+
+   Per Figma state-layer system, interaction states use pre-computed
+   V4 "hover" and "pressed" hex values that darken the base fill:
+
+     Unselected:
+      — High unselected base = appearance Minimal,
+        hover/pressed = nearest parent Surface role or Neutral
+       — Medium unselected base = transparent + nearest parent Surface role or Neutral stroke,
+         hover/pressed = nearest parent Surface role or Neutral
+       — Low unselected base = transparent,
+         hover/pressed = nearest parent Surface role or Neutral
+
+     Selected: brand role state layer
+       — Bold selected: Primary-Bold → Hover → Pressed
+       — Subtle selected: Primary-Subtle → Hover → Pressed
+       — Ghost selected: transparent + accent stroke;
+         hover/pressed adds Neutral-Hover/Pressed overlay
+   ======================================== */
+
+/* === HIGH UNSELECTED (appearance minimal fill) — parent-level role state === */
+.bold:hover:not([data-disabled]):not([data-pressed]) {
+  --_ch-bg: var(--Chip-backgroundColor-bold-hover, var(--_ch-unselected-hover));
+  background-color: var(--_ch-bg);
+}
+.bold:active:not([data-disabled]):not([data-pressed]) {
+  --_ch-bg: var(--Chip-backgroundColor-bold-pressed, var(--_ch-unselected-pressed));
+  background-color: var(--_ch-bg);
+}
+
+/* === MEDIUM UNSELECTED (transparent + stroke) — add parent-surface role overlay === */
+.subtle:hover:not([data-disabled]):not([data-pressed]) {
+  --_ch-bg: var(--Chip-backgroundColor-subtle-hover, var(--_ch-unselected-hover));
+  background-color: var(--_ch-bg);
+}
+.subtle:active:not([data-disabled]):not([data-pressed]) {
+  --_ch-bg: var(--Chip-backgroundColor-subtle-pressed, var(--_ch-unselected-pressed));
+  background-color: var(--_ch-bg);
+}
+
+/* === LOW UNSELECTED (transparent) — add parent-surface role overlay === */
+.ghost:hover:not([data-disabled]):not([data-pressed]) {
+  --_ch-bg: var(--Chip-backgroundColor-ghost-hover, var(--_ch-unselected-hover));
+  background-color: var(--_ch-bg);
+}
+.ghost:active:not([data-disabled]):not([data-pressed]) {
+  --_ch-bg: var(--Chip-backgroundColor-ghost-pressed, var(--_ch-unselected-pressed));
+  background-color: var(--_ch-bg);
+}
+
+/* === HIGH SELECTED (brand fill) — darker brand === */
+.bold[data-pressed]:hover:not([data-disabled]) {
+  --_ch-bg: var(--Chip-backgroundColor-bold-selected-hover, var(--_ch-material-fill, var(--_ch-bold-hover)));
+  background: var(--_ch-bg);
+  border-color: var(--Chip-borderColor-bold-selected-hover, var(--_ch-material-stroke-color, var(--_ch-bold-hover)));
+}
+.bold[data-pressed]:active:not([data-disabled]) {
+  --_ch-bg: var(--Chip-backgroundColor-bold-selected-pressed, var(--_ch-material-fill, var(--_ch-bold-pressed)));
+  background: var(--_ch-bg);
+  border-color: var(--Chip-borderColor-bold-selected-pressed, var(--_ch-material-stroke-color, var(--_ch-bold-pressed)));
+}
+
+/* === MEDIUM SELECTED (brand tint) — darker tint === */
+.subtle[data-pressed]:hover:not([data-disabled]) {
+  --_ch-bg: var(--Chip-backgroundColor-subtle-selected-hover, var(--_ch-subtle-hover));
+  background-color: var(--_ch-bg);
+}
+.subtle[data-pressed]:active:not([data-disabled]) {
+  --_ch-bg: var(--Chip-backgroundColor-subtle-selected-pressed, var(--_ch-subtle-pressed));
+  background-color: var(--_ch-bg);
+}
+
+/* === LOW SELECTED (transparent + accent stroke) — brand-tinted overlay,
+      embraces the chip's appearance color (matches the accent stroke/text).
+      Intermediate vars remap per appearance class so this adapts to role. === */
+.ghost[data-pressed]:hover:not([data-disabled]) {
+  --_ch-bg: var(--Chip-backgroundColor-ghost-selected-hover, var(--_ch-subtle));
+  background-color: var(--_ch-bg);
+}
+.ghost[data-pressed]:active:not([data-disabled]) {
+  --_ch-bg: var(--Chip-backgroundColor-ghost-selected-pressed, var(--_ch-subtle-hover));
+  background-color: var(--_ch-bg);
+}
+
+/* Disabled */
+.chip[data-disabled] {
+  opacity: var(--Disabled-Opacity);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+
+/* Focus ring — double box-shadow (inner white + outer brand) per Figma */
+.chip:focus {
+  outline: none;
+}
+
+.chip:focus-visible,
+:global([data-force-state="focus"]) .chip {
+  box-shadow:
+    0 0 0 var(--Stroke-XL) var(--Surface-Halo-Gap, var(--Surface-Main)),
+    0 0 0 calc(var(--Stroke-XL) + var(--Focus-Outline-Width)) var(--Focus-Outline);
+}
+
+/* ========================================
+   SLOT POLICY
+   Filled selected chips publish their active surface on the slot wrapper via
+   data-surface="bold" or "subtle". Avatar then resolves as a real nested
+   surface on top of the chip fill. Semantic children (CounterBadge,
+   IndicatorBadge) are wrapped in data-context-boundary by Chip.tsx so they keep
+   their own role colour instead of inheriting the chip surface. Plain Icon
+   children remain decorative label affordances, so they use the Chip role's
+   tinted icon colour while labels use the text channel.
+   ======================================== */
+
+/* ========================================
+   SLOT STYLES — start, end, label
+   ======================================== */
+
+.start {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  color: inherit;
+  --Icon-color: var(--_ch-default-accent-a11y);
+}
+
+.end {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  color: inherit;
+  --Icon-color: var(--_ch-default-accent-a11y);
+}
+
+.bold[data-pressed] .start,
+.bold[data-pressed] .end {
+  --Icon-color: var(--_ch-material-text, var(--_ch-bold-tinted-a11y));
+}
+
+.contextBoundary {
+  display: contents;
+}
+
+.label {
+  display: flex;
+  align-items: center;
+}
+
+/**
+ * ========================================
+ * IMPORTANT: NO LITERALS IN THIS FILE
+ * ========================================
+ *
+ * All values MUST come from --Token-Name variables
+ * defined in @oneui/tokens CSS files
+ */

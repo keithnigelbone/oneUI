@@ -1,0 +1,95 @@
+/**
+ * Counter Badge Figma validation — COMPONENT_SET style matrix (size × attention).
+ * Token-only typography; caption uses sparkle emphasis like other Figma QA tabs.
+ */
+
+.page {
+  padding: 0;
+  max-width: 100%;
+}
+
+.metaLine {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  font-weight: var(--Body-FontWeight-Low);
+  color: var(--Text-Medium);
+  margin: 0 0 var(--Spacing-4-5);
+  word-break: break-word;
+}
+
+.tableWrap {
+  overflow: auto;
+  max-width: 100%;
+}
+
+.gridTable {
+  border-collapse: collapse;
+  width: max-content;
+  max-width: 100%;
+  font-family: var(--Typography-Font-Primary);
+}
+
+.gridTable th,
+.gridTable td {
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+  padding: var(--Spacing-3-5);
+  vertical-align: middle;
+  text-align: center;
+}
+
+.figmaCaption {
+  caption-side: top;
+  text-align: left;
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Headline-M-FontSize);
+  line-height: var(--Headline-M-LineHeight);
+  font-weight: var(--Headline-M-FontWeight);
+  color: var(--Sparkle-High);
+  padding: 0 0 var(--Spacing-3-5);
+}
+
+.figmaCaptionMark {
+  color: var(--Sparkle-High);
+}
+
+.cell {
+  white-space: nowrap;
+  background: var(--Surface-Default);
+}
+
+.rowLabelRight {
+  text-align: left;
+  vertical-align: middle;
+  font-family: var(--Typography-Font-Code);
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Low);
+  color: var(--Text-Medium);
+  white-space: nowrap;
+  padding-inline-start: var(--Spacing-4);
+  min-width: var(--Spacing-32);
+  background: var(--Surface-Default);
+}
+
+.footerRow td,
+.footerRow th {
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+}
+
+.footerAttention {
+  font-family: var(--Typography-Font-Code);
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Low);
+  color: var(--Text-Medium);
+  text-align: center;
+  background: var(--Surface-Default);
+  padding-block: var(--Spacing-2-5);
+}
+
+.footerCorner {
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+  background: var(--Surface-Default);
+  min-width: var(--Spacing-20);
+}

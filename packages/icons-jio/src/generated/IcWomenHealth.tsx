@@ -1,0 +1,30 @@
+import React, { forwardRef } from 'react';
+import type { IconComponentProps } from '../iconProps';
+
+export const IcWomenHealth = forwardRef<SVGSVGElement, IconComponentProps>(function IcWomenHealth(
+  { size = 24, width, height, color = 'currentColor', className, style, ...props },
+  ref,
+) {
+  const dim = width ?? height ?? size;
+  return (
+    <svg
+      ref={ref}
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      width={width ?? dim}
+      height={height ?? dim}
+      color={color}
+      className={className}
+      style={style}
+      {...props}
+    >
+      <path
+            fill="currentColor"
+            d="M16 16h-3v-2.09a6 6 0 0 0 3.74-2.24 6.04 6.04 0 0 0 1.24-4.18c-.13-1.5-.81-2.9-1.92-3.91A6 6 0 0 0 12 2c-1.5 0-2.95.57-4.06 1.58a6.02 6.02 0 0 0-1.92 3.91c-.13 1.5.32 2.99 1.24 4.18A6 6 0 0 0 11 13.91V16H8c-.27 0-.52.11-.71.29A1 1 0 0 0 7 17c0 .27.11.52.29.71.19.19.44.29.71.29h3v3c0 .27.11.52.29.71.19.19.44.29.71.29s.52-.11.71-.29A1 1 0 0 0 13 21v-3h3c.27 0 .52-.11.71-.29A1 1 0 0 0 17 17c0-.27-.11-.52-.29-.71A1 1 0 0 0 16 16m-4-4c-1.06 0-2.08-.42-2.83-1.17a4.004 4.004 0 0 1-.5-5.05 3.93 3.93 0 0 1 1.8-1.47c.73-.3 1.54-.38 2.31-.23.78.15 1.49.54 2.05 1.09.56.56.94 1.27 1.09 2.05s.08 1.58-.23 2.31c-.3.73-.82 1.36-1.47 1.8S12.79 12 12 12m1.65-5.34c-.11-.12-.24-.21-.39-.28-.15-.06-.3-.1-.46-.1-.3.01-.58.13-.8.34-.22-.21-.5-.33-.8-.34-.16 0-.32.03-.46.1-.15.06-.28.16-.39.28s-.2.26-.26.42-.09.32-.09.49c0 .79.58 1.51 1.59 2.49l.11.1c.08.08.19.12.3.12s.22-.04.3-.12l.11-.1C13.42 9.08 14 8.36 14 7.57c0-.17-.03-.33-.09-.49s-.15-.3-.26-.42"
+          />
+    </svg>
+  );
+});
+
+IcWomenHealth.displayName = 'IcWomenHealth';

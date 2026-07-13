@@ -1,0 +1,156 @@
+/**
+ * AssetCard — Individual asset preview card
+ */
+
+.card {
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--Shape-4-5);
+  background: var(--Surface-Elevated);
+  overflow: hidden;
+  transition: box-shadow var(--Duration-XS) var(--Motion-Easing-Transition);
+  width: 100%;
+  max-width: 480px;
+}
+
+.card:hover {
+  box-shadow: var(--Elevation-1);
+}
+
+.preview {
+  position: relative;
+  width: 100%;
+  aspect-ratio: var(--asset-aspect-ratio, 1);
+  background: var(--Neutral-Subtle);
+  overflow: hidden;
+}
+
+.previewImage {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: var(--Neutral-Subtle);
+}
+
+.statusOverlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--Scrim);
+}
+
+.info {
+  padding: var(--Spacing-3) var(--Spacing-3-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-1-5);
+}
+
+.assetName {
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Body-S-FontSize);
+  font-weight: var(--Body-FontWeight-High);
+  color: var(--Text-High);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.assetMeta {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-2);
+}
+
+.dimension {
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Body-S-FontSize);
+  color: var(--Text-Low);
+}
+
+.platformBadge {
+  font-family: var(--Label-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Label-2XS-FontSize);
+  padding: 1px var(--Spacing-1-5);
+  border-radius: var(--Shape-3);
+  background: var(--Neutral-Subtle);
+  color: var(--Text-Medium);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.actions {
+  display: flex;
+  gap: var(--Spacing-1-5);
+  padding: 0 var(--Spacing-3-5) var(--Spacing-3);
+}
+
+.actionButton {
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Body-S-FontSize);
+  padding: var(--Spacing-1-5) var(--Spacing-3);
+  border-radius: var(--Shape-4);
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+  background: transparent;
+  color: var(--Text-Medium);
+  cursor: pointer;
+  transition: background-color var(--Duration-XS) var(--Motion-Easing-Transition),
+              color var(--Duration-XS) var(--Motion-Easing-Transition);
+}
+
+.actionButton:hover {
+  background: var(--Neutral-Subtle);
+  color: var(--Text-High);
+}
+
+/* Hover actions — top-right overlay */
+.hoverActions {
+  position: absolute;
+  top: var(--Spacing-3);
+  right: var(--Spacing-3);
+  display: flex;
+  gap: var(--Spacing-1-5);
+  opacity: 0;
+  transition: opacity var(--Duration-XS) var(--Motion-Easing-Transition);
+  z-index: 2;
+}
+
+.card:hover .hoverActions {
+  opacity: 1;
+}
+
+.hoverButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--Shape-4);
+  border: none;
+  background: var(--Surface-Elevated);
+  color: var(--Text-Medium);
+  cursor: pointer;
+  transition: background-color var(--Duration-XS) var(--Motion-Easing-Transition),
+              color var(--Duration-XS) var(--Motion-Easing-Transition);
+  box-shadow: var(--Elevation-1, 0 1px 4px rgba(0, 0, 0, 0.1));
+}
+
+.hoverButton:hover {
+  background: var(--Surface-Bold);
+  color: var(--Text-OnBold-High);
+}
+
+.hoverButtonDanger:hover {
+  background: var(--Negative-Bold, var(--Negative-Default, var(--Surface-Bold)));
+  color: var(--Text-OnBold-High);
+}
+
+.errorText {
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Body-S-FontSize);
+  color: var(--Text-OnBold-High);
+  text-align: center;
+  padding: var(--Spacing-3-5);
+}

@@ -1,0 +1,304 @@
+/**
+ * LightnessScaleEditor.module.css
+ * Token-only styling for lightness scale editor
+ */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-4);
+}
+
+
+.presetSection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-3-5);
+}
+
+.presetGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: var(--Spacing-3-5);
+}
+
+.presetCard {
+  padding: var(--Spacing-3-5);
+  border-radius: var(--Shape-4);
+  border: 2px solid var(--Border-Subtle);
+  background-color: var(--Surface-Main);
+  cursor: pointer;
+  transition: all var(--Motion-Duration-Discreet-Short) var(--Motion-Easing-Standard);
+  text-align: left;
+}
+
+.presetCard:hover:not(:disabled) {
+  border-color: var(--Surface-Bold);
+  background-color: var(--Surface-Subtle);
+}
+
+.presetCard[data-selected="true"] {
+  border-color: var(--Surface-Bold);
+  background-color: var(--Surface-Minimal);
+}
+
+.presetCard:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.presetName {
+  font-size: var(--Body-S-FontSize);
+  font-weight: var(--Body-FontWeight-High);
+  color: var(--Text-High);
+  margin-bottom: var(--Spacing-2-5);
+}
+
+.presetDescription {
+  font-size: var(--Label-XS-FontSize);
+  color: var(--Text-Medium);
+  margin-bottom: var(--Spacing-3-5);
+}
+
+.presetPreview {
+  display: flex;
+  height: var(--Spacing-6);
+  border-radius: var(--Shape-3);
+  overflow: hidden;
+}
+
+.presetPreviewStep {
+  flex: 1;
+  transition: background-color var(--Motion-Duration-Discreet-Short) var(--Motion-Easing-Standard);
+}
+
+.manualSection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-4);
+}
+
+.manualHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+.scaleVisualizer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-2-5);
+}
+
+.visualizerStrip {
+  display: flex;
+  height: var(--Spacing-12);
+  border-radius: var(--Shape-4);
+  overflow: hidden;
+  position: relative;
+}
+
+.visualizerStrip[data-interactive="true"] {
+  height: var(--Spacing-14);
+}
+
+.visualizerStep {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform var(--Motion-Duration-Discreet-Short) var(--Motion-Easing-Standard);
+}
+
+.visualizerStep[data-interactive="true"] {
+  cursor: pointer;
+}
+
+.visualizerStep[data-interactive="true"]:hover {
+  z-index: 1;
+  transform: scaleY(1.1);
+}
+
+.visualizerStep[data-selected="true"] {
+  z-index: 2;
+  box-shadow: inset 0 0 0 2px var(--Surface-Bold);
+}
+
+.lightnessValue {
+  font-size: var(--Label-3XS-FontSize);
+  font-weight: var(--Body-FontWeight-High);
+  font-family: var(--Label-FontFamily, var(--Typography-Font-Text));
+  opacity: 0.9;
+  pointer-events: none;
+  text-shadow: var(--Text-Shadow-Medium);
+}
+
+.visualizerLabels {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 var(--Spacing-2-5);
+}
+
+.visualizerLabel {
+  font-size: var(--Label-2XS-FontSize);
+  color: var(--Text-Low);
+}
+
+.offsetIndicator {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-2-5);
+}
+
+.stepEditor {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-3-5);
+  padding: var(--Spacing-4);
+  background-color: var(--Surface-Subtle);
+  border-radius: var(--Shape-4);
+}
+
+.stepEditorHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.stepEditorTitle {
+  font-size: var(--Body-S-FontSize);
+  font-weight: var(--Body-FontWeight-High);
+  color: var(--Text-High);
+}
+
+.stepEditorHint {
+  font-size: var(--Label-XS-FontSize);
+  font-weight: var(--Body-FontWeight-Low);
+  color: var(--Text-Low);
+}
+
+.stepEditorClose {
+  padding: var(--Spacing-2-5);
+  border: none;
+  background: none;
+  color: var(--Text-Medium);
+  cursor: pointer;
+  border-radius: var(--Shape-4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--Body-L-FontSize);
+  line-height: 1;
+  width: var(--Spacing-7);
+  height: var(--Spacing-7);
+}
+
+.stepEditorClose:hover {
+  background-color: var(--Surface-Ghost);
+}
+
+.stepEditorControls {
+  display: flex;
+  gap: var(--Spacing-4);
+  align-items: center;
+}
+
+.stepSlider {
+  flex: 1;
+}
+
+
+.warningsBox {
+  display: flex;
+  align-items: baseline;
+  gap: var(--Spacing-3);
+  padding: var(--Spacing-3-5);
+  background-color: var(--Surface-Main);
+  border-radius: var(--Shape-3-5);
+  /* INTENTIONAL-LITERAL: accent border for warnings box — 3px has no matching Stroke token */
+  border-left: 3px solid var(--Surface-Bold);
+  font-size: var(--Label-XS-FontSize);
+}
+
+.warningsLabel {
+  color: var(--Text-Medium);
+  font-weight: var(--Body-FontWeight-High);
+  white-space: nowrap;
+}
+
+.warningsText {
+  color: var(--Text-Low);
+}
+
+.infoText {
+  font-size: var(--Label-XS-FontSize);
+  color: var(--Text-Low);
+  padding: var(--Spacing-3-5);
+  background-color: var(--Surface-Subtle);
+  border-radius: var(--Shape-3-5);
+  line-height: 1.5;
+}
+
+/* Section label for grouping presets */
+.sectionLabel {
+  font-size: var(--Label-XS-FontSize);
+  font-weight: var(--Body-FontWeight-High);
+  color: var(--Text-Medium);
+  margin-top: var(--Spacing-3-5);
+  margin-bottom: var(--Spacing-2-5);
+}
+
+
+/* Save dialog */
+.saveDialog {
+  padding: var(--Spacing-4);
+  background-color: var(--Surface-Main);
+  border-radius: var(--Shape-4);
+  border: 1px solid var(--Border-Subtle);
+  box-shadow: var(--Elevation-Level-2);
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-3-5);
+}
+
+.saveDialogTitle {
+  font-size: var(--Body-S-FontSize);
+  font-weight: var(--Body-FontWeight-High);
+  color: var(--Text-High);
+}
+
+.saveDialogField {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-2-5);
+}
+
+.saveDialogLabel {
+  font-size: var(--Label-XS-FontSize);
+  color: var(--Text-Medium);
+}
+
+.saveDialogActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--Spacing-3);
+  margin-top: var(--Spacing-3);
+}
+
+.presetCard {
+  position: relative;
+}
+
+.deleteButtonWrapper {
+  position: absolute;
+  top: var(--Spacing-2-5);
+  right: var(--Spacing-2-5);
+  opacity: 0;
+  transition: opacity var(--Motion-Duration-Discreet-Short) var(--Motion-Easing-Standard);
+}
+
+.presetCard:hover .deleteButtonWrapper {
+  opacity: 1;
+}

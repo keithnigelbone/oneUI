@@ -1,0 +1,180 @@
+/**
+ * AccessPanel.module.css
+ *
+ * Shared token-only styling for the access surfaces — brand Members and
+ * platform Users. GitHub/Linear-style: a toolbar with an "Invite people"
+ * action, and ONE bordered list box containing every person (members +
+ * pending invites). Separation is the box border + hairline row dividers —
+ * no stacked section cards.
+ */
+
+/* ─── Toolbar ─────────────────────────────────────────────────────── */
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--Spacing-4);
+  flex-wrap: wrap;
+}
+
+.toolbarMeta {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  font-weight: var(--Body-FontWeight-Low);
+  color: var(--Text-Medium);
+}
+
+/* ─── List box ────────────────────────────────────────────────────── */
+
+.listBox {
+  display: flex;
+  flex-direction: column;
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+  border-radius: var(--Shape-4);
+  overflow: hidden;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--Spacing-4);
+  padding: var(--Spacing-3) var(--Spacing-4);
+  flex-wrap: wrap;
+}
+
+.row + .row {
+  border-top: var(--Stroke-S, 1px) solid var(--Border-Subtle);
+}
+
+.identity {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-3);
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.identityText {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-0-5);
+  min-width: 0;
+}
+
+.name {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Body-M-FontSize);
+  line-height: var(--Body-M-LineHeight);
+  font-weight: var(--Body-FontWeight-Medium);
+  color: var(--Text-High);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.subtitle {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  font-weight: var(--Body-FontWeight-Low);
+  color: var(--Text-Medium);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.rowControls {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-2);
+  flex: 0 0 auto;
+}
+
+/* Stable width so the role column edge stays put regardless of label length. */
+.roleControl {
+  min-width: var(--Spacing-28);
+}
+
+/* Static role label (e.g. the owner's own row — not editable/removable). */
+.roleTag {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  font-weight: var(--Body-FontWeight-Medium);
+  color: var(--Text-Medium);
+  padding-right: var(--Spacing-2);
+}
+
+.rowError {
+  flex-basis: 100%;
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Low);
+  color: var(--Negative-High);
+  margin: 0;
+}
+
+/* Group label between the members and the pending-invites runs. */
+.groupLabel {
+  padding: var(--Spacing-2) var(--Spacing-4);
+  border-top: var(--Stroke-S, 1px) solid var(--Border-Subtle);
+  background-color: var(--Surface-Ghost);
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--Text-Medium);
+}
+
+.emptyState {
+  margin: 0;
+  padding: var(--Spacing-8) var(--Spacing-4);
+  text-align: center;
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  font-weight: var(--Body-FontWeight-Low);
+  color: var(--Text-Medium);
+}
+
+/* ─── Invite dialog form ──────────────────────────────────────────── */
+
+.dialogForm {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-4);
+
+  /* Pin the email Input to the Select's height (both --Touch-Target-Min). */
+  --Input-height-10: var(--Touch-Target-Min);
+  --Input-height: var(--Touch-Target-Min);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-1-5);
+  min-width: 0;
+}
+
+.fieldLabel {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Label-S-FontSize);
+  line-height: var(--Label-S-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+  color: var(--Text-High);
+}
+
+.dialogError {
+  margin: 0;
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  font-weight: var(--Body-FontWeight-Low);
+  color: var(--Negative-High);
+}

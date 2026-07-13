@@ -1,0 +1,53 @@
+.block {
+  padding: var(--Spacing-3-5);
+  border-radius: var(--Shape-4);
+  background: var(--Neutral-Subtle);
+  border: var(--Stroke-M) solid var(--Border-Subtle);
+}
+
+.label {
+  font-family: var(--Label-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Label-M-FontSize);
+  font-weight: var(--Body-FontWeight-High);
+  color: var(--Text-Medium);
+  margin: 0 0 var(--Spacing-3);
+}
+
+.list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Body-S-FontSize);
+  color: var(--Text-High);
+  display: flex;
+  gap: var(--Spacing-3-5);
+  margin-bottom: var(--Spacing-2);
+}
+
+.key {
+  color: var(--Text-Low);
+  min-width: var(--Dimension-f8, 96px);
+}
+
+.val {
+  word-break: break-word;
+}
+
+.muted {
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Body-S-FontSize);
+  color: var(--Text-Low);
+  margin: 0;
+}
+
+.pre {
+  font-family: var(--Typography-Font-Code, monospace);
+  font-size: var(--Code-S-FontSize);
+  color: var(--Text-High);
+  overflow: auto;
+  margin: 0;
+}

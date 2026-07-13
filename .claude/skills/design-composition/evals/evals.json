@@ -1,0 +1,27 @@
+{
+  "skill_name": "oneui-design-composition",
+  "baseline": "old skill snapshot (v1.0.0) at ../design-composition-workspace/skill-snapshot",
+  "evals": [
+    {
+      "id": 0,
+      "name": "product-grid-page",
+      "prompt": "Build a product listing page in OneUI — a responsive grid of product cards with image, title, and price, plus a row of filter chips at the top. Give me the TSX with inline token styles.",
+      "expected_output": "Composition with real numeric spacing/shape tokens (--Spacing-4, --Shape-4, etc.), default surfaces for cards, pill chips. NO fictional T-shirt tokens (--Spacing-M, --Shape-M, --Spacing-3XL).",
+      "files": []
+    },
+    {
+      "id": 1,
+      "name": "settings-grouped-sections",
+      "prompt": "Create a settings page in OneUI with three grouped sections (Account, Notifications, Privacy), each a card with a few rows. Give me the TSX with token styles.",
+      "expected_output": "Grouped sections using real spacing tokens and shape tokens, default/subtle surfaces appropriately. NO fictional tokens. Surface-level decisions defer to the right judgment.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "name": "signup-form-screen",
+      "prompt": "Build a sign-up form screen in OneUI — heading, email + password inputs, a primary submit button, and a small legal line. TSX with token styles please.",
+      "expected_output": "Form using real spacing tokens for vertical rhythm, real shape token for inputs (--Shape-2), pill button, Label typography. NO fictional --Spacing-*/--Shape-* T-shirt tokens.",
+      "files": []
+    }
+  ]
+}

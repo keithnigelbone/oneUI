@@ -1,0 +1,255 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "AgentPulse",
+  "generatedAt": "2026-07-09T13:07:37.426Z",
+  "machineReadable": true,
+  "status": "stable",
+  "intentAndPurpose": {
+    "intent": "Animated AI-agent presence indicator. Plays a looping animation per state (idle / listening / thinking / speaking) and auto-runs a bridge animation between states. Recolours to the active appearance role. Honours reduce-motion via a configurable fallback. Announces state changes through a live region."
+  },
+  "compositionRules": {
+    "requires": [],
+    "allows": [],
+    "forbids": [],
+    "childKind": "leaf"
+  },
+  "props": [
+    {
+      "name": "state",
+      "type": "'idle' | 'listening' | 'thinking' | 'speaking'",
+      "required": false,
+      "defaultValue": "idle",
+      "description": "Visual state; plays the matching loop and bridges between states."
+    },
+    {
+      "name": "appearance",
+      "type": "'primary' | 'secondary' | 'tertiary' | 'quaternary' | 'neutral' | 'sparkle' | 'brand-bg' | 'positive' | 'negative' | 'warning' | 'informative' | 'auto'",
+      "required": false,
+      "defaultValue": "auto",
+      "description": "Multi-accent role; recolours the animation at runtime (auto → primary)."
+    },
+    {
+      "name": "size",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Size preset (sm / md / lg / xl, mapped to dimension f-steps) or a pixel number."
+    },
+    {
+      "name": "autoTransition",
+      "type": "boolean",
+      "required": false,
+      "description": "Skip the bridge animation between states when false."
+    },
+    {
+      "name": "paused",
+      "type": "boolean",
+      "required": false,
+      "defaultValue": "false",
+      "description": "Pause animation playback."
+    },
+    {
+      "name": "speed",
+      "type": "number",
+      "required": false,
+      "defaultValue": "1",
+      "description": "Playback rate (1 = normal, 2 = double, 0.5 = half)."
+    },
+    {
+      "name": "reducedMotionFallback",
+      "type": "'static' | 'pulse' | 'none'",
+      "required": false,
+      "description": "Behaviour when the user prefers reduced motion."
+    },
+    {
+      "name": "label",
+      "type": "string",
+      "required": false,
+      "description": "Overrides the auto-derived a11y label (e.g. \"Agent is thinking\")."
+    },
+    {
+      "name": "aria-live",
+      "type": "'off' | 'polite' | 'assertive'",
+      "required": false,
+      "description": "Live-region politeness for screen readers."
+    },
+    {
+      "name": "backgroundColor",
+      "type": "string",
+      "required": false,
+      "description": "[error] Don't paint directly. Use `appearance` (role) + `variant`/`mode` and wrap in <Surface mode>; the brand cascade picks the right fill."
+    },
+    {
+      "name": "style",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Layout style only. Colour is driven by appearance, not inline paint. — [warn] Don't paint directly. Use `appearance`; the animation recolours from the role tokens."
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.kb.rn.AgentPulse",
+    "type": "object",
+    "properties": {
+      "state": {
+        "enum": [
+          "idle",
+          "listening",
+          "thinking",
+          "speaking"
+        ],
+        "default": "idle",
+        "description": "Visual state; plays the matching loop and bridges between states."
+      },
+      "appearance": {
+        "enum": [
+          "primary",
+          "secondary",
+          "tertiary",
+          "quaternary",
+          "neutral",
+          "sparkle",
+          "brand-bg",
+          "positive",
+          "negative",
+          "warning",
+          "informative",
+          "auto"
+        ],
+        "default": "auto",
+        "description": "Multi-accent role; recolours the animation at runtime (auto → primary)."
+      },
+      "size": {
+        "description": "Size preset (sm / md / lg / xl, mapped to dimension f-steps) or a pixel number."
+      },
+      "autoTransition": {
+        "type": "boolean",
+        "description": "Skip the bridge animation between states when false."
+      },
+      "paused": {
+        "type": "boolean",
+        "default": false,
+        "description": "Pause animation playback."
+      },
+      "speed": {
+        "type": "number",
+        "default": 1,
+        "description": "Playback rate (1 = normal, 2 = double, 0.5 = half)."
+      },
+      "reducedMotionFallback": {
+        "enum": [
+          "static",
+          "pulse",
+          "none"
+        ],
+        "description": "Behaviour when the user prefers reduced motion."
+      },
+      "label": {
+        "type": "string",
+        "description": "Overrides the auto-derived a11y label (e.g. \"Agent is thinking\")."
+      },
+      "aria-live": {
+        "enum": [
+          "off",
+          "polite",
+          "assertive"
+        ],
+        "description": "Live-region politeness for screen readers."
+      },
+      "backgroundColor": {
+        "type": "string",
+        "not": {
+          "anyOf": [
+            {
+              "pattern": "^#"
+            },
+            {
+              "pattern": "^rgba?\\("
+            },
+            {
+              "pattern": "^hsla?\\("
+            },
+            {
+              "pattern": "^oklch\\("
+            },
+            {
+              "pattern": "^color-mix\\("
+            },
+            {
+              "enum": [
+                "transparent",
+                "inherit"
+              ]
+            }
+          ]
+        },
+        "x-jds-suggestion": "Don't paint directly. Use `appearance` (role) + `variant`/`mode` and wrap in <Surface mode>; the brand cascade picks the right fill.",
+        "x-jds-severity": "error"
+      },
+      "style": {
+        "description": "Layout style only. Colour is driven by appearance, not inline paint.",
+        "x-jds-suggestion": "Don't paint directly. Use `appearance`; the animation recolours from the role tokens.",
+        "x-jds-severity": "warn"
+      }
+    }
+  },
+  "tokens": {
+    "color": [
+      "primary",
+      "secondary",
+      "tertiary",
+      "quaternary",
+      "neutral",
+      "sparkle",
+      "brand-bg",
+      "positive",
+      "negative",
+      "warning",
+      "informative"
+    ],
+    "motion": [
+      "motion.duration.expressive.long",
+      "motion.easing.transition"
+    ]
+  },
+  "a11y": {
+    "accessibilityRole": "image",
+    "accessibleNameSource": "aria-label",
+    "minTouchTarget": 44,
+    "honorsBoldText": false,
+    "honorsScreenReader": true
+  },
+  "renderHints": {
+    "baseElement": "View",
+    "animatedOn": [
+      "mount"
+    ],
+    "honorsReduceMotion": true,
+    "readsFromSurfaceContext": true
+  },
+  "figma": {
+    "componentKey": "jds-agent-pulse-v4",
+    "keyHistory": [],
+    "variantProperties": {
+      "Component": "AgentPulse"
+    }
+  },
+  "codeSnippets": [
+    {
+      "id": "import-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { AgentPulse } from '@oneui/ui-native';\n\n<AgentPulse />"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "agentpulse",
+    "ai",
+    "agent",
+    "animation",
+    "presence",
+    "status"
+  ],
+  "importPath": "@oneui/ui-native"
+}

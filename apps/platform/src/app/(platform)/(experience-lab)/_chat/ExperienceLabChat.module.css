@@ -1,0 +1,111 @@
+/*
+ * ExperienceLabChat.module.css
+ *
+ * Token-only layout for the chat host pane (D-01/D-13 left pane, LAB-02
+ * zero-literals). The host fills its grid track; ChatSurface owns the internal
+ * transcript + composer layout, so this module only sizes the wrapper and styles
+ * the empty-state greeting.
+ *
+ * Surface Context (CLAUDE.md MANDATORY): no `background` on a raw container —
+ * the shell wraps the pane in `<Surface mode="default">`. Typography uses the
+ * role-explicit V2 tokens with paired line-height + weight + `font-family:
+ * var(--Typography-Font-Primary)` on every text element. Only `0`/`100%` literals.
+ */
+
+.chat {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  box-sizing: border-box;
+}
+
+.chatSurface {
+  width: 100%;
+}
+
+/* Empty-state greeting (ChatSurface.greeting slot, UI-SPEC copy). */
+.greeting {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-2);
+  text-align: center;
+}
+
+.greetingHeading {
+  margin: 0;
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Headline-S-FontSize);
+  font-weight: var(--Headline-S-FontWeight);
+  line-height: var(--Headline-S-LineHeight);
+  color: var(--Text-High);
+}
+
+.greetingBody {
+  margin: 0;
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Body-M-FontSize);
+  font-weight: var(--Body-FontWeight-Low);
+  line-height: var(--Body-M-LineHeight);
+  color: var(--Text-Medium);
+}
+
+/* ---------------------------------------------------------------------------
+ * Chat ↔ canvas selection binding (D-02 / CHAT-08).
+ *
+ * The focused-artifact indicator (aboveComposer slot) + the per-turn
+ * `Focus on canvas` action. Token-only (LAB-02): the Chip carries its own
+ * neutral surface via component defaults — no `background` on these raw
+ * containers (Surface Context). Label copy uses V2 label typography; the
+ * clear/focus actions draw the Focus Halo via the surface-adaptive
+ * `--Surface-Halo-Gap` (never the page-pinned `--Surface-Main`).
+ * ------------------------------------------------------------------------- */
+
+.focusIndicator {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-2);
+  flex-wrap: wrap;
+}
+
+.focusChip {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Label-S-FontSize);
+  font-weight: var(--Label-FontWeight-Medium);
+  line-height: var(--Label-S-LineHeight);
+  border-radius: var(--Shape-Pill);
+}
+
+/* Per-turn focus affordance inside an artifact assistant turn. */
+.turnAnchor {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-2);
+  width: calc(var(--Spacing-40) * 2);
+  max-width: 100%;
+}
+
+.turnActions {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-2);
+}
+
+.focusAction {
+  font-family: var(--Typography-Font-Primary);
+  font-size: var(--Label-S-FontSize);
+  font-weight: var(--Label-FontWeight-Medium);
+  line-height: var(--Label-S-LineHeight);
+  border-radius: var(--Shape-Pill);
+}
+
+/* Focus Halo (CLAUDE.md): inner gap adapts to the host surface via
+ * --Surface-Halo-Gap; --Surface-Main is only the first-paint inline fallback. */
+.focusAction:focus-visible,
+.focusChip:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 var(--Stroke-XL) var(--Surface-Halo-Gap, var(--Surface-Main)),
+    0 0 0 var(--Focus-Outline-Width) var(--Focus-Outline);
+}

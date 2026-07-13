@@ -1,0 +1,49 @@
+/**
+ * SliderControl.module.css
+ * Header / description styling for the editor slider wrapper.
+ * The slider itself ships its own tokens from the Slider component.
+ */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-2-5);
+  width: 100%;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.label {
+  font-family: var(--Label-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Label-S-FontSize);
+  line-height: var(--Label-S-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+  color: var(--Text-High);
+}
+
+.value {
+  font-family: var(--Label-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Label-S-FontSize);
+  line-height: var(--Label-S-LineHeight);
+  font-weight: var(--Label-FontWeight-Medium);
+  color: var(--Text-Medium);
+  font-variant-numeric: tabular-nums;
+}
+
+.description {
+  font-family: var(--Label-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+  font-weight: var(--Label-FontWeight-Low);
+  color: var(--Text-Low);
+  margin: var(--Spacing-1-5) 0 0 0;
+}
+
+.disabled {
+  opacity: var(--Disabled-Opacity);
+  pointer-events: none;
+}

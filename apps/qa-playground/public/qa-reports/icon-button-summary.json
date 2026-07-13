@@ -1,0 +1,540 @@
+{
+  "ok": false,
+  "slug": "icon-button",
+  "message": "icon-button QA Playwright run had failures — 2026-06-23T09:16:30.621Z",
+  "suites": {
+    "accessibility": {
+      "suite": "accessibility",
+      "passed": 28,
+      "failed": 0,
+      "skipped": 0,
+      "logs": [
+        "28 test(s) in Playwright report for accessibility.",
+        "Axe: scan completed — 0 violation rules reported."
+      ],
+      "errors": [],
+      "cases": [
+        {
+          "name": "[a11y] WCAG 2.1 AA tag scan + JSON artefact + HTML report (exclude unlabelled band)",
+          "status": "passed",
+          "durationMs": 6926
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — Default band",
+          "status": "passed",
+          "durationMs": 6896,
+          "componentBand": "icon-button-qa-default"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — Size (2XS–XL) band",
+          "status": "passed",
+          "durationMs": 7312,
+          "componentBand": "icon-button-qa-size"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — Attention (high · medium · low) band",
+          "status": "passed",
+          "durationMs": 7485,
+          "componentBand": "icon-button-qa-attention"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — Appearance (colour roles) band",
+          "status": "passed",
+          "durationMs": 6923,
+          "componentBand": "icon-button-qa-appearance"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — Layout (1:1 · 3:2 · full width) band",
+          "status": "passed",
+          "durationMs": 4718,
+          "componentBand": "icon-button-qa-layout"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — Condensed band",
+          "status": "passed",
+          "durationMs": 4652,
+          "componentBand": "icon-button-qa-condensed"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — Disabled and loading band",
+          "status": "passed",
+          "durationMs": 4507,
+          "componentBand": "icon-button-qa-states"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — Interaction band",
+          "status": "passed",
+          "durationMs": 5208,
+          "componentBand": "icon-button-qa-interaction"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — Surface context band",
+          "status": "passed",
+          "durationMs": 4962,
+          "componentBand": "icon-button-qa-surface"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — Edge (invalid size) band",
+          "status": "passed",
+          "durationMs": 4524,
+          "componentBand": "icon-button-qa-edge"
+        },
+        {
+          "name": "[a11y] data-section=\"icon-button-qa-default\" — WCAG tags, zero serious/critical",
+          "status": "passed",
+          "durationMs": 4434
+        },
+        {
+          "name": "[a11y] data-section=\"icon-button-qa-size\" — WCAG tags, zero serious/critical",
+          "status": "passed",
+          "durationMs": 4815
+        },
+        {
+          "name": "[a11y] data-section=\"icon-button-qa-attention\" — WCAG tags, zero serious/critical",
+          "status": "passed",
+          "durationMs": 4616
+        },
+        {
+          "name": "[a11y] data-section=\"icon-button-qa-appearance\" — WCAG tags, zero serious/critical",
+          "status": "passed",
+          "durationMs": 4498
+        },
+        {
+          "name": "[a11y] data-section=\"icon-button-qa-layout\" — WCAG tags, zero serious/critical",
+          "status": "passed",
+          "durationMs": 4498
+        },
+        {
+          "name": "[a11y] data-section=\"icon-button-qa-condensed\" — WCAG tags, zero serious/critical",
+          "status": "passed",
+          "durationMs": 3770
+        },
+        {
+          "name": "[a11y] data-section=\"icon-button-qa-states\" — WCAG tags, zero serious/critical",
+          "status": "passed",
+          "durationMs": 5121
+        },
+        {
+          "name": "[a11y] data-section=\"icon-button-qa-interaction\" — WCAG tags, zero serious/critical",
+          "status": "passed",
+          "durationMs": 4605
+        },
+        {
+          "name": "[a11y] data-section=\"icon-button-qa-surface\" — WCAG tags, zero serious/critical",
+          "status": "passed",
+          "durationMs": 4540
+        },
+        {
+          "name": "[a11y] data-section=\"icon-button-qa-edge\" — WCAG tags, zero serious/critical",
+          "status": "passed",
+          "durationMs": 4149
+        },
+        {
+          "name": "[a11y] axe button-name rule — Test Scenarios page (exclude unlabelled band)",
+          "status": "passed",
+          "durationMs": 4601
+        },
+        {
+          "name": "[a11y] Keyboard Enter — interactive icon button",
+          "status": "passed",
+          "durationMs": 3977
+        },
+        {
+          "name": "[a11y] Keyboard Space — interactive icon button",
+          "status": "passed",
+          "durationMs": 4255
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — icon-only, no aria-label band",
+          "status": "passed",
+          "durationMs": 4842,
+          "bugId": "BUG-ICONBUTTON-001",
+          "componentBand": "icon-button-qa-bug-repro"
+        },
+        {
+          "name": "[a11y] Viewport 320px — horizontal overflow check per showcase band",
+          "status": "passed",
+          "durationMs": 7998
+        },
+        {
+          "name": "[a11y] Section 508 tag run on story bands (exclude unlabelled band)",
+          "status": "passed",
+          "durationMs": 5545
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — Figma size×attention and master matrix grids",
+          "status": "passed",
+          "durationMs": 7232
+        }
+      ],
+      "axe": {
+        "violations": []
+      }
+    },
+    "functional": {
+      "suite": "functional",
+      "passed": 67,
+      "failed": 1,
+      "skipped": 0,
+      "logs": [
+        "68 test(s) in Playwright report for functional."
+      ],
+      "errors": [
+        "6.6 — Loading: busy, disabled interaction, spinner present: Test timeout of 30000ms exceeded while running \"beforeEach\" hook."
+      ],
+      "cases": [
+        {
+          "name": "All 18 Figma size×attention cells match size, attention, and appearance contract",
+          "status": "passed",
+          "durationMs": 6424
+        },
+        {
+          "name": "Master matrix (condensed × size × shape) sections are mounted",
+          "status": "passed",
+          "durationMs": 5507
+        },
+        {
+          "name": "All master-matrix cells render with correct props when condensed=false",
+          "status": "passed",
+          "durationMs": 9836
+        },
+        {
+          "name": "All master-matrix cells render with correct props when condensed=true",
+          "status": "passed",
+          "durationMs": 9516
+        },
+        {
+          "name": "Condensed master matrix still renders neutral palette (beyond Figma spec)",
+          "status": "passed",
+          "durationMs": 5506
+        },
+        {
+          "name": "Non-condensed neutral palette renders for every size at low attention",
+          "status": "passed",
+          "durationMs": 6478
+        },
+        {
+          "name": "Spot check: size M, square shape, high attention — condensed on and off",
+          "status": "passed",
+          "durationMs": 7221
+        },
+        {
+          "name": "Spot check: size L, full-width layout, high attention",
+          "status": "passed",
+          "durationMs": 5257
+        },
+        {
+          "name": "1.1 — Page loads without console errors; default button mounts",
+          "status": "passed",
+          "durationMs": 7849
+        },
+        {
+          "name": "1.2 — Every Test Scenarios `data-testid` is visible",
+          "status": "passed",
+          "durationMs": 6901
+        },
+        {
+          "name": "1.3 — Every `data-section` band is visible",
+          "status": "passed",
+          "durationMs": 5448
+        },
+        {
+          "name": "2.1 — Default props: size M, bold variant, primary appearance",
+          "status": "passed",
+          "durationMs": 5182
+        },
+        {
+          "name": "2.1 — Each Figma size maps to data-size f-step",
+          "status": "passed",
+          "durationMs": 4943
+        },
+        {
+          "name": "2.1 — Attention maps to variant tokens",
+          "status": "passed",
+          "durationMs": 3126
+        },
+        {
+          "name": "2.2 — Size scaling: bounding boxes grow from 2XS → XL",
+          "status": "passed",
+          "durationMs": 3670
+        },
+        {
+          "name": "2.2 — Square layout (1:1) has equal width and height",
+          "status": "passed",
+          "durationMs": 3712
+        },
+        {
+          "name": "3.1 — Single click increments press counter",
+          "status": "passed",
+          "durationMs": 3902
+        },
+        {
+          "name": "3.2 — Disabled button does not increment counter on click",
+          "status": "passed",
+          "durationMs": 3690
+        },
+        {
+          "name": "3.2 — Loading button does not increment counter on click",
+          "status": "passed",
+          "durationMs": 3425
+        },
+        {
+          "name": "3.3 — Readonly (N/A)",
+          "status": "passed",
+          "durationMs": 3608
+        },
+        {
+          "name": "3.4 — Click outside removes focus from interactive button",
+          "status": "passed",
+          "durationMs": 4099
+        },
+        {
+          "name": "4.1 — Interactive button reachable by Tab",
+          "status": "passed",
+          "durationMs": 3790
+        },
+        {
+          "name": "4.1 — Disabled button is not focusable via Tab from interactive",
+          "status": "passed",
+          "durationMs": 3811
+        },
+        {
+          "name": "4.2 — Enter activates interactive button",
+          "status": "passed",
+          "durationMs": 3554
+        },
+        {
+          "name": "4.3 — Space activates interactive button",
+          "status": "passed",
+          "durationMs": 3030
+        },
+        {
+          "name": "4.4 — Arrow keys (N/A)",
+          "status": "passed",
+          "durationMs": 3207
+        },
+        {
+          "name": "4.6 — Escape (N/A)",
+          "status": "passed",
+          "durationMs": 3225
+        },
+        {
+          "name": "4.7 — Tab moves focus away from interactive button",
+          "status": "passed",
+          "durationMs": 3739
+        },
+        {
+          "name": "5.1 — Click to focus interactive button",
+          "status": "passed",
+          "durationMs": 3790
+        },
+        {
+          "name": "5.2 — Focus ring visible on keyboard focus",
+          "status": "passed",
+          "durationMs": 3686
+        },
+        {
+          "name": "5.4 — Blur removes focus from interactive button",
+          "status": "passed",
+          "durationMs": 3461
+        },
+        {
+          "name": "5.5 — autoFocus (N/A)",
+          "status": "passed",
+          "durationMs": 3275
+        },
+        {
+          "name": "6.1 — Default state: enabled bold button with accessible name",
+          "status": "passed",
+          "durationMs": 3269
+        },
+        {
+          "name": "6.2 — Selected/checked (N/A)",
+          "status": "passed",
+          "durationMs": 2774
+        },
+        {
+          "name": "6.3 — Disabled: not enabled, not in click path",
+          "status": "passed",
+          "durationMs": 3239
+        },
+        {
+          "name": "6.6 — Loading: busy, disabled interaction, spinner present",
+          "status": "failed",
+          "durationMs": 32060,
+          "error": "Test timeout of 30000ms exceeded while running \"beforeEach\" hook."
+        },
+        {
+          "name": "6.5 — Unlabelled icon button must expose accessible name",
+          "status": "passed",
+          "durationMs": 3715
+        },
+        {
+          "name": "7.4 — Inner icon glyph renders inside default button",
+          "status": "passed",
+          "durationMs": 3415
+        },
+        {
+          "name": "7.4 — Semantic icon names band each render SVG",
+          "status": "passed",
+          "durationMs": 3478
+        },
+        {
+          "name": "8.x — Not a toggle component",
+          "status": "passed",
+          "durationMs": 2988
+        },
+        {
+          "name": "9.x — Not a text input",
+          "status": "passed",
+          "durationMs": 3045
+        },
+        {
+          "name": "10.2 — Attention high → bold variant on size band cells",
+          "status": "passed",
+          "durationMs": 3371
+        },
+        {
+          "name": "10.2 — layout 3:2 sets data-layout attribute",
+          "status": "passed",
+          "durationMs": 3423
+        },
+        {
+          "name": "10.3 — loading=true disables even when disabled={false}",
+          "status": "passed",
+          "durationMs": 3228
+        },
+        {
+          "name": "11.2 — Labelled buttons expose accessible names",
+          "status": "passed",
+          "durationMs": 3107
+        },
+        {
+          "name": "11.2 — aria-expanded demo exposes false",
+          "status": "passed",
+          "durationMs": 3082
+        },
+        {
+          "name": "11.1 — Press counter caption updates after interaction",
+          "status": "passed",
+          "durationMs": 2896
+        },
+        {
+          "name": "12.1 — fullWidth button width equals parent container width",
+          "status": "passed",
+          "durationMs": 2860
+        },
+        {
+          "name": "12.2 — At 320px viewport, scenario bands fit without horizontal scroll",
+          "status": "passed",
+          "durationMs": 6763
+        },
+        {
+          "name": "12.2b — Default button visible at 1440px viewport",
+          "status": "passed",
+          "durationMs": 5872
+        },
+        {
+          "name": "12.3 — Wide layout (3:2) is wider than square (1:1)",
+          "status": "passed",
+          "durationMs": 4221
+        },
+        {
+          "name": "13.1 — After dark theme, all scenario sections remain visible",
+          "status": "passed",
+          "durationMs": 4924
+        },
+        {
+          "name": "Smoke — Page heading reads “Icon Button”",
+          "status": "passed",
+          "durationMs": 3199
+        },
+        {
+          "name": "Smoke — Default button enabled with accessible name",
+          "status": "passed",
+          "durationMs": 2453
+        },
+        {
+          "name": "Smoke — All button root testids count matches manifest",
+          "status": "passed",
+          "durationMs": 2349
+        },
+        {
+          "name": "[fn] Component page shows title and all QA tabs",
+          "status": "passed",
+          "durationMs": 3765
+        },
+        {
+          "name": "[fn] Default icon button is visible, named “Favourite”, and size M (data-size 10)",
+          "status": "passed",
+          "durationMs": 3677
+        },
+        {
+          "name": "[fn] Figma sizes 2XS–XL map to the correct data-size f-steps",
+          "status": "passed",
+          "durationMs": 3904
+        },
+        {
+          "name": "[fn] Figma attention high / medium / low map to bold / subtle / ghost variants",
+          "status": "passed",
+          "durationMs": 3924
+        },
+        {
+          "name": "[fn] All eight Figma colour roles set data-appearance correctly",
+          "status": "passed",
+          "durationMs": 4183
+        },
+        {
+          "name": "[fn] Square (1:1), wide (3:2), and full-width layout examples render",
+          "status": "passed",
+          "durationMs": 4237
+        },
+        {
+          "name": "[fn] Condensed flag is present only when condensed is true",
+          "status": "passed",
+          "durationMs": 4183
+        },
+        {
+          "name": "[fn] Disabled cannot be clicked; loading shows busy state and accessible name",
+          "status": "passed",
+          "durationMs": 4497
+        },
+        {
+          "name": "[fn] Click increments counter; aria-expanded example is present",
+          "status": "passed",
+          "durationMs": 4115
+        },
+        {
+          "name": "[fn] Icon button on a bold surface renders inside the surface band",
+          "status": "passed",
+          "durationMs": 3979
+        },
+        {
+          "name": "[fn] Invalid size prop falls back to M (data-size 10)",
+          "status": "passed",
+          "durationMs": 4025
+        },
+        {
+          "name": "[fn] All Test Scenarios story bands are mounted on the page",
+          "status": "passed",
+          "durationMs": 4407
+        },
+        {
+          "name": "[fn] Figma Validation tab shows API table, size grid, and master matrix",
+          "status": "passed",
+          "durationMs": 4087
+        }
+      ]
+    },
+    "performance": {
+      "suite": "performance",
+      "passed": 0,
+      "failed": 0,
+      "skipped": 0,
+      "logs": [
+        "Performance suite is not executed in apps/qa-playground icon-button Playwright bundle."
+      ],
+      "errors": []
+    }
+  }
+}

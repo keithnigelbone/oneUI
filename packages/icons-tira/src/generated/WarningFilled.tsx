@@ -1,0 +1,29 @@
+import React, { forwardRef } from 'react';
+import type { IconComponentProps } from '../iconProps';
+
+export const WarningFilled = forwardRef<SVGSVGElement, IconComponentProps>(function WarningFilled(
+  { size = 24, width, height, color = 'currentColor', className, style, ...props },
+  ref,
+) {
+  const dim = width ?? height ?? size;
+  return (
+    <svg
+      ref={ref}
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      width={width ?? dim}
+      height={height ?? dim}
+      color={color}
+      className={className}
+      style={style}
+      {...props}
+    >
+      <path d="M13.7316 5C12.9618 3.66667 11.0373 3.66667 10.2675 5L3.33929 17C2.56949 18.3333 3.53174 20 5.07134 20H18.9277C20.4673 20 21.4296 18.3333 20.6598 17L13.7316 5Z" fill="currentColor"/>
+      <path d="M12.5995 8.9999C12.5995 8.66853 12.3309 8.3999 11.9995 8.3999C11.6681 8.3999 11.3995 8.66853 11.3995 8.9999V13.9999C11.3995 14.3313 11.6681 14.5999 11.9995 14.5999C12.3309 14.5999 12.5995 14.3313 12.5995 13.9999V8.9999Z" fill="white"/>
+      <path d="M11.9995 17.2C12.3309 17.2 12.5995 16.9314 12.5995 16.6C12.5995 16.2686 12.3309 16 11.9995 16C11.6681 16 11.3995 16.2686 11.3995 16.6C11.3995 16.9314 11.6681 17.2 11.9995 17.2Z" fill="white"/>
+    </svg>
+  );
+});
+
+WarningFilled.displayName = 'WarningFilled';

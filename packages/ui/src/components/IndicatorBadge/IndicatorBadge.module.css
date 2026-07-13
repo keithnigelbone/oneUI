@@ -1,0 +1,80 @@
+/**
+ * IndicatorBadge.module.css
+ * Token-only styling — zero hard-coded values
+ */
+
+.badge {
+  /* Intermediate var — default = Primary role */
+  --_idb-bold: var(--Primary-Bold, var(--Surface-Bold));
+
+  background-color: var(--IndicatorBadge-backgroundColor, var(--_idb-bold));
+  border-radius: var(--IndicatorBadge-borderRadius, var(--Shape-Pill));
+  display: inline-block;
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+
+/* ============================================
+ * Appearance classes — remap only --_idb-bold
+ * ============================================ */
+
+.appearanceNeutral {
+  --_idb-bold: var(--Neutral-Bold, var(--Surface-Bold));
+}
+
+.appearanceSecondary {
+  --_idb-bold: var(--Secondary-Bold, var(--Surface-Bold));
+}
+
+.appearanceSparkle {
+  --_idb-bold: var(--Sparkle-Bold, var(--Surface-Bold));
+}
+
+.appearanceBrandBg {
+  --_idb-bold: var(--Brand-Bg-Bold, var(--Surface-Bold));
+}
+
+.appearancePositive {
+  --_idb-bold: var(--Positive-Bold, var(--Surface-Bold));
+}
+
+.appearanceNegative {
+  --_idb-bold: var(--Negative-Bold, var(--Surface-Bold));
+}
+
+.appearanceWarning {
+  --_idb-bold: var(--Warning-Bold, var(--Surface-Bold));
+}
+
+.appearanceInformative {
+  --_idb-bold: var(--Informative-Bold, var(--Surface-Bold));
+}
+
+/* ============================================
+ * Size selectors via data attribute
+ * ============================================ */
+
+.badge[data-size="xs"] {
+  width: var(--IndicatorBadge-size-xs, var(--Spacing-1));
+  height: var(--IndicatorBadge-size-xs, var(--Spacing-1));
+}
+
+.badge[data-size="s"] {
+  width: var(--IndicatorBadge-size-s, var(--Spacing-1-5));
+  height: var(--IndicatorBadge-size-s, var(--Spacing-1-5));
+}
+
+.badge[data-size="m"] {
+  width: var(--IndicatorBadge-size-m, var(--Spacing-2));
+  height: var(--IndicatorBadge-size-m, var(--Spacing-2));
+}
+
+.badge[data-size="l"] {
+  width: var(--IndicatorBadge-size-l, var(--Spacing-3));
+  height: var(--IndicatorBadge-size-l, var(--Spacing-3));
+}
+
+.badge[data-size="xl"] {
+  width: var(--IndicatorBadge-size-xl, var(--Spacing-4));
+  height: var(--IndicatorBadge-size-xl, var(--Spacing-4));
+}

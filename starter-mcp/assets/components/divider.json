@@ -1,0 +1,181 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "Divider",
+  "generatedAt": "2026-01-01T00:00:00.000Z",
+  "machineReadable": true,
+  "intentAndPurpose": {
+    "intent": "Visual separator between sections, list items, or content groups.",
+    "taskContexts": [
+      "section-separation",
+      "list-item-separation",
+      "content-grouping"
+    ],
+    "sentiments": [
+      "neutral"
+    ]
+  },
+  "compositionRules": {
+    "requires": [
+      "orientation context"
+    ],
+    "allows": [
+      "label or icon slot",
+      "round caps"
+    ],
+    "forbids": [
+      "interactive content",
+      "non-separator use"
+    ]
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "low attention",
+        "useWhen": [
+          "subtle content separation (default)"
+        ]
+      },
+      {
+        "name": "medium attention",
+        "useWhen": [
+          "prominent section boundary"
+        ]
+      },
+      {
+        "name": "high attention",
+        "useWhen": [
+          "strong separator between major sections"
+        ]
+      }
+    ]
+  },
+  "relationshipsAndDependencies": {
+    "related": [
+      "ContentBlock",
+      "List"
+    ]
+  },
+  "contextSignals": {
+    "density": [
+      "compact",
+      "default",
+      "open"
+    ],
+    "modality": [
+      "desktop",
+      "mobile"
+    ],
+    "brand": [
+      "theme-scope aware"
+    ],
+    "mode": [
+      "light",
+      "dark"
+    ]
+  },
+  "observabilityHooks": {
+    "track": [],
+    "health": [
+      "a11y_violations"
+    ]
+  },
+  "props": [
+    {
+      "name": "appearance",
+      "type": "DividerAppearance",
+      "required": false,
+      "description": "Multi-accent appearance role. 'auto' resolves to 'neutral'. Default: 'auto'"
+    },
+    {
+      "name": "attention",
+      "type": "DividerAttention",
+      "required": false,
+      "description": "Prominence level — drives stroke tier and slot Icon/Text emphasis. Default: 'low'"
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "required": false,
+      "description": "Additional class name"
+    },
+    {
+      "name": "content",
+      "type": "ReactNode",
+      "required": false,
+      "description": "Optional slot — pass design-system `<Icon />` or `<Text />` (or other nodes). When omitted or empty, renders the Base UI separator only. Divider `appearance` / `attention` are merged onto `Icon` / `Text` when those props are unset on the child."
+    },
+    {
+      "name": "contentAlign",
+      "type": "DividerContentAlign",
+      "required": false,
+      "description": "Position of the slot content. Default: 'center'"
+    },
+    {
+      "name": "data-testid",
+      "type": "string",
+      "required": false,
+      "description": "Test automation id — forwarded to the root separator element only."
+    },
+    {
+      "name": "orientation",
+      "type": "DividerOrientation",
+      "required": false,
+      "description": "Component orientation. Default: 'horizontal'"
+    },
+    {
+      "name": "roundCaps",
+      "type": "boolean",
+      "required": false,
+      "description": "Rounded stroke ends. Default: false"
+    },
+    {
+      "name": "size",
+      "type": "DividerSize",
+      "required": false,
+      "description": "Stroke width of the divider. Default: 'm'"
+    },
+    {
+      "name": "style",
+      "type": "CSSProperties",
+      "required": false,
+      "description": "Inline styles"
+    }
+  ],
+  "slots": [
+    {
+      "name": "content",
+      "types": [
+        "ReactNode",
+        "Icon",
+        "Text"
+      ],
+      "tokens": []
+    }
+  ],
+  "codeSnippets": [
+    {
+      "id": "divider-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { Divider } from '@oneui/ui';\n\n<Divider />"
+    },
+    {
+      "id": "divider-with-text",
+      "title": "With Text",
+      "language": "tsx",
+      "code": "import { Divider, Text } from '@oneui/ui';\n\n<Divider content={<Text variant=\"label\" size=\"S\" weight=\"medium\" text=\"Or\" />} />"
+    },
+    {
+      "id": "divider-vertical",
+      "title": "Vertical",
+      "language": "tsx",
+      "code": "<Divider orientation=\"vertical\" />"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "divider"
+  ],
+  "importPath": "@jds4/oneui-react"
+}

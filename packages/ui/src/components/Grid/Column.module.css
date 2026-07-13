@@ -1,0 +1,37 @@
+/**
+ * Column — CSS Grid cell spanning N columns.
+ *
+ * Mobile-first cascade: each breakpoint inherits its span from the next
+ * smaller breakpoint unless explicitly overridden.
+ */
+
+.column {
+  --_col-span-s:  var(--col-span-s,  var(--col-span, 1));
+  --_col-span-m:  var(--col-span-m,  var(--_col-span-s));
+  --_col-span-ml: var(--col-span-ml, var(--_col-span-m));
+  --_col-span-l:  var(--col-span-l,  var(--_col-span-ml));
+  --_col-span-xl: var(--col-span-xl, var(--_col-span-l));
+
+  --_col-start-s:  var(--col-start-s,  var(--col-start, auto));
+  --_col-start-m:  var(--col-start-m,  var(--_col-start-s));
+  --_col-start-ml: var(--col-start-ml, var(--_col-start-m));
+  --_col-start-l:  var(--col-start-l,  var(--_col-start-ml));
+  --_col-start-xl: var(--col-start-xl, var(--_col-start-l));
+
+  grid-column: var(--_col-start-s) / span var(--_col-span-s);
+  min-width: 0;
+}
+
+/*
+ * Responsive span/start cascade keyed on the unified data-Breakpoint="S|M|L".
+ * The internal ml/xl rungs are retained as fallback links so a Column setting
+ * spanMl/spanXl inline still chains into the L tier (>=991px resolves to L).
+ * See Grid.module.css.
+ */
+[data-Breakpoint="M"] .column {
+  grid-column: var(--_col-start-m) / span var(--_col-span-m);
+}
+
+[data-Breakpoint="L"] .column {
+  grid-column: var(--_col-start-l) / span var(--_col-span-l);
+}

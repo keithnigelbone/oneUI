@@ -1,0 +1,23 @@
+/*
+ * ExperienceLabCanvas.module.css
+ *
+ * Token-only chrome for the isolated Experience Lab canvas (the RIGHT pane of
+ * the chat-first shell, D-13). Zero literals (LAB-02): every value is a Jio
+ * token. tldraw owns its own canvas geometry; this stylesheet only sizes the
+ * canvas host within its grid track. The floating toolbar + right docks
+ * (RequestPanel / RunInspectorPanel) are retired — generation is driven by the
+ * chat pane (D-01).
+ */
+
+.page {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  /* Page surface = default (White-Canvas rule). */
+  background-color: var(--Surface-Main);
+}
+
+.canvasContainer {
+  position: absolute;
+  inset: 0;
+}

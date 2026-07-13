@@ -1,0 +1,16 @@
+.bar {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .bar {
+    display: block;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 90;
+    background: var(--Surface-Elevated, #fff);
+    border-top: 1px solid var(--Surface-Subtle, #e3e3e3);
+  }
+}

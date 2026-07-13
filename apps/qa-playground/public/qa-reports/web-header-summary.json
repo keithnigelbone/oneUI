@@ -1,0 +1,526 @@
+{
+  "ok": false,
+  "slug": "web-header",
+  "message": "web-header QA Playwright run had failures — 2026-07-09T14:54:19.166Z",
+  "suites": {
+    "accessibility": {
+      "suite": "accessibility",
+      "passed": 43,
+      "failed": 0,
+      "skipped": 0,
+      "logs": [
+        "43 test(s) in Playwright report for accessibility.",
+        "Axe: 1 violation rule(s) reported."
+      ],
+      "errors": [],
+      "cases": [
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — zero serious/critical + HTML report",
+          "status": "passed",
+          "durationMs": 10781
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — Default (homeBar · fluid · search end) band",
+          "status": "passed",
+          "durationMs": 9899,
+          "componentBand": "web-header-qa-default"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — homeBar variations band",
+          "status": "passed",
+          "durationMs": 9880,
+          "componentBand": "web-header-qa-home-bar"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — contextBar variations band",
+          "status": "passed",
+          "durationMs": 9971,
+          "componentBand": "web-header-qa-context-bar"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — searchBar variations band",
+          "status": "passed",
+          "durationMs": 9811,
+          "componentBand": "web-header-qa-search-bar"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — start=true / false band",
+          "status": "passed",
+          "durationMs": 5458,
+          "componentBand": "web-header-qa-api-start"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — middle=fluid / centred band",
+          "status": "passed",
+          "durationMs": 5469,
+          "componentBand": "web-header-qa-api-middle"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — primaryNavItems=true / false band",
+          "status": "passed",
+          "durationMs": 5726,
+          "componentBand": "web-header-qa-api-primary-nav"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — end=true / false band",
+          "status": "passed",
+          "durationMs": 5735,
+          "componentBand": "web-header-qa-api-end"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — avatar=true / false band",
+          "status": "passed",
+          "durationMs": 5766,
+          "componentBand": "web-header-qa-api-avatar"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — EndActions Button / IconButton band",
+          "status": "passed",
+          "durationMs": 4168,
+          "componentBand": "web-header-qa-end-actions"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — Header.Item slot band",
+          "status": "passed",
+          "durationMs": 4347,
+          "componentBand": "web-header-qa-header-item"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — Negative / edge cases band",
+          "status": "passed",
+          "durationMs": 4623,
+          "componentBand": "web-header-qa-negative"
+        },
+        {
+          "name": "[a11y] WCAG 2.1 AA axe scan — Responsive platform widths band",
+          "status": "passed",
+          "durationMs": 4980,
+          "componentBand": "web-header-qa-responsive"
+        },
+        {
+          "name": "[a11y] data-testid=\"web-header-default\" — zero serious/critical",
+          "status": "passed",
+          "durationMs": 4079
+        },
+        {
+          "name": "[a11y] data-testid=\"web-header-home-fluid-search-end\" — zero serious/critical",
+          "status": "passed",
+          "durationMs": 3026
+        },
+        {
+          "name": "[a11y] data-testid=\"web-header-start-false\" — zero serious/critical",
+          "status": "passed",
+          "durationMs": 3444
+        },
+        {
+          "name": "[a11y] data-testid=\"web-header-primary-nav-false\" — zero serious/critical",
+          "status": "passed",
+          "durationMs": 3717
+        },
+        {
+          "name": "[a11y] data-testid=\"web-header-end-button\" — zero serious/critical",
+          "status": "passed",
+          "durationMs": 3743
+        },
+        {
+          "name": "[a11y] data-testid=\"web-header-context-no-nav\" — zero serious/critical",
+          "status": "passed",
+          "durationMs": 3684
+        },
+        {
+          "name": "[a11y] data-testid=\"web-header-search-middle\" — zero serious/critical",
+          "status": "passed",
+          "durationMs": 3219
+        },
+        {
+          "name": "[a11y] data-testid=\"web-header-negative-empty-nav\" — zero serious/critical",
+          "status": "passed",
+          "durationMs": 3731
+        },
+        {
+          "name": "[a11y] data-testid=\"web-header-platform-360-inner\" — zero serious/critical",
+          "status": "passed",
+          "durationMs": 4888
+        },
+        {
+          "name": "[a11y] data-testid=\"web-header-platform-768-inner\" — zero serious/critical",
+          "status": "passed",
+          "durationMs": 4805
+        },
+        {
+          "name": "[a11y] data-testid=\"web-header-platform-1024-inner\" — zero serious/critical",
+          "status": "passed",
+          "durationMs": 5059
+        },
+        {
+          "name": "[a11y] Figma validation tab — property × platform grid — zero serious/critical",
+          "status": "passed",
+          "durationMs": 8399
+        },
+        {
+          "name": "[a11y] Section 508 tag run — zero serious/critical",
+          "status": "passed",
+          "durationMs": 3858
+        },
+        {
+          "name": "[a11y] axe label rule — showcase bands, zero serious/critical",
+          "status": "passed",
+          "durationMs": 3359
+        },
+        {
+          "name": "[a11y] ARIA validity rules — zero serious/critical",
+          "status": "passed",
+          "durationMs": 4277
+        },
+        {
+          "name": "[a11y] axe name rules — showcase bands, zero serious/critical",
+          "status": "passed",
+          "durationMs": 4025
+        },
+        {
+          "name": "[a11y] page lang on <html>",
+          "status": "passed",
+          "durationMs": 2700
+        },
+        {
+          "name": "[a11y] Default mount exposes labelled primary navigation landmark",
+          "status": "passed",
+          "durationMs": 2143
+        },
+        {
+          "name": "[a11y] search input has accessible label",
+          "status": "passed",
+          "durationMs": 3072
+        },
+        {
+          "name": "[a11y] icon buttons in end slot have accessible names",
+          "status": "passed",
+          "durationMs": 3918
+        },
+        {
+          "name": "[a11y] avatar exposes accessible name",
+          "status": "passed",
+          "durationMs": 4106
+        },
+        {
+          "name": "[a11y] Viewport 320px — horizontal overflow check per showcase band",
+          "status": "passed",
+          "durationMs": 8056
+        },
+        {
+          "name": "[a11y] 200% zoom — showcase headers remain visible",
+          "status": "passed",
+          "durationMs": 4319
+        },
+        {
+          "name": "[a11y] Tab reaches a focusable control",
+          "status": "passed",
+          "durationMs": 4114
+        },
+        {
+          "name": "[a11y] no keyboard trap (Tab cycle advances)",
+          "status": "passed",
+          "durationMs": 4238
+        },
+        {
+          "name": "[a11y] focus order — Tab visits multiple distinct targets",
+          "status": "passed",
+          "durationMs": 4007
+        },
+        {
+          "name": "[a11y] focused element shows outline or box-shadow",
+          "status": "passed",
+          "durationMs": 3847
+        },
+        {
+          "name": "[a11y] Mode select activates with Enter when focused",
+          "status": "passed",
+          "durationMs": 3055
+        },
+        {
+          "name": "[a11y] Mode select activates with Space when focused",
+          "status": "passed",
+          "durationMs": 3468
+        }
+      ],
+      "axe": {
+        "violations": [
+          {
+            "id": "color-contrast",
+            "impact": "serious",
+            "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+            "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/color-contrast?application=playwright",
+            "nodes": 28
+          }
+        ]
+      }
+    },
+    "functional": {
+      "suite": "functional",
+      "passed": 46,
+      "failed": 2,
+      "skipped": 0,
+      "logs": [
+        "48 test(s) in Playwright report for functional."
+      ],
+      "errors": [
+        "[fn] start=true shows logo: Error: expect(locator).toBeVisible() failed",
+        "[fn] avatar=true shows avatar: Error: expect(locator).toBeVisible() failed"
+      ],
+      "cases": [
+        {
+          "name": "[fn] 1.1 — Page loads without console errors",
+          "status": "passed",
+          "durationMs": 5607
+        },
+        {
+          "name": "[fn] 1.2 — manifest section count matches showcase bands",
+          "status": "passed",
+          "durationMs": 2366
+        },
+        {
+          "name": "[fn] 1.3 — every manifest testid is visible",
+          "status": "passed",
+          "durationMs": 3138
+        },
+        {
+          "name": "[fn] 1.4 — every data-section band is visible",
+          "status": "passed",
+          "durationMs": 5225
+        },
+        {
+          "name": "[fn] 2.1 — homeBar type attribute",
+          "status": "passed",
+          "durationMs": 4040
+        },
+        {
+          "name": "[fn] 2.2 — contextBar type attribute",
+          "status": "passed",
+          "durationMs": 3770
+        },
+        {
+          "name": "[fn] 2.3 — searchBar type attribute",
+          "status": "passed",
+          "durationMs": 4225
+        },
+        {
+          "name": "[fn] 3.1 — empty navigation band renders without crash",
+          "status": "passed",
+          "durationMs": 4716
+        },
+        {
+          "name": "[fn] 3.2 — no end + no avatar band renders",
+          "status": "passed",
+          "durationMs": 2295
+        },
+        {
+          "name": "[fn] 3.3 — searchBar without search input band renders",
+          "status": "passed",
+          "durationMs": 1855
+        },
+        {
+          "name": "[fn] 4.1 — mobile layout (360)",
+          "status": "passed",
+          "durationMs": 3482
+        },
+        {
+          "name": "[fn] 4.2 — tablet layout (768)",
+          "status": "passed",
+          "durationMs": 2586
+        },
+        {
+          "name": "[fn] 4.3 — desktop layout (1024)",
+          "status": "passed",
+          "durationMs": 2798
+        },
+        {
+          "name": "[fn] 5.1 — Tab reaches focusable controls in default header",
+          "status": "passed",
+          "durationMs": 2770
+        },
+        {
+          "name": "[fn] 5.2 — focus indicator visible after Tab",
+          "status": "passed",
+          "durationMs": 4058
+        },
+        {
+          "name": "[fn] Smoke — Page heading reads \"Web Header\"",
+          "status": "passed",
+          "durationMs": 3926
+        },
+        {
+          "name": "[fn] Smoke — Default mount visible",
+          "status": "passed",
+          "durationMs": 3836
+        },
+        {
+          "name": "[fn] Smoke — goto helper reaches default mount",
+          "status": "passed",
+          "durationMs": 7694
+        },
+        {
+          "name": "[fn] shows Web Header page heading",
+          "status": "passed",
+          "durationMs": 3287
+        },
+        {
+          "name": "[fn] scenario tabs are present",
+          "status": "passed",
+          "durationMs": 3265
+        },
+        {
+          "name": "[fn] theme toggle updates data-mode",
+          "status": "passed",
+          "durationMs": 2752
+        },
+        {
+          "name": "[fn] default header mount is visible",
+          "status": "passed",
+          "durationMs": 2406
+        },
+        {
+          "name": "[fn] default mount exposes primary navigation landmark",
+          "status": "passed",
+          "durationMs": 2328
+        },
+        {
+          "name": "[fn] default mount — four nav items render",
+          "status": "passed",
+          "durationMs": 3601
+        },
+        {
+          "name": "[fn] default mount — clicking Products updates active item",
+          "status": "passed",
+          "durationMs": 4063
+        },
+        {
+          "name": "[fn] homeBar mounts are visible",
+          "status": "passed",
+          "durationMs": 3613
+        },
+        {
+          "name": "[fn] contextBar mounts are visible",
+          "status": "passed",
+          "durationMs": 4261
+        },
+        {
+          "name": "[fn] searchBar mounts are visible",
+          "status": "passed",
+          "durationMs": 4486
+        },
+        {
+          "name": "[fn] start=true shows logo",
+          "status": "failed",
+          "durationMs": 8937,
+          "error": "Error: expect(locator).toBeVisible() failed"
+        },
+        {
+          "name": "[fn] start=false hides logo",
+          "status": "passed",
+          "durationMs": 3551
+        },
+        {
+          "name": "[fn] middle=fluid data attribute",
+          "status": "passed",
+          "durationMs": 3968
+        },
+        {
+          "name": "[fn] middle=centred data attribute",
+          "status": "passed",
+          "durationMs": 3823
+        },
+        {
+          "name": "[fn] primaryNavItems=false hides nav buttons",
+          "status": "passed",
+          "durationMs": 4096
+        },
+        {
+          "name": "[fn] primaryNavItems=true shows nav buttons",
+          "status": "passed",
+          "durationMs": 4148
+        },
+        {
+          "name": "[fn] end=true shows IconButton actions",
+          "status": "passed",
+          "durationMs": 3558
+        },
+        {
+          "name": "[fn] end=false hides end actions",
+          "status": "passed",
+          "durationMs": 1957
+        },
+        {
+          "name": "[fn] avatar=true shows avatar",
+          "status": "failed",
+          "durationMs": 6916,
+          "error": "Error: expect(locator).toBeVisible() failed"
+        },
+        {
+          "name": "[fn] avatar=false hides avatar",
+          "status": "passed",
+          "durationMs": 1603
+        },
+        {
+          "name": "[fn] EndActions Button slot renders",
+          "status": "passed",
+          "durationMs": 3861
+        },
+        {
+          "name": "[fn] EndActions IconButton cluster renders",
+          "status": "passed",
+          "durationMs": 2707
+        },
+        {
+          "name": "[fn] Header.Item slot — nav items clickable",
+          "status": "passed",
+          "durationMs": 2518
+        },
+        {
+          "name": "[fn] searchBar middle — search landmark visible",
+          "status": "passed",
+          "durationMs": 2894
+        },
+        {
+          "name": "[fn] contextBar without nav — no Home button",
+          "status": "passed",
+          "durationMs": 3551
+        },
+        {
+          "name": "[fn] responsive band — all Figma platform mounts visible",
+          "status": "passed",
+          "durationMs": 3776
+        },
+        {
+          "name": "[fn] platform 360 — hamburger menu button visible",
+          "status": "passed",
+          "durationMs": 3944
+        },
+        {
+          "name": "[fn] platform 1024 — expanded search input visible",
+          "status": "passed",
+          "durationMs": 3818
+        },
+        {
+          "name": "[fn] platform 360 — search hidden on mobile",
+          "status": "passed",
+          "durationMs": 4316
+        },
+        {
+          "name": "[fn] figma validation tab mounts property × platform grid",
+          "status": "passed",
+          "durationMs": 3615
+        }
+      ]
+    },
+    "performance": {
+      "suite": "performance",
+      "passed": 0,
+      "failed": 0,
+      "skipped": 0,
+      "logs": [
+        "Performance suite is not executed in apps/qa-playground web-header Playwright bundle."
+      ],
+      "errors": []
+    }
+  }
+}

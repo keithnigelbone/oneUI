@@ -1,0 +1,660 @@
+/**
+ * ONEUI DESIGN SYSTEM - PRIMITIVE TOKENS
+ * Raw token values (CSS custom properties)
+ * These are the foundation - theme files override specific tokens
+ */
+
+@layer base {
+:root {
+  /* ========================================
+     DIMENSION F-STEPS
+     26-step scale (f-8 through f16 + f2-5), discrete per platform × density.
+     Fallback defaults (S/default). Active values set by scale.css
+     via @media + [data-Breakpoint] × [data-6-Density] selectors.
+     ======================================== */
+
+  --Dimension-f-8: 0px;
+  --Dimension-f-7: 2px;
+  --Dimension-f-6: 4px;
+  --Dimension-f-5: 6px;
+  --Dimension-f-4: 8px;
+  --Dimension-f-3: 10px;
+  --Dimension-f-2: 12px;
+  --Dimension-f-1: 14px;
+  --Dimension-f0:  16px;
+  --Dimension-f1:  18px;
+  --Dimension-f2:  20px;
+  --Dimension-f2-5: 22px; /* midpoint of f2+f3; explicit per-block in scale.css */
+  --Dimension-f3:  24px;
+  --Dimension-f4:  28px;
+  --Dimension-f5:  32px;
+  --Dimension-f6:  36px;
+  --Dimension-f7:  40px;
+  --Dimension-f8:  48px;
+  --Dimension-f9:  56px;
+  --Dimension-f10: 64px;
+  --Dimension-f11: 72px;
+  --Dimension-f12: 80px;
+  --Dimension-f13: 96px;
+  --Dimension-f14: 112px;
+  --Dimension-f15: 128px;
+  --Dimension-f16: 160px;
+
+  /* ========================================
+     SPACING — canonical numeric naming
+     All reference f-steps → responsive to platform + density.
+     New platform and component code should use --Spacing-0 … --Spacing-40.
+     ======================================== */
+
+  --Spacing-0:   var(--Dimension-f-8);  /* 0px   */
+  --Spacing-0-5: var(--Dimension-f-7);  /* 2px   */
+  --Spacing-1:   var(--Dimension-f-6);  /* 4px   */
+  --Spacing-1-5: var(--Dimension-f-5);  /* 6px   */
+  --Spacing-2:   var(--Dimension-f-4);  /* 8px   */
+  --Spacing-2-5: var(--Dimension-f-3);  /* 10px  */
+  --Spacing-3:   var(--Dimension-f-2);  /* 12px  */
+  --Spacing-3-5: var(--Dimension-f-1);  /* 14px  */
+  --Spacing-4:   var(--Dimension-f0);   /* 16px  */
+  --Spacing-4-5: var(--Dimension-f1);   /* 18px  */
+  --Spacing-5:   var(--Dimension-f2);   /* 20px  */
+  --Spacing-5-5: var(--Dimension-f2-5); /* 22px  */
+  --Spacing-6:   var(--Dimension-f3);   /* 24px  */
+  --Spacing-7:   var(--Dimension-f4);   /* 28px  */
+  --Spacing-8:   var(--Dimension-f5);   /* 32px  */
+  --Spacing-9:   var(--Dimension-f6);   /* 36px  */
+  --Spacing-10:  var(--Dimension-f7);   /* 40px  */
+  --Spacing-12:  var(--Dimension-f8);   /* 48px  */
+  --Spacing-14:  var(--Dimension-f9);   /* 56px  */
+  --Spacing-16:  var(--Dimension-f10);  /* 64px  */
+  --Spacing-18:  var(--Dimension-f11);  /* 72px  */
+  --Spacing-20:  var(--Dimension-f12);  /* 80px  */
+  --Spacing-24:  var(--Dimension-f13);  /* 96px  */
+  --Spacing-28:  var(--Dimension-f14);  /* 112px */
+  --Spacing-32:  var(--Dimension-f15);  /* 128px */
+  --Spacing-40:  var(--Dimension-f16);  /* 160px */
+  --Spacing-Negative-0-5: calc(var(--Spacing-0-5) * -1);
+  --Spacing-Negative-1:   calc(var(--Spacing-1) * -1);
+  --Spacing-Negative-1-5: calc(var(--Spacing-1-5) * -1);
+  --Spacing-Negative-2:   calc(var(--Spacing-2) * -1);
+  --Spacing-Negative-2-5: calc(var(--Spacing-2-5) * -1);
+  --Spacing-Negative-3:   calc(var(--Spacing-3) * -1);
+  --Spacing-Negative-3-5: calc(var(--Spacing-3-5) * -1);
+  --Spacing-Negative-4:   calc(var(--Spacing-4) * -1);
+  --Spacing-Negative-4-5: calc(var(--Spacing-4-5) * -1);
+  --Spacing-Negative-5:   calc(var(--Spacing-5) * -1);
+  --Spacing-Negative-5-5: calc(var(--Spacing-5-5) * -1);
+  --Spacing-Negative-6:   calc(var(--Spacing-6) * -1);
+  --Spacing-Negative-7:   calc(var(--Spacing-7) * -1);
+  --Spacing-Negative-8:   calc(var(--Spacing-8) * -1);
+  --Spacing-Margin: var(--Grid-Margin);
+  --Spacing-Gutter: var(--Grid-Gutter);
+
+  /* ========================================
+     SHAPE — Figma-aligned numeric naming
+     Matches Figma dimensions/shape variable names.
+     Range: 0–10 (0px–40px at S/default). All reference f-steps.
+     --Shape-Pill is a standalone constant, not part of the numeric scale.
+     ======================================== */
+
+  --Shape-Pill:  9999px;
+  --Shape-0:    var(--Dimension-f-8);   /* 0px   */
+  --Shape-0-5:  var(--Dimension-f-7);   /* 2px   */
+  --Shape-1:    var(--Dimension-f-6);   /* 4px   */
+  --Shape-1-5:  var(--Dimension-f-5);   /* 6px   */
+  --Shape-2:    var(--Dimension-f-4);   /* 8px   */
+  --Shape-2-5:  var(--Dimension-f-3);   /* 10px  */
+  --Shape-3:    var(--Dimension-f-2);   /* 12px  */
+  --Shape-3-5:  var(--Dimension-f-1);   /* 14px  */
+  --Shape-4:    var(--Dimension-f0);    /* 16px  */
+  --Shape-4-5:  var(--Dimension-f1);    /* 18px  */
+  --Shape-5:    var(--Dimension-f2);    /* 20px  */
+  --Shape-5-5:  var(--Dimension-f2-5);  /* 22px  */
+  --Shape-6:    var(--Dimension-f3);    /* 24px  */
+  --Shape-7:    var(--Dimension-f4);    /* 28px  */
+  --Shape-8:    var(--Dimension-f5);    /* 32px  */
+  --Shape-9:    var(--Dimension-f6);    /* 36px  */
+  --Shape-10:   var(--Dimension-f7);    /* 40px  */
+
+  /* ========================================
+     COLOR TOKENS - BASE VALUES
+     Override these in theme files
+     ======================================== */
+
+  /* Surface colors (Rang De naming convention)
+     Default: Base surface (same as background)
+     Minimal: +1 step from background
+     Subtle: +2 steps from background
+     Bold: High contrast emphasis
+     Elevated: Default + elevation shadow */
+  --Surface-Default: oklch(100% 0 0);
+  --Surface-Minimal: oklch(97% 0 0);
+  --Surface-Subtle: oklch(94% 0 0);
+  --Surface-Bold: oklch(25% 0 0);
+  --Surface-Fill-Bold: oklch(25% 0 0);
+  --Surface-Elevated: oklch(100% 0 0);
+
+  /* Surface interaction states (Rang De stacking)
+     Hover: -1 step darker
+     Pressed: -2 steps darker */
+  --Surface-Bold-Hover: oklch(22% 0 0);
+  --Surface-Bold-Pressed: oklch(19% 0 0);
+  --Surface-Subtle-Hover: oklch(91% 0 0);
+  --Surface-Subtle-Pressed: oklch(88% 0 0);
+  --Surface-Minimal-Hover: oklch(94% 0 0);
+  --Surface-Minimal-Pressed: oklch(91% 0 0);
+
+  /* Legacy aliases (for backward compatibility) */
+  --Surface-Main: var(--Surface-Default);
+  --Surface-Ghost: var(--Surface-Minimal);
+
+  /* Text colors - High contrast, readable */
+  --Text-High: oklch(15% 0 0);
+  --Text-Medium: oklch(45% 0 0);
+  --Text-Low: oklch(65% 0 0);
+  --Text-OnBold-High: oklch(98% 0 0);
+
+  /* V3 Text/Stroke split - stroke variants for borders/dividers */
+  --Text-Medium-Stroke: oklch(45% 0 0);
+  --Text-Low-Stroke: oklch(65% 0 0);
+
+  /* ========================================
+     MOTION TOKENS
+     Jio canonical values — base duration 300ms, ratio 1.5x per step.
+     Brand overrides injected via useBrandCSS (inside @layer brand).
+     ======================================== */
+
+  /* Durations — Moderate (default) */
+  --Motion-Duration-2XS: 60ms;
+  --Motion-Duration-XS: 90ms;
+  --Motion-Duration-S: 135ms;
+  --Motion-Duration-M: 200ms;
+  --Motion-Duration-L: 300ms;   /* default */
+  --Motion-Duration-XL: 450ms;
+  --Motion-Duration-2XL: 675ms;
+  --Motion-Duration-3XL: 1015ms;
+
+  /* Durations — Subtle (reduced-motion variants) */
+  --Motion-Duration-Subtle-2XS: 40ms;
+  --Motion-Duration-Subtle-XS: 60ms;
+  --Motion-Duration-Subtle-S: 90ms;
+  --Motion-Duration-Subtle-M: 135ms;
+  --Motion-Duration-Subtle-L: 200ms;  /* subtle default */
+  --Motion-Duration-Subtle-XL: 300ms;
+  --Motion-Duration-Subtle-2XL: 450ms;
+  --Motion-Duration-Subtle-3XL: 675ms;
+
+  /* Offsets — Moderate (stagger delays) */
+  --Motion-Offset-S: 25ms;
+  --Motion-Offset-M: 40ms;
+  --Motion-Offset-L: 90ms;
+  --Motion-Offset-XL: 200ms;
+  --Motion-Offset-2XL: 450ms;
+  --Motion-Offset-3XL: 1015ms;
+
+  /* Offsets — Subtle */
+  --Motion-Offset-Subtle-S: 15ms;
+  --Motion-Offset-Subtle-M: 25ms;
+  --Motion-Offset-Subtle-L: 60ms;
+  --Motion-Offset-Subtle-XL: 135ms;
+  --Motion-Offset-Subtle-2XL: 300ms;
+  --Motion-Offset-Subtle-3XL: 675ms;
+
+  /* Easing curves */
+  --Motion-Easing-Entrance-Moderate: cubic-bezier(0.25, 0.8, 0.5, 1);
+  --Motion-Easing-Entrance-Subtle: cubic-bezier(0.2, 0.3, 0.5, 0.9);
+  --Motion-Easing-Exit-Moderate: cubic-bezier(0.7, 0.1, 0.9, 0.7);
+  --Motion-Easing-Exit-Subtle: cubic-bezier(0.5, 0.1, 1, 1);
+  --Motion-Easing-Transition-Moderate: cubic-bezier(0.5, 0, 0.3, 1);
+  --Motion-Easing-Transition-Subtle: cubic-bezier(0.4, 0, 0.5, 1);
+  --Motion-Easing-Bounce-Moderate: cubic-bezier(0.2, 1.4, 0.3, 1);
+  --Motion-Easing-Bounce-Subtle: cubic-bezier(0.4, 0, 0.5, 1);
+  --Motion-Easing-Linear: linear;
+
+  /* Motion distances (transform offsets for translate animations) */
+  --Motion-Distance-Micro: 1px;
+  --Motion-Distance-Small: 4px;
+  --Motion-Distance-Medium: 8px;
+  --Motion-Distance-Large: 16px;
+  --Motion-Distance-XLarge: 100px;
+
+  /* ========================================
+     TYPOGRAPHY
+     ======================================== */
+
+  /* Font slot tokens (Text / Heading + deprecation aliases) live in
+     typography/typography.css — the source of truth. We keep --Typography-Font-Mono
+     here because it's a primitive layered alias for --Typography-Font-Code. */
+  --Typography-Font-Mono: var(--Typography-Font-Code, 'JetBrains Mono', 'Fira Code', 'SF Mono', Consolas, monospace);
+
+  /* Font weights */
+  --Typography-Weight-Regular: 400;
+  --Typography-Weight-Medium: 500;
+  --Typography-Weight-Semibold: 600;
+  --Typography-Weight-Bold: 700;
+  --Typography-Weight-Extrabold: 900;
+
+  /* Font sizes — V2 backward compat aliases defined in typography/typography.css.
+     These are now relational: each maps to a dimension f-step --Dimension-f{N}.
+     See typography/typography.css for all 25 role-based tokens + backward compat. */
+
+  /* Line heights */
+  --Typography-LineHeight-None: 1;
+  --Typography-LineHeight-Tight: 1.2;
+  --Typography-LineHeight-Normal: 1.5;
+  --Typography-LineHeight-Relaxed: 1.625;
+
+  /* Letter spacing */
+  --Typography-LetterSpacing-Tight: -0.02em;
+  --Typography-LetterSpacing-Normal: 0;
+  --Typography-LetterSpacing-Wide: 0.025em;
+  --Typography-LetterSpacing-Wider: 0.05em;
+
+  /* ========================================
+     COMPONENT DIMENSIONS
+     ======================================== */
+
+  --Component-Height-TopBar: 52px;
+  --Component-Width-LeftNav: 240px;
+  --Component-Width-LeftNav-Collapsed: 60px;
+  --Component-Max-Height-Dialog: 300px;
+
+  /* ========================================
+     STROKE TOKENS
+     Static strokes (fixed px) + dynamic strokes (alias f-scale)
+     Source: Figma JSON collection "8 Stroke"
+     ======================================== */
+
+  /* Static strokes */
+  --Stroke-None: 0px;
+  --Stroke-S: 0.5px;
+  --Stroke-M: 1px;
+  --Stroke-L: 1.5px;
+  --Stroke-XL: 2px;
+  --Stroke-2XL: 3px;
+
+  /* Dynamic strokes (responsive via f-scale) */
+  --Stroke-3XL: var(--Dimension-f-6);
+  --Stroke-4XL: var(--Dimension-f-5);
+  --Stroke-5XL: var(--Dimension-f-4);
+  --Stroke-6XL: var(--Dimension-f-3);
+  --Stroke-7XL: var(--Dimension-f-2);
+  --Stroke-8XL: var(--Dimension-f-1);
+  --Stroke-9XL: var(--Dimension-f0);
+
+  /* ========================================
+     TOUCH TARGETS & DIALOG HEIGHTS
+     ======================================== */
+
+  --Touch-Target-Min: 44px;
+  --Dialog-Height-Medium: 600px;
+  --Dialog-Height-Large: 1000px;
+
+  /* ========================================
+     SHADOWS / ELEVATION
+     Two-light formula: key light (sharp) + ambient light (soft)
+     ======================================== */
+
+  --Shadow-Subtle: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+  /* Elevation levels - higher = more prominent */
+  --Elevation-0: none;
+  --Elevation-1: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.06);
+  --Elevation-2: 0 3px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
+  --Elevation-3: 0 10px 20px rgba(0, 0, 0, 0.12), 0 3px 6px rgba(0, 0, 0, 0.08);
+  --Elevation-4: 0 15px 25px rgba(0, 0, 0, 0.15), 0 5px 10px rgba(0, 0, 0, 0.08);
+  --Elevation-5: 0 20px 40px rgba(0, 0, 0, 0.2), 0 8px 16px rgba(0, 0, 0, 0.1);
+
+  /* ========================================
+     MATERIALS SYSTEM
+     Translucent, Frosted, Glass, Metallic
+     ======================================== */
+
+  /* --- TRANSLUCENT MATERIALS ---
+     Simple opacity-based overlays for content on media */
+
+  /* Light variants (white with alpha) */
+  --Material-Translucent-Light-Minimal: rgba(255, 255, 255, 0.10);
+  --Material-Translucent-Light-Subtle: rgba(255, 255, 255, 0.25);
+  --Material-Translucent-Light-Moderate: rgba(255, 255, 255, 0.50);
+  --Material-Translucent-Light-Heavy: rgba(255, 255, 255, 0.75);
+
+  /* Dark variants (black with alpha) */
+  --Material-Translucent-Dark-Minimal: rgba(0, 0, 0, 0.10);
+  --Material-Translucent-Dark-Subtle: rgba(0, 0, 0, 0.25);
+  --Material-Translucent-Dark-Moderate: rgba(0, 0, 0, 0.50);
+  --Material-Translucent-Dark-Heavy: rgba(0, 0, 0, 0.75);
+
+  /* --- FROSTED MATERIALS ---
+     Blur-based glass effects for navigation, toolbars, modals */
+
+  /* Blur values (backdrop-filter) */
+  --Material-Frosted-Blur-UltraThin: 4px;
+  --Material-Frosted-Blur-Thin: 8px;
+  --Material-Frosted-Blur-Regular: 16px;
+  --Material-Frosted-Blur-Thick: 24px;
+  --Material-Frosted-Blur-UltraThick: 32px;
+
+  /* Frosted backgrounds (light mode defaults - theme overrides for dark) */
+  --Material-Frosted-Background-UltraThin: rgba(255, 255, 255, 0.30);
+  --Material-Frosted-Background-Thin: rgba(255, 255, 255, 0.50);
+  --Material-Frosted-Background-Regular: rgba(255, 255, 255, 0.65);
+  --Material-Frosted-Background-Thick: rgba(255, 255, 255, 0.75);
+  --Material-Frosted-Background-UltraThick: rgba(255, 255, 255, 0.85);
+
+  /* Frosted border (edge definition) */
+  --Material-Frosted-Border: rgba(255, 255, 255, 0.20);
+
+  /* Frosted fallback (when backdrop-filter unsupported) */
+  --Material-Frosted-Fallback-UltraThin: rgba(255, 255, 255, 0.80);
+  --Material-Frosted-Fallback-Thin: rgba(255, 255, 255, 0.85);
+  --Material-Frosted-Fallback-Regular: rgba(255, 255, 255, 0.92);
+  --Material-Frosted-Fallback-Thick: rgba(255, 255, 255, 0.95);
+  --Material-Frosted-Fallback-UltraThick: rgba(255, 255, 255, 0.97);
+
+  /* --- GLASS MATERIALS ---
+     Advanced glass with backdrop-blur + gradient highlights + shadows */
+
+  /* Glass blur values */
+  --Material-Glass-Blur-Regular: 20px;
+  --Material-Glass-Blur-Clear: 12px;
+
+  /* Glass saturation (backdrop-filter saturate) */
+  --Material-Glass-Saturation-Regular: 180%;
+  --Material-Glass-Saturation-Clear: 150%;
+
+  /* Glass highlight intensity (for radial gradient) */
+  --Material-Glass-Highlight-Minimal: 0.12;
+  --Material-Glass-Highlight-Moderate: 0.25;
+  --Material-Glass-Highlight-Strong: 0.40;
+
+  /* Glass tint (base background) */
+  --Material-Glass-Tint-Light: rgba(255, 255, 255, 0.45);
+  --Material-Glass-Tint-Dark: rgba(0, 0, 0, 0.45);
+  --Material-Glass-Tint: var(--Material-Glass-Tint-Light);
+
+  /* Glass border (edge definition) */
+  --Material-Glass-Border-Light: rgba(255, 255, 255, 0.25);
+  --Material-Glass-Border-Dark: rgba(255, 255, 255, 0.10);
+  --Material-Glass-Border: var(--Material-Glass-Border-Light);
+
+  /* --- METALLIC MATERIALS ---
+     Gradient-based materials simulating precious metals */
+
+  /* Gold palette */
+  --Material-Metallic-Gold-Shadow: #462523;
+  --Material-Metallic-Gold-BaseDark: #9a7b2d;
+  --Material-Metallic-Gold-Base: #cb9b51;
+  --Material-Metallic-Gold-BaseLight: #f6e27a;
+  --Material-Metallic-Gold-Highlight: #f6f2c0;
+  --Material-Metallic-Gold-Text: #462523;
+  --Material-Metallic-Gold-GradientType: linear;
+  --Material-Metallic-Gold-GradientAngle: 135deg;
+
+  /* Silver palette */
+  --Material-Metallic-Silver-Shadow: #3d3d3d;
+  --Material-Metallic-Silver-BaseDark: #6a6a6a;
+  --Material-Metallic-Silver-Base: #8c8c8c;
+  --Material-Metallic-Silver-BaseLight: #c0c0c0;
+  --Material-Metallic-Silver-Highlight: #f0f0f0;
+  --Material-Metallic-Silver-Text: #2a2a2a;
+  --Material-Metallic-Silver-GradientType: linear;
+  --Material-Metallic-Silver-GradientAngle: 135deg;
+
+  /* Bronze palette */
+  --Material-Metallic-Bronze-Shadow: #3d2314;
+  --Material-Metallic-Bronze-BaseDark: #7a4a2a;
+  --Material-Metallic-Bronze-Base: #a97142;
+  --Material-Metallic-Bronze-BaseLight: #cd9355;
+  --Material-Metallic-Bronze-Highlight: #e8c896;
+  --Material-Metallic-Bronze-Text: #3d2314;
+  --Material-Metallic-Bronze-GradientType: linear;
+  --Material-Metallic-Bronze-GradientAngle: 135deg;
+
+  /* Custom palette */
+  --Material-Metallic-Custom-Shadow: #1f2933;
+  --Material-Metallic-Custom-BaseDark: #52606d;
+  --Material-Metallic-Custom-Base: #7b8794;
+  --Material-Metallic-Custom-BaseLight: #cbd2d9;
+  --Material-Metallic-Custom-Highlight: #f5f7fa;
+  --Material-Metallic-Custom-Text: #1f2933;
+  --Material-Metallic-Custom-GradientType: radial;
+  --Material-Metallic-Custom-GradientAngle: 45deg;
+
+  /* Platinum palette */
+  --Material-Metallic-Platinum-Shadow: #2a2a2a;
+  --Material-Metallic-Platinum-BaseDark: #5a5a5a;
+  --Material-Metallic-Platinum-Base: #a0a0a0;
+  --Material-Metallic-Platinum-BaseLight: #d0d0d0;
+  --Material-Metallic-Platinum-Highlight: #ffffff;
+  --Material-Metallic-Platinum-Text: #2a2a2a;
+  --Material-Metallic-Platinum-GradientType: linear;
+  --Material-Metallic-Platinum-GradientAngle: 135deg;
+
+  /* Rose Gold palette */
+  --Material-Metallic-RoseGold-Shadow: #4a2020;
+  --Material-Metallic-RoseGold-BaseDark: #b76e79;
+  --Material-Metallic-RoseGold-Base: #e8a39e;
+  --Material-Metallic-RoseGold-BaseLight: #f4c4bf;
+  --Material-Metallic-RoseGold-Highlight: #fff0ed;
+  --Material-Metallic-RoseGold-Text: #4a2020;
+  --Material-Metallic-RoseGold-GradientType: linear;
+  --Material-Metallic-RoseGold-GradientAngle: 135deg;
+
+  /* --- METALLIC GRADIENTS (Pre-computed) --- */
+
+  --Material-Metallic-Gold-Gradient: linear-gradient(
+    135deg,
+    var(--Material-Metallic-Gold-Shadow) 0%,
+    var(--Material-Metallic-Gold-Base) 15%,
+    var(--Material-Metallic-Gold-BaseLight) 30%,
+    var(--Material-Metallic-Gold-Highlight) 45%,
+    var(--Material-Metallic-Gold-BaseLight) 55%,
+    var(--Material-Metallic-Gold-Base) 70%,
+    var(--Material-Metallic-Gold-BaseLight) 85%,
+    var(--Material-Metallic-Gold-Shadow) 100%
+  );
+  --Material-Metallic-Gold-Fill: var(--Material-Metallic-Gold-Gradient);
+  --Material-Metallic-Gold-Stroke: linear-gradient(
+    135deg,
+    var(--Material-Metallic-Gold-BaseDark) 0%,
+    var(--Material-Metallic-Gold-Highlight) 18%,
+    var(--Material-Metallic-Gold-Base) 38%,
+    var(--Material-Metallic-Gold-BaseLight) 62%,
+    var(--Material-Metallic-Gold-Shadow) 82%,
+    var(--Material-Metallic-Gold-BaseDark) 100%
+  );
+  --Material-Metallic-Gold-StrokeColor: var(--Material-Metallic-Gold-BaseDark);
+
+  --Material-Metallic-Silver-Gradient: linear-gradient(
+    135deg,
+    var(--Material-Metallic-Silver-Shadow) 0%,
+    var(--Material-Metallic-Silver-Base) 15%,
+    var(--Material-Metallic-Silver-BaseLight) 30%,
+    var(--Material-Metallic-Silver-Highlight) 45%,
+    var(--Material-Metallic-Silver-BaseLight) 55%,
+    var(--Material-Metallic-Silver-Base) 70%,
+    var(--Material-Metallic-Silver-BaseLight) 85%,
+    var(--Material-Metallic-Silver-Shadow) 100%
+  );
+  --Material-Metallic-Silver-Fill: var(--Material-Metallic-Silver-Gradient);
+  --Material-Metallic-Silver-Stroke: linear-gradient(
+    135deg,
+    var(--Material-Metallic-Silver-BaseDark) 0%,
+    var(--Material-Metallic-Silver-Highlight) 18%,
+    var(--Material-Metallic-Silver-Base) 38%,
+    var(--Material-Metallic-Silver-BaseLight) 62%,
+    var(--Material-Metallic-Silver-Shadow) 82%,
+    var(--Material-Metallic-Silver-BaseDark) 100%
+  );
+  --Material-Metallic-Silver-StrokeColor: var(--Material-Metallic-Silver-BaseDark);
+
+  --Material-Metallic-Bronze-Gradient: linear-gradient(
+    135deg,
+    var(--Material-Metallic-Bronze-Shadow) 0%,
+    var(--Material-Metallic-Bronze-Base) 15%,
+    var(--Material-Metallic-Bronze-BaseLight) 30%,
+    var(--Material-Metallic-Bronze-Highlight) 45%,
+    var(--Material-Metallic-Bronze-BaseLight) 55%,
+    var(--Material-Metallic-Bronze-Base) 70%,
+    var(--Material-Metallic-Bronze-BaseLight) 85%,
+    var(--Material-Metallic-Bronze-Shadow) 100%
+  );
+  --Material-Metallic-Bronze-Fill: var(--Material-Metallic-Bronze-Gradient);
+  --Material-Metallic-Bronze-Stroke: linear-gradient(
+    135deg,
+    var(--Material-Metallic-Bronze-BaseDark) 0%,
+    var(--Material-Metallic-Bronze-Highlight) 18%,
+    var(--Material-Metallic-Bronze-Base) 38%,
+    var(--Material-Metallic-Bronze-BaseLight) 62%,
+    var(--Material-Metallic-Bronze-Shadow) 82%,
+    var(--Material-Metallic-Bronze-BaseDark) 100%
+  );
+  --Material-Metallic-Bronze-StrokeColor: var(--Material-Metallic-Bronze-BaseDark);
+
+  --Material-Metallic-Custom-Gradient: radial-gradient(
+    circle at right top,
+    var(--Material-Metallic-Custom-Shadow) 0%,
+    var(--Material-Metallic-Custom-Base) 15%,
+    var(--Material-Metallic-Custom-BaseLight) 30%,
+    var(--Material-Metallic-Custom-Highlight) 45%,
+    var(--Material-Metallic-Custom-BaseLight) 55%,
+    var(--Material-Metallic-Custom-Base) 70%,
+    var(--Material-Metallic-Custom-BaseLight) 85%,
+    var(--Material-Metallic-Custom-Shadow) 100%
+  );
+  --Material-Metallic-Custom-Fill: var(--Material-Metallic-Custom-Gradient);
+  --Material-Metallic-Custom-Stroke: radial-gradient(
+    circle at right top,
+    var(--Material-Metallic-Custom-BaseDark) 0%,
+    var(--Material-Metallic-Custom-Highlight) 18%,
+    var(--Material-Metallic-Custom-Base) 38%,
+    var(--Material-Metallic-Custom-BaseLight) 62%,
+    var(--Material-Metallic-Custom-Shadow) 82%,
+    var(--Material-Metallic-Custom-BaseDark) 100%
+  );
+  --Material-Metallic-Custom-StrokeColor: var(--Material-Metallic-Custom-BaseDark);
+
+  --Material-Metallic-Platinum-Gradient: linear-gradient(
+    135deg,
+    var(--Material-Metallic-Platinum-Shadow) 0%,
+    var(--Material-Metallic-Platinum-Base) 15%,
+    var(--Material-Metallic-Platinum-BaseLight) 30%,
+    var(--Material-Metallic-Platinum-Highlight) 45%,
+    var(--Material-Metallic-Platinum-BaseLight) 55%,
+    var(--Material-Metallic-Platinum-Base) 70%,
+    var(--Material-Metallic-Platinum-BaseLight) 85%,
+    var(--Material-Metallic-Platinum-Shadow) 100%
+  );
+  --Material-Metallic-Platinum-Fill: var(--Material-Metallic-Platinum-Gradient);
+  --Material-Metallic-Platinum-Stroke: linear-gradient(
+    135deg,
+    var(--Material-Metallic-Platinum-BaseDark) 0%,
+    var(--Material-Metallic-Platinum-Highlight) 18%,
+    var(--Material-Metallic-Platinum-Base) 38%,
+    var(--Material-Metallic-Platinum-BaseLight) 62%,
+    var(--Material-Metallic-Platinum-Shadow) 82%,
+    var(--Material-Metallic-Platinum-BaseDark) 100%
+  );
+  --Material-Metallic-Platinum-StrokeColor: var(--Material-Metallic-Platinum-BaseDark);
+
+  --Material-Metallic-RoseGold-Gradient: linear-gradient(
+    135deg,
+    var(--Material-Metallic-RoseGold-Shadow) 0%,
+    var(--Material-Metallic-RoseGold-Base) 15%,
+    var(--Material-Metallic-RoseGold-BaseLight) 30%,
+    var(--Material-Metallic-RoseGold-Highlight) 45%,
+    var(--Material-Metallic-RoseGold-BaseLight) 55%,
+    var(--Material-Metallic-RoseGold-Base) 70%,
+    var(--Material-Metallic-RoseGold-BaseLight) 85%,
+    var(--Material-Metallic-RoseGold-Shadow) 100%
+  );
+  --Material-Metallic-RoseGold-Fill: var(--Material-Metallic-RoseGold-Gradient);
+  --Material-Metallic-RoseGold-Stroke: linear-gradient(
+    135deg,
+    var(--Material-Metallic-RoseGold-BaseDark) 0%,
+    var(--Material-Metallic-RoseGold-Highlight) 18%,
+    var(--Material-Metallic-RoseGold-Base) 38%,
+    var(--Material-Metallic-RoseGold-BaseLight) 62%,
+    var(--Material-Metallic-RoseGold-Shadow) 82%,
+    var(--Material-Metallic-RoseGold-BaseDark) 100%
+  );
+  --Material-Metallic-RoseGold-StrokeColor: var(--Material-Metallic-RoseGold-BaseDark);
+
+  /* ========================================
+     TEXT SHADOWS
+     ======================================== */
+
+  --Text-Shadow-Subtle: 0 1px 2px rgba(0, 0, 0, 0.2);
+  --Text-Shadow-Medium: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --Text-Shadow-Strong: 0 2px 4px rgba(0, 0, 0, 0.5);
+
+  /* ========================================
+     TEXT CONSTRAINTS
+     ======================================== */
+
+  --Text-Truncate-Width: 200px;
+
+  /* ========================================
+     Z-INDEX SCALE
+     Layered stacking context for overlays
+     ======================================== */
+
+  --Z-Index-Base: 0;
+  --Z-Index-Sticky: 100;
+  --Z-Index-Dropdown: 200;
+  --Z-Index-Menu: 300;
+  --Z-Index-Popover: 400;
+  --Z-Index-Tooltip: 500;
+  --Z-Index-Toast: 600;
+  --Z-Index-Modal: 700;
+  --Z-Index-Overlay: 800;
+
+  /* ========================================
+     COMPONENT DIMENSION TOKENS
+     ======================================== */
+
+  --Dialog-Height-Medium: 320px;
+  --Dialog-Height-Large: 480px;
+  --Tooltip-Max-Width: 320px;
+  --Toast-Max-Width: 400px;
+  --Menu-Min-Width: 180px;
+  --Popover-Max-Width: 360px;
+  --PreviewCard-Max-Width: 360px;
+  --NavigationMenu-Content-Min-Width: 240px;
+  --Progress-Indeterminate-Width: 40%;
+}
+
+/* Reduced-motion: remap Moderate durations → Subtle equivalents */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --Motion-Duration-2XS: var(--Motion-Duration-Subtle-2XS);
+    --Motion-Duration-XS: var(--Motion-Duration-Subtle-XS);
+    --Motion-Duration-S: var(--Motion-Duration-Subtle-S);
+    --Motion-Duration-M: var(--Motion-Duration-Subtle-M);
+    --Motion-Duration-L: var(--Motion-Duration-Subtle-L);
+    --Motion-Duration-XL: var(--Motion-Duration-Subtle-XL);
+    --Motion-Duration-2XL: var(--Motion-Duration-Subtle-2XL);
+    --Motion-Duration-3XL: var(--Motion-Duration-Subtle-3XL);
+    --Motion-Offset-S: var(--Motion-Offset-Subtle-S);
+    --Motion-Offset-M: var(--Motion-Offset-Subtle-M);
+    --Motion-Offset-L: var(--Motion-Offset-Subtle-L);
+    --Motion-Offset-XL: var(--Motion-Offset-Subtle-XL);
+    --Motion-Offset-2XL: var(--Motion-Offset-Subtle-2XL);
+    --Motion-Offset-3XL: var(--Motion-Offset-Subtle-3XL);
+    --Motion-Easing-Entrance-Moderate: var(--Motion-Easing-Entrance-Subtle);
+    --Motion-Easing-Exit-Moderate: var(--Motion-Easing-Exit-Subtle);
+    --Motion-Easing-Transition-Moderate: var(--Motion-Easing-Transition-Subtle);
+    --Motion-Easing-Bounce-Moderate: var(--Motion-Easing-Bounce-Subtle);
+  }
+}
+} /* @layer base */
+
+/**
+ * IMPORTANT: NO LITERALS ALLOWED IN THIS FILE OR ANY COMPONENT CSS
+ *
+ * All values above are token references:
+ * - Use CSS custom properties in web components: background: var(--Surface-Bold);
+ * - Use token objects in React Native: backgroundColor: tokens.surface.bold;
+ *
+ * Violations detected by: pnpm check:literals
+ */

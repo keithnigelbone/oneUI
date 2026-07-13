@@ -1,0 +1,60 @@
+/**
+ * InputDynamicText.module.css
+ *
+ * Figma: .DNA/DynamicText/S, /M, /L (nodes 4257:45866, 4257:45674, 4257:45854).
+ * Row: leading Body (Text-Medium) + optional trailing `Button` (attention low, condensed).
+ * Gap: --Spacing-1-5 (Figma dimensions/spacings/1.5).
+ *
+ * Verified by: pnpm check:literals
+ */
+
+.root {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--InputDynamicText-gap, var(--Spacing-1-5));
+  width: 100%;
+}
+
+.rootTrailingOnly {
+  justify-content: flex-end;
+}
+
+.content {
+  flex: 1 1 0%;
+  min-width: 0;
+  margin: 0;
+  font-family: var(--InputDynamicText-contentFontFamily, var(--Body-FontFamily, var(--Typography-Font-Primary, inherit)));
+  font-weight: var(--InputDynamicText-contentFontWeight, var(--Body-FontWeight-Low));
+  font-optical-sizing: var(--InputDynamicText-contentFontOpticalSizing, var(--Body-FontOpticalSizing, auto));
+  font-variation-settings: var(--InputDynamicText-contentFontVariationSettings, var(--Body-OpszVariation, normal));
+  color: var(--InputDynamicText-contentColor, var(--Text-Medium));
+  word-break: break-word;
+}
+
+.root[data-size='s'] .content {
+  font-size: var(--InputDynamicText-contentFontSize-s, var(--Body-XS-FontSize));
+  line-height: var(--InputDynamicText-contentLineHeight-s, var(--Body-XS-LineHeight));
+}
+
+.root[data-size='m'] .content {
+  font-size: var(--InputDynamicText-contentFontSize-m, var(--Body-S-FontSize));
+  line-height: var(--InputDynamicText-contentLineHeight-m, var(--Body-S-LineHeight));
+}
+
+.root[data-size='l'] .content {
+  font-size: var(--InputDynamicText-contentFontSize-l, var(--Body-M-FontSize));
+  line-height: var(--InputDynamicText-contentLineHeight-l, var(--Body-M-LineHeight));
+  min-height: var(--InputDynamicText-contentMinHeight-l, var(--Spacing-6));
+}
+
+.root[data-disabled] .content {
+  color: var(--InputDynamicText-contentColorDisabled, var(--Text-Low));
+}
+
+.end {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}

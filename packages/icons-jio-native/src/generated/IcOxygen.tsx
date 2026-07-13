@@ -1,0 +1,13 @@
+import React from 'react';
+import Svg, { Path, type SvgProps } from 'react-native-svg';
+export function IcOxygen(props: SvgProps) {
+  const fill = String(props.fill ?? '#000000');
+  return (
+    <Svg viewBox="0 0 24 24" fill="none" {...props}>
+      <Path
+            fill={fill}
+            d="M18.5 15h-1.45l1.38-1.63c.41-.49.46-1.18.11-1.71-.24-.37-.62-.61-1.06-.65s-.86.1-1.17.41l-.17.17c-.19.2-.19.51 0 .71.2.19.51.19.71 0l.17-.17c.09-.09.23-.13.36-.13.08 0 .22.05.32.2.1.16.09.38-.03.52l-2.08 2.45c-.13.15-.15.36-.07.53s.26.29.45.29h2.53c.28 0 .5-.22.5-.5s-.22-.5-.5-.5zM11 7c-2.21 0-4 2.02-4 4.5S8.79 16 11 16s4-2.02 4-4.5S13.21 7 11 7m0 7c-1.1 0-2-1.12-2-2.5S9.9 9 11 9s2 1.12 2 2.5-.9 2.5-2 2.5"
+          />
+    </Svg>
+  );
+}

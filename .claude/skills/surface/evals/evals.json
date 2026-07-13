@@ -1,0 +1,26 @@
+{
+  "skill_name": "surface",
+  "evals": [
+    {
+      "id": 0,
+      "name": "finance-restraint-cashback",
+      "prompt": "Build a banking account overview screen in OneUI — balance up top, a recent transactions list, and we've got a cashback offer we want to draw attention to. Give me the React/TSX for the screen using OneUI components.",
+      "expected_output": "A screen where the page background and transactions list stay on the default neutral surface, and ONLY the cashback offer gets a non-default surface (bold/brand-bg/sparkle). No tinted page or list backgrounds. Uses <Surface> for the offer, not a hardcoded background.",
+      "files": []
+    },
+    {
+      "id": 1,
+      "name": "promo-hero-surface-not-div",
+      "prompt": "Add a promo hero at the top of the home screen for our new streaming bundle — a heading and a Subscribe button on a dark branded background. Give me the OneUI TSX.",
+      "expected_output": "Uses <Surface mode=\"bold\"> (or brand-bg) as the container so heading text and the button auto-adapt to readable colors. Does NOT use a raw <div style={{background:...}}>. No hardcoded hex/color values. Lets children read generic tokens.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "name": "repair-busy-patchwork-dashboard",
+      "prompt": "My dashboard has like 6 cards each with a different background color and it feels really busy and loud. Can you clean it up? Tell me what's wrong and show the fixed approach.",
+      "expected_output": "Identifies that too many colored cards compete (no focal point), recommends collapsing back to default neutral surfaces and rebuilding hierarchy with spacing/type/weight, keeping at most one non-default surface for a real attention moment. Mentions one focal point per screen.",
+      "files": []
+    }
+  ]
+}

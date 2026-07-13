@@ -1,0 +1,32 @@
+{
+  "name": "@oneui/convex",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "./convex/_generated/api.js",
+  "types": "./convex/_generated/api.d.ts",
+  "exports": {
+    ".": {
+      "import": "./convex/_generated/api.js",
+      "types": "./convex/_generated/api.d.ts"
+    },
+    "./_generated/dataModel": {
+      "import": "./convex/_generated/dataModel.js",
+      "types": "./convex/_generated/dataModel.d.ts"
+    }
+  },
+  "scripts": {
+    "dev": "convex dev",
+    "deploy": "convex deploy",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@convex-dev/better-auth": "^0.12.4",
+    "@oneui/shared": "workspace:*",
+    "better-auth": "~1.6.15",
+    "convex": "^1.39.1"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.2"
+  }
+}

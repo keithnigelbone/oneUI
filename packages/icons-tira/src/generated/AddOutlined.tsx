@@ -1,0 +1,27 @@
+import React, { forwardRef } from 'react';
+import type { IconComponentProps } from '../iconProps';
+
+export const AddOutlined = forwardRef<SVGSVGElement, IconComponentProps>(function AddOutlined(
+  { size = 24, width, height, color = 'currentColor', className, style, ...props },
+  ref,
+) {
+  const dim = width ?? height ?? size;
+  return (
+    <svg
+      ref={ref}
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      width={width ?? dim}
+      height={height ?? dim}
+      color={color}
+      className={className}
+      style={style}
+      {...props}
+    >
+      <path d="M12 3.40002C12.3312 3.40002 12.6004 3.66844 12.6006 3.99963V11.4H20C20.3312 11.4 20.6004 11.6684 20.6006 11.9996C20.6006 12.331 20.3314 12.6002 20 12.6002H12.6006V19.9996C12.6006 20.331 12.3314 20.6002 12 20.6002C11.6688 20.6 11.4004 20.3309 11.4004 19.9996V12.6002H4C3.66881 12.6 3.40039 12.3309 3.40039 11.9996C3.4006 11.6686 3.66894 11.4002 4 11.4H11.4004V3.99963C11.4006 3.66857 11.6689 3.40024 12 3.40002Z" fill="currentColor"/>
+    </svg>
+  );
+});
+
+AddOutlined.displayName = 'AddOutlined';

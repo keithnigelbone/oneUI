@@ -1,0 +1,381 @@
+/**
+ * PaginationItemPage.module.css
+ *
+ * Dedicated page-chip visuals for numbered Pagination — NOT SingleTextButton /
+ * SelectableSingleTextButton modules, but the same token vocabulary and
+ * behaviour split:
+ *   - `data-selected="false"` → ghost fill + **high-emphasis** numeral colour
+ *     (`--Neutral-High` chain), weight medium, label size one step below row size.
+ *   - `data-selected="true"`  → SelectableSingleTextButton-style selected chip
+ *     (`data-attention` high / medium / low mirrors pressed + attention).
+ *
+ * Figma PaginationItem (node 7710:14173) frame sizes S/M/L = 20 / 32 / 48 →
+ * fallbacks `Spacing-5` / `Spacing-8` / `Spacing-12` (same scale as STB/SSTB chips);
+ * label sizes 12 / 14 / 16 → Label-XS / S / M.
+ *
+ * Verified by: pnpm check:literals
+ */
+
+/* ========================================
+   ROOT — intermediate vars (same role spine as SingleTextButton)
+   ======================================== */
+
+.paginationPageChip {
+  --_stb-bold: var(--PaginationPage-roleBold, var(--Primary-Bold, var(--Surface-Bold)));
+  --_stb-bold-high: var(
+    --PaginationPage-roleBoldHigh,
+    var(--Primary-Bold-TintedA11y, var(--Primary-Bold-High, var(--Text-OnBold-High)))
+  );
+  --_stb-bold-hover: var(
+    --PaginationPage-roleBoldHover,
+    var(--Primary-Bold-Hover, var(--Surface-Bold-Hover))
+  );
+  --_stb-bold-pressed: var(
+    --PaginationPage-roleBoldPressed,
+    var(--Primary-Bold-Pressed, var(--Surface-Bold-Pressed))
+  );
+  --_stb-subtle: var(--PaginationPage-roleSubtle, var(--Primary-Subtle, var(--Surface-Subtle)));
+  --_stb-subtle-hover: var(
+    --PaginationPage-roleSubtleHover,
+    var(--Primary-Subtle-Hover, var(--Surface-Subtle-Hover))
+  );
+  --_stb-subtle-pressed: var(
+    --PaginationPage-roleSubtlePressed,
+    var(--Primary-Subtle-Pressed, var(--Surface-Subtle-Pressed))
+  );
+  --_stb-default-accent-a11y: var(
+    --PaginationPage-roleTintedA11y,
+    var(--Primary-TintedA11y, var(--Primary-Tinted, var(--Surface-Bold)))
+  );
+  --_stb-default-hover: var(
+    --PaginationPage-roleHover,
+    var(--Primary-Hover, var(--Surface-Minimal))
+  );
+  --_stb-default-pressed: var(
+    --PaginationPage-rolePressed,
+    var(--Primary-Pressed, var(--Surface-Subtle))
+  );
+
+  border-radius: var(
+    --PaginationPage-borderRadius,
+    var(--Pagination-borderRadius, var(--Shape-Pill))
+  );
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  box-sizing: border-box;
+  cursor: pointer;
+  position: relative;
+  aspect-ratio: 1;
+  /* No hairline border on most chips — transparent Stroke-M inflated the
+     square min size away from Figma 20/32/48; low-attention selected uses
+     border-width below. */
+  border-style: solid;
+  border-color: transparent;
+  border-width: 0;
+  font-family: var(
+    --PaginationPage-fontFamily,
+    var(--Label-FontFamily, var(--Typography-Font-Primary, inherit))
+  );
+  font-weight: var(--PaginationPage-fontWeight, var(--Label-FontWeight-Medium));
+  text-transform: var(--PaginationPage-textTransform, none);
+  letter-spacing: var(--PaginationPage-letterSpacing, normal);
+  transition-property: box-shadow, transform;
+  transition-duration: var(--PaginationPage-transitionDuration, var(--Motion-Duration-M));
+  transition-timing-function: var(
+    --PaginationPage-transitionEasing,
+    var(--Motion-Easing-Transition-Moderate)
+  );
+}
+
+/* ========================================
+   APPEARANCE — 9 canonical roles (matches makeAppearanceClassMap)
+   ======================================== */
+
+.appearancePrimary {
+  --_stb-bold: var(--Primary-Bold, var(--Surface-Bold));
+  --_stb-bold-high: var(
+    --Primary-Bold-TintedA11y,
+    var(--Primary-Bold-High, var(--Text-OnBold-High))
+  );
+  --_stb-bold-hover: var(--Primary-Bold-Hover, var(--Surface-Bold-Hover));
+  --_stb-bold-pressed: var(--Primary-Bold-Pressed, var(--Surface-Bold-Pressed));
+  --_stb-subtle: var(--Primary-Subtle, var(--Surface-Subtle));
+  --_stb-subtle-hover: var(--Primary-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_stb-subtle-pressed: var(--Primary-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+  --_stb-default-accent-a11y: var(--Primary-TintedA11y, var(--Primary-Tinted, var(--Surface-Bold)));
+  --_stb-default-hover: var(--Primary-Hover, var(--Surface-Minimal));
+  --_stb-default-pressed: var(--Primary-Pressed, var(--Surface-Subtle));
+}
+
+.appearanceNeutral {
+  --_stb-bold: var(--Neutral-Bold, var(--Surface-Bold));
+  --_stb-bold-high: var(
+    --Neutral-Bold-TintedA11y,
+    var(--Neutral-Bold-High, var(--Text-OnBold-High))
+  );
+  --_stb-bold-hover: var(--Neutral-Bold-Hover, var(--Surface-Bold-Hover));
+  --_stb-bold-pressed: var(--Neutral-Bold-Pressed, var(--Surface-Bold-Pressed));
+  --_stb-subtle: var(--Neutral-Subtle, var(--Surface-Subtle));
+  --_stb-subtle-hover: var(--Neutral-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_stb-subtle-pressed: var(--Neutral-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+  --_stb-default-accent-a11y: var(--Neutral-TintedA11y, var(--Neutral-Tinted, var(--Surface-Bold)));
+  --_stb-default-hover: var(--Neutral-Hover, var(--Surface-Minimal));
+  --_stb-default-pressed: var(--Neutral-Pressed, var(--Surface-Subtle));
+}
+
+.appearanceSecondary {
+  --_stb-bold: var(--Secondary-Bold, var(--Surface-Bold));
+  --_stb-bold-high: var(
+    --Secondary-Bold-TintedA11y,
+    var(--Secondary-Bold-High, var(--Text-OnBold-High))
+  );
+  --_stb-bold-hover: var(--Secondary-Bold-Hover, var(--Surface-Bold-Hover));
+  --_stb-bold-pressed: var(--Secondary-Bold-Pressed, var(--Surface-Bold-Pressed));
+  --_stb-subtle: var(--Secondary-Subtle, var(--Surface-Subtle));
+  --_stb-subtle-hover: var(--Secondary-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_stb-subtle-pressed: var(--Secondary-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+  --_stb-default-accent-a11y: var(
+    --Secondary-TintedA11y,
+    var(--Secondary-Tinted, var(--Surface-Bold))
+  );
+  --_stb-default-hover: var(--Secondary-Hover, var(--Surface-Minimal));
+  --_stb-default-pressed: var(--Secondary-Pressed, var(--Surface-Subtle));
+}
+
+.appearanceSparkle {
+  --_stb-bold: var(--Sparkle-Bold, var(--Surface-Bold));
+  --_stb-bold-high: var(
+    --Sparkle-Bold-TintedA11y,
+    var(--Sparkle-Bold-High, var(--Text-OnBold-High))
+  );
+  --_stb-bold-hover: var(--Sparkle-Bold-Hover, var(--Surface-Bold-Hover));
+  --_stb-bold-pressed: var(--Sparkle-Bold-Pressed, var(--Surface-Bold-Pressed));
+  --_stb-subtle: var(--Sparkle-Subtle, var(--Surface-Subtle));
+  --_stb-subtle-hover: var(--Sparkle-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_stb-subtle-pressed: var(--Sparkle-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+  --_stb-default-accent-a11y: var(--Sparkle-TintedA11y, var(--Sparkle-Tinted, var(--Surface-Bold)));
+  --_stb-default-hover: var(--Sparkle-Hover, var(--Surface-Minimal));
+  --_stb-default-pressed: var(--Sparkle-Pressed, var(--Surface-Subtle));
+}
+
+.appearanceBrandBg {
+  --_stb-bold: var(--Brand-Bg-Bold, var(--Surface-Bold));
+  --_stb-bold-high: var(
+    --Brand-Bg-Bold-TintedA11y,
+    var(--Brand-Bg-Bold-High, var(--Text-OnBold-High))
+  );
+  --_stb-bold-hover: var(--Brand-Bg-Bold-Hover, var(--Surface-Bold-Hover));
+  --_stb-bold-pressed: var(--Brand-Bg-Bold-Pressed, var(--Surface-Bold-Pressed));
+  --_stb-subtle: var(--Brand-Bg-Subtle, var(--Surface-Subtle));
+  --_stb-subtle-hover: var(--Brand-Bg-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_stb-subtle-pressed: var(--Brand-Bg-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+  --_stb-default-accent-a11y: var(
+    --Brand-Bg-TintedA11y,
+    var(--Brand-Bg-Tinted, var(--Surface-Bold))
+  );
+  --_stb-default-hover: var(--Brand-Bg-Hover, var(--Surface-Minimal));
+  --_stb-default-pressed: var(--Brand-Bg-Pressed, var(--Surface-Subtle));
+}
+
+.appearancePositive {
+  --_stb-bold: var(--Positive-Bold, var(--Surface-Bold));
+  --_stb-bold-high: var(
+    --Positive-Bold-TintedA11y,
+    var(--Positive-Bold-High, var(--Text-OnBold-High))
+  );
+  --_stb-bold-hover: var(--Positive-Bold-Hover, var(--Surface-Bold-Hover));
+  --_stb-bold-pressed: var(--Positive-Bold-Pressed, var(--Surface-Bold-Pressed));
+  --_stb-subtle: var(--Positive-Subtle, var(--Surface-Subtle));
+  --_stb-subtle-hover: var(--Positive-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_stb-subtle-pressed: var(--Positive-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+  --_stb-default-accent-a11y: var(
+    --Positive-TintedA11y,
+    var(--Positive-Tinted, var(--Surface-Bold))
+  );
+  --_stb-default-hover: var(--Positive-Hover, var(--Surface-Minimal));
+  --_stb-default-pressed: var(--Positive-Pressed, var(--Surface-Subtle));
+}
+
+.appearanceNegative {
+  --_stb-bold: var(--Negative-Bold, var(--Surface-Bold));
+  --_stb-bold-high: var(
+    --Negative-Bold-TintedA11y,
+    var(--Negative-Bold-High, var(--Text-OnBold-High))
+  );
+  --_stb-bold-hover: var(--Negative-Bold-Hover, var(--Surface-Bold-Hover));
+  --_stb-bold-pressed: var(--Negative-Bold-Pressed, var(--Surface-Bold-Pressed));
+  --_stb-subtle: var(--Negative-Subtle, var(--Surface-Subtle));
+  --_stb-subtle-hover: var(--Negative-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_stb-subtle-pressed: var(--Negative-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+  --_stb-default-accent-a11y: var(
+    --Negative-TintedA11y,
+    var(--Negative-Tinted, var(--Surface-Bold))
+  );
+  --_stb-default-hover: var(--Negative-Hover, var(--Surface-Minimal));
+  --_stb-default-pressed: var(--Negative-Pressed, var(--Surface-Subtle));
+}
+
+.appearanceWarning {
+  --_stb-bold: var(--Warning-Bold, var(--Surface-Bold));
+  --_stb-bold-high: var(
+    --Warning-Bold-TintedA11y,
+    var(--Warning-Bold-High, var(--Text-OnBold-High))
+  );
+  --_stb-bold-hover: var(--Warning-Bold-Hover, var(--Surface-Bold-Hover));
+  --_stb-bold-pressed: var(--Warning-Bold-Pressed, var(--Surface-Bold-Pressed));
+  --_stb-subtle: var(--Warning-Subtle, var(--Surface-Subtle));
+  --_stb-subtle-hover: var(--Warning-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_stb-subtle-pressed: var(--Warning-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+  --_stb-default-accent-a11y: var(--Warning-TintedA11y, var(--Warning-Tinted, var(--Surface-Bold)));
+  --_stb-default-hover: var(--Warning-Hover, var(--Surface-Minimal));
+  --_stb-default-pressed: var(--Warning-Pressed, var(--Surface-Subtle));
+}
+
+.appearanceInformative {
+  --_stb-bold: var(--Informative-Bold, var(--Surface-Bold));
+  --_stb-bold-high: var(
+    --Informative-Bold-TintedA11y,
+    var(--Informative-Bold-High, var(--Text-OnBold-High))
+  );
+  --_stb-bold-hover: var(--Informative-Bold-Hover, var(--Surface-Bold-Hover));
+  --_stb-bold-pressed: var(--Informative-Bold-Pressed, var(--Surface-Bold-Pressed));
+  --_stb-subtle: var(--Informative-Subtle, var(--Surface-Subtle));
+  --_stb-subtle-hover: var(--Informative-Subtle-Hover, var(--Surface-Subtle-Hover));
+  --_stb-subtle-pressed: var(--Informative-Subtle-Pressed, var(--Surface-Subtle-Pressed));
+  --_stb-default-accent-a11y: var(
+    --Informative-TintedA11y,
+    var(--Informative-Tinted, var(--Surface-Bold))
+  );
+  --_stb-default-hover: var(--Informative-Hover, var(--Surface-Minimal));
+  --_stb-default-pressed: var(--Informative-Pressed, var(--Surface-Subtle));
+}
+
+/* ========================================
+   INACTIVE — ghost chip + high-emphasis numeral (attention high)
+   ======================================== */
+
+.paginationPageChip[data-selected='false'] {
+  background-color: var(--PaginationPage-inactive-background, transparent);
+  color: var(
+    --PaginationPage-inactive-color,
+    var(--Neutral-High, var(--Text-High, var(--Neutral-TintedA11y)))
+  );
+}
+
+.paginationPageChip[data-selected='false']:hover:not([data-disabled]) {
+  background-color: var(--PaginationPage-inactive-hover-background, var(--_stb-default-hover));
+  transition-property: background-color, color, border-color, box-shadow, transform;
+}
+
+.paginationPageChip[data-selected='false']:active:not([data-disabled]) {
+  background-color: var(--PaginationPage-inactive-pressed-background, var(--_stb-default-pressed));
+  transition-property: background-color, color, border-color, box-shadow, transform;
+}
+
+/* ========================================
+   SELECTED — SelectableSingleTextButton pressed + attention
+   ======================================== */
+
+.paginationPageChip[data-selected='true'][data-attention='high'] {
+  background-color: var(--PaginationPage-selected-high-background, var(--_stb-bold));
+  color: var(--PaginationPage-selected-high-color, var(--_stb-bold-high));
+  border-color: transparent;
+}
+
+.paginationPageChip[data-selected='true'][data-attention='medium'] {
+  background-color: var(--PaginationPage-selected-medium-background, var(--_stb-subtle));
+  color: var(--PaginationPage-selected-medium-color, var(--_stb-default-accent-a11y));
+  border-color: transparent;
+}
+
+.paginationPageChip[data-selected='true'][data-attention='low'] {
+  background-color: var(--PaginationPage-selected-low-background, transparent);
+  color: var(--PaginationPage-selected-low-color, var(--_stb-default-accent-a11y));
+  border-width: var(--Stroke-M);
+  border-color: var(--PaginationPage-selected-low-border, var(--_stb-bold));
+}
+
+.paginationPageChip[data-selected='true'][data-attention='high']:hover:not([data-disabled]) {
+  background-color: var(--PaginationPage-selected-high-hover-background, var(--_stb-bold-hover));
+}
+
+.paginationPageChip[data-selected='true'][data-attention='medium']:hover:not([data-disabled]) {
+  background-color: var(
+    --PaginationPage-selected-medium-hover-background,
+    var(--_stb-subtle-hover)
+  );
+}
+
+.paginationPageChip[data-selected='true'][data-attention='low']:hover:not([data-disabled]) {
+  background-color: var(--PaginationPage-selected-low-hover-background, var(--_stb-default-hover));
+}
+
+/* ========================================
+   SIZES — Figma PaginationItem S/M/L (20 / 32 / 48)
+   ======================================== */
+
+.paginationPageChip[data-size='s'] {
+  box-sizing: border-box;
+  aspect-ratio: 1;
+  min-inline-size: var(--Pagination-pageChipMinS, var(--Spacing-5));
+  min-block-size: var(--Pagination-pageChipMinS, var(--Spacing-5));
+  padding-inline: var(--Pagination-pageChipPaddingInlineS, var(--Spacing-0));
+  padding-block: var(--Pagination-pageChipPaddingBlockS, var(--Spacing-0));
+  font-size: var(--Pagination-pageChipFontSizeS, var(--Label-XS-FontSize));
+}
+
+.paginationPageChip[data-size='m'] {
+  box-sizing: border-box;
+  aspect-ratio: 1;
+  min-inline-size: var(--Pagination-pageChipMinM, var(--Spacing-8));
+  min-block-size: var(--Pagination-pageChipMinM, var(--Spacing-8));
+  padding-inline: var(--Pagination-pageChipPaddingInlineM, var(--Spacing-0));
+  padding-block: var(--Pagination-pageChipPaddingBlockM, var(--Spacing-0));
+  font-size: var(--Pagination-pageChipFontSizeM, var(--Label-S-FontSize));
+}
+
+.paginationPageChip[data-size='l'] {
+  box-sizing: border-box;
+  aspect-ratio: 1;
+  min-inline-size: var(--Pagination-pageChipMinL, var(--Spacing-12));
+  min-block-size: var(--Pagination-pageChipMinL, var(--Spacing-12));
+  padding-inline: var(--Pagination-pageChipPaddingInlineL, var(--Spacing-0));
+  padding-block: var(--Pagination-pageChipPaddingBlockL, var(--Spacing-0));
+  font-size: var(--Pagination-pageChipFontSizeL, var(--Label-M-FontSize));
+}
+
+.paginationPageChip:active:not([data-disabled]) {
+  transform: scale(calc(1 + var(--Motion-Tap-Scale-Up, 7) / 100));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .paginationPageChip:active:not([data-disabled]) {
+    transform: none;
+  }
+}
+
+.paginationPageChip[data-disabled],
+.paginationPageChip:disabled {
+  opacity: var(--Disabled-Opacity);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.paginationPageChip:focus {
+  outline: none;
+}
+
+.paginationPageChip:focus-visible,
+:global([data-force-state='focus']) .paginationPageChip {
+  box-shadow:
+    0 0 0 var(--Stroke-XL) var(--Surface-Halo-Gap, var(--Surface-Main)),
+    0 0 0 calc(var(--Stroke-XL) + var(--Focus-Outline-Width)) var(--Focus-Outline);
+}
+
+.label {
+  display: flex;
+  align-items: center;
+  font-variant-numeric: tabular-nums;
+}

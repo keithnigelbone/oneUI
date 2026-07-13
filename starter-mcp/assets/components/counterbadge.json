@@ -1,0 +1,220 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentName": "CounterBadge",
+  "generatedAt": "2026-01-01T00:00:00.000Z",
+  "machineReadable": true,
+  "intentAndPurpose": {
+    "intent": "Non-interactive display component showing a numeric count with bold/subtle/ghost variants and multi-accent support.",
+    "taskContexts": [],
+    "sentiments": [
+      "neutral"
+    ]
+  },
+  "compositionRules": {
+    "requires": [],
+    "allows": [],
+    "forbids": []
+  },
+  "variantLogic": {
+    "rules": [
+      {
+        "name": "bold",
+        "useWhen": [
+          "High"
+        ]
+      },
+      {
+        "name": "subtle",
+        "useWhen": [
+          "Medium"
+        ]
+      },
+      {
+        "name": "ghost",
+        "useWhen": [
+          "Low"
+        ]
+      }
+    ]
+  },
+  "relationshipsAndDependencies": {
+    "related": []
+  },
+  "contextSignals": {
+    "density": [
+      "compact",
+      "default",
+      "open"
+    ],
+    "modality": [
+      "desktop",
+      "mobile"
+    ],
+    "brand": [
+      "theme-scope aware",
+      "recipe-driven"
+    ],
+    "mode": [
+      "light",
+      "dark",
+      "surface-context"
+    ]
+  },
+  "observabilityHooks": {
+    "track": [],
+    "health": [
+      "a11y_violations"
+    ]
+  },
+  "props": [
+    {
+      "name": "value",
+      "type": "number",
+      "required": true,
+      "description": "Numeric value to display"
+    },
+    {
+      "name": "appearance",
+      "type": "CounterBadgeAppearance",
+      "required": false,
+      "description": "Multi-accent appearance role. 'auto' resolves to 'primary'."
+    },
+    {
+      "name": "aria-label",
+      "type": "string",
+      "required": false,
+      "description": "Accessible label for screen readers"
+    },
+    {
+      "name": "attention",
+      "type": "CounterBadgeAttention",
+      "required": false,
+      "description": "Figma attention level — high (bold fill), medium (subtle/tinted fill), low (ghost/transparent). Default: 'high'."
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "required": false,
+      "description": "Additional class name"
+    },
+    {
+      "name": "data-testid",
+      "type": "string",
+      "required": false,
+      "description": "Test automation id — forwarded to the root `<span role=\"status\">`."
+    },
+    {
+      "name": "max",
+      "type": "number",
+      "required": false,
+      "description": "Maximum value before showing overflow (e.g., \"99+\"). Default: 99"
+    },
+    {
+      "name": "showZero",
+      "type": "boolean",
+      "required": false,
+      "description": "Whether to show the badge when value is 0. Default: false"
+    },
+    {
+      "name": "size",
+      "type": "CounterBadgeSize",
+      "required": false,
+      "description": "CounterBadge size. Default: 'm'"
+    },
+    {
+      "name": "style",
+      "type": "CSSProperties",
+      "required": false,
+      "description": "Inline styles"
+    }
+  ],
+  "slots": [],
+  "propsSchema": {
+    "$id": "jds.docs.counter-badge",
+    "type": "object",
+    "properties": {
+      "value": {
+        "type": "number",
+        "description": "Numeric value to display"
+      },
+      "appearance": {
+        "enum": [
+          "auto",
+          "primary",
+          "secondary",
+          "neutral",
+          "sparkle",
+          "brand-bg",
+          "positive",
+          "negative",
+          "warning",
+          "informative"
+        ],
+        "description": "Multi-accent appearance role. 'auto' resolves to 'primary'."
+      },
+      "aria-label": {
+        "type": "string",
+        "description": "Accessible label for screen readers"
+      },
+      "attention": {
+        "enum": [
+          "high",
+          "medium",
+          "low"
+        ],
+        "description": "Figma attention level — high (bold fill), medium (subtle/tinted fill), low (ghost/transparent). Default: 'high'."
+      },
+      "className": {
+        "type": "string",
+        "description": "Additional class name"
+      },
+      "data-testid": {
+        "type": "string",
+        "description": "Test automation id — forwarded to the root `<span role=\"status\">`."
+      },
+      "max": {
+        "type": "number",
+        "description": "Maximum value before showing overflow (e.g., \"99+\"). Default: 99"
+      },
+      "showZero": {
+        "type": "boolean",
+        "description": "Whether to show the badge when value is 0. Default: false"
+      },
+      "size": {
+        "enum": [
+          "xs",
+          "s",
+          "m",
+          "l"
+        ],
+        "description": "CounterBadge size. Default: 'm'"
+      },
+      "style": {
+        "description": "Inline styles"
+      }
+    },
+    "required": [
+      "value"
+    ]
+  },
+  "codeSnippets": [
+    {
+      "id": "counter-badge-basic",
+      "title": "Basic Usage",
+      "language": "tsx",
+      "code": "import { CounterBadge } from '@oneui/ui';\n\n<CounterBadge />"
+    },
+    {
+      "id": "counter-badge-recipe-decisions",
+      "title": "Recipe Decisions",
+      "language": "json",
+      "code": "{\n  \"component\": \"CounterBadge\",\n  \"decisions\": [\n    \"Shape\"\n  ]\n}"
+    }
+  ],
+  "tags": [
+    "machine-readable",
+    "generated",
+    "counter-badge"
+  ],
+  "importPath": "@jds4/oneui-react"
+}

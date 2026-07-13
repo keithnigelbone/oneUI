@@ -1,0 +1,230 @@
+/**
+ * Slider.module.css
+ *
+ * Figma-aligned (node 5723:7596 — Slider frame). Single size.
+ *
+ *   Container:             328×24
+ *   knobStyle="outside":   rail 4px, knob 12px solid accent fill
+ *   knobStyle="inside":    track 12px solid accent fill, inner dot 4px white
+ *   Appearance:            fill + knob use role's Bold; rail is ALWAYS neutral
+ *   Surface context:       via [data-surface] in @layer brand (CSS-only)
+ *
+ * Rail neutrality (Figma spec):
+ *   --_slider-rail is always --Neutral-Subtle regardless of appearance role.
+ *   Only the fill, knob, and inner-dot adapt to the chosen appearance.
+ *
+ * Step ticks (Figma spec):
+ *   Ticks are rendered BEFORE the active track in DOM order so the fill
+ *   naturally covers ticks in the active region — no color tricks needed.
+ *   Active ticks use --_slider-fill directly, so the boundary tick blends.
+ *   Each tick is absolutely positioned at its value percentage (matching
+ *   Base UI's thumb math) so thumbs and ticks line up at every step.
+ *
+ * ZERO LITERALS — all values come from tokens.
+ * Verified by: pnpm check:literals
+ */
+
+/* ============================================
+   ROOT
+   ============================================ */
+
+.root {
+  --_slider-fill:          var(--Primary-Bold, var(--Surface-Bold));
+  --_slider-rail:          var(--Neutral-Minimal, var(--Surface-Subtle));
+  --_slider-knob:          var(--Primary-Bold, var(--Surface-Bold));
+  --_slider-inner:         var(--Surface-Default);
+  /* Subtle: surface fill (not stroke), reliably visible in Jio as a dot on the neutral rail */
+  --_slider-tick:          var(--Neutral-Subtle, var(--Text-Low));
+  /* Tinted-surface rail token — the rail switches to this when the slider is
+     inside a data-surface="minimal|subtle|bold" ancestor. Each appearance
+     class overrides to its own role's Subtle so the rail picks up the
+     container tint. Default here is Primary so the no-class case works. */
+  --_slider-rail-role:     var(--Primary-Subtle, var(--Neutral-Minimal));
+
+  box-sizing: border-box;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  /* Figma (node 5723:7597): 8px gap between start/end slots and track */
+  gap: var(--Slider-slotGap, var(--Spacing-2));
+  user-select: none;
+  touch-action: none;
+}
+
+.root[data-orientation="horizontal"] {
+  width: 100%;
+  height: var(--Slider-height, var(--Spacing-4-5));
+}
+
+.root[data-orientation="vertical"] {
+  flex-direction: column;
+  align-items: center;
+  width: var(--Slider-height, var(--Spacing-4-5));
+  height: var(--Spacing-40);
+}
+
+.root[data-disabled]:not([data-readonly]) {
+  opacity: var(--Disabled-Opacity);
+  pointer-events: none;
+}
+
+.root[data-readonly] {
+  pointer-events: none;
+}
+
+/* ============================================
+   TICK SIZE PER KNOB STYLE
+   Ticks are absolutely positioned by percentage in SliderSteps, so no inset
+   padding is needed — the size simply adapts to the track thickness so the
+   dot reads proportionally on either rail type.
+   ============================================ */
+
+.root[data-knob-style="outside"] {
+  /* 2px dots on the 4px rail — proportional, not overwhelming */
+  --_slider-tick-size: var(--Slider-tickSize-outside, var(--Stroke-XL));
+}
+
+.root[data-knob-style="inside"] {
+  /* 4px dots on the 12px track — visible without crowding */
+  --_slider-tick-size: var(--Slider-tickSize-inside, var(--Spacing-1));
+}
+
+/* ============================================
+   CONTROL — full-area tap/drag surface
+   Flex grows to fill remaining space when slots are present.
+   ============================================ */
+
+.control {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex: 1 1 auto;
+  min-width: 0;
+  height: 100%;
+  touch-action: none;
+  user-select: none;
+}
+
+[data-orientation="vertical"] .control {
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+/* ============================================
+   SLOT — start/end icon containers (30×30 per Figma)
+   ============================================ */
+
+.slot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: var(--Slider-slotSize, var(--Spacing-9));
+  height: var(--Slider-slotSize, var(--Spacing-9));
+}
+
+[data-orientation="vertical"] .slot {
+  width: 100%;
+}
+
+/* ============================================
+   TRACK — the rail
+   ============================================ */
+
+.track {
+  position: relative;
+  border-radius: var(--Slider-trackBorderRadius, var(--Shape-Pill));
+  background-color: var(--_slider-rail);
+}
+
+.root[data-orientation="horizontal"] .track {
+  width: 100%;
+}
+
+.root[data-orientation="vertical"] .track {
+  height: 100%;
+}
+
+/* knobStyle="outside" — thin rail */
+.root[data-knob-style="outside"][data-orientation="horizontal"] .track {
+  height: var(--Slider-trackHeight-outside, var(--Spacing-1));
+}
+.root[data-knob-style="outside"][data-orientation="vertical"] .track {
+  width: var(--Slider-trackHeight-outside, var(--Spacing-1));
+}
+
+/* knobStyle="inside" — thicker rail (knob lives flush inside) */
+.root[data-knob-style="inside"][data-orientation="horizontal"] .track {
+  height: var(--Slider-trackHeight-inside, var(--Spacing-3));
+}
+.root[data-knob-style="inside"][data-orientation="vertical"] .track {
+  width: var(--Slider-trackHeight-inside, var(--Spacing-3));
+}
+
+/* ============================================
+   APPEARANCE — remap fill + knob per role, and declare each role's tinted
+   rail token (consumed only when the slider is inside a data-surface
+   context — see SURFACE CONTEXT block below).
+   ============================================ */
+
+.appearanceNeutral {
+  --_slider-fill:      var(--Neutral-Bold, var(--Surface-Bold));
+  --_slider-knob:      var(--Neutral-Bold, var(--Surface-Bold));
+  --_slider-rail-role: var(--Neutral-Subtle, var(--Neutral-Minimal));
+}
+
+.appearanceSecondary {
+  --_slider-fill:      var(--Secondary-Bold, var(--Surface-Bold));
+  --_slider-knob:      var(--Secondary-Bold, var(--Surface-Bold));
+  --_slider-rail-role: var(--Secondary-Subtle, var(--Neutral-Minimal));
+}
+
+.appearanceSparkle {
+  --_slider-fill:      var(--Sparkle-Bold, var(--Surface-Bold));
+  --_slider-knob:      var(--Sparkle-Bold, var(--Surface-Bold));
+  --_slider-rail-role: var(--Sparkle-Subtle, var(--Neutral-Minimal));
+}
+
+.appearanceBrandBg {
+  --_slider-fill:      var(--Brand-Bg-Bold, var(--Surface-Bold));
+  --_slider-knob:      var(--Brand-Bg-Bold, var(--Surface-Bold));
+  --_slider-rail-role: var(--Brand-Bg-Subtle, var(--Neutral-Minimal));
+}
+
+.appearancePositive {
+  --_slider-fill:      var(--Positive-Bold, var(--Surface-Bold));
+  --_slider-knob:      var(--Positive-Bold, var(--Surface-Bold));
+  --_slider-rail-role: var(--Positive-Subtle, var(--Neutral-Minimal));
+}
+
+.appearanceNegative {
+  --_slider-fill:      var(--Negative-Bold, var(--Surface-Bold));
+  --_slider-knob:      var(--Negative-Bold, var(--Surface-Bold));
+  --_slider-rail-role: var(--Negative-Subtle, var(--Neutral-Minimal));
+}
+
+.appearanceWarning {
+  --_slider-fill:      var(--Warning-Bold, var(--Surface-Bold));
+  --_slider-knob:      var(--Warning-Bold, var(--Surface-Bold));
+  --_slider-rail-role: var(--Warning-Subtle, var(--Neutral-Minimal));
+}
+
+.appearanceInformative {
+  --_slider-fill:      var(--Informative-Bold, var(--Surface-Bold));
+  --_slider-knob:      var(--Informative-Bold, var(--Surface-Bold));
+  --_slider-rail-role: var(--Informative-Subtle, var(--Neutral-Minimal));
+}
+
+/* ============================================
+   SURFACE CONTEXT — when the slider sits on a tinted surface, the rail
+   picks up the role's Subtle tint instead of staying neutral. On the
+   default (page) surface the rail stays neutral. This is the "neutral
+   becomes tinted on a tinted surface" behaviour.
+   ============================================ */
+
+[data-surface="minimal"] .root,
+[data-surface="subtle"]  .root,
+[data-surface="bold"]    .root {
+  --_slider-rail: var(--_slider-rail-role, var(--Neutral-Minimal));
+}

@@ -1,0 +1,274 @@
+/**
+ * CanvasChatPanel.module.css
+ *
+ * Right-docked panel. The component delegates all chat presentation to
+ * ChatSurface + ChatComposer, so this stylesheet only defines the outer
+ * panel chrome and tab-pane layout.
+ */
+
+.panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 400px; /* INTENTIONAL-LITERAL: fixed chat panel width, no f-step equivalent */
+  display: flex;
+  flex-direction: column;
+  background: var(--Surface-Elevated, var(--Surface-Main));
+  border-left: var(--Stroke-M) solid var(--Border-Subtle);
+  z-index: var(--Z-Index-Sticky, 100);
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  color: var(--Text-High);
+  min-width: 0;
+}
+
+.panel > [role='tabpanel'] {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.tabBarWrap {
+  padding: var(--Spacing-3-5) var(--Spacing-4) 0;
+  /* No top divider — the tabs themselves anchor the header visually. */
+  flex-shrink: 0;
+}
+
+/* ── Chat pane ─────────────────────────────────────────────────────────── */
+
+.panel_chat {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  padding: 0;
+  gap: 0;
+}
+
+/* ChatSurface ships with `min-height: calc(100vh - --Spacing-12)` so it
+   fills a full-page surface (Home/Voice). Inside the 400px chat tab its
+   huge minimum pushes the modelFooter (Compose/Sketch + model pickers)
+   off-screen. Constrain it to the tab's available height. */
+.chatSurface {
+  min-height: 0 !important;
+  flex: 1;
+  padding: var(--Spacing-4) var(--Spacing-4) var(--Spacing-3-5) !important;
+}
+
+/* Empty state layout:
+   - the greeting slot (title + subtitle + suggestion chips) takes all
+     available vertical space and centres its content inside it, so the
+     title sits middle-aligned in the upper half of the panel;
+   - the emptyComposer row sticks to the bottom (flex:0) so the input
+     hugs the viewport edge.
+   Undo ChatSurface's own padding so the composer can actually reach
+   the bottom edge. */
+.chatSurface :global([class*='empty']) {
+  justify-content: flex-start !important;
+  padding: 0 !important;
+}
+
+.chatSurface :global([class*='greetingSlot']) {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
+
+.chatSurface :global([class*='emptyComposer']) {
+  flex: 0 0 auto;
+  width: 100%;
+  padding-bottom: var(--Spacing-3);
+}
+
+.greeting {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--Spacing-3);
+  padding: var(--Spacing-4-5) var(--Spacing-4);
+  text-align: center;
+  color: var(--Text-High);
+}
+
+.greeting > :global(svg) {
+  width: var(--Spacing-6);
+  height: var(--Spacing-6);
+  color: var(--Primary-Tinted);
+}
+
+.greetingTitle {
+  margin: 0;
+  font-family: var(--Title-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Title-M-FontSize);
+  line-height: var(--Title-M-LineHeight);
+  font-weight: var(--Title-M-FontWeight);
+  color: var(--Text-High);
+}
+
+.greetingSubtitle {
+  margin: 0;
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  font-weight: var(--Body-FontWeight-Low);
+  color: var(--Text-Medium);
+  max-width: 28ch;
+}
+
+/* Suggestion pills — stacked vertically below the greeting copy. Medium
+   weight text so they read clearly as tap targets without looking like
+   the lighter informational list items in the sidebar. */
+.greetingSuggestions {
+  list-style: none;
+  margin: var(--Spacing-4) 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--Spacing-2);
+  width: 100%;
+}
+
+.greetingSuggestions > li {
+  display: flex;
+}
+
+.greetingSuggestions button {
+  font-weight: var(--Label-FontWeight-Medium) !important;
+}
+
+.hiddenFileInput {
+  display: none;
+}
+
+/* aboveComposer column — stacks image preview + mode pills just above the
+   composer. */
+.aboveComposerStack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--Spacing-3);
+  align-items: center;
+}
+
+.modePillRow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--Spacing-3);
+}
+
+.modePill :global(label) {
+  font-size: var(--Label-XS-FontSize);
+  line-height: var(--Label-XS-LineHeight);
+}
+
+.imagePreviewRow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--Spacing-3);
+  padding: var(--Spacing-2) var(--Spacing-3);
+  background: var(--Neutral-Subtle);
+  border-radius: var(--Shape-3-5);
+}
+
+.imagePreview {
+  max-width: var(--Spacing-9);
+  max-height: var(--Spacing-9);
+  border-radius: var(--Shape-3);
+  object-fit: cover;
+}
+
+/* Composer footer row — sits below the composer. Houses the
+   Compose/Sketch dropdown on the left and the model picker on the right,
+   Magic Path-style ("Auto · No theme"). */
+.modelFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--Spacing-3);
+  padding: var(--Spacing-3) var(--Spacing-4) var(--Spacing-3-5);
+  border-top: var(--Stroke-S) solid var(--Border-Subtle);
+  flex-shrink: 0;
+}
+
+.modelFooterSpacer {
+  flex: 1;
+}
+
+/* ── Edit pane ─────────────────────────────────────────────────────────── */
+
+.panel_edit {
+  flex: 1;
+  min-height: 0;
+}
+
+.editScroll {
+  flex: 1;
+  padding: var(--Spacing-4);
+}
+
+/* The PropPanel container originally positions itself top:48px/right:64px.
+   When embedded in a tab pane those offsets leave it floating in the middle
+   of nowhere — reset them so it behaves as a block element in flow. */
+.editScroll :global([class*='propPanelContainer']) {
+  position: static !important;
+  top: auto !important;
+  right: auto !important;
+  width: 100% !important;
+}
+
+/* ── Code pane ─────────────────────────────────────────────────────────── */
+
+.panel_code {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.codeHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--Spacing-3-5);
+  padding: var(--Spacing-3-5) var(--Spacing-4);
+  border-bottom: var(--Stroke-S) solid var(--Border-Subtle);
+  flex-shrink: 0;
+}
+
+.codeActions {
+  display: flex;
+  align-items: center;
+  gap: var(--Spacing-1-5);
+}
+
+.codeBody {
+  flex: 1;
+  padding: var(--Spacing-4);
+  background: var(--Surface-Fill-Subtle);
+  min-height: 0;
+}
+
+.codeBlock {
+  margin: 0;
+  font-family: var(--Typography-Font-Code, 'JetBrains Mono', monospace);
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  color: var(--Text-High);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* ── Empty state ───────────────────────────────────────────────────────── */
+
+.emptyState {
+  margin: 0;
+  padding: var(--Spacing-4-5);
+  font-family: var(--Body-FontFamily, var(--Typography-Font-Text));
+  font-size: var(--Body-S-FontSize);
+  line-height: var(--Body-S-LineHeight);
+  color: var(--Text-Low);
+  text-align: center;
+}

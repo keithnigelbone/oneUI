@@ -1,0 +1,1961 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flutter QA — indicator-badge</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0f1117; color: #e2e8f0; min-height: 100vh; }
+    .header { background: #1a1d27; border-bottom: 1px solid #2d3147; padding: 20px 32px; display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
+    .header-title { font-size: 18px; font-weight: 600; color: #f0f4ff; }
+    .header-sub { font-size: 12px; color: #64748b; margin-top: 2px; }
+    .stat-card { display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 8px 16px; border-radius: 8px; min-width: 80px; }
+    .stat-value { font-size: 22px; font-weight: 700; line-height: 1; }
+    .stat-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; color: #94a3b8; }
+    .stat-total { background: #1e2235; }
+    .stat-pass { background: #0f2a1a; }
+    .stat-fail { background: #2a0f0f; }
+    .stat-skip { background: #1e2235; }
+    .stat-time { background: #1e2235; }
+    .stat-pass .stat-value { color: #4ade80; }
+    .stat-fail .stat-value { color: #f87171; }
+    .stat-skip .stat-value { color: #94a3b8; }
+    .stat-total .stat-value, .stat-time .stat-value { color: #94a3b8; }
+    .status-banner { margin-left: auto; padding: 6px 16px; border-radius: 20px; font-size: 13px; font-weight: 600; }
+    .status-banner.all-pass { background: #052e16; color: #4ade80; border: 1px solid #16a34a; }
+    .status-banner.has-fail { background: #2a0f0f; color: #f87171; border: 1px solid #dc2626; }
+    .content { padding: 24px 32px; max-width: 1100px; margin: 0 auto; }
+    .toolbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; }
+    .filters { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+    .filter-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; color: #64748b; }
+    .filter-select { appearance: none; background: #1e2235; color: #c7d2fe; border: 1px solid #2d3147; border-radius: 6px; padding: 6px 12px; font-size: 12px; min-width: 140px; }
+    .suite-pills { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+    .suite-pill { font-size: 11px; padding: 4px 10px; border-radius: 999px; border: 1px solid #2d3147; color: #94a3b8; }
+    .suite-pill.fn { border-color: #4c1d95; color: #c4b5fd; }
+    .suite-pill.a11y { border-color: #14532d; color: #6ee7b7; }
+    .suite-pill.smoke { border-color: #0c4a6e; color: #7dd3fc; }
+    .file-block { background: #1a1d27; border: 1px solid #2d3147; border-radius: 10px; margin-bottom: 16px; overflow: hidden; }
+    .file-block.file-fail { border-color: #7f1d1d; }
+    .file-block.file-pass { border-color: #14532d; }
+    .file-summary { display: flex; align-items: center; gap: 10px; padding: 12px 16px; cursor: pointer; list-style: none; background: #20243a; user-select: none; }
+    .file-summary::-webkit-details-marker { display: none; }
+    .file-icon { font-size: 14px; }
+    .file-block.file-pass .file-icon { color: #4ade80; }
+    .file-block.file-fail .file-icon { color: #f87171; }
+    .file-path { font-size: 13px; font-weight: 500; color: #c7d2fe; font-family: 'JetBrains Mono', monospace; flex: 1; }
+    .file-counts { display: flex; gap: 8px; font-size: 12px; }
+    .pass-count { color: #4ade80; }
+    .fail-count { color: #f87171; }
+    .file-dur { font-size: 12px; color: #475569; }
+    .suite-block { padding: 4px 16px 12px; }
+    .test-row { border-radius: 6px; margin: 2px 0; }
+    .test-row.failed { background: #1a0a0a; }
+    .test-header { display: flex; align-items: center; gap: 8px; padding: 7px 10px; border-radius: 6px; }
+    .test-header:hover { background: #252a3f; }
+    .status-icon { font-size: 13px; font-weight: 700; width: 18px; flex-shrink: 0; }
+    .status-icon.pass { color: #4ade80; }
+    .status-icon.fail { color: #f87171; }
+    .status-icon.skip { color: #94a3b8; }
+    .test-name { flex: 1; font-size: 13px; color: #cbd5e1; }
+    .test-dur { font-size: 11px; color: #475569; flex-shrink: 0; }
+    .tag { font-size: 10px; font-weight: 600; padding: 2px 7px; border-radius: 10px; letter-spacing: 0.3px; flex-shrink: 0; }
+    .tag-smoke { background: #1e3a5f; color: #7dd3fc; }
+    .tag-fn { background: #2d1b69; color: #c4b5fd; }
+    .tag-a11y { background: #1a3a2a; color: #6ee7b7; }
+    .tag-catalog { background: #3b2f0a; color: #fcd34d; }
+    .tag-other { background: #2d2d2d; color: #94a3b8; }
+    .platform-badge { font-size: 10px; color: #64748b; border: 1px solid #334155; border-radius: 4px; padding: 1px 5px; }
+    .error-block { margin: 4px 10px 8px 36px; padding: 8px 12px; background: #1f0a0a; border-left: 3px solid #dc2626; border-radius: 0 4px 4px 0; }
+    .error-block pre { font-size: 11px; color: #fca5a5; white-space: pre-wrap; word-break: break-word; font-family: 'JetBrains Mono', monospace; max-height: 240px; overflow: auto; }
+    .footer { text-align: center; padding: 32px; font-size: 12px; color: #334155; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div>
+      <div class="header-title">Flutter QA — indicator-badge</div>
+      <div class="header-sub">flutter_test · headless VM · 7/2/2026, 2:36:06 PM</div>
+    </div>
+    <div class="stat-card stat-total"><div class="stat-value">178</div><div class="stat-label">Total</div></div>
+    <div class="stat-card stat-pass"><div class="stat-value">178</div><div class="stat-label">Passed</div></div>
+    <div class="stat-card stat-fail"><div class="stat-value">0</div><div class="stat-label">Failed</div></div>
+    <div class="stat-card stat-skip"><div class="stat-value">0</div><div class="stat-label">Skipped</div></div>
+    <div class="stat-card stat-time"><div class="stat-value">5.5s</div><div class="stat-label">Duration</div></div>
+    <div class="status-banner all-pass">✓ All tests passed</div>
+  </div>
+  <div class="content">
+    <div class="toolbar">
+      <div class="filters">
+        <span class="filter-label">Component</span>
+        <select class="filter-select" id="comp-filter" onchange="applyFilters()">
+          <option value="">All</option>
+          <option value="indicator_badge">indicator_badge</option>
+        </select>
+        <span class="filter-label">Tier</span>
+        <select class="filter-select" id="tier-filter" onchange="applyFilters()">
+          <option value="">All</option>
+          <option value="smoke">Smoke</option>
+          <option value="fn">Functional</option>
+          <option value="a11y">Accessibility</option>
+          <option value="catalog">Catalog</option>
+        </select>
+      </div>
+    </div>
+    <div class="suite-pills">
+      <span class="suite-pill smoke">Smoke: 45</span>
+      <span class="suite-pill fn">Functional: 57</span>
+      <span class="suite-pill a11y">Accessibility: 31</span>
+      <span class="suite-pill">Catalog: 0</span>
+    </div>
+    <details class="file-block file-pass" data-component="indicator_badge" open>
+      <summary class="file-summary">
+        <span class="file-icon">✓</span>
+        <span class="file-path">test/components/indicator_badge/indicator_badge_a11y_test.dart</span>
+        <span class="file-counts">
+          <span class="pass-count">16 passed</span>
+          
+        </span>
+        <span class="file-dur">1.05s</span>
+      </summary>
+      <div class="suite-block"><div class="test-row passed" data-component="indicator_badge" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          
+          <span class="test-name">[a11y] resolveOneUiIndicatorBadgeSemantics [a11y] non-empty label is accessible</span>
+          <span class="test-dur">12ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          
+          <span class="test-name">[a11y] resolveOneUiIndicatorBadgeSemantics [a11y] empty label is not accessible</span>
+          <span class="test-dur">4ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          
+          <span class="test-name">[a11y] resolveOneUiIndicatorBadgeSemantics [a11y] whitespace-only label is not accessible</span>
+          <span class="test-dur">2ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          
+          <span class="test-name">[a11y] resolveOneUiIndicatorBadgeSemantics [a11y] label is trimmed of surrounding whitespace</span>
+          <span class="test-dur">2ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[a11y] IndicatorBadge widget — semantics contract [a11y] exposes semanticsLabel as accessible name</span>
+          <span class="test-dur">438ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[a11y] IndicatorBadge widget — semantics contract [a11y] exposes semanticsLabel as accessible name</span>
+          <span class="test-dur">40ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[a11y] IndicatorBadge widget — semantics contract [a11y] exposes semanticsLabel as accessible name</span>
+          <span class="test-dur">32ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[a11y] IndicatorBadge widget — semantics contract [a11y] live region is off for static dots (RN parity)</span>
+          <span class="test-dur">28ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[a11y] IndicatorBadge widget — semantics contract [a11y] live region is off for static dots (RN parity)</span>
+          <span class="test-dur">22ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[a11y] IndicatorBadge widget — semantics contract [a11y] live region is off for static dots (RN parity)</span>
+          <span class="test-dur">24ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[a11y] IndicatorBadge widget — semantics contract [a11y] does NOT expose isButton flag</span>
+          <span class="test-dur">26ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[a11y] IndicatorBadge widget — semantics contract [a11y] does NOT expose isButton flag</span>
+          <span class="test-dur">20ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[a11y] IndicatorBadge widget — semantics contract [a11y] does NOT expose isButton flag</span>
+          <span class="test-dur">19ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[a11y] IndicatorBadge widget — semantics contract [a11y] live region stays off across appearance/size matrix</span>
+          <span class="test-dur">145ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[a11y] IndicatorBadge widget — semantics contract [a11y] live region stays off across appearance/size matrix</span>
+          <span class="test-dur">123ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[a11y] IndicatorBadge widget — semantics contract [a11y] live region stays off across appearance/size matrix</span>
+          <span class="test-dur">113ms</span>
+        </div>
+        
+      </div></div>
+    </details>
+<details class="file-block file-pass" data-component="indicator_badge" open>
+      <summary class="file-summary">
+        <span class="file-icon">✓</span>
+        <span class="file-path">test/components/indicator_badge/indicator_badge_functional_test.dart</span>
+        <span class="file-counts">
+          <span class="pass-count">78 passed</span>
+          
+        </span>
+        <span class="file-dur">2.04s</span>
+      </summary>
+      <div class="suite-block"><div class="test-row passed" data-component="indicator_badge" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[smoke] IndicatorBadge — renders without crashing [smoke] default indicator renders</span>
+          <span class="test-dur">455ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[smoke] IndicatorBadge — renders without crashing [smoke] default indicator renders</span>
+          <span class="test-dur">39ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[smoke] IndicatorBadge — renders without crashing [smoke] default indicator renders</span>
+          <span class="test-dur">36ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[smoke] IndicatorBadge — renders without crashing [smoke] size=&quot;xs&quot; renders</span>
+          <span class="test-dur">28ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[smoke] IndicatorBadge — renders without crashing [smoke] size=&quot;xs&quot; renders</span>
+          <span class="test-dur">41ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[smoke] IndicatorBadge — renders without crashing [smoke] size=&quot;xs&quot; renders</span>
+          <span class="test-dur">26ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[smoke] IndicatorBadge — renders without crashing [smoke] size=&quot;s&quot; renders</span>
+          <span class="test-dur">21ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[smoke] IndicatorBadge — renders without crashing [smoke] size=&quot;s&quot; renders</span>
+          <span class="test-dur">25ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[smoke] IndicatorBadge — renders without crashing [smoke] size=&quot;s&quot; renders</span>
+          <span class="test-dur">24ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[smoke] IndicatorBadge — renders without crashing [smoke] size=&quot;m&quot; renders</span>
+          <span class="test-dur">21ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[smoke] IndicatorBadge — renders without crashing [smoke] size=&quot;m&quot; renders</span>
+          <span class="test-dur">22ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[smoke] IndicatorBadge — renders without crashing [smoke] size=&quot;m&quot; renders</span>
+          <span class="test-dur">25ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[smoke] IndicatorBadge — renders without crashing [smoke] size=&quot;l&quot; renders</span>
+          <span class="test-dur">29ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[smoke] IndicatorBadge — renders without crashing [smoke] size=&quot;l&quot; renders</span>
+          <span class="test-dur">23ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[smoke] IndicatorBadge — renders without crashing [smoke] size=&quot;l&quot; renders</span>
+          <span class="test-dur">19ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[smoke] IndicatorBadge — renders without crashing [smoke] size=&quot;xl&quot; renders</span>
+          <span class="test-dur">25ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[smoke] IndicatorBadge — renders without crashing [smoke] size=&quot;xl&quot; renders</span>
+          <span class="test-dur">20ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[smoke] IndicatorBadge — renders without crashing [smoke] size=&quot;xl&quot; renders</span>
+          <span class="test-dur">19ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[functional] IndicatorBadge — size honors token (not just smoke) [fn] size=&quot;xl&quot; renders strictly larger than size=&quot;xs&quot;</span>
+          <span class="test-dur">44ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[functional] IndicatorBadge — size honors token (not just smoke) [fn] size=&quot;xl&quot; renders strictly larger than size=&quot;xs&quot;</span>
+          <span class="test-dur">27ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[functional] IndicatorBadge — size honors token (not just smoke) [fn] size=&quot;xl&quot; renders strictly larger than size=&quot;xs&quot;</span>
+          <span class="test-dur">26ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[functional] IndicatorBadge — size honors token (not just smoke) [fn] size is monotonic xs ≤ s ≤ m ≤ l ≤ xl</span>
+          <span class="test-dur">41ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[functional] IndicatorBadge — size honors token (not just smoke) [fn] size is monotonic xs ≤ s ≤ m ≤ l ≤ xl</span>
+          <span class="test-dur">42ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[functional] IndicatorBadge — size honors token (not just smoke) [fn] size is monotonic xs ≤ s ≤ m ≤ l ≤ xl</span>
+          <span class="test-dur">39ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[functional] IndicatorBadge — size honors token (not just smoke) [fn] dot is square (width == height)</span>
+          <span class="test-dur">40ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[functional] IndicatorBadge — size honors token (not just smoke) [fn] dot is square (width == height)</span>
+          <span class="test-dur">38ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[functional] IndicatorBadge — size honors token (not just smoke) [fn] dot is square (width == height)</span>
+          <span class="test-dur">37ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[functional] IndicatorBadge — size honors token (not just smoke) [fn] unknown size falls back to &quot;m&quot;</span>
+          <span class="test-dur">23ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[functional] IndicatorBadge — size honors token (not just smoke) [fn] unknown size falls back to &quot;m&quot;</span>
+          <span class="test-dur">20ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[functional] IndicatorBadge — size honors token (not just smoke) [fn] unknown size falls back to &quot;m&quot;</span>
+          <span class="test-dur">19ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[smoke] IndicatorBadge — Figma matrix: appearance [smoke] appearance=&quot;auto&quot; renders</span>
+          <span class="test-dur">18ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[smoke] IndicatorBadge — Figma matrix: appearance [smoke] appearance=&quot;auto&quot; renders</span>
+          <span class="test-dur">20ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[smoke] IndicatorBadge — Figma matrix: appearance [smoke] appearance=&quot;auto&quot; renders</span>
+          <span class="test-dur">19ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[smoke] IndicatorBadge — Figma matrix: appearance [smoke] appearance=&quot;neutral&quot; renders</span>
+          <span class="test-dur">16ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[smoke] IndicatorBadge — Figma matrix: appearance [smoke] appearance=&quot;neutral&quot; renders</span>
+          <span class="test-dur">20ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[smoke] IndicatorBadge — Figma matrix: appearance [smoke] appearance=&quot;neutral&quot; renders</span>
+          <span class="test-dur">16ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[smoke] IndicatorBadge — Figma matrix: appearance [smoke] appearance=&quot;primary&quot; renders</span>
+          <span class="test-dur">15ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[smoke] IndicatorBadge — Figma matrix: appearance [smoke] appearance=&quot;primary&quot; renders</span>
+          <span class="test-dur">14ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[smoke] IndicatorBadge — Figma matrix: appearance [smoke] appearance=&quot;primary&quot; renders</span>
+          <span class="test-dur">13ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[smoke] IndicatorBadge — Figma matrix: appearance [smoke] appearance=&quot;secondary&quot; renders</span>
+          <span class="test-dur">16ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[smoke] IndicatorBadge — Figma matrix: appearance [smoke] appearance=&quot;secondary&quot; renders</span>
+          <span class="test-dur">15ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[smoke] IndicatorBadge — Figma matrix: appearance [smoke] appearance=&quot;secondary&quot; renders</span>
+          <span class="test-dur">15ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[smoke] IndicatorBadge — Figma matrix: appearance [smoke] appearance=&quot;sparkle&quot; renders</span>
+          <span class="test-dur">15ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[smoke] IndicatorBadge — Figma matrix: appearance [smoke] appearance=&quot;sparkle&quot; renders</span>
+          <span class="test-dur">13ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[smoke] IndicatorBadge — Figma matrix: appearance [smoke] appearance=&quot;sparkle&quot; renders</span>
+          <span class="test-dur">21ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[smoke] IndicatorBadge — Figma matrix: appearance [smoke] appearance=&quot;positive&quot; renders</span>
+          <span class="test-dur">14ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[smoke] IndicatorBadge — Figma matrix: appearance [smoke] appearance=&quot;positive&quot; renders</span>
+          <span class="test-dur">13ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[smoke] IndicatorBadge — Figma matrix: appearance [smoke] appearance=&quot;positive&quot; renders</span>
+          <span class="test-dur">12ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[smoke] IndicatorBadge — Figma matrix: appearance [smoke] appearance=&quot;negative&quot; renders</span>
+          <span class="test-dur">13ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[smoke] IndicatorBadge — Figma matrix: appearance [smoke] appearance=&quot;negative&quot; renders</span>
+          <span class="test-dur">12ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[smoke] IndicatorBadge — Figma matrix: appearance [smoke] appearance=&quot;negative&quot; renders</span>
+          <span class="test-dur">16ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[smoke] IndicatorBadge — Figma matrix: appearance [smoke] appearance=&quot;informative&quot; renders</span>
+          <span class="test-dur">28ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[smoke] IndicatorBadge — Figma matrix: appearance [smoke] appearance=&quot;informative&quot; renders</span>
+          <span class="test-dur">18ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[smoke] IndicatorBadge — Figma matrix: appearance [smoke] appearance=&quot;informative&quot; renders</span>
+          <span class="test-dur">13ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[smoke] IndicatorBadge — Figma matrix: appearance [smoke] appearance=&quot;warning&quot; renders</span>
+          <span class="test-dur">13ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[smoke] IndicatorBadge — Figma matrix: appearance [smoke] appearance=&quot;warning&quot; renders</span>
+          <span class="test-dur">15ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="smoke">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-smoke">SMOKE</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[smoke] IndicatorBadge — Figma matrix: appearance [smoke] appearance=&quot;warning&quot; renders</span>
+          <span class="test-dur">13ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[functional] IndicatorBadge — data-attribute key [fn] data-attribute key encodes size+appearance</span>
+          <span class="test-dur">13ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[functional] IndicatorBadge — data-attribute key [fn] data-attribute key encodes size+appearance</span>
+          <span class="test-dur">12ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[functional] IndicatorBadge — data-attribute key [fn] data-attribute key encodes size+appearance</span>
+          <span class="test-dur">12ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[functional] IndicatorBadge — data-attribute key [fn] appearance=auto outside Surface defaults to primary</span>
+          <span class="test-dur">14ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[functional] IndicatorBadge — data-attribute key [fn] appearance=auto outside Surface defaults to primary</span>
+          <span class="test-dur">15ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[functional] IndicatorBadge — data-attribute key [fn] appearance=auto outside Surface defaults to primary</span>
+          <span class="test-dur">21ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[functional] IndicatorBadge — data-attribute key [fn] explicit appearance wins over auto+Surface</span>
+          <span class="test-dur">18ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[functional] IndicatorBadge — data-attribute key [fn] explicit appearance wins over auto+Surface</span>
+          <span class="test-dur">17ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[functional] IndicatorBadge — data-attribute key [fn] explicit appearance wins over auto+Surface</span>
+          <span class="test-dur">15ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[functional] IndicatorBadge — testId / KeyedSubtree [fn] testId attaches a ValueKey to the root</span>
+          <span class="test-dur">16ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[functional] IndicatorBadge — testId / KeyedSubtree [fn] testId attaches a ValueKey to the root</span>
+          <span class="test-dur">16ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[functional] IndicatorBadge — testId / KeyedSubtree [fn] testId attaches a ValueKey to the root</span>
+          <span class="test-dur">14ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[functional] IndicatorBadge — overlay anchors [fn] topEnd anchor renders the indicator on top-right</span>
+          <span class="test-dur">14ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[functional] IndicatorBadge — overlay anchors [fn] topEnd anchor renders the indicator on top-right</span>
+          <span class="test-dur">15ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[functional] IndicatorBadge — overlay anchors [fn] topEnd anchor renders the indicator on top-right</span>
+          <span class="test-dur">16ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[functional] IndicatorBadge — overlay anchors [fn] bottomEnd anchor with surface ring renders</span>
+          <span class="test-dur">16ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[functional] IndicatorBadge — overlay anchors [fn] bottomEnd anchor with surface ring renders</span>
+          <span class="test-dur">16ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[functional] IndicatorBadge — overlay anchors [fn] bottomEnd anchor with surface ring renders</span>
+          <span class="test-dur">15ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[functional] IndicatorBadge — overlay anchors [fn] overlay sized to hostSide</span>
+          <span class="test-dur">16ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[functional] IndicatorBadge — overlay anchors [fn] overlay sized to hostSide</span>
+          <span class="test-dur">16ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[functional] IndicatorBadge — overlay anchors [fn] overlay sized to hostSide</span>
+          <span class="test-dur">15ms</span>
+        </div>
+        
+      </div></div>
+    </details>
+<details class="file-block file-pass" data-component="indicator_badge" open>
+      <summary class="file-summary">
+        <span class="file-icon">✓</span>
+        <span class="file-path">test/components/indicator_badge/indicator_badge_golden_test.dart</span>
+        <span class="file-counts">
+          <span class="pass-count">30 passed</span>
+          
+        </span>
+        <span class="file-dur">1.67s</span>
+      </summary>
+      <div class="suite-block"><div class="test-row passed" data-component="indicator_badge" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] IndicatorBadge — core dots (size m) appearance=primary / size=m</span>
+          <span class="test-dur">547ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] IndicatorBadge — core dots (size m) appearance=secondary / size=m</span>
+          <span class="test-dur">44ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] IndicatorBadge — core dots (size m) appearance=neutral / size=m</span>
+          <span class="test-dur">39ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] IndicatorBadge — core dots (size m) appearance=sparkle / size=m</span>
+          <span class="test-dur">39ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] IndicatorBadge — core dots (size m) appearance=positive / size=m</span>
+          <span class="test-dur">40ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] IndicatorBadge — core dots (size m) appearance=negative / size=m</span>
+          <span class="test-dur">38ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] IndicatorBadge — core dots (size m) appearance=warning / size=m</span>
+          <span class="test-dur">36ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] IndicatorBadge — core dots (size m) appearance=informative / size=m</span>
+          <span class="test-dur">36ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] IndicatorBadge — size × appearance matrix size=xs appearance=primary</span>
+          <span class="test-dur">39ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] IndicatorBadge — size × appearance matrix size=xs appearance=negative</span>
+          <span class="test-dur">47ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] IndicatorBadge — size × appearance matrix size=xs appearance=positive</span>
+          <span class="test-dur">37ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] IndicatorBadge — size × appearance matrix size=xs appearance=warning</span>
+          <span class="test-dur">38ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] IndicatorBadge — size × appearance matrix size=s appearance=primary</span>
+          <span class="test-dur">40ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] IndicatorBadge — size × appearance matrix size=s appearance=negative</span>
+          <span class="test-dur">36ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] IndicatorBadge — size × appearance matrix size=s appearance=positive</span>
+          <span class="test-dur">35ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] IndicatorBadge — size × appearance matrix size=s appearance=warning</span>
+          <span class="test-dur">38ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] IndicatorBadge — size × appearance matrix size=m appearance=primary</span>
+          <span class="test-dur">38ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] IndicatorBadge — size × appearance matrix size=m appearance=negative</span>
+          <span class="test-dur">45ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] IndicatorBadge — size × appearance matrix size=m appearance=positive</span>
+          <span class="test-dur">39ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] IndicatorBadge — size × appearance matrix size=m appearance=warning</span>
+          <span class="test-dur">38ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] IndicatorBadge — size × appearance matrix size=l appearance=primary</span>
+          <span class="test-dur">40ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] IndicatorBadge — size × appearance matrix size=l appearance=negative</span>
+          <span class="test-dur">45ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] IndicatorBadge — size × appearance matrix size=l appearance=positive</span>
+          <span class="test-dur">38ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] IndicatorBadge — size × appearance matrix size=l appearance=warning</span>
+          <span class="test-dur">37ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] IndicatorBadge — size × appearance matrix size=xl appearance=primary</span>
+          <span class="test-dur">39ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] IndicatorBadge — size × appearance matrix size=xl appearance=negative</span>
+          <span class="test-dur">37ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] IndicatorBadge — size × appearance matrix size=xl appearance=positive</span>
+          <span class="test-dur">34ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] IndicatorBadge — size × appearance matrix size=xl appearance=warning</span>
+          <span class="test-dur">36ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] IndicatorBadge — overlay anchors topEnd anchor on icon tile (no ring)</span>
+          <span class="test-dur">39ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          
+          <span class="test-name">[golden] IndicatorBadge — overlay anchors bottomEnd anchor on avatar tile (with surface ring)</span>
+          <span class="test-dur">35ms</span>
+        </div>
+        
+      </div></div>
+    </details>
+<details class="file-block file-pass" data-component="indicator_badge" open>
+      <summary class="file-summary">
+        <span class="file-icon">✓</span>
+        <span class="file-path">test/components/indicator_badge/indicator_badge_regression_test.dart</span>
+        <span class="file-counts">
+          <span class="pass-count">54 passed</span>
+          
+        </span>
+        <span class="file-dur">1.61s</span>
+      </summary>
+      <div class="suite-block"><div class="test-row passed" data-component="indicator_badge" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[regression][fn] IndicatorBadge [fn] [IB-FN-001] IndicatorBadge without OneUiScope falls back silently (not orange debug card)</span>
+          <span class="test-dur">410ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[regression][fn] IndicatorBadge [fn] [IB-FN-001] IndicatorBadge without OneUiScope falls back silently (not orange debug card)</span>
+          <span class="test-dur">34ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[regression][fn] IndicatorBadge [fn] [IB-FN-001] IndicatorBadge without OneUiScope falls back silently (not orange debug card)</span>
+          <span class="test-dur">30ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[regression][fn] IndicatorBadge [fn] [IB-FN-002] --IndicatorBadge-backgroundColor override wins for non-primary appearance</span>
+          <span class="test-dur">58ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[regression][fn] IndicatorBadge [fn] [IB-FN-002] --IndicatorBadge-backgroundColor override wins for non-primary appearance</span>
+          <span class="test-dur">24ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[regression][fn] IndicatorBadge [fn] [IB-FN-002] --IndicatorBadge-backgroundColor override wins for non-primary appearance</span>
+          <span class="test-dur">23ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[regression][fn] IndicatorBadge [fn] [IB-FN-003] Unconfigured role falls back to neutral, not Material primary</span>
+          <span class="test-dur">31ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[regression][fn] IndicatorBadge [fn] [IB-FN-003] Unconfigured role falls back to neutral, not Material primary</span>
+          <span class="test-dur">21ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[regression][fn] IndicatorBadge [fn] [IB-FN-003] Unconfigured role falls back to neutral, not Material primary</span>
+          <span class="test-dur">22ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[regression][fn] IndicatorBadge [fn] [IB-FN-004] Invalid appearance string normalises to neutral</span>
+          <span class="test-dur">20ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[regression][fn] IndicatorBadge [fn] [IB-FN-004] Invalid appearance string normalises to neutral</span>
+          <span class="test-dur">22ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[regression][fn] IndicatorBadge [fn] [IB-FN-004] Invalid appearance string normalises to neutral</span>
+          <span class="test-dur">22ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[regression][fn] IndicatorBadge [fn] [IB-FN-005] Empty semanticsLabel is not accessible (dev warning + no AT name)</span>
+          <span class="test-dur">23ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[regression][fn] IndicatorBadge [fn] [IB-FN-005] Empty semanticsLabel is not accessible (dev warning + no AT name)</span>
+          <span class="test-dur">20ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[regression][fn] IndicatorBadge [fn] [IB-FN-005] Empty semanticsLabel is not accessible (dev warning + no AT name)</span>
+          <span class="test-dur">22ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[regression][fn] IndicatorBadge [fn] [IB-FN-006] appearance=auto inherits from root-level Surface (no surfaceDepth gate)</span>
+          <span class="test-dur">21ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[regression][fn] IndicatorBadge [fn] [IB-FN-006] appearance=auto inherits from root-level Surface (no surfaceDepth gate)</span>
+          <span class="test-dur">30ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[regression][fn] IndicatorBadge [fn] [IB-FN-006] appearance=auto inherits from root-level Surface (no surfaceDepth gate)</span>
+          <span class="test-dur">21ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[regression][fn] IndicatorBadge [fn] [IB-FN-007] bottomEnd overlay applies surface ring by default (opt-out, not opt-in)</span>
+          <span class="test-dur">27ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[regression][fn] IndicatorBadge [fn] [IB-FN-007] bottomEnd overlay applies surface ring by default (opt-out, not opt-in)</span>
+          <span class="test-dur">22ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[regression][fn] IndicatorBadge [fn] [IB-FN-007] bottomEnd overlay applies surface ring by default (opt-out, not opt-in)</span>
+          <span class="test-dur">35ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[regression][fn] IndicatorBadge [fn] [IB-FN-008] Cross-platform parity: testId is exposed via Semantics.identifier</span>
+          <span class="test-dur">22ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[regression][fn] IndicatorBadge [fn] [IB-FN-008] Cross-platform parity: testId is exposed via Semantics.identifier</span>
+          <span class="test-dur">23ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="fn">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-fn">FN</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[regression][fn] IndicatorBadge [fn] [IB-FN-008] Cross-platform parity: testId is exposed via Semantics.identifier</span>
+          <span class="test-dur">27ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[regression][a11y] IndicatorBadge [a11y] [IB-A11Y-001] liveRegion is opt-out for static dots (announceChanges:false)</span>
+          <span class="test-dur">46ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[regression][a11y] IndicatorBadge [a11y] [IB-A11Y-001] liveRegion is opt-out for static dots (announceChanges:false)</span>
+          <span class="test-dur">27ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[regression][a11y] IndicatorBadge [a11y] [IB-A11Y-001] liveRegion is opt-out for static dots (announceChanges:false)</span>
+          <span class="test-dur">35ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[regression][a11y] IndicatorBadge [a11y] [IB-A11Y-002] Flutter Web Semantics(container) must not be a focus stop</span>
+          <span class="test-dur">21ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[regression][a11y] IndicatorBadge [a11y] [IB-A11Y-002] Flutter Web Semantics(container) must not be a focus stop</span>
+          <span class="test-dur">19ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[regression][a11y] IndicatorBadge [a11y] [IB-A11Y-002] Flutter Web Semantics(container) must not be a focus stop</span>
+          <span class="test-dur">18ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[regression][a11y] IndicatorBadge [a11y] [IB-A11Y-003] Bold-on-tinted contrast guard (warning dot on warning-subtle surface)</span>
+          <span class="test-dur">24ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[regression][a11y] IndicatorBadge [a11y] [IB-A11Y-003] Bold-on-tinted contrast guard (warning dot on warning-subtle surface)</span>
+          <span class="test-dur">22ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[regression][a11y] IndicatorBadge [a11y] [IB-A11Y-003] Bold-on-tinted contrast guard (warning dot on warning-subtle surface)</span>
+          <span class="test-dur">22ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[regression][a11y] IndicatorBadge [a11y] [IB-A11Y-004] xs standalone use emits debug warning (sub-pixel invisible)</span>
+          <span class="test-dur">16ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[regression][a11y] IndicatorBadge [a11y] [IB-A11Y-004] xs standalone use emits debug warning (sub-pixel invisible)</span>
+          <span class="test-dur">22ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[regression][a11y] IndicatorBadge [a11y] [IB-A11Y-004] xs standalone use emits debug warning (sub-pixel invisible)</span>
+          <span class="test-dur">16ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[regression][a11y] IndicatorBadge [a11y] [IB-A11Y-005] High-contrast mode boosts dot contrast (MediaQuery.highContrast)</span>
+          <span class="test-dur">18ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[regression][a11y] IndicatorBadge [a11y] [IB-A11Y-005] High-contrast mode boosts dot contrast (MediaQuery.highContrast)</span>
+          <span class="test-dur">18ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="a11y">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-a11y">A11Y</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[regression][a11y] IndicatorBadge [a11y] [IB-A11Y-005] High-contrast mode boosts dot contrast (MediaQuery.highContrast)</span>
+          <span class="test-dur">16ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[regression][visual] IndicatorBadge [visual] [IB-VIS-001] Overlay ring renders OUTSIDE the dot (web box-shadow parity)</span>
+          <span class="test-dur">22ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[regression][visual] IndicatorBadge [visual] [IB-VIS-001] Overlay ring renders OUTSIDE the dot (web box-shadow parity)</span>
+          <span class="test-dur">23ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[regression][visual] IndicatorBadge [visual] [IB-VIS-001] Overlay ring renders OUTSIDE the dot (web box-shadow parity)</span>
+          <span class="test-dur">21ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[regression][visual] IndicatorBadge [visual] [IB-VIS-002] Overlay supports topStart / bottomStart anchors</span>
+          <span class="test-dur">4ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[regression][visual] IndicatorBadge [visual] [IB-VIS-002] Overlay supports topStart / bottomStart anchors</span>
+          <span class="test-dur">6ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[regression][visual] IndicatorBadge [visual] [IB-VIS-002] Overlay supports topStart / bottomStart anchors</span>
+          <span class="test-dur">5ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[regression][visual] IndicatorBadge [visual] [IB-VIS-003] BoxShape.rectangle is used consistently (no circle/rect switch)</span>
+          <span class="test-dur">21ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[regression][visual] IndicatorBadge [visual] [IB-VIS-003] BoxShape.rectangle is used consistently (no circle/rect switch)</span>
+          <span class="test-dur">16ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[regression][visual] IndicatorBadge [visual] [IB-VIS-003] BoxShape.rectangle is used consistently (no circle/rect switch)</span>
+          <span class="test-dur">16ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[regression][visual] IndicatorBadge [visual] [IB-VIS-004] Overlay layout extent includes ring (no sibling overlap)</span>
+          <span class="test-dur">28ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[regression][visual] IndicatorBadge [visual] [IB-VIS-004] Overlay layout extent includes ring (no sibling overlap)</span>
+          <span class="test-dur">17ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[regression][visual] IndicatorBadge [visual] [IB-VIS-004] Overlay layout extent includes ring (no sibling overlap)</span>
+          <span class="test-dur">19ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          <span class="platform-badge">android</span>
+          <span class="test-name">[regression][visual] IndicatorBadge [visual] [IB-VIS-005] surfaceRingColor reads from Surface scope (not a frozen literal)</span>
+          <span class="test-dur">23ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          <span class="platform-badge">ios</span>
+          <span class="test-name">[regression][visual] IndicatorBadge [visual] [IB-VIS-005] surfaceRingColor reads from Surface scope (not a frozen literal)</span>
+          <span class="test-dur">19ms</span>
+        </div>
+        
+      </div>
+<div class="test-row passed" data-component="indicator_badge" data-tier="visual">
+        <div class="test-header">
+          <span class="status-icon pass">✓</span>
+          <span class="tag tag-other">VISUAL</span>
+          <span class="platform-badge">linux</span>
+          <span class="test-name">[regression][visual] IndicatorBadge [visual] [IB-VIS-005] surfaceRingColor reads from Surface scope (not a frozen literal)</span>
+          <span class="test-dur">16ms</span>
+        </div>
+        
+      </div></div>
+    </details>
+  </div>
+  <div class="footer">Generated by <code>generate-html-report.mts</code> · OneUI QA Playground Flutter</div>
+  <script>
+    function applyFilters() {
+      var comp = document.getElementById('comp-filter').value;
+      var tier = document.getElementById('tier-filter').value;
+      document.querySelectorAll('.file-block').forEach(function(block) {
+        var bc = block.getAttribute('data-component');
+        var showFile = (!comp || bc === comp);
+        if (showFile && tier) {
+          var rows = block.querySelectorAll('.test-row');
+          var any = false;
+          rows.forEach(function(row) {
+            var match = row.getAttribute('data-tier') === tier;
+            row.style.display = match ? '' : 'none';
+            if (match) any = true;
+          });
+          block.style.display = any ? '' : 'none';
+        } else {
+          block.style.display = showFile ? '' : 'none';
+          block.querySelectorAll('.test-row').forEach(function(row) { row.style.display = ''; });
+        }
+      });
+    }
+  </script>
+</body>
+</html>
