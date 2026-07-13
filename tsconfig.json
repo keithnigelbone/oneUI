@@ -1,0 +1,63 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": [
+      "ES2022",
+      "DOM",
+      "DOM.Iterable"
+    ],
+    "jsx": "react-jsx",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "allowJs": false,
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictBindCallApply": true,
+    "strictPropertyInitialization": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "composite": false,
+    "incremental": true,
+    "baseUrl": ".",
+    "paths": {
+      "@oneui/ui": ["packages/ui/src"],
+      "@oneui/ui/engine": ["packages/ui/src/engine"],
+      "@oneui/ui/*": ["packages/ui/src/*"],
+      "@oneui/ui-native": ["packages/ui-native/src"],
+      "@oneui/ui-native-materials": ["packages/ui-native-materials/src"],
+      "@oneui/ui-native/*": ["packages/ui-native/src/*"],
+      "@ui-native": ["packages/ui-native/src"],
+      "@ui-native/*": ["packages/ui-native/src/*"],
+      "@oneui/tokens": ["packages/tokens/src"],
+      "@oneui/tokens/*": ["packages/tokens/src/*"],
+      "@oneui/shared": ["packages/shared/src"],
+      "@oneui/shared/*": ["packages/shared/src/*"],
+      "@oneui/shared/engine": ["packages/shared/src/engine"],
+      "@oneui/convex": ["packages/convex/src"],
+      "@oneui/qa-playground/*": ["apps/qa-playground/src/*"]
+    }
+  },
+  "exclude": [
+    "node_modules",
+    "dist",
+    ".next",
+    "storybook-static",
+    ".turbo",
+    ".convex",
+    "coverage"
+  ],
+  "extends": "expo/tsconfig.base"
+}
